@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 import {
   Menu,
   X,
@@ -19,13 +20,8 @@ import {
   Cloud,
   Mail,
   Star,
-  Play,
-  GraduationCap,
-  School,
   Users,
   Award,
-  Clock,
-  MapPin,
   Phone,
   Send,
   Facebook,
@@ -34,6 +30,16 @@ import {
   Youtube,
   Linkedin,
   CheckCircle2,
+  Layers,
+  PieChart,
+  ShoppingCart,
+  Lightbulb,
+  Target,
+  Zap,
+  Shield,
+  TrendingUp,
+  Layout,
+  Settings,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
@@ -52,6 +58,11 @@ const fadeUp = {
 const staggerContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } },
 };
 
 /* ═══════════════════════════════════════════
@@ -85,97 +96,128 @@ function useCounter(target: number, duration = 2000) {
    DATA
    ═══════════════════════════════════════════ */
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Solutions', href: '#solutions' },
-  { label: 'Services', href: '#services' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Solutions', href: '#solutions' },
+  { name: 'Services', href: '#services' },
+  { name: 'Testimonials', href: '#testimonials' },
+  { name: 'FAQ', href: '#faq' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 const featureCards = [
   {
     icon: BookOpen,
     title: 'Smart LMS',
-    desc: 'Moodle-powered learning management with native Arabic, Urdu & English content delivery for Islamic and mainstream schools.',
+    desc: 'Next-generation learning management with AI-driven insights, progress tracking and interactive courses for modern education.',
+    color: 'bg-purple-50 text-purple-600',
   },
   {
     icon: Film,
     title: 'Animated Lessons',
-    desc: '2D & 3D animated educational content that brings complex Islamic and academic subjects to life for K-12 students.',
+    desc: 'Engaging 2D & 3D animated content that brings lessons to life, supporting multilingual education across all curricula.',
+    color: 'bg-emerald-50 text-emerald-600',
   },
   {
     icon: Monitor,
     title: 'School ERP',
-    desc: 'Complete school administration — admissions, finance, HR, attendance, parent portals — all under one roof.',
+    desc: 'All-in-one school management — from admissions and attendance to finance and reporting in a single platform.',
+    color: 'bg-blue-50 text-blue-600',
   },
 ];
 
 const services = [
-  { icon: BarChart3, title: 'LMS Implementation', desc: 'Moodle setup, customization, and full deployment with teacher training and ongoing support.' },
-  { icon: Film, title: 'Animation Studio', desc: 'Islamic & academic 2D/3D animated lessons in English, Arabic, and Urdu.' },
-  { icon: Monitor, title: 'School ERP System', desc: 'End-to-end school management — admissions, fees, HR, transport, and parent portals.' },
-  { icon: Globe, title: 'Web Development', desc: 'Custom school websites, landing pages, and digital presence built with modern frameworks.' },
-  { icon: Smartphone, title: 'Mobile Apps', desc: 'iOS & Android apps for students, parents, and teachers with real-time notifications.' },
-  { icon: Cloud, title: 'Cloud Hosting', desc: 'Secure, scalable hosting infrastructure optimized for educational institutions.' },
-  { icon: Mail, title: 'Digital Marketing', desc: 'SEO, social media, and lead generation strategies tailored for schools.' },
-  { icon: GraduationCap, title: 'Teacher Training', desc: 'Comprehensive onboarding and CPD programs to maximize technology adoption.' },
+  { icon: BarChart3, title: 'LMS Implementation', desc: 'Complete Moodle-based learning management system customized for your institution.' },
+  { icon: Film, title: 'Animation Studio', desc: 'Professional 2D/3D animated educational content in English, Arabic & Urdu.' },
+  { icon: Monitor, title: 'School ERP System', desc: 'Comprehensive school management with admissions, HR, finance & reporting.' },
+  { icon: Globe, title: 'Web Development', desc: 'Modern, responsive websites and web applications built for education sector.' },
+  { icon: Smartphone, title: 'Mobile Apps', desc: 'Cross-platform mobile applications for students, parents and administrators.' },
+  { icon: Cloud, title: 'Cloud Hosting', desc: 'Reliable cloud infrastructure with 99.9% uptime and global CDN delivery.' },
+  { icon: Mail, title: 'Digital Marketing', desc: 'Strategic digital marketing campaigns to increase enrollment and engagement.' },
+  { icon: Users, title: 'Teacher Training', desc: 'Professional development programs for educators on digital tools and pedagogy.' },
 ];
 
 const testimonials = [
   {
     name: 'Dr. Ahmed Al-Rashid',
-    role: 'Director, Al-Noor Academy',
-    location: 'Riyadh, Saudi Arabia',
-    text: 'Cubico transformed our entire school ecosystem. From a paper-based system to a fully digital campus in just 4 weeks. The Arabic LMS content is outstanding.',
+    role: 'Director',
+    company: 'Al-Noor Academy',
+    location: 'Saudi Arabia',
+    text: 'Cubico transformed our entire school system. The LMS and animated content have dramatically improved student engagement. Their team understood our Islamic education requirements perfectly.',
     rating: 5,
   },
   {
     name: 'Fatima Hassan',
-    role: 'Principal, Iqra Foundation School',
-    location: 'Karachi, Pakistan',
-    text: 'The animated Islamic studies content has completely changed how our students engage with the curriculum. Enrollment inquiries increased by 40% after our website launch.',
+    role: 'Principal',
+    company: 'Iqra Foundation School',
+    location: 'Pakistan',
+    text: 'From day one, Cubico delivered beyond our expectations. The ERP system streamlined our operations and the animated Urdu lessons are loved by our students. Truly world-class service.',
     rating: 5,
   },
   {
     name: 'Michael Torres',
-    role: 'CEO, Cornwall Islamic Foundation',
-    location: 'Ontario, Canada',
-    text: 'Having one partner handle everything — LMS, animations, website, and ERP — eliminated all the vendor coordination headaches we had before.',
+    role: 'Board Chair',
+    company: 'Cornwall Islamic Foundation',
+    location: 'Canada',
+    text: 'Working with Cubico has been exceptional. They deployed our complete digital infrastructure in just 3 weeks. The ongoing support and training have been invaluable for our staff.',
     rating: 5,
   },
 ];
 
 const faqs = [
   {
-    q: 'How quickly can Cubico launch our school platform?',
-    a: 'Our average launch time is 4 weeks. This includes LMS setup, school website, ERP configuration, and initial teacher training. Complex multi-campus deployments may take 6-8 weeks.',
+    q: 'How quickly can we launch our digital platform?',
+    a: 'Most institutions go live within 4 weeks. Our streamlined onboarding process includes data migration, staff training, and content setup — all handled by our dedicated team.',
   },
   {
     q: 'Do you support Arabic and Urdu content?',
-    a: 'Absolutely. Language is identity — we build native content in English, Arabic (العربية), and Urdu (اردو) with full RTL support across all platforms.',
+    a: 'Yes! We specialize in multilingual education content. Our animation studio produces high-quality lessons in English, Arabic, and Urdu with full RTL support across all platforms.',
   },
   {
-    q: 'Can we use Cubico for just one service, like animations only?',
-    a: 'Yes. While our strength is the integrated ecosystem, you can engage us for any individual service — LMS, animation, web development, or ERP — independently.',
+    q: 'Can we engage Cubico for just one service?',
+    a: 'Absolutely. While we offer a full-stack approach, each service — LMS, ERP, animations, web development — can be engaged independently based on your needs.',
   },
   {
-    q: 'What makes Cubico different from other EdTech vendors?',
-    a: 'We are not a product company. We are an ecosystem partner. Active teachers sit on our team. We combine LMS, animation, ERP, and web under one roof — eliminating vendor juggling.',
+    q: 'What makes Cubico different from other EdTech providers?',
+    a: 'We combine deep understanding of Islamic and traditional education with cutting-edge technology. Our team includes educators and technologists who bridge the gap between pedagogy and innovation.',
   },
   {
-    q: 'Which countries do you currently serve?',
-    a: 'We are active in Pakistan, Saudi Arabia, and Canada — serving 760+ institutions. Our solutions support multi-timezone and multi-currency operations for international schools.',
+    q: 'Which countries do you operate in?',
+    a: 'We actively serve institutions across Pakistan, Saudi Arabia, and Canada. Our cloud-based solutions can be deployed globally with local support teams in each region.',
   },
 ];
 
 const stats = [
   { value: 760, suffix: '+', label: 'Institutions Served' },
   { value: 3, suffix: '', label: 'Countries Active' },
-  { value: 4, suffix: ' Weeks', label: 'Average Launch' },
+  { value: 4, suffix: '', label: 'Weeks Avg Launch' },
   { value: 100, suffix: '%', label: 'Client Retention' },
 ];
+
+const partners = [
+  'Al-Huffaz Academy',
+  'Al-Noor Academy',
+  'CIF Canada',
+  'Iqra Foundation',
+  'Saudi Schools Network',
+  'TechEd Pakistan',
+];
+
+/* ═══════════════════════════════════════════
+   STAT COUNTER COMPONENT
+   ═══════════════════════════════════════════ */
+function StatCounter({ value, suffix, label }: { value: number; suffix: string; label: string }) {
+  const { count, ref } = useCounter(value);
+  return (
+    <div ref={ref} className="text-center">
+      <div className="stat-number text-4xl md:text-5xl text-white mb-2">
+        {count}
+        <span className="text-accent-light">{suffix}</span>
+      </div>
+      <p className="text-white/60 text-sm font-medium tracking-wide uppercase">{label}</p>
+    </div>
+  );
+}
 
 /* ═══════════════════════════════════════════
    MAIN PAGE COMPONENT
@@ -198,12 +240,12 @@ export default function HomePage() {
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleDemoSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('loading');
     try {
@@ -216,63 +258,67 @@ export default function HomePage() {
     }
   };
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+  const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await supabase.from('newsletter_signups').insert([{ name: newsletterName, email: newsletterEmail }]);
-      setNewsletterStatus('success');
-      setNewsletterEmail('');
-      setNewsletterName('');
-    } catch {
-      // silent fail for newsletter
-    }
+    await supabase.from('newsletter_signups').insert([{ name: newsletterName, email: newsletterEmail }]);
+    setNewsletterStatus('success');
+    setNewsletterEmail('');
+    setNewsletterName('');
   };
 
   return (
-    <div className="min-h-screen bg-dark-900 relative">
-      {/* ═══ HEADER / NAV ═══ */}
+    <>
+      {/* ═══════════ NAVIGATION ═══════════ */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-dark-900/90 backdrop-blur-xl border-b border-primary/10 py-3'
-            : 'bg-transparent py-5'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
+            : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center transform group-hover:rotate-6 transition-transform">
-              <span className="text-white font-heading font-bold text-lg">C</span>
-            </div>
-            <span className="text-xl font-heading font-semibold text-white">
-              Cubico<span className="text-primary-light">.tech</span>
-            </span>
-          </a>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3">
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-heading font-bold text-lg ${
+                scrolled ? 'bg-primary text-white' : 'bg-white text-primary'
+              }`}>
+                C
+              </div>
+              <span className={`font-heading font-bold text-xl ${scrolled ? 'text-gray-900' : 'text-white'}`}>
+                Cubico<span className="text-primary-light">.tech</span>
+              </span>
+            </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                    scrolled ? 'text-gray-600' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+
+            {/* CTA */}
+            <div className="hidden lg:flex items-center gap-4">
+              <a href="#contact" className="btn-primary text-sm">
+                Get Started
+                <ArrowRight className="w-4 h-4" />
               </a>
-            ))}
-          </nav>
+            </div>
 
-          {/* CTA + Mobile Toggle */}
-          <div className="flex items-center gap-4">
-            <a href="#contact" className="hidden md:inline-flex btn-primary text-sm">
-              Get Started <ArrowRight size={16} />
-            </a>
+            {/* Mobile Menu Button */}
             <button
-              className="lg:hidden text-white p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`lg:hidden p-2 rounded-lg ${scrolled ? 'text-gray-900' : 'text-white'}`}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -284,21 +330,22 @@ export default function HomePage() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-dark-800/95 backdrop-blur-xl border-t border-primary/10"
+              className="lg:hidden bg-white border-t border-gray-100 shadow-xl"
             >
-              <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-4">
+              <div className="px-6 py-6 space-y-4">
                 {navLinks.map((link) => (
                   <a
-                    key={link.label}
+                    key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-gray-300 hover:text-white py-2 font-medium"
+                    className="block text-gray-700 hover:text-primary font-medium transition-colors"
                   >
-                    {link.label}
+                    {link.name}
                   </a>
                 ))}
-                <a href="#contact" className="btn-primary text-center mt-2">
+                <a href="#contact" className="btn-primary text-sm w-full justify-center mt-4">
                   Get Started
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </motion.div>
@@ -306,282 +353,292 @@ export default function HomePage() {
         </AnimatePresence>
       </header>
 
-      {/* ═══ HERO SECTION ═══ */}
-      <section
-        id="home"
-        className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden"
-      >
-        {/* Background Effects */}
-        <div className="absolute inset-0 bg-hero-glow" />
-        <div className="hero-orb w-[500px] h-[500px] bg-primary/20 top-[-100px] left-[-200px]" />
-        <div className="hero-orb w-[400px] h-[400px] bg-accent/10 bottom-[-100px] right-[-150px]" />
-        <div className="absolute inset-0 bg-grid opacity-40" />
+      {/* ═══════════ HERO SECTION ═══════════ */}
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden section-dark">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full filter blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/15 rounded-full filter blur-[100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full filter blur-[200px]" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="max-w-2xl"
             >
               <motion.div variants={fadeUp} custom={0} className="mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary-light text-sm font-medium">
-                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  Trusted by 760+ Institutions Worldwide
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
+                  <span className="w-2 h-2 rounded-full bg-accent-light animate-pulse" />
+                  Trusted by 760+ institutions worldwide
                 </span>
               </motion.div>
 
               <motion.h1
                 variants={fadeUp}
                 custom={1}
-                className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold leading-[1.05] mb-6"
+                className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight mb-6"
               >
-                From Chalk-and-Board to{' '}
-                <span className="gradient-text">World-Class</span>
+                Where Innovation
+                <br />
+                Meets{' '}
+                <span className="gradient-text">Education</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeUp}
                 custom={2}
-                className="text-lg md:text-xl text-gray-400 leading-relaxed mb-10 max-w-xl"
+                className="text-lg text-white/60 max-w-lg mb-8 leading-relaxed"
               >
-                One partner, every solution. We help schools, academies & institutions
-                across Pakistan, Saudi Arabia & Canada modernize with integrated LMS,
-                animations, ERP & web platforms.
+                The ultimate EdTech platform transforming schools across Pakistan, Saudi Arabia & Canada.
+                One partner, every solution — from LMS to animated lessons.
               </motion.p>
 
-              <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-4">
-                <a href="#contact" className="btn-primary text-base">
-                  Book Free Demo <ArrowRight size={18} />
+              <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-4 mb-12">
+                <a href="#contact" className="btn-primary">
+                  Discover More
+                  <ArrowRight className="w-4 h-4" />
                 </a>
-                <a href="#solutions" className="btn-outline text-base">
-                  <Play size={18} /> Explore Solutions
+                <a href="#solutions" className="btn-outline-white">
+                  Explore Solutions
                 </a>
               </motion.div>
 
               {/* Trust Badges */}
-              <motion.div
-                variants={fadeUp}
-                custom={4}
-                className="mt-12 flex items-center gap-8 flex-wrap"
-              >
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <MapPin size={14} className="text-accent" />
-                  <span>Pakistan · Saudi Arabia · Canada</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <Globe size={14} className="text-accent" />
-                  <span>EN · AR · UR</span>
+              <motion.div variants={fadeUp} custom={4} className="flex items-center gap-8">
+                <div className="flex items-center gap-3">
+                  <div className="flex -space-x-2">
+                    {['bg-purple-500', 'bg-emerald-500', 'bg-blue-500', 'bg-orange-500'].map((bg, i) => (
+                      <div key={i} className={`w-8 h-8 rounded-full ${bg} border-2 border-dark-950 flex items-center justify-center text-[10px] font-bold text-white`}>
+                        {['A', 'F', 'M', 'S'][i]}
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="flex gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+                    <span className="text-xs text-white/50">Rated 5/5 by clients</span>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Right — Device Mockup */}
+            {/* Right - Dashboard Mockup */}
             <motion.div
               initial={{ opacity: 0, x: 60 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative hidden lg:block"
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="hidden lg:block relative"
             >
-              <div className="relative">
-                {/* Main Dashboard Card */}
-                <div className="glass-card rounded-2xl p-6 glow-purple">
-                  <div className="bg-dark-700 rounded-xl p-4 mb-4">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-3 h-3 rounded-full bg-red-500" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                      <div className="w-3 h-3 rounded-full bg-green-500" />
-                      <span className="text-xs text-gray-500 ml-2">cubico-lms.edu</span>
-                    </div>
-                    <div className="grid grid-cols-3 gap-3">
-                      <div className="bg-dark-800 rounded-lg p-3 text-center">
-                        <div className="text-2xl font-heading font-bold text-accent">2.4K</div>
-                        <div className="text-[10px] text-gray-500 mt-1">Active Students</div>
-                      </div>
-                      <div className="bg-dark-800 rounded-lg p-3 text-center">
-                        <div className="text-2xl font-heading font-bold text-primary-light">148</div>
-                        <div className="text-[10px] text-gray-500 mt-1">Courses Live</div>
-                      </div>
-                      <div className="bg-dark-800 rounded-lg p-3 text-center">
-                        <div className="text-2xl font-heading font-bold text-green-400">96%</div>
-                        <div className="text-[10px] text-gray-500 mt-1">Completion Rate</div>
-                      </div>
-                    </div>
+              {/* Main Dashboard Card */}
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-6 shadow-2xl">
+                {/* Dashboard Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-red-400" />
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <div className="w-3 h-3 rounded-full bg-green-400" />
                   </div>
-                  {/* Mini Chart Bars */}
-                  <div className="flex items-end gap-2 h-20 px-2">
-                    {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88].map((h, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ delay: 0.8 + i * 0.05, duration: 0.5 }}
-                        className="flex-1 rounded-t-sm"
-                        style={{
-                          background: `linear-gradient(to top, rgba(108,58,237,0.6), rgba(0,212,255,${h / 100}))`,
-                        }}
-                      />
-                    ))}
-                  </div>
+                  <div className="text-xs text-white/40 font-mono">cubico-dashboard.edu</div>
                 </div>
 
-                {/* Floating Card — Top Right */}
-                <motion.div
-                  animate={{ y: [0, -12, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="absolute -top-6 -right-6 glass-card rounded-xl p-4 flex items-center gap-3"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-                    <CheckCircle2 size={20} className="text-green-400" />
+                {/* Dashboard Content */}
+                <div className="space-y-4">
+                  <div className="bg-white/5 rounded-2xl p-5">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-white/70 text-sm font-medium">Student Engagement</span>
+                      <span className="text-accent-light text-sm font-bold">+24%</span>
+                    </div>
+                    {/* Chart Bars */}
+                    <div className="flex items-end gap-2 h-32">
+                      {[65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88, 92].map((h, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ height: 0 }}
+                          animate={{ height: `${h}%` }}
+                          transition={{ duration: 0.8, delay: 0.5 + i * 0.05 }}
+                          className={`flex-1 rounded-t-sm ${i >= 10 ? 'bg-accent' : 'bg-primary/60'}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-white/5 rounded-xl p-4">
+                      <div className="text-white/50 text-xs mb-1">Active Courses</div>
+                      <div className="text-white text-2xl font-bold">2,847</div>
+                    </div>
+                    <div className="bg-white/5 rounded-xl p-4">
+                      <div className="text-white/50 text-xs mb-1">Completion Rate</div>
+                      <div className="text-white text-2xl font-bold">94.2%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Cards */}
+              <motion.div
+                animate={{ y: [-10, 10, -10] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-green-600" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold">Deployment Complete</div>
-                    <div className="text-[10px] text-gray-500">Al-Noor Academy, Riyadh</div>
+                    <div className="text-xs text-gray-500">Deployment</div>
+                    <div className="text-sm font-bold text-gray-900">98% Success</div>
                   </div>
-                </motion.div>
+                </div>
+              </motion.div>
 
-                {/* Floating Card — Bottom Left */}
-                <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                  className="absolute -bottom-4 -left-6 glass-card rounded-xl p-4"
-                >
-                  <div className="flex items-center gap-2 mb-1">
+              <motion.div
+                animate={{ y: [10, -10, 10] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="flex -space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={12} className="text-yellow-400 fill-yellow-400" />
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                  <div className="text-xs text-gray-400">
-                    &ldquo;Best EdTech partner we&rsquo;ve had&rdquo;
-                  </div>
-                </motion.div>
-              </div>
+                  <span className="text-sm font-bold text-gray-900">5.0</span>
+                </div>
+                <div className="text-xs text-gray-500 mt-1">Client Satisfaction</div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══ FEATURE CARDS (3 columns) ═══ */}
-      <section className="relative py-20 -mt-10 z-10">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ═══════════ FEATURE CARDS ═══════════ */}
+      <section className="py-20 bg-white relative -mt-16 z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
-            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="grid md:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-8"
           >
             {featureCards.map((card, i) => (
               <motion.div
                 key={card.title}
                 variants={fadeUp}
                 custom={i}
-                className="glass-card rounded-2xl p-8 group cursor-pointer"
+                className="card-white group cursor-pointer"
               >
-                <div className="w-14 h-14 rounded-xl bg-primary/15 flex items-center justify-center mb-5 group-hover:bg-primary/25 transition-colors">
-                  <card.icon size={26} className="text-primary-light" />
+                <div className={`icon-box ${card.color.includes('purple') ? '' : card.color.includes('emerald') ? 'icon-box-accent' : ''} mb-5`}>
+                  <card.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-heading font-semibold mb-3">{card.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{card.desc}</p>
-                <div className="mt-5 flex items-center gap-2 text-primary-light text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">
-                  Learn more <ArrowRight size={14} />
-                </div>
+                <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                  {card.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4">{card.desc}</p>
+                <span className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
+                  Learn more <ArrowRight className="w-4 h-4" />
+                </span>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ═══ ABOUT / WHO WE ARE ═══ */}
-      <section id="about" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ═══════════ ABOUT / WHO WE ARE ═══════════ */}
+      <section id="about" className="py-24 bg-surface-light bg-grid-light">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left — Visual */}
+            {/* Left - Image/Visual */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="glass-card rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-[60px]" />
-                <div className="relative z-10">
+              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 relative">
+                {/* Feature Image Mockup */}
+                <div className="bg-white rounded-2xl shadow-xl p-6 relative z-10">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-dark-700 rounded-xl p-5 text-center">
-                      <School size={32} className="text-primary-light mx-auto mb-3" />
-                      <div className="text-sm font-semibold">K-12 Schools</div>
-                      <div className="text-[11px] text-gray-500 mt-1">Government & Private</div>
-                    </div>
-                    <div className="bg-dark-700 rounded-xl p-5 text-center">
-                      <BookOpen size={32} className="text-accent mx-auto mb-3" />
-                      <div className="text-sm font-semibold">Islamic Schools</div>
-                      <div className="text-[11px] text-gray-500 mt-1">Foundations & Academies</div>
-                    </div>
-                    <div className="bg-dark-700 rounded-xl p-5 text-center">
-                      <Globe size={32} className="text-green-400 mx-auto mb-3" />
-                      <div className="text-sm font-semibold">International</div>
-                      <div className="text-[11px] text-gray-500 mt-1">Bilingual & Multicultural</div>
-                    </div>
-                    <div className="bg-dark-700 rounded-xl p-5 text-center">
-                      <GraduationCap size={32} className="text-yellow-400 mx-auto mb-3" />
-                      <div className="text-sm font-semibold">Colleges & NGOs</div>
-                      <div className="text-[11px] text-gray-500 mt-1">Vocational & Aid Programs</div>
-                    </div>
+                    {[
+                      { icon: BookOpen, label: 'K-12 Schools', color: 'bg-purple-100 text-purple-600' },
+                      { icon: Award, label: 'Islamic Schools', color: 'bg-emerald-100 text-emerald-600' },
+                      { icon: Globe, label: 'International', color: 'bg-blue-100 text-blue-600' },
+                      { icon: Users, label: 'Colleges & NGOs', color: 'bg-orange-100 text-orange-600' },
+                    ].map((item, i) => (
+                      <motion.div
+                        key={item.label}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 * i }}
+                        className="flex flex-col items-center p-5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors"
+                      >
+                        <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center mb-3`}>
+                          <item.icon className="w-6 h-6" />
+                        </div>
+                        <span className="text-sm font-semibold text-gray-700">{item.label}</span>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
+
+                {/* Decorative */}
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/10 rounded-full blur-xl" />
               </div>
             </motion.div>
 
-            {/* Right — Content */}
+            {/* Right - Content */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.span variants={fadeUp} custom={0} className="section-label">
+              <motion.span variants={fadeUp} custom={0} className="section-label mb-4 block">
                 Who we are
               </motion.span>
               <motion.h2
                 variants={fadeUp}
                 custom={1}
-                className="text-4xl md:text-5xl font-heading font-bold mt-4 mb-6"
+                className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6"
               >
-                The ultimate <span className="gradient-text">ecosystem</span> for modern
-                schools.
+                The Ultimate Source of
+                <br />
+                <span className="gradient-text">EdTech Solutions</span>
               </motion.h2>
-              <motion.p
-                variants={fadeUp}
-                custom={2}
-                className="text-gray-400 leading-relaxed mb-8"
-              >
-                Cubico Technologies is a full-stack EdTech agency founded by Rooh Ul Hasnain.
-                Rather than offering a single software product, we position ourselves as a
-                complete ecosystem partner — delivering four integrated solutions that cover
-                school administration, animated lesson content, student engagement, and digital
-                infrastructure.
+              <motion.p variants={fadeUp} custom={2} className="text-gray-500 leading-relaxed mb-8">
+                We are a full-stack EdTech agency helping schools across Pakistan, Saudi Arabia & Canada
+                modernize their operations and learning experiences. Our team combines deep understanding of
+                education with cutting-edge technology.
               </motion.p>
 
-              <motion.div variants={fadeUp} custom={3} className="grid sm:grid-cols-2 gap-5">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center flex-shrink-0 mt-1">
-                    <BookOpen size={18} className="text-primary-light" />
+              <motion.div variants={fadeUp} custom={3} className="grid sm:grid-cols-2 gap-6">
+                <div className="flex gap-4 items-start">
+                  <div className="icon-box flex-shrink-0">
+                    <Lightbulb className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm mb-1">Education First</div>
-                    <div className="text-xs text-gray-500">Revenue follows purpose — always.</div>
+                    <h4 className="font-bold text-gray-900 mb-1">Education First</h4>
+                    <p className="text-sm text-gray-500">Built by educators and technologists who understand learning.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/15 flex items-center justify-center flex-shrink-0 mt-1">
-                    <Users size={18} className="text-accent" />
+                <div className="flex gap-4 items-start">
+                  <div className="icon-box icon-box-accent flex-shrink-0">
+                    <Target className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-semibold text-sm mb-1">Built With Educators</div>
-                    <div className="text-xs text-gray-500">Active teachers sit on our team.</div>
+                    <h4 className="font-bold text-gray-900 mb-1">Built With Educators</h4>
+                    <p className="text-sm text-gray-500">Every solution is co-developed with real teachers and administrators.</p>
                   </div>
                 </div>
               </motion.div>
@@ -590,57 +647,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ STATS SECTION ═══ */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+      {/* ═══════════ STATS SECTION ═══════════ */}
+      <section className="py-20 section-dark relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full filter blur-[100px]" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full filter blur-[100px]" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="text-center mb-16"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
           >
-            <motion.h2
-              variants={fadeUp}
-              className="text-4xl md:text-5xl font-heading font-bold mb-4"
-            >
-              Empowering education at{' '}
-              <span className="gradient-text">scale</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-gray-400 max-w-xl mx-auto">
-              Real numbers. Real impact. From Karachi to Riyadh to Ontario.
-            </motion.p>
+            {stats.map((stat, i) => (
+              <motion.div key={stat.label} variants={fadeUp} custom={i}>
+                <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label} />
+              </motion.div>
+            ))}
           </motion.div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, i) => {
-              const { count, ref } = useCounter(stat.value);
-              return (
-                <motion.div
-                  key={stat.label}
-                  ref={ref}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="glass-card rounded-2xl p-8 text-center group"
-                >
-                  <div className="text-4xl md:text-5xl font-heading font-bold gradient-text mb-2">
-                    {count}
-                    {stat.suffix}
-                  </div>
-                  <div className="text-sm text-gray-400">{stat.label}</div>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
       </section>
 
-      {/* ═══ SERVICES GRID (What We Offer) ═══ */}
-      <section id="services" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ═══════════ SOLUTIONS / SERVICES ═══════════ */}
+      <section id="solutions" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -648,169 +680,204 @@ export default function HomePage() {
             variants={staggerContainer}
             className="text-center mb-16"
           >
-            <motion.span variants={fadeUp} custom={0} className="section-label">
+            <motion.span variants={fadeUp} custom={0} className="section-label mb-4 block">
               What we offer
             </motion.span>
             <motion.h2
               variants={fadeUp}
               custom={1}
-              className="text-4xl md:text-5xl font-heading font-bold mt-4 mb-4"
+              className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4"
             >
-              One roof, <span className="gradient-text">every solution</span>
+              Listening to You, and Answering
+              <br />
+              with <span className="gradient-text">Technology</span>
             </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="text-gray-400 max-w-xl mx-auto">
-              No vendor juggling. Every service your school needs, delivered by one
-              dedicated team.
+            <motion.p variants={fadeUp} custom={2} className="text-gray-500 max-w-2xl mx-auto">
+              Comprehensive digital solutions designed specifically for the education sector, delivered with expertise and care.
             </motion.p>
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
+            id="services"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {services.map((svc, i) => (
               <motion.div
                 key={svc.title}
                 variants={fadeUp}
                 custom={i}
-                className="glass-card rounded-2xl p-6 group cursor-pointer text-center"
+                className="card-white group text-center cursor-pointer"
               >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                  <svc.icon size={24} className="text-primary-light" />
+                <div className="icon-box mx-auto mb-5 group-hover:bg-primary group-hover:text-white transition-all">
+                  <svc.icon className="w-6 h-6" />
                 </div>
-                <h4 className="font-heading font-semibold mb-2">{svc.title}</h4>
-                <p className="text-gray-500 text-xs leading-relaxed">{svc.desc}</p>
+                <h3 className="font-heading font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                  {svc.title}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{svc.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ═══ CTA / DEMO FORM ═══ */}
-      <section id="contact" className="py-24 relative">
-        <div className="absolute inset-0 bg-hero-glow opacity-50" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="glass-card rounded-3xl p-8 md:p-14 glow-purple">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left */}
-              <div>
-                <span className="section-label">Get Started</span>
-                <h2 className="text-3xl md:text-4xl font-heading font-bold mt-4 mb-4">
-                  Book a <span className="gradient-text">Free Demo</span> & Solutions
-                  Walkthrough
-                </h2>
-                <p className="text-gray-400 mb-8">
-                  See how Cubico can transform your institution in just 4 weeks. Our team
-                  will prepare a custom demo based on your school&rsquo;s needs.
-                </p>
-                <div className="flex flex-col gap-4 text-sm text-gray-500">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 size={16} className="text-green-400" />
-                    Personalized walkthrough of LMS, ERP & Animations
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 size={16} className="text-green-400" />
-                    Arabic, Urdu & English content samples
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 size={16} className="text-green-400" />
-                    No commitment — just explore what&rsquo;s possible
-                  </div>
-                </div>
-              </div>
+      {/* ═══════════ CTA + FORM SECTION ═══════════ */}
+      <section id="contact" className="py-24 bg-surface-light bg-grid-light">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            {/* Left Content */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.span variants={fadeUp} custom={0} className="section-label mb-4 block">
+                Contact us
+              </motion.span>
+              <motion.h2
+                variants={fadeUp}
+                custom={1}
+                className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6"
+              >
+                Get a Free Trial and
+                <br />
+                Solutions <span className="gradient-text">Demo</span> from Us
+              </motion.h2>
+              <motion.p variants={fadeUp} custom={2} className="text-gray-500 leading-relaxed mb-8">
+                Experience our complete EdTech suite with a personalized demo. Our team will walk you through
+                every feature and answer all your questions.
+              </motion.p>
 
-              {/* Right — Form */}
-              <form onSubmit={handleDemoSubmit} className="flex flex-col gap-4">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="form-input"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                  />
-                  <input
-                    type="text"
-                    placeholder="School / Company"
-                    className="form-input"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="form-input"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    required
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="form-input"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Your Position / Role"
-                  className="form-input"
-                  value={formData.position}
-                  onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                />
-                <select
-                  className="form-select"
-                  value={formData.employees}
-                  onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
-                >
-                  <option value="">Number of Students / Staff</option>
-                  <option value="1-50">1 – 50</option>
-                  <option value="51-200">51 – 200</option>
-                  <option value="201-500">201 – 500</option>
-                  <option value="501-1000">501 – 1,000</option>
-                  <option value="1000+">1,000+</option>
-                </select>
+              <motion.div variants={fadeUp} custom={3} className="space-y-4">
+                {[
+                  'Full LMS demo with your curriculum',
+                  'ERP system walkthrough',
+                  'Animated content preview',
+                  'Custom pricing based on your needs',
+                  'Implementation timeline review',
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                    <span className="text-gray-600">{item}</span>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
 
-                <button
-                  type="submit"
-                  disabled={formStatus === 'loading'}
-                  className="btn-primary w-full justify-center mt-2 text-base"
-                >
-                  {formStatus === 'loading' ? (
-                    'Submitting...'
-                  ) : formStatus === 'success' ? (
-                    <>
-                      <CheckCircle2 size={18} /> Demo Requested!
-                    </>
-                  ) : (
-                    <>
-                      Get Free Demo <ArrowRight size={18} />
-                    </>
-                  )}
-                </button>
-                {formStatus === 'error' && (
-                  <p className="text-red-400 text-xs text-center">
-                    Something went wrong. Please try again or email us directly.
-                  </p>
+            {/* Right - Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                {formStatus === 'success' ? (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle2 className="w-8 h-8 text-green-600" />
+                    </div>
+                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2">Thank You!</h3>
+                    <p className="text-gray-500">We&apos;ll be in touch within 24 hours.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <input
+                        type="text"
+                        placeholder="Your Name *"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="form-input"
+                        required
+                      />
+                      <input
+                        type="text"
+                        placeholder="Company *"
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                        className="form-input"
+                        required
+                      />
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <input
+                        type="tel"
+                        placeholder="Phone *"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="form-input"
+                        required
+                      />
+                      <input
+                        type="email"
+                        placeholder="Email *"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="form-input"
+                        required
+                      />
+                    </div>
+                    <select
+                      value={formData.position}
+                      onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                      className="form-select"
+                    >
+                      <option value="">Select Position</option>
+                      <option value="principal">Principal / Head of School</option>
+                      <option value="director">Director / Board Member</option>
+                      <option value="it_head">IT Head / Administrator</option>
+                      <option value="teacher">Teacher / Department Head</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <select
+                      value={formData.employees}
+                      onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
+                      className="form-select"
+                    >
+                      <option value="">Number of Students / Staff</option>
+                      <option value="1-50">1 – 50</option>
+                      <option value="51-100">51 – 100</option>
+                      <option value="101-500">101 – 500</option>
+                      <option value="501-1000">501 – 1,000</option>
+                      <option value="1000+">1,000+</option>
+                    </select>
+                    <button
+                      type="submit"
+                      disabled={formStatus === 'loading'}
+                      className="btn-primary w-full justify-center text-base"
+                    >
+                      {formStatus === 'loading' ? (
+                        <span className="flex items-center gap-2">
+                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </span>
+                      ) : (
+                        <>
+                          Get Free Demo
+                          <ArrowRight className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                    {formStatus === 'error' && (
+                      <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                    )}
+                  </form>
                 )}
-              </form>
-            </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══ TESTIMONIALS ═══ */}
-      <section id="testimonials" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* ═══════════ TESTIMONIALS ═══════════ */}
+      <section id="testimonials" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -818,52 +885,49 @@ export default function HomePage() {
             variants={staggerContainer}
             className="text-center mb-16"
           >
-            <motion.span variants={fadeUp} custom={0} className="section-label">
-              Testimonials
+            <motion.span variants={fadeUp} custom={0} className="section-label mb-4 block">
+              Customer Reviews
             </motion.span>
             <motion.h2
               variants={fadeUp}
               custom={1}
-              className="text-4xl md:text-5xl font-heading font-bold mt-4 mb-4"
+              className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4"
             >
-              What our <span className="gradient-text">partners</span> say
+              What Our <span className="gradient-text">Clients</span> Say
             </motion.h2>
+            <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <span className="text-gray-500 text-sm font-medium">Rated 5 out of 5 (760+ reviews)</span>
+            </motion.div>
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-8"
           >
             {testimonials.map((t, i) => (
-              <motion.div
-                key={t.name}
-                variants={fadeUp}
-                custom={i}
-                className="glass-card rounded-2xl p-8"
-              >
+              <motion.div key={t.name} variants={fadeUp} custom={i} className="card-white">
                 <div className="flex gap-1 mb-4">
                   {[...Array(t.rating)].map((_, j) => (
-                    <Star key={j} size={16} className="text-yellow-400 fill-yellow-400" />
+                    <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed mb-6 italic">
-                  &ldquo;{t.text}&rdquo;
-                </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-sm font-bold">
-                    {t.name
-                      .split(' ')
-                      .map((n) => n[0])
-                      .join('')}
+                <p className="text-gray-600 leading-relaxed mb-6 text-sm">&ldquo;{t.text}&rdquo;</p>
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm">
+                    {t.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold">{t.name}</div>
-                    <div className="text-xs text-gray-500">
-                      {t.role} · {t.location}
-                    </div>
+                    <h4 className="font-bold text-gray-900 text-sm">{t.name}</h4>
+                    <p className="text-xs text-gray-500">{t.role}, {t.company}</p>
+                    <p className="text-xs text-primary font-medium">{t.location}</p>
                   </div>
                 </div>
               </motion.div>
@@ -872,10 +936,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ FAQ ═══ */}
-      <section id="faq" className="py-24 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+      {/* ═══════════ FAQ SECTION ═══════════ */}
+      <section id="faq" className="py-24 bg-surface-light">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16">
             {/* Left */}
             <motion.div
               initial="hidden"
@@ -883,164 +947,260 @@ export default function HomePage() {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.span variants={fadeUp} custom={0} className="section-label">
+              <motion.span variants={fadeUp} custom={0} className="section-label mb-4 block">
                 FAQ
               </motion.span>
               <motion.h2
                 variants={fadeUp}
                 custom={1}
-                className="text-4xl md:text-5xl font-heading font-bold mt-4 mb-4"
+                className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6"
               >
-                Frequently Asked{' '}
+                Frequently Asked
+                <br />
                 <span className="gradient-text">Questions</span>
               </motion.h2>
-              <motion.p variants={fadeUp} custom={2} className="text-gray-400">
-                Everything you need to know about working with Cubico Technologies.
-                Can&rsquo;t find what you&rsquo;re looking for? Reach out to our team.
+              <motion.p variants={fadeUp} custom={2} className="text-gray-500 leading-relaxed mb-8">
+                Everything you need to know about our EdTech solutions and how we can help transform your institution.
               </motion.p>
+
+              {/* FAQ Visual */}
+              <motion.div
+                variants={fadeUp}
+                custom={3}
+                className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 hidden lg:block"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <MessageSquare className="w-6 h-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900">Still have questions?</h4>
+                    <p className="text-sm text-gray-500">Our team is ready to help</p>
+                  </div>
+                </div>
+                <a href="#contact" className="btn-primary text-sm">
+                  Contact Us <ArrowRight className="w-4 h-4" />
+                </a>
+              </motion.div>
             </motion.div>
 
-            {/* Right — Accordion */}
-            <div className="flex flex-col">
+            {/* Right - Accordion */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
               {faqs.map((faq, i) => (
-                <div key={i} className="faq-item py-5">
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  custom={i}
+                  className="faq-item py-5"
+                >
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between gap-4 text-left"
+                    className="flex items-center justify-between w-full text-left"
                   >
-                    <span className="font-semibold text-sm md:text-base">{faq.q}</span>
-                    <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <span className="font-semibold text-gray-900 pr-4">{faq.q}</span>
+                    <span className="flex-shrink-0">
                       {openFaq === i ? (
-                        <ChevronUp size={16} className="text-primary-light" />
+                        <ChevronUp className="w-5 h-5 text-primary" />
                       ) : (
-                        <ChevronDown size={16} className="text-primary-light" />
+                        <ChevronDown className="w-5 h-5 text-gray-400" />
                       )}
                     </span>
                   </button>
-                  <div className={`faq-content ${openFaq === i ? 'open' : ''}`}>
-                    <p className="text-gray-400 text-sm leading-relaxed pt-3 pb-1">
-                      {faq.a}
-                    </p>
-                  </div>
-                </div>
+                  <AnimatePresence>
+                    {openFaq === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-gray-500 text-sm leading-relaxed pt-3">{faq.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══ PARTNER LOGOS ═══ */}
-      <section className="py-16 border-t border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-center text-sm text-gray-600 mb-8 font-medium uppercase tracking-widest">
-            Trusted by leading institutions
-          </p>
-          <div className="flex items-center justify-center gap-12 flex-wrap opacity-40">
-            {['Al-Huffaz', 'Al-Noor Academy', 'CIF Canada', 'Iqra Foundation', 'Saudi Schools Network', 'TechEd Pakistan'].map((name) => (
-              <div
+      {/* ═══════════ PARTNER LOGOS ═══════════ */}
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="flex flex-wrap items-center justify-center gap-10 md:gap-16"
+          >
+            {partners.map((name, i) => (
+              <motion.div
                 key={name}
-                className="text-gray-500 font-heading font-semibold text-lg tracking-wide"
+                variants={fadeUp}
+                custom={i}
+                className="text-gray-300 font-heading font-bold text-lg md:text-xl hover:text-primary transition-colors cursor-default"
               >
                 {name}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ═══ FOOTER ═══ */}
-      <footer className="py-16 relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            {/* Col 1 — Brand */}
+      {/* ═══════════ JOIN CTA SECTION ═══════════ */}
+      <section className="py-24 section-dark relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/15 rounded-full filter blur-[150px]" />
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent/10 rounded-full filter blur-[120px]" />
+        </div>
+        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.h2
+              variants={fadeUp}
+              custom={0}
+              className="text-3xl md:text-5xl font-heading font-bold text-white mb-6"
+            >
+              Join Our <span className="gradient-text">760+</span> Happy Institutions
+            </motion.h2>
+            <motion.p variants={fadeUp} custom={1} className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
+              Transform your school with cutting-edge technology. Start your digital journey today and see
+              results within weeks, not months.
+            </motion.p>
+            <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4">
+              <a href="#contact" className="btn-primary text-lg px-10">
+                Get Started Today
+                <ArrowRight className="w-5 h-5" />
+              </a>
+              <a href="#solutions" className="btn-outline-white text-lg px-10">
+                Explore Solutions
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ FOOTER ═══════════ */}
+      <footer className="bg-dark-950 text-white pt-20 pb-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            {/* Column 1 - Brand */}
             <div>
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                  <span className="text-white font-heading font-bold text-lg">C</span>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center font-heading font-bold text-lg text-white">
+                  C
                 </div>
-                <span className="text-xl font-heading font-semibold">
+                <span className="font-heading font-bold text-xl">
                   Cubico<span className="text-primary-light">.tech</span>
                 </span>
               </div>
-              <p className="text-gray-500 text-sm leading-relaxed mb-5">
-                Transforming schools from chalk-and-board to world-class. One partner,
-                every solution.
+              <p className="text-white/50 text-sm leading-relaxed mb-6">
+                Full-stack EdTech agency transforming education across Pakistan, Saudi Arabia & Canada with innovative technology solutions.
               </p>
-              <div className="flex items-center gap-3">
-                {[Facebook, Instagram, Twitter, Linkedin, Youtube].map((Icon, i) => (
+              <div className="flex gap-3">
+                {[
+                  { icon: Facebook, label: 'Facebook' },
+                  { icon: Instagram, label: 'Instagram' },
+                  { icon: Twitter, label: 'Twitter' },
+                  { icon: Linkedin, label: 'LinkedIn' },
+                  { icon: Youtube, label: 'YouTube' },
+                ].map((social) => (
                   <a
-                    key={i}
+                    key={social.label}
                     href="#"
-                    className="w-9 h-9 rounded-lg bg-surface-card flex items-center justify-center text-gray-500 hover:text-primary-light hover:bg-primary/10 transition-all"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all"
                   >
-                    <Icon size={16} />
+                    <social.icon className="w-4 h-4" />
                   </a>
                 ))}
               </div>
             </div>
 
-            {/* Col 2 — Solutions */}
+            {/* Column 2 - Solutions */}
             <div>
-              <h4 className="font-heading font-semibold mb-5 text-sm">Solutions</h4>
-              <div className="flex flex-col gap-3">
-                {['Smart LMS', 'School ERP', 'Animated Content', 'Web Development', 'Mobile Apps'].map((link) => (
-                  <a key={link} href="#" className="text-gray-500 text-sm hover:text-primary-light transition-colors">
-                    {link}
-                  </a>
+              <h4 className="font-heading font-bold text-lg mb-6">Solutions</h4>
+              <ul className="space-y-3">
+                {['Smart LMS', 'Animation Studio', 'School ERP', 'Web Development', 'Mobile Apps'].map((link) => (
+                  <li key={link}>
+                    <a href="#solutions" className="text-white/50 hover:text-white text-sm transition-colors">
+                      {link}
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
-            {/* Col 3 — Company */}
+            {/* Column 3 - Company */}
             <div>
-              <h4 className="font-heading font-semibold mb-5 text-sm">Company</h4>
-              <div className="flex flex-col gap-3">
-                {['About Us', 'Our Team', 'Careers', 'Blog', 'Contact'].map((link) => (
-                  <a key={link} href="#" className="text-gray-500 text-sm hover:text-primary-light transition-colors">
-                    {link}
-                  </a>
+              <h4 className="font-heading font-bold text-lg mb-6">Company</h4>
+              <ul className="space-y-3">
+                {['About Us', 'Our Team', 'Careers', 'News & Blog', 'Contact Us'].map((link) => (
+                  <li key={link}>
+                    <a href="#about" className="text-white/50 hover:text-white text-sm transition-colors">
+                      {link}
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
-            {/* Col 4 — Newsletter */}
+            {/* Column 4 - Newsletter */}
             <div>
-              <h4 className="font-heading font-semibold mb-5 text-sm">Newsletter</h4>
-              <p className="text-gray-500 text-xs mb-4">
-                Get updates on new features, EdTech insights, and special offers.
+              <h4 className="font-heading font-bold text-lg mb-6">Newsletter</h4>
+              <p className="text-white/50 text-sm mb-6">
+                Sign up for updates, insights, and news about EdTech innovation.
               </p>
-              <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-3">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="form-input text-xs"
-                  value={newsletterName}
-                  onChange={(e) => setNewsletterName(e.target.value)}
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="form-input text-xs"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  required
-                />
-                <button type="submit" className="btn-primary text-xs justify-center py-3">
-                  {newsletterStatus === 'success' ? 'Subscribed!' : 'Sign Up'}
-                </button>
-              </form>
+              {newsletterStatus === 'success' ? (
+                <div className="flex items-center gap-2 text-accent-light text-sm">
+                  <CheckCircle2 className="w-4 h-4" />
+                  Successfully subscribed!
+                </div>
+              ) : (
+                <form onSubmit={handleNewsletter} className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={newsletterName}
+                    onChange={(e) => setNewsletterName(e.target.value)}
+                    className="form-input-dark text-sm"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className="form-input-dark text-sm"
+                    required
+                  />
+                  <button type="submit" className="btn-primary w-full justify-center text-sm">
+                    Sign Up <Send className="w-3 h-3" />
+                  </button>
+                </form>
+              )}
             </div>
           </div>
 
-          {/* Bottom Bar */}
-          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-gray-600 text-xs">
-              © {new Date().getFullYear()} Cubico Technologies. All rights reserved. Karachi,
-              Pakistan.
+          {/* Bottom */}
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-white/40 text-sm">
+              Copyright © {new Date().getFullYear()} Cubico Technologies. All rights reserved.
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex gap-6">
               {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((link) => (
-                <a key={link} href="#" className="text-gray-600 text-xs hover:text-gray-400 transition-colors">
+                <a key={link} href="#" className="text-white/40 hover:text-white text-sm transition-colors">
                   {link}
                 </a>
               ))}
@@ -1048,6 +1208,6 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
-    </div>
+    </>
   );
 }
