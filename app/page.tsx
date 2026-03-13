@@ -40,6 +40,8 @@ import {
   TrendingUp,
   Layout,
   Settings,
+  Play,
+  MapPin,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
@@ -354,169 +356,406 @@ export default function HomePage() {
       </header>
 
       {/* ═══════════ HERO SECTION ═══════════ */}
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden section-dark">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full filter blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/15 rounded-full filter blur-[100px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full filter blur-[200px]" />
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+        {/* ── Layer 1: Full-Width Unsplash Photo ── */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1920&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 35%',
+          }}
+        />
+
+        {/* ── Layer 2: Cinematic Dark Gradient Overlay ── */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(108deg,
+              rgba(10, 10, 26, 0.95) 0%,
+              rgba(10, 10, 26, 0.90) 30%,
+              rgba(10, 10, 26, 0.78) 55%,
+              rgba(10, 10, 26, 0.60) 75%,
+              rgba(10, 10, 26, 0.72) 100%
+            )`,
+          }}
+        />
+
+        {/* ── Layer 3a: Warm Sepia Tint (Left — Chalk World) ── */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(105deg,
+              rgba(139, 115, 85, 0.08) 0%,
+              rgba(139, 115, 85, 0.04) 40%,
+              transparent 55%
+            )`,
+          }}
+        />
+
+        {/* ── Layer 3b: Cool Purple/Cyan Tint (Right — Digital World) ── */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(105deg,
+              transparent 45%,
+              rgba(108, 58, 237, 0.06) 60%,
+              rgba(0, 212, 255, 0.05) 80%,
+              rgba(0, 212, 255, 0.08) 100%
+            )`,
+          }}
+        />
+
+        {/* ── Layer 4: Diagonal Transition Line (The "Split") ── */}
+        <div
+          className="absolute inset-0 hidden lg:block"
+          style={{
+            background: `linear-gradient(105deg,
+              transparent 48%,
+              rgba(108, 58, 237, 0.12) 49.5%,
+              rgba(139, 92, 246, 0.08) 50%,
+              rgba(0, 212, 255, 0.06) 50.5%,
+              transparent 52%
+            )`,
+          }}
+        />
+
+        {/* ── Layer 5: Chalk-to-Digital Particles ── */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
+          {/* Left particles (chalk = warm, square-ish) */}
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-amber-200/30 rounded-[1px]"
+            style={{ left: '46%', top: '85%' }}
+            animate={{ y: [0, -750], opacity: [0, 0.6, 0.4, 0] }}
+            transition={{ duration: 12, repeat: Infinity, delay: 0 }}
+          />
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-amber-200/30 rounded-[1px]"
+            style={{ left: '47%', top: '92%' }}
+            animate={{ y: [0, -700], opacity: [0, 0.6, 0.4, 0] }}
+            transition={{ duration: 14, repeat: Infinity, delay: 3 }}
+          />
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-amber-200/30 rounded-[1px]"
+            style={{ left: '48%', top: '100%' }}
+            animate={{ y: [0, -800], opacity: [0, 0.6, 0.4, 0] }}
+            transition={{ duration: 10, repeat: Infinity, delay: 6 }}
+          />
+
+          {/* Center particles (morphing = purple, transitional) */}
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full"
+            style={{ left: '50%', top: '88%' }}
+            animate={{ y: [0, -700], opacity: [0, 0.7, 0.4, 0], scale: [1, 1.2, 0.8] }}
+            transition={{ duration: 11, repeat: Infinity, delay: 1 }}
+          />
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full"
+            style={{ left: '51%', top: '95%' }}
+            animate={{ y: [0, -650], opacity: [0, 0.7, 0.4, 0], scale: [1, 1.2, 0.8] }}
+            transition={{ duration: 9, repeat: Infinity, delay: 4 }}
+          />
+
+          {/* Right particles (digital = cool, perfectly round) */}
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
+            style={{ left: '52%', top: '82%' }}
+            animate={{ y: [0, -600], opacity: [0, 0.8, 0.5, 0] }}
+            transition={{ duration: 13, repeat: Infinity, delay: 2 }}
+          />
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
+            style={{ left: '53%', top: '90%' }}
+            animate={{ y: [0, -550], opacity: [0, 0.8, 0.5, 0] }}
+            transition={{ duration: 8, repeat: Infinity, delay: 5 }}
+          />
+          <motion.div
+            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
+            style={{ left: '54%', top: '98%' }}
+            animate={{ y: [0, -700], opacity: [0, 0.8, 0.5, 0] }}
+            transition={{ duration: 11, repeat: Infinity, delay: 7 }}
+          />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-40">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
+        {/* ── Layer 6: Top Glow ── */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.08] rounded-full blur-[120px] pointer-events-none" />
+
+        {/* ── Layer 7: Bottom Vignette ── */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, transparent, rgba(10, 10, 26, 1))' }}
+        />
+
+        {/* ── HERO CONTENT ── */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-32 lg:py-40">
+          <div className="grid lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
+            {/* Left Column */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
             >
-              <motion.div variants={fadeUp} custom={0} className="mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-sm text-white/80">
-                  <span className="w-2 h-2 rounded-full bg-accent-light animate-pulse" />
-                  Trusted by 760+ institutions worldwide
+              {/* 1. Trust Badge */}
+              <motion.div variants={fadeUp} custom={0} className="mb-7">
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm text-sm font-medium text-gray-300">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  Trusted by 760+ Institutions in 3 Countries
                 </span>
               </motion.div>
 
-              <motion.h1
-                variants={fadeUp}
-                custom={1}
-                className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight mb-6"
-              >
-                Where Innovation
-                <br />
-                Meets{' '}
-                <span className="gradient-text">Education</span>
-              </motion.h1>
+              {/* 2. Headline (Line-by-Line Stagger) */}
+              <div className="mb-7">
+                <motion.div variants={fadeUp} custom={1} className="overflow-hidden">
+                  <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-heading font-bold text-white leading-[1.05] tracking-[-0.02em]">
+                    From Chalk
+                  </h1>
+                </motion.div>
+                <motion.div variants={fadeUp} custom={1.5} className="overflow-hidden">
+                  <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-heading font-bold text-white leading-[1.05] tracking-[-0.02em]">
+                    and Board to
+                  </h1>
+                </motion.div>
+                <motion.div variants={fadeUp} custom={2} className="overflow-hidden">
+                  <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-heading font-bold leading-[1.05] tracking-[-0.02em]">
+                    <span className="gradient-text">World-Class.</span>
+                  </h1>
+                </motion.div>
+              </div>
 
+              {/* 3. Sub-headline */}
               <motion.p
                 variants={fadeUp}
-                custom={2}
-                className="text-lg text-white/60 max-w-lg mb-8 leading-relaxed"
+                custom={3}
+                className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed mb-10"
               >
-                The ultimate EdTech platform transforming schools across Pakistan, Saudi Arabia & Canada.
-                One partner, every solution — from LMS to animated lessons.
+                The complete EdTech ecosystem that transforms schools across Pakistan, Saudi Arabia & Canada — from LMS and animated lessons to ERP and digital infrastructure.
               </motion.p>
 
-              <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-4 mb-12">
-                <a href="#contact" className="btn-primary">
-                  Discover More
-                  <ArrowRight className="w-4 h-4" />
+              {/* 4. CTA Buttons */}
+              <motion.div variants={fadeUp} custom={4} className="flex flex-wrap gap-4 mb-10">
+                <a href="#contact" className="btn-primary text-base px-8 py-4">
+                  Book Free Demo
+                  <ArrowRight size={18} />
                 </a>
-                <a href="#solutions" className="btn-outline-white">
-                  Explore Solutions
+                <a href="#about" className="btn-outline-white text-base px-7 py-4">
+                  <Play size={18} />
+                  Watch the Story
                 </a>
               </motion.div>
 
-              {/* Trust Badges */}
-              <motion.div variants={fadeUp} custom={4} className="flex items-center gap-8">
+              {/* 5. Before/After Photo Pair + Trust Indicators */}
+              <motion.div variants={fadeUp} custom={5} className="flex items-center gap-5 flex-wrap">
+                {/* Group A — Before/After Photos */}
                 <div className="flex items-center gap-3">
-                  <div className="flex -space-x-2">
-                    {['bg-purple-500', 'bg-emerald-500', 'bg-blue-500', 'bg-orange-500'].map((bg, i) => (
-                      <div key={i} className={`w-8 h-8 rounded-full ${bg} border-2 border-dark-950 flex items-center justify-center text-[10px] font-bold text-white`}>
-                        {['A', 'F', 'M', 'S'][i]}
-                      </div>
-                    ))}
+                  {/* Before Photo */}
+                  <div className="w-[52px] h-[52px] rounded-full overflow-hidden border-2 border-white/10">
+                    <img
+                      src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=200&q=80"
+                      alt="Traditional chalkboard teaching"
+                      className="w-full h-full object-cover grayscale sepia brightness-75"
+                    />
                   </div>
-                  <div>
+
+                  {/* Arrow Between */}
+                  <div className="flex flex-col items-center">
+                    <ArrowRight size={16} className="text-primary-light" />
+                    <span className="text-[9px] text-white/30">4 weeks</span>
+                  </div>
+
+                  {/* After Photo */}
+                  <div className="w-[52px] h-[52px] rounded-full overflow-hidden border-2 border-cyan-400/30 ring-2 ring-cyan-400/10 ring-offset-2 ring-offset-transparent">
+                    <img
+                      src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&q=80"
+                      alt="Student engaged with digital learning"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Group B — Vertical Divider */}
+                <div className="w-px h-8 bg-white/10 hidden sm:block" />
+
+                {/* Group C — Flags + Rating */}
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-1.5 text-sm text-white/40">
+                    <span>🇵🇰</span>
+                    <span>🇸🇦</span>
+                    <span>🇨🇦</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
                     <div className="flex gap-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        <Star key={i} size={11} className="fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-                    <span className="text-xs text-white/50">Rated 5/5 by clients</span>
+                    <span className="text-xs text-white/40">5/5 by clients</span>
                   </div>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Right - Dashboard Mockup */}
+            {/* Right Column — Dashboard Mockup */}
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ opacity: 0, x: 60, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="hidden lg:block relative"
             >
               {/* Main Dashboard Card */}
-              <div className="relative bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-6 shadow-2xl">
-                {/* Dashboard Header */}
-                <div className="flex items-center justify-between mb-6">
+              <div className="relative rounded-2xl p-6 bg-[rgba(13,13,43,0.75)] backdrop-blur-xl border border-white/[0.08] shadow-[0_40px_80px_rgba(0,0,0,0.5),0_0_60px_rgba(108,58,237,0.12)]">
+                {/* Browser Chrome Bar */}
+                <div className="bg-dark-700/80 rounded-xl p-4 mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                    <div className="w-3 h-3 rounded-full bg-green-400" />
+                    <div className="flex items-center gap-2">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+                    </div>
+                    <div className="bg-dark-800/60 rounded-md px-3 py-1 flex-1">
+                      <span className="text-[10px] text-gray-500 font-mono">cubico-lms.edu/dashboard</span>
+                    </div>
                   </div>
-                  <div className="text-xs text-white/40 font-mono">cubico-dashboard.edu</div>
                 </div>
 
-                {/* Dashboard Content */}
-                <div className="space-y-4">
-                  <div className="bg-white/5 rounded-2xl p-5">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-white/70 text-sm font-medium">Student Engagement</span>
-                      <span className="text-accent-light text-sm font-bold">+24%</span>
-                    </div>
-                    {/* Chart Bars */}
-                    <div className="flex items-end gap-2 h-32">
-                      {[65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88, 92].map((h, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ height: 0 }}
-                          animate={{ height: `${h}%` }}
-                          transition={{ duration: 0.8, delay: 0.5 + i * 0.05 }}
-                          className={`flex-1 rounded-t-sm ${i >= 10 ? 'bg-accent' : 'bg-primary/60'}`}
-                        />
-                      ))}
-                    </div>
+                {/* Chart Section */}
+                <div className="mb-4">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-xs font-semibold text-gray-200">Student Engagement</span>
+                    <span className="text-xs font-bold text-emerald-400">+24%</span>
                   </div>
+                  <div className="flex items-end gap-[5px] h-24">
+                    {[35, 55, 40, 70, 50, 80, 60, 75, 55, 85, 65, 78, 58, 92].map((h, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${h}%` }}
+                        transition={{ duration: 0.5, delay: 0.9 + i * 0.04, ease: 'easeOut' }}
+                        className={`flex-1 rounded-t-sm ${
+                          i >= 12
+                            ? 'bg-gradient-to-t from-emerald-600 to-emerald-400'
+                            : i >= 9
+                            ? 'bg-gradient-to-t from-cyan-600 to-cyan-400'
+                            : i >= 5
+                            ? 'bg-gradient-to-t from-purple-500 to-purple-400'
+                            : 'bg-gradient-to-t from-purple-700 to-purple-500'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <div className="text-white/50 text-xs mb-1">Active Courses</div>
-                      <div className="text-white text-2xl font-bold">2,847</div>
-                    </div>
-                    <div className="bg-white/5 rounded-xl p-4">
-                      <div className="text-white/50 text-xs mb-1">Completion Rate</div>
-                      <div className="text-white text-2xl font-bold">94.2%</div>
-                    </div>
+                {/* Stats Row */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="bg-dark-800/50 rounded-lg p-3 text-center">
+                    <div className="text-xl font-heading font-bold text-cyan-400">2,847</div>
+                    <div className="text-[10px] text-gray-500">Active Courses</div>
+                  </div>
+                  <div className="bg-dark-800/50 rounded-lg p-3 text-center">
+                    <div className="text-xl font-heading font-bold text-emerald-400">94.2%</div>
+                    <div className="text-[10px] text-gray-500">Completion Rate</div>
+                  </div>
+                  <div className="bg-dark-800/50 rounded-lg p-3 text-center">
+                    <div className="text-xl font-heading font-bold text-primary-light">760+</div>
+                    <div className="text-[10px] text-gray-500">Schools Active</div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Cards */}
+              {/* Floating Card #1 — Deployment Success */}
               <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 5, repeat: Infinity }}
-                className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1.5 }}
+                className="absolute -top-5 -right-4"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-green-600" />
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                  className="bg-[rgba(13,13,43,0.85)] backdrop-blur-lg border border-emerald-500/15 rounded-2xl p-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-gray-400">Deployment</div>
+                      <div className="text-sm font-bold text-emerald-400">98% Success</div>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs text-gray-500">Deployment</div>
-                    <div className="text-sm font-bold text-gray-900">98% Success</div>
-                  </div>
-                </div>
+                </motion.div>
               </motion.div>
 
+              {/* Floating Card #2 — Client Rating */}
               <motion.div
-                animate={{ y: [10, -10, 10] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1.8 }}
+                className="absolute -bottom-4 -left-4"
               >
-                <div className="flex items-center gap-3">
-                  <div className="flex -space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+                <motion.div
+                  animate={{ y: [0, 6, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, delay: 1 }}
+                  className="bg-[rgba(13,13,43,0.85)] backdrop-blur-lg border border-yellow-500/15 rounded-2xl p-4"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg overflow-hidden">
+                      <img
+                        src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&q=80"
+                        alt="Client"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex gap-0.5">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={10} className="fill-yellow-400 text-yellow-400" />
+                          ))}
+                        </div>
+                        <span className="text-sm font-bold text-white">5.0</span>
+                      </div>
+                      <div className="text-[10px] text-gray-400">Client Satisfaction</div>
+                    </div>
                   </div>
-                  <span className="text-sm font-bold text-gray-900">5.0</span>
-                </div>
-                <div className="text-xs text-gray-500 mt-1">Client Satisfaction</div>
+                </motion.div>
+              </motion.div>
+
+              {/* Floating Card #3 — Arabic LMS */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 2.1 }}
+                className="absolute bottom-16 -right-3"
+              >
+                <motion.div
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, delay: 2 }}
+                  className="bg-[rgba(13,13,43,0.85)] backdrop-blur-lg border border-cyan-400/15 rounded-2xl px-4 py-3"
+                >
+                  <div className="text-[10px] text-gray-400 mb-1">Arabic LMS</div>
+                  <div className="text-cyan-400 text-sm font-semibold" dir="rtl">بسم الله الرحمن الرحيم</div>
+                </motion.div>
               </motion.div>
             </motion.div>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center"
+          >
+            <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] mb-1">Scroll</span>
+            <ChevronDown size={16} className="text-white/20" />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* ═══════════ FEATURE CARDS ═══════════ */}
