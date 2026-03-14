@@ -205,6 +205,89 @@ const partners = [
   'TechEd Pakistan',
 ];
 
+const solutions = [
+  {
+    id: 'manage',
+    name: 'Cubico Manage™',
+    tagline: 'Your entire institution. One intelligent system.',
+    icon: Layout,
+    color: 'from-purple-600 to-indigo-600',
+    accentColor: 'text-purple-400',
+    borderColor: 'border-purple-500/40',
+    glowColor: 'shadow-purple-500/20',
+    demoUrl: 'demo.cubico.tech/manage',
+    features: [
+      { icon: Users, title: 'Student Enrollment', desc: 'End-to-end admissions, profiles, and lifecycle management.' },
+      { icon: BarChart3, title: 'Fee & Finance', desc: 'Invoicing, payment tracking, and financial reporting.' },
+      { icon: PieChart, title: 'Attendance & Exams', desc: 'Smart attendance, gradebooks, and exam scheduling.' },
+      { icon: Settings, title: 'HR & Timetable', desc: 'Staff management, payroll, and auto-generated timetables.' },
+    ],
+    themes: [
+      { name: 'Eclipse Dark', bg: 'bg-slate-900', accent: 'bg-purple-500', label: 'Enterprise' },
+      { name: 'Horizon Light', bg: 'bg-gray-50', accent: 'bg-blue-500', label: 'Classic' },
+      { name: 'Campus Fresh', bg: 'bg-emerald-50', accent: 'bg-emerald-500', label: 'School' },
+      { name: 'Al-Arabiya RTL', bg: 'bg-amber-50', accent: 'bg-amber-500', label: 'Arabic RTL' },
+    ],
+  },
+  {
+    id: 'teach',
+    name: 'Cubico Teach™',
+    tagline: 'Everything a teacher needs. Nothing they don\'t.',
+    icon: BookOpen,
+    color: 'from-cyan-600 to-blue-600',
+    accentColor: 'text-cyan-400',
+    borderColor: 'border-cyan-500/40',
+    glowColor: 'shadow-cyan-500/20',
+    demoUrl: 'demo.cubico.tech/teach',
+    features: [
+      { icon: Lightbulb, title: 'Lesson Plan Builder', desc: 'Drag-and-drop lesson blocks aligned to curriculum standards.' },
+      { icon: Target, title: 'Curriculum Mapping', desc: 'Visual scope & sequence across subjects and grade levels.' },
+      { icon: BarChart3, title: 'Class Analytics', desc: 'Per-student progress, grade distributions, and at-risk flags.' },
+      { icon: Cloud, title: 'Resource Library', desc: 'Upload, tag, and share teaching materials across departments.' },
+    ],
+  },
+  {
+    id: 'learn',
+    name: 'Cubico Learn™',
+    tagline: 'Textbooks come alive.',
+    icon: Film,
+    color: 'from-rose-500 to-orange-500',
+    accentColor: 'text-rose-400',
+    borderColor: 'border-rose-500/40',
+    glowColor: 'shadow-rose-500/20',
+    demoUrl: 'demo.cubico.tech/learn',
+    features: [
+      { icon: Film, title: '2D & 3D Animation', desc: 'Professional character-led animated lessons for every subject.' },
+      { icon: Monitor, title: 'Interactive Simulations', desc: 'STEM labs and science experiments students can manipulate.' },
+      { icon: Globe, title: 'Multilingual Content', desc: 'English, Arabic, and Urdu narration with full RTL support.' },
+      { icon: Zap, title: 'Adaptive Quizzes', desc: 'End-of-lesson assessments that adjust to learner performance.' },
+    ],
+    animStyles: [
+      { label: '2D Character', color: 'bg-rose-500/20 border-rose-500/30', icon: '🎭' },
+      { label: '3D Model', color: 'bg-orange-500/20 border-orange-500/30', icon: '🧊' },
+      { label: 'Whiteboard', color: 'bg-amber-500/20 border-amber-500/30', icon: '✏️' },
+      { label: 'Motion GFX', color: 'bg-pink-500/20 border-pink-500/30', icon: '✨' },
+    ],
+  },
+  {
+    id: 'marketing',
+    name: 'Cubico Marketing™',
+    tagline: 'Fill every seat. Every semester.',
+    icon: Megaphone,
+    color: 'from-emerald-600 to-teal-600',
+    accentColor: 'text-emerald-400',
+    borderColor: 'border-emerald-500/40',
+    glowColor: 'shadow-emerald-500/20',
+    demoUrl: 'demo.cubico.tech/marketing',
+    features: [
+      { icon: Globe, title: 'School Websites', desc: 'Premium, conversion-focused institutional websites that enroll.' },
+      { icon: TrendingUp, title: 'Enrollment Funnels', desc: 'Landing pages, Google Ads, and retargeting campaigns.' },
+      { icon: Megaphone, title: 'Social Media', desc: 'Managed content, ad campaigns, and brand voice across channels.' },
+      { icon: Shield, title: 'SEO & Analytics', desc: 'Search visibility strategy with monthly performance reports.' },
+    ],
+  },
+];
+
 /* ═══════════════════════════════════════════
    STAT COUNTER COMPONENT
    ═══════════════════════════════════════════ */
@@ -236,6 +319,8 @@ export default function HomePage() {
     position: '',
     employees: '',
   });
+  const [activeSolution, setActiveSolution] = useState(0);
+  const hasInteracted = useRef(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterName, setNewsletterName] = useState('');
@@ -245,6 +330,15 @@ export default function HomePage() {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (!hasInteracted.current) {
+        setActiveSolution((prev) => (prev + 1) % solutions.length);
+      }
+    }, 8000);
+    return () => clearInterval(timer);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -788,6 +882,547 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ SOLUTIONS SHOWCASE ═══════════ */}
+      <section id="showcase" className="py-24 bg-[#07071A] relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] bg-accent/5 rounded-full blur-[100px]" />
+          <div
+            className="absolute inset-0 opacity-[0.015]"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
+              backgroundSize: '48px 48px',
+            }}
+          />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Section Header */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-14"
+          >
+            <motion.span variants={fadeUp} custom={0} className="inline-block text-xs font-bold tracking-[0.25em] uppercase text-primary-light mb-5 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5">
+              Experience Lab
+            </motion.span>
+            <motion.h2
+              variants={fadeUp}
+              custom={1}
+              className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-5 leading-tight"
+            >
+              Don&apos;t take our word for it.
+              <br />
+              <span className="gradient-text">Try it.</span>
+            </motion.h2>
+            <motion.p variants={fadeUp} custom={2} className="text-white/40 max-w-xl mx-auto text-base leading-relaxed">
+              Interact with live mockups of each solution. Click a tab, explore the interface, and see exactly what your institution gets.
+            </motion.p>
+          </motion.div>
+
+          {/* Tab Selector Rail */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex overflow-x-auto gap-3 mb-8 pb-2 scrollbar-hide justify-start lg:justify-center"
+          >
+            {solutions.map((sol, i) => {
+              const Icon = sol.icon;
+              const isActive = activeSolution === i;
+              return (
+                <button
+                  key={sol.id}
+                  onClick={() => {
+                    hasInteracted.current = true;
+                    setActiveSolution(i);
+                  }}
+                  className={`flex-shrink-0 flex items-center gap-2.5 px-5 py-3 rounded-xl border text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
+                    isActive
+                      ? `bg-white/[0.08] ${sol.borderColor} text-white shadow-lg ${sol.glowColor}`
+                      : 'bg-white/[0.03] border-white/[0.06] text-white/40 hover:text-white/70 hover:bg-white/[0.05]'
+                  }`}
+                >
+                  <Icon size={16} className={isActive ? sol.accentColor : ''} />
+                  {sol.name}
+                  {isActive && (
+                    <span className={`w-1.5 h-1.5 rounded-full ml-1 ${sol.accentColor.replace('text-', 'bg-')} animate-pulse`} />
+                  )}
+                </button>
+              );
+            })}
+          </motion.div>
+
+          {/* Demo Stage */}
+          <AnimatePresence mode="wait">
+            {solutions.map((sol, i) =>
+              activeSolution === i ? (
+                <motion.div
+                  key={sol.id}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                >
+                  {/* Browser Chrome Card */}
+                  <div className={`rounded-2xl border ${sol.borderColor} bg-[rgba(13,13,43,0.6)] backdrop-blur-xl shadow-[0_32px_80px_rgba(0,0,0,0.5)] overflow-hidden`}>
+                    {/* Browser chrome bar */}
+                    <div className="bg-[#0D0D2B]/80 border-b border-white/[0.06] px-5 py-3.5 flex items-center gap-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 rounded-full bg-red-400/70" />
+                        <div className="w-3 h-3 rounded-full bg-yellow-400/70" />
+                        <div className="w-3 h-3 rounded-full bg-green-400/70" />
+                      </div>
+                      <div className="flex-1 bg-white/[0.04] border border-white/[0.06] rounded-lg px-4 py-1.5 flex items-center gap-2">
+                        <div className="w-2.5 h-2.5 rounded-full border border-white/20 flex-shrink-0" />
+                        <span className={`text-[11px] font-mono ${sol.accentColor}/70`}>{sol.demoUrl}</span>
+                      </div>
+                      <span className="text-[10px] text-white/20 hidden sm:block font-mono">SSL ✓</span>
+                    </div>
+
+                    {/* Mockup content */}
+                    <div className="p-6 lg:p-8">
+                      {/* ── MANAGE MOCKUP ── */}
+                      {sol.id === 'manage' && (
+                        <div className="grid lg:grid-cols-[220px_1fr] gap-5">
+                          {/* Sidebar */}
+                          <div className="hidden lg:block bg-[#0D0D2B]/80 rounded-xl p-4 space-y-1">
+                            <div className="text-[10px] text-white/30 uppercase tracking-wider px-3 pt-1 pb-3 font-semibold">Main Menu</div>
+                            {['Dashboard', 'Students', 'Courses', 'Attendance', 'Fee Management', 'Timetable', 'HR & Staff', 'Reports', 'Settings'].map((item, idx) => (
+                              <div
+                                key={item}
+                                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium cursor-default transition-colors ${
+                                  idx === 0
+                                    ? 'bg-purple-500/20 text-purple-300 border border-purple-500/20'
+                                    : 'text-white/40 hover:text-white/60'
+                                }`}
+                              >
+                                <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${idx === 0 ? 'bg-purple-400' : 'bg-white/20'}`} />
+                                {item}
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Main area */}
+                          <div className="space-y-4">
+                            {/* KPI row */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                              {[
+                                { label: 'Total Students', value: '2,847', change: '+12%', color: 'text-purple-400' },
+                                { label: 'Fee Collected', value: '₨4.2M', change: '+8%', color: 'text-emerald-400' },
+                                { label: 'Attendance Rate', value: '94.3%', change: '+2%', color: 'text-cyan-400' },
+                                { label: 'Active Courses', value: '186', change: '+5', color: 'text-amber-400' },
+                              ].map((kpi) => (
+                                <div key={kpi.label} className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                                  <div className="text-[10px] text-white/30 mb-1">{kpi.label}</div>
+                                  <div className={`text-xl font-heading font-bold ${kpi.color}`}>{kpi.value}</div>
+                                  <div className="text-[10px] text-emerald-400 mt-1">{kpi.change} this month</div>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Middle row */}
+                            <div className="grid md:grid-cols-[1fr_180px] gap-3">
+                              {/* Attendance heatmap */}
+                              <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                                <div className="flex justify-between items-center mb-3">
+                                  <span className="text-xs font-semibold text-white/70">Attendance This Week</span>
+                                  <span className="text-[10px] text-emerald-400 font-medium">Live</span>
+                                </div>
+                                <div className="grid grid-cols-5 gap-2">
+                                  {['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map((day, di) => (
+                                    <div key={day} className="text-center">
+                                      <div className="text-[9px] text-white/30 mb-1.5">{day}</div>
+                                      {[92, 88, 95, 91, 86][di] > 90 ? (
+                                        <div className="w-full aspect-square rounded-md bg-emerald-500/40 border border-emerald-500/20 flex items-center justify-center text-[9px] text-emerald-300 font-bold">
+                                          {[92, 88, 95, 91, 86][di]}%
+                                        </div>
+                                      ) : (
+                                        <div className="w-full aspect-square rounded-md bg-amber-500/25 border border-amber-500/20 flex items-center justify-center text-[9px] text-amber-300 font-bold">
+                                          {[92, 88, 95, 91, 86][di]}%
+                                        </div>
+                                      )}
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Upcoming events */}
+                              <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                                <div className="text-xs font-semibold text-white/70 mb-3">Upcoming</div>
+                                {[
+                                  { label: 'Mid-Term Exams', date: 'Mar 18', color: 'bg-purple-500' },
+                                  { label: 'Fee Deadline', date: 'Mar 20', color: 'bg-amber-500' },
+                                  { label: 'Staff Meeting', date: 'Mar 22', color: 'bg-cyan-500' },
+                                ].map((ev) => (
+                                  <div key={ev.label} className="flex items-center gap-2 mb-2 last:mb-0">
+                                    <div className={`w-2 h-2 rounded-full ${ev.color} flex-shrink-0`} />
+                                    <div className="flex-1 min-w-0">
+                                      <div className="text-[10px] text-white/60 truncate">{ev.label}</div>
+                                      <div className="text-[9px] text-white/30">{ev.date}</div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Recent students table */}
+                            <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                              <div className="text-xs font-semibold text-white/70 mb-3">Recent Enrollments</div>
+                              <div className="space-y-2">
+                                {[
+                                  { name: 'Aisha Rahman', grade: 'Grade 7', fee: 'Paid', status: 'Active' },
+                                  { name: 'Omar Khalid', grade: 'Grade 9', fee: 'Pending', status: 'Active' },
+                                  { name: 'Sara Ahmed', grade: 'Grade 5', fee: 'Paid', status: 'Active' },
+                                ].map((s) => (
+                                  <div key={s.name} className="grid grid-cols-4 gap-2 items-center text-[10px]">
+                                    <span className="text-white/70 font-medium truncate">{s.name}</span>
+                                    <span className="text-white/40">{s.grade}</span>
+                                    <span className={s.fee === 'Paid' ? 'text-emerald-400' : 'text-amber-400'}>{s.fee}</span>
+                                    <span className="text-cyan-400">{s.status}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ── TEACH MOCKUP ── */}
+                      {sol.id === 'teach' && (
+                        <div className="grid lg:grid-cols-[1fr_200px] gap-5">
+                          {/* Left: lesson plan builder + grade chart */}
+                          <div className="space-y-4">
+                            {/* Lesson editor */}
+                            <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                              <div className="flex justify-between items-center mb-3">
+                                <span className="text-xs font-semibold text-white/70">Lesson Plan — Chapter 4: Photosynthesis</span>
+                                <span className="text-[10px] text-cyan-400 font-medium">Grade 8 Biology</span>
+                              </div>
+                              <div className="space-y-2">
+                                {[
+                                  { label: 'Learning Objective', color: 'border-cyan-500/40 bg-cyan-500/5', icon: '🎯', content: 'Students will explain the light-dependent reactions of photosynthesis.' },
+                                  { label: 'Starter Activity', color: 'border-blue-500/40 bg-blue-500/5', icon: '⚡', content: 'Quick-fire quiz: 5 questions from previous lesson (5 mins)' },
+                                  { label: 'Main Teaching', color: 'border-purple-500/40 bg-purple-500/5', icon: '📖', content: 'Animated explainer video + diagram labelling worksheet' },
+                                  { label: 'Assessment', color: 'border-emerald-500/40 bg-emerald-500/5', icon: '✅', content: 'Exit ticket: 3-question diagnostic (Google Forms)' },
+                                ].map((block) => (
+                                  <div key={block.label} className={`flex gap-3 p-3 rounded-lg border ${block.color}`}>
+                                    <span className="text-base leading-none mt-0.5">{block.icon}</span>
+                                    <div>
+                                      <div className="text-[10px] font-bold text-white/50 uppercase tracking-wider mb-1">{block.label}</div>
+                                      <div className="text-[11px] text-white/60 leading-snug">{block.content}</div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Grade distribution */}
+                            <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                              <div className="flex justify-between items-center mb-3">
+                                <span className="text-xs font-semibold text-white/70">Grade Distribution — Class 8B</span>
+                                <span className="text-[10px] text-emerald-400">Avg: 76.4%</span>
+                              </div>
+                              <div className="flex items-end gap-2 h-16">
+                                {[30, 55, 75, 85, 70, 60, 45, 80, 90, 65].map((h, i) => (
+                                  <motion.div
+                                    key={i}
+                                    initial={{ height: 0 }}
+                                    animate={{ height: `${h}%` }}
+                                    transition={{ duration: 0.4, delay: 0.05 * i, ease: 'easeOut' }}
+                                    className={`flex-1 rounded-t-sm ${h >= 80 ? 'bg-emerald-500/60' : h >= 60 ? 'bg-cyan-500/60' : 'bg-blue-500/40'}`}
+                                  />
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Right: weekly schedule + resource library */}
+                          <div className="space-y-4">
+                            <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                              <div className="text-xs font-semibold text-white/70 mb-3">My Schedule</div>
+                              {[
+                                { time: '08:00', subject: 'Biology', grade: '8B', color: 'border-l-cyan-500' },
+                                { time: '09:30', subject: 'Science', grade: '7A', color: 'border-l-purple-500' },
+                                { time: '11:00', subject: 'Biology', grade: '9C', color: 'border-l-cyan-500' },
+                                { time: '14:00', subject: 'Lab Session', grade: '8B', color: 'border-l-emerald-500' },
+                              ].map((cl) => (
+                                <div key={cl.time + cl.grade} className={`border-l-2 ${cl.color} pl-3 mb-2.5 last:mb-0`}>
+                                  <div className="text-[9px] text-white/30">{cl.time}</div>
+                                  <div className="text-[11px] text-white/70 font-medium">{cl.subject}</div>
+                                  <div className="text-[9px] text-white/30">{cl.grade}</div>
+                                </div>
+                              ))}
+                            </div>
+                            <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                              <div className="text-xs font-semibold text-white/70 mb-3">Resource Library</div>
+                              {['Photosynthesis_Diagram.pdf', 'Lab_Safety_Guide.pptx', 'Cell_Division_Video.mp4'].map((file) => (
+                                <div key={file} className="flex items-center gap-2 mb-2 last:mb-0">
+                                  <div className="w-6 h-6 rounded bg-white/[0.06] flex items-center justify-center text-[9px] text-white/40">📄</div>
+                                  <div className="text-[10px] text-white/50 truncate">{file}</div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ── LEARN MOCKUP ── */}
+                      {sol.id === 'learn' && (
+                        <div className="grid lg:grid-cols-[1fr_220px] gap-5">
+                          {/* Left: video player */}
+                          <div className="space-y-4">
+                            <div className="bg-black/40 border border-white/[0.06] rounded-xl overflow-hidden">
+                              {/* Fake video player */}
+                              <div className="relative bg-gradient-to-br from-rose-900/40 to-orange-900/30 aspect-video flex items-center justify-center">
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  <div className="text-center">
+                                    <div className="text-6xl mb-3">🧬</div>
+                                    <div className="text-white/60 text-sm font-medium">Chapter 3: DNA Replication</div>
+                                    <div className="text-white/30 text-xs mt-1">3D Animated Lesson · 8:42</div>
+                                  </div>
+                                </div>
+                                {/* Play button overlay */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  <div className="w-14 h-14 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-all cursor-default">
+                                    <Play size={20} className="text-white ml-1" />
+                                  </div>
+                                </div>
+                                {/* Progress bar */}
+                                <div className="absolute bottom-0 left-0 right-0 px-4 pb-3">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="text-[10px] text-white/50">3:24</span>
+                                    <div className="flex-1 h-1 rounded-full bg-white/10">
+                                      <div className="h-full w-2/5 rounded-full bg-gradient-to-r from-rose-500 to-orange-400" />
+                                    </div>
+                                    <span className="text-[10px] text-white/50">8:42</span>
+                                  </div>
+                                </div>
+                              </div>
+                              {/* Player controls bar */}
+                              <div className="bg-[#0D0D2B]/80 px-4 py-2.5 flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <span className="text-[10px] text-white/40">Grade 10 · Biology</span>
+                                </div>
+                                <div className="flex gap-3">
+                                  {['Quiz', 'Notes', 'Next →'].map((btn) => (
+                                    <button key={btn} className="text-[10px] text-white/40 hover:text-rose-400 transition-colors cursor-default font-medium">
+                                      {btn}
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Animation style thumbnails */}
+                            <div className="grid grid-cols-4 gap-2">
+                              {sol.animStyles?.map((style) => (
+                                <div
+                                  key={style.label}
+                                  className={`rounded-xl border ${style.color} p-3 text-center cursor-default hover:scale-[1.03] transition-transform`}
+                                >
+                                  <div className="text-2xl mb-1">{style.icon}</div>
+                                  <div className="text-[9px] text-white/50 font-medium">{style.label}</div>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Quiz popup (bottom) */}
+                            <div className="bg-white/[0.04] border border-rose-500/20 rounded-xl p-4">
+                              <div className="text-[10px] text-rose-400 font-bold uppercase tracking-wider mb-2">📝 Checkpoint Quiz</div>
+                              <div className="text-xs text-white/60 mb-3">Which enzyme unzips the DNA double helix during replication?</div>
+                              <div className="grid grid-cols-2 gap-2">
+                                {['Helicase', 'Polymerase', 'Ligase', 'Primase'].map((opt, i) => (
+                                  <div key={opt} className={`text-[10px] px-3 py-2 rounded-lg border cursor-default ${i === 0 ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300' : 'border-white/10 text-white/40'}`}>
+                                    {opt}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Right: chapter sidebar */}
+                          <div className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                            <div className="text-xs font-semibold text-white/70 mb-3">Biology — Grade 10</div>
+                            <div className="space-y-1">
+                              {[
+                                { ch: 'Ch 1', title: 'Cell Structure', done: true },
+                                { ch: 'Ch 2', title: 'Cell Division', done: true },
+                                { ch: 'Ch 3', title: 'DNA Replication', done: false, active: true },
+                                { ch: 'Ch 4', title: 'Protein Synthesis', done: false },
+                                { ch: 'Ch 5', title: 'Genetics', done: false },
+                                { ch: 'Ch 6', title: 'Evolution', done: false },
+                              ].map((ch) => (
+                                <div
+                                  key={ch.ch}
+                                  className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[10px] ${
+                                    ch.active
+                                      ? 'bg-rose-500/15 border border-rose-500/25 text-rose-300'
+                                      : ch.done
+                                      ? 'text-white/40'
+                                      : 'text-white/25'
+                                  }`}
+                                >
+                                  <span className={`w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center text-[8px] ${ch.done ? 'bg-emerald-500/30 text-emerald-400' : ch.active ? 'bg-rose-500/30 text-rose-400' : 'bg-white/5 text-white/20'}`}>
+                                    {ch.done ? '✓' : ch.active ? '▶' : '○'}
+                                  </span>
+                                  <span className="font-medium">{ch.ch}</span>
+                                  <span className="truncate">{ch.title}</span>
+                                </div>
+                              ))}
+                            </div>
+                            <div className="mt-4 pt-4 border-t border-white/[0.06]">
+                              <div className="text-[10px] text-white/30 mb-1.5">Your Progress</div>
+                              <div className="h-1.5 rounded-full bg-white/10">
+                                <div className="h-full w-2/5 rounded-full bg-gradient-to-r from-rose-500 to-orange-400" />
+                              </div>
+                              <div className="text-[10px] text-white/40 mt-1">2 of 6 chapters complete</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* ── MARKETING MOCKUP ── */}
+                      {sol.id === 'marketing' && (
+                        <div className="space-y-4">
+                          {/* School website preview */}
+                          <div className="bg-white rounded-xl overflow-hidden shadow-xl">
+                            {/* School website hero */}
+                            <div className="relative bg-gradient-to-r from-emerald-800 to-teal-700 px-8 py-10 text-white overflow-hidden">
+                              <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, white 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                              <div className="relative max-w-sm">
+                                <div className="text-xs font-bold tracking-widest uppercase text-emerald-200 mb-3">Al-Noor Academy · Est. 1998</div>
+                                <h3 className="text-xl md:text-2xl font-bold leading-tight mb-3">Where Knowledge Meets Excellence</h3>
+                                <p className="text-emerald-100 text-xs mb-5 leading-relaxed">A leading Islamic educational institution preparing students for a global future — from KG to Grade 12.</p>
+                                <div className="flex gap-3">
+                                  <div className="bg-white text-emerald-800 text-xs font-bold px-4 py-2 rounded-full cursor-default">Apply Now →</div>
+                                  <div className="border border-white/40 text-white text-xs font-medium px-4 py-2 rounded-full cursor-default">Virtual Tour</div>
+                                </div>
+                              </div>
+                              <div className="absolute right-6 top-6 bottom-6 w-32 bg-white/10 rounded-xl hidden md:block" />
+                            </div>
+
+                            {/* Stats strip */}
+                            <div className="grid grid-cols-4 bg-white border-b border-gray-100">
+                              {[
+                                { value: '760+', label: 'Students' },
+                                { value: '48', label: 'Teachers' },
+                                { value: '98%', label: 'Pass Rate' },
+                                { value: '25yr', label: 'Excellence' },
+                              ].map((s) => (
+                                <div key={s.label} className="text-center py-3 border-r border-gray-100 last:border-r-0">
+                                  <div className="text-sm font-heading font-bold text-gray-800">{s.value}</div>
+                                  <div className="text-[10px] text-gray-400">{s.label}</div>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Programs strip */}
+                            <div className="bg-gray-50 px-6 py-4">
+                              <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Our Programs</div>
+                              <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
+                                {['KG & Primary', 'Middle School', 'O-Level', 'A-Level', 'Hifz Program'].map((prog) => (
+                                  <div key={prog} className="text-center text-[10px] text-gray-500 bg-white rounded-lg py-2 px-2 border border-gray-100 font-medium">{prog}</div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Analytics below website preview */}
+                          <div className="grid md:grid-cols-3 gap-3">
+                            {[
+                              { label: 'Monthly Website Visits', value: '12,480', change: '+34%', icon: '👁️', color: 'text-emerald-400' },
+                              { label: 'Enquiry Form Submissions', value: '284', change: '+18%', icon: '📩', color: 'text-cyan-400' },
+                              { label: 'Admission Conversion', value: '22.4%', change: '+5%', icon: '🎯', color: 'text-teal-400' },
+                            ].map((metric) => (
+                              <div key={metric.label} className="bg-white/[0.04] border border-white/[0.06] rounded-xl p-4">
+                                <div className="flex items-start justify-between">
+                                  <div>
+                                    <div className="text-[10px] text-white/30 mb-1">{metric.label}</div>
+                                    <div className={`text-xl font-heading font-bold ${metric.color}`}>{metric.value}</div>
+                                    <div className="text-[10px] text-emerald-400 mt-1">{metric.change} this month</div>
+                                  </div>
+                                  <span className="text-lg">{metric.icon}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Explore link + tagline footer */}
+                      <div className="mt-6 pt-5 border-t border-white/[0.06] flex items-center justify-between flex-wrap gap-3">
+                        <div>
+                          <div className={`text-xs font-bold ${sol.accentColor} mb-0.5`}>{sol.name}</div>
+                          <div className="text-[11px] text-white/30">{sol.tagline}</div>
+                        </div>
+                        <a
+                          href="#contact"
+                          className={`inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl border ${sol.borderColor} ${sol.accentColor} hover:bg-white/[0.05] transition-all`}
+                        >
+                          Request Live Demo
+                          <ArrowRight size={14} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Theme showcase strip (Manage only) */}
+                  {sol.id === 'manage' && (
+                    <div className="mt-5">
+                      <div className="text-[10px] text-white/25 uppercase tracking-[0.2em] font-semibold mb-3 text-center">Available Theme Variations</div>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        {sol.themes?.map((theme) => (
+                          <div
+                            key={theme.name}
+                            className={`${theme.bg} rounded-xl p-4 border border-white/10 hover:scale-[1.02] transition-transform cursor-default group overflow-hidden relative`}
+                          >
+                            <div className={`${theme.accent} w-8 h-1.5 rounded-full mb-2`} />
+                            <div className="h-8 space-y-1 mb-2">
+                              <div className="h-1.5 bg-current opacity-10 rounded w-3/4" />
+                              <div className="h-1.5 bg-current opacity-10 rounded w-1/2" />
+                              <div className="h-1.5 bg-current opacity-10 rounded w-2/3" />
+                            </div>
+                            <div className="text-[10px] font-bold text-current opacity-60">{theme.name}</div>
+                            <div className={`text-[9px] ${theme.accent.replace('bg-', 'text-')} opacity-80 font-medium`}>{theme.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Feature highlights */}
+                  <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {sol.features.map((feat, fi) => {
+                      const FIcon = feat.icon;
+                      return (
+                        <motion.div
+                          key={feat.title}
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.05 * fi, duration: 0.3 }}
+                          className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 hover:bg-white/[0.05] transition-colors"
+                        >
+                          <div className={`w-8 h-8 rounded-lg bg-white/[0.06] flex items-center justify-center mb-3 ${sol.accentColor}`}>
+                            <FIcon size={15} />
+                          </div>
+                          <div className="text-xs font-bold text-white/80 mb-1">{feat.title}</div>
+                          <div className="text-[11px] text-white/35 leading-snug">{feat.desc}</div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              ) : null
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
