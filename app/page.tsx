@@ -468,7 +468,7 @@ export default function HomePage() {
       {/* ═══════════ HERO SECTION ═══════════ */}
       <section
         id="home"
-        className="relative min-h-screen flex flex-col overflow-hidden"
+        className="relative min-h-screen flex flex-col overflow-x-hidden"
       >
         {/* ── Sky gradient background ── */}
         <div
@@ -595,7 +595,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-10 -mb-[28vh]"
+          className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-10 -mb-[2px]"
         >
           <div
             className="w-full max-w-[980px] rounded-t-2xl overflow-hidden"
@@ -761,6 +761,12 @@ export default function HomePage() {
             </div>
           </div>
         </motion.div>
+
+        {/* ── Bottom fade: dashboard bleeds into next section ── */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-20"
+          style={{ background: 'linear-gradient(to bottom, transparent, #ffffff)' }}
+        />
       </section>
 
       {/* ═══════════ FEATURE CARDS ═══════════ */}
