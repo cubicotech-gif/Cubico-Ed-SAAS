@@ -286,15 +286,29 @@ const solutions = [
 /* ═══════════════════════════════════════════
    STAT COUNTER COMPONENT
    ═══════════════════════════════════════════ */
-function StatCounter({ value, suffix, label }: { value: number; suffix: string; label: string }) {
+function StatCounter({ value, suffix, label, color = '#818CF8' }: { value: number; suffix: string; label: string; color?: string }) {
   const { count, ref } = useCounter(value);
+  const r = 42;
+  const circ = 2 * Math.PI * r;
+  const pct = value > 0 ? Math.min(count / value, 1) : 0;
   return (
-    <div ref={ref} className="text-center">
-      <div className="stat-number text-4xl md:text-5xl text-white mb-2">
-        {count}
-        <span className="text-accent-light">{suffix}</span>
+    <div ref={ref} className="text-center flex flex-col items-center">
+      <div className="relative w-28 h-28 mb-3">
+        <svg className="absolute inset-0 w-full h-full" style={{ transform:'rotate(-90deg)' }} viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5"/>
+          <circle cx="50" cy="50" r={r} fill="none" stroke={color} strokeWidth="5"
+            strokeLinecap="round"
+            strokeDasharray={String(circ)}
+            strokeDashoffset={String(circ * (1 - pct))}
+            style={{ transition:'stroke-dashoffset 0.04s linear', filter:`drop-shadow(0 0 8px ${color}70)` }}/>
+        </svg>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="stat-number text-3xl text-white leading-none">
+            {count}<span className="text-xl" style={{ color }}>{suffix}</span>
+          </div>
+        </div>
       </div>
-      <p className="text-white/60 text-sm font-medium tracking-wide uppercase">{label}</p>
+      <p className="text-white/50 text-[10px] font-bold tracking-[0.16em] uppercase">{label}</p>
     </div>
   );
 }
@@ -359,6 +373,30 @@ export default function HomePage() {
 
   return (
     <>
+      <style>{`
+        @keyframes float      { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-20px); } }
+        @keyframes float2     { 0%,100%{ transform:translateY(-10px); } 50%{ transform:translateY(14px); } }
+        @keyframes float3     { 0%,100%{ transform:translateY(-5px) translateX(0); } 50%{ transform:translateY(10px) translateX(-8px); } }
+        @keyframes marquee    { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+        @keyframes shimmer-slide { 0%{ background-position:-200% center; } 100%{ background-position:200% center; } }
+        @keyframes glow-breath{ 0%,100%{ opacity:0.4; transform:scale(1); } 50%{ opacity:0.75; transform:scale(1.06); } }
+        @keyframes spin-slow  { from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+        @keyframes pdrift     { 0%{ transform:translateY(0) scale(1); opacity:0.55; } 100%{ transform:translateY(-110px) translateX(25px) scale(0.3); opacity:0; } }
+        @keyframes pdrift2    { 0%{ transform:translateY(0) scale(1); opacity:0.45; } 100%{ transform:translateY(-90px) translateX(-30px) scale(0.2); opacity:0; } }
+        .animate-float        { animation:float 7s ease-in-out infinite; }
+        .animate-float2       { animation:float2 9s ease-in-out infinite; }
+        .animate-float3       { animation:float3 11s ease-in-out infinite; }
+        .animate-marquee-slow { animation:marquee 38s linear infinite; }
+        .animate-glow-breath  { animation:glow-breath 4.5s ease-in-out infinite; }
+        .animate-spin-slow    { animation:spin-slow 22s linear infinite; }
+        .shimmer-text {
+          background:linear-gradient(90deg,#6C3AED 0%,#818CF8 30%,#C4B5FD 50%,#818CF8 70%,#6C3AED 100%);
+          background-size:200% auto; -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent; background-clip:text;
+          animation:shimmer-slide 4s linear infinite;
+        }
+      `}</style>
+
       {/* ═══════════ NAVIGATION ═══════════ */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -476,6 +514,14 @@ export default function HomePage() {
             backgroundSize: '300px 300px',
           }}
         />
+
+        {/* ── Floating atmosphere orbs ── */}
+        <div className="absolute top-[15%] left-[8%] w-64 h-64 rounded-full pointer-events-none animate-float"
+          style={{ background:'radial-gradient(circle,rgba(108,58,237,0.14) 0%,transparent 70%)', filter:'blur(40px)' }}/>
+        <div className="absolute top-[28%] right-[9%] w-80 h-80 rounded-full pointer-events-none animate-float2"
+          style={{ background:'radial-gradient(circle,rgba(37,99,235,0.11) 0%,transparent 70%)', filter:'blur(50px)' }}/>
+        <div className="absolute top-[55%] left-[40%] w-56 h-56 rounded-full pointer-events-none animate-float3"
+          style={{ background:'radial-gradient(circle,rgba(220,160,80,0.10) 0%,transparent 70%)', filter:'blur(36px)' }}/>
 
         {/* ── Left tree silhouette ── */}
         <div className="absolute bottom-0 left-0 w-[260px] h-[60%] pointer-events-none select-none">
@@ -758,25 +804,49 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid md:grid-cols-3 gap-8"
           >
-            {featureCards.map((card, i) => (
-              <motion.div
-                key={card.title}
-                variants={fadeUp}
-                custom={i}
-                className="card-white group cursor-pointer"
-              >
-                <div className={`icon-box ${card.color.includes('purple') ? '' : card.color.includes('emerald') ? 'icon-box-accent' : ''} mb-5`}>
-                  <card.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
-                  {card.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">{card.desc}</p>
-                <span className="inline-flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-3 transition-all">
-                  Learn more <ArrowRight className="w-4 h-4" />
-                </span>
-              </motion.div>
-            ))}
+            {featureCards.map((card, i) => {
+              const fcAccents = ['#6C3AED','#059669','#2563EB'];
+              const fcGrads = [
+                'linear-gradient(90deg,#6C3AED,#818CF8)',
+                'linear-gradient(90deg,#059669,#34D399)',
+                'linear-gradient(90deg,#2563EB,#60A5FA)',
+              ];
+              const fcLabels = ['Smart Learning','Content Studio','Operations Hub'];
+              const fcIconBg = ['bg-purple-50 text-purple-600','bg-emerald-50 text-emerald-600','bg-blue-50 text-blue-600'];
+              return (
+                <motion.div
+                  key={card.title}
+                  variants={fadeUp}
+                  custom={i}
+                  whileHover={{ y:-7, scale:1.01 }}
+                  transition={{ type:'spring', stiffness:280, damping:20 }}
+                  className="group cursor-pointer relative rounded-2xl bg-white border border-gray-100 p-8 overflow-hidden shadow-sm hover:shadow-2xl transition-shadow"
+                >
+                  {/* Gradient top bar */}
+                  <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl" style={{ background:fcGrads[i] }}/>
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"
+                    style={{ background:`radial-gradient(ellipse at 30% 0%,${fcAccents[i]}08 0%,transparent 65%)` }}/>
+                  {/* Category chip */}
+                  <div className="text-[10px] font-black tracking-[0.18em] uppercase mb-3" style={{ color:fcAccents[i] }}>
+                    {fcLabels[i]}
+                  </div>
+                  <motion.div
+                    whileHover={{ rotate:-5, scale:1.12 }}
+                    transition={{ type:'spring', stiffness:400, damping:15 }}
+                    className={`icon-box mb-5 ${fcIconBg[i]}`}>
+                    <card.icon className="w-6 h-6" />
+                  </motion.div>
+                  <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{card.desc}</p>
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all" style={{ color:fcAccents[i] }}>
+                    Learn more <ArrowRight className="w-4 h-4" />
+                  </span>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -1440,35 +1510,67 @@ export default function HomePage() {
               className="relative"
             >
               <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 relative">
+                {/* Floating 760+ badge */}
+                <motion.div
+                  initial={{ opacity:0, scale:0.8, y:10 }}
+                  whileInView={{ opacity:1, scale:1, y:0 }}
+                  viewport={{ once:true }}
+                  transition={{ delay:0.5, type:'spring', stiffness:260, damping:20 }}
+                  className="absolute -top-4 -right-4 bg-white rounded-2xl px-3.5 py-2 shadow-xl border border-gray-100 z-20 flex items-center gap-2 animate-bounce-soft"
+                  style={{ animation:'float 6s ease-in-out 0.5s infinite' }}>
+                  <div className="w-6 h-6 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+                    <Shield className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black text-gray-900 leading-none">760+</div>
+                    <div className="text-[9px] text-gray-400 leading-tight">Institutions</div>
+                  </div>
+                </motion.div>
+                {/* Floating 3 Countries badge */}
+                <motion.div
+                  initial={{ opacity:0, scale:0.8, y:10 }}
+                  whileInView={{ opacity:1, scale:1, y:0 }}
+                  viewport={{ once:true }}
+                  transition={{ delay:0.7, type:'spring', stiffness:260, damping:20 }}
+                  className="absolute -bottom-4 -left-4 bg-white rounded-2xl px-3.5 py-2 shadow-xl border border-gray-100 z-20 flex items-center gap-2"
+                  style={{ animation:'float2 8s ease-in-out 1s infinite' }}>
+                  <div className="w-6 h-6 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-3.5 h-3.5 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-black text-gray-900 leading-none">3 Countries</div>
+                    <div className="text-[9px] text-gray-400 leading-tight">PK · SA · CA</div>
+                  </div>
+                </motion.div>
                 {/* Feature Image Mockup */}
                 <div className="bg-white rounded-2xl shadow-xl p-6 relative z-10">
                   <div className="grid grid-cols-2 gap-4">
                     {[
-                      { icon: BookOpen, label: 'K-12 Schools', color: 'bg-purple-100 text-purple-600' },
-                      { icon: Award, label: 'Islamic Schools', color: 'bg-emerald-100 text-emerald-600' },
-                      { icon: Globe, label: 'International', color: 'bg-blue-100 text-blue-600' },
-                      { icon: Users, label: 'Colleges & NGOs', color: 'bg-orange-100 text-orange-600' },
+                      { icon: BookOpen, label: 'K-12 Schools',    color: 'bg-purple-100 text-purple-600',  count:'460+' },
+                      { icon: Award,    label: 'Islamic Schools', color: 'bg-emerald-100 text-emerald-600', count:'180+' },
+                      { icon: Globe,    label: 'International',   color: 'bg-blue-100 text-blue-600',      count:'85+'  },
+                      { icon: Users,    label: 'Colleges & NGOs', color: 'bg-orange-100 text-orange-600',  count:'35+'  },
                     ].map((item, i) => (
                       <motion.div
                         key={item.label}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.85, y:8 }}
+                        whileInView={{ opacity: 1, scale: 1, y:0 }}
+                        whileHover={{ scale:1.05, y:-3 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.1 * i }}
-                        className="flex flex-col items-center p-5 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors"
+                        transition={{ delay: 0.12 * i, duration:0.4, type:'spring', stiffness:260, damping:20 }}
+                        className="flex flex-col items-center p-5 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all cursor-default"
                       >
-                        <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center mb-3`}>
+                        <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center mb-2`}>
                           <item.icon className="w-6 h-6" />
                         </div>
-                        <span className="text-sm font-semibold text-gray-700">{item.label}</span>
+                        <span className="text-sm font-black text-gray-900 mb-0.5">{item.count}</span>
+                        <span className="text-xs font-medium text-gray-500 text-center leading-snug">{item.label}</span>
                       </motion.div>
                     ))}
                   </div>
                 </div>
-
-                {/* Decorative */}
-                <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-xl" />
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/10 rounded-full blur-xl" />
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full blur-xl animate-float" />
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/10 rounded-full blur-xl animate-float2" />
               </div>
             </motion.div>
 
@@ -1524,9 +1626,11 @@ export default function HomePage() {
 
       {/* ═══════════ STATS SECTION ═══════════ */}
       <section className="py-20 section-dark relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize:'28px 28px' }}/>
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full filter blur-[100px]" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/10 rounded-full filter blur-[100px]" />
+          <div className="absolute top-0 right-0 w-72 h-72 bg-primary/12 rounded-full filter blur-[110px] animate-float" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/10 rounded-full filter blur-[110px] animate-float2" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-primary/5 rounded-full filter blur-[80px] animate-glow-breath" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -1538,7 +1642,8 @@ export default function HomePage() {
           >
             {stats.map((stat, i) => (
               <motion.div key={stat.label} variants={fadeUp} custom={i}>
-                <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label} />
+                <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label}
+                  color={['#818CF8','#34D399','#60A5FA','#FBBF24'][i]} />
               </motion.div>
             ))}
           </motion.div>
@@ -1580,22 +1685,49 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {services.map((svc, i) => (
-              <motion.div
-                key={svc.title}
-                variants={fadeUp}
-                custom={i}
-                className="card-white group text-center cursor-pointer"
-              >
-                <div className="icon-box mx-auto mb-5 group-hover:bg-primary group-hover:text-white transition-all">
-                  <svc.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-heading font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
-                  {svc.title}
-                </h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{svc.desc}</p>
-              </motion.div>
-            ))}
+            {services.map((svc, i) => {
+              const SC = [
+                { b:'#6C3AED', ib:'#EDE9FE', if_:'#6C3AED', lg:'linear-gradient(90deg,#6C3AED,#818CF8)' },
+                { b:'#E11D48', ib:'#FFE4E6', if_:'#E11D48', lg:'linear-gradient(90deg,#E11D48,#FB7185)' },
+                { b:'#0891B2', ib:'#CFFAFE', if_:'#0891B2', lg:'linear-gradient(90deg,#0891B2,#22D3EE)' },
+                { b:'#2563EB', ib:'#DBEAFE', if_:'#2563EB', lg:'linear-gradient(90deg,#2563EB,#60A5FA)' },
+                { b:'#D97706', ib:'#FEF3C7', if_:'#D97706', lg:'linear-gradient(90deg,#D97706,#FCD34D)' },
+                { b:'#059669', ib:'#D1FAE5', if_:'#059669', lg:'linear-gradient(90deg,#059669,#34D399)' },
+                { b:'#3B82F6', ib:'#DBEAFE', if_:'#3B82F6', lg:'linear-gradient(90deg,#3B82F6,#93C5FD)' },
+                { b:'#7C3AED', ib:'#EDE9FE', if_:'#7C3AED', lg:'linear-gradient(90deg,#7C3AED,#A78BFA)' },
+              ];
+              const c = SC[i % 8];
+              return (
+                <motion.div
+                  key={svc.title}
+                  variants={fadeUp}
+                  custom={i}
+                  whileHover={{ y:-5, scale:1.02 }}
+                  transition={{ type:'spring', stiffness:300, damping:20 }}
+                  className="group cursor-pointer relative rounded-2xl bg-white border border-gray-100 p-6 text-center overflow-hidden shadow-sm hover:shadow-xl"
+                >
+                  {/* Hover bg gradient */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                    style={{ background:`radial-gradient(ellipse at 50% 0%,${c.b}14 0%,transparent 70%)` }}/>
+                  {/* Animated bottom accent line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center rounded-b-2xl"
+                    style={{ background:c.lg }}/>
+                  {/* Service number */}
+                  <div className="absolute top-2.5 right-3 text-[10px] font-mono font-bold text-gray-200 group-hover:text-gray-300 transition-colors">
+                    {String(i + 1).padStart(2,'0')}
+                  </div>
+                  <motion.div
+                    whileHover={{ rotate:-6, scale:1.15 }}
+                    transition={{ type:'spring', stiffness:400, damping:15 }}
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+                    style={{ backgroundColor:c.ib }}>
+                    <svc.icon className="w-6 h-6" style={{ color:c.if_ }} />
+                  </motion.div>
+                  <h3 className="font-heading font-bold text-gray-900 mb-2 text-sm">{svc.title}</h3>
+                  <p className="text-xs text-gray-500 leading-relaxed">{svc.desc}</p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -1628,19 +1760,31 @@ export default function HomePage() {
                 every feature and answer all your questions.
               </motion.p>
 
-              <motion.div variants={fadeUp} custom={3} className="space-y-4">
+              <motion.div variants={fadeUp} custom={3} className="space-y-3 mb-6">
                 {[
-                  'Full LMS demo with your curriculum',
-                  'ERP system walkthrough',
-                  'Animated content preview',
-                  'Custom pricing based on your needs',
-                  'Implementation timeline review',
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
-                    <span className="text-gray-600">{item}</span>
-                  </div>
+                  { text:'Full LMS demo with your curriculum', emoji:'💻' },
+                  { text:'ERP system walkthrough',             emoji:'🏢' },
+                  { text:'Animated content preview',           emoji:'🎥' },
+                  { text:'Custom pricing for your needs',      emoji:'💰' },
+                  { text:'Implementation timeline review',     emoji:'📅' },
+                ].map((item, idx) => (
+                  <motion.div key={item.text}
+                    initial={{ opacity:0, x:-16 }}
+                    whileInView={{ opacity:1, x:0 }}
+                    viewport={{ once:true }}
+                    transition={{ delay:0.07 * idx, duration:0.4 }}
+                    className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-accent/25 transition-all">
+                    <span className="text-xl flex-shrink-0">{item.emoji}</span>
+                    <span className="text-sm text-gray-600 font-medium flex-1">{item.text}</span>
+                    <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0" />
+                  </motion.div>
                 ))}
+              </motion.div>
+              <motion.div variants={fadeUp} custom={4}
+                className="flex items-center gap-3 p-4 rounded-2xl border"
+                style={{ backgroundColor:'rgba(5,150,105,0.05)', borderColor:'rgba(5,150,105,0.18)' }}>
+                <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse flex-shrink-0"/>
+                <span className="text-sm font-semibold text-gray-700">We respond within <span className="text-accent font-bold">24 hours</span>, guaranteed.</span>
               </motion.div>
             </motion.div>
 
@@ -1787,26 +1931,52 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid md:grid-cols-3 gap-8"
           >
-            {testimonials.map((t, i) => (
-              <motion.div key={t.name} variants={fadeUp} custom={i} className="card-white">
-                <div className="flex gap-1 mb-4">
-                  {[...Array(t.rating)].map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-600 leading-relaxed mb-6 text-sm">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm">
-                    {t.name.split(' ').map(n => n[0]).join('')}
+            {testimonials.map((t, i) => {
+              const tGrads = [
+                'linear-gradient(135deg,#6C3AED,#0891B2)',
+                'linear-gradient(135deg,#059669,#0891B2)',
+                'linear-gradient(135deg,#E11D48,#D97706)',
+              ];
+              const tChip = [
+                { bg:'rgba(108,58,237,0.08)', fg:'#6C3AED' },
+                { bg:'rgba(5,150,105,0.08)',  fg:'#059669' },
+                { bg:'rgba(37,99,235,0.08)',  fg:'#2563EB' },
+              ];
+              return (
+                <motion.div key={t.name} variants={fadeUp} custom={i}
+                  whileHover={{ y:-6, rotateY:3, rotateX:-2, scale:1.01 }}
+                  transition={{ type:'spring', stiffness:250, damping:25 }}
+                  style={{ transformStyle:'preserve-3d', transformOrigin:'center center' }}
+                  className="relative rounded-2xl bg-white border border-gray-100 p-8 overflow-hidden shadow-sm hover:shadow-2xl cursor-default"
+                >
+                  {/* Giant decorative quote */}
+                  <div className="absolute -top-3 -left-1 leading-none select-none pointer-events-none text-gray-100"
+                    style={{ fontSize:'6.5rem', fontFamily:'Georgia,serif', lineHeight:1 }}>“</div>
+                  {/* Stars + verified */}
+                  <div className="flex items-center gap-1 mb-4 relative">
+                    {[...Array(t.rating)].map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">VERIFIED</span>
                   </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 text-sm">{t.name}</h4>
-                    <p className="text-xs text-gray-500">{t.role}, {t.company}</p>
-                    <p className="text-xs text-primary font-medium">{t.location}</p>
+                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">“{t.text}”</p>
+                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                    <div className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                      style={{ background:tGrads[i] }}>
+                      {t.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-gray-900 text-sm truncate">{t.name}</h4>
+                      <p className="text-xs text-gray-500">{t.role}, {t.company}</p>
+                    </div>
+                    <div className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
+                      style={{ backgroundColor:tChip[i].bg, color:tChip[i].fg }}>
+                      {t.location}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -1871,18 +2041,24 @@ export default function HomePage() {
                   key={i}
                   variants={fadeUp}
                   custom={i}
-                  className="faq-item py-5"
+                  className="py-5 border-b border-gray-100 last:border-0"
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="flex items-center justify-between w-full text-left"
+                    className="flex items-start justify-between w-full text-left gap-3 group"
                   >
-                    <span className="font-semibold text-gray-900 pr-4">{faq.q}</span>
-                    <span className="flex-shrink-0">
+                    <div className="flex items-start gap-3 flex-1 min-w-0">
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5 transition-all duration-200"
+                        style={openFaq === i ? { backgroundColor:'#6C3AED', color:'#fff' } : { backgroundColor:'#F3F4F6', color:'#9CA3AF' }}>
+                        {i + 1}
+                      </div>
+                      <span className="font-semibold text-sm text-gray-900 pr-2 group-hover:text-primary transition-colors">{faq.q}</span>
+                    </div>
+                    <span className="flex-shrink-0 mt-0.5">
                       {openFaq === i ? (
-                        <ChevronUp className="w-5 h-5 text-primary" />
+                        <ChevronUp className="w-4 h-4 text-primary" />
                       ) : (
-                        <ChevronDown className="w-5 h-5 text-gray-400" />
+                        <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
                       )}
                     </span>
                   </button>
@@ -1892,10 +2068,12 @@ export default function HomePage() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.3, ease:'easeInOut' }}
                         className="overflow-hidden"
                       >
-                        <p className="text-gray-500 text-sm leading-relaxed pt-3">{faq.a}</p>
+                        <div className="pl-9 pr-6 pt-3 pb-1">
+                          <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -1907,34 +2085,53 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ PARTNER LOGOS ═══════════ */}
-      <section className="py-16 bg-white border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="flex flex-wrap items-center justify-center gap-10 md:gap-16"
-          >
-            {partners.map((name, i) => (
-              <motion.div
-                key={name}
-                variants={fadeUp}
-                custom={i}
-                className="text-gray-300 font-heading font-bold text-lg md:text-xl hover:text-primary transition-colors cursor-default"
-              >
+      <section className="py-14 bg-white border-y border-gray-100 overflow-hidden relative">
+        {/* Gradient masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background:'linear-gradient(90deg,white 0%,transparent 100%)' }}/>
+        <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background:'linear-gradient(270deg,white 0%,transparent 100%)' }}/>
+        <p className="text-center text-[10px] font-bold text-gray-300 tracking-[0.22em] uppercase mb-6">
+          Trusted by institutions across 3 countries
+        </p>
+        <div className="flex animate-marquee-slow" style={{ width:'max-content' }}>
+          {[...partners, ...partners, ...partners, ...partners].map((name, i) => (
+            <div key={i} className="flex-shrink-0 mx-4 flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-100 bg-gray-50 cursor-default hover:border-primary/30 hover:bg-primary/5 transition-all group">
+              <div className="w-2 h-2 rounded-full bg-primary/25 group-hover:bg-primary/60 transition-colors"/>
+              <span className="text-gray-400 font-heading font-bold text-sm whitespace-nowrap group-hover:text-primary transition-colors">
                 {name}
-              </motion.div>
-            ))}
-          </motion.div>
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* ═══════════ JOIN CTA SECTION ═══════════ */}
       <section className="py-24 section-dark relative overflow-hidden">
+        {/* Background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/15 rounded-full filter blur-[150px]" />
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent/10 rounded-full filter blur-[120px]" />
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/15 rounded-full filter blur-[150px] animate-float" />
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent/10 rounded-full filter blur-[120px] animate-float2" />
+          <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize:'32px 32px' }}/>
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"/>
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent"/>
+        </div>
+        {/* Floating particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[
+            { l:'8%',  b:'25%', s:4, d:'0s',    a:'pdrift'  },
+            { l:'18%', b:'55%', s:3, d:'1.3s',  a:'pdrift2' },
+            { l:'28%', b:'12%', s:5, d:'2.6s',  a:'pdrift'  },
+            { l:'45%', b:'35%', s:3, d:'0.7s',  a:'pdrift2' },
+            { l:'60%', b:'65%', s:4, d:'1.9s',  a:'pdrift'  },
+            { l:'72%', b:'18%', s:3, d:'3.1s',  a:'pdrift2' },
+            { l:'82%', b:'45%', s:5, d:'0.4s',  a:'pdrift'  },
+            { l:'92%', b:'72%', s:3, d:'2.2s',  a:'pdrift2' },
+          ].map((p, pi) => (
+            <div key={pi} className="absolute rounded-full bg-white/20"
+              style={{ left:p.l, bottom:p.b, width:p.s, height:p.s,
+                animation:`${p.a} ${4.5 + pi * 0.4}s ease-in-out ${p.d} infinite alternate` }}/>
+          ))}
         </div>
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
@@ -1943,18 +2140,24 @@ export default function HomePage() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
+            {/* Live status badge */}
+            <motion.div variants={fadeUp} custom={0}
+              className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
+              <span className="text-white/70 text-xs font-bold tracking-wider uppercase">Now Enrolling Institutions</span>
+            </motion.div>
             <motion.h2
               variants={fadeUp}
-              custom={0}
+              custom={1}
               className="text-3xl md:text-5xl font-heading font-bold text-white mb-6"
             >
-              Join Our <span className="gradient-text">760+</span> Happy Institutions
+              Join Our <span className="shimmer-text">760+</span> Happy Institutions
             </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
+            <motion.p variants={fadeUp} custom={2} className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
               Transform your school with cutting-edge technology. Start your digital journey today and see
               results within weeks, not months.
             </motion.p>
-            <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4">
+            <motion.div variants={fadeUp} custom={3} className="flex flex-wrap justify-center gap-4">
               <a href="#contact" className="btn-primary text-lg px-10">
                 Get Started Today
                 <ArrowRight className="w-5 h-5" />
