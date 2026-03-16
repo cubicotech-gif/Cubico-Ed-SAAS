@@ -466,405 +466,300 @@ export default function HomePage() {
       </header>
 
       {/* ═══════════ HERO SECTION ═══════════ */}
-      <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-        {/* ── Layer 1: Full-Width Unsplash Photo ── */}
+      <section
+        id="home"
+        className="relative min-h-screen flex flex-col overflow-hidden"
+      >
+        {/* ── Sky gradient background ── */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1920&q=80)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center 35%',
+            background:
+              'linear-gradient(180deg, #0C1B3A 0%, #1A3D72 12%, #2E6BAD 28%, #4E96C8 44%, #82BDD6 56%, #C8975F 68%, #C45F30 80%, #7A3318 92%, #4A1E0C 100%)',
           }}
         />
 
-        {/* ── Layer 2: Cinematic Dark Gradient Overlay ── */}
+        {/* ── Atmospheric haze at horizon ── */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            background: `linear-gradient(108deg,
-              rgba(10, 10, 26, 0.95) 0%,
-              rgba(10, 10, 26, 0.90) 30%,
-              rgba(10, 10, 26, 0.78) 55%,
-              rgba(10, 10, 26, 0.60) 75%,
-              rgba(10, 10, 26, 0.72) 100%
-            )`,
+            background:
+              'radial-gradient(ellipse 120% 30% at 50% 62%, rgba(220,160,80,0.35) 0%, transparent 70%)',
           }}
         />
 
-        {/* ── Layer 3a: Warm Sepia Tint (Left — Chalk World) ── */}
+        {/* ── Painted/noise texture ── */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
           style={{
-            background: `linear-gradient(105deg,
-              rgba(139, 115, 85, 0.08) 0%,
-              rgba(139, 115, 85, 0.04) 40%,
-              transparent 55%
-            )`,
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E\")",
+            backgroundSize: '300px 300px',
           }}
         />
 
-        {/* ── Layer 3b: Cool Purple/Cyan Tint (Right — Digital World) ── */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(105deg,
-              transparent 45%,
-              rgba(108, 58, 237, 0.06) 60%,
-              rgba(0, 212, 255, 0.05) 80%,
-              rgba(0, 212, 255, 0.08) 100%
-            )`,
-          }}
-        />
-
-        {/* ── Layer 4: Diagonal Transition Line (The "Split") ── */}
-        <div
-          className="absolute inset-0 hidden lg:block"
-          style={{
-            background: `linear-gradient(105deg,
-              transparent 48%,
-              rgba(108, 58, 237, 0.12) 49.5%,
-              rgba(139, 92, 246, 0.08) 50%,
-              rgba(0, 212, 255, 0.06) 50.5%,
-              transparent 52%
-            )`,
-          }}
-        />
-
-        {/* ── Layer 5: Chalk-to-Digital Particles ── */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
-          {/* Left particles (chalk = warm, square-ish) */}
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-amber-200/30 rounded-[1px]"
-            style={{ left: '46%', top: '85%' }}
-            animate={{ y: [0, -750], opacity: [0, 0.6, 0.4, 0] }}
-            transition={{ duration: 12, repeat: Infinity, delay: 0 }}
-          />
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-amber-200/30 rounded-[1px]"
-            style={{ left: '47%', top: '92%' }}
-            animate={{ y: [0, -700], opacity: [0, 0.6, 0.4, 0] }}
-            transition={{ duration: 14, repeat: Infinity, delay: 3 }}
-          />
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-amber-200/30 rounded-[1px]"
-            style={{ left: '48%', top: '100%' }}
-            animate={{ y: [0, -800], opacity: [0, 0.6, 0.4, 0] }}
-            transition={{ duration: 10, repeat: Infinity, delay: 6 }}
-          />
-
-          {/* Center particles (morphing = purple, transitional) */}
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full"
-            style={{ left: '50%', top: '88%' }}
-            animate={{ y: [0, -700], opacity: [0, 0.7, 0.4, 0], scale: [1, 1.2, 0.8] }}
-            transition={{ duration: 11, repeat: Infinity, delay: 1 }}
-          />
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-purple-400/40 rounded-full"
-            style={{ left: '51%', top: '95%' }}
-            animate={{ y: [0, -650], opacity: [0, 0.7, 0.4, 0], scale: [1, 1.2, 0.8] }}
-            transition={{ duration: 9, repeat: Infinity, delay: 4 }}
-          />
-
-          {/* Right particles (digital = cool, perfectly round) */}
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
-            style={{ left: '52%', top: '82%' }}
-            animate={{ y: [0, -600], opacity: [0, 0.8, 0.5, 0] }}
-            transition={{ duration: 13, repeat: Infinity, delay: 2 }}
-          />
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
-            style={{ left: '53%', top: '90%' }}
-            animate={{ y: [0, -550], opacity: [0, 0.8, 0.5, 0] }}
-            transition={{ duration: 8, repeat: Infinity, delay: 5 }}
-          />
-          <motion.div
-            className="absolute w-1.5 h-1.5 bg-cyan-400/40 rounded-full"
-            style={{ left: '54%', top: '98%' }}
-            animate={{ y: [0, -700], opacity: [0, 0.8, 0.5, 0] }}
-            transition={{ duration: 11, repeat: Infinity, delay: 7 }}
-          />
+        {/* ── Left tree silhouette ── */}
+        <div className="absolute bottom-0 left-0 w-[260px] h-[60%] pointer-events-none select-none">
+          <svg viewBox="0 0 260 480" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="xMinYMax meet">
+            {/* Background thin tree */}
+            <ellipse cx="200" cy="200" rx="28" ry="60" fill="#120B02"/>
+            <ellipse cx="210" cy="155" rx="22" ry="48" fill="#120B02"/>
+            <rect x="196" y="245" width="10" height="235" fill="#120B02"/>
+            {/* Mid tree */}
+            <ellipse cx="130" cy="170" rx="38" ry="75" fill="#0E0801"/>
+            <ellipse cx="118" cy="115" rx="30" ry="58" fill="#0E0801"/>
+            <ellipse cx="145" cy="105" rx="26" ry="50" fill="#0E0801"/>
+            <rect x="122" y="230" width="14" height="250" fill="#0E0801"/>
+            {/* Main foreground tree */}
+            <ellipse cx="55" cy="190" rx="55" ry="100" fill="#0A0700"/>
+            <ellipse cx="40" cy="115" rx="45" ry="82" fill="#0A0700"/>
+            <ellipse cx="72" cy="100" rx="40" ry="72" fill="#0A0700"/>
+            <ellipse cx="55" cy="78" rx="32" ry="58" fill="#0A0700"/>
+            <rect x="46" y="270" width="18" height="210" fill="#0A0700"/>
+          </svg>
         </div>
 
-        {/* ── Layer 6: Top Glow ── */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/[0.08] rounded-full blur-[120px] pointer-events-none" />
+        {/* ── Right tree silhouette ── */}
+        <div className="absolute bottom-0 right-0 w-[200px] h-[48%] pointer-events-none select-none">
+          <svg viewBox="0 0 200 380" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="xMaxYMax meet">
+            {/* Background small tree */}
+            <ellipse cx="40" cy="180" rx="24" ry="52" fill="#120B02"/>
+            <ellipse cx="32" cy="138" rx="18" ry="40" fill="#120B02"/>
+            <rect x="32" y="222" width="9" height="158" fill="#120B02"/>
+            {/* Main right tree */}
+            <ellipse cx="145" cy="155" rx="50" ry="88" fill="#0A0700"/>
+            <ellipse cx="130" cy="95" rx="40" ry="70" fill="#0A0700"/>
+            <ellipse cx="158" cy="82" rx="34" ry="62" fill="#0A0700"/>
+            <rect x="136" y="228" width="16" height="152" fill="#0A0700"/>
+          </svg>
+        </div>
 
-        {/* ── Layer 7: Bottom Vignette ── */}
+        {/* ── Ground / dark base strip ── */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, rgba(10, 10, 26, 1))' }}
+          className="absolute bottom-0 left-0 right-0 h-[8%] pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, transparent, #2A1008)' }}
         />
 
-        {/* ── HERO CONTENT ── */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-32 lg:py-40">
-          <div className="grid lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
-            {/* Left Column */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-            >
-              {/* 1. Trust Badge */}
-              <motion.div variants={fadeUp} custom={0} className="mb-7">
-                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/[0.06] border border-white/[0.08] backdrop-blur-sm text-sm font-medium text-gray-300">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Trusted by 760+ Institutions in 3 Countries
-                </span>
-              </motion.div>
+        {/* ═══ CONTENT (upper viewport) ═══ */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="relative z-10 flex flex-col items-center text-center pt-36 pb-10 px-6"
+        >
+          {/* Trust badge */}
+          <motion.div variants={fadeUp} custom={0} className="mb-6">
+            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-sm font-medium text-white/80 border border-white/15 bg-white/10 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+              Trusted by 760+ Institutions · Pakistan · Saudi Arabia · Canada
+            </span>
+          </motion.div>
 
-              {/* 2. Headline (Line-by-Line Stagger) */}
-              <div className="mb-7">
-                <motion.div variants={fadeUp} custom={1} className="overflow-hidden">
-                  <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-heading font-bold text-white leading-[1.05] tracking-[-0.02em]">
-                    From Chalk
-                  </h1>
-                </motion.div>
-                <motion.div variants={fadeUp} custom={1.5} className="overflow-hidden">
-                  <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-heading font-bold text-white leading-[1.05] tracking-[-0.02em]">
-                    and Board to
-                  </h1>
-                </motion.div>
-                <motion.div variants={fadeUp} custom={2} className="overflow-hidden">
-                  <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-heading font-bold leading-[1.05] tracking-[-0.02em]">
-                    <span className="gradient-text">World-Class.</span>
-                  </h1>
-                </motion.div>
+          {/* Headline — 3 lines, huge, centered */}
+          <motion.h1
+            variants={fadeUp}
+            custom={1}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-heading font-bold text-white leading-[1.1] tracking-[-0.025em] mb-6 max-w-4xl"
+          >
+            Give your school the platform
+            <br />
+            it deserves — and your students
+            <br />
+            the education they expect.
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            variants={fadeUp}
+            custom={2}
+            className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed mb-10"
+          >
+            Cubico brings LMS, animated lessons, digital marketing, and complete
+            institution management under one intelligent platform.
+          </motion.p>
+
+          {/* Single CTA */}
+          <motion.div variants={fadeUp} custom={3}>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2.5 bg-white text-gray-900 font-bold text-base px-9 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200"
+            >
+              Book Free Demo
+              <ArrowRight size={17} />
+            </a>
+          </motion.div>
+        </motion.div>
+
+        {/* ═══ DASHBOARD MOCKUP — rises from bottom ═══ */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-10 -mb-[28vh]"
+        >
+          <div
+            className="w-full max-w-[980px] rounded-t-2xl overflow-hidden"
+            style={{
+              boxShadow: '0 -8px 60px rgba(0,0,0,0.55), 0 40px 80px rgba(0,0,0,0.6)',
+            }}
+          >
+            {/* ── Browser chrome ── */}
+            <div className="bg-[#1C1C2E] px-4 py-3 flex items-center gap-3 border-b border-white/[0.07]">
+              <div className="flex gap-2 flex-shrink-0">
+                <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
+                <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
+                <div className="w-3 h-3 rounded-full bg-[#28C840]" />
+              </div>
+              <div className="flex-1 bg-white/[0.06] rounded-md px-3 py-1 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-400/60 flex-shrink-0" />
+                <span className="text-[11px] font-mono text-white/35">app.cubico.tech/dashboard</span>
+              </div>
+              <div className="hidden sm:flex gap-2 flex-shrink-0">
+                <div className="text-[10px] text-white/25 px-2 py-0.5 rounded bg-white/[0.05] border border-white/[0.06]">↑ Upload Data</div>
+                <div className="text-[10px] text-white/25 px-2 py-0.5 rounded bg-white/[0.05] border border-white/[0.06]">⊞ Generate Report</div>
+              </div>
+            </div>
+
+            {/* ── Dashboard body ── */}
+            <div className="flex bg-[#F4F5F7] min-h-[340px]">
+
+              {/* Sidebar */}
+              <div className="w-[180px] flex-shrink-0 bg-[#0F0F1E] flex flex-col py-4 hidden sm:flex">
+                {/* Logo */}
+                <div className="flex items-center gap-2 px-4 mb-6">
+                  <div className="w-6 h-6 rounded-md bg-[#6C3AED] flex items-center justify-center text-white text-[10px] font-bold">C</div>
+                  <span className="text-white text-sm font-bold font-heading">Cubico</span>
+                </div>
+                {/* Nav */}
+                {[
+                  { label: 'Dashboard',     active: true  },
+                  { label: 'Students',      active: false },
+                  { label: 'Courses',       active: false },
+                  { label: 'Attendance',    active: false },
+                  { label: 'Fee Management',active: false },
+                  { label: 'Reports',       active: false },
+                ].map(item => (
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-[11px] font-medium cursor-default"
+                    style={item.active
+                      ? { backgroundColor: 'rgba(108,58,237,0.2)', color: '#A78BFA', border: '1px solid rgba(108,58,237,0.25)' }
+                      : { color: 'rgba(255,255,255,0.35)' }}
+                  >
+                    <span
+                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: item.active ? '#7C3AED' : 'rgba(255,255,255,0.15)' }}
+                    />
+                    {item.label}
+                  </div>
+                ))}
               </div>
 
-              {/* 3. Sub-headline */}
-              <motion.p
-                variants={fadeUp}
-                custom={3}
-                className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed mb-10"
-              >
-                The complete EdTech ecosystem that transforms schools across Pakistan, Saudi Arabia & Canada — from LMS and animated lessons to ERP and digital infrastructure.
-              </motion.p>
-
-              {/* 4. CTA Buttons */}
-              <motion.div variants={fadeUp} custom={4} className="flex flex-wrap gap-4 mb-10">
-                <a href="#contact" className="btn-primary text-base px-8 py-4">
-                  Book Free Demo
-                  <ArrowRight size={18} />
-                </a>
-                <a href="#about" className="btn-outline-white text-base px-7 py-4">
-                  <Play size={18} />
-                  Watch the Story
-                </a>
-              </motion.div>
-
-              {/* 5. Before/After Photo Pair + Trust Indicators */}
-              <motion.div variants={fadeUp} custom={5} className="flex items-center gap-5 flex-wrap">
-                {/* Group A — Before/After Photos */}
-                <div className="flex items-center gap-3">
-                  {/* Before Photo */}
-                  <div className="w-[52px] h-[52px] rounded-full overflow-hidden border-2 border-white/10">
-                    <img
-                      src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=200&q=80"
-                      alt="Traditional chalkboard teaching"
-                      className="w-full h-full object-cover grayscale sepia brightness-75"
-                    />
-                  </div>
-
-                  {/* Arrow Between */}
-                  <div className="flex flex-col items-center">
-                    <ArrowRight size={16} className="text-primary-light" />
-                    <span className="text-[9px] text-white/30">4 weeks</span>
-                  </div>
-
-                  {/* After Photo */}
-                  <div className="w-[52px] h-[52px] rounded-full overflow-hidden border-2 border-cyan-400/30 ring-2 ring-cyan-400/10 ring-offset-2 ring-offset-transparent">
-                    <img
-                      src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=200&q=80"
-                      alt="Student engaged with digital learning"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-
-                {/* Group B — Vertical Divider */}
-                <div className="w-px h-8 bg-white/10 hidden sm:block" />
-
-                {/* Group C — Flags + Rating */}
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center gap-1.5 text-sm text-white/40">
-                    <span>🇵🇰</span>
-                    <span>🇸🇦</span>
-                    <span>🇨🇦</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="flex gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={11} className="fill-yellow-400 text-yellow-400" />
-                      ))}
-                    </div>
-                    <span className="text-xs text-white/40">5/5 by clients</span>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Right Column — Dashboard Mockup */}
-            <motion.div
-              initial={{ opacity: 0, x: 60, y: 20 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="hidden lg:block relative"
-            >
-              {/* Main Dashboard Card */}
-              <div className="relative rounded-2xl p-6 bg-[rgba(13,13,43,0.75)] backdrop-blur-xl border border-white/[0.08] shadow-[0_40px_80px_rgba(0,0,0,0.5),0_0_60px_rgba(108,58,237,0.12)]">
-                {/* Browser Chrome Bar */}
-                <div className="bg-dark-700/80 rounded-xl p-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
-                    </div>
-                    <div className="bg-dark-800/60 rounded-md px-3 py-1 flex-1">
-                      <span className="text-[10px] text-gray-500 font-mono">cubico-lms.edu/dashboard</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Chart Section */}
-                <div className="mb-4">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-xs font-semibold text-gray-200">Student Engagement</span>
-                    <span className="text-xs font-bold text-emerald-400">+24%</span>
-                  </div>
-                  <div className="flex items-end gap-[5px] h-24">
-                    {[35, 55, 40, 70, 50, 80, 60, 75, 55, 85, 65, 78, 58, 92].map((h, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ duration: 0.5, delay: 0.9 + i * 0.04, ease: 'easeOut' }}
-                        className={`flex-1 rounded-t-sm ${
-                          i >= 12
-                            ? 'bg-gradient-to-t from-emerald-600 to-emerald-400'
-                            : i >= 9
-                            ? 'bg-gradient-to-t from-cyan-600 to-cyan-400'
-                            : i >= 5
-                            ? 'bg-gradient-to-t from-purple-500 to-purple-400'
-                            : 'bg-gradient-to-t from-purple-700 to-purple-500'
-                        }`}
-                      />
+              {/* Main content */}
+              <div className="flex-1 flex flex-col min-w-0">
+                {/* Top bar */}
+                <div className="bg-white border-b border-gray-100 px-5 py-3 flex items-center justify-between">
+                  <span className="text-sm font-bold text-gray-700">Institution Overview</span>
+                  <div className="flex gap-2">
+                    {['This Month ▾', 'Export', '+ New'].map(btn => (
+                      <div key={btn} className="text-[10px] text-gray-400 px-2.5 py-1 rounded-md border border-gray-200 bg-white cursor-default hover:border-gray-300 transition-colors">{btn}</div>
                     ))}
                   </div>
                 </div>
 
-                {/* Stats Row */}
-                <div className="grid grid-cols-3 gap-3">
-                  <div className="bg-dark-800/50 rounded-lg p-3 text-center">
-                    <div className="text-xl font-heading font-bold text-cyan-400">2,847</div>
-                    <div className="text-[10px] text-gray-500">Active Courses</div>
+                {/* KPI row */}
+                <div className="grid grid-cols-3 gap-3 px-5 pt-4 pb-3">
+                  {[
+                    { label: 'Total Students', value: '2,847', trend: '+12% vs last month', color: '#6C3AED', bg: '#F5F3FF' },
+                    { label: 'Fee Collected',  value: '₨4.2M',  trend: '+8% vs last month',  color: '#059669', bg: '#ECFDF5' },
+                    { label: 'Completion Rate',value: '94.2%', trend: '+2% this semester',  color: '#2563EB', bg: '#EFF6FF' },
+                  ].map(k => (
+                    <div key={k.label} className="bg-white rounded-xl p-3 border border-gray-100">
+                      <div className="text-[9px] text-gray-400 mb-1">{k.label}</div>
+                      <div className="font-heading font-bold text-lg leading-none mb-1" style={{ color: k.color }}>{k.value}</div>
+                      <div className="text-[9px] text-emerald-500 font-medium">{k.trend}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Chart area */}
+                <div className="flex-1 mx-5 mb-4 bg-[#0D0D1F] rounded-xl overflow-hidden">
+                  <div className="flex items-center justify-between px-4 pt-3 pb-2">
+                    <span className="text-[11px] font-semibold text-white/70">Enrollment Trend</span>
+                    <span className="text-[10px] text-white/30 border border-white/10 rounded px-2 py-0.5">Last 6 months ▾</span>
                   </div>
-                  <div className="bg-dark-800/50 rounded-lg p-3 text-center">
-                    <div className="text-xl font-heading font-bold text-emerald-400">94.2%</div>
-                    <div className="text-[10px] text-gray-500">Completion Rate</div>
-                  </div>
-                  <div className="bg-dark-800/50 rounded-lg p-3 text-center">
-                    <div className="text-xl font-heading font-bold text-primary-light">760+</div>
-                    <div className="text-[10px] text-gray-500">Schools Active</div>
+                  {/* SVG Line Chart */}
+                  <div className="px-4 pb-4">
+                    <svg viewBox="0 0 600 120" className="w-full" preserveAspectRatio="none">
+                      {/* Grid lines */}
+                      {[20,45,70,95].map(y => (
+                        <line key={y} x1="0" y1={y} x2="600" y2={y} stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
+                      ))}
+                      {/* Y-axis labels */}
+                      {[['80k',8],['60k',33],['40k',58],['20k',83]].map(([l,y]) => (
+                        <text key={String(l)} x="590" y={Number(y)} fill="rgba(255,255,255,0.2)" fontSize="9" textAnchor="end">{l}</text>
+                      ))}
+                      {/* X-axis labels */}
+                      {[['Aug',50],['Sep',150],['Oct',250],['Nov',350],['Dec',450],['Jan',545]].map(([l,x]) => (
+                        <text key={String(l)} x={Number(x)} y="115" fill="rgba(255,255,255,0.2)" fontSize="9" textAnchor="middle">{l}</text>
+                      ))}
+                      {/* Area fill */}
+                      <path d="M0,95 C40,90 80,80 130,70 C180,60 210,55 260,45 C310,35 350,30 400,25 C440,20 480,18 550,12 L550,105 L0,105 Z"
+                        fill="url(#chartGrad)" opacity="0.3"/>
+                      {/* Line */}
+                      <path d="M0,95 C40,90 80,80 130,70 C180,60 210,55 260,45 C310,35 350,30 400,25 C440,20 480,18 550,12"
+                        stroke="#6C3AED" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+                      {/* End dot */}
+                      <circle cx="550" cy="12" r="4" fill="#6C3AED"/>
+                      <circle cx="550" cy="12" r="7" fill="rgba(108,58,237,0.3)"/>
+                      <defs>
+                        <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#6C3AED"/>
+                          <stop offset="100%" stopColor="transparent"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Card #1 — Deployment Success */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.5 }}
-                className="absolute -top-5 -right-4"
-              >
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                  className="bg-[rgba(13,13,43,0.85)] backdrop-blur-lg border border-emerald-500/15 rounded-2xl p-4"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                    </div>
-                    <div>
-                      <div className="text-[10px] text-gray-400">Deployment</div>
-                      <div className="text-sm font-bold text-emerald-400">98% Success</div>
-                    </div>
+              {/* Right panel */}
+              <div className="w-[200px] flex-shrink-0 bg-white border-l border-gray-100 py-4 px-3 hidden lg:flex flex-col gap-4">
+                {/* Processing Status */}
+                <div>
+                  <div className="flex items-center gap-1.5 mb-2.5">
+                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Live Status</span>
                   </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Floating Card #2 — Client Rating */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.8 }}
-                className="absolute -bottom-4 -left-4"
-              >
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                  className="bg-[rgba(13,13,43,0.85)] backdrop-blur-lg border border-yellow-500/15 rounded-2xl p-4"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg overflow-hidden">
-                      <img
-                        src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=100&q=80"
-                        alt="Client"
-                        className="w-full h-full object-cover"
-                      />
+                  {[
+                    { label: 'Students Online',  val: '142'    },
+                    { label: 'Active Sessions',  val: '38'     },
+                    { label: 'Pending Fees',     val: '₨62K'   },
+                    { label: 'Today Attendance', val: '94%'    },
+                  ].map(r => (
+                    <div key={r.label} className="flex justify-between items-center py-1 border-b border-gray-50 last:border-0">
+                      <span className="text-[10px] text-gray-400">{r.label}</span>
+                      <span className="text-[10px] font-bold text-gray-700">{r.val}</span>
                     </div>
-                    <div>
-                      <div className="flex items-center gap-1.5">
-                        <div className="flex gap-0.5">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} size={10} className="fill-yellow-400 text-yellow-400" />
-                          ))}
-                        </div>
-                        <span className="text-sm font-bold text-white">5.0</span>
-                      </div>
-                      <div className="text-[10px] text-gray-400">Client Satisfaction</div>
+                  ))}
+                </div>
+                {/* Recent Activity */}
+                <div>
+                  <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2.5">Activity</div>
+                  {[
+                    { text: '3 new enrollments today', color: '#6C3AED' },
+                    { text: 'Mid-term results uploaded', color: '#059669' },
+                    { text: '2 fee reminders sent', color: '#D97706' },
+                  ].map((a, ai) => (
+                    <div key={ai} className="flex items-start gap-2 mb-2 last:mb-0">
+                      <div className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ backgroundColor: a.color }} />
+                      <span className="text-[10px] text-gray-400 leading-snug">{a.text}</span>
                     </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              {/* Floating Card #3 — Arabic LMS */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 2.1 }}
-                className="absolute bottom-16 -right-3"
-              >
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, delay: 2 }}
-                  className="bg-[rgba(13,13,43,0.85)] backdrop-blur-lg border border-cyan-400/15 rounded-2xl px-4 py-3"
-                >
-                  <div className="text-[10px] text-gray-400 mb-1">Arabic LMS</div>
-                  <div className="text-cyan-400 text-sm font-semibold" dir="rtl">بسم الله الرحمن الرحيم</div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center"
-          >
-            <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] mb-1">Scroll</span>
-            <ChevronDown size={16} className="text-white/20" />
-          </motion.div>
         </motion.div>
       </section>
 
