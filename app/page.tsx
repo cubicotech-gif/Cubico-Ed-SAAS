@@ -207,127 +207,99 @@ const partners = [
 
 const solutions = [
   {
-    id: 'manage',
-    name: 'Cubico Manage™',
+    id: 'manage', name: 'Cubico Manage™',
     tagline: 'Your entire institution. One intelligent system.',
     icon: Layout,
     painPoint: 'Still running your school on Excel sheets and WhatsApp groups?',
-    metric: '47 hrs',
-    metricLabel: 'saved per staff member, per month',
-    bgTint: 'rgba(108,58,237,0.07)',
-    activeTabBg: '#F3F0FF',
-    activeTabBorder: '#6C3AED',
-    accentHex: '#6C3AED',
-    accentLight: '#EDE9FE',
-    accentColor: 'text-purple-600',
-    accentBg: 'bg-purple-600',
+    metric: '47 hrs', metricLabel: 'saved per staff member, per month',
+    accentHex: '#6C3AED', accentLight: '#EDE9FE',
     demoUrl: 'demo.cubico.tech/manage',
-    proofBadges: [
-      { stat: '47 hrs', label: 'saved / staff / month', emoji: '⏱️', pos: '-top-6 -left-4' },
-      { stat: 'Live in', label: '4 weeks flat', emoji: '🚀', pos: 'top-1/3 -right-6' },
-      { stat: '₨0', label: 'paper fee receipts', emoji: '📵', pos: '-bottom-4 left-8' },
+    tiles: [
+      { icon: Users,     stat: '2,847', label: 'Students Enrolled',  bg: '#F5F3FF', color: '#6C3AED' },
+      { icon: BarChart3, stat: '94.3%', label: 'Attendance Rate',    bg: '#ECFDF5', color: '#059669' },
+      { icon: PieChart,  stat: '₨4.2M',label: 'Fee Collected',      bg: '#FFFBEB', color: '#D97706' },
+      { icon: Settings,  stat: '186',   label: 'Active Courses',     bg: '#EFF6FF', color: '#2563EB' },
     ],
     features: [
-      { icon: Users, title: 'Enrollment & Admissions', desc: 'Full student lifecycle from inquiry to graduation.' },
-      { icon: BarChart3, title: 'Fee & Finance', desc: 'Invoices, payments, and overdue alerts — automated.' },
-      { icon: PieChart, title: 'Attendance & Exams', desc: 'Smart attendance, gradebooks, and exam scheduling.' },
-      { icon: Settings, title: 'HR & Timetable', desc: 'Staff records, payroll, and auto-generated schedules.' },
+      { icon: Users,    title: 'Enrollment & Admissions', desc: 'Full student lifecycle from inquiry to graduation.'   },
+      { icon: BarChart3,title: 'Fee & Finance',           desc: 'Invoices, payments, and overdue alerts — automated.' },
+      { icon: PieChart, title: 'Attendance & Exams',      desc: 'Smart attendance, gradebooks, and exam scheduling.'  },
+      { icon: Settings, title: 'HR & Timetable',          desc: 'Staff records, payroll, and auto-generated schedules.'},
     ],
     themes: [
-      { name: 'Eclipse Dark', bg: '#0F0F23', accent: '#7C3AED', label: 'Enterprise' },
-      { name: 'Horizon Light', bg: '#F8FAFC', accent: '#3B82F6', label: 'Classic' },
-      { name: 'Campus Fresh', bg: '#F0FDF4', accent: '#10B981', label: 'School' },
+      { name: 'Eclipse Dark',   bg: '#0F0F23', accent: '#7C3AED', label: 'Enterprise' },
+      { name: 'Horizon Light',  bg: '#F8FAFC', accent: '#3B82F6', label: 'Classic'    },
+      { name: 'Campus Fresh',   bg: '#F0FDF4', accent: '#10B981', label: 'School'     },
       { name: 'Al-Arabiya RTL', bg: '#FFFBEB', accent: '#F59E0B', label: 'Arabic RTL' },
     ],
   },
   {
-    id: 'teach',
-    name: 'Cubico Teach™',
-    tagline: 'Everything a teacher needs. Nothing they don\'t.',
+    id: 'teach', name: 'Cubico Teach™',
+    tagline: "Everything a teacher needs. Nothing they don't.",
     icon: BookOpen,
     painPoint: 'Teachers spending Sunday nights building lesson plans from scratch?',
-    metric: '2×',
-    metricLabel: 'faster lesson planning from day one',
-    bgTint: 'rgba(6,182,212,0.07)',
-    activeTabBg: '#F0FEFF',
-    activeTabBorder: '#0891B2',
-    accentHex: '#0891B2',
-    accentLight: '#CFFAFE',
-    accentColor: 'text-cyan-700',
-    accentBg: 'bg-cyan-600',
+    metric: '2×', metricLabel: 'faster lesson planning from day one',
+    accentHex: '#0891B2', accentLight: '#CFFAFE',
     demoUrl: 'demo.cubico.tech/teach',
-    proofBadges: [
-      { stat: '2×', label: 'faster lesson planning', emoji: '⚡', pos: '-top-6 right-8' },
-      { stat: '100%', label: 'curriculum covered', emoji: '✅', pos: 'top-1/4 -left-6' },
-      { stat: 'Zero', label: 'missed at-risk students', emoji: '🎯', pos: '-bottom-4 right-10' },
+    tiles: [
+      { icon: Lightbulb, stat: '2×',    label: 'Faster Lesson Plans', bg: '#ECFEFF', color: '#0891B2' },
+      { icon: Target,    stat: '100%',  label: 'Curriculum Covered',  bg: '#EFF6FF', color: '#2563EB' },
+      { icon: BarChart3, stat: '76.4%', label: 'Class Avg Grade',     bg: '#ECFDF5', color: '#059669' },
+      { icon: Cloud,     stat: '∞',     label: 'Resource Library',    bg: '#F5F3FF', color: '#7C3AED' },
     ],
     features: [
-      { icon: Lightbulb, title: 'Lesson Plan Builder', desc: 'Drag-and-drop blocks aligned to national curriculum.' },
-      { icon: Target, title: 'Curriculum Mapping', desc: 'Visual scope & sequence across subjects and grades.' },
-      { icon: BarChart3, title: 'Class Analytics', desc: 'Per-student progress with automatic at-risk flags.' },
-      { icon: Cloud, title: 'Resource Library', desc: 'Upload, tag, and share materials across departments.' },
+      { icon: Lightbulb, title: 'Lesson Plan Builder', desc: 'Drag-and-drop blocks aligned to national curriculum.'  },
+      { icon: Target,    title: 'Curriculum Mapping',  desc: 'Visual scope & sequence across subjects and grades.'   },
+      { icon: BarChart3, title: 'Class Analytics',     desc: 'Per-student progress with automatic at-risk flags.'    },
+      { icon: Cloud,     title: 'Resource Library',    desc: 'Upload, tag, and share materials across departments.'  },
     ],
   },
   {
-    id: 'learn',
-    name: 'Cubico Learn™',
+    id: 'learn', name: 'Cubico Learn™',
     tagline: 'Textbooks come alive.',
     icon: Film,
     painPoint: 'Students zoning out 8 minutes into a 40-minute lecture?',
-    metric: '4×',
-    metricLabel: 'higher engagement vs. traditional textbooks',
-    bgTint: 'rgba(244,63,94,0.06)',
-    activeTabBg: '#FFF1F2',
-    activeTabBorder: '#E11D48',
-    accentHex: '#E11D48',
-    accentLight: '#FFE4E6',
-    accentColor: 'text-rose-600',
-    accentBg: 'bg-rose-600',
+    metric: '4×', metricLabel: 'higher engagement vs. traditional textbooks',
+    accentHex: '#E11D48', accentLight: '#FFE4E6',
     demoUrl: 'demo.cubico.tech/learn',
-    proofBadges: [
-      { stat: '4×', label: 'higher engagement', emoji: '🔥', pos: '-top-6 left-8' },
-      { stat: '3', label: 'languages: EN · AR · UR', emoji: '🌍', pos: 'top-1/3 -right-6' },
-      { stat: '94%', label: 'lesson completion rate', emoji: '🏆', pos: '-bottom-4 right-12' },
+    tiles: [
+      { icon: Film,    stat: '4×',  label: 'Higher Engagement',    bg: '#FFF1F2', color: '#E11D48' },
+      { icon: Globe,   stat: '3',   label: 'Languages: EN·AR·UR', bg: '#ECFDF5', color: '#059669' },
+      { icon: Zap,     stat: '94%', label: 'Lesson Completion',    bg: '#FFFBEB', color: '#D97706' },
+      { icon: Monitor, stat: '50+', label: 'Subject Animations',   bg: '#F5F3FF', color: '#7C3AED' },
     ],
     features: [
-      { icon: Film, title: '2D & 3D Animation', desc: 'Character-led animated lessons, any subject.' },
-      { icon: Monitor, title: 'Interactive Simulations', desc: 'STEM labs students can actually manipulate.' },
-      { icon: Globe, title: 'English · Arabic · Urdu', desc: 'Full narration and RTL support built in.' },
-      { icon: Zap, title: 'Adaptive Quizzes', desc: 'End-of-lesson assessments that self-adjust.' },
+      { icon: Film,    title: '2D & 3D Animation',       desc: 'Character-led animated lessons, any subject.'   },
+      { icon: Monitor, title: 'Interactive Simulations', desc: 'STEM labs students can actually manipulate.'     },
+      { icon: Globe,   title: 'English · Arabic · Urdu', desc: 'Full narration and RTL support built in.'        },
+      { icon: Zap,     title: 'Adaptive Quizzes',        desc: 'End-of-lesson assessments that self-adjust.'     },
     ],
     animStyles: [
       { label: '2D Character', icon: '🎭' },
-      { label: '3D Model', icon: '🧊' },
-      { label: 'Whiteboard', icon: '✏️' },
-      { label: 'Motion GFX', icon: '✨' },
+      { label: '3D Model',     icon: '🧊' },
+      { label: 'Whiteboard',   icon: '✏️' },
+      { label: 'Motion GFX',   icon: '✨' },
     ],
   },
   {
-    id: 'marketing',
-    name: 'Cubico Marketing™',
+    id: 'marketing', name: 'Cubico Marketing™',
     tagline: 'Fill every seat. Every semester.',
     icon: Megaphone,
     painPoint: 'Your school is incredible. Nobody outside your city knows it exists.',
-    metric: '+34%',
-    metricLabel: 'average increase in admission enquiries',
-    bgTint: 'rgba(5,150,105,0.06)',
-    activeTabBg: '#F0FDF4',
-    activeTabBorder: '#059669',
-    accentHex: '#059669',
-    accentLight: '#D1FAE5',
-    accentColor: 'text-emerald-700',
-    accentBg: 'bg-emerald-600',
+    metric: '+34%', metricLabel: 'average increase in admission enquiries',
+    accentHex: '#059669', accentLight: '#D1FAE5',
     demoUrl: 'demo.cubico.tech/marketing',
-    proofBadges: [
-      { stat: '+34%', label: 'more admission enquiries', emoji: '📈', pos: '-top-6 right-6' },
-      { stat: '3 wks', label: 'website live from brief', emoji: '⚡', pos: 'top-1/4 -left-6' },
-      { stat: '22%', label: 'higher conversion rate', emoji: '🎯', pos: '-bottom-4 left-12' },
+    tiles: [
+      { icon: TrendingUp, stat: '+34%', label: 'More Enquiries',      bg: '#ECFDF5', color: '#059669' },
+      { icon: Globe,      stat: '3wk',  label: 'Website Go-Live',     bg: '#ECFEFF', color: '#0891B2' },
+      { icon: Target,     stat: '22%',  label: 'Admission Conversion',bg: '#EFF6FF', color: '#2563EB' },
+      { icon: Megaphone,  stat: '5×',   label: 'Ad ROI',              bg: '#F5F3FF', color: '#7C3AED' },
     ],
     features: [
-      { icon: Globe, title: 'Premium School Websites', desc: 'Conversion-focused, mobile-first, and beautiful.' },
-      { icon: TrendingUp, title: 'Enrollment Funnels', desc: 'Google Ads, landing pages, and retargeting.' },
-      { icon: Megaphone, title: 'Social Media Management', desc: 'Content, campaigns, and brand voice.' },
-      { icon: Shield, title: 'SEO & Monthly Reports', desc: 'Search visibility that compounds over time.' },
+      { icon: Globe,      title: 'Premium School Websites', desc: 'Conversion-focused, mobile-first, and beautiful.'  },
+      { icon: TrendingUp, title: 'Enrollment Funnels',      desc: 'Google Ads, landing pages, and retargeting.'       },
+      { icon: Megaphone,  title: 'Social Media Management', desc: 'Content, campaigns, and brand voice.'              },
+      { icon: Shield,     title: 'SEO & Monthly Reports',   desc: 'Search visibility that compounds over time.'       },
     ],
   },
 ];
@@ -930,548 +902,238 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ SOLUTIONS SHOWCASE ═══════════ */}
-      <section id="showcase" className="relative overflow-hidden bg-[#F7F6FF]">
-        {/* Per-solution color flood — transitions behind everything */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={solutions[activeSolution].id + '-bg'}
-            className="absolute inset-0 pointer-events-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            style={{ background: solutions[activeSolution].bgTint }}
-          />
-        </AnimatePresence>
+      <section id="showcase" className="py-20 bg-white relative overflow-hidden">
 
-        {/* Noise texture overlay */}
-        <div className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
+        {/* Subtle grid background */}
+        <div className="absolute inset-0 pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle, #E5E5F0 1px, transparent 1px)', backgroundSize: '32px 32px', opacity: 0.5 }} />
 
-        {/* TOP HALF — cream/light, editorial header */}
-        <div className="relative pt-20 pb-0 max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {/* Eyebrow */}
-            <motion.div variants={fadeUp} custom={0} className="mb-6">
-              <span className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.25em] uppercase px-4 py-1.5 rounded-full border"
-                style={{ color: solutions[activeSolution].accentHex, borderColor: solutions[activeSolution].accentHex + '33', backgroundColor: solutions[activeSolution].accentHex + '0D' }}>
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: solutions[activeSolution].accentHex }} />
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+
+          {/* ── SECTION HEADER ── */}
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}
+            variants={staggerContainer} className="text-center mb-12">
+            <motion.div variants={fadeUp} custom={0} className="mb-4">
+              <span className="inline-flex items-center gap-2 text-xs font-bold tracking-[0.22em] uppercase px-4 py-1.5 rounded-full border border-gray-200 bg-gray-50 text-gray-500">
                 The Cubico Ecosystem
               </span>
             </motion.div>
-
-            {/* Main headline — gut punch */}
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="text-4xl md:text-5xl lg:text-[3.75rem] font-heading font-bold text-gray-900 leading-[1.06] tracking-[-0.025em] mb-5"
-            >
-              Stop duct-taping<br />
-              your school together.
+            <motion.h2 variants={fadeUp} custom={1}
+              className="text-3xl md:text-4xl lg:text-[2.8rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-4">
+              One school.{' '}
+              <span className="gradient-text">Four superpowers.</span>
             </motion.h2>
-
-            <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-lg max-w-lg leading-relaxed mb-14">
-              One partner. Four purpose-built products. Zero integration headaches. <span className="text-gray-800 font-medium">Built for institutions like yours.</span>
+            <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base max-w-md mx-auto leading-relaxed">
+              Each product is purpose-built. Together they run your entire institution.
             </motion.p>
           </motion.div>
 
-          {/* ── OVERSIZED TAB SELECTOR ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.25 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-10"
-          >
+          {/* ── TAB RAIL ── */}
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.2 }}
+            className="flex gap-2 overflow-x-auto pb-1 mb-10 justify-start lg:justify-center">
             {solutions.map((sol, i) => {
               const Icon = sol.icon;
-              const isActive = activeSolution === i;
+              const active = activeSolution === i;
               return (
-                <button
-                  key={sol.id}
+                <button key={sol.id}
                   onClick={() => { hasInteracted.current = true; setActiveSolution(i); }}
-                  className="relative text-left rounded-2xl p-5 border-2 transition-all duration-300 overflow-hidden group"
-                  style={isActive ? {
-                    backgroundColor: sol.activeTabBg,
-                    borderColor: sol.activeTabBorder,
-                    boxShadow: `0 8px 32px ${sol.accentHex}22`,
-                  } : {
-                    backgroundColor: '#ffffff',
-                    borderColor: '#E5E7EB',
-                  }}
-                >
-                  {/* Active left stripe */}
-                  {isActive && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{ backgroundColor: sol.accentHex }} />
-                  )}
-
-                  {/* Icon */}
-                  <div className="mb-3">
-                    <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: isActive ? sol.accentHex + '18' : '#F3F4F6' }}>
-                      <Icon size={17} style={{ color: isActive ? sol.accentHex : '#9CA3AF' }} />
-                    </div>
-                  </div>
-
-                  {/* Solution name */}
-                  <div className="text-sm font-bold mb-1" style={{ color: isActive ? sol.accentHex : '#374151' }}>
-                    {sol.name}
-                  </div>
-
-                  {/* BIG metric */}
-                  <div className="font-heading font-bold leading-none mb-0.5"
-                    style={{ fontSize: '2rem', color: isActive ? sol.accentHex : '#D1D5DB' }}>
-                    {sol.metric}
-                  </div>
-                  <div className="text-[10px] leading-snug" style={{ color: isActive ? '#6B7280' : '#D1D5DB' }}>
-                    {sol.metricLabel}
-                  </div>
+                  className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border-2 transition-all duration-200 whitespace-nowrap"
+                  style={active
+                    ? { backgroundColor: sol.accentHex, borderColor: sol.accentHex, color: '#fff', boxShadow: '0 4px 16px ' + sol.accentHex + '50' }
+                    : { backgroundColor: '#fff', borderColor: '#E5E7EB', color: '#6B7280' }}>
+                  <Icon size={15} />
+                  {sol.name}
                 </button>
               );
             })}
           </motion.div>
-        </div>
 
-        {/* ── DEMO STAGE — dark band ── */}
-        <div className="bg-[#0A0A1A] relative overflow-hidden">
-          {/* Subtle grid */}
-          <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
-            style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
-
-          {/* Glow from active solution */}
+          {/* ── SHOWCASE STAGE ── */}
           <AnimatePresence mode="wait">
-            <motion.div
-              key={solutions[activeSolution].id + '-glow'}
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full blur-[160px] pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              style={{ backgroundColor: solutions[activeSolution].accentHex + '14' }}
-            />
-          </AnimatePresence>
+            {solutions.map((sol, i) => activeSolution !== i ? null : (
+              <motion.div key={sol.id}
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}>
 
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-14">
-            {/* Pain point line — changes per active tab */}
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={solutions[activeSolution].id + '-pain'}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.3 }}
-                className="text-sm italic text-white/35 text-center mb-8"
-              >
-                &ldquo;{solutions[activeSolution].painPoint}&rdquo;
-              </motion.p>
-            </AnimatePresence>
+                <div className="grid lg:grid-cols-[42%_58%] gap-10 lg:gap-16 items-start">
 
-            {/* Browser + 3D mockup wrapper */}
-            <AnimatePresence mode="wait">
-              {solutions.map((sol, i) =>
-                activeSolution === i ? (
-                  <motion.div
-                    key={sol.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="relative"
-                  >
-                    {/* Floating proof badges */}
-                    {sol.proofBadges.map((badge, bi) => (
-                      <motion.div
-                        key={bi}
-                        initial={{ opacity: 0, scale: 0.7 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.4 + bi * 0.15, duration: 0.4 }}
-                        className={`absolute ${badge.pos} z-20 hidden lg:flex items-center gap-2.5 px-4 py-2.5 rounded-2xl backdrop-blur-xl border border-white/10 shadow-xl`}
-                        style={{ backgroundColor: 'rgba(13,13,43,0.9)' }}
-                      >
-                        <motion.span
-                          animate={{ y: [0, bi % 2 === 0 ? -5 : 5, 0] }}
-                          transition={{ duration: 3 + bi, repeat: Infinity, ease: 'easeInOut' }}
-                          className="text-lg leading-none"
-                        >
-                          {badge.emoji}
-                        </motion.span>
-                        <div>
-                          <div className="font-heading font-bold text-sm leading-none" style={{ color: sol.accentHex }}>
-                            {badge.stat}
-                          </div>
-                          <div className="text-[10px] text-white/40 mt-0.5">{badge.label}</div>
-                        </div>
-                      </motion.div>
-                    ))}
-
-                    {/* 3D-tilted browser chrome */}
-                    <div style={{ perspective: '1400px' }}>
-                      <div
-                        className="rounded-2xl overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.7)]"
-                        style={{
-                          transform: 'rotateX(5deg) rotateY(-1.5deg) scale(0.97)',
-                          transformOrigin: 'center top',
-                          border: `1px solid ${sol.accentHex}33`,
-                        }}
-                      >
-                        {/* Browser chrome bar */}
-                        <div className="bg-[#1A1A2E] px-5 py-3.5 flex items-center gap-4 border-b border-white/[0.05]">
-                          <div className="flex items-center gap-2 flex-shrink-0">
-                            <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                            <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                          </div>
-                          <div className="flex-1 bg-white/[0.04] border border-white/[0.06] rounded-lg px-4 py-1.5 flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sol.accentHex + '80' }} />
-                            <span className="text-[11px] font-mono text-white/35">{sol.demoUrl}</span>
-                            <span className="ml-auto text-[10px] text-white/20">🔒</span>
-                          </div>
-                        </div>
-
-                        {/* Mockup body */}
-                        <div className="bg-[#0D0D2B] p-5 lg:p-7">
-
-                          {/* ── MANAGE ── */}
-                          {sol.id === 'manage' && (
-                            <div className="grid lg:grid-cols-[200px_1fr] gap-4">
-                              <div className="hidden lg:block bg-[#080818] rounded-xl p-3 space-y-0.5">
-                                <div className="text-[9px] text-white/20 uppercase tracking-widest px-3 py-2 font-bold">Navigation</div>
-                                {['Dashboard', 'Students', 'Courses', 'Attendance', 'Fee Management', 'Timetable', 'HR & Staff', 'Reports'].map((item, idx) => (
-                                  <div key={item}
-                                    className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-[11px] cursor-default"
-                                    style={idx === 0 ? {
-                                      backgroundColor: sol.accentHex + '20',
-                                      color: sol.accentHex,
-                                      border: `1px solid ${sol.accentHex}25`,
-                                    } : { color: 'rgba(255,255,255,0.35)' }}
-                                  >
-                                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: idx === 0 ? sol.accentHex : 'rgba(255,255,255,0.15)' }} />
-                                    {item}
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="space-y-3">
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-                                  {[
-                                    { label: 'Total Students', value: '2,847', trend: '+12%', hex: '#7C3AED' },
-                                    { label: 'Fee Collected', value: '₨4.2M', trend: '+8%', hex: '#10B981' },
-                                    { label: 'Attendance', value: '94.3%', trend: '+2%', hex: '#06B6D4' },
-                                    { label: 'Active Courses', value: '186', trend: '+5', hex: '#F59E0B' },
-                                  ].map((kpi) => (
-                                    <div key={kpi.label} className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-3.5">
-                                      <div className="text-[9px] text-white/25 mb-1">{kpi.label}</div>
-                                      <div className="text-base font-heading font-bold" style={{ color: kpi.hex }}>{kpi.value}</div>
-                                      <div className="text-[9px] text-emerald-400 mt-0.5">{kpi.trend} ↑</div>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="grid md:grid-cols-[1fr_160px] gap-2.5">
-                                  <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                    <div className="flex justify-between mb-3">
-                                      <span className="text-[11px] font-semibold text-white/60">Week Attendance</span>
-                                      <span className="text-[10px] text-emerald-400">● Live</span>
-                                    </div>
-                                    <div className="grid grid-cols-5 gap-2">
-                                      {[['Mon',92],['Tue',88],['Wed',95],['Thu',91],['Fri',86]].map(([d,v]) => (
-                                        <div key={d as string} className="text-center">
-                                          <div className="text-[8px] text-white/25 mb-1.5">{d}</div>
-                                          <div className="w-full aspect-square rounded-lg flex items-center justify-center text-[9px] font-bold"
-                                            style={{ backgroundColor: (v as number) > 90 ? 'rgba(16,185,129,0.25)' : 'rgba(245,158,11,0.2)', color: (v as number) > 90 ? '#34D399' : '#FBB740' }}>
-                                            {v}%
-                                          </div>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  </div>
-                                  <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                    <div className="text-[11px] font-semibold text-white/60 mb-3">Upcoming</div>
-                                    {[['Mid-Term','Mar 18','#7C3AED'],['Fee Due','Mar 20','#F59E0B'],['Staff Mtg','Mar 22','#06B6D4']].map(([l,d,c]) => (
-                                      <div key={l as string} className="flex gap-2 mb-2 last:mb-0 items-start">
-                                        <div className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ backgroundColor: c as string }} />
-                                        <div><div className="text-[10px] text-white/55">{l}</div><div className="text-[9px] text-white/25">{d}</div></div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                                <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                  <div className="text-[11px] font-semibold text-white/60 mb-2.5">Recent Enrollments</div>
-                                  {[['Aisha Rahman','Grade 7','Paid'],['Omar Khalid','Grade 9','Pending'],['Sara Ahmed','Grade 5','Paid']].map(([n,g,f]) => (
-                                    <div key={n as string} className="grid grid-cols-4 gap-2 text-[10px] py-1.5 border-b border-white/[0.04] last:border-0">
-                                      <span className="text-white/65 font-medium col-span-2 truncate">{n}</span>
-                                      <span className="text-white/35">{g}</span>
-                                      <span style={{ color: f === 'Paid' ? '#34D399' : '#FBB740' }}>{f}</span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* ── TEACH ── */}
-                          {sol.id === 'teach' && (
-                            <div className="grid lg:grid-cols-[1fr_185px] gap-4">
-                              <div className="space-y-3">
-                                <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                  <div className="flex justify-between items-center mb-3">
-                                    <span className="text-[11px] font-bold text-white/60">Lesson Plan — Photosynthesis · Ch.4</span>
-                                    <span className="text-[10px] px-2 py-0.5 rounded-md text-cyan-400" style={{ backgroundColor: '#0891B220' }}>Grade 8 Biology</span>
-                                  </div>
-                                  {[
-                                    ['🎯','Learning Objective','border-cyan-500/30 bg-cyan-500/5','Students will explain light-dependent reactions of photosynthesis.'],
-                                    ['⚡','Starter Activity','border-blue-500/30 bg-blue-500/5','Quick-fire quiz: 5 questions from previous lesson (5 mins)'],
-                                    ['📖','Main Teaching','border-purple-500/30 bg-purple-500/5','Animated explainer video + diagram labelling worksheet'],
-                                    ['✅','Assessment','border-emerald-500/30 bg-emerald-500/5','Exit ticket: 3-question diagnostic via Google Forms'],
-                                  ].map(([icon,label,cls,text]) => (
-                                    <div key={label as string} className={`flex gap-3 p-3 rounded-lg border mb-2 last:mb-0 ${cls}`}>
-                                      <span className="text-sm mt-0.5 flex-shrink-0">{icon}</span>
-                                      <div><div className="text-[9px] font-bold text-white/35 uppercase tracking-wider mb-0.5">{label}</div>
-                                        <div className="text-[10px] text-white/55 leading-snug">{text}</div></div>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                  <div className="flex justify-between mb-2.5">
-                                    <span className="text-[11px] font-semibold text-white/60">Grade Distribution — Class 8B</span>
-                                    <span className="text-[10px] text-emerald-400">Avg 76.4%</span>
-                                  </div>
-                                  <div className="flex items-end gap-1.5 h-14">
-                                    {[30,55,75,85,70,60,45,80,90,65].map((h, idx) => (
-                                      <motion.div key={idx} initial={{ height: 0 }} animate={{ height: `${h}%` }}
-                                        transition={{ duration: 0.4, delay: 0.04 * idx, ease: 'easeOut' }}
-                                        className="flex-1 rounded-t-sm"
-                                        style={{ backgroundColor: h >= 80 ? '#10B98155' : h >= 60 ? '#06B6D455' : '#3B82F640' }} />
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="space-y-3">
-                                <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                  <div className="text-[11px] font-semibold text-white/60 mb-3">Today&apos;s Schedule</div>
-                                  {[['08:00','Biology','8B','#06B6D4'],['09:30','Science','7A','#7C3AED'],['11:00','Biology','9C','#06B6D4'],['14:00','Lab','8B','#10B981']].map(([t,s,g,c]) => (
-                                    <div key={t as string} className="pl-3 mb-2.5 last:mb-0 border-l-2" style={{ borderColor: c as string }}>
-                                      <div className="text-[8px] text-white/25">{t}</div>
-                                      <div className="text-[11px] text-white/65 font-medium">{s}</div>
-                                      <div className="text-[8px] text-white/25">{g}</div>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                  <div className="text-[11px] font-semibold text-white/60 mb-2.5">Resources</div>
-                                  {['Photosynthesis.pdf','Lab_Safety.pptx','Cell_Div.mp4'].map(f => (
-                                    <div key={f} className="flex gap-2 mb-2 last:mb-0 items-center">
-                                      <div className="w-6 h-6 rounded bg-white/[0.06] flex items-center justify-center text-[9px]">📄</div>
-                                      <div className="text-[10px] text-white/40 truncate">{f}</div>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* ── LEARN ── */}
-                          {sol.id === 'learn' && (
-                            <div className="grid lg:grid-cols-[1fr_200px] gap-4">
-                              <div className="space-y-3">
-                                <div className="rounded-xl overflow-hidden border border-white/[0.06]">
-                                  <div className="relative bg-gradient-to-br from-rose-900/50 via-orange-900/30 to-purple-900/40 aspect-video flex items-center justify-center">
-                                    <div className="text-center z-10 relative">
-                                      <div className="text-5xl mb-2">🧬</div>
-                                      <div className="text-white/70 text-sm font-semibold">Chapter 3: DNA Replication</div>
-                                      <div className="text-white/30 text-xs mt-1">3D Animated Lesson · 8:42</div>
-                                    </div>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                      <div className="w-12 h-12 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center cursor-default">
-                                        <Play size={16} className="text-white ml-1" />
-                                      </div>
-                                    </div>
-                                    <div className="absolute bottom-0 left-0 right-0 px-4 pb-3">
-                                      <div className="flex items-center gap-2">
-                                        <span className="text-[9px] text-white/40">3:24</span>
-                                        <div className="flex-1 h-1 bg-white/10 rounded-full">
-                                          <div className="h-full w-2/5 rounded-full bg-gradient-to-r from-rose-500 to-orange-400" />
-                                        </div>
-                                        <span className="text-[9px] text-white/40">8:42</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="bg-[#080818] px-4 py-2.5 flex justify-between items-center">
-                                    <span className="text-[10px] text-white/30">Grade 10 · Biology</span>
-                                    <div className="flex gap-3">
-                                      {['Quiz','Notes','Next →'].map(b => <button key={b} className="text-[10px] text-white/35 hover:text-rose-400 cursor-default">{b}</button>)}
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-4 gap-2">
-                                  {sol.animStyles?.map(s => (
-                                    <div key={s.label} className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3 text-center hover:bg-white/[0.07] hover:scale-[1.04] transition-all cursor-default">
-                                      <div className="text-2xl mb-1">{s.icon}</div>
-                                      <div className="text-[9px] text-white/40 font-medium">{s.label}</div>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="bg-white/[0.04] border border-rose-500/20 rounded-xl p-4">
-                                  <div className="text-[10px] font-bold text-rose-400 uppercase tracking-wider mb-2">📝 Checkpoint Quiz</div>
-                                  <div className="text-xs text-white/55 mb-3">Which enzyme unzips the DNA helix during replication?</div>
-                                  <div className="grid grid-cols-2 gap-2">
-                                    {['Helicase','Polymerase','Ligase','Primase'].map((o,oi) => (
-                                      <div key={o} className="text-[10px] px-3 py-2 rounded-lg border cursor-default"
-                                        style={oi === 0 ? { backgroundColor:'rgba(16,185,129,0.15)',borderColor:'rgba(16,185,129,0.35)',color:'#34D399' } : { borderColor:'rgba(255,255,255,0.07)',color:'rgba(255,255,255,0.3)' }}>
-                                        {o}
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4">
-                                <div className="text-[11px] font-bold text-white/60 mb-3">Biology — Grade 10</div>
-                                {[['Ch 1','Cell Structure',true,false],['Ch 2','Cell Division',true,false],['Ch 3','DNA Replication',false,true],['Ch 4','Protein Synthesis',false,false],['Ch 5','Genetics',false,false],['Ch 6','Evolution',false,false]].map(([ch,t,done,active]) => (
-                                  <div key={ch as string} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg mb-0.5 text-[10px]"
-                                    style={active ? { backgroundColor:`${sol.accentHex}18`,border:`1px solid ${sol.accentHex}30`,color:sol.accentHex } : { color: done ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.2)' }}>
-                                    <span className="w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center text-[8px]"
-                                      style={{ backgroundColor: done ? 'rgba(16,185,129,0.2)' : active ? `${sol.accentHex}25` : 'rgba(255,255,255,0.06)', color: done ? '#34D399' : active ? sol.accentHex : 'rgba(255,255,255,0.2)' }}>
-                                      {done ? '✓' : active ? '▶' : '○'}
-                                    </span>
-                                    <span className="font-medium">{ch}</span>
-                                    <span className="truncate opacity-70">{t}</span>
-                                  </div>
-                                ))}
-                                <div className="mt-4 pt-3 border-t border-white/[0.06]">
-                                  <div className="text-[9px] text-white/25 mb-1.5">Progress</div>
-                                  <div className="h-1.5 rounded-full bg-white/10">
-                                    <div className="h-full w-2/6 rounded-full bg-gradient-to-r from-rose-500 to-orange-400" />
-                                  </div>
-                                  <div className="text-[9px] text-white/30 mt-1">2 of 6 complete</div>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* ── MARKETING ── */}
-                          {sol.id === 'marketing' && (
-                            <div className="space-y-4">
-                              <div className="rounded-xl overflow-hidden border border-white/[0.06]">
-                                <div className="relative px-7 py-8 overflow-hidden" style={{ background: 'linear-gradient(135deg, #064E3B 0%, #065F46 50%, #0D9488 100%)' }}>
-                                  <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, white 1px, transparent 1px)', backgroundSize: '18px 18px' }} />
-                                  <div className="relative">
-                                    <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-emerald-300 mb-2">Al-Noor Academy · Est. 1998</div>
-                                    <h3 className="text-lg md:text-xl font-bold text-white mb-2 leading-snug">Where Knowledge Meets Excellence</h3>
-                                    <p className="text-emerald-100/70 text-xs mb-4 leading-relaxed max-w-xs">Preparing students for a global future — KG to Grade 12, in the heart of the community.</p>
-                                    <div className="flex gap-2.5">
-                                      <div className="bg-white text-emerald-800 text-xs font-bold px-4 py-1.5 rounded-full cursor-default">Apply Now →</div>
-                                      <div className="border border-white/30 text-white text-xs px-4 py-1.5 rounded-full cursor-default">Virtual Tour</div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-4 bg-white border-b border-gray-100">
-                                  {[['760+','Students'],['48','Teachers'],['98%','Pass Rate'],['25yr','Excellence']].map(([v,l]) => (
-                                    <div key={l as string} className="text-center py-2.5 border-r border-gray-100 last:border-0">
-                                      <div className="text-sm font-heading font-bold text-gray-800">{v}</div>
-                                      <div className="text-[9px] text-gray-400">{l}</div>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="bg-gray-50 px-5 py-3.5">
-                                  <div className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2">Programs</div>
-                                  <div className="flex flex-wrap gap-2">
-                                    {['KG & Primary','Middle School','O-Level','A-Level','Hifz Program'].map(p => (
-                                      <div key={p} className="text-[10px] text-gray-500 bg-white rounded-lg px-3 py-1.5 border border-gray-100">{p}</div>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="grid md:grid-cols-3 gap-3">
-                                {[
-                                  { label: 'Monthly Visits', value: '12,480', change: '+34%', emoji: '👁️', hex: '#059669' },
-                                  { label: 'Form Submissions', value: '284', change: '+18%', emoji: '📩', hex: '#0891B2' },
-                                  { label: 'Admission Rate', value: '22.4%', change: '+5%', emoji: '🎯', hex: '#0D9488' },
-                                ].map(m => (
-                                  <div key={m.label} className="bg-white/[0.04] border border-white/[0.05] rounded-xl p-4 flex justify-between items-start">
-                                    <div>
-                                      <div className="text-[9px] text-white/25 mb-1">{m.label}</div>
-                                      <div className="text-lg font-heading font-bold" style={{ color: m.hex }}>{m.value}</div>
-                                      <div className="text-[9px] text-emerald-400 mt-0.5">{m.change} ↑</div>
-                                    </div>
-                                    <span className="text-xl">{m.emoji}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Footer row */}
-                          <div className="mt-5 pt-5 border-t border-white/[0.06] flex items-center justify-between flex-wrap gap-4">
-                            <div>
-                              <div className="text-xs font-bold mb-0.5" style={{ color: sol.accentHex }}>{sol.name}</div>
-                              <div className="text-[11px] text-white/30 italic">{sol.tagline}</div>
-                            </div>
-                            <a href="#contact" className="inline-flex items-center gap-2 text-sm font-bold px-6 py-3 rounded-xl text-white transition-all hover:opacity-90"
-                              style={{ backgroundColor: sol.accentHex }}>
-                              Book a Live Demo
-                              <ArrowRight size={15} />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
+                  {/* LEFT — narrative column */}
+                  <div className="pt-2">
+                    {/* Product icon badge */}
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5"
+                      style={{ backgroundColor: sol.accentLight }}>
+                      {(() => { const SolIcon = sol.icon; return <SolIcon size={26} style={{ color: sol.accentHex }} />; })()}
                     </div>
 
-                    {/* Manage theme strip */}
-                    {sol.id === 'manage' && (
-                      <div className="mt-6">
-                        <div className="text-[10px] text-white/20 uppercase tracking-[0.2em] text-center mb-3">Available Theme Variations</div>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                          {sol.themes?.map(theme => (
-                            <div key={theme.name}
-                              className="rounded-xl p-4 border border-white/[0.07] hover:scale-[1.03] hover:border-white/20 transition-all cursor-default"
-                              style={{ backgroundColor: theme.bg }}>
-                              <div className="w-8 h-1.5 rounded-full mb-2.5" style={{ backgroundColor: theme.accent }} />
-                              <div className="space-y-1.5 mb-3 opacity-30">
-                                <div className="h-1.5 bg-current rounded w-3/4" />
-                                <div className="h-1.5 bg-current rounded w-1/2" />
-                                <div className="h-1.5 bg-current rounded w-5/6" />
+                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-gray-900 mb-2">{sol.name}</h3>
+                    <p className="text-base font-medium mb-5" style={{ color: sol.accentHex }}>{sol.tagline}</p>
+
+                    {/* Pain point callout */}
+                    <div className="rounded-2xl p-4 mb-6 bg-gray-50 border-l-4 border-gray-300">
+                      <p className="text-sm text-gray-500 italic leading-relaxed">&ldquo;{sol.painPoint}&rdquo;</p>
+                    </div>
+
+                    {/* Headline outcome metric */}
+                    <div className="inline-flex items-end gap-3 mb-6 p-4 rounded-2xl border"
+                      style={{ backgroundColor: sol.accentLight + 'BB', borderColor: sol.accentHex + '25' }}>
+                      <span className="font-heading font-bold leading-none"
+                        style={{ fontSize: '2.5rem', color: sol.accentHex }}>{sol.metric}</span>
+                      <span className="text-xs text-gray-500 leading-snug pb-1 max-w-[140px]">{sol.metricLabel}</span>
+                    </div>
+
+                    {/* Feature bullets */}
+                    <ul className="space-y-3 mb-8">
+                      {sol.features.map(feat => {
+                        const FIcon = feat.icon;
+                        return (
+                          <li key={feat.title} className="flex items-start gap-3">
+                            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                              style={{ backgroundColor: sol.accentLight }}>
+                              <FIcon size={13} style={{ color: sol.accentHex }} />
+                            </div>
+                            <div>
+                              <span className="text-sm font-semibold text-gray-800">{feat.title}</span>
+                              <span className="text-sm text-gray-400"> — {feat.desc}</span>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+
+                    <a href="#contact"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
+                      style={{ backgroundColor: sol.accentHex }}>
+                      Book a Live Demo
+                      <ArrowRight size={15} />
+                    </a>
+                  </div>
+
+                  {/* RIGHT — illustrated tiles */}
+                  <div className="space-y-4">
+                    {/* 2×2 illustrated feature tiles */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {sol.tiles.map((tile, ti) => {
+                        const TIcon = tile.icon;
+                        return (
+                          <motion.div key={tile.label}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.06 * ti, duration: 0.28 }}
+                            className="rounded-2xl p-5 flex flex-col gap-3 border border-white shadow-sm hover:shadow-md transition-shadow"
+                            style={{ backgroundColor: tile.bg }}>
+                            <div className="w-10 h-10 rounded-xl flex items-center justify-center"
+                              style={{ backgroundColor: tile.color + '18' }}>
+                              <TIcon size={20} style={{ color: tile.color }} />
+                            </div>
+                            <div>
+                              <div className="font-heading font-bold text-gray-900 leading-none"
+                                style={{ fontSize: '1.65rem' }}>{tile.stat}</div>
+                              <div className="text-xs font-medium text-gray-400 mt-1">{tile.label}</div>
+                            </div>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Manage: theme strip */}
+                    {sol.id === 'manage' && sol.themes && (
+                      <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4">
+                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-3">Available Themes</div>
+                        <div className="grid grid-cols-4 gap-2">
+                          {sol.themes.map(t => (
+                            <div key={t.name} className="rounded-xl p-3 bg-white border border-gray-100 hover:shadow-sm transition-shadow cursor-default">
+                              <div className="w-6 h-1 rounded-full mb-2.5" style={{ backgroundColor: t.accent }} />
+                              <div className="space-y-1.5">
+                                <div className="h-1 rounded bg-gray-200 w-full" />
+                                <div className="h-1 rounded bg-gray-200 w-2/3" />
                               </div>
-                              <div className="text-[10px] font-bold" style={{ color: theme.accent === '#080818' ? 'white' : theme.bg === '#F8FAFC' ? '#374151' : '#374151', opacity: 0.8 }}>{theme.name}</div>
-                              <div className="text-[9px] font-semibold mt-0.5" style={{ color: theme.accent }}>{theme.label}</div>
+                              <div className="text-[9px] font-bold mt-2.5" style={{ color: t.accent }}>{t.label}</div>
                             </div>
                           ))}
                         </div>
                       </div>
                     )}
 
-                    {/* Feature highlights */}
-                    <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                      {sol.features.map((feat, fi) => {
-                        const FIcon = feat.icon;
-                        return (
-                          <motion.div
-                            key={feat.title}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.06 * fi, duration: 0.3 }}
-                            className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 hover:bg-white/[0.06] transition-colors group"
-                          >
-                            <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3" style={{ backgroundColor: sol.accentHex + '18' }}>
-                              <FIcon size={14} style={{ color: sol.accentHex }} />
+                    {/* Learn: animation format chips */}
+                    {sol.id === 'learn' && sol.animStyles && (
+                      <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4">
+                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-3">Animation Formats We Produce</div>
+                        <div className="grid grid-cols-4 gap-2">
+                          {sol.animStyles.map(s => (
+                            <div key={s.label} className="rounded-xl border border-gray-100 bg-white p-3 text-center hover:shadow-sm transition-shadow cursor-default">
+                              <div className="text-2xl mb-1.5">{s.icon}</div>
+                              <div className="text-[9px] font-semibold text-gray-400">{s.label}</div>
                             </div>
-                            <div className="text-xs font-bold text-white/75 mb-1">{feat.title}</div>
-                            <div className="text-[10px] text-white/30 leading-snug">{feat.desc}</div>
-                          </motion.div>
-                        );
-                      })}
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Teach / Marketing: outcome bullets card */}
+                    {(sol.id === 'teach' || sol.id === 'marketing') && (
+                      <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4">
+                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.18em] mb-3">What changes for you</div>
+                        <div className="space-y-2.5">
+                          {sol.id === 'teach' && [
+                            ['📅', 'Lesson plans done in 15 min, not 2 hours'],
+                            ['🔔', 'Automatic alerts for students falling behind'],
+                            ['🗂️', 'Every resource organised, searchable, sharable'],
+                          ].map(([icon, text]) => (
+                            <div key={String(text)} className="flex items-start gap-2.5">
+                              <span className="text-base flex-shrink-0 leading-snug">{icon}</span>
+                              <span className="text-xs text-gray-500 leading-snug">{text}</span>
+                            </div>
+                          ))}
+                          {sol.id === 'marketing' && [
+                            ['📱', 'Websites that rank on Google AND convert visitors'],
+                            ['📊', 'Monthly reports showing exactly what is working'],
+                            ['🎯', 'Admission funnels that turn clicks into enrollments'],
+                          ].map(([icon, text]) => (
+                            <div key={String(text)} className="flex items-start gap-2.5">
+                              <span className="text-base flex-shrink-0 leading-snug">{icon}</span>
+                              <span className="text-xs text-gray-500 leading-snug">{text}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+
+          {/* ── BOTTOM TRUST STRIP ── */}
+          <div className="mt-16 pt-10 border-t border-gray-100">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { icon: Shield,     stat: '760+', label: 'Institutions',      sub: 'across 3 countries'    },
+                { icon: TrendingUp, stat: '94%',  label: 'Avg. Satisfaction', sub: 'rated 5/5 by clients'  },
+                { icon: Zap,        stat: '4 wk', label: 'Avg. Go-Live',      sub: 'from signed contract'  },
+                { icon: Users,      stat: '24/7', label: 'Support',           sub: 'dedicated account mgr' },
+              ].map(item => {
+                const SIcon = item.icon;
+                return (
+                  <motion.div key={item.label}
+                    initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }} transition={{ duration: 0.3 }}
+                    className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <SIcon size={15} className="text-gray-400" />
+                    </div>
+                    <div>
+                      <div className="font-heading font-bold text-gray-900 text-xl leading-none">{item.stat}</div>
+                      <div className="text-xs font-semibold text-gray-600 mt-0.5">{item.label}</div>
+                      <div className="text-[10px] text-gray-400">{item.sub}</div>
                     </div>
                   </motion.div>
-                ) : null
-              )}
-            </AnimatePresence>
+                );
+              })}
+            </div>
           </div>
-        </div>
 
-        {/* Bottom spacer to blend into next section */}
-        <div className="h-16 bg-[#0A0A1A]" />
+        </div>
       </section>
 
       {/* ═══════════ ABOUT / WHO WE ARE ═══════════ */}
