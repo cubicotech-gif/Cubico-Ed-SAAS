@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Menu,
   X,
@@ -1720,7 +1721,7 @@ export default function HomePage() {
       <section id="about" className="py-24 bg-surface-light bg-grid-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left - Visual */}
+            {/* Left - Visual with real image */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -1728,14 +1729,25 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-[#D4711A]/8 to-[#F4A261]/8 rounded-3xl p-8 relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                {/* Main classroom image */}
+                <div className="relative" style={{ aspectRatio: '4/3' }}>
+                  <Image
+                    src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80"
+                    alt="Students learning in a modern digital classroom"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                </div>
+
                 {/* Floating 760+ badge */}
                 <motion.div
                   initial={{ opacity:0, scale:0.8, y:10 }}
                   whileInView={{ opacity:1, scale:1, y:0 }}
                   viewport={{ once:true }}
                   transition={{ delay:0.5, type:'spring', stiffness:260, damping:20 }}
-                  className="absolute -top-4 -right-4 bg-white rounded-2xl px-3.5 py-2 shadow-xl border border-gray-100 z-20 flex items-center gap-2"
+                  className="absolute top-4 right-4 bg-white rounded-2xl px-3.5 py-2 shadow-xl border border-gray-100 z-20 flex items-center gap-2"
                   style={{ animation:'float 6s ease-in-out 0.5s infinite' }}>
                   <div className="w-6 h-6 rounded-lg bg-[#D4711A] flex items-center justify-center flex-shrink-0">
                     <Shield className="w-3.5 h-3.5 text-white" />
@@ -1751,7 +1763,7 @@ export default function HomePage() {
                   whileInView={{ opacity:1, scale:1, y:0 }}
                   viewport={{ once:true }}
                   transition={{ delay:0.7, type:'spring', stiffness:260, damping:20 }}
-                  className="absolute -bottom-4 -left-4 bg-white rounded-2xl px-3.5 py-2 shadow-xl border border-gray-100 z-20 flex items-center gap-2"
+                  className="absolute bottom-4 left-4 bg-white rounded-2xl px-3.5 py-2 shadow-xl border border-gray-100 z-20 flex items-center gap-2"
                   style={{ animation:'float2 8s ease-in-out 1s infinite' }}>
                   <div className="w-6 h-6 rounded-lg bg-[#8B4513] flex items-center justify-center flex-shrink-0">
                     <Globe className="w-3.5 h-3.5 text-white" />
@@ -1761,35 +1773,23 @@ export default function HomePage() {
                     <div className="text-[9px] text-gray-400 leading-tight">PK · SA · CA</div>
                   </div>
                 </motion.div>
-                {/* Institution type grid */}
-                <div className="bg-white rounded-2xl shadow-xl p-6 relative z-10">
-                  <div className="grid grid-cols-2 gap-4">
+                {/* Bottom stats overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-4 z-10">
+                  <div className="grid grid-cols-4 gap-3">
                     {[
-                      { icon: BookOpen, label: 'K-12 Schools',    color: 'bg-orange-50 text-[#D4711A]',  count:'460+' },
-                      { icon: Award,    label: 'Islamic Schools', color: 'bg-amber-50 text-[#B85E15]', count:'180+' },
-                      { icon: Globe,    label: 'International',   color: 'bg-orange-100/60 text-[#C0651A]', count:'85+'  },
-                      { icon: Users,    label: 'Colleges & NGOs', color: 'bg-amber-100/60 text-[#8B4513]',  count:'35+'  },
-                    ].map((item, i) => (
-                      <motion.div
-                        key={item.label}
-                        initial={{ opacity: 0, scale: 0.85, y:8 }}
-                        whileInView={{ opacity: 1, scale: 1, y:0 }}
-                        whileHover={{ scale:1.05, y:-3 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.12 * i, duration:0.4, type:'spring', stiffness:260, damping:20 }}
-                        className="flex flex-col items-center p-5 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all cursor-default"
-                      >
-                        <div className={`w-12 h-12 rounded-xl ${item.color} flex items-center justify-center mb-2`}>
-                          <item.icon className="w-6 h-6" />
-                        </div>
-                        <span className="text-sm font-black text-gray-900 mb-0.5">{item.count}</span>
-                        <span className="text-xs font-medium text-gray-500 text-center leading-snug">{item.label}</span>
-                      </motion.div>
+                      { icon: BookOpen, label: 'K-12',    count:'460+', color: 'text-[#D4711A]' },
+                      { icon: Award,    label: 'Islamic',  count:'180+', color: 'text-[#B85E15]' },
+                      { icon: Globe,    label: 'Int\'l',   count:'85+',  color: 'text-[#C0651A]' },
+                      { icon: Users,    label: 'NGOs',     count:'35+',  color: 'text-[#8B4513]' },
+                    ].map((item) => (
+                      <div key={item.label} className="text-center">
+                        <item.icon className={`w-4 h-4 mx-auto mb-1 ${item.color}`} />
+                        <div className="text-xs font-black text-gray-900">{item.count}</div>
+                        <div className="text-[9px] text-gray-400">{item.label}</div>
+                      </div>
                     ))}
                   </div>
                 </div>
-                <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#D4711A]/10 rounded-full blur-xl animate-float" />
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#F4A261]/10 rounded-full blur-xl animate-float2" />
               </div>
             </motion.div>
 
@@ -1847,12 +1847,18 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ STATS SECTION ═══════════ */}
-      <section className="py-20 section-dark relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=2560&q=80"
+          alt="Books and education background"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0C0A08]/92" />
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize:'28px 28px' }}/>
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-72 h-72 bg-primary/12 rounded-full filter blur-[110px] animate-float" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/10 rounded-full filter blur-[110px] animate-float2" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] bg-primary/5 rounded-full filter blur-[80px] animate-glow-breath" />
+          <div className="absolute top-0 right-0 w-72 h-72 bg-[#D4711A]/12 rounded-full filter blur-[110px] animate-float" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8B4513]/10 rounded-full filter blur-[110px] animate-float2" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -2239,24 +2245,35 @@ export default function HomePage() {
                 From onboarding timelines to multilingual support — here&apos;s what principals and IT heads want to know before signing up.
               </motion.p>
 
-              {/* FAQ Visual */}
+              {/* FAQ Visual — image + CTA */}
               <motion.div
                 variants={fadeUp}
                 custom={3}
-                className="bg-gradient-to-br from-[#D4711A]/5 to-[#F4A261]/5 rounded-3xl p-8 hidden lg:block"
+                className="rounded-3xl overflow-hidden hidden lg:block"
               >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center">
-                    <MessageSquare className="w-6 h-6 text-[#D4711A]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">Still have questions?</h4>
-                    <p className="text-sm text-gray-500">Our team is ready to help</p>
+                <div className="relative" style={{ aspectRatio: '16/10' }}>
+                  <Image
+                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                    alt="Team collaborating on education technology solutions"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                        <MessageSquare className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white">Still have questions?</h4>
+                        <p className="text-sm text-white/60">Our team is ready to help</p>
+                      </div>
+                    </div>
+                    <a href="#contact" className="btn-primary text-sm">
+                      Contact Us <ArrowRight className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
-                <a href="#contact" className="btn-primary text-sm">
-                  Contact Us <ArrowRight className="w-4 h-4" />
-                </a>
               </motion.div>
             </motion.div>
 
@@ -2338,14 +2355,20 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ JOIN CTA SECTION ═══════════ */}
-      <section className="py-24 section-dark relative overflow-hidden">
-        {/* Background */}
+      <section className="py-24 relative overflow-hidden">
+        {/* Background image */}
+        <Image
+          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2560&q=80"
+          alt="Students in classroom celebrating education"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0C0A08]/88" />
+        {/* Background effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/15 rounded-full filter blur-[150px] animate-float" />
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-accent/10 rounded-full filter blur-[120px] animate-float2" />
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#D4711A]/15 rounded-full filter blur-[150px] animate-float" />
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-[#8B4513]/10 rounded-full filter blur-[120px] animate-float2" />
           <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize:'32px 32px' }}/>
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"/>
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent"/>
         </div>
         {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
