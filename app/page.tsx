@@ -634,7 +634,7 @@ export default function HomePage() {
             <div className="flex items-center gap-4 lg:gap-6" style={{ transform: 'perspective(1200px)' }}>
 
               {/* ────── SCREEN 1: Login ────── */}
-              <div className="hidden md:block flex-shrink-0 w-[220px] lg:w-[240px] rounded-2xl overflow-hidden"
+              <div className="hidden md:block flex-shrink-0 w-[250px] lg:w-[280px] rounded-2xl overflow-hidden"
                 style={{
                   opacity: 0.7,
                   transform: 'scale(0.92) translateY(8px)',
@@ -677,7 +677,7 @@ export default function HomePage() {
               </div>
 
               {/* ────── SCREEN 2: Dashboard (ACTIVE / CENTER) ────── */}
-              <div className="flex-shrink-0 w-[340px] sm:w-[380px] lg:w-[460px] rounded-2xl overflow-hidden relative z-10"
+              <div className="flex-shrink-0 w-[360px] sm:w-[420px] lg:w-[520px] rounded-2xl overflow-hidden relative z-10"
                 style={{
                   transform: 'scale(1.06)',
                   boxShadow: '0 30px 100px rgba(0,0,0,0.4), 0 0 0 1.5px rgba(232,140,50,0.3), 0 0 60px rgba(232,140,50,0.06)',
@@ -697,7 +697,7 @@ export default function HomePage() {
                 {/* Dashboard body */}
                 <div className="flex bg-[#FAFAFA]">
                   {/* Sidebar */}
-                  <div className="w-[100px] lg:w-[110px] flex-shrink-0 bg-[#1a1310] flex-col py-3 hidden sm:flex">
+                  <div className="w-[110px] lg:w-[120px] flex-shrink-0 bg-[#1a1310] flex-col py-3 hidden sm:flex">
                     <div className="flex items-center gap-1.5 px-3 mb-4">
                       <div className="w-5 h-5 rounded-md bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center text-[7px] text-white font-bold">C</div>
                       <span className="text-[8px] text-white font-bold">Cubico</span>
@@ -771,7 +771,7 @@ export default function HomePage() {
               </div>
 
               {/* ────── SCREEN 3: Course View ────── */}
-              <div className="hidden sm:block flex-shrink-0 w-[220px] lg:w-[240px] rounded-2xl overflow-hidden"
+              <div className="hidden sm:block flex-shrink-0 w-[250px] lg:w-[280px] rounded-2xl overflow-hidden"
                 style={{
                   opacity: 0.7,
                   transform: 'scale(0.92) translateY(8px)',
@@ -830,7 +830,7 @@ export default function HomePage() {
               </div>
 
               {/* ────── SCREEN 4: Grades ────── */}
-              <div className="hidden lg:block flex-shrink-0 w-[220px] lg:w-[240px] rounded-2xl overflow-hidden"
+              <div className="hidden lg:block flex-shrink-0 w-[250px] lg:w-[280px] rounded-2xl overflow-hidden"
                 style={{
                   opacity: 0.45,
                   transform: 'scale(0.88) translateY(12px)',
