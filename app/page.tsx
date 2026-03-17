@@ -318,7 +318,8 @@ function StatCounter({ value, suffix, label, color = '#818CF8' }: { value: numbe
    ═══════════════════════════════════════════ */
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -336,8 +337,17 @@ export default function HomePage() {
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      // Hide when scrolling down past 80px, show when scrolling up
+      if (y > lastScrollY.current && y > 80) {
+        setNavHidden(true);
+      } else {
+        setNavHidden(false);
+      }
+      lastScrollY.current = y;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -390,142 +400,136 @@ export default function HomePage() {
         .animate-glow-breath  { animation:glow-breath 4.5s ease-in-out infinite; }
         .animate-spin-slow    { animation:spin-slow 22s linear infinite; }
         .shimmer-text {
-          background:linear-gradient(90deg,#1E6B5A 0%,#2A9D8F 30%,#5ABFB3 50%,#2A9D8F 70%,#1E6B5A 100%);
+          background:linear-gradient(90deg,#D4711A 0%,#E88C32 30%,#F4A94D 50%,#E88C32 70%,#D4711A 100%);
           background-size:200% auto; -webkit-background-clip:text;
           -webkit-text-fill-color:transparent; background-clip:text;
           animation:shimmer-slide 4s linear infinite;
         }
       `}</style>
 
-      {/* ═══════════ NAVIGATION ═══════════ */}
-      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-        {/* Outer wrapper — always full width, handles centering */}
-        <div className="flex justify-center px-4">
-          <motion.nav
-            initial={{ y: -30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="pointer-events-auto w-full"
-            style={{
-              maxWidth: scrolled ? '820px' : '100%',
-              marginTop: scrolled ? '12px' : '0px',
-              padding: scrolled ? '6px 16px' : '12px 24px',
-              borderRadius: scrolled ? '50px' : '0px',
-              background: scrolled
-                ? 'rgba(12,31,27,0.94)'
-                : 'rgba(4,31,26,0.55)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
-              boxShadow: scrolled
-                ? '0 8px 40px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(42,157,143,0.12)'
-                : '0 1px 0 rgba(255,255,255,0.06)',
-              transition: 'max-width 0.5s cubic-bezier(0.4,0,0.2,1), margin-top 0.5s cubic-bezier(0.4,0,0.2,1), padding 0.5s cubic-bezier(0.4,0,0.2,1), border-radius 0.5s cubic-bezier(0.4,0,0.2,1), background 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1)',
-            }}
-          >
-            <div className="flex items-center gap-1 max-w-7xl mx-auto">
-              {/* Logo */}
-              <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
-                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#1E6B5A] to-[#2A9D8F] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-teal-600/20 flex-shrink-0">
-                  C
-                </div>
-                <span className="font-heading font-bold text-sm text-white hidden sm:inline whitespace-nowrap">
-                  Cubico<span className="text-teal-300">.tech</span>
-                </span>
-              </Link>
+      {/* ═══════════ NAVIGATION — Always pill, hides on scroll down ═══════════ */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center px-4"
+        style={{
+          transform: navHidden ? 'translateY(-120%)' : 'translateY(0)',
+          transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+        }}
+      >
+        <motion.nav
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="pointer-events-auto mt-3 px-3 sm:px-5 py-2 rounded-full"
+          style={{
+            background: 'rgba(18,18,20,0.88)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(232,140,50,0.1)',
+          }}
+        >
+          <div className="flex items-center gap-1">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-orange-600/25 flex-shrink-0">
+                C
+              </div>
+              <span className="font-heading font-bold text-sm text-white hidden sm:inline whitespace-nowrap">
+                Cubico<span className="text-orange-300">.tech</span>
+              </span>
+            </Link>
 
-              {/* Divider */}
-              <div className="w-px h-5 bg-white/[0.1] mx-2 hidden lg:block flex-shrink-0" />
+            {/* Divider */}
+            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
 
-              {/* Desktop Nav */}
-              <nav className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-              </nav>
-
-              {/* Divider */}
-              <div className="w-px h-5 bg-white/[0.1] mx-2 hidden lg:block flex-shrink-0" />
-
-              {/* CTA */}
-              <div className="hidden lg:flex items-center flex-shrink-0">
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-0.5">
+              {navLinks.map((link) => (
                 <a
-                  href="#contact"
-                  className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#1E6B5A] to-[#2A9D8F] hover:from-[#155C4E] hover:to-[#1E6B5A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(42,157,143,0.4)]"
+                  key={link.name}
+                  href={link.href}
+                  className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
                 >
+                  {link.name}
+                </a>
+              ))}
+            </nav>
+
+            {/* Divider */}
+            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
+
+            {/* CTA */}
+            <div className="hidden lg:flex items-center flex-shrink-0">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
+              >
+                Get Started
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </motion.nav>
+      </header>
+
+      {/* Mobile Menu — separate from header so it stays visible */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-[72px] left-4 right-4 z-50 bg-[#1a1a1e]/95 backdrop-blur-xl rounded-2xl border border-orange-500/[0.12] shadow-2xl overflow-hidden"
+          >
+            <div className="px-5 py-5 space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <div className="pt-3 border-t border-white/[0.08]">
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
                   Get Started
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
-              >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
             </div>
-          </motion.nav>
-        </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-              className="pointer-events-auto mx-4 mt-2 bg-[#0C1F1B]/95 backdrop-blur-xl rounded-2xl border border-teal-500/[0.12] shadow-2xl overflow-hidden"
-            >
-              <div className="px-5 py-5 space-y-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-                <div className="pt-3 border-t border-white/[0.08]">
-                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#1E6B5A] to-[#2A9D8F] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
-                    Get Started
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </header>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ═══════════ HERO SECTION ═══════════ */}
       <section
         id="home"
         className="relative min-h-screen flex flex-col overflow-x-hidden"
       >
-        {/* ── Background image — education/library atmosphere ── */}
+        {/* ── Background image — modern ed-tech classroom ── */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=2560&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2560&q=80)',
             backgroundSize: 'cover',
-            backgroundPosition: 'center 40%',
+            backgroundPosition: 'center 35%',
           }}
         />
-        {/* ── Dark teal overlay ── */}
+        {/* ── Dark warm overlay ── */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(180deg, rgba(4,31,26,0.92) 0%, rgba(10,46,37,0.82) 35%, rgba(12,31,27,0.78) 60%, rgba(4,18,16,0.95) 100%)',
+            background: 'linear-gradient(180deg, rgba(12,10,8,0.93) 0%, rgba(28,18,10,0.82) 35%, rgba(20,14,10,0.78) 60%, rgba(10,8,6,0.96) 100%)',
           }}
         />
 
@@ -533,17 +537,17 @@ export default function HomePage() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse 70% 45% at 50% 30%, rgba(42,157,143,0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 70% 45% at 50% 30%, rgba(232,140,50,0.1) 0%, transparent 70%)',
           }}
         />
 
-        {/* ── Floating atmosphere orbs — teal/warm tones ── */}
+        {/* ── Floating atmosphere orbs — warm orange tones ── */}
         <div className="absolute top-[12%] left-[6%] w-72 h-72 rounded-full pointer-events-none animate-float"
-          style={{ background:'radial-gradient(circle,rgba(42,157,143,0.16) 0%,transparent 70%)', filter:'blur(60px)' }}/>
+          style={{ background:'radial-gradient(circle,rgba(232,140,50,0.14) 0%,transparent 70%)', filter:'blur(60px)' }}/>
         <div className="absolute top-[22%] right-[8%] w-80 h-80 rounded-full pointer-events-none animate-float2"
-          style={{ background:'radial-gradient(circle,rgba(231,111,81,0.08) 0%,transparent 70%)', filter:'blur(50px)' }}/>
+          style={{ background:'radial-gradient(circle,rgba(212,113,26,0.1) 0%,transparent 70%)', filter:'blur(50px)' }}/>
         <div className="absolute top-[50%] left-[30%] w-96 h-96 rounded-full pointer-events-none animate-float3"
-          style={{ background:'radial-gradient(circle,rgba(42,157,143,0.06) 0%,transparent 70%)', filter:'blur(70px)' }}/>
+          style={{ background:'radial-gradient(circle,rgba(232,140,50,0.06) 0%,transparent 70%)', filter:'blur(70px)' }}/>
 
         {/* ── Subtle dot grid overlay ── */}
         <div
@@ -563,8 +567,8 @@ export default function HomePage() {
         >
           {/* Trust badge */}
           <motion.div variants={fadeUp} custom={0} className="mb-5">
-            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[13px] font-medium text-white/75 border border-teal-400/20 bg-teal-900/30 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse flex-shrink-0" />
+            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[13px] font-medium text-white/75 border border-orange-400/20 bg-orange-900/25 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse flex-shrink-0" />
               Trusted by 760+ Institutions · Pakistan · Saudi Arabia · Canada
             </span>
           </motion.div>
@@ -596,7 +600,7 @@ export default function HomePage() {
           <motion.div variants={fadeUp} custom={3} className="flex items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#1E6B5A] to-[#2A9D8F] text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg shadow-teal-600/25 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.02] transition-all duration-200"
+              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-200"
             >
               Book Free Demo
               <ArrowRight size={16} />
@@ -619,18 +623,18 @@ export default function HomePage() {
         >
           {/* ── Glow behind the dashboard ── */}
           <div className="absolute -inset-10 pointer-events-none" style={{
-            background: 'radial-gradient(ellipse 60% 40% at 50% 20%, rgba(42,157,143,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 60% 40% at 50% 20%, rgba(232,140,50,0.12) 0%, transparent 70%)',
             filter: 'blur(40px)',
           }} />
 
           <div
             className="relative w-full max-w-[1140px] rounded-2xl overflow-hidden"
             style={{
-              boxShadow: '0 30px 100px rgba(4,31,26,0.5), 0 10px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(42,157,143,0.1)',
+              boxShadow: '0 30px 100px rgba(10,8,6,0.5), 0 10px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(232,140,50,0.1)',
             }}
           >
             {/* ── Browser chrome ── */}
-            <div className="bg-[#0C1F1B] px-4 py-2.5 flex items-center gap-3 border-b border-white/[0.06]">
+            <div className="bg-[#141210] px-4 py-2.5 flex items-center gap-3 border-b border-white/[0.06]">
               <div className="flex gap-2 flex-shrink-0">
                 <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
                 <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
