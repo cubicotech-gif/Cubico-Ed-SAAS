@@ -99,7 +99,7 @@ function useCounter(target: number, duration = 2000) {
    ═══════════════════════════════════════════ */
 const navLinks = [
   { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
+  { name: 'About', href: '/about' },
   { name: 'Solutions', href: '#solutions' },
   { name: 'Services', href: '#services' },
   { name: 'Testimonials', href: '#testimonials' },
