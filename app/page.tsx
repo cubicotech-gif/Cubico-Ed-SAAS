@@ -397,85 +397,96 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* ═══════════ NAVIGATION ═══════════ */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
-            : 'bg-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-heading font-bold text-lg ${
-                scrolled ? 'bg-primary text-white' : 'bg-white text-primary'
-              }`}>
+      {/* ═══════════ NAVIGATION — iPhone Dynamic Island Pill ═══════════ */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className={`pointer-events-auto mt-4 transition-all duration-500 ${
+            scrolled
+              ? 'bg-[#0a0a0a]/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.4)] px-3 py-1.5 rounded-[28px] border border-white/[0.08]'
+              : 'bg-[#0a0a0a]/70 backdrop-blur-xl px-3 py-1.5 rounded-[28px] border border-white/[0.12]'
+          }`}
+        >
+          <div className="flex items-center gap-1">
+            {/* Logo — compact pill left */}
+            <Link href="/" className="flex items-center gap-2 pl-2 pr-3 py-2 rounded-full hover:bg-white/[0.06] transition-colors">
+              <div className="w-7 h-7 rounded-lg bg-[#6C3AED] flex items-center justify-center font-heading font-bold text-xs text-white">
                 C
               </div>
-              <span className={`font-heading font-bold text-xl ${scrolled ? 'text-gray-900' : 'text-white'}`}>
-                Cubico<span className="text-primary-light">.tech</span>
+              <span className="font-heading font-bold text-sm text-white hidden sm:inline">
+                Cubico<span className="text-purple-400">.tech</span>
               </span>
             </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-8">
+            {/* Divider */}
+            <div className="w-px h-5 bg-white/[0.1] mx-1 hidden lg:block" />
+
+            {/* Desktop Nav — inside the pill */}
+            <nav className="hidden lg:flex items-center gap-0.5">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
-                    scrolled ? 'text-gray-600' : 'text-white/80 hover:text-white'
-                  }`}
+                  className="text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/[0.08] px-3 py-2 rounded-full transition-all duration-200"
                 >
                   {link.name}
                 </a>
               ))}
             </nav>
 
-            {/* CTA */}
-            <div className="hidden lg:flex items-center gap-4">
-              <a href="#contact" className="btn-primary text-sm">
+            {/* Divider */}
+            <div className="w-px h-5 bg-white/[0.1] mx-1 hidden lg:block" />
+
+            {/* CTA — glowing pill right */}
+            <div className="hidden lg:flex items-center">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1.5 bg-[#6C3AED] hover:bg-[#5B2ED0] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(108,58,237,0.5)]"
+              >
                 Get Started
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`lg:hidden p-2 rounded-lg ${scrolled ? 'text-gray-900' : 'text-white'}`}
+              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-1"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu — drops from pill */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white border-t border-gray-100 shadow-xl"
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="pointer-events-auto fixed top-[76px] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-xl rounded-2xl border border-white/[0.1] shadow-2xl overflow-hidden"
             >
-              <div className="px-6 py-6 space-y-4">
+              <div className="px-5 py-5 space-y-1">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block text-gray-700 hover:text-primary font-medium transition-colors"
+                    className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-all px-4 py-3 rounded-xl"
                   >
                     {link.name}
                   </a>
                 ))}
-                <a href="#contact" className="btn-primary text-sm w-full justify-center mt-4">
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
-                </a>
+                <div className="pt-3 border-t border-white/[0.08]">
+                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-[#6C3AED] text-white text-sm font-semibold w-full py-3 rounded-xl hover:bg-[#5B2ED0] transition-colors">
+                    Get Started
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </motion.div>
           )}
@@ -487,82 +498,46 @@ export default function HomePage() {
         id="home"
         className="relative min-h-screen flex flex-col overflow-x-hidden"
       >
-        {/* ── Sky gradient background ── */}
+        {/* ── Unsplash background image ── */}
         <div
           className="absolute inset-0"
           style={{
-            background:
-              'linear-gradient(180deg, #0C1B3A 0%, #1A3D72 12%, #2E6BAD 28%, #4E96C8 44%, #82BDD6 56%, #C8975F 68%, #C45F30 80%, #7A3318 92%, #4A1E0C 100%)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2560&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 30%',
+          }}
+        />
+        {/* ── Dark overlay for text readability ── */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, rgba(6,0,30,0.85) 0%, rgba(15,5,50,0.75) 40%, rgba(30,10,70,0.70) 65%, rgba(10,2,35,0.92) 100%)',
           }}
         />
 
-        {/* ── Atmospheric haze at horizon ── */}
+        {/* ── Subtle animated gradient accent ── */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background:
-              'radial-gradient(ellipse 120% 30% at 50% 62%, rgba(220,160,80,0.35) 0%, transparent 70%)',
-          }}
-        />
-
-        {/* ── Painted/noise texture ── */}
-        <div
-          className="absolute inset-0 opacity-[0.06] pointer-events-none"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E\")",
-            backgroundSize: '300px 300px',
+            background: 'radial-gradient(ellipse 80% 50% at 50% 35%, rgba(108,58,237,0.15) 0%, transparent 70%)',
           }}
         />
 
         {/* ── Floating atmosphere orbs ── */}
-        <div className="absolute top-[15%] left-[8%] w-64 h-64 rounded-full pointer-events-none animate-float"
-          style={{ background:'radial-gradient(circle,rgba(108,58,237,0.14) 0%,transparent 70%)', filter:'blur(40px)' }}/>
-        <div className="absolute top-[28%] right-[9%] w-80 h-80 rounded-full pointer-events-none animate-float2"
-          style={{ background:'radial-gradient(circle,rgba(37,99,235,0.11) 0%,transparent 70%)', filter:'blur(50px)' }}/>
-        <div className="absolute top-[55%] left-[40%] w-56 h-56 rounded-full pointer-events-none animate-float3"
-          style={{ background:'radial-gradient(circle,rgba(220,160,80,0.10) 0%,transparent 70%)', filter:'blur(36px)' }}/>
+        <div className="absolute top-[15%] left-[8%] w-72 h-72 rounded-full pointer-events-none animate-float"
+          style={{ background:'radial-gradient(circle,rgba(108,58,237,0.18) 0%,transparent 70%)', filter:'blur(60px)' }}/>
+        <div className="absolute top-[25%] right-[9%] w-80 h-80 rounded-full pointer-events-none animate-float2"
+          style={{ background:'radial-gradient(circle,rgba(0,183,131,0.10) 0%,transparent 70%)', filter:'blur(50px)' }}/>
+        <div className="absolute top-[55%] left-[35%] w-96 h-96 rounded-full pointer-events-none animate-float3"
+          style={{ background:'radial-gradient(circle,rgba(108,58,237,0.08) 0%,transparent 70%)', filter:'blur(70px)' }}/>
 
-        {/* ── Left tree silhouette ── */}
-        <div className="absolute bottom-0 left-0 w-[260px] h-[60%] pointer-events-none select-none">
-          <svg viewBox="0 0 260 480" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="xMinYMax meet">
-            {/* Background thin tree */}
-            <ellipse cx="200" cy="200" rx="28" ry="60" fill="#120B02"/>
-            <ellipse cx="210" cy="155" rx="22" ry="48" fill="#120B02"/>
-            <rect x="196" y="245" width="10" height="235" fill="#120B02"/>
-            {/* Mid tree */}
-            <ellipse cx="130" cy="170" rx="38" ry="75" fill="#0E0801"/>
-            <ellipse cx="118" cy="115" rx="30" ry="58" fill="#0E0801"/>
-            <ellipse cx="145" cy="105" rx="26" ry="50" fill="#0E0801"/>
-            <rect x="122" y="230" width="14" height="250" fill="#0E0801"/>
-            {/* Main foreground tree */}
-            <ellipse cx="55" cy="190" rx="55" ry="100" fill="#0A0700"/>
-            <ellipse cx="40" cy="115" rx="45" ry="82" fill="#0A0700"/>
-            <ellipse cx="72" cy="100" rx="40" ry="72" fill="#0A0700"/>
-            <ellipse cx="55" cy="78" rx="32" ry="58" fill="#0A0700"/>
-            <rect x="46" y="270" width="18" height="210" fill="#0A0700"/>
-          </svg>
-        </div>
-
-        {/* ── Right tree silhouette ── */}
-        <div className="absolute bottom-0 right-0 w-[200px] h-[48%] pointer-events-none select-none">
-          <svg viewBox="0 0 200 380" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full" preserveAspectRatio="xMaxYMax meet">
-            {/* Background small tree */}
-            <ellipse cx="40" cy="180" rx="24" ry="52" fill="#120B02"/>
-            <ellipse cx="32" cy="138" rx="18" ry="40" fill="#120B02"/>
-            <rect x="32" y="222" width="9" height="158" fill="#120B02"/>
-            {/* Main right tree */}
-            <ellipse cx="145" cy="155" rx="50" ry="88" fill="#0A0700"/>
-            <ellipse cx="130" cy="95" rx="40" ry="70" fill="#0A0700"/>
-            <ellipse cx="158" cy="82" rx="34" ry="62" fill="#0A0700"/>
-            <rect x="136" y="228" width="16" height="152" fill="#0A0700"/>
-          </svg>
-        </div>
-
-        {/* ── Ground / dark base strip ── */}
+        {/* ── Mesh grid pattern overlay ── */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-[8%] pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, #2A1008)' }}
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
         />
 
         {/* ═══ CONTENT (upper viewport) ═══ */}
@@ -615,187 +590,214 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
 
-        {/* ═══ DASHBOARD MOCKUP — rises from bottom ═══ */}
+        {/* ═══ ENHANCED MOODLE LMS DASHBOARD — overflows into next section ═══ */}
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 80 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-10 -mb-[2px]"
+          transition={{ duration: 1, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-10 mb-[-120px]"
         >
           <div
-            className="w-full max-w-[980px] rounded-t-2xl overflow-hidden"
+            className="w-full max-w-[1060px] rounded-2xl overflow-hidden"
             style={{
-              boxShadow: '0 -8px 60px rgba(0,0,0,0.55), 0 40px 80px rgba(0,0,0,0.6)',
+              boxShadow: '0 25px 80px rgba(108,58,237,0.25), 0 8px 32px rgba(0,0,0,0.4)',
+              border: '1px solid rgba(255,255,255,0.08)',
             }}
           >
             {/* ── Browser chrome ── */}
-            <div className="bg-[#1C1C2E] px-4 py-3 flex items-center gap-3 border-b border-white/[0.07]">
+            <div className="bg-[#1A1A2E] px-4 py-3 flex items-center gap-3 border-b border-white/[0.06]">
               <div className="flex gap-2 flex-shrink-0">
                 <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
                 <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
                 <div className="w-3 h-3 rounded-full bg-[#28C840]" />
               </div>
-              <div className="flex-1 bg-white/[0.06] rounded-md px-3 py-1 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-400/60 flex-shrink-0" />
-                <span className="text-[11px] font-mono text-white/35">app.cubico.tech/dashboard</span>
+              <div className="flex-1 bg-white/[0.06] rounded-lg px-3 py-1.5 flex items-center gap-2">
+                <svg className="w-3 h-3 text-emerald-400/60 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
+                <span className="text-[11px] font-mono text-white/40">lms.cubico.tech/dashboard</span>
               </div>
               <div className="hidden sm:flex gap-2 flex-shrink-0">
-                <div className="text-[10px] text-white/25 px-2 py-0.5 rounded bg-white/[0.05] border border-white/[0.06]">↑ Upload Data</div>
-                <div className="text-[10px] text-white/25 px-2 py-0.5 rounded bg-white/[0.05] border border-white/[0.06]">⊞ Generate Report</div>
+                <div className="text-[10px] text-white/30 px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06]">⬆ Upload</div>
+                <div className="text-[10px] text-white/30 px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06]">📊 Reports</div>
               </div>
             </div>
 
-            {/* ── Dashboard body ── */}
-            <div className="flex bg-[#F4F5F7] min-h-[340px]">
+            {/* ── Moodle LMS Dashboard body ── */}
+            <div className="flex bg-[#F7F8FA] min-h-[420px]">
 
-              {/* Sidebar */}
-              <div className="w-[180px] flex-shrink-0 bg-[#0F0F1E] flex flex-col py-4 hidden sm:flex">
+              {/* Sidebar — Moodle-inspired */}
+              <div className="w-[200px] flex-shrink-0 bg-[#0B0B1A] flex-col py-4 hidden sm:flex">
                 {/* Logo */}
-                <div className="flex items-center gap-2 px-4 mb-6">
-                  <div className="w-6 h-6 rounded-md bg-[#6C3AED] flex items-center justify-center text-white text-[10px] font-bold">C</div>
-                  <span className="text-white text-sm font-bold font-heading">Cubico</span>
+                <div className="flex items-center gap-2.5 px-4 mb-6">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#6C3AED] to-[#A855F7] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-purple-500/20">C</div>
+                  <div>
+                    <span className="text-white text-sm font-bold font-heading block leading-tight">Cubico LMS</span>
+                    <span className="text-[9px] text-white/30">Powered by Moodle</span>
+                  </div>
                 </div>
                 {/* Nav */}
                 {[
-                  { label: 'Dashboard',     active: true  },
-                  { label: 'Students',      active: false },
-                  { label: 'Courses',       active: false },
-                  { label: 'Attendance',    active: false },
-                  { label: 'Fee Management',active: false },
-                  { label: 'Reports',       active: false },
+                  { label: 'Dashboard',      icon: '📊', active: true  },
+                  { label: 'My Courses',     icon: '📚', active: false },
+                  { label: 'Participants',   icon: '👥', active: false },
+                  { label: 'Grades',         icon: '📝', active: false },
+                  { label: 'Calendar',       icon: '📅', active: false },
+                  { label: 'Messages',       icon: '💬', active: false },
+                  { label: 'Competencies',   icon: '🎯', active: false },
                 ].map(item => (
                   <div
                     key={item.label}
-                    className="flex items-center gap-2.5 px-4 py-2 mx-2 rounded-lg text-[11px] font-medium cursor-default"
+                    className="flex items-center gap-2.5 px-4 py-2.5 mx-2 rounded-xl text-[11px] font-medium cursor-default mb-0.5"
                     style={item.active
-                      ? { backgroundColor: 'rgba(108,58,237,0.2)', color: '#A78BFA', border: '1px solid rgba(108,58,237,0.25)' }
+                      ? { backgroundColor: 'rgba(108,58,237,0.2)', color: '#C4B5FD', border: '1px solid rgba(108,58,237,0.3)' }
                       : { color: 'rgba(255,255,255,0.35)' }}
                   >
-                    <span
-                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: item.active ? '#7C3AED' : 'rgba(255,255,255,0.15)' }}
-                    />
+                    <span className="text-[13px]">{item.icon}</span>
                     {item.label}
                   </div>
                 ))}
+                {/* Storage indicator */}
+                <div className="mt-auto mx-4 pt-4 border-t border-white/[0.06]">
+                  <div className="text-[9px] text-white/30 mb-1.5 flex justify-between">
+                    <span>Storage</span><span>67%</span>
+                  </div>
+                  <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
+                    <div className="h-full w-[67%] bg-gradient-to-r from-[#6C3AED] to-[#A855F7] rounded-full" />
+                  </div>
+                </div>
               </div>
 
               {/* Main content */}
               <div className="flex-1 flex flex-col min-w-0">
                 {/* Top bar */}
                 <div className="bg-white border-b border-gray-100 px-5 py-3 flex items-center justify-between">
-                  <span className="text-sm font-bold text-gray-700">Institution Overview</span>
-                  <div className="flex gap-2">
-                    {['This Month ▾', 'Export', '+ New'].map(btn => (
-                      <div key={btn} className="text-[10px] text-gray-400 px-2.5 py-1 rounded-md border border-gray-200 bg-white cursor-default hover:border-gray-300 transition-colors">{btn}</div>
-                    ))}
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-bold text-gray-800">Course Dashboard</span>
+                    <span className="text-[10px] bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full font-semibold">Spring 2026</span>
+                  </div>
+                  <div className="flex gap-2 items-center">
+                    <div className="text-[10px] text-gray-400 px-2.5 py-1 rounded-lg border border-gray-200 bg-white cursor-default">🔍 Search courses...</div>
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-[10px] text-white font-bold">AK</div>
                   </div>
                 </div>
 
-                {/* KPI row */}
-                <div className="grid grid-cols-3 gap-3 px-5 pt-4 pb-3">
+                {/* Welcome & quick stats */}
+                <div className="px-5 pt-4 pb-3">
+                  <div className="bg-gradient-to-r from-[#6C3AED] to-[#4338CA] rounded-2xl p-4 mb-4 flex items-center justify-between">
+                    <div>
+                      <div className="text-white/60 text-[10px] font-medium mb-0.5">Welcome back</div>
+                      <div className="text-white font-heading font-bold text-base">Admin Khan</div>
+                      <div className="text-white/50 text-[10px] mt-1">5 courses active · 12 assignments due</div>
+                    </div>
+                    <div className="hidden sm:flex gap-3">
+                      {[
+                        { label: 'Active Learners', value: '1,284', icon: '👤' },
+                        { label: 'Course Progress', value: '78%', icon: '📈' },
+                        { label: 'Avg. Grade', value: 'B+', icon: '⭐' },
+                      ].map(s => (
+                        <div key={s.label} className="bg-white/[0.12] rounded-xl px-3 py-2 text-center backdrop-blur-sm">
+                          <div className="text-[12px] mb-0.5">{s.icon}</div>
+                          <div className="text-white font-heading font-bold text-sm leading-none">{s.value}</div>
+                          <div className="text-white/40 text-[8px] mt-0.5">{s.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Course cards grid */}
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 px-5 pb-4">
                   {[
-                    { label: 'Total Students', value: '2,847', trend: '+12% vs last month', color: '#6C3AED', bg: '#F5F3FF' },
-                    { label: 'Fee Collected',  value: '₨4.2M',  trend: '+8% vs last month',  color: '#059669', bg: '#ECFDF5' },
-                    { label: 'Completion Rate',value: '94.2%', trend: '+2% this semester',  color: '#2563EB', bg: '#EFF6FF' },
-                  ].map(k => (
-                    <div key={k.label} className="bg-white rounded-xl p-3 border border-gray-100">
-                      <div className="text-[9px] text-gray-400 mb-1">{k.label}</div>
-                      <div className="font-heading font-bold text-lg leading-none mb-1" style={{ color: k.color }}>{k.value}</div>
-                      <div className="text-[9px] text-emerald-500 font-medium">{k.trend}</div>
+                    { name: 'Mathematics 101', students: 45, progress: 82, color: '#6C3AED', category: 'STEM' },
+                    { name: 'English Literature', students: 38, progress: 65, color: '#059669', category: 'Arts' },
+                    { name: 'Physics Lab', students: 32, progress: 91, color: '#2563EB', category: 'STEM' },
+                    { name: 'Islamic Studies', students: 52, progress: 74, color: '#D97706', category: 'Core' },
+                    { name: 'Computer Science', students: 41, progress: 88, color: '#E11D48', category: 'STEM' },
+                    { name: 'Arabic Language', students: 36, progress: 70, color: '#0891B2', category: 'Language' },
+                  ].map(course => (
+                    <div key={course.name} className="bg-white rounded-xl p-3 border border-gray-100 hover:shadow-md transition-shadow cursor-default group">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: course.color }} />
+                        <span className="text-[8px] font-bold uppercase tracking-wider" style={{ color: course.color }}>{course.category}</span>
+                      </div>
+                      <div className="text-[11px] font-bold text-gray-800 mb-1.5 leading-tight">{course.name}</div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[9px] text-gray-400">{course.students} students</span>
+                        <span className="text-[9px] font-bold" style={{ color: course.color }}>{course.progress}%</span>
+                      </div>
+                      <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full rounded-full transition-all duration-700" style={{ width: `${course.progress}%`, backgroundColor: course.color }} />
+                      </div>
                     </div>
                   ))}
-                </div>
-
-                {/* Chart area */}
-                <div className="flex-1 mx-5 mb-4 bg-[#0D0D1F] rounded-xl overflow-hidden">
-                  <div className="flex items-center justify-between px-4 pt-3 pb-2">
-                    <span className="text-[11px] font-semibold text-white/70">Enrollment Trend</span>
-                    <span className="text-[10px] text-white/30 border border-white/10 rounded px-2 py-0.5">Last 6 months ▾</span>
-                  </div>
-                  {/* SVG Line Chart */}
-                  <div className="px-4 pb-4">
-                    <svg viewBox="0 0 600 120" className="w-full" preserveAspectRatio="none">
-                      {/* Grid lines */}
-                      {[20,45,70,95].map(y => (
-                        <line key={y} x1="0" y1={y} x2="600" y2={y} stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>
-                      ))}
-                      {/* Y-axis labels */}
-                      {[['80k',8],['60k',33],['40k',58],['20k',83]].map(([l,y]) => (
-                        <text key={String(l)} x="590" y={Number(y)} fill="rgba(255,255,255,0.2)" fontSize="9" textAnchor="end">{l}</text>
-                      ))}
-                      {/* X-axis labels */}
-                      {[['Aug',50],['Sep',150],['Oct',250],['Nov',350],['Dec',450],['Jan',545]].map(([l,x]) => (
-                        <text key={String(l)} x={Number(x)} y="115" fill="rgba(255,255,255,0.2)" fontSize="9" textAnchor="middle">{l}</text>
-                      ))}
-                      {/* Area fill */}
-                      <path d="M0,95 C40,90 80,80 130,70 C180,60 210,55 260,45 C310,35 350,30 400,25 C440,20 480,18 550,12 L550,105 L0,105 Z"
-                        fill="url(#chartGrad)" opacity="0.3"/>
-                      {/* Line */}
-                      <path d="M0,95 C40,90 80,80 130,70 C180,60 210,55 260,45 C310,35 350,30 400,25 C440,20 480,18 550,12"
-                        stroke="#6C3AED" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
-                      {/* End dot */}
-                      <circle cx="550" cy="12" r="4" fill="#6C3AED"/>
-                      <circle cx="550" cy="12" r="7" fill="rgba(108,58,237,0.3)"/>
-                      <defs>
-                        <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#6C3AED"/>
-                          <stop offset="100%" stopColor="transparent"/>
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
                 </div>
               </div>
 
-              {/* Right panel */}
-              <div className="w-[200px] flex-shrink-0 bg-white border-l border-gray-100 py-4 px-3 hidden lg:flex flex-col gap-4">
-                {/* Processing Status */}
+              {/* Right panel — activity & timeline */}
+              <div className="w-[210px] flex-shrink-0 bg-white border-l border-gray-100 py-4 px-3.5 hidden lg:flex flex-col gap-4">
+                {/* Upcoming */}
                 <div>
-                  <div className="flex items-center gap-1.5 mb-2.5">
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Live Status</span>
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <span className="text-[13px]">📌</span>
+                    <span className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Upcoming</span>
                   </div>
                   {[
-                    { label: 'Students Online',  val: '142'    },
-                    { label: 'Active Sessions',  val: '38'     },
-                    { label: 'Pending Fees',     val: '₨62K'   },
-                    { label: 'Today Attendance', val: '94%'    },
-                  ].map(r => (
-                    <div key={r.label} className="flex justify-between items-center py-1 border-b border-gray-50 last:border-0">
-                      <span className="text-[10px] text-gray-400">{r.label}</span>
-                      <span className="text-[10px] font-bold text-gray-700">{r.val}</span>
+                    { text: 'Math Quiz — Grade 10', time: 'Today, 2:00 PM', color: '#6C3AED' },
+                    { text: 'Physics Lab Submission', time: 'Tomorrow', color: '#2563EB' },
+                    { text: 'Parent-Teacher Meeting', time: 'Mar 20', color: '#059669' },
+                  ].map((item, i) => (
+                    <div key={i} className="mb-2.5 last:mb-0 pl-3 border-l-2 transition-colors" style={{ borderColor: item.color + '40' }}>
+                      <div className="text-[10px] font-semibold text-gray-700 leading-snug">{item.text}</div>
+                      <div className="text-[9px] text-gray-400">{item.time}</div>
                     </div>
                   ))}
                 </div>
+
                 {/* Recent Activity */}
                 <div>
-                  <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-2.5">Activity</div>
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Live Feed</span>
+                  </div>
                   {[
-                    { text: '3 new enrollments today', color: '#6C3AED' },
-                    { text: 'Mid-term results uploaded', color: '#059669' },
-                    { text: '2 fee reminders sent', color: '#D97706' },
+                    { text: 'Sara submitted English essay', time: '2m ago', color: '#059669' },
+                    { text: 'New forum post in Physics', time: '8m ago', color: '#2563EB' },
+                    { text: 'Grade updated: Math 101', time: '15m ago', color: '#6C3AED' },
+                    { text: '3 new enrollments today', time: '1h ago', color: '#D97706' },
                   ].map((a, ai) => (
                     <div key={ai} className="flex items-start gap-2 mb-2 last:mb-0">
-                      <div className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ backgroundColor: a.color }} />
-                      <span className="text-[10px] text-gray-400 leading-snug">{a.text}</span>
+                      <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: a.color }} />
+                      <div>
+                        <span className="text-[10px] text-gray-600 leading-snug block">{a.text}</span>
+                        <span className="text-[8px] text-gray-300">{a.time}</span>
+                      </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Quick completion ring */}
+                <div className="bg-gray-50 rounded-xl p-3 text-center">
+                  <div className="relative w-14 h-14 mx-auto mb-2">
+                    <svg className="w-full h-full" style={{ transform: 'rotate(-90deg)' }} viewBox="0 0 56 56">
+                      <circle cx="28" cy="28" r="22" fill="none" stroke="#E5E7EB" strokeWidth="4" />
+                      <circle cx="28" cy="28" r="22" fill="none" stroke="#6C3AED" strokeWidth="4" strokeLinecap="round"
+                        strokeDasharray={String(2 * Math.PI * 22)} strokeDashoffset={String(2 * Math.PI * 22 * 0.22)} />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-[11px] font-heading font-bold text-gray-800">78%</span>
+                    </div>
+                  </div>
+                  <div className="text-[9px] text-gray-400 font-medium">Overall Completion</div>
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* ── Bottom fade: dashboard bleeds into next section ── */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-20"
-          style={{ background: 'linear-gradient(to bottom, transparent, #ffffff)' }}
-        />
+        {/* ── No bottom fade — dashboard overflows naturally ── */}
       </section>
 
       {/* ═══════════ FEATURE CARDS ═══════════ */}
-      <section className="py-20 bg-white relative -mt-16 z-10">
+      <section className="pt-40 pb-20 bg-white relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
