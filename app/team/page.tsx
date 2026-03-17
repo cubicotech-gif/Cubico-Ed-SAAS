@@ -20,8 +20,8 @@ const staggerContainer = {
 };
 
 const team = [
-  { name: 'Ali Raza', role: 'Founder & CEO', initials: 'AR', color: 'from-purple-500 to-blue-500' },
-  { name: 'Sarah Ahmed', role: 'Co-Founder & CTO', initials: 'SA', color: 'from-emerald-500 to-teal-500' },
+  { name: 'Rooh Ul Hasnain', role: 'Founder & CEO', initials: 'RH', color: 'from-[#D4711A] to-[#E88C32]' },
+  { name: 'Abdul Raffay Vohra', role: 'Co-Founder & CSO', initials: 'AV', color: 'from-[#B85E15] to-[#D4711A]' },
   { name: 'Hassan Khan', role: 'Lead Developer', initials: 'HK', color: 'from-orange-500 to-red-500' },
   { name: 'Ayesha Malik', role: 'Creative Director', initials: 'AM', color: 'from-pink-500 to-purple-500' },
   { name: 'Omar Farooq', role: 'Head of Animation', initials: 'OF', color: 'from-blue-500 to-indigo-500' },
