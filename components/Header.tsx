@@ -9,9 +9,23 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   {
+    name: 'Solutions',
+    href: '/solutions',
+    children: [
+      { name: 'Smart LMS', href: '/solutions/smart-lms' },
+      { name: 'Animation Studio', href: '/solutions/animation-studio' },
+      { name: 'School ERP', href: '/solutions/school-erp' },
+      { name: 'Web Development', href: '/solutions/web-development' },
+      { name: 'Mobile Apps', href: '/solutions/mobile-apps' },
+    ],
+  },
+  {
     name: 'Services',
     href: '/services',
     children: [
+      { name: 'Cloud Hosting', href: '/services/cloud-hosting' },
+      { name: 'Digital Marketing', href: '/services/digital-marketing' },
+      { name: 'Teacher Training', href: '/services/teacher-training' },
       { name: 'Pricing Plan', href: '/pricing' },
     ],
   },
