@@ -905,59 +905,166 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ═══════════ FEATURE CARDS ═══════════ */}
-      <section className="pt-20 pb-20 bg-white relative z-10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* ═══════════ WHAT IS CUBICO — Psychological Context Section ═══════════ */}
+      <section className="pt-24 pb-24 bg-white relative z-10 overflow-hidden">
+        {/* Subtle warm radial bg accent */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] pointer-events-none" style={{
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(232,140,50,0.04) 0%, transparent 70%)',
+        }} />
+
+        <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
+
+          {/* ── Section Header — emotional hook ── */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true, margin: '-80px' }}
             variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
+            className="text-center mb-8"
           >
-            {featureCards.map((card, i) => {
-              const fcAccents = ['#1E6B5A','#E76F51','#2563EB'];
-              const fcGrads = [
-                'linear-gradient(90deg,#1E6B5A,#2A9D8F)',
-                'linear-gradient(90deg,#E76F51,#F4A261)',
-                'linear-gradient(90deg,#2563EB,#60A5FA)',
-              ];
-              const fcLabels = ['Smart Learning','Content Studio','Operations Hub'];
-              const fcIconBg = ['bg-teal-50 text-teal-700','bg-orange-50 text-orange-600','bg-blue-50 text-blue-600'];
-              return (
-                <motion.div
-                  key={card.title}
-                  variants={fadeUp}
-                  custom={i}
-                  whileHover={{ y:-7, scale:1.01 }}
-                  transition={{ type:'spring', stiffness:280, damping:20 }}
-                  className="group cursor-pointer relative rounded-2xl bg-white border border-gray-100 p-8 overflow-hidden shadow-sm hover:shadow-2xl transition-shadow"
-                >
-                  {/* Gradient top bar */}
-                  <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl" style={{ background:fcGrads[i] }}/>
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl pointer-events-none"
-                    style={{ background:`radial-gradient(ellipse at 30% 0%,${fcAccents[i]}08 0%,transparent 65%)` }}/>
-                  {/* Category chip */}
-                  <div className="text-[10px] font-black tracking-[0.18em] uppercase mb-3" style={{ color:fcAccents[i] }}>
-                    {fcLabels[i]}
+            <motion.div variants={fadeUp} custom={0} className="mb-4">
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
+                Why Cubico
+              </span>
+            </motion.div>
+            <motion.h2
+              variants={fadeUp}
+              custom={1}
+              className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-5"
+            >
+              Schools don&apos;t need more tools.<br className="hidden sm:block" />
+              They need <span className="shimmer-text">one platform that works.</span>
+            </motion.h2>
+            <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Most institutions juggle disconnected systems — one for learning, another for admin,
+              another for content. Cubico replaces all of them with a single intelligent platform
+              built specifically for education.
+            </motion.p>
+          </motion.div>
+
+          {/* ── Social proof mini-strip ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-6 mb-14"
+          >
+            {[
+              { value: '760+', label: 'Institutions' },
+              { value: '85K+', label: 'Active Students' },
+              { value: '99.9%', label: 'Uptime' },
+              { value: '3', label: 'Countries' },
+            ].map(stat => (
+              <div key={stat.label} className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-gray-50 border border-gray-100">
+                <span className="text-sm font-bold text-gray-900">{stat.value}</span>
+                <span className="text-xs text-gray-400">{stat.label}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* ── Problem → Solution Cards ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-6 lg:gap-8"
+          >
+            {[
+              {
+                icon: BookOpen,
+                label: 'LEARN',
+                title: 'Smart LMS',
+                problem: 'Students lose interest in outdated, static course materials.',
+                solution: 'AI-powered learning paths with progress tracking, interactive courses, and real-time analytics that keep students engaged.',
+                accent: '#D4711A',
+                gradient: 'linear-gradient(135deg, #D4711A, #E88C32)',
+                iconBg: 'bg-orange-50',
+              },
+              {
+                icon: Film,
+                label: 'CREATE',
+                title: 'Animated Lessons',
+                problem: 'Teachers spend hours creating content that still doesn\'t land.',
+                solution: 'Professional 2D & 3D animated lessons in English, Arabic & Urdu — ready to deploy across any curriculum.',
+                accent: '#C0651A',
+                gradient: 'linear-gradient(135deg, #C0651A, #D4711A)',
+                iconBg: 'bg-amber-50',
+              },
+              {
+                icon: Monitor,
+                label: 'MANAGE',
+                title: 'School ERP',
+                problem: 'Admin staff drowns in spreadsheets and disconnected systems.',
+                solution: 'All-in-one operations — admissions, attendance, HR, finance, and reporting in a single dashboard.',
+                accent: '#8B4513',
+                gradient: 'linear-gradient(135deg, #8B4513, #B8651A)',
+                iconBg: 'bg-orange-50/70',
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={card.title}
+                variants={fadeUp}
+                custom={i}
+                whileHover={{ y: -6 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+                className="group relative rounded-2xl bg-white border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-default"
+              >
+                {/* Top accent bar */}
+                <div className="h-1" style={{ background: card.gradient }} />
+
+                <div className="p-7 lg:p-8">
+                  {/* Label + Icon row */}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-[10px] font-black tracking-[0.2em] uppercase" style={{ color: card.accent }}>
+                      {card.label}
+                    </span>
+                    <div className={`w-11 h-11 rounded-xl ${card.iconBg} flex items-center justify-center`}>
+                      <card.icon className="w-5 h-5" style={{ color: card.accent }} />
+                    </div>
                   </div>
-                  <motion.div
-                    whileHover={{ rotate:-5, scale:1.12 }}
-                    transition={{ type:'spring', stiffness:400, damping:15 }}
-                    className={`icon-box mb-5 ${fcIconBg[i]}`}>
-                    <card.icon className="w-6 h-6" />
-                  </motion.div>
-                  <h3 className="text-xl font-heading font-bold text-gray-900 mb-3 group-hover:transition-colors">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{card.desc}</p>
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all" style={{ color:fcAccents[i] }}>
-                    Learn more <ArrowRight className="w-4 h-4" />
+
+                  {/* Title */}
+                  <h3 className="text-xl font-heading font-bold text-gray-900 mb-4">{card.title}</h3>
+
+                  {/* Problem */}
+                  <div className="mb-4 pl-3 border-l-2 border-red-200/60">
+                    <p className="text-[13px] text-gray-400 leading-relaxed italic">
+                      &ldquo;{card.problem}&rdquo;
+                    </p>
+                  </div>
+
+                  {/* Solution */}
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6">
+                    {card.solution}
+                  </p>
+
+                  {/* CTA */}
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-200" style={{ color: card.accent }}>
+                    Explore {card.title} <ArrowRight className="w-4 h-4" />
                   </span>
-                </motion.div>
-              );
-            })}
+                </div>
+
+                {/* Hover glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
+                  style={{ background: `radial-gradient(ellipse at 30% 0%, ${card.accent}06 0%, transparent 65%)` }} />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* ── Bottom reinforcement line ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-14 text-center"
+          >
+            <p className="text-sm text-gray-400 max-w-lg mx-auto leading-relaxed">
+              Built for Pakistan, Saudi Arabia & Canada — supporting English, Arabic & Urdu curricula out of the box.
+            </p>
           </motion.div>
         </div>
       </section>
