@@ -397,78 +397,92 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* ═══════════ NAVIGATION — Static/Dynamic Hybrid Pill ═══════════ */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className={`pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-            scrolled
-              ? 'mt-3 mx-auto bg-[#0C1F1B]/92 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.35),0_0_0_1px_rgba(42,157,143,0.12)] px-4 py-2 rounded-[26px] max-w-fit'
-              : 'mt-0 w-full bg-[#041F1A]/60 backdrop-blur-xl px-6 py-3 rounded-none border-b border-white/[0.06]'
-          }`}
-        >
-          <div className={`flex items-center transition-all duration-700 ${scrolled ? 'gap-1' : 'gap-2 max-w-7xl mx-auto'}`}>
-            {/* Logo */}
-            <Link href="/" className={`flex items-center gap-2 rounded-full hover:bg-white/[0.06] transition-all duration-300 ${scrolled ? 'pl-2 pr-3 py-1.5' : 'pl-0 pr-4 py-2'}`}>
-              <div className={`rounded-xl bg-gradient-to-br from-[#1E6B5A] to-[#2A9D8F] flex items-center justify-center font-heading font-bold text-white shadow-lg shadow-teal-600/20 transition-all duration-300 ${scrolled ? 'w-7 h-7 text-xs' : 'w-9 h-9 text-sm'}`}>
-                C
-              </div>
-              <span className={`font-heading font-bold text-white hidden sm:inline transition-all duration-300 ${scrolled ? 'text-sm' : 'text-base'}`}>
-                Cubico<span className="text-teal-300">.tech</span>
-              </span>
-            </Link>
+      {/* ═══════════ NAVIGATION ═══════════ */}
+      <header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        {/* Outer wrapper — always full width, handles centering */}
+        <div className="flex justify-center px-4">
+          <motion.nav
+            initial={{ y: -30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="pointer-events-auto w-full"
+            style={{
+              maxWidth: scrolled ? '820px' : '100%',
+              marginTop: scrolled ? '12px' : '0px',
+              padding: scrolled ? '6px 16px' : '12px 24px',
+              borderRadius: scrolled ? '50px' : '0px',
+              background: scrolled
+                ? 'rgba(12,31,27,0.94)'
+                : 'rgba(4,31,26,0.55)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              boxShadow: scrolled
+                ? '0 8px 40px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(42,157,143,0.12)'
+                : '0 1px 0 rgba(255,255,255,0.06)',
+              transition: 'max-width 0.5s cubic-bezier(0.4,0,0.2,1), margin-top 0.5s cubic-bezier(0.4,0,0.2,1), padding 0.5s cubic-bezier(0.4,0,0.2,1), border-radius 0.5s cubic-bezier(0.4,0,0.2,1), background 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.5s cubic-bezier(0.4,0,0.2,1)',
+            }}
+          >
+            <div className="flex items-center gap-1 max-w-7xl mx-auto">
+              {/* Logo */}
+              <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#1E6B5A] to-[#2A9D8F] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-teal-600/20 flex-shrink-0">
+                  C
+                </div>
+                <span className="font-heading font-bold text-sm text-white hidden sm:inline whitespace-nowrap">
+                  Cubico<span className="text-teal-300">.tech</span>
+                </span>
+              </Link>
 
-            {/* Divider */}
-            <div className={`bg-white/[0.1] hidden lg:block transition-all duration-300 ${scrolled ? 'w-px h-5 mx-1' : 'w-px h-6 mx-3'}`} />
+              {/* Divider */}
+              <div className="w-px h-5 bg-white/[0.1] mx-2 hidden lg:block flex-shrink-0" />
 
-            {/* Desktop Nav — auto spacing */}
-            <nav className={`hidden lg:flex items-center transition-all duration-300 ${scrolled ? 'gap-0' : 'gap-1 flex-1'}`}>
-              {navLinks.map((link) => (
+              {/* Desktop Nav */}
+              <nav className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </nav>
+
+              {/* Divider */}
+              <div className="w-px h-5 bg-white/[0.1] mx-2 hidden lg:block flex-shrink-0" />
+
+              {/* CTA */}
+              <div className="hidden lg:flex items-center flex-shrink-0">
                 <a
-                  key={link.name}
-                  href={link.href}
-                  className={`font-medium text-white/60 hover:text-white hover:bg-white/[0.08] rounded-full transition-all duration-200 ${scrolled ? 'text-[13px] px-3 py-1.5' : 'text-sm px-3.5 py-2'}`}
+                  href="#contact"
+                  className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#1E6B5A] to-[#2A9D8F] hover:from-[#155C4E] hover:to-[#1E6B5A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(42,157,143,0.4)]"
                 >
-                  {link.name}
+                  Get Started
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </a>
-              ))}
-            </nav>
+              </div>
 
-            {/* Divider */}
-            <div className={`bg-white/[0.1] hidden lg:block transition-all duration-300 ${scrolled ? 'w-px h-5 mx-1' : 'w-px h-6 mx-3'}`} />
-
-            {/* CTA — education teal */}
-            <div className="hidden lg:flex items-center">
-              <a
-                href="#contact"
-                className={`inline-flex items-center gap-1.5 bg-gradient-to-r from-[#1E6B5A] to-[#2A9D8F] hover:from-[#155C4E] hover:to-[#1E6B5A] text-white font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(42,157,143,0.4)] ${scrolled ? 'text-[13px] px-5 py-2' : 'text-sm px-6 py-2.5'}`}
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
               >
-                Get Started
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-1"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </motion.div>
+          </motion.nav>
+        </div>
 
         {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              className="pointer-events-auto fixed top-[68px] left-4 right-4 bg-[#0C1F1B]/95 backdrop-blur-xl rounded-2xl border border-teal-500/[0.12] shadow-2xl overflow-hidden"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="pointer-events-auto mx-4 mt-2 bg-[#0C1F1B]/95 backdrop-blur-xl rounded-2xl border border-teal-500/[0.12] shadow-2xl overflow-hidden"
             >
               <div className="px-5 py-5 space-y-1">
                 {navLinks.map((link) => (
@@ -476,7 +490,7 @@ export default function HomePage() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-all px-4 py-3 rounded-xl"
+                    className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
                   >
                     {link.name}
                   </a>
