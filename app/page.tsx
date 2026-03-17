@@ -614,216 +614,275 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
 
-        {/* ═══ ENHANCED MOODLE LMS DASHBOARD — bigger, polished, overflows ═══ */}
+        {/* ═══ HORIZONTAL SCROLL NARRATIVE — 4 Mini Browser Screens ═══ */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative z-10 flex justify-center px-3 sm:px-5 lg:px-8 mt-2 mb-[-160px]"
+          className="relative z-10 w-full mt-4 mb-[-140px] px-4"
         >
-          {/* ── Glow behind the dashboard ── */}
+          {/* ── Glow behind ── */}
           <div className="absolute -inset-10 pointer-events-none" style={{
-            background: 'radial-gradient(ellipse 60% 40% at 50% 20%, rgba(232,140,50,0.12) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(232,140,50,0.10) 0%, transparent 70%)',
             filter: 'blur(40px)',
           }} />
 
-          <div
-            className="relative w-full max-w-[1140px] rounded-2xl overflow-hidden"
-            style={{
-              boxShadow: '0 30px 100px rgba(10,8,6,0.5), 0 10px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(232,140,50,0.1)',
-            }}
-          >
-            {/* ── Browser chrome ── */}
-            <div className="bg-[#141210] px-4 py-2.5 flex items-center gap-3 border-b border-white/[0.06]">
-              <div className="flex gap-2 flex-shrink-0">
-                <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
-                <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
-                <div className="w-3 h-3 rounded-full bg-[#28C840]" />
+          {/* ── Horizontal card strip ── */}
+          <div className="relative flex items-center justify-center gap-5 lg:gap-7 overflow-hidden py-4 max-w-[1200px] mx-auto">
+
+            {/* ────── SCREEN 1: Login ────── */}
+            <div className="flex-shrink-0 w-[260px] rounded-2xl overflow-hidden opacity-75 scale-[0.94] translate-y-2"
+              style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04)' }}>
+              {/* Browser chrome */}
+              <div className="bg-[#141210] px-3 py-2 flex items-center gap-2 border-b border-white/[0.06]">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
+                  <div className="w-2 h-2 rounded-full bg-[#FEBC2E]" />
+                  <div className="w-2 h-2 rounded-full bg-[#28C840]" />
+                </div>
+                <div className="flex-1 bg-white/[0.05] rounded px-2 py-0.5">
+                  <span className="text-[8px] font-mono text-white/30">lms.cubico.tech/login</span>
+                </div>
               </div>
-              <div className="flex-1 bg-white/[0.05] rounded-lg px-3 py-1.5 flex items-center gap-2">
-                <svg className="w-3 h-3 text-teal-400/60 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
-                <span className="text-[11px] font-mono text-white/35">lms.cubico.tech/dashboard</span>
-              </div>
-              <div className="hidden sm:flex gap-2 flex-shrink-0">
-                <div className="text-[10px] text-white/25 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">⬆ Upload</div>
-                <div className="text-[10px] text-white/25 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">📊 Reports</div>
+              {/* Login body */}
+              <div className="bg-[#0e0e10] p-5 flex flex-col items-center min-h-[300px] justify-center">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center text-white font-bold text-sm mb-2 shadow-lg shadow-orange-600/25">C</div>
+                <span className="text-white text-xs font-bold mb-0.5">Cubico LMS</span>
+                <span className="text-white/25 text-[8px] mb-5">Sign in to your institution</span>
+                <div className="w-full space-y-2.5 mb-4">
+                  <div className="bg-white/[0.06] border border-white/[0.08] rounded-lg px-3 py-2">
+                    <span className="text-[9px] text-white/25">Email address</span>
+                  </div>
+                  <div className="bg-white/[0.06] border border-white/[0.08] rounded-lg px-3 py-2">
+                    <span className="text-[9px] text-white/25">Password</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gradient-to-r from-[#1E6B5A] to-[#28A87A] text-white text-[10px] font-bold py-2 rounded-lg text-center">
+                  Sign In
+                </div>
+                <span className="text-[8px] text-white/20 mt-3">Forgot password?</span>
               </div>
             </div>
 
-            {/* ── Dashboard body ── */}
-            <div className="flex bg-[#F5FAF8] min-h-[460px]">
-
-              {/* Sidebar — education themed */}
-              <div className="w-[210px] flex-shrink-0 bg-[#041F1A] flex-col py-4 hidden sm:flex">
-                {/* Logo */}
-                <div className="flex items-center gap-2.5 px-4 mb-6">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#1E6B5A] to-[#2A9D8F] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-teal-600/25">C</div>
-                  <div>
-                    <span className="text-white text-sm font-bold font-heading block leading-tight">Cubico LMS</span>
-                    <span className="text-[9px] text-teal-400/40">Powered by Moodle</span>
-                  </div>
+            {/* ────── SCREEN 2: Dashboard (ACTIVE/CENTER) ────── */}
+            <div className="flex-shrink-0 w-[380px] lg:w-[440px] rounded-2xl overflow-hidden scale-[1.08] relative z-10"
+              style={{
+                boxShadow: '0 30px 100px rgba(0,0,0,0.35), 0 0 0 1.5px rgba(59,130,246,0.35), 0 0 60px rgba(59,130,246,0.08)',
+              }}>
+              {/* Browser chrome */}
+              <div className="bg-[#141210] px-3 py-2 flex items-center gap-2 border-b border-white/[0.06]">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
+                  <div className="w-2 h-2 rounded-full bg-[#FEBC2E]" />
+                  <div className="w-2 h-2 rounded-full bg-[#28C840]" />
                 </div>
-                {/* Nav */}
-                {[
-                  { label: 'Dashboard',      icon: '📊', active: true  },
-                  { label: 'My Courses',     icon: '📚', active: false },
-                  { label: 'Participants',   icon: '👥', active: false },
-                  { label: 'Grades',         icon: '📝', active: false },
-                  { label: 'Calendar',       icon: '📅', active: false },
-                  { label: 'Messages',       icon: '💬', active: false },
-                  { label: 'Competencies',   icon: '🎯', active: false },
-                  { label: 'Settings',       icon: '⚙️', active: false },
-                ].map(item => (
-                  <div
-                    key={item.label}
-                    className="flex items-center gap-2.5 px-4 py-2.5 mx-2 rounded-xl text-[11px] font-medium cursor-default mb-0.5"
-                    style={item.active
-                      ? { backgroundColor: 'rgba(42,157,143,0.18)', color: '#5ABFB3', border: '1px solid rgba(42,157,143,0.25)' }
-                      : { color: 'rgba(255,255,255,0.30)' }}
-                  >
-                    <span className="text-[13px]">{item.icon}</span>
-                    {item.label}
+                <div className="flex-1 bg-white/[0.05] rounded px-2 py-0.5 flex items-center gap-1.5">
+                  <svg className="w-2.5 h-2.5 text-blue-400/60 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
+                  <span className="text-[8px] font-mono text-white/35">lms.cubico.tech/dashboard</span>
+                </div>
+              </div>
+              {/* Dashboard body */}
+              <div className="flex bg-[#F6F7F9] min-h-[360px]">
+                {/* Sidebar */}
+                <div className="w-[110px] flex-shrink-0 bg-[#0a1a14] flex-col py-3 hidden sm:flex">
+                  <div className="flex items-center gap-1.5 px-3 mb-4">
+                    <div className="w-5 h-5 rounded-md bg-gradient-to-br from-[#1E6B5A] to-[#2A9D8F] flex items-center justify-center text-[8px] text-white font-bold">C</div>
+                    <span className="text-[8px] text-white font-bold">Cubico</span>
                   </div>
-                ))}
-                {/* Storage indicator */}
-                <div className="mt-auto mx-4 pt-4 border-t border-white/[0.06]">
-                  <div className="text-[9px] text-white/25 mb-1.5 flex justify-between">
-                    <span>Storage</span><span>67%</span>
+                  {[
+                    { l: 'Dashboard', active: true },
+                    { l: 'Courses' },
+                    { l: 'Students' },
+                    { l: 'Grades' },
+                    { l: 'Calendar' },
+                    { l: 'Messages' },
+                    { l: 'Settings' },
+                  ].map(n => (
+                    <div key={n.l} className={`mx-2 px-2 py-1.5 rounded-md text-[8px] font-medium mb-0.5 ${
+                      n.active ? 'bg-white/[0.1] text-emerald-300' : 'text-white/25'
+                    }`}>{n.l}</div>
+                  ))}
+                </div>
+                {/* Main */}
+                <div className="flex-1 flex flex-col min-w-0">
+                  {/* Welcome banner */}
+                  <div className="m-3 bg-gradient-to-r from-[#0E4538] via-[#1E6B5A] to-[#2A9D8F] rounded-xl p-3 relative overflow-hidden">
+                    <div className="absolute -right-4 -top-4 w-20 h-20 rounded-full bg-white/[0.04]" />
+                    <div className="absolute -right-1 -bottom-6 w-14 h-14 rounded-full bg-white/[0.03]" />
+                    <div className="relative flex items-center justify-between">
+                      <div>
+                        <div className="text-emerald-200/50 text-[8px] font-medium">Welcome back</div>
+                        <div className="text-white font-bold text-xs">Admin Khan</div>
+                      </div>
+                      <div className="flex gap-2">
+                        {[
+                          { v: '1,284', l: 'Learners' },
+                          { v: '78%', l: 'Progress' },
+                          { v: 'B+', l: 'Avg Grade' },
+                        ].map(s => (
+                          <div key={s.l} className="bg-white/[0.10] rounded-lg px-2 py-1.5 text-center border border-white/[0.05]">
+                            <div className="text-white font-bold text-[10px] leading-none">{s.v}</div>
+                            <div className="text-white/30 text-[6px] mt-0.5">{s.l}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-                    <div className="h-full w-[67%] bg-gradient-to-r from-[#1E6B5A] to-[#2A9D8F] rounded-full" />
+                  {/* 3×2 Course grid */}
+                  <div className="grid grid-cols-3 gap-2 px-3 pb-3">
+                    {[
+                      { name: 'Mathematics 101', students: 45, progress: 82, color: '#1E6B5A' },
+                      { name: 'English Literature', students: 38, progress: 65, color: '#E76F51' },
+                      { name: 'Physics Lab', students: 32, progress: 91, color: '#2563EB' },
+                      { name: 'Islamic Studies', students: 52, progress: 74, color: '#D97706' },
+                      { name: 'Computer Science', students: 41, progress: 88, color: '#2A9D8F' },
+                      { name: 'Arabic Language', students: 36, progress: 70, color: '#7C3AED' },
+                    ].map(c => (
+                      <div key={c.name} className="bg-white rounded-lg p-2 border border-gray-100">
+                        <div className="flex items-center gap-1 mb-1">
+                          <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: c.color }} />
+                          <span className="text-[7px] font-bold text-gray-800 truncate">{c.name}</span>
+                        </div>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[6px] text-gray-400">{c.students} students</span>
+                          <span className="text-[7px] font-bold" style={{ color: c.color }}>{c.progress}%</span>
+                        </div>
+                        <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
+                          <div className="h-full rounded-full" style={{ width: `${c.progress}%`, backgroundColor: c.color, opacity: 0.8 }} />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* Main content */}
-              <div className="flex-1 flex flex-col min-w-0">
-                {/* Top bar */}
-                <div className="bg-white border-b border-gray-100 px-5 py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-bold text-gray-800">Course Dashboard</span>
-                    <span className="text-[10px] bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full font-semibold">Spring 2026</span>
-                  </div>
-                  <div className="flex gap-2 items-center">
-                    <div className="text-[10px] text-gray-400 px-2.5 py-1 rounded-lg border border-gray-200 bg-white cursor-default">🔍 Search courses...</div>
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-[10px] text-white font-bold">AK</div>
+            {/* ────── SCREEN 3: Course View ────── */}
+            <div className="flex-shrink-0 w-[260px] rounded-2xl overflow-hidden opacity-75 scale-[0.94] translate-y-2"
+              style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04)' }}>
+              {/* Browser chrome */}
+              <div className="bg-[#141210] px-3 py-2 flex items-center gap-2 border-b border-white/[0.06]">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
+                  <div className="w-2 h-2 rounded-full bg-[#FEBC2E]" />
+                  <div className="w-2 h-2 rounded-full bg-[#28C840]" />
+                </div>
+                <div className="flex-1 bg-white/[0.05] rounded px-2 py-0.5">
+                  <span className="text-[8px] font-mono text-white/30">lms.cubico.tech/course/math-101</span>
+                </div>
+              </div>
+              {/* Course body */}
+              <div className="bg-[#F6F7F9] min-h-[300px]">
+                {/* Course header */}
+                <div className="bg-gradient-to-r from-[#0E4538] to-[#1E6B5A] p-4">
+                  <div className="text-[8px] text-emerald-300/50 font-medium mb-0.5">STEM · Mathematics</div>
+                  <div className="text-white font-bold text-sm mb-2">Mathematics 101</div>
+                  {/* Progress bar */}
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1 h-2 bg-white/[0.12] rounded-full overflow-hidden">
+                      <div className="h-full w-[65%] bg-gradient-to-r from-emerald-300 to-emerald-400 rounded-full" />
+                    </div>
+                    <span className="text-[9px] text-emerald-200 font-bold">65%</span>
                   </div>
                 </div>
-
-                {/* Welcome banner */}
-                <div className="px-5 pt-4 pb-3">
-                  <div className="bg-gradient-to-r from-[#0E4538] via-[#1E6B5A] to-[#2A9D8F] rounded-2xl p-4 mb-4 flex items-center justify-between relative overflow-hidden">
-                    {/* Decorative circles */}
-                    <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/[0.04]" />
-                    <div className="absolute -right-2 -bottom-8 w-20 h-20 rounded-full bg-white/[0.03]" />
-                    <div className="relative">
-                      <div className="text-teal-200/60 text-[10px] font-medium mb-0.5">Welcome back</div>
-                      <div className="text-white font-heading font-bold text-base">Admin Khan</div>
-                      <div className="text-teal-200/40 text-[10px] mt-1">5 courses active · 12 assignments due</div>
-                    </div>
-                    <div className="hidden sm:flex gap-3 relative">
-                      {[
-                        { label: 'Active Learners', value: '1,284', icon: '👤' },
-                        { label: 'Course Progress', value: '78%', icon: '📈' },
-                        { label: 'Avg. Grade', value: 'B+', icon: '⭐' },
-                      ].map(s => (
-                        <div key={s.label} className="bg-white/[0.10] rounded-xl px-3 py-2 text-center backdrop-blur-sm border border-white/[0.06]">
-                          <div className="text-[12px] mb-0.5">{s.icon}</div>
-                          <div className="text-white font-heading font-bold text-sm leading-none">{s.value}</div>
-                          <div className="text-white/35 text-[8px] mt-0.5">{s.label}</div>
+                {/* Lesson list */}
+                <div className="p-3 space-y-1.5">
+                  {[
+                    { name: 'Intro to Algebra', done: true },
+                    { name: 'Linear Equations', done: true },
+                    { name: 'Quadratic Functions', done: true },
+                    { name: 'Polynomials', done: false, current: true },
+                    { name: 'Trigonometry Basics', done: false },
+                    { name: 'Statistics & Probability', done: false },
+                    { name: 'Calculus Preview', done: false },
+                  ].map((lesson, i) => (
+                    <div key={i} className={`flex items-center gap-2 px-2.5 py-2 rounded-lg text-[9px] ${
+                      lesson.current ? 'bg-emerald-50 border border-emerald-200' : 'bg-white border border-gray-100'
+                    }`}>
+                      {lesson.done ? (
+                        <div className="w-3.5 h-3.5 rounded-full bg-emerald-500 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/></svg>
                         </div>
+                      ) : (
+                        <div className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${lesson.current ? 'border-emerald-400 bg-emerald-100' : 'border-gray-200'}`} />
+                      )}
+                      <span className={`font-medium ${lesson.done ? 'text-gray-400 line-through' : lesson.current ? 'text-emerald-700' : 'text-gray-600'}`}>{lesson.name}</span>
+                      {lesson.current && <span className="ml-auto text-[7px] bg-emerald-500 text-white px-1.5 py-0.5 rounded font-bold">CURRENT</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ────── SCREEN 4: Grades ────── */}
+            <div className="flex-shrink-0 w-[260px] rounded-2xl overflow-hidden opacity-50 scale-[0.90] translate-y-3"
+              style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.03)' }}>
+              {/* Browser chrome */}
+              <div className="bg-[#141210] px-3 py-2 flex items-center gap-2 border-b border-white/[0.06]">
+                <div className="flex gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
+                  <div className="w-2 h-2 rounded-full bg-[#FEBC2E]" />
+                  <div className="w-2 h-2 rounded-full bg-[#28C840]" />
+                </div>
+                <div className="flex-1 bg-white/[0.05] rounded px-2 py-0.5">
+                  <span className="text-[8px] font-mono text-white/30">lms.cubico.tech/grades</span>
+                </div>
+              </div>
+              {/* Grades body */}
+              <div className="bg-[#F6F7F9] min-h-[300px] p-3">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[10px] font-bold text-gray-700">Grade Report</span>
+                  <span className="text-[7px] bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-semibold">Spring 2026</span>
+                </div>
+                {/* Table */}
+                <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
+                  {/* Header */}
+                  <div className="grid grid-cols-4 gap-px bg-gray-50 border-b border-gray-100 px-2 py-1.5">
+                    {['Student', 'Math', 'English', 'Science'].map(h => (
+                      <span key={h} className="text-[7px] font-bold text-gray-400 uppercase tracking-wider">{h}</span>
+                    ))}
+                  </div>
+                  {/* Rows */}
+                  {[
+                    { name: 'Sara Ahmed', math: 'A', eng: 'A-', sci: 'B+', colors: ['#059669','#059669','#2563EB'] },
+                    { name: 'Omar Khan', math: 'B+', eng: 'A', sci: 'A-', colors: ['#2563EB','#059669','#059669'] },
+                    { name: 'Aisha Ali', math: 'A-', eng: 'B', sci: 'A', colors: ['#059669','#D97706','#059669'] },
+                    { name: 'Hassan M.', math: 'B', eng: 'B+', sci: 'B-', colors: ['#D97706','#2563EB','#D97706'] },
+                    { name: 'Fatima Z.', math: 'A+', eng: 'A', sci: 'A+', colors: ['#059669','#059669','#059669'] },
+                    { name: 'Yusuf R.', math: 'C+', eng: 'B-', sci: 'B', colors: ['#E76F51','#D97706','#D97706'] },
+                    { name: 'Mariam K.', math: 'A', eng: 'A-', sci: 'B+', colors: ['#059669','#059669','#2563EB'] },
+                  ].map((row, ri) => (
+                    <div key={ri} className={`grid grid-cols-4 gap-px px-2 py-1.5 items-center ${ri % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'} border-b border-gray-50 last:border-0`}>
+                      <span className="text-[8px] font-medium text-gray-700 truncate">{row.name}</span>
+                      {[row.math, row.eng, row.sci].map((grade, gi) => (
+                        <span key={gi} className="text-[8px] font-bold px-1.5 py-0.5 rounded text-center w-fit" style={{
+                          color: row.colors[gi],
+                          backgroundColor: row.colors[gi] + '12',
+                        }}>{grade}</span>
                       ))}
                     </div>
-                  </div>
-                </div>
-
-                {/* Course cards grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 px-5 pb-4">
-                  {[
-                    { name: 'Mathematics 101', students: 45, progress: 82, color: '#1E6B5A', category: 'STEM' },
-                    { name: 'English Literature', students: 38, progress: 65, color: '#E76F51', category: 'Arts' },
-                    { name: 'Physics Lab', students: 32, progress: 91, color: '#2563EB', category: 'STEM' },
-                    { name: 'Islamic Studies', students: 52, progress: 74, color: '#D97706', category: 'Core' },
-                    { name: 'Computer Science', students: 41, progress: 88, color: '#2A9D8F', category: 'STEM' },
-                    { name: 'Arabic Language', students: 36, progress: 70, color: '#7C3AED', category: 'Language' },
-                  ].map(course => (
-                    <div key={course.name} className="bg-white rounded-xl p-3.5 border border-gray-100/80 hover:shadow-lg hover:border-gray-200 transition-all duration-200 cursor-default group">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: course.color }} />
-                        <span className="text-[8px] font-bold uppercase tracking-wider" style={{ color: course.color }}>{course.category}</span>
-                      </div>
-                      <div className="text-[11px] font-bold text-gray-800 mb-2 leading-tight">{course.name}</div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[9px] text-gray-400">{course.students} students</span>
-                        <span className="text-[9px] font-bold" style={{ color: course.color }}>{course.progress}%</span>
-                      </div>
-                      <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full rounded-full transition-all duration-700" style={{ width: `${course.progress}%`, backgroundColor: course.color, opacity: 0.85 }} />
-                      </div>
-                    </div>
                   ))}
                 </div>
-              </div>
-
-              {/* Right panel — activity & timeline */}
-              <div className="w-[220px] flex-shrink-0 bg-white border-l border-gray-100 py-4 px-3.5 hidden lg:flex flex-col gap-4">
-                {/* Upcoming */}
-                <div>
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <span className="text-[13px]">📌</span>
-                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Upcoming</span>
-                  </div>
+                {/* Summary */}
+                <div className="mt-2 flex gap-2">
                   {[
-                    { text: 'Math Quiz — Grade 10', time: 'Today, 2:00 PM', color: '#1E6B5A' },
-                    { text: 'Physics Lab Submission', time: 'Tomorrow', color: '#2563EB' },
-                    { text: 'Parent-Teacher Meeting', time: 'Mar 20', color: '#E76F51' },
-                  ].map((item, i) => (
-                    <div key={i} className="mb-3 last:mb-0 pl-3 border-l-2 transition-colors" style={{ borderColor: item.color + '35' }}>
-                      <div className="text-[10px] font-semibold text-gray-700 leading-snug">{item.text}</div>
-                      <div className="text-[9px] text-gray-400">{item.time}</div>
+                    { label: 'Class Avg', value: 'B+', color: '#2563EB' },
+                    { label: 'Top Perf.', value: '86%', color: '#059669' },
+                  ].map(s => (
+                    <div key={s.label} className="flex-1 bg-white rounded-lg p-2 border border-gray-100 text-center">
+                      <div className="text-[10px] font-bold" style={{ color: s.color }}>{s.value}</div>
+                      <div className="text-[6px] text-gray-400">{s.label}</div>
                     </div>
                   ))}
-                </div>
-
-                {/* Live Feed */}
-                <div>
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Live Feed</span>
-                  </div>
-                  {[
-                    { text: 'Sara submitted English essay', time: '2m ago', color: '#059669' },
-                    { text: 'New forum post in Physics', time: '8m ago', color: '#2563EB' },
-                    { text: 'Grade updated: Math 101', time: '15m ago', color: '#1E6B5A' },
-                    { text: '3 new enrollments today', time: '1h ago', color: '#D97706' },
-                  ].map((a, ai) => (
-                    <div key={ai} className="flex items-start gap-2 mb-2.5 last:mb-0">
-                      <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: a.color }} />
-                      <div>
-                        <span className="text-[10px] text-gray-600 leading-snug block">{a.text}</span>
-                        <span className="text-[8px] text-gray-300">{a.time}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Completion ring */}
-                <div className="bg-[#F5FAF8] rounded-xl p-3 text-center mt-auto">
-                  <div className="relative w-16 h-16 mx-auto mb-2">
-                    <svg className="w-full h-full" style={{ transform: 'rotate(-90deg)' }} viewBox="0 0 64 64">
-                      <circle cx="32" cy="32" r="26" fill="none" stroke="#E5E7EB" strokeWidth="4" />
-                      <circle cx="32" cy="32" r="26" fill="none" stroke="#2A9D8F" strokeWidth="4" strokeLinecap="round"
-                        strokeDasharray={String(2 * Math.PI * 26)} strokeDashoffset={String(2 * Math.PI * 26 * 0.22)} />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-xs font-heading font-bold text-gray-800">78%</span>
-                    </div>
-                  </div>
-                  <div className="text-[9px] text-gray-400 font-medium">Overall Completion</div>
                 </div>
               </div>
             </div>
+
           </div>
+
+          {/* ── Edge fade masks ── */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/40 to-transparent z-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/40 to-transparent z-20" />
         </motion.div>
       </section>
 
