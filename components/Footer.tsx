@@ -101,10 +101,16 @@ export default function Footer() {
             <div>
               <h4 className="font-heading font-bold text-lg mb-6">Solutions</h4>
               <ul className="space-y-3">
-                {['Smart LMS', 'Animation Studio', 'School ERP', 'Web Development', 'Mobile Apps'].map((link) => (
-                  <li key={link}>
-                    <Link href="/services" className="text-white/50 hover:text-white text-sm transition-colors">
-                      {link}
+                {[
+                  { name: 'Smart LMS', href: '/solutions/smart-lms' },
+                  { name: 'Animation Studio', href: '/solutions/animation-studio' },
+                  { name: 'School ERP', href: '/solutions/school-erp' },
+                  { name: 'Web Development', href: '/solutions/web-development' },
+                  { name: 'Mobile Apps', href: '/solutions/mobile-apps' },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
+                      {link.name}
                     </Link>
                   </li>
                 ))}
@@ -112,13 +118,13 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Company</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">Services</h4>
               <ul className="space-y-3">
                 {[
+                  { name: 'Cloud Hosting', href: '/services/cloud-hosting' },
+                  { name: 'Digital Marketing', href: '/services/digital-marketing' },
+                  { name: 'Teacher Training', href: '/services/teacher-training' },
                   { name: 'About Us', href: '/about' },
-                  { name: 'Our Team', href: '/team' },
-                  { name: 'Blog', href: '/blog' },
-                  { name: 'FAQ', href: '/faq' },
                   { name: 'Contact Us', href: '/contact' },
                 ].map((link) => (
                   <li key={link.name}>
