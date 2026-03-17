@@ -212,7 +212,7 @@ const solutions = [
     icon: Layout,
     painPoint: 'Still running your school on Excel sheets and WhatsApp groups?',
     metric: '47 hrs', metricLabel: 'saved per staff member, per month',
-    accentHex: '#6C3AED', accentLight: '#EDE9FE',
+    accentHex: '#1E6B5A', accentLight: '#E6F5F0',
     demoUrl: 'app.cubico.tech/manage',
     features: [
       { icon: Users,    title: 'Enrollment & Admissions', desc: 'Full student lifecycle from inquiry to graduation.'   },
@@ -318,7 +318,8 @@ function StatCounter({ value, suffix, label, color = '#818CF8' }: { value: numbe
    ═══════════════════════════════════════════ */
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -336,8 +337,17 @@ export default function HomePage() {
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const y = window.scrollY;
+      // Hide when scrolling down past 80px, show when scrolling up
+      if (y > lastScrollY.current && y > 80) {
+        setNavHidden(true);
+      } else {
+        setNavHidden(false);
+      }
+      lastScrollY.current = y;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -390,46 +400,54 @@ export default function HomePage() {
         .animate-glow-breath  { animation:glow-breath 4.5s ease-in-out infinite; }
         .animate-spin-slow    { animation:spin-slow 22s linear infinite; }
         .shimmer-text {
-          background:linear-gradient(90deg,#6C3AED 0%,#818CF8 30%,#C4B5FD 50%,#818CF8 70%,#6C3AED 100%);
+          background:linear-gradient(90deg,#D4711A 0%,#E88C32 30%,#F4A94D 50%,#E88C32 70%,#D4711A 100%);
           background-size:200% auto; -webkit-background-clip:text;
           -webkit-text-fill-color:transparent; background-clip:text;
           animation:shimmer-slide 4s linear infinite;
         }
       `}</style>
 
-      {/* ═══════════ NAVIGATION — iPhone Dynamic Island Pill ═══════════ */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
-        <motion.div
-          initial={{ y: -20, opacity: 0 }}
+      {/* ═══════════ NAVIGATION — Always pill, hides on scroll down ═══════════ */}
+      <header
+        className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center px-4"
+        style={{
+          transform: navHidden ? 'translateY(-120%)' : 'translateY(0)',
+          transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+        }}
+      >
+        <motion.nav
+          initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className={`pointer-events-auto mt-4 transition-all duration-500 ${
-            scrolled
-              ? 'bg-[#0a0a0a]/90 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.4)] px-3 py-1.5 rounded-[28px] border border-white/[0.08]'
-              : 'bg-[#0a0a0a]/70 backdrop-blur-xl px-3 py-1.5 rounded-[28px] border border-white/[0.12]'
-          }`}
+          transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="pointer-events-auto mt-3 px-3 sm:px-5 py-2 rounded-full"
+          style={{
+            background: 'rgba(18,18,20,0.88)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(232,140,50,0.1)',
+          }}
         >
           <div className="flex items-center gap-1">
-            {/* Logo — compact pill left */}
-            <Link href="/" className="flex items-center gap-2 pl-2 pr-3 py-2 rounded-full hover:bg-white/[0.06] transition-colors">
-              <div className="w-7 h-7 rounded-lg bg-[#6C3AED] flex items-center justify-center font-heading font-bold text-xs text-white">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-orange-600/25 flex-shrink-0">
                 C
               </div>
-              <span className="font-heading font-bold text-sm text-white hidden sm:inline">
-                Cubico<span className="text-purple-400">.tech</span>
+              <span className="font-heading font-bold text-sm text-white hidden sm:inline whitespace-nowrap">
+                Cubico<span className="text-orange-300">.tech</span>
               </span>
             </Link>
 
             {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1 hidden lg:block" />
+            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
 
-            {/* Desktop Nav — inside the pill */}
+            {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-0.5">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-[13px] font-medium text-white/60 hover:text-white hover:bg-white/[0.08] px-3 py-2 rounded-full transition-all duration-200"
+                  className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
                 >
                   {link.name}
                 </a>
@@ -437,13 +455,13 @@ export default function HomePage() {
             </nav>
 
             {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1 hidden lg:block" />
+            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
 
-            {/* CTA — glowing pill right */}
-            <div className="hidden lg:flex items-center">
+            {/* CTA */}
+            <div className="hidden lg:flex items-center flex-shrink-0">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-1.5 bg-[#6C3AED] hover:bg-[#5B2ED0] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(108,58,237,0.5)]"
+                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
               >
                 Get Started
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -453,185 +471,196 @@ export default function HomePage() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-1"
+              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
-        </motion.div>
-
-        {/* Mobile Menu — drops from pill */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              className="pointer-events-auto fixed top-[76px] left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-xl rounded-2xl border border-white/[0.1] shadow-2xl overflow-hidden"
-            >
-              <div className="px-5 py-5 space-y-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-all px-4 py-3 rounded-xl"
-                  >
-                    {link.name}
-                  </a>
-                ))}
-                <div className="pt-3 border-t border-white/[0.08]">
-                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-[#6C3AED] text-white text-sm font-semibold w-full py-3 rounded-xl hover:bg-[#5B2ED0] transition-colors">
-                    Get Started
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </motion.nav>
       </header>
+
+      {/* Mobile Menu — separate from header so it stays visible */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-[72px] left-4 right-4 z-50 bg-[#1a1a1e]/95 backdrop-blur-xl rounded-2xl border border-orange-500/[0.12] shadow-2xl overflow-hidden"
+          >
+            <div className="px-5 py-5 space-y-1">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <div className="pt-3 border-t border-white/[0.08]">
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
+                  Get Started
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ═══════════ HERO SECTION ═══════════ */}
       <section
         id="home"
         className="relative min-h-screen flex flex-col overflow-x-hidden"
       >
-        {/* ── Unsplash background image ── */}
+        {/* ── Background image — modern ed-tech classroom ── */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2560&q=80)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2560&q=80)',
             backgroundSize: 'cover',
-            backgroundPosition: 'center 30%',
+            backgroundPosition: 'center 35%',
           }}
         />
-        {/* ── Dark overlay for text readability ── */}
+        {/* ── Dark warm overlay ── */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(180deg, rgba(6,0,30,0.85) 0%, rgba(15,5,50,0.75) 40%, rgba(30,10,70,0.70) 65%, rgba(10,2,35,0.92) 100%)',
+            background: 'linear-gradient(180deg, rgba(12,10,8,0.93) 0%, rgba(28,18,10,0.82) 35%, rgba(20,14,10,0.78) 60%, rgba(10,8,6,0.96) 100%)',
           }}
         />
 
-        {/* ── Subtle animated gradient accent ── */}
+        {/* ── Warm accent glow at center ── */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse 80% 50% at 50% 35%, rgba(108,58,237,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse 70% 45% at 50% 30%, rgba(232,140,50,0.1) 0%, transparent 70%)',
           }}
         />
 
-        {/* ── Floating atmosphere orbs ── */}
-        <div className="absolute top-[15%] left-[8%] w-72 h-72 rounded-full pointer-events-none animate-float"
-          style={{ background:'radial-gradient(circle,rgba(108,58,237,0.18) 0%,transparent 70%)', filter:'blur(60px)' }}/>
-        <div className="absolute top-[25%] right-[9%] w-80 h-80 rounded-full pointer-events-none animate-float2"
-          style={{ background:'radial-gradient(circle,rgba(0,183,131,0.10) 0%,transparent 70%)', filter:'blur(50px)' }}/>
-        <div className="absolute top-[55%] left-[35%] w-96 h-96 rounded-full pointer-events-none animate-float3"
-          style={{ background:'radial-gradient(circle,rgba(108,58,237,0.08) 0%,transparent 70%)', filter:'blur(70px)' }}/>
+        {/* ── Floating atmosphere orbs — warm orange tones ── */}
+        <div className="absolute top-[12%] left-[6%] w-72 h-72 rounded-full pointer-events-none animate-float"
+          style={{ background:'radial-gradient(circle,rgba(232,140,50,0.14) 0%,transparent 70%)', filter:'blur(60px)' }}/>
+        <div className="absolute top-[22%] right-[8%] w-80 h-80 rounded-full pointer-events-none animate-float2"
+          style={{ background:'radial-gradient(circle,rgba(212,113,26,0.1) 0%,transparent 70%)', filter:'blur(50px)' }}/>
+        <div className="absolute top-[50%] left-[30%] w-96 h-96 rounded-full pointer-events-none animate-float3"
+          style={{ background:'radial-gradient(circle,rgba(232,140,50,0.06) 0%,transparent 70%)', filter:'blur(70px)' }}/>
 
-        {/* ── Mesh grid pattern overlay ── */}
+        {/* ── Subtle dot grid overlay ── */}
         <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
           }}
         />
 
-        {/* ═══ CONTENT (upper viewport) ═══ */}
+        {/* ═══ CONTENT ═══ */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
-          className="relative z-10 flex flex-col items-center text-center pt-36 pb-10 px-6"
+          className="relative z-10 flex flex-col items-center text-center pt-32 pb-6 px-6"
         >
           {/* Trust badge */}
-          <motion.div variants={fadeUp} custom={0} className="mb-6">
-            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-sm font-medium text-white/80 border border-white/15 bg-white/10 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+          <motion.div variants={fadeUp} custom={0} className="mb-5">
+            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[13px] font-medium text-white/75 border border-orange-400/20 bg-orange-900/25 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse flex-shrink-0" />
               Trusted by 760+ Institutions · Pakistan · Saudi Arabia · Canada
             </span>
           </motion.div>
 
-          {/* Headline — 3 lines, huge, centered */}
+          {/* Headline — smaller, tighter */}
           <motion.h1
             variants={fadeUp}
             custom={1}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.8rem] font-heading font-bold text-white leading-[1.1] tracking-[-0.025em] mb-6 max-w-4xl"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.8rem] font-heading font-bold text-white leading-[1.08] tracking-[-0.02em] mb-5 max-w-3xl"
           >
             Give your school the platform
-            <br />
-            it deserves — and your students
-            <br />
-            the education they expect.
+            <br className="hidden sm:block" />
+            {' '}it deserves — and your students
+            <br className="hidden sm:block" />
+            {' '}the education they expect.
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             variants={fadeUp}
             custom={2}
-            className="text-base md:text-lg text-white/60 max-w-xl leading-relaxed mb-10"
+            className="text-sm md:text-base text-white/55 max-w-lg leading-relaxed mb-8"
           >
             Cubico brings LMS, animated lessons, digital marketing, and complete
             institution management under one intelligent platform.
           </motion.p>
 
-          {/* Single CTA */}
-          <motion.div variants={fadeUp} custom={3}>
+          {/* CTA buttons */}
+          <motion.div variants={fadeUp} custom={3} className="flex items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2.5 bg-white text-gray-900 font-bold text-base px-9 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200"
+              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-200"
             >
               Book Free Demo
-              <ArrowRight size={17} />
+              <ArrowRight size={16} />
+            </a>
+            <a
+              href="#showcase"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white font-medium text-sm px-6 py-3.5 rounded-full border border-white/[0.12] hover:border-white/[0.25] hover:bg-white/[0.05] transition-all duration-200"
+            >
+              See Products
             </a>
           </motion.div>
         </motion.div>
 
-        {/* ═══ ENHANCED MOODLE LMS DASHBOARD — overflows into next section ═══ */}
+        {/* ═══ ENHANCED MOODLE LMS DASHBOARD — bigger, polished, overflows ═══ */}
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-10 mb-[-120px]"
+          transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="relative z-10 flex justify-center px-3 sm:px-5 lg:px-8 mt-2 mb-[-160px]"
         >
+          {/* ── Glow behind the dashboard ── */}
+          <div className="absolute -inset-10 pointer-events-none" style={{
+            background: 'radial-gradient(ellipse 60% 40% at 50% 20%, rgba(232,140,50,0.12) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+          }} />
+
           <div
-            className="w-full max-w-[1060px] rounded-2xl overflow-hidden"
+            className="relative w-full max-w-[1140px] rounded-2xl overflow-hidden"
             style={{
-              boxShadow: '0 25px 80px rgba(108,58,237,0.25), 0 8px 32px rgba(0,0,0,0.4)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              boxShadow: '0 30px 100px rgba(10,8,6,0.5), 0 10px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(232,140,50,0.1)',
             }}
           >
             {/* ── Browser chrome ── */}
-            <div className="bg-[#1A1A2E] px-4 py-3 flex items-center gap-3 border-b border-white/[0.06]">
+            <div className="bg-[#141210] px-4 py-2.5 flex items-center gap-3 border-b border-white/[0.06]">
               <div className="flex gap-2 flex-shrink-0">
                 <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
                 <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
                 <div className="w-3 h-3 rounded-full bg-[#28C840]" />
               </div>
-              <div className="flex-1 bg-white/[0.06] rounded-lg px-3 py-1.5 flex items-center gap-2">
-                <svg className="w-3 h-3 text-emerald-400/60 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
-                <span className="text-[11px] font-mono text-white/40">lms.cubico.tech/dashboard</span>
+              <div className="flex-1 bg-white/[0.05] rounded-lg px-3 py-1.5 flex items-center gap-2">
+                <svg className="w-3 h-3 text-teal-400/60 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/></svg>
+                <span className="text-[11px] font-mono text-white/35">lms.cubico.tech/dashboard</span>
               </div>
               <div className="hidden sm:flex gap-2 flex-shrink-0">
-                <div className="text-[10px] text-white/30 px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06]">⬆ Upload</div>
-                <div className="text-[10px] text-white/30 px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.06]">📊 Reports</div>
+                <div className="text-[10px] text-white/25 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">⬆ Upload</div>
+                <div className="text-[10px] text-white/25 px-2.5 py-1 rounded-md bg-white/[0.04] border border-white/[0.06]">📊 Reports</div>
               </div>
             </div>
 
-            {/* ── Moodle LMS Dashboard body ── */}
-            <div className="flex bg-[#F7F8FA] min-h-[420px]">
+            {/* ── Dashboard body ── */}
+            <div className="flex bg-[#F5FAF8] min-h-[460px]">
 
-              {/* Sidebar — Moodle-inspired */}
-              <div className="w-[200px] flex-shrink-0 bg-[#0B0B1A] flex-col py-4 hidden sm:flex">
+              {/* Sidebar — education themed */}
+              <div className="w-[210px] flex-shrink-0 bg-[#041F1A] flex-col py-4 hidden sm:flex">
                 {/* Logo */}
                 <div className="flex items-center gap-2.5 px-4 mb-6">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#6C3AED] to-[#A855F7] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-purple-500/20">C</div>
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#1E6B5A] to-[#2A9D8F] flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-teal-600/25">C</div>
                   <div>
                     <span className="text-white text-sm font-bold font-heading block leading-tight">Cubico LMS</span>
-                    <span className="text-[9px] text-white/30">Powered by Moodle</span>
+                    <span className="text-[9px] text-teal-400/40">Powered by Moodle</span>
                   </div>
                 </div>
                 {/* Nav */}
@@ -643,13 +672,14 @@ export default function HomePage() {
                   { label: 'Calendar',       icon: '📅', active: false },
                   { label: 'Messages',       icon: '💬', active: false },
                   { label: 'Competencies',   icon: '🎯', active: false },
+                  { label: 'Settings',       icon: '⚙️', active: false },
                 ].map(item => (
                   <div
                     key={item.label}
                     className="flex items-center gap-2.5 px-4 py-2.5 mx-2 rounded-xl text-[11px] font-medium cursor-default mb-0.5"
                     style={item.active
-                      ? { backgroundColor: 'rgba(108,58,237,0.2)', color: '#C4B5FD', border: '1px solid rgba(108,58,237,0.3)' }
-                      : { color: 'rgba(255,255,255,0.35)' }}
+                      ? { backgroundColor: 'rgba(42,157,143,0.18)', color: '#5ABFB3', border: '1px solid rgba(42,157,143,0.25)' }
+                      : { color: 'rgba(255,255,255,0.30)' }}
                   >
                     <span className="text-[13px]">{item.icon}</span>
                     {item.label}
@@ -657,11 +687,11 @@ export default function HomePage() {
                 ))}
                 {/* Storage indicator */}
                 <div className="mt-auto mx-4 pt-4 border-t border-white/[0.06]">
-                  <div className="text-[9px] text-white/30 mb-1.5 flex justify-between">
+                  <div className="text-[9px] text-white/25 mb-1.5 flex justify-between">
                     <span>Storage</span><span>67%</span>
                   </div>
-                  <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
-                    <div className="h-full w-[67%] bg-gradient-to-r from-[#6C3AED] to-[#A855F7] rounded-full" />
+                  <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+                    <div className="h-full w-[67%] bg-gradient-to-r from-[#1E6B5A] to-[#2A9D8F] rounded-full" />
                   </div>
                 </div>
               </div>
@@ -672,32 +702,35 @@ export default function HomePage() {
                 <div className="bg-white border-b border-gray-100 px-5 py-3 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="text-sm font-bold text-gray-800">Course Dashboard</span>
-                    <span className="text-[10px] bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full font-semibold">Spring 2026</span>
+                    <span className="text-[10px] bg-teal-50 text-teal-700 px-2 py-0.5 rounded-full font-semibold">Spring 2026</span>
                   </div>
                   <div className="flex gap-2 items-center">
                     <div className="text-[10px] text-gray-400 px-2.5 py-1 rounded-lg border border-gray-200 bg-white cursor-default">🔍 Search courses...</div>
-                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-[10px] text-white font-bold">AK</div>
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-[10px] text-white font-bold">AK</div>
                   </div>
                 </div>
 
-                {/* Welcome & quick stats */}
+                {/* Welcome banner */}
                 <div className="px-5 pt-4 pb-3">
-                  <div className="bg-gradient-to-r from-[#6C3AED] to-[#4338CA] rounded-2xl p-4 mb-4 flex items-center justify-between">
-                    <div>
-                      <div className="text-white/60 text-[10px] font-medium mb-0.5">Welcome back</div>
+                  <div className="bg-gradient-to-r from-[#0E4538] via-[#1E6B5A] to-[#2A9D8F] rounded-2xl p-4 mb-4 flex items-center justify-between relative overflow-hidden">
+                    {/* Decorative circles */}
+                    <div className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/[0.04]" />
+                    <div className="absolute -right-2 -bottom-8 w-20 h-20 rounded-full bg-white/[0.03]" />
+                    <div className="relative">
+                      <div className="text-teal-200/60 text-[10px] font-medium mb-0.5">Welcome back</div>
                       <div className="text-white font-heading font-bold text-base">Admin Khan</div>
-                      <div className="text-white/50 text-[10px] mt-1">5 courses active · 12 assignments due</div>
+                      <div className="text-teal-200/40 text-[10px] mt-1">5 courses active · 12 assignments due</div>
                     </div>
-                    <div className="hidden sm:flex gap-3">
+                    <div className="hidden sm:flex gap-3 relative">
                       {[
                         { label: 'Active Learners', value: '1,284', icon: '👤' },
                         { label: 'Course Progress', value: '78%', icon: '📈' },
                         { label: 'Avg. Grade', value: 'B+', icon: '⭐' },
                       ].map(s => (
-                        <div key={s.label} className="bg-white/[0.12] rounded-xl px-3 py-2 text-center backdrop-blur-sm">
+                        <div key={s.label} className="bg-white/[0.10] rounded-xl px-3 py-2 text-center backdrop-blur-sm border border-white/[0.06]">
                           <div className="text-[12px] mb-0.5">{s.icon}</div>
                           <div className="text-white font-heading font-bold text-sm leading-none">{s.value}</div>
-                          <div className="text-white/40 text-[8px] mt-0.5">{s.label}</div>
+                          <div className="text-white/35 text-[8px] mt-0.5">{s.label}</div>
                         </div>
                       ))}
                     </div>
@@ -707,25 +740,25 @@ export default function HomePage() {
                 {/* Course cards grid */}
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 px-5 pb-4">
                   {[
-                    { name: 'Mathematics 101', students: 45, progress: 82, color: '#6C3AED', category: 'STEM' },
-                    { name: 'English Literature', students: 38, progress: 65, color: '#059669', category: 'Arts' },
+                    { name: 'Mathematics 101', students: 45, progress: 82, color: '#1E6B5A', category: 'STEM' },
+                    { name: 'English Literature', students: 38, progress: 65, color: '#E76F51', category: 'Arts' },
                     { name: 'Physics Lab', students: 32, progress: 91, color: '#2563EB', category: 'STEM' },
                     { name: 'Islamic Studies', students: 52, progress: 74, color: '#D97706', category: 'Core' },
-                    { name: 'Computer Science', students: 41, progress: 88, color: '#E11D48', category: 'STEM' },
-                    { name: 'Arabic Language', students: 36, progress: 70, color: '#0891B2', category: 'Language' },
+                    { name: 'Computer Science', students: 41, progress: 88, color: '#2A9D8F', category: 'STEM' },
+                    { name: 'Arabic Language', students: 36, progress: 70, color: '#7C3AED', category: 'Language' },
                   ].map(course => (
-                    <div key={course.name} className="bg-white rounded-xl p-3 border border-gray-100 hover:shadow-md transition-shadow cursor-default group">
+                    <div key={course.name} className="bg-white rounded-xl p-3.5 border border-gray-100/80 hover:shadow-lg hover:border-gray-200 transition-all duration-200 cursor-default group">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: course.color }} />
                         <span className="text-[8px] font-bold uppercase tracking-wider" style={{ color: course.color }}>{course.category}</span>
                       </div>
-                      <div className="text-[11px] font-bold text-gray-800 mb-1.5 leading-tight">{course.name}</div>
+                      <div className="text-[11px] font-bold text-gray-800 mb-2 leading-tight">{course.name}</div>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-[9px] text-gray-400">{course.students} students</span>
                         <span className="text-[9px] font-bold" style={{ color: course.color }}>{course.progress}%</span>
                       </div>
-                      <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
-                        <div className="h-full rounded-full transition-all duration-700" style={{ width: `${course.progress}%`, backgroundColor: course.color }} />
+                      <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                        <div className="h-full rounded-full transition-all duration-700" style={{ width: `${course.progress}%`, backgroundColor: course.color, opacity: 0.85 }} />
                       </div>
                     </div>
                   ))}
@@ -733,38 +766,38 @@ export default function HomePage() {
               </div>
 
               {/* Right panel — activity & timeline */}
-              <div className="w-[210px] flex-shrink-0 bg-white border-l border-gray-100 py-4 px-3.5 hidden lg:flex flex-col gap-4">
+              <div className="w-[220px] flex-shrink-0 bg-white border-l border-gray-100 py-4 px-3.5 hidden lg:flex flex-col gap-4">
                 {/* Upcoming */}
                 <div>
                   <div className="flex items-center gap-1.5 mb-3">
                     <span className="text-[13px]">📌</span>
-                    <span className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Upcoming</span>
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Upcoming</span>
                   </div>
                   {[
-                    { text: 'Math Quiz — Grade 10', time: 'Today, 2:00 PM', color: '#6C3AED' },
+                    { text: 'Math Quiz — Grade 10', time: 'Today, 2:00 PM', color: '#1E6B5A' },
                     { text: 'Physics Lab Submission', time: 'Tomorrow', color: '#2563EB' },
-                    { text: 'Parent-Teacher Meeting', time: 'Mar 20', color: '#059669' },
+                    { text: 'Parent-Teacher Meeting', time: 'Mar 20', color: '#E76F51' },
                   ].map((item, i) => (
-                    <div key={i} className="mb-2.5 last:mb-0 pl-3 border-l-2 transition-colors" style={{ borderColor: item.color + '40' }}>
+                    <div key={i} className="mb-3 last:mb-0 pl-3 border-l-2 transition-colors" style={{ borderColor: item.color + '35' }}>
                       <div className="text-[10px] font-semibold text-gray-700 leading-snug">{item.text}</div>
                       <div className="text-[9px] text-gray-400">{item.time}</div>
                     </div>
                   ))}
                 </div>
 
-                {/* Recent Activity */}
+                {/* Live Feed */}
                 <div>
                   <div className="flex items-center gap-1.5 mb-3">
-                    <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">Live Feed</span>
+                    <div className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                    <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Live Feed</span>
                   </div>
                   {[
                     { text: 'Sara submitted English essay', time: '2m ago', color: '#059669' },
                     { text: 'New forum post in Physics', time: '8m ago', color: '#2563EB' },
-                    { text: 'Grade updated: Math 101', time: '15m ago', color: '#6C3AED' },
+                    { text: 'Grade updated: Math 101', time: '15m ago', color: '#1E6B5A' },
                     { text: '3 new enrollments today', time: '1h ago', color: '#D97706' },
                   ].map((a, ai) => (
-                    <div key={ai} className="flex items-start gap-2 mb-2 last:mb-0">
+                    <div key={ai} className="flex items-start gap-2 mb-2.5 last:mb-0">
                       <div className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: a.color }} />
                       <div>
                         <span className="text-[10px] text-gray-600 leading-snug block">{a.text}</span>
@@ -774,16 +807,16 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                {/* Quick completion ring */}
-                <div className="bg-gray-50 rounded-xl p-3 text-center">
-                  <div className="relative w-14 h-14 mx-auto mb-2">
-                    <svg className="w-full h-full" style={{ transform: 'rotate(-90deg)' }} viewBox="0 0 56 56">
-                      <circle cx="28" cy="28" r="22" fill="none" stroke="#E5E7EB" strokeWidth="4" />
-                      <circle cx="28" cy="28" r="22" fill="none" stroke="#6C3AED" strokeWidth="4" strokeLinecap="round"
-                        strokeDasharray={String(2 * Math.PI * 22)} strokeDashoffset={String(2 * Math.PI * 22 * 0.22)} />
+                {/* Completion ring */}
+                <div className="bg-[#F5FAF8] rounded-xl p-3 text-center mt-auto">
+                  <div className="relative w-16 h-16 mx-auto mb-2">
+                    <svg className="w-full h-full" style={{ transform: 'rotate(-90deg)' }} viewBox="0 0 64 64">
+                      <circle cx="32" cy="32" r="26" fill="none" stroke="#E5E7EB" strokeWidth="4" />
+                      <circle cx="32" cy="32" r="26" fill="none" stroke="#2A9D8F" strokeWidth="4" strokeLinecap="round"
+                        strokeDasharray={String(2 * Math.PI * 26)} strokeDashoffset={String(2 * Math.PI * 26 * 0.22)} />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-[11px] font-heading font-bold text-gray-800">78%</span>
+                      <span className="text-xs font-heading font-bold text-gray-800">78%</span>
                     </div>
                   </div>
                   <div className="text-[9px] text-gray-400 font-medium">Overall Completion</div>
@@ -792,12 +825,10 @@ export default function HomePage() {
             </div>
           </div>
         </motion.div>
-
-        {/* ── No bottom fade — dashboard overflows naturally ── */}
       </section>
 
       {/* ═══════════ FEATURE CARDS ═══════════ */}
-      <section className="pt-40 pb-20 bg-white relative z-10">
+      <section className="pt-52 pb-20 bg-white relative z-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -807,14 +838,14 @@ export default function HomePage() {
             className="grid md:grid-cols-3 gap-8"
           >
             {featureCards.map((card, i) => {
-              const fcAccents = ['#6C3AED','#059669','#2563EB'];
+              const fcAccents = ['#1E6B5A','#E76F51','#2563EB'];
               const fcGrads = [
-                'linear-gradient(90deg,#6C3AED,#818CF8)',
-                'linear-gradient(90deg,#059669,#34D399)',
+                'linear-gradient(90deg,#1E6B5A,#2A9D8F)',
+                'linear-gradient(90deg,#E76F51,#F4A261)',
                 'linear-gradient(90deg,#2563EB,#60A5FA)',
               ];
               const fcLabels = ['Smart Learning','Content Studio','Operations Hub'];
-              const fcIconBg = ['bg-purple-50 text-purple-600','bg-emerald-50 text-emerald-600','bg-blue-50 text-blue-600'];
+              const fcIconBg = ['bg-teal-50 text-teal-700','bg-orange-50 text-orange-600','bg-blue-50 text-blue-600'];
               return (
                 <motion.div
                   key={card.title}
@@ -1689,7 +1720,7 @@ export default function HomePage() {
           >
             {services.map((svc, i) => {
               const SC = [
-                { b:'#6C3AED', ib:'#EDE9FE', if_:'#6C3AED', lg:'linear-gradient(90deg,#6C3AED,#818CF8)' },
+                { b:'#1E6B5A', ib:'#E6F5F0', if_:'#1E6B5A', lg:'linear-gradient(90deg,#1E6B5A,#2A9D8F)' },
                 { b:'#E11D48', ib:'#FFE4E6', if_:'#E11D48', lg:'linear-gradient(90deg,#E11D48,#FB7185)' },
                 { b:'#0891B2', ib:'#CFFAFE', if_:'#0891B2', lg:'linear-gradient(90deg,#0891B2,#22D3EE)' },
                 { b:'#2563EB', ib:'#DBEAFE', if_:'#2563EB', lg:'linear-gradient(90deg,#2563EB,#60A5FA)' },
@@ -1935,12 +1966,12 @@ export default function HomePage() {
           >
             {testimonials.map((t, i) => {
               const tGrads = [
-                'linear-gradient(135deg,#6C3AED,#0891B2)',
+                'linear-gradient(135deg,#1E6B5A,#2A9D8F)',
                 'linear-gradient(135deg,#059669,#0891B2)',
-                'linear-gradient(135deg,#E11D48,#D97706)',
+                'linear-gradient(135deg,#E76F51,#F4A261)',
               ];
               const tChip = [
-                { bg:'rgba(108,58,237,0.08)', fg:'#6C3AED' },
+                { bg:'rgba(30,107,90,0.08)', fg:'#1E6B5A' },
                 { bg:'rgba(5,150,105,0.08)',  fg:'#059669' },
                 { bg:'rgba(37,99,235,0.08)',  fg:'#2563EB' },
               ];
@@ -2051,7 +2082,7 @@ export default function HomePage() {
                   >
                     <div className="flex items-start gap-3 flex-1 min-w-0">
                       <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5 transition-all duration-200"
-                        style={openFaq === i ? { backgroundColor:'#6C3AED', color:'#fff' } : { backgroundColor:'#F3F4F6', color:'#9CA3AF' }}>
+                        style={openFaq === i ? { backgroundColor:'#1E6B5A', color:'#fff' } : { backgroundColor:'#F3F4F6', color:'#9CA3AF' }}>
                         {i + 1}
                       </div>
                       <span className="font-semibold text-sm text-gray-900 pr-2 group-hover:text-primary transition-colors">{faq.q}</span>
