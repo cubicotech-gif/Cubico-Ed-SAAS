@@ -2028,15 +2028,15 @@ export default function HomePage() {
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle2 className="w-8 h-8 text-green-600" />
                     </div>
-                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2">Thank You!</h3>
-                    <p className="text-gray-500">We&apos;ll be in touch within 24 hours.</p>
+                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2">{t('Thank You!', 'شكراً لك!')}</h3>
+                    <p className="text-gray-500">{t("We'll be in touch within 24 hours.", 'سنتواصل معك خلال 24 ساعة.')}</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <input
                         type="text"
-                        placeholder="Your Name *"
+                        placeholder={t('Your Name *', 'اسمك *')}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="form-input"
@@ -2044,7 +2044,7 @@ export default function HomePage() {
                       />
                       <input
                         type="text"
-                        placeholder="Company *"
+                        placeholder={t('Company *', 'الشركة *')}
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         className="form-input"
