@@ -948,10 +948,10 @@ export default function HomePage() {
             className="flex flex-wrap items-center justify-center gap-6 mb-14"
           >
             {[
-              { value: '760+', label: 'Institutions' },
-              { value: '85K+', label: 'Active Students' },
-              { value: '99.9%', label: 'Uptime' },
-              { value: '3', label: 'Countries' },
+              { value: '760+', label: t('Institutions', 'مؤسسة') },
+              { value: '85K+', label: t('Active Students', 'طالب نشط') },
+              { value: '99.9%', label: t('Uptime', 'وقت التشغيل') },
+              { value: '3', label: t('Countries', 'دول') },
             ].map(stat => (
               <div key={stat.label} className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-gray-50 border border-gray-100">
                 <span className="text-sm font-bold text-gray-900">{stat.value}</span>
@@ -1089,7 +1089,7 @@ export default function HomePage() {
               <span className="shimmer-text">{t('One ecosystem.', 'منظومة واحدة.')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
-              Each tool is purpose-built for education. Together, they run your entire institution — from classroom to admin office to marketing.
+              {t('Each tool is purpose-built for education. Together, they run your entire institution — from classroom to admin office to marketing.', 'كل أداة مصممة خصيصاً للتعليم. معاً، تدير مؤسستك بالكامل — من الفصل الدراسي إلى المكتب الإداري إلى التسويق.')}
             </motion.p>
           </motion.div>
 
@@ -1169,8 +1169,8 @@ export default function HomePage() {
                     <a href="#contact"
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
                       style={{ backgroundColor: sol.accentHex }}>
-                      Book a Live Demo
-                      <ArrowRight size={15} />
+                      {t('Book a Live Demo', 'احجز عرضاً مباشراً')}
+                      <ArrowRight size={15} className="rtl:rotate-180" />
                     </a>
                   </div>
 
