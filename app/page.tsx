@@ -2054,7 +2054,7 @@ export default function HomePage() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <input
                         type="tel"
-                        placeholder="Phone *"
+                        placeholder={t('Phone *', 'الهاتف *')}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="form-input"
@@ -2062,7 +2062,7 @@ export default function HomePage() {
                       />
                       <input
                         type="email"
-                        placeholder="Email *"
+                        placeholder={t('Email *', 'البريد الإلكتروني *')}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="form-input"
@@ -2074,19 +2074,19 @@ export default function HomePage() {
                       onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                       className="form-select"
                     >
-                      <option value="">Select Position</option>
-                      <option value="principal">Principal / Head of School</option>
-                      <option value="director">Director / Board Member</option>
-                      <option value="it_head">IT Head / Administrator</option>
-                      <option value="teacher">Teacher / Department Head</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('Select Position', 'اختر المنصب')}</option>
+                      <option value="principal">{t('Principal / Head of School', 'مدير / رئيس المدرسة')}</option>
+                      <option value="director">{t('Director / Board Member', 'مدير / عضو مجلس إدارة')}</option>
+                      <option value="it_head">{t('IT Head / Administrator', 'رئيس تقنية المعلومات / مسؤول')}</option>
+                      <option value="teacher">{t('Teacher / Department Head', 'معلم / رئيس قسم')}</option>
+                      <option value="other">{t('Other', 'أخرى')}</option>
                     </select>
                     <select
                       value={formData.employees}
                       onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
                       className="form-select"
                     >
-                      <option value="">Number of Students / Staff</option>
+                      <option value="">{t('Number of Students / Staff', 'عدد الطلاب / الموظفين')}</option>
                       <option value="1-50">1 – 50</option>
                       <option value="51-100">51 – 100</option>
                       <option value="101-500">101 – 500</option>
