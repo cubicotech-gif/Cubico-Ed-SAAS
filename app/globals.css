@@ -8,6 +8,7 @@
    ═══════════════════════════════════════════ */
 
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=general-sans@200,300,400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@200;300;400;500;600;700&display=swap');
 
 :root {
   --primary: #D4711A;
@@ -350,6 +351,36 @@ h1, h2, h3, h4, h5, h6 {
     linear-gradient(rgba(212, 113, 26, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(212, 113, 26, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* ── RTL Support ── */
+[dir="rtl"] body {
+  font-family: 'Noto Sans Arabic', 'General Sans', -apple-system, sans-serif;
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  font-family: 'Noto Sans Arabic', 'Clash Display', sans-serif;
+}
+
+[dir="rtl"] .section-label::before {
+  display: none;
+}
+
+[dir="rtl"] .section-label::after {
+  content: '';
+  width: 32px;
+  height: 2px;
+  background: var(--primary);
+  display: inline-block;
+}
+
+[dir="rtl"] .section-label-light::after {
+  background: var(--accent-light);
 }
 
 /* ── Responsive ── */

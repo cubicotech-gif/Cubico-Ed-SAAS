@@ -4,48 +4,51 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
-
-const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  {
-    name: 'Solutions',
-    href: '/solutions',
-    children: [
-      { name: 'Smart LMS', href: '/solutions/smart-lms' },
-      { name: 'Animation Studio', href: '/solutions/animation-studio' },
-      { name: 'School ERP', href: '/solutions/school-erp' },
-      { name: 'Web Development', href: '/solutions/web-development' },
-      { name: 'Mobile Apps', href: '/solutions/mobile-apps' },
-    ],
-  },
-  {
-    name: 'Services',
-    href: '/services',
-    children: [
-      { name: 'Cloud Hosting', href: '/services/cloud-hosting' },
-      { name: 'Digital Marketing', href: '/services/digital-marketing' },
-      { name: 'Teacher Training', href: '/services/teacher-training' },
-      { name: 'Pricing Plan', href: '/pricing' },
-    ],
-  },
-  { name: 'Contact', href: '/contact' },
-  {
-    name: 'Pages',
-    href: '#',
-    children: [
-      { name: 'Team', href: '/team' },
-      { name: 'FAQ', href: '/faq' },
-      { name: 'Blog', href: '/blog' },
-    ],
-  },
-];
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import LanguageToggle from '@/components/LanguageToggle';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const lastScrollY = useRef(0);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { name: t('Home', 'الرئيسية'), href: '/' },
+    { name: t('About', 'من نحن'), href: '/about' },
+    {
+      name: t('Solutions', 'الحلول'),
+      href: '/solutions',
+      children: [
+        { name: t('Smart LMS', 'نظام إدارة التعلم'), href: '/solutions/smart-lms' },
+        { name: t('Animation Studio', 'استوديو الرسوم المتحركة'), href: '/solutions/animation-studio' },
+        { name: t('School ERP', 'نظام إدارة المدرسة'), href: '/solutions/school-erp' },
+        { name: t('Web Development', 'تطوير المواقع'), href: '/solutions/web-development' },
+        { name: t('Mobile Apps', 'تطبيقات الجوال'), href: '/solutions/mobile-apps' },
+      ],
+    },
+    {
+      name: t('Services', 'الخدمات'),
+      href: '/services',
+      children: [
+        { name: t('Cloud Hosting', 'الاستضافة السحابية'), href: '/services/cloud-hosting' },
+        { name: t('Digital Marketing', 'التسويق الرقمي'), href: '/services/digital-marketing' },
+        { name: t('Teacher Training', 'تدريب المعلمين'), href: '/services/teacher-training' },
+        { name: t('Pricing Plan', 'خطة الأسعار'), href: '/pricing' },
+      ],
+    },
+    { name: t('Contact', 'تواصل معنا'), href: '/contact' },
+    {
+      name: t('Pages', 'الصفحات'),
+      href: '#',
+      children: [
+        { name: t('Team', 'الفريق'), href: '/team' },
+        { name: t('FAQ', 'الأسئلة الشائعة'), href: '/faq' },
+        { name: t('Blog', 'المدونة'), href: '/blog' },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,7 +116,7 @@ export default function Header() {
                     {link.children && <ChevronDown className="w-3 h-3" />}
                   </Link>
                   {link.children && openDropdown === link.name && (
-                    <div className="absolute top-full left-0 pt-2">
+                    <div className="absolute top-full left-0 pt-2 rtl:left-auto rtl:right-0">
                       <div className="bg-[#1a1a1e]/95 backdrop-blur-xl rounded-xl border border-orange-500/[0.12] shadow-2xl py-2 min-w-[180px]">
                         {link.children.map((child) => (
                           <Link
@@ -134,21 +137,22 @@ export default function Header() {
             {/* Divider */}
             <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
 
-            {/* CTA */}
-            <div className="hidden lg:flex items-center flex-shrink-0">
+            {/* Language Toggle + CTA */}
+            <div className="hidden lg:flex items-center gap-1 flex-shrink-0">
+              <LanguageToggle className="text-white/55 hover:text-white" />
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
               >
-                Get Started
-                <ArrowRight className="w-3.5 h-3.5" />
+                {t('Get Started', 'ابدأ الآن')}
+                <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
               </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
+              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto rtl:ml-0 rtl:mr-auto"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -167,6 +171,10 @@ export default function Header() {
             className="fixed top-[72px] left-4 right-4 z-50 bg-[#1a1a1e]/95 backdrop-blur-xl rounded-2xl border border-orange-500/[0.12] shadow-2xl overflow-hidden"
           >
             <div className="px-5 py-5 space-y-1">
+              {/* Mobile Language Toggle */}
+              <div className="flex justify-center pb-3 border-b border-white/[0.08] mb-2">
+                <LanguageToggle className="text-white/70 hover:text-white text-sm" />
+              </div>
               {navLinks.map((link) => (
                 <div key={link.name}>
                   <Link
@@ -177,7 +185,7 @@ export default function Header() {
                     {link.name}
                   </Link>
                   {link.children && (
-                    <div className="pl-4 space-y-1">
+                    <div className="ps-4 space-y-1">
                       {link.children.map((child) => (
                         <Link
                           key={child.name}
@@ -194,8 +202,8 @@ export default function Header() {
               ))}
               <div className="pt-3 border-t border-white/[0.08]">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
+                  {t('Get Started', 'ابدأ الآن')}
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
               </div>
             </div>

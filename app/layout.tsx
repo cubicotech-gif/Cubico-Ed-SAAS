@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import LanguageWrapper from '@/components/LanguageWrapper';
 
 export const metadata: Metadata = {
   title: 'Cubico Technologies — From Chalk-and-Board to World-Class',
@@ -29,8 +30,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="noise-overlay">{children}</body>
+    <html lang="en" dir="ltr" className="scroll-smooth" suppressHydrationWarning>
+      <body className="noise-overlay">
+        <LanguageWrapper>{children}</LanguageWrapper>
+      </body>
     </html>
   );
 }
