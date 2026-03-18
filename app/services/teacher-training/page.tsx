@@ -30,6 +30,7 @@ import {
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -45,150 +46,214 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-const trainingPrograms = [
-  {
-    icon: Monitor,
-    title: 'LMS Mastery',
-    desc: 'Complete Moodle training covering course creation, grading workflows, forums, quizzes, and student management for seamless online teaching.',
-    duration: '4 Weeks',
-  },
-  {
-    icon: BookOpen,
-    title: 'Digital Pedagogy',
-    desc: 'Master modern teaching methods with technology including blended learning, flipped classrooms, and differentiated digital instruction strategies.',
-    duration: '6 Weeks',
-  },
-  {
-    icon: FileText,
-    title: 'Content Creation',
-    desc: 'Learn to create engaging digital content — interactive presentations, video lessons, infographics, and multimedia learning resources.',
-    duration: '3 Weeks',
-  },
-  {
-    icon: BarChart3,
-    title: 'Data Literacy',
-    desc: 'Understand student analytics dashboards, interpret learning data, track progress metrics, and make data-driven instructional decisions.',
-    duration: '3 Weeks',
-  },
-  {
-    icon: Settings,
-    title: 'Platform Administration',
-    desc: 'ERP and LMS administration training covering user management, system configuration, report generation, and platform maintenance.',
-    duration: '5 Weeks',
-  },
-  {
-    icon: Tablet,
-    title: 'Classroom Technology',
-    desc: 'Hands-on training with interactive whiteboards, student devices, screen sharing tools, and classroom response systems.',
-    duration: '2 Weeks',
-  },
-];
-
-const trainingFormats = [
-  {
-    title: 'On-Site Training',
-    subtitle: 'In-person workshops at your school',
-    desc: 'Our trainers come to your campus for immersive, hands-on workshops tailored to your specific infrastructure and curriculum needs.',
-    features: ['Customized curriculum', 'Hands-on practice', 'Team building focus', 'Immediate Q&A'],
-  },
-  {
-    title: 'Virtual Live Sessions',
-    subtitle: 'Interactive online workshops via Zoom',
-    desc: 'Join live, instructor-led sessions from anywhere. Includes breakout rooms, screen sharing, real-time exercises, and recorded replays.',
-    features: ['Flexible scheduling', 'Session recordings', 'Breakout rooms', 'Live collaboration'],
-  },
-  {
-    title: 'Self-Paced Courses',
-    subtitle: 'On-demand video library access',
-    desc: 'Access our comprehensive video library with structured courses, quizzes, downloadable resources, and progress tracking at your own pace.',
-    features: ['24/7 access', 'Progress tracking', 'Downloadable resources', 'Certificate on completion'],
-  },
-];
-
-const curriculum = [
-  {
-    weeks: 'Week 1-2',
-    title: 'Platform Basics',
-    topics: ['Platform navigation & setup', 'Account management', 'Basic tool familiarization', 'Digital workspace setup'],
-    color: 'from-blue-500 to-blue-600',
-  },
-  {
-    weeks: 'Week 3-4',
-    title: 'Content Management',
-    topics: ['Course creation workflows', 'Resource uploads & organization', 'Multimedia integration', 'Content scheduling'],
-    color: 'from-primary to-orange-500',
-  },
-  {
-    weeks: 'Week 5-6',
-    title: 'Assessment & Analytics',
-    topics: ['Quiz & exam creation', 'Grading rubrics setup', 'Student progress analytics', 'Performance reports'],
-    color: 'from-accent to-amber-700',
-  },
-  {
-    weeks: 'Week 7-8',
-    title: 'Advanced Features',
-    topics: ['Automation & workflows', 'Integration with third-party tools', 'Advanced reporting', 'Peer collaboration features'],
-    color: 'from-green-500 to-green-600',
-  },
-];
-
-const certificationLevels = [
-  {
-    level: 'Beginner',
-    title: 'Digital Explorer',
-    desc: 'Foundational skills in digital tools and platform navigation',
-    hours: '20 Hours',
-    color: 'from-blue-400 to-blue-500',
-    borderColor: 'border-blue-400',
-    bgColor: 'bg-blue-400/10',
-    textColor: 'text-blue-400',
-  },
-  {
-    level: 'Intermediate',
-    title: 'Tech Practitioner',
-    desc: 'Proficient in content creation, assessments, and data analysis',
-    hours: '40 Hours',
-    color: 'from-primary to-orange-500',
-    borderColor: 'border-primary',
-    bgColor: 'bg-primary/10',
-    textColor: 'text-primary',
-  },
-  {
-    level: 'Advanced',
-    title: 'Digital Champion',
-    desc: 'Expert-level platform mastery and pedagogical integration',
-    hours: '60 Hours',
-    color: 'from-accent to-amber-700',
-    borderColor: 'border-accent',
-    bgColor: 'bg-accent/10',
-    textColor: 'text-accent',
-  },
-  {
-    level: 'Certified',
-    title: 'Cubico Educator',
-    desc: 'Certified to train peers and lead digital transformation initiatives',
-    hours: '80+ Hours',
-    color: 'from-yellow-400 to-yellow-500',
-    borderColor: 'border-yellow-400',
-    bgColor: 'bg-yellow-400/10',
-    textColor: 'text-yellow-400',
-  },
-];
-
-const stats = [
-  { value: '5,000+', label: 'Teachers Trained' },
-  { value: '200+', label: 'Workshops Delivered' },
-  { value: '95%', label: 'Satisfaction Rate' },
-  { value: '8', label: 'Training Programs' },
-];
-
-const impactMetrics = [
-  { label: 'Tech Confidence', before: 35, after: 92 },
-  { label: 'Digital Content Usage', before: 15, after: 78 },
-  { label: 'Student Engagement', before: 0, after: 40, isIncrease: true },
-];
-
 export default function TeacherTrainingPage() {
+  const { t } = useLanguage();
+
+  const trainingPrograms = [
+    {
+      icon: Monitor,
+      title: t('LMS Mastery', 'إتقان نظام إدارة التعلم'),
+      desc: t(
+        'Complete Moodle training covering course creation, grading workflows, forums, quizzes, and student management for seamless online teaching.',
+        'تدريب شامل على منصة Moodle يغطي إنشاء الدورات، وسير عمل التقييم، والمنتديات، والاختبارات، وإدارة الطلاب للتعليم الإلكتروني السلس.'
+      ),
+      duration: t('4 Weeks', '٤ أسابيع'),
+    },
+    {
+      icon: BookOpen,
+      title: t('Digital Pedagogy', 'البيداغوجيا الرقمية'),
+      desc: t(
+        'Master modern teaching methods with technology including blended learning, flipped classrooms, and differentiated digital instruction strategies.',
+        'إتقان أساليب التدريس الحديثة بالتكنولوجيا بما في ذلك التعلم المدمج والفصول المعكوسة واستراتيجيات التعليم الرقمي المتمايز.'
+      ),
+      duration: t('6 Weeks', '٦ أسابيع'),
+    },
+    {
+      icon: FileText,
+      title: t('Content Creation', 'إنشاء المحتوى'),
+      desc: t(
+        'Learn to create engaging digital content — interactive presentations, video lessons, infographics, and multimedia learning resources.',
+        'تعلّم إنشاء محتوى رقمي جذاب — عروض تفاعلية، ودروس فيديو، ورسوم بيانية، وموارد تعليمية متعددة الوسائط.'
+      ),
+      duration: t('3 Weeks', '٣ أسابيع'),
+    },
+    {
+      icon: BarChart3,
+      title: t('Data Literacy', 'محو الأمية البيانية'),
+      desc: t(
+        'Understand student analytics dashboards, interpret learning data, track progress metrics, and make data-driven instructional decisions.',
+        'فهم لوحات تحليلات الطلاب، وتفسير بيانات التعلم، وتتبع مقاييس التقدم، واتخاذ قرارات تعليمية مبنية على البيانات.'
+      ),
+      duration: t('3 Weeks', '٣ أسابيع'),
+    },
+    {
+      icon: Settings,
+      title: t('Platform Administration', 'إدارة المنصة'),
+      desc: t(
+        'ERP and LMS administration training covering user management, system configuration, report generation, and platform maintenance.',
+        'تدريب على إدارة أنظمة ERP وLMS يشمل إدارة المستخدمين، وتهيئة النظام، وإنشاء التقارير، وصيانة المنصة.'
+      ),
+      duration: t('5 Weeks', '٥ أسابيع'),
+    },
+    {
+      icon: Tablet,
+      title: t('Classroom Technology', 'تكنولوجيا الفصول الدراسية'),
+      desc: t(
+        'Hands-on training with interactive whiteboards, student devices, screen sharing tools, and classroom response systems.',
+        'تدريب عملي على السبورات التفاعلية، وأجهزة الطلاب، وأدوات مشاركة الشاشة، وأنظمة استجابة الفصول الدراسية.'
+      ),
+      duration: t('2 Weeks', 'أسبوعان'),
+    },
+  ];
+
+  const trainingFormats = [
+    {
+      title: t('On-Site Training', 'التدريب في الموقع'),
+      subtitle: t('In-person workshops at your school', 'ورش عمل حضورية في مدرستك'),
+      desc: t(
+        'Our trainers come to your campus for immersive, hands-on workshops tailored to your specific infrastructure and curriculum needs.',
+        'يأتي مدربونا إلى حرمك الجامعي لورش عمل تفاعلية عملية مصممة خصيصاً لبنيتك التحتية واحتياجات مناهجك.'
+      ),
+      features: [
+        t('Customized curriculum', 'مناهج مخصصة'),
+        t('Hands-on practice', 'تدريب عملي'),
+        t('Team building focus', 'التركيز على بناء الفريق'),
+        t('Immediate Q&A', 'أسئلة وأجوبة فورية'),
+      ],
+    },
+    {
+      title: t('Virtual Live Sessions', 'جلسات افتراضية مباشرة'),
+      subtitle: t('Interactive online workshops via Zoom', 'ورش عمل تفاعلية عبر الإنترنت عبر Zoom'),
+      desc: t(
+        'Join live, instructor-led sessions from anywhere. Includes breakout rooms, screen sharing, real-time exercises, and recorded replays.',
+        'انضم إلى جلسات مباشرة بقيادة المدرب من أي مكان. تشمل غرف فرعية، ومشاركة الشاشة، وتمارين فورية، وتسجيلات للمراجعة.'
+      ),
+      features: [
+        t('Flexible scheduling', 'جدولة مرنة'),
+        t('Session recordings', 'تسجيلات الجلسات'),
+        t('Breakout rooms', 'غرف فرعية'),
+        t('Live collaboration', 'تعاون مباشر'),
+      ],
+    },
+    {
+      title: t('Self-Paced Courses', 'دورات ذاتية السرعة'),
+      subtitle: t('On-demand video library access', 'وصول لمكتبة الفيديو عند الطلب'),
+      desc: t(
+        'Access our comprehensive video library with structured courses, quizzes, downloadable resources, and progress tracking at your own pace.',
+        'استمتع بالوصول إلى مكتبة الفيديو الشاملة مع دورات منظمة، واختبارات، وموارد قابلة للتحميل، وتتبع التقدم بالسرعة التي تناسبك.'
+      ),
+      features: [
+        t('24/7 access', 'وصول على مدار الساعة'),
+        t('Progress tracking', 'تتبع التقدم'),
+        t('Downloadable resources', 'موارد قابلة للتحميل'),
+        t('Certificate on completion', 'شهادة عند الإكمال'),
+      ],
+    },
+  ];
+
+  const curriculum = [
+    {
+      weeks: t('Week 1-2', 'الأسبوع ١-٢'),
+      title: t('Platform Basics', 'أساسيات المنصة'),
+      topics: [
+        t('Platform navigation & setup', 'التنقل في المنصة وإعدادها'),
+        t('Account management', 'إدارة الحسابات'),
+        t('Basic tool familiarization', 'التعرف على الأدوات الأساسية'),
+        t('Digital workspace setup', 'إعداد مساحة العمل الرقمية'),
+      ],
+      color: 'from-blue-500 to-blue-600',
+    },
+    {
+      weeks: t('Week 3-4', 'الأسبوع ٣-٤'),
+      title: t('Content Management', 'إدارة المحتوى'),
+      topics: [
+        t('Course creation workflows', 'سير عمل إنشاء الدورات'),
+        t('Resource uploads & organization', 'رفع الموارد وتنظيمها'),
+        t('Multimedia integration', 'دمج الوسائط المتعددة'),
+        t('Content scheduling', 'جدولة المحتوى'),
+      ],
+      color: 'from-primary to-orange-500',
+    },
+    {
+      weeks: t('Week 5-6', 'الأسبوع ٥-٦'),
+      title: t('Assessment & Analytics', 'التقييم والتحليلات'),
+      topics: [
+        t('Quiz & exam creation', 'إنشاء الاختبارات والامتحانات'),
+        t('Grading rubrics setup', 'إعداد معايير التقييم'),
+        t('Student progress analytics', 'تحليلات تقدم الطلاب'),
+        t('Performance reports', 'تقارير الأداء'),
+      ],
+      color: 'from-accent to-amber-700',
+    },
+    {
+      weeks: t('Week 7-8', 'الأسبوع ٧-٨'),
+      title: t('Advanced Features', 'الميزات المتقدمة'),
+      topics: [
+        t('Automation & workflows', 'الأتمتة وسير العمل'),
+        t('Integration with third-party tools', 'التكامل مع أدوات الطرف الثالث'),
+        t('Advanced reporting', 'التقارير المتقدمة'),
+        t('Peer collaboration features', 'ميزات التعاون بين الأقران'),
+      ],
+      color: 'from-green-500 to-green-600',
+    },
+  ];
+
+  const certificationLevels = [
+    {
+      level: t('Beginner', 'مبتدئ'),
+      title: t('Digital Explorer', 'المستكشف الرقمي'),
+      desc: t('Foundational skills in digital tools and platform navigation', 'مهارات أساسية في الأدوات الرقمية والتنقل في المنصة'),
+      hours: t('20 Hours', '٢٠ ساعة'),
+      color: 'from-blue-400 to-blue-500',
+      borderColor: 'border-blue-400',
+      bgColor: 'bg-blue-400/10',
+      textColor: 'text-blue-400',
+    },
+    {
+      level: t('Intermediate', 'متوسط'),
+      title: t('Tech Practitioner', 'الممارس التقني'),
+      desc: t('Proficient in content creation, assessments, and data analysis', 'إتقان إنشاء المحتوى والتقييمات وتحليل البيانات'),
+      hours: t('40 Hours', '٤٠ ساعة'),
+      color: 'from-primary to-orange-500',
+      borderColor: 'border-primary',
+      bgColor: 'bg-primary/10',
+      textColor: 'text-primary',
+    },
+    {
+      level: t('Advanced', 'متقدم'),
+      title: t('Digital Champion', 'البطل الرقمي'),
+      desc: t('Expert-level platform mastery and pedagogical integration', 'إتقان المنصة على مستوى الخبراء والتكامل البيداغوجي'),
+      hours: t('60 Hours', '٦٠ ساعة'),
+      color: 'from-accent to-amber-700',
+      borderColor: 'border-accent',
+      bgColor: 'bg-accent/10',
+      textColor: 'text-accent',
+    },
+    {
+      level: t('Certified', 'معتمد'),
+      title: t('Cubico Educator', 'معلم كيوبيكو'),
+      desc: t('Certified to train peers and lead digital transformation initiatives', 'معتمد لتدريب الزملاء وقيادة مبادرات التحول الرقمي'),
+      hours: t('80+ Hours', '٨٠+ ساعة'),
+      color: 'from-yellow-400 to-yellow-500',
+      borderColor: 'border-yellow-400',
+      bgColor: 'bg-yellow-400/10',
+      textColor: 'text-yellow-400',
+    },
+  ];
+
+  const stats = [
+    { value: '5,000+', label: t('Teachers Trained', 'معلم تم تدريبهم') },
+    { value: '200+', label: t('Workshops Delivered', 'ورشة عمل تم تقديمها') },
+    { value: '95%', label: t('Satisfaction Rate', 'نسبة الرضا') },
+    { value: '8', label: t('Training Programs', 'برامج تدريبية') },
+  ];
+
+  const impactMetrics = [
+    { label: t('Tech Confidence', 'الثقة التقنية'), before: 35, after: 92 },
+    { label: t('Digital Content Usage', 'استخدام المحتوى الرقمي'), before: 15, after: 78 },
+    { label: t('Student Engagement', 'تفاعل الطلاب'), before: 0, after: 40, isIncrease: true },
+  ];
+
   return (
     <>
       <Header />
@@ -209,7 +274,7 @@ export default function TeacherTrainingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="section-label-light mb-4"
               >
-                Teacher Training
+                {t('Teacher Training', 'تدريب المعلمين')}
               </motion.p>
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
@@ -217,8 +282,8 @@ export default function TeacherTrainingPage() {
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight"
               >
-                Empowering Educators for the{' '}
-                <span className="gradient-text">Digital Age</span>
+                {t('Empowering Educators for the', 'تمكين المعلمين من أجل')}{' '}
+                <span className="gradient-text">{t('Digital Age', 'العصر الرقمي')}</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
@@ -226,9 +291,10 @@ export default function TeacherTrainingPage() {
                 transition={{ delay: 0.2 }}
                 className="text-white/60 text-lg leading-relaxed mb-10 max-w-lg"
               >
-                Comprehensive professional development programs that equip teachers
-                with digital tools, modern pedagogy, and the confidence to transform
-                their classrooms.
+                {t(
+                  'Comprehensive professional development programs that equip teachers with digital tools, modern pedagogy, and the confidence to transform their classrooms.',
+                  'برامج تطوير مهني شاملة تزوّد المعلمين بالأدوات الرقمية والبيداغوجيا الحديثة والثقة لتحويل فصولهم الدراسية.'
+                )}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -237,10 +303,10 @@ export default function TeacherTrainingPage() {
                 className="flex flex-wrap gap-4"
               >
                 <Link href="/contact" className="btn-primary text-lg">
-                  Start Training <ArrowRight className="w-5 h-5" />
+                  {t('Start Training', 'ابدأ التدريب')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                 </Link>
                 <Link href="#programs" className="btn-outline-white text-lg">
-                  View Programs
+                  {t('View Programs', 'عرض البرامج')}
                 </Link>
               </motion.div>
             </div>
@@ -261,7 +327,7 @@ export default function TeacherTrainingPage() {
                     <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/70" />
                     <div className="w-2.5 h-2.5 rounded-full bg-green-400/70" />
                   </div>
-                  <span className="text-white/30 text-xs font-mono ml-2">Cubico Training Session</span>
+                  <span className="text-white/30 text-xs font-mono ml-2">{t('Cubico Training Session', 'جلسة تدريب كيوبيكو')}</span>
                 </div>
 
                 {/* Presentation Slide */}
@@ -270,13 +336,17 @@ export default function TeacherTrainingPage() {
                     <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
                       <GraduationCap className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="text-primary text-xs font-semibold uppercase tracking-wider">Module 3 of 8</span>
+                    <span className="text-primary text-xs font-semibold uppercase tracking-wider">{t('Module 3 of 8', 'الوحدة ٣ من ٨')}</span>
                   </div>
                   <h3 className="text-white font-heading font-bold text-lg md:text-xl mb-3">
-                    Creating Interactive Assessments
+                    {t('Creating Interactive Assessments', 'إنشاء تقييمات تفاعلية')}
                   </h3>
                   <div className="space-y-2 mb-5">
-                    {['Quiz builder walkthrough', 'Rubric configuration', 'Auto-grading setup'].map((item, i) => (
+                    {[
+                      t('Quiz builder walkthrough', 'جولة في أداة إنشاء الاختبارات'),
+                      t('Rubric configuration', 'تهيئة معايير التقييم'),
+                      t('Auto-grading setup', 'إعداد التقييم التلقائي'),
+                    ].map((item, i) => (
                       <motion.div
                         key={item}
                         initial={{ opacity: 0, x: -10 }}
@@ -332,7 +402,7 @@ export default function TeacherTrainingPage() {
                 <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/50 text-xs font-bold border-2 border-gray-900">
                   +24
                 </div>
-                <span className="text-white/40 text-xs ml-2">teachers in session</span>
+                <span className="text-white/40 text-xs ml-2">{t('teachers in session', 'معلمون في الجلسة')}</span>
               </motion.div>
             </motion.div>
           </div>
@@ -343,12 +413,16 @@ export default function TeacherTrainingPage() {
       <section id="programs" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Programs</span>
+            <span className="section-label mb-4 block">{t('Programs', 'البرامج')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Professional Development <span className="gradient-text">Programs</span>
+              {t('Professional Development', 'التطوير المهني')}{' '}
+              <span className="gradient-text">{t('Programs', 'البرامج')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Structured training programs designed to build digital competency at every level, from beginner to advanced.
+              {t(
+                'Structured training programs designed to build digital competency at every level, from beginner to advanced.',
+                'برامج تدريبية منظمة مصممة لبناء الكفاءة الرقمية على كل مستوى، من المبتدئ إلى المتقدم.'
+              )}
             </p>
           </div>
 
@@ -389,12 +463,16 @@ export default function TeacherTrainingPage() {
       <section className="py-24 bg-surface-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Delivery Formats</span>
+            <span className="section-label mb-4 block">{t('Delivery Formats', 'أنماط التقديم')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Choose Your <span className="gradient-text">Training Format</span>
+              {t('Choose Your', 'اختر')}{' '}
+              <span className="gradient-text">{t('Training Format', 'نمط التدريب')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Flexible delivery options to fit your institution&apos;s schedule and preferences.
+              {t(
+                "Flexible delivery options to fit your institution\u2019s schedule and preferences.",
+                'خيارات تقديم مرنة تتناسب مع جدول مؤسستك وتفضيلاتها.'
+              )}
             </p>
           </div>
 
@@ -444,7 +522,7 @@ export default function TeacherTrainingPage() {
                       /* Virtual: Video call grid */
                       <div className="grid grid-cols-3 gap-2 w-full">
                         {[
-                          { initials: 'Trainer', highlight: true },
+                          { initials: t('Trainer', 'مدرب'), highlight: true },
                           { initials: 'AK' }, { initials: 'SM' },
                           { initials: 'RH' }, { initials: 'NP' }, { initials: 'ZQ' },
                           { initials: 'FA' }, { initials: 'MT' }, { initials: 'LJ' },
@@ -466,10 +544,10 @@ export default function TeacherTrainingPage() {
                       /* Self-paced: Course library */
                       <div className="w-full space-y-2.5">
                         {[
-                          { title: 'Getting Started with LMS', progress: 100 },
-                          { title: 'Content Creation Basics', progress: 65 },
-                          { title: 'Assessment Builder', progress: 30 },
-                          { title: 'Data Analytics', progress: 0 },
+                          { title: t('Getting Started with LMS', 'البدء مع نظام إدارة التعلم'), progress: 100 },
+                          { title: t('Content Creation Basics', 'أساسيات إنشاء المحتوى'), progress: 65 },
+                          { title: t('Assessment Builder', 'أداة إنشاء التقييمات'), progress: 30 },
+                          { title: t('Data Analytics', 'تحليل البيانات'), progress: 0 },
                         ].map((course, j) => (
                           <div key={j} className="bg-white rounded-lg p-2.5 border border-gray-200 shadow-sm">
                             <div className="flex items-center justify-between mb-1.5">
@@ -517,12 +595,16 @@ export default function TeacherTrainingPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Curriculum</span>
+            <span className="section-label mb-4 block">{t('Curriculum', 'المنهج الدراسي')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Training <span className="gradient-text">Roadmap</span>
+              {t('Training', 'خارطة طريق')}{' '}
+              <span className="gradient-text">{t('Roadmap', 'التدريب')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              A structured 8-week curriculum that takes educators from platform basics to advanced digital teaching mastery.
+              {t(
+                'A structured 8-week curriculum that takes educators from platform basics to advanced digital teaching mastery.',
+                'منهج منظم مدته ٨ أسابيع ينقل المعلمين من أساسيات المنصة إلى إتقان التدريس الرقمي المتقدم.'
+              )}
             </p>
           </div>
 
@@ -557,13 +639,13 @@ export default function TeacherTrainingPage() {
                         {i < 2 && (
                           <span className="inline-flex items-center gap-1 text-green-500 text-xs font-semibold">
                             <CheckCircle2 className="w-3.5 h-3.5" />
-                            Foundation
+                            {t('Foundation', 'الأساس')}
                           </span>
                         )}
                         {i >= 2 && (
                           <span className="inline-flex items-center gap-1 text-primary text-xs font-semibold">
                             <Zap className="w-3.5 h-3.5" />
-                            Advanced
+                            {t('Advanced', 'متقدم')}
                           </span>
                         )}
                       </div>
@@ -573,7 +655,7 @@ export default function TeacherTrainingPage() {
                       <ul className="grid sm:grid-cols-2 gap-2">
                         {phase.topics.map((topic) => (
                           <li key={topic} className="flex items-center gap-2 text-sm text-gray-500">
-                            <ChevronRight className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                            <ChevronRight className="w-3.5 h-3.5 text-primary flex-shrink-0 rtl:rotate-180" />
                             {topic}
                           </li>
                         ))}
@@ -594,12 +676,16 @@ export default function TeacherTrainingPage() {
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label-light mb-4 block">Certification</span>
+            <span className="section-label-light mb-4 block">{t('Certification', 'الشهادات')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Your Path to <span className="gradient-text">Certification</span>
+              {t('Your Path to', 'طريقك نحو')}{' '}
+              <span className="gradient-text">{t('Certification', 'الاعتماد')}</span>
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto">
-              Progress through four certification levels and become a Certified Cubico Educator. Earn badges, unlock achievements, and lead digital transformation.
+              {t(
+                'Progress through four certification levels and become a Certified Cubico Educator. Earn badges, unlock achievements, and lead digital transformation.',
+                'تقدّم عبر أربعة مستويات اعتماد وكن معلم كيوبيكو معتمداً. احصل على شارات، وافتح إنجازات، وقُد التحول الرقمي.'
+              )}
             </p>
           </div>
 
@@ -658,7 +744,7 @@ export default function TeacherTrainingPage() {
                     {/* Arrow to next */}
                     {i < certificationLevels.length - 1 && (
                       <div className="absolute top-1/2 -translate-y-1/2 hidden" style={{ left: `${(i + 1) * 25}%` }}>
-                        <ArrowRight className="w-5 h-5 text-primary" />
+                        <ArrowRight className="w-5 h-5 text-primary rtl:rotate-180" />
                       </div>
                     )}
                   </motion.div>
@@ -703,12 +789,16 @@ export default function TeacherTrainingPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Dashboard</span>
+            <span className="section-label mb-4 block">{t('Dashboard', 'لوحة التحكم')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Track Your <span className="gradient-text">Progress</span>
+              {t('Track Your', 'تتبع')}{' '}
+              <span className="gradient-text">{t('Progress', 'تقدمك')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Every teacher gets a personalized training dashboard to track courses, sessions, certificates, and quiz performance.
+              {t(
+                'Every teacher gets a personalized training dashboard to track courses, sessions, certificates, and quiz performance.',
+                'يحصل كل معلم على لوحة تحكم تدريبية مخصصة لتتبع الدورات والجلسات والشهادات وأداء الاختبارات.'
+              )}
             </p>
           </div>
 
@@ -726,13 +816,13 @@ export default function TeacherTrainingPage() {
                   SA
                 </div>
                 <div>
-                  <p className="text-gray-900 font-semibold text-sm">Sarah Ahmed</p>
-                  <p className="text-gray-400 text-xs">Intermediate Level</p>
+                  <p className="text-gray-900 font-semibold text-sm">{t('Sarah Ahmed', 'سارة أحمد')}</p>
+                  <p className="text-gray-400 text-xs">{t('Intermediate Level', 'المستوى المتوسط')}</p>
                 </div>
               </div>
               <div className="hidden sm:flex items-center gap-2 bg-primary/10 text-primary text-xs font-semibold px-3 py-1.5 rounded-full">
                 <Star className="w-3.5 h-3.5" />
-                1,250 XP
+                {t('1,250 XP', '١٬٢٥٠ نقطة خبرة')}
               </div>
             </div>
 
@@ -741,14 +831,14 @@ export default function TeacherTrainingPage() {
               <div className="bg-white rounded-xl p-5 border border-gray-100">
                 <h4 className="font-heading font-bold text-gray-900 text-sm mb-4 flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
-                  Course Progress
+                  {t('Course Progress', 'تقدم الدورات')}
                 </h4>
                 <div className="space-y-4">
                   {[
-                    { name: 'LMS Mastery', progress: 85, color: 'bg-green-400' },
-                    { name: 'Digital Pedagogy', progress: 60, color: 'bg-primary' },
-                    { name: 'Content Creation', progress: 35, color: 'bg-blue-400' },
-                    { name: 'Data Literacy', progress: 10, color: 'bg-accent' },
+                    { name: t('LMS Mastery', 'إتقان نظام إدارة التعلم'), progress: 85, color: 'bg-green-400' },
+                    { name: t('Digital Pedagogy', 'البيداغوجيا الرقمية'), progress: 60, color: 'bg-primary' },
+                    { name: t('Content Creation', 'إنشاء المحتوى'), progress: 35, color: 'bg-blue-400' },
+                    { name: t('Data Literacy', 'محو الأمية البيانية'), progress: 10, color: 'bg-accent' },
                   ].map((course) => (
                     <div key={course.name}>
                       <div className="flex items-center justify-between mb-1.5">
@@ -773,13 +863,13 @@ export default function TeacherTrainingPage() {
               <div className="bg-white rounded-xl p-5 border border-gray-100">
                 <h4 className="font-heading font-bold text-gray-900 text-sm mb-4 flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-primary" />
-                  Upcoming Sessions
+                  {t('Upcoming Sessions', 'الجلسات القادمة')}
                 </h4>
                 <div className="space-y-3">
                   {[
-                    { title: 'Quiz Builder Workshop', date: 'Mon, Mar 18', time: '10:00 AM', type: 'Live' },
-                    { title: 'Data Analytics Deep Dive', date: 'Wed, Mar 20', time: '2:00 PM', type: 'Virtual' },
-                    { title: 'Content Design Lab', date: 'Fri, Mar 22', time: '11:00 AM', type: 'On-site' },
+                    { title: t('Quiz Builder Workshop', 'ورشة أداة إنشاء الاختبارات'), date: t('Mon, Mar 18', 'الإثنين، ١٨ مارس'), time: t('10:00 AM', '١٠:٠٠ صباحاً'), type: t('Live', 'مباشر') },
+                    { title: t('Data Analytics Deep Dive', 'التعمق في تحليل البيانات'), date: t('Wed, Mar 20', 'الأربعاء، ٢٠ مارس'), time: t('2:00 PM', '٢:٠٠ مساءً'), type: t('Virtual', 'افتراضي') },
+                    { title: t('Content Design Lab', 'مختبر تصميم المحتوى'), date: t('Fri, Mar 22', 'الجمعة، ٢٢ مارس'), time: t('11:00 AM', '١١:٠٠ صباحاً'), type: t('On-site', 'حضوري') },
                   ].map((session, j) => (
                     <div key={j} className="flex items-center gap-3 p-2.5 rounded-lg bg-gray-50 border border-gray-100">
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -787,7 +877,7 @@ export default function TeacherTrainingPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-semibold text-gray-900 truncate">{session.title}</p>
-                        <p className="text-[10px] text-gray-400">{session.date} at {session.time}</p>
+                        <p className="text-[10px] text-gray-400">{session.date} {t('at', 'في')} {session.time}</p>
                       </div>
                       <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full flex-shrink-0">
                         {session.type}
@@ -801,12 +891,12 @@ export default function TeacherTrainingPage() {
               <div className="bg-white rounded-xl p-5 border border-gray-100">
                 <h4 className="font-heading font-bold text-gray-900 text-sm mb-4 flex items-center gap-2">
                   <Award className="w-4 h-4 text-primary" />
-                  Certificates Earned
+                  {t('Certificates Earned', 'الشهادات المكتسبة')}
                 </h4>
                 <div className="space-y-3">
                   {[
-                    { name: 'Platform Basics', date: 'Jan 2025', level: 'Beginner' },
-                    { name: 'LMS Fundamentals', date: 'Feb 2025', level: 'Beginner' },
+                    { name: t('Platform Basics', 'أساسيات المنصة'), date: t('Jan 2025', 'يناير ٢٠٢٥'), level: t('Beginner', 'مبتدئ') },
+                    { name: t('LMS Fundamentals', 'أساسيات نظام إدارة التعلم'), date: t('Feb 2025', 'فبراير ٢٠٢٥'), level: t('Beginner', 'مبتدئ') },
                   ].map((cert, j) => (
                     <div key={j} className="flex items-center gap-3 p-2.5 rounded-lg bg-gray-50 border border-gray-100">
                       <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center flex-shrink-0">
@@ -825,7 +915,7 @@ export default function TeacherTrainingPage() {
                     <div className="w-6 h-6 rounded-full border-2 border-dashed border-gray-200 flex items-center justify-center">
                       <span className="text-[8px]">?</span>
                     </div>
-                    <span>2 more to unlock Intermediate badge</span>
+                    <span>{t('2 more to unlock Intermediate badge', 'شهادتان إضافيتان لفتح شارة المستوى المتوسط')}</span>
                   </div>
                 </div>
               </div>
@@ -834,14 +924,14 @@ export default function TeacherTrainingPage() {
               <div className="bg-white rounded-xl p-5 border border-gray-100">
                 <h4 className="font-heading font-bold text-gray-900 text-sm mb-4 flex items-center gap-2">
                   <Target className="w-4 h-4 text-primary" />
-                  Quiz Scores
+                  {t('Quiz Scores', 'درجات الاختبارات')}
                 </h4>
                 <div className="space-y-3">
                   {[
-                    { name: 'Platform Navigation', score: 95, max: 100 },
-                    { name: 'Course Setup', score: 88, max: 100 },
-                    { name: 'Content Upload', score: 72, max: 100 },
-                    { name: 'Quiz Builder', score: 91, max: 100 },
+                    { name: t('Platform Navigation', 'التنقل في المنصة'), score: 95, max: 100 },
+                    { name: t('Course Setup', 'إعداد الدورة'), score: 88, max: 100 },
+                    { name: t('Content Upload', 'رفع المحتوى'), score: 72, max: 100 },
+                    { name: t('Quiz Builder', 'أداة إنشاء الاختبارات'), score: 91, max: 100 },
                   ].map((quiz) => (
                     <div key={quiz.name} className="flex items-center justify-between">
                       <span className="text-xs text-gray-600">{quiz.name}</span>
@@ -860,7 +950,7 @@ export default function TeacherTrainingPage() {
                   ))}
                 </div>
                 <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                  <span className="text-xs text-gray-400">Average Score</span>
+                  <span className="text-xs text-gray-400">{t('Average Score', 'متوسط الدرجات')}</span>
                   <span className="text-sm font-heading font-bold text-primary">86.5%</span>
                 </div>
               </div>
@@ -901,12 +991,16 @@ export default function TeacherTrainingPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Impact</span>
+            <span className="section-label mb-4 block">{t('Impact', 'التأثير')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Measurable <span className="gradient-text">Results</span>
+              {t('Measurable', 'نتائج')}{' '}
+              <span className="gradient-text">{t('Results', 'قابلة للقياس')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Our training programs deliver real, measurable improvements in teacher confidence and classroom effectiveness.
+              {t(
+                'Our training programs deliver real, measurable improvements in teacher confidence and classroom effectiveness.',
+                'تقدم برامجنا التدريبية تحسينات حقيقية وقابلة للقياس في ثقة المعلمين وفعالية الفصول الدراسية.'
+              )}
             </p>
           </div>
 
@@ -933,7 +1027,7 @@ export default function TeacherTrainingPage() {
                       <TrendingUp className="w-8 h-8 text-green-500" />
                       <span className="text-5xl font-heading font-bold gradient-text">+{metric.after}%</span>
                     </div>
-                    <p className="text-gray-400 text-sm">increase after training</p>
+                    <p className="text-gray-400 text-sm">{t('increase after training', 'زيادة بعد التدريب')}</p>
                   </div>
                 ) : (
                   /* Before/After bar comparison */
@@ -941,7 +1035,7 @@ export default function TeacherTrainingPage() {
                     {/* Before */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs text-gray-400 uppercase tracking-wider">Before</span>
+                        <span className="text-xs text-gray-400 uppercase tracking-wider">{t('Before', 'قبل')}</span>
                         <span className="text-sm font-bold text-gray-400">{metric.before}%</span>
                       </div>
                       <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
@@ -957,7 +1051,7 @@ export default function TeacherTrainingPage() {
                     {/* After */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs text-primary uppercase tracking-wider font-semibold">After</span>
+                        <span className="text-xs text-primary uppercase tracking-wider font-semibold">{t('After', 'بعد')}</span>
                         <span className="text-sm font-bold text-primary">{metric.after}%</span>
                       </div>
                       <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
@@ -995,10 +1089,10 @@ export default function TeacherTrainingPage() {
             </div>
 
             <blockquote className="text-xl md:text-2xl font-heading text-gray-900 leading-relaxed mb-8">
-              &ldquo;Before the Cubico training, I was overwhelmed by digital tools. Now I confidently
-              create interactive quizzes, track student progress through analytics, and even help my
-              colleagues get started. The certification path made it feel like a game — I was always
-              motivated to reach the next level.&rdquo;
+              &ldquo;{t(
+                'Before the Cubico training, I was overwhelmed by digital tools. Now I confidently create interactive quizzes, track student progress through analytics, and even help my colleagues get started. The certification path made it feel like a game — I was always motivated to reach the next level.',
+                'قبل تدريب كيوبيكو، كنت مرتبكة من الأدوات الرقمية. الآن أنشئ بثقة اختبارات تفاعلية، وأتتبع تقدم الطلاب من خلال التحليلات، بل وأساعد زملائي على البدء. مسار الاعتماد جعل الأمر يبدو كلعبة — كنت دائماً متحمسة للوصول إلى المستوى التالي.'
+              )}&rdquo;
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
@@ -1006,8 +1100,8 @@ export default function TeacherTrainingPage() {
                 FM
               </div>
               <div className="text-left">
-                <p className="text-gray-900 font-heading font-bold">Fatima Malik</p>
-                <p className="text-gray-400 text-sm">Senior Science Teacher, Lahore Grammar School</p>
+                <p className="text-gray-900 font-heading font-bold">{t('Fatima Malik', 'فاطمة مالك')}</p>
+                <p className="text-gray-400 text-sm">{t('Senior Science Teacher, Lahore Grammar School', 'معلمة علوم أولى، مدرسة لاهور جرامر')}</p>
               </div>
             </div>
 
@@ -1037,18 +1131,21 @@ export default function TeacherTrainingPage() {
               <GraduationCap className="w-8 h-8 text-primary" />
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
-              Invest in Your <span className="gradient-text">Teachers</span>
+              {t('Invest in Your', 'استثمر في')}{' '}
+              <span className="gradient-text">{t('Teachers', 'معلميك')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-              Empower your educators with the skills they need to thrive in the digital classroom.
-              From hands-on workshops to self-paced courses, we have the right program for your institution.
+              {t(
+                'Empower your educators with the skills they need to thrive in the digital classroom. From hands-on workshops to self-paced courses, we have the right program for your institution.',
+                'مكّن معلميك بالمهارات التي يحتاجونها للتميز في الفصل الرقمي. من ورش العمل العملية إلى الدورات الذاتية، لدينا البرنامج المناسب لمؤسستك.'
+              )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary text-lg">
-                Schedule a Workshop <ArrowRight className="w-5 h-5" />
+                {t('Schedule a Workshop', 'احجز ورشة عمل')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </Link>
               <Link href="/services" className="btn-outline-white text-lg">
-                Explore All Services
+                {t('Explore All Services', 'استكشف جميع الخدمات')}
               </Link>
             </div>
           </motion.div>

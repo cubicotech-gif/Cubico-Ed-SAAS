@@ -41,6 +41,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useEffect, useRef, useState } from 'react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ===================================================
    ANIMATION VARIANTS
@@ -87,72 +88,6 @@ const slideInRight = {
 };
 
 /* ===================================================
-   DATA
-   =================================================== */
-const services = [
-  {
-    icon: Megaphone,
-    title: 'Enrollment Campaigns',
-    desc: 'Targeted Google Ads and Meta campaigns designed around admissions season. We build high-converting landing pages, retargeting funnels, and lookalike audiences to fill every seat.',
-  },
-  {
-    icon: Share2,
-    title: 'Social Media Management',
-    desc: 'Full-service content calendar, community management, and paid social strategy across Instagram, Facebook, LinkedIn, and TikTok. Build a loyal parent community online.',
-  },
-  {
-    icon: Mail,
-    title: 'Email Automation',
-    desc: 'Drip campaigns for prospective families, newsletter management for current parents, and re-engagement sequences for alumni. Personalized at scale with A/B testing.',
-  },
-  {
-    icon: Search,
-    title: 'SEO & Content Marketing',
-    desc: 'Dominate local search results with optimized blog strategy, Google Business Profile management, citation building, and keyword-targeted content that drives organic traffic.',
-  },
-  {
-    icon: Palette,
-    title: 'Brand Identity',
-    desc: 'Comprehensive brand development including logo design, color systems, typography, stationery, signage, and digital brand guidelines that set your school apart.',
-  },
-  {
-    icon: Video,
-    title: 'Video Marketing',
-    desc: 'Promotional videos, virtual campus tours, student testimonials, and short-form social content. Professional production that captures your school\'s unique culture.',
-  },
-];
-
-const funnelStages = [
-  { stage: 'Awareness', count: '50,000', desc: 'Impressions & reach', width: '100%', color: '#D4711A' },
-  { stage: 'Interest', count: '12,000', desc: 'Website visits', width: '80%', color: '#C46218' },
-  { stage: 'Consideration', count: '3,500', desc: 'Inquiry forms', width: '60%', color: '#A85215' },
-  { stage: 'Application', count: '800', desc: 'Applications started', width: '40%', color: '#8B4513' },
-  { stage: 'Enrollment', count: '450', desc: 'Students enrolled', width: '25%', color: '#6B3410' },
-];
-
-const campaignData = [
-  { name: 'Spring Admissions 2025', status: 'Active', budget: '$4,500', spent: '$3,200', leads: 342, cpl: '$9.36', color: '#10B981' },
-  { name: 'Open Day Promotion', status: 'Active', budget: '$1,200', spent: '$890', leads: 156, cpl: '$5.71', color: '#10B981' },
-  { name: 'Summer Camp Drive', status: 'Paused', budget: '$2,000', spent: '$1,100', leads: 89, cpl: '$12.36', color: '#F59E0B' },
-  { name: 'Fall Semester Launch', status: 'Completed', budget: '$6,000', spent: '$5,980', leads: 520, cpl: '$11.50', color: '#6366F1' },
-];
-
-const processSteps = [
-  { icon: Search, title: 'Audit', desc: 'We analyze your current marketing, competitors, and local market to identify gaps and opportunities.' },
-  { icon: Target, title: 'Strategy', desc: 'Custom marketing plan with channel mix, budget allocation, content themes, and enrollment targets.' },
-  { icon: Lightbulb, title: 'Create', desc: 'Our creative team produces ad copy, visuals, videos, landing pages, and email sequences.' },
-  { icon: Rocket, title: 'Launch', desc: 'Campaigns go live across all channels with precise targeting, tracking pixels, and UTM parameters.' },
-  { icon: Settings, title: 'Optimize', desc: 'Continuous A/B testing, bid optimization, audience refinement, and monthly performance reviews.' },
-];
-
-const stats = [
-  { number: '45%', label: 'Avg Enrollment Increase' },
-  { number: '200+', label: 'Campaigns Managed' },
-  { number: '10M+', label: 'Impressions Delivered' },
-  { number: '3', label: 'Countries Served' },
-];
-
-/* ===================================================
    ANIMATED COUNTER COMPONENT
    =================================================== */
 function AnimatedCounter({ end, suffix = '', prefix = '', duration = 2000 }: { end: number; suffix?: string; prefix?: string; duration?: number }) {
@@ -184,13 +119,14 @@ function AnimatedCounter({ end, suffix = '', prefix = '', duration = 2000 }: { e
    HERO DASHBOARD MOCKUP
    =================================================== */
 function HeroDashboardMockup() {
+  const { t } = useLanguage();
   return (
     <div className="bg-[#1E1408] border border-[#2A1A0C] rounded-2xl p-4 shadow-2xl">
       {/* Top bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-[#D4711A]" />
-          <span className="text-[10px] font-semibold text-white">Marketing Dashboard</span>
+          <span className="text-[10px] font-semibold text-white">{t('Marketing Dashboard', 'لوحة التسويق')}</span>
         </div>
         <div className="flex gap-1.5">
           <div className="w-2 h-2 rounded-full bg-[#FF5F56]" />
@@ -202,9 +138,9 @@ function HeroDashboardMockup() {
       {/* Metric Cards Row */}
       <div className="grid grid-cols-3 gap-2 mb-3">
         {[
-          { label: 'Impressions', value: '1.2M', change: '+24%', icon: Eye },
-          { label: 'Clicks', value: '48.5K', change: '+18%', icon: MousePointerClick },
-          { label: 'Enrollments', value: '342', change: '+45%', icon: GraduationCap },
+          { label: t('Impressions', 'مرات الظهور'), value: '1.2M', change: '+24%', icon: Eye },
+          { label: t('Clicks', 'النقرات'), value: '48.5K', change: '+18%', icon: MousePointerClick },
+          { label: t('Enrollments', 'التسجيلات'), value: '342', change: '+45%', icon: GraduationCap },
         ].map((m) => (
           <div key={m.label} className="bg-[#140E06] rounded-lg p-2.5">
             <div className="flex items-center justify-between mb-1">
@@ -220,8 +156,8 @@ function HeroDashboardMockup() {
       {/* Enrollment Growth Graph */}
       <div className="bg-[#140E06] rounded-lg p-3 mb-3">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[8px] font-semibold text-white">Enrollment Growth</span>
-          <span className="text-[7px] text-[#D4711A]">Last 12 months</span>
+          <span className="text-[8px] font-semibold text-white">{t('Enrollment Growth', 'نمو التسجيل')}</span>
+          <span className="text-[7px] text-[#D4711A]">{t('Last 12 months', 'آخر 12 شهراً')}</span>
         </div>
         <div className="flex items-end gap-1.5 h-16">
           {[30, 35, 28, 42, 50, 45, 58, 62, 55, 70, 78, 90].map((h, i) => (
@@ -272,13 +208,14 @@ function HeroDashboardMockup() {
    CAMPAIGN DASHBOARD MOCKUP
    =================================================== */
 function CampaignDashboardMockup() {
+  const { t } = useLanguage();
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-xl overflow-hidden">
       {/* Dashboard header */}
       <div className="bg-[#0F0A04] px-5 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-[#D4711A]" />
-          <span className="text-xs font-semibold text-white">Cubico Campaign Manager</span>
+          <span className="text-xs font-semibold text-white">{t('Cubico Campaign Manager', 'مدير حملات كيوبيكو')}</span>
         </div>
         <div className="flex gap-1.5">
           <div className="w-2 h-2 rounded-full bg-[#FF5F56]" />
@@ -291,10 +228,10 @@ function CampaignDashboardMockup() {
         {/* Performance metrics row */}
         <div className="grid grid-cols-4 gap-3 mb-5">
           {[
-            { label: 'Total Spend', value: '$11,170', icon: BarChart3, change: '-8% vs last month' },
-            { label: 'Total Leads', value: '1,107', icon: Users, change: '+32% vs last month' },
-            { label: 'Avg CPL', value: '$10.09', icon: TrendingUp, change: '-15% vs last month' },
-            { label: 'Conversion Rate', value: '4.8%', icon: Target, change: '+0.6% vs last month' },
+            { label: t('Total Spend', 'إجمالي الإنفاق'), value: '$11,170', icon: BarChart3, change: t('-8% vs last month', '-8% مقارنة بالشهر الماضي') },
+            { label: t('Total Leads', 'إجمالي العملاء المحتملين'), value: '1,107', icon: Users, change: t('+32% vs last month', '+32% مقارنة بالشهر الماضي') },
+            { label: t('Avg CPL', 'متوسط تكلفة العميل'), value: '$10.09', icon: TrendingUp, change: t('-15% vs last month', '-15% مقارنة بالشهر الماضي') },
+            { label: t('Conversion Rate', 'معدل التحويل'), value: '4.8%', icon: Target, change: t('+0.6% vs last month', '+0.6% مقارنة بالشهر الماضي') },
           ].map((m) => (
             <div key={m.label} className="bg-gray-50 rounded-xl p-3">
               <div className="flex items-center gap-1.5 mb-2">
@@ -309,16 +246,21 @@ function CampaignDashboardMockup() {
 
         {/* Campaign list */}
         <div className="mb-5">
-          <div className="text-xs font-semibold text-gray-700 mb-2">Active Campaigns</div>
+          <div className="text-xs font-semibold text-gray-700 mb-2">{t('Active Campaigns', 'الحملات النشطة')}</div>
           <div className="border border-gray-100 rounded-xl overflow-hidden">
             <div className="grid grid-cols-6 gap-2 px-3 py-2 bg-gray-50 text-[9px] font-medium text-gray-500">
-              <span className="col-span-2">Campaign</span>
-              <span>Status</span>
-              <span>Budget</span>
-              <span>Leads</span>
-              <span>CPL</span>
+              <span className="col-span-2">{t('Campaign', 'الحملة')}</span>
+              <span>{t('Status', 'الحالة')}</span>
+              <span>{t('Budget', 'الميزانية')}</span>
+              <span>{t('Leads', 'العملاء')}</span>
+              <span>{t('CPL', 'تكلفة العميل')}</span>
             </div>
-            {campaignData.map((c) => (
+            {[
+              { name: t('Spring Admissions 2025', 'قبول الربيع 2025'), status: t('Active', 'نشطة'), budget: '$4,500', spent: '$3,200', leads: 342, cpl: '$9.36', color: '#10B981' },
+              { name: t('Open Day Promotion', 'ترويج اليوم المفتوح'), status: t('Active', 'نشطة'), budget: '$1,200', spent: '$890', leads: 156, cpl: '$5.71', color: '#10B981' },
+              { name: t('Summer Camp Drive', 'حملة المخيم الصيفي'), status: t('Paused', 'متوقفة'), budget: '$2,000', spent: '$1,100', leads: 89, cpl: '$12.36', color: '#F59E0B' },
+              { name: t('Fall Semester Launch', 'إطلاق الفصل الخريفي'), status: t('Completed', 'مكتملة'), budget: '$6,000', spent: '$5,980', leads: 520, cpl: '$11.50', color: '#6366F1' },
+            ].map((c) => (
               <div key={c.name} className="grid grid-cols-6 gap-2 px-3 py-2 border-t border-gray-50 items-center">
                 <span className="col-span-2 text-[10px] font-medium text-gray-800 truncate">{c.name}</span>
                 <span>
@@ -340,13 +282,13 @@ function CampaignDashboardMockup() {
         <div className="grid grid-cols-2 gap-4">
           {/* ROI Graph */}
           <div className="bg-gray-50 rounded-xl p-3">
-            <div className="text-[10px] font-semibold text-gray-700 mb-2">ROI by Channel</div>
+            <div className="text-[10px] font-semibold text-gray-700 mb-2">{t('ROI by Channel', 'العائد على الاستثمار حسب القناة')}</div>
             <div className="space-y-2">
               {[
-                { channel: 'Google Ads', roi: '4.2x', width: '84%', color: '#D4711A' },
-                { channel: 'Meta Ads', roi: '3.8x', width: '76%', color: '#1877F2' },
-                { channel: 'Email', roi: '6.1x', width: '100%', color: '#10B981' },
-                { channel: 'SEO', roi: '5.5x', width: '90%', color: '#6366F1' },
+                { channel: t('Google Ads', 'إعلانات جوجل'), roi: '4.2x', width: '84%', color: '#D4711A' },
+                { channel: t('Meta Ads', 'إعلانات ميتا'), roi: '3.8x', width: '76%', color: '#1877F2' },
+                { channel: t('Email', 'البريد الإلكتروني'), roi: '6.1x', width: '100%', color: '#10B981' },
+                { channel: t('SEO', 'تحسين محركات البحث'), roi: '5.5x', width: '90%', color: '#6366F1' },
               ].map((ch) => (
                 <div key={ch.channel}>
                   <div className="flex justify-between mb-0.5">
@@ -370,14 +312,14 @@ function CampaignDashboardMockup() {
 
           {/* Geographic Heat Map */}
           <div className="bg-gray-50 rounded-xl p-3">
-            <div className="text-[10px] font-semibold text-gray-700 mb-2">Lead Sources by Region</div>
+            <div className="text-[10px] font-semibold text-gray-700 mb-2">{t('Lead Sources by Region', 'مصادر العملاء حسب المنطقة')}</div>
             <div className="space-y-1.5">
               {[
-                { region: 'Downtown District', leads: 245, pct: 35 },
-                { region: 'North Suburbs', leads: 189, pct: 27 },
-                { region: 'East Valley', leads: 142, pct: 20 },
-                { region: 'West Hills', leads: 87, pct: 12 },
-                { region: 'South County', leads: 44, pct: 6 },
+                { region: t('Downtown District', 'وسط المدينة'), leads: 245, pct: 35 },
+                { region: t('North Suburbs', 'الضواحي الشمالية'), leads: 189, pct: 27 },
+                { region: t('East Valley', 'الوادي الشرقي'), leads: 142, pct: 20 },
+                { region: t('West Hills', 'التلال الغربية'), leads: 87, pct: 12 },
+                { region: t('South County', 'المنطقة الجنوبية'), leads: 44, pct: 6 },
               ].map((r, i) => (
                 <div key={r.region} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-sm flex items-center justify-center" style={{
@@ -408,6 +350,7 @@ function CampaignDashboardMockup() {
    SOCIAL MEDIA MOCKUPS
    =================================================== */
 function InstagramPostMockup() {
+  const { t } = useLanguage();
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden max-w-xs mx-auto">
       {/* Post header */}
@@ -417,20 +360,20 @@ function InstagramPostMockup() {
         </div>
         <div>
           <div className="text-[10px] font-semibold text-gray-900">greenfield_academy</div>
-          <div className="text-[8px] text-gray-500">Sponsored</div>
+          <div className="text-[8px] text-gray-500">{t('Sponsored', 'ممول')}</div>
         </div>
       </div>
 
       {/* Post image area */}
       <div className="relative aspect-square bg-gradient-to-br from-[#D4711A] via-[#E88C32] to-[#F4A261] flex items-center justify-center">
         <div className="text-center px-6">
-          <div className="text-white/40 text-[10px] uppercase tracking-widest mb-2">Now Enrolling</div>
+          <div className="text-white/40 text-[10px] uppercase tracking-widest mb-2">{t('Now Enrolling', 'التسجيل مفتوح الآن')}</div>
           <div className="text-white font-bold text-xl leading-tight mb-2" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-            Shape Your Child&apos;s Future
+            {t("Shape Your Child's Future", 'اصنع مستقبل طفلك')}
           </div>
-          <div className="text-white/80 text-[10px] mb-3">Classes starting September 2025</div>
+          <div className="text-white/80 text-[10px] mb-3">{t('Classes starting September 2025', 'تبدأ الفصول في سبتمبر 2025')}</div>
           <div className="inline-block bg-white text-[#D4711A] text-[9px] font-bold px-3 py-1.5 rounded-full">
-            Apply Now
+            {t('Apply Now', 'قدّم الآن')}
           </div>
         </div>
         {/* Decorative elements */}
@@ -445,17 +388,18 @@ function InstagramPostMockup() {
           <MessageCircle className="w-4 h-4 text-gray-700" />
           <Repeat2 className="w-4 h-4 text-gray-700" />
         </div>
-        <div className="text-[10px] font-semibold text-gray-900">2,847 likes</div>
+        <div className="text-[10px] font-semibold text-gray-900">{t('2,847 likes', '2,847 إعجاب')}</div>
         <div className="text-[9px] text-gray-600 mt-0.5">
-          <span className="font-semibold text-gray-900">greenfield_academy</span> Discover a world of possibilities for your child. Limited seats available for 2025-26. Link in bio.
+          <span className="font-semibold text-gray-900">greenfield_academy</span> {t('Discover a world of possibilities for your child. Limited seats available for 2025-26. Link in bio.', 'اكتشف عالماً من الفرص لطفلك. مقاعد محدودة متاحة لعام 2025-26. الرابط في البايو.')}
         </div>
-        <div className="text-[8px] text-gray-400 mt-1">View all 134 comments</div>
+        <div className="text-[8px] text-gray-400 mt-1">{t('View all 134 comments', 'عرض جميع التعليقات الـ 134')}</div>
       </div>
     </div>
   );
 }
 
 function FacebookAdMockup() {
+  const { t } = useLanguage();
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden max-w-xs mx-auto">
       {/* Ad header */}
@@ -464,9 +408,9 @@ function FacebookAdMockup() {
           <span className="text-[8px] font-bold text-white">GA</span>
         </div>
         <div className="flex-1">
-          <div className="text-[10px] font-semibold text-gray-900">Greenfield Academy</div>
+          <div className="text-[10px] font-semibold text-gray-900">{t('Greenfield Academy', 'أكاديمية غرينفيلد')}</div>
           <div className="text-[8px] text-gray-500 flex items-center gap-1">
-            Sponsored <Globe className="w-2 h-2" />
+            {t('Sponsored', 'ممول')} <Globe className="w-2 h-2" />
           </div>
         </div>
       </div>
@@ -474,7 +418,7 @@ function FacebookAdMockup() {
       {/* Ad text */}
       <div className="px-3 pb-2">
         <p className="text-[10px] text-gray-800 leading-relaxed">
-          Open Day this Saturday! Tour our campus, meet teachers, and discover our award-winning STEM program. Register now for a free spot.
+          {t('Open Day this Saturday! Tour our campus, meet teachers, and discover our award-winning STEM program. Register now for a free spot.', 'يوم مفتوح هذا السبت! تجوّل في حرمنا الجامعي، وقابل المعلمين، واكتشف برنامجنا المتميز في العلوم والتكنولوجيا. سجّل الآن لحجز مقعدك المجاني.')}
         </p>
       </div>
 
@@ -482,8 +426,8 @@ function FacebookAdMockup() {
       <div className="relative aspect-video bg-gradient-to-br from-[#1a0f06] to-[#2A1A0C] flex items-center justify-center">
         <div className="text-center">
           <GraduationCap className="w-8 h-8 text-[#D4711A] mx-auto mb-2" />
-          <div className="text-white font-bold text-sm" style={{ fontFamily: 'Clash Display, sans-serif' }}>Open Day</div>
-          <div className="text-[#C8A888] text-[9px] mt-0.5">Saturday, March 22 | 9 AM - 2 PM</div>
+          <div className="text-white font-bold text-sm" style={{ fontFamily: 'Clash Display, sans-serif' }}>{t('Open Day', 'اليوم المفتوح')}</div>
+          <div className="text-[#C8A888] text-[9px] mt-0.5">{t('Saturday, March 22 | 9 AM - 2 PM', 'السبت، 22 مارس | 9 صباحاً - 2 ظهراً')}</div>
         </div>
       </div>
 
@@ -491,10 +435,10 @@ function FacebookAdMockup() {
       <div className="flex items-center justify-between px-3 py-2 bg-gray-50 border-t border-gray-100">
         <div>
           <div className="text-[8px] text-gray-500">greenfieldacademy.edu</div>
-          <div className="text-[10px] font-semibold text-gray-900">Register for Open Day</div>
+          <div className="text-[10px] font-semibold text-gray-900">{t('Register for Open Day', 'سجّل لليوم المفتوح')}</div>
         </div>
         <div className="bg-[#1877F2] text-white text-[9px] font-semibold px-3 py-1.5 rounded">
-          Sign Up
+          {t('Sign Up', 'سجّل الآن')}
         </div>
       </div>
 
@@ -504,7 +448,7 @@ function FacebookAdMockup() {
           <ThumbsUp className="w-3 h-3 text-[#1877F2]" />
           <span>1.2K</span>
         </div>
-        <div>284 comments &middot; 156 shares</div>
+        <div>{t('284 comments \u00b7 156 shares', '284 تعليق \u00b7 156 مشاركة')}</div>
       </div>
     </div>
   );
@@ -514,6 +458,64 @@ function FacebookAdMockup() {
    MAIN PAGE COMPONENT
    =================================================== */
 export default function DigitalMarketingPage() {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Megaphone,
+      title: t('Enrollment Campaigns', 'حملات التسجيل'),
+      desc: t('Targeted Google Ads and Meta campaigns designed around admissions season. We build high-converting landing pages, retargeting funnels, and lookalike audiences to fill every seat.', 'حملات إعلانات جوجل وميتا المستهدفة المصممة حول موسم القبول. نبني صفحات هبوط عالية التحويل، وقمع إعادة الاستهداف، وجماهير مشابهة لملء كل مقعد.'),
+    },
+    {
+      icon: Share2,
+      title: t('Social Media Management', 'إدارة وسائل التواصل الاجتماعي'),
+      desc: t('Full-service content calendar, community management, and paid social strategy across Instagram, Facebook, LinkedIn, and TikTok. Build a loyal parent community online.', 'تقويم محتوى شامل، وإدارة المجتمع، واستراتيجية إعلانات مدفوعة عبر إنستغرام وفيسبوك ولينكد إن وتيك توك. ابنِ مجتمعاً مخلصاً من أولياء الأمور عبر الإنترنت.'),
+    },
+    {
+      icon: Mail,
+      title: t('Email Automation', 'أتمتة البريد الإلكتروني'),
+      desc: t('Drip campaigns for prospective families, newsletter management for current parents, and re-engagement sequences for alumni. Personalized at scale with A/B testing.', 'حملات تنقيط للعائلات المحتملة، وإدارة النشرات الإخبارية للأهالي الحاليين، وتسلسلات إعادة التفاعل للخريجين. تخصيص على نطاق واسع مع اختبارات A/B.'),
+    },
+    {
+      icon: Search,
+      title: t('SEO & Content Marketing', 'تحسين محركات البحث وتسويق المحتوى'),
+      desc: t('Dominate local search results with optimized blog strategy, Google Business Profile management, citation building, and keyword-targeted content that drives organic traffic.', 'تصدّر نتائج البحث المحلية باستراتيجية مدونة محسّنة، وإدارة ملف جوجل التجاري، وبناء الاستشهادات، ومحتوى مستهدف بالكلمات المفتاحية يجذب زيارات عضوية.'),
+    },
+    {
+      icon: Palette,
+      title: t('Brand Identity', 'الهوية البصرية'),
+      desc: t('Comprehensive brand development including logo design, color systems, typography, stationery, signage, and digital brand guidelines that set your school apart.', 'تطوير شامل للعلامة التجارية يشمل تصميم الشعار، وأنظمة الألوان، والطباعة، والقرطاسية، واللافتات، وإرشادات العلامة التجارية الرقمية التي تميز مدرستك.'),
+    },
+    {
+      icon: Video,
+      title: t('Video Marketing', 'التسويق بالفيديو'),
+      desc: t("Promotional videos, virtual campus tours, student testimonials, and short-form social content. Professional production that captures your school's unique culture.", 'فيديوهات ترويجية، وجولات افتراضية في الحرم المدرسي، وشهادات الطلاب، ومحتوى اجتماعي قصير. إنتاج احترافي يعكس ثقافة مدرستك الفريدة.'),
+    },
+  ];
+
+  const funnelStages = [
+    { stage: t('Awareness', 'الوعي'), count: '50,000', desc: t('Impressions & reach', 'مرات الظهور والوصول'), width: '100%', color: '#D4711A' },
+    { stage: t('Interest', 'الاهتمام'), count: '12,000', desc: t('Website visits', 'زيارات الموقع'), width: '80%', color: '#C46218' },
+    { stage: t('Consideration', 'التفكير'), count: '3,500', desc: t('Inquiry forms', 'نماذج الاستفسار'), width: '60%', color: '#A85215' },
+    { stage: t('Application', 'التقديم'), count: '800', desc: t('Applications started', 'طلبات بدأت'), width: '40%', color: '#8B4513' },
+    { stage: t('Enrollment', 'التسجيل'), count: '450', desc: t('Students enrolled', 'طلاب مسجلون'), width: '25%', color: '#6B3410' },
+  ];
+
+  const processSteps = [
+    { icon: Search, title: t('Audit', 'التدقيق'), desc: t('We analyze your current marketing, competitors, and local market to identify gaps and opportunities.', 'نحلل تسويقك الحالي، والمنافسين، والسوق المحلي لتحديد الفجوات والفرص.') },
+    { icon: Target, title: t('Strategy', 'الاستراتيجية'), desc: t('Custom marketing plan with channel mix, budget allocation, content themes, and enrollment targets.', 'خطة تسويق مخصصة مع مزيج القنوات، وتوزيع الميزانية، وموضوعات المحتوى، وأهداف التسجيل.') },
+    { icon: Lightbulb, title: t('Create', 'الإنشاء'), desc: t('Our creative team produces ad copy, visuals, videos, landing pages, and email sequences.', 'ينتج فريقنا الإبداعي نصوص إعلانية، ومرئيات، وفيديوهات، وصفحات هبوط، وتسلسلات بريد إلكتروني.') },
+    { icon: Rocket, title: t('Launch', 'الإطلاق'), desc: t('Campaigns go live across all channels with precise targeting, tracking pixels, and UTM parameters.', 'تنطلق الحملات عبر جميع القنوات مع استهداف دقيق، وبكسلات التتبع، ومعلمات UTM.') },
+    { icon: Settings, title: t('Optimize', 'التحسين'), desc: t('Continuous A/B testing, bid optimization, audience refinement, and monthly performance reviews.', 'اختبارات A/B مستمرة، وتحسين العروض، وتنقيح الجمهور، ومراجعات أداء شهرية.') },
+  ];
+
+  const stats = [
+    { number: '45%', label: t('Avg Enrollment Increase', 'متوسط زيادة التسجيل') },
+    { number: '200+', label: t('Campaigns Managed', 'حملة تمت إدارتها') },
+    { number: '10M+', label: t('Impressions Delivered', 'مرة ظهور تم تحقيقها') },
+    { number: '3', label: t('Countries Served', 'دول تمت خدمتها') },
+  ];
+
   return (
     <>
       <Header />
@@ -533,35 +535,33 @@ export default function DigitalMarketingPage() {
             {/* Left: Content */}
             <motion.div variants={slideInLeft} initial="hidden" animate="visible">
               <span className="section-label-light inline-block mb-6">
-                Digital Marketing for Schools
+                {t('Digital Marketing for Schools', 'التسويق الرقمي للمدارس')}
               </span>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                Fill Every Seat,{' '}
-                <span className="gradient-text">Every Semester</span>
+                {t('Fill Every Seat,', 'املأ كل مقعد،')}{' '}
+                <span className="gradient-text">{t('Every Semester', 'كل فصل دراسي')}</span>
               </h1>
 
               <p className="text-lg text-[#C8A888] max-w-lg mb-8 leading-relaxed">
-                Data-driven enrollment campaigns, social media strategies, and brand building
-                designed exclusively for educational institutions. We turn digital impressions
-                into enrolled students.
+                {t('Data-driven enrollment campaigns, social media strategies, and brand building designed exclusively for educational institutions. We turn digital impressions into enrolled students.', 'حملات تسجيل مبنية على البيانات، واستراتيجيات وسائل التواصل الاجتماعي، وبناء العلامة التجارية المصممة حصرياً للمؤسسات التعليمية. نحوّل الانطباعات الرقمية إلى طلاب مسجلين.')}
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary">
-                  Boost Enrollment <ArrowRight className="w-4 h-4" />
+                  {t('Boost Enrollment', 'عزّز التسجيل')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
                 <Link href="#results" className="btn-outline-white">
-                  See Our Results <TrendingUp className="w-4 h-4" />
+                  {t('See Our Results', 'شاهد نتائجنا')} <TrendingUp className="w-4 h-4" />
                 </Link>
               </div>
 
               {/* Quick Stats */}
               <div className="flex gap-8 mt-10">
                 {[
-                  { val: '45%', lbl: 'Avg Growth' },
-                  { val: '200+', lbl: 'Campaigns' },
-                  { val: '10M+', lbl: 'Impressions' },
+                  { val: '45%', lbl: t('Avg Growth', 'متوسط النمو') },
+                  { val: '200+', lbl: t('Campaigns', 'الحملات') },
+                  { val: '10M+', lbl: t('Impressions', 'مرات الظهور') },
                 ].map((s) => (
                   <div key={s.lbl}>
                     <div className="text-2xl font-bold gradient-text" style={{ fontFamily: 'Clash Display, sans-serif' }}>
@@ -587,7 +587,7 @@ export default function DigitalMarketingPage() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-white">+45%</div>
-                  <div className="text-[10px] text-[#8E7A65]">Enrollment</div>
+                  <div className="text-[10px] text-[#8E7A65]">{t('Enrollment', 'التسجيل')}</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -607,13 +607,13 @@ export default function DigitalMarketingPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-4">Our Services</span>
+            <span className="section-label inline-block mb-4">{t('Our Services', 'خدماتنا')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-[#2A1E14] mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              Full-Spectrum School{' '}
-              <span className="gradient-text">Marketing</span>
+              {t('Full-Spectrum School', 'تسويق مدرسي')}{' '}
+              <span className="gradient-text">{t('Marketing', 'شامل')}</span>
             </h2>
             <p className="text-gray-600 text-lg">
-              Everything your institution needs to attract, engage, and enroll families — all under one roof.
+              {t('Everything your institution needs to attract, engage, and enroll families — all under one roof.', 'كل ما تحتاجه مؤسستك لجذب العائلات وإشراكهم وتسجيلهم — تحت سقف واحد.')}
             </p>
           </motion.div>
 
@@ -656,13 +656,13 @@ export default function DigitalMarketingPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label-light inline-block mb-4">Enrollment Funnel</span>
+            <span className="section-label-light inline-block mb-4">{t('Enrollment Funnel', 'قمع التسجيل')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              From Impressions to{' '}
-              <span className="gradient-text">Enrollment</span>
+              {t('From Impressions to', 'من الانطباعات إلى')}{' '}
+              <span className="gradient-text">{t('Enrollment', 'التسجيل')}</span>
             </h2>
             <p className="text-[#C8A888] text-lg">
-              We optimize every stage of the enrollment funnel to maximize your return on marketing spend.
+              {t('We optimize every stage of the enrollment funnel to maximize your return on marketing spend.', 'نحسّن كل مرحلة من مراحل قمع التسجيل لتعظيم عائدك على الإنفاق التسويقي.')}
             </p>
           </motion.div>
 
@@ -710,7 +710,7 @@ export default function DigitalMarketingPage() {
                 transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
               >
                 <div className="text-[#D4711A] text-xs font-bold">{rate}</div>
-                <div className="text-[8px] text-[#8E7A65]">conversion</div>
+                <div className="text-[8px] text-[#8E7A65]">{t('conversion', 'تحويل')}</div>
               </motion.div>
             ))}
           </div>
@@ -729,21 +729,20 @@ export default function DigitalMarketingPage() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <span className="section-label inline-block mb-4">Campaign Management</span>
+              <span className="section-label inline-block mb-4">{t('Campaign Management', 'إدارة الحملات')}</span>
               <h2 className="text-4xl sm:text-5xl font-bold text-[#2A1E14] mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                Every Campaign,{' '}
-                <span className="gradient-text">One Dashboard</span>
+                {t('Every Campaign,', 'كل حملة،')}{' '}
+                <span className="gradient-text">{t('One Dashboard', 'لوحة واحدة')}</span>
               </h2>
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                Real-time visibility into all your marketing campaigns. Track spend, leads, cost per enrollment,
-                and ROI across every channel from a single dashboard.
+                {t('Real-time visibility into all your marketing campaigns. Track spend, leads, cost per enrollment, and ROI across every channel from a single dashboard.', 'رؤية فورية لجميع حملاتك التسويقية. تتبع الإنفاق، والعملاء المحتملين، وتكلفة التسجيل، والعائد على الاستثمار عبر كل قناة من لوحة تحكم واحدة.')}
               </p>
               <div className="space-y-4">
                 {[
-                  'Live campaign performance tracking with status badges',
-                  'ROI breakdown by channel: Google, Meta, Email, SEO',
-                  'Geographic lead source mapping for local targeting',
-                  'Automated budget optimization and bid management',
+                  t('Live campaign performance tracking with status badges', 'تتبع مباشر لأداء الحملات مع شارات الحالة'),
+                  t('ROI breakdown by channel: Google, Meta, Email, SEO', 'تحليل العائد على الاستثمار حسب القناة: جوجل، ميتا، البريد، تحسين محركات البحث'),
+                  t('Geographic lead source mapping for local targeting', 'خرائط مصادر العملاء الجغرافية للاستهداف المحلي'),
+                  t('Automated budget optimization and bid management', 'تحسين تلقائي للميزانية وإدارة العروض'),
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-[#D4711A] mt-0.5 flex-shrink-0" />
@@ -783,13 +782,13 @@ export default function DigitalMarketingPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label-light inline-block mb-4">Social Media</span>
+            <span className="section-label-light inline-block mb-4">{t('Social Media', 'وسائل التواصل الاجتماعي')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              Scroll-Stopping Content{' '}
-              <span className="gradient-text">That Converts</span>
+              {t('Scroll-Stopping Content', 'محتوى يوقف التمرير')}{' '}
+              <span className="gradient-text">{t('That Converts', 'ويحقق التحويلات')}</span>
             </h2>
             <p className="text-[#C8A888] text-lg">
-              We create thumb-stopping social content that builds your brand and drives enrollment inquiries.
+              {t('We create thumb-stopping social content that builds your brand and drives enrollment inquiries.', 'ننشئ محتوى اجتماعي جذاب يبني علامتك التجارية ويحفّز استفسارات التسجيل.')}
             </p>
           </motion.div>
 
@@ -801,15 +800,15 @@ export default function DigitalMarketingPage() {
               viewport={{ once: true }}
             >
               <div className="text-center mb-4">
-                <span className="text-[#C8A888] text-xs font-medium uppercase tracking-wider">Instagram Post</span>
+                <span className="text-[#C8A888] text-xs font-medium uppercase tracking-wider">{t('Instagram Post', 'منشور إنستغرام')}</span>
               </div>
               <InstagramPostMockup />
               {/* Engagement stats */}
               <div className="grid grid-cols-3 gap-3 mt-4">
                 {[
-                  { label: 'Reach', value: '24.5K' },
-                  { label: 'Engagement', value: '8.2%' },
-                  { label: 'Saves', value: '412' },
+                  { label: t('Reach', 'الوصول'), value: '24.5K' },
+                  { label: t('Engagement', 'التفاعل'), value: '8.2%' },
+                  { label: t('Saves', 'الحفظ'), value: '412' },
                 ].map((s) => (
                   <div key={s.label} className="bg-[#1E1408] border border-[#2A1A0C] rounded-lg p-2 text-center">
                     <div className="text-sm font-bold text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>{s.value}</div>
@@ -826,15 +825,15 @@ export default function DigitalMarketingPage() {
               viewport={{ once: true }}
             >
               <div className="text-center mb-4">
-                <span className="text-[#C8A888] text-xs font-medium uppercase tracking-wider">Facebook Ad</span>
+                <span className="text-[#C8A888] text-xs font-medium uppercase tracking-wider">{t('Facebook Ad', 'إعلان فيسبوك')}</span>
               </div>
               <FacebookAdMockup />
               {/* Ad metrics */}
               <div className="grid grid-cols-3 gap-3 mt-4">
                 {[
-                  { label: 'Impressions', value: '52K' },
-                  { label: 'CTR', value: '3.4%' },
-                  { label: 'Registrations', value: '186' },
+                  { label: t('Impressions', 'مرات الظهور'), value: '52K' },
+                  { label: t('CTR', 'نسبة النقر'), value: '3.4%' },
+                  { label: t('Registrations', 'التسجيلات'), value: '186' },
                 ].map((s) => (
                   <div key={s.label} className="bg-[#1E1408] border border-[#2A1A0C] rounded-lg p-2 text-center">
                     <div className="text-sm font-bold text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>{s.value}</div>
@@ -859,13 +858,13 @@ export default function DigitalMarketingPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-4">Proven Results</span>
+            <span className="section-label inline-block mb-4">{t('Proven Results', 'نتائج مثبتة')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-[#2A1E14] mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              The Numbers{' '}
-              <span className="gradient-text">Speak</span>
+              {t('The Numbers', 'الأرقام')}{' '}
+              <span className="gradient-text">{t('Speak', 'تتحدث')}</span>
             </h2>
             <p className="text-gray-600 text-lg">
-              Average results across our school marketing clients in the first 12 months.
+              {t('Average results across our school marketing clients in the first 12 months.', 'متوسط النتائج عبر عملائنا من المدارس في أول 12 شهراً.')}
             </p>
           </motion.div>
 
@@ -877,10 +876,10 @@ export default function DigitalMarketingPage() {
             viewport={{ once: true }}
           >
             {[
-              { label: 'Enrollment Increase', value: 45, suffix: '%', prefix: '+', color: '#10B981', desc: 'Average across all clients' },
-              { label: 'Social Following', value: 10, suffix: 'x', prefix: '', color: '#D4711A', desc: 'Growth in followers' },
-              { label: 'Website Traffic', value: 200, suffix: '%', prefix: '+', color: '#6366F1', desc: 'Increase in organic visits' },
-              { label: 'Cost per Enrollment', value: 60, suffix: '%', prefix: '-', color: '#EF4444', desc: 'Reduction in acquisition cost' },
+              { label: t('Enrollment Increase', 'زيادة التسجيل'), value: 45, suffix: '%', prefix: '+', color: '#10B981', desc: t('Average across all clients', 'المتوسط عبر جميع العملاء') },
+              { label: t('Social Following', 'المتابعون الاجتماعيون'), value: 10, suffix: 'x', prefix: '', color: '#D4711A', desc: t('Growth in followers', 'نمو في المتابعين') },
+              { label: t('Website Traffic', 'زيارات الموقع'), value: 200, suffix: '%', prefix: '+', color: '#6366F1', desc: t('Increase in organic visits', 'زيادة في الزيارات العضوية') },
+              { label: t('Cost per Enrollment', 'تكلفة التسجيل'), value: 60, suffix: '%', prefix: '-', color: '#EF4444', desc: t('Reduction in acquisition cost', 'تخفيض في تكلفة الاستقطاب') },
             ].map((m, i) => (
               <motion.div
                 key={m.label}
@@ -944,13 +943,13 @@ export default function DigitalMarketingPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-4">Our Process</span>
+            <span className="section-label inline-block mb-4">{t('Our Process', 'منهجيتنا')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-[#2A1E14] mb-4" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              From Audit to{' '}
-              <span className="gradient-text">Optimization</span>
+              {t('From Audit to', 'من التدقيق إلى')}{' '}
+              <span className="gradient-text">{t('Optimization', 'التحسين')}</span>
             </h2>
             <p className="text-gray-600 text-lg">
-              A proven five-step methodology that turns marketing spend into enrolled students.
+              {t('A proven five-step methodology that turns marketing spend into enrolled students.', 'منهجية مثبتة من خمس خطوات تحوّل الإنفاق التسويقي إلى طلاب مسجلين.')}
             </p>
           </motion.div>
 
@@ -980,7 +979,7 @@ export default function DigitalMarketingPage() {
                   {/* Arrow between steps */}
                   {i < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-7 -right-4 z-20">
-                      <ChevronRight className="w-5 h-5 text-[#D4711A]" />
+                      <ChevronRight className="w-5 h-5 text-[#D4711A] rtl:rotate-180" />
                     </div>
                   )}
 
@@ -1014,18 +1013,19 @@ export default function DigitalMarketingPage() {
           >
             <Quote className="w-12 h-12 text-[#D4711A] mx-auto mb-8 opacity-60" />
             <blockquote className="text-2xl sm:text-3xl text-white font-medium leading-relaxed mb-8" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              &ldquo;Before Cubico, we were spending heavily on print ads with no way to track results.
-              In our first year with their digital marketing team, enrollment jumped 52% and our cost per
-              acquisition dropped by half. They truly understand the education space.&rdquo;
+              {t(
+                '\u201CBefore Cubico, we were spending heavily on print ads with no way to track results. In our first year with their digital marketing team, enrollment jumped 52% and our cost per acquisition dropped by half. They truly understand the education space.\u201D',
+                '\u201Cقبل كيوبيكو، كنا ننفق بكثافة على الإعلانات المطبوعة بدون طريقة لتتبع النتائج. في عامنا الأول مع فريق التسويق الرقمي لديهم، قفز التسجيل بنسبة 52% وانخفضت تكلفة الاستقطاب إلى النصف. إنهم يفهمون حقاً قطاع التعليم.\u201D'
+              )}
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center">
-                <span className="text-white font-bold text-lg">SA</span>
+                <span className="text-white font-bold text-lg">{t('SA', 'سع')}</span>
               </div>
               <div className="text-left">
-                <div className="text-white font-semibold">Sarah Al-Mansouri</div>
-                <div className="text-[#8E7A65] text-sm">Marketing Director, Horizon International School</div>
+                <div className="text-white font-semibold">{t('Sarah Al-Mansouri', 'سارة المنصوري')}</div>
+                <div className="text-[#8E7A65] text-sm">{t('Marketing Director, Horizon International School', 'مديرة التسويق، مدرسة هورايزن الدولية')}</div>
               </div>
             </div>
 
@@ -1049,35 +1049,34 @@ export default function DigitalMarketingPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-4">Get Started</span>
+            <span className="section-label inline-block mb-4">{t('Get Started', 'ابدأ الآن')}</span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#2A1E14] mb-6" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-              Boost Your School&apos;s{' '}
-              <span className="gradient-text">Enrollment</span>
+              {t("Boost Your School's", 'عزّز')}{' '}
+              <span className="gradient-text">{t('Enrollment', 'تسجيل مدرستك')}</span>
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-              Schedule a free marketing audit and discover how we can help your institution
-              attract more families, build a stronger brand, and fill every seat.
+              {t('Schedule a free marketing audit and discover how we can help your institution attract more families, build a stronger brand, and fill every seat.', 'احجز تدقيقاً تسويقياً مجانياً واكتشف كيف يمكننا مساعدة مؤسستك في جذب المزيد من العائلات، وبناء علامة تجارية أقوى، وملء كل مقعد.')}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary">
-                Book a Free Audit <ArrowRight className="w-4 h-4" />
+                {t('Book a Free Audit', 'احجز تدقيقاً مجانياً')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
               </Link>
               <Link href="/pricing" className="btn-outline">
-                View Pricing <ChevronRight className="w-4 h-4" />
+                {t('View Pricing', 'عرض الأسعار')} <ChevronRight className="w-4 h-4 rtl:rotate-180" />
               </Link>
             </div>
 
             {/* Trust signals */}
             <div className="flex flex-wrap justify-center gap-8 mt-12">
               {[
-                { icon: Award, text: 'Google Partner' },
-                { icon: Zap, text: 'Meta Business Partner' },
-                { icon: Clock, text: 'Results in 90 Days' },
-              ].map((t) => (
-                <div key={t.text} className="flex items-center gap-2 text-gray-500">
-                  <t.icon className="w-4 h-4 text-[#D4711A]" />
-                  <span className="text-sm">{t.text}</span>
+                { icon: Award, text: t('Google Partner', 'شريك جوجل') },
+                { icon: Zap, text: t('Meta Business Partner', 'شريك ميتا للأعمال') },
+                { icon: Clock, text: t('Results in 90 Days', 'نتائج خلال 90 يوماً') },
+              ].map((item) => (
+                <div key={item.text} className="flex items-center gap-2 text-gray-500">
+                  <item.icon className="w-4 h-4 text-[#D4711A]" />
+                  <span className="text-sm">{item.text}</span>
                 </div>
               ))}
             </div>
