@@ -1532,10 +1532,10 @@ export default function HomePage() {
                               <span className="text-[9px] text-white/40 font-mono">04:33 / 12:00</span>
                               <div className="flex-1"/>
                               <div className="flex gap-1">
-                                {['2D Char','3D Model','Whiteboard','Motion GFX'].map((t, ti) => (
-                                  <div key={t} className="text-[7px] px-1.5 py-0.5 rounded font-medium"
+                                {['2D Char','3D Model','Whiteboard','Motion GFX'].map((tab, ti) => (
+                                  <div key={tab} className="text-[7px] px-1.5 py-0.5 rounded font-medium"
                                     style={ti === 0 ? { backgroundColor: '#C0651A', color: '#fff' } : { backgroundColor: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.28)' }}>
-                                    {t}
+                                    {tab}
                                   </div>
                                 ))}
                               </div>
@@ -1749,7 +1749,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-xs font-black text-gray-900 leading-none">760+</div>
-                    <div className="text-[9px] text-gray-400 leading-tight">Schools</div>
+                    <div className="text-[9px] text-gray-400 leading-tight">{t('Schools', 'مدرسة')}</div>
                   </div>
                 </motion.div>
                 {/* Floating 3 Countries badge */}
@@ -1764,7 +1764,7 @@ export default function HomePage() {
                     <Globe className="w-3.5 h-3.5 text-white" />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-gray-900 leading-none">3 Countries</div>
+                    <div className="text-xs font-black text-gray-900 leading-none">{t('3 Countries', '3 دول')}</div>
                     <div className="text-[9px] text-gray-400 leading-tight">PK · SA · CA</div>
                   </div>
                 </motion.div>
@@ -1822,8 +1822,8 @@ export default function HomePage() {
                     <Lightbulb className="w-5 h-5 text-[#D4711A]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 mb-1">Education-First DNA</h4>
-                    <p className="text-sm text-gray-500">Built by people who&apos;ve run classrooms, not just code editors.</p>
+                    <h4 className="font-bold text-gray-900 mb-1">{t('Education-First DNA', 'التعليم أولاً في حمضنا النووي')}</h4>
+                    <p className="text-sm text-gray-500">{t("Built by people who've run classrooms, not just code editors.", 'بُني بواسطة أشخاص أداروا الفصول الدراسية، وليس فقط محررات الأكواد.')}</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
@@ -1831,8 +1831,8 @@ export default function HomePage() {
                     <Target className="w-5 h-5 text-[#8B4513]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 mb-1">Co-Created With Schools</h4>
-                    <p className="text-sm text-gray-500">Every feature ships after real-world testing with principals and teachers.</p>
+                    <h4 className="font-bold text-gray-900 mb-1">{t('Co-Created With Schools', 'تم إنشاؤه بالتعاون مع المدارس')}</h4>
+                    <p className="text-sm text-gray-500">{t('Every feature ships after real-world testing with principals and teachers.', 'كل ميزة تُطلق بعد اختبار فعلي مع مديري المدارس والمعلمين.')}</p>
                   </div>
                 </div>
               </motion.div>
@@ -2011,7 +2011,7 @@ export default function HomePage() {
                 className="flex items-center gap-3 p-4 rounded-2xl border"
                 style={{ backgroundColor:'rgba(212,113,26,0.05)', borderColor:'rgba(212,113,26,0.18)' }}>
                 <div className="w-2.5 h-2.5 rounded-full bg-[#D4711A] animate-pulse flex-shrink-0"/>
-                <span className="text-sm font-semibold text-gray-700">We respond within <span className="text-[#D4711A] font-bold">24 hours</span>, guaranteed.</span>
+                <span className="text-sm font-semibold text-gray-700">{t('We respond within', 'نرد خلال')} <span className="text-[#D4711A] font-bold">{t('24 hours', '24 ساعة')}</span>{t(', guaranteed.', '، مضمون.')}</span>
               </motion.div>
             </motion.div>
 
@@ -2101,17 +2101,17 @@ export default function HomePage() {
                       {formStatus === 'loading' ? (
                         <span className="flex items-center gap-2">
                           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          Sending...
+                          {t('Sending...', 'جارِ الإرسال...')}
                         </span>
                       ) : (
                         <>
-                          Get Free Demo
-                          <ArrowRight className="w-4 h-4" />
+                          {t('Get Free Demo', 'احصل على عرض مجاني')}
+                          <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                         </>
                       )}
                     </button>
                     {formStatus === 'error' && (
-                      <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                      <p className="text-red-500 text-sm text-center">{t('Something went wrong. Please try again.', 'حدث خطأ ما. يرجى المحاولة مرة أخرى.')}</p>
                     )}
                   </form>
                 )}
@@ -2134,7 +2134,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                Testimonials
+                {t('Testimonials', 'الشهادات')}
               </span>
             </motion.div>
             <motion.h2
@@ -2142,7 +2142,7 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4"
             >
-              Trusted by <span className="shimmer-text">educators worldwide</span>
+              {t('Trusted by', 'موثوق من قبل')} <span className="shimmer-text">{t('educators worldwide', 'معلمين حول العالم')}</span>
             </motion.h2>
             <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
               <div className="flex gap-1">
@@ -2150,7 +2150,7 @@ export default function HomePage() {
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-gray-500 text-sm font-medium">Rated 5 out of 5 (760+ reviews)</span>
+              <span className="text-gray-500 text-sm font-medium">{t('Rated 5 out of 5 (760+ reviews)', 'تقييم 5 من 5 (أكثر من 760 مراجعة)')}</span>
             </motion.div>
           </motion.div>
 
@@ -2161,7 +2161,7 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid md:grid-cols-3 gap-8"
           >
-            {testimonials.map((t, i) => {
+            {testimonials.map((testimonial, i) => {
               const tGrads = [
                 'linear-gradient(135deg,#D4711A,#E88C32)',
                 'linear-gradient(135deg,#B85E15,#D4711A)',
@@ -2173,7 +2173,7 @@ export default function HomePage() {
                 { bg:'rgba(139,69,19,0.08)',  fg:'#8B4513' },
               ];
               return (
-                <motion.div key={t.name} variants={fadeUp} custom={i}
+                <motion.div key={testimonial.name} variants={fadeUp} custom={i}
                   whileHover={{ y:-6, rotateY:3, rotateX:-2, scale:1.01 }}
                   transition={{ type:'spring', stiffness:250, damping:25 }}
                   style={{ transformStyle:'preserve-3d', transformOrigin:'center center' }}
@@ -2184,24 +2184,24 @@ export default function HomePage() {
                     style={{ fontSize:'6.5rem', fontFamily:'Georgia,serif', lineHeight:1 }}>“</div>
                   {/* Stars + verified */}
                   <div className="flex items-center gap-1 mb-4 relative">
-                    {[...Array(t.rating)].map((_, j) => (
+                    {[...Array(testimonial.rating)].map((_, j) => (
                       <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
-                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">VERIFIED</span>
+                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">{t('VERIFIED', 'موثّق')}</span>
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">“{t.text}”</p>
+                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">“{testimonial.text}”</p>
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
                     <div className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
                       style={{ background:tGrads[i] }}>
-                      {t.name.split(' ').map(n => n[0]).join('')}
+                      {testimonial.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-gray-900 text-sm truncate">{t.name}</h4>
-                      <p className="text-xs text-gray-500">{t.role}, {t.company}</p>
+                      <h4 className="font-bold text-gray-900 text-sm truncate">{testimonial.name}</h4>
+                      <p className="text-xs text-gray-500">{testimonial.role}, {testimonial.company}</p>
                     </div>
                     <div className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
                       style={{ backgroundColor:tChip[i].bg, color:tChip[i].fg }}>
-                      {t.location}
+                      {testimonial.location}
                     </div>
                   </div>
                 </motion.div>
@@ -2225,7 +2225,7 @@ export default function HomePage() {
               <motion.div variants={fadeUp} custom={0} className="mb-4">
                 <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                  FAQ
+                  {t('FAQ', 'الأسئلة الشائعة')}
                 </span>
               </motion.div>
               <motion.h2
@@ -2233,11 +2233,11 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6"
               >
-                Questions schools<br />
-                <span className="shimmer-text">ask us most</span>
+                {t('Questions schools', 'أسئلة المدارس')}<br />
+                <span className="shimmer-text">{t('ask us most', 'الأكثر شيوعاً')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-gray-500 leading-relaxed mb-8">
-                From onboarding timelines to multilingual support — here&apos;s what principals and IT heads want to know before signing up.
+                {t("From onboarding timelines to multilingual support — here's what principals and IT heads want to know before signing up.", 'من الجداول الزمنية للإعداد إلى الدعم متعدد اللغات — إليك ما يريد المديرون ورؤساء تقنية المعلومات معرفته قبل التسجيل.')}
               </motion.p>
 
               {/* FAQ Visual — image + CTA */}
@@ -2260,12 +2260,12 @@ export default function HomePage() {
                         <MessageSquare className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white">Still have questions?</h4>
-                        <p className="text-sm text-white/60">Our team is ready to help</p>
+                        <h4 className="font-bold text-white">{t('Still have questions?', 'لا تزال لديك أسئلة؟')}</h4>
+                        <p className="text-sm text-white/60">{t('Our team is ready to help', 'فريقنا مستعد للمساعدة')}</p>
                       </div>
                     </div>
                     <a href="#contact" className="btn-primary text-sm">
-                      Contact Us <ArrowRight className="w-4 h-4" />
+                      {t('Contact Us', 'تواصل معنا')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                     </a>
                   </div>
                 </div>
@@ -2393,26 +2393,25 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0}
               className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
-              <span className="text-white/70 text-xs font-bold tracking-wider uppercase">Now Enrolling Institutions</span>
+              <span className="text-white/70 text-xs font-bold tracking-wider uppercase">{t('Now Enrolling Institutions', 'نسجل المؤسسات الآن')}</span>
             </motion.div>
             <motion.h2
               variants={fadeUp}
               custom={1}
               className="text-3xl md:text-5xl font-heading font-bold text-white mb-6"
             >
-              Join <span className="shimmer-text">760+ schools</span> already transforming education
+              {t('Join', 'انضم إلى')} <span className="shimmer-text">{t('760+ schools', '760+ مدرسة')}</span> {t('already transforming education', 'تحوّل التعليم بالفعل')}
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
-              From a 50-student school in Lahore to a 2,000-student campus in Riyadh —
-              Cubico scales to your institution. Launch in 4 weeks.
+              {t('From a 50-student school in Lahore to a 2,000-student campus in Riyadh — Cubico scales to your institution. Launch in 4 weeks.', 'من مدرسة تضم 50 طالباً في لاهور إلى حرم جامعي يضم 2,000 طالب في الرياض — كيوبيكو تتكيف مع مؤسستك. ابدأ خلال 4 أسابيع.')}
             </motion.p>
             <motion.div variants={fadeUp} custom={3} className="flex flex-wrap justify-center gap-4">
               <a href="#contact" className="btn-primary text-lg px-10">
-                Get Started Today
-                <ArrowRight className="w-5 h-5" />
+                {t('Get Started Today', 'ابدأ اليوم')}
+                <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </a>
               <a href="#solutions" className="btn-outline-white text-lg px-10">
-                Explore Solutions
+                {t('Explore Solutions', 'استكشف الحلول')}
               </a>
             </motion.div>
           </motion.div>
@@ -2434,7 +2433,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
-                Full-stack EdTech company powering 760+ schools across Pakistan, Saudi Arabia & Canada with LMS, ERP, animated content, and marketing solutions.
+                {t('Full-stack EdTech company powering 760+ schools across Pakistan, Saudi Arabia & Canada with LMS, ERP, animated content, and marketing solutions.', 'شركة تكنولوجيا تعليم متكاملة تدعم 760+ مدرسة في باكستان والسعودية وكندا بنظام إدارة التعلم ونظام تخطيط الموارد والمحتوى المتحرك وحلول التسويق.')}
               </p>
               <div className="flex gap-3">
                 {[
@@ -2457,9 +2456,9 @@ export default function HomePage() {
 
             {/* Column 2 - Solutions */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Solutions</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Solutions', 'الحلول')}</h4>
               <ul className="space-y-3">
-                {['Smart LMS', 'Animation Studio', 'School ERP', 'Web Development', 'Mobile Apps'].map((link) => (
+                {[t('Smart LMS', 'نظام إدارة التعلم'), t('Animation Studio', 'استوديو الرسوم المتحركة'), t('School ERP', 'نظام إدارة المدرسة'), t('Web Development', 'تطوير المواقع'), t('Mobile Apps', 'تطبيقات الجوال')].map((link) => (
                   <li key={link}>
                     <a href="#solutions" className="text-white/50 hover:text-white text-sm transition-colors">
                       {link}
@@ -2471,9 +2470,9 @@ export default function HomePage() {
 
             {/* Column 3 - Company */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Company</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Company', 'الشركة')}</h4>
               <ul className="space-y-3">
-                {['About Us', 'Our Team', 'Careers', 'News & Blog', 'Contact Us'].map((link) => (
+                {[t('About Us', 'من نحن'), t('Our Team', 'فريقنا'), t('Careers', 'الوظائف'), t('News & Blog', 'الأخبار والمدونة'), t('Contact Us', 'تواصل معنا')].map((link) => (
                   <li key={link}>
                     <a href="#about" className="text-white/50 hover:text-white text-sm transition-colors">
                       {link}
@@ -2485,20 +2484,20 @@ export default function HomePage() {
 
             {/* Column 4 - Newsletter */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Newsletter</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Newsletter', 'النشرة الإخبارية')}</h4>
               <p className="text-white/50 text-sm mb-6">
-                Sign up for updates, insights, and news about EdTech innovation.
+                {t('Sign up for updates, insights, and news about EdTech innovation.', 'اشترك للحصول على التحديثات والرؤى والأخبار حول ابتكارات تكنولوجيا التعليم.')}
               </p>
               {newsletterStatus === 'success' ? (
                 <div className="flex items-center gap-2 text-accent-light text-sm">
                   <CheckCircle2 className="w-4 h-4" />
-                  Successfully subscribed!
+                  {t('Successfully subscribed!', 'تم الاشتراك بنجاح!')}
                 </div>
               ) : (
                 <form onSubmit={handleNewsletter} className="space-y-3">
                   <input
                     type="text"
-                    placeholder="Your name"
+                    placeholder={t('Your name', 'اسمك')}
                     value={newsletterName}
                     onChange={(e) => setNewsletterName(e.target.value)}
                     className="form-input-dark text-sm"
@@ -2506,14 +2505,14 @@ export default function HomePage() {
                   />
                   <input
                     type="email"
-                    placeholder="Your email"
+                    placeholder={t('Your email', 'بريدك الإلكتروني')}
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     className="form-input-dark text-sm"
                     required
                   />
                   <button type="submit" className="btn-primary w-full justify-center text-sm">
-                    Sign Up <Send className="w-3 h-3" />
+                    {t('Sign Up', 'اشترك')} <Send className="w-3 h-3" />
                   </button>
                 </form>
               )}
@@ -2523,10 +2522,10 @@ export default function HomePage() {
           {/* Bottom */}
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/40 text-sm">
-              Copyright © {new Date().getFullYear()} Cubico Technologies. All rights reserved.
+              {t('Copyright', 'حقوق النشر')} © {new Date().getFullYear()} {t('Cubico Technologies. All rights reserved.', 'كيوبيكو تكنولوجيز. جميع الحقوق محفوظة.')}
             </p>
             <div className="flex gap-6">
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((link) => (
+              {[t('Privacy Policy', 'سياسة الخصوصية'), t('Terms of Service', 'شروط الخدمة'), t('Cookie Policy', 'سياسة ملفات تعريف الارتباط')].map((link) => (
                 <a key={link} href="#" className="text-white/40 hover:text-white text-sm transition-colors">
                   {link}
                 </a>
