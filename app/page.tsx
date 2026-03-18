@@ -501,8 +501,8 @@ export default function HomePage() {
               ))}
               <div className="pt-3 border-t border-white/[0.08]">
                 <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
+                  {t('Get Started', 'ابدأ الآن')}
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </a>
               </div>
             </div>
@@ -569,7 +569,7 @@ export default function HomePage() {
           <motion.div variants={fadeUp} custom={0} className="mb-5">
             <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[13px] font-medium text-white/75 border border-orange-400/20 bg-orange-900/25 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse flex-shrink-0" />
-              Trusted by 760+ Institutions · Pakistan · Saudi Arabia · Canada
+              {t('Trusted by 760+ Institutions · Pakistan · Saudi Arabia · Canada', 'موثوق من قبل 760+ مؤسسة · باكستان · المملكة العربية السعودية · كندا')}
             </span>
           </motion.div>
 
@@ -579,11 +579,11 @@ export default function HomePage() {
             custom={1}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.8rem] font-heading font-bold text-white leading-[1.08] tracking-[-0.02em] mb-5 max-w-3xl"
           >
-            Give your school the platform
+            {t('Give your school the platform', 'امنح مدرستك المنصة')}
             <br className="hidden sm:block" />
-            {' '}it deserves — and your students
+            {' '}{t('it deserves — and your students', 'التي تستحقها — وطلابك')}
             <br className="hidden sm:block" />
-            {' '}the education they expect.
+            {' '}{t('the education they expect.', 'التعليم الذي يتوقعونه.')}
           </motion.h1>
 
           {/* Subtitle */}
@@ -592,8 +592,7 @@ export default function HomePage() {
             custom={2}
             className="text-sm md:text-base text-white/55 max-w-lg leading-relaxed mb-8"
           >
-            Cubico brings LMS, animated lessons, digital marketing, and complete
-            institution management under one intelligent platform.
+            {t('Cubico brings LMS, animated lessons, digital marketing, and complete institution management under one intelligent platform.', 'تجمع كيوبيكو نظام إدارة التعلم والدروس المتحركة والتسويق الرقمي وإدارة المؤسسات الكاملة تحت منصة ذكية واحدة.')}
           </motion.p>
 
           {/* CTA buttons */}
@@ -602,14 +601,14 @@ export default function HomePage() {
               href="#contact"
               className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-200"
             >
-              Book Free Demo
-              <ArrowRight size={16} />
+              {t('Book Free Demo', 'احجز عرضاً مجانياً')}
+              <ArrowRight size={16} className="rtl:rotate-180" />
             </a>
             <a
               href="#showcase"
               className="inline-flex items-center gap-2 text-white/60 hover:text-white font-medium text-sm px-6 py-3.5 rounded-full border border-white/[0.12] hover:border-white/[0.25] hover:bg-white/[0.05] transition-all duration-200"
             >
-              See Products
+              {t('See Products', 'تصفح المنتجات')}
             </a>
           </motion.div>
         </motion.div>
@@ -924,7 +923,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                Why Cubico
+                {t('Why Cubico', 'لماذا كيوبيكو')}
               </span>
             </motion.div>
             <motion.h2
@@ -932,13 +931,11 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-5"
             >
-              Schools don&apos;t need more tools.<br className="hidden sm:block" />
-              They need <span className="shimmer-text">one platform that works.</span>
+              {t("Schools don't need more tools.", 'المدارس لا تحتاج المزيد من الأدوات.')}<br className="hidden sm:block" />
+              {t('They need', 'إنها تحتاج')} <span className="shimmer-text">{t('one platform that works.', 'منصة واحدة تعمل.')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              Most institutions juggle disconnected systems — one for learning, another for admin,
-              another for content. Cubico replaces all of them with a single intelligent platform
-              built specifically for education.
+              {t('Most institutions juggle disconnected systems — one for learning, another for admin, another for content. Cubico replaces all of them with a single intelligent platform built specifically for education.', 'تتعامل معظم المؤسسات مع أنظمة منفصلة — واحد للتعلم وآخر للإدارة وآخر للمحتوى. كيوبيكو تستبدلها جميعاً بمنصة ذكية واحدة مصممة خصيصاً للتعليم.')}
             </motion.p>
           </motion.div>
 
@@ -974,30 +971,30 @@ export default function HomePage() {
             {[
               {
                 icon: BookOpen,
-                label: 'LEARN',
-                title: 'Smart LMS',
-                problem: 'Students lose interest in outdated, static course materials.',
-                solution: 'AI-powered learning paths with progress tracking, interactive courses, and real-time analytics that keep students engaged.',
+                label: t('LEARN', 'تعلّم'),
+                title: t('Smart LMS', 'نظام إدارة تعلم ذكي'),
+                problem: t('Students lose interest in outdated, static course materials.', 'يفقد الطلاب الاهتمام بالمواد الدراسية القديمة والثابتة.'),
+                solution: t('AI-powered learning paths with progress tracking, interactive courses, and real-time analytics that keep students engaged.', 'مسارات تعلم مدعومة بالذكاء الاصطناعي مع تتبع التقدم ودورات تفاعلية وتحليلات فورية تحافظ على تفاعل الطلاب.'),
                 accent: '#D4711A',
                 gradient: 'linear-gradient(135deg, #D4711A, #E88C32)',
                 iconBg: 'bg-orange-50',
               },
               {
                 icon: Film,
-                label: 'CREATE',
-                title: 'Animated Lessons',
-                problem: 'Teachers spend hours creating content that still doesn\'t land.',
-                solution: 'Professional 2D & 3D animated lessons in English, Arabic & Urdu — ready to deploy across any curriculum.',
+                label: t('CREATE', 'إنشاء'),
+                title: t('Animated Lessons', 'دروس متحركة'),
+                problem: t("Teachers spend hours creating content that still doesn't land.", 'يقضي المعلمون ساعات في إنشاء محتوى لا يحقق الهدف المطلوب.'),
+                solution: t('Professional 2D & 3D animated lessons in English, Arabic & Urdu — ready to deploy across any curriculum.', 'دروس متحركة احترافية ثنائية وثلاثية الأبعاد بالإنجليزية والعربية والأردية — جاهزة للنشر في أي منهج.'),
                 accent: '#C0651A',
                 gradient: 'linear-gradient(135deg, #C0651A, #D4711A)',
                 iconBg: 'bg-amber-50',
               },
               {
                 icon: Monitor,
-                label: 'MANAGE',
-                title: 'School ERP',
-                problem: 'Admin staff drowns in spreadsheets and disconnected systems.',
-                solution: 'All-in-one operations — admissions, attendance, HR, finance, and reporting in a single dashboard.',
+                label: t('MANAGE', 'إدارة'),
+                title: t('School ERP', 'نظام تخطيط موارد المدرسة'),
+                problem: t('Admin staff drowns in spreadsheets and disconnected systems.', 'يغرق الموظفون الإداريون في جداول البيانات والأنظمة المنفصلة.'),
+                solution: t('All-in-one operations — admissions, attendance, HR, finance, and reporting in a single dashboard.', 'عمليات شاملة — القبول والحضور والموارد البشرية والمالية والتقارير في لوحة تحكم واحدة.'),
                 accent: '#8B4513',
                 gradient: 'linear-gradient(135deg, #8B4513, #B8651A)',
                 iconBg: 'bg-orange-50/70',
@@ -1042,7 +1039,7 @@ export default function HomePage() {
 
                   {/* CTA */}
                   <span className="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-200" style={{ color: card.accent }}>
-                    Explore {card.title} <ArrowRight className="w-4 h-4" />
+                    {t('Explore', 'استكشف')} {card.title} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                   </span>
                 </div>
 
@@ -1062,7 +1059,7 @@ export default function HomePage() {
             className="mt-14 text-center"
           >
             <p className="text-sm text-gray-400 max-w-lg mx-auto leading-relaxed">
-              Built for Pakistan, Saudi Arabia & Canada — supporting English, Arabic & Urdu curricula out of the box.
+              {t('Built for Pakistan, Saudi Arabia & Canada — supporting English, Arabic & Urdu curricula out of the box.', 'مصمم لباكستان والمملكة العربية السعودية وكندا — يدعم المناهج بالإنجليزية والعربية والأردية جاهزاً للاستخدام.')}
             </p>
           </motion.div>
         </div>
