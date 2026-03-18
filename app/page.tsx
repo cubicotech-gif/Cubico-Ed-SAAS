@@ -45,6 +45,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -98,191 +99,21 @@ function useCounter(target: number, duration = 2000) {
 /* ═══════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════ */
-const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '/about' },
-  { name: 'Solutions', href: '#solutions' },
-  { name: 'Services', href: '#services' },
-  { name: 'Testimonials', href: '#testimonials' },
-  { name: 'FAQ', href: '#faq' },
-  { name: 'Contact', href: '#contact' },
-];
+// navLinks moved inside component for i18n access
 
-const featureCards = [
-  {
-    icon: BookOpen,
-    title: 'Smart LMS',
-    desc: 'Next-generation learning management with AI-driven insights, progress tracking and interactive courses for modern education.',
-    color: 'bg-purple-50 text-purple-600',
-  },
-  {
-    icon: Film,
-    title: 'Animated Lessons',
-    desc: 'Engaging 2D & 3D animated content that brings lessons to life, supporting multilingual education across all curricula.',
-    color: 'bg-emerald-50 text-emerald-600',
-  },
-  {
-    icon: Monitor,
-    title: 'School ERP',
-    desc: 'All-in-one school management — from admissions and attendance to finance and reporting in a single platform.',
-    color: 'bg-blue-50 text-blue-600',
-  },
-];
+// featureCards moved inside component for i18n access
 
-const services = [
-  { icon: BarChart3, title: 'LMS Implementation', desc: 'Complete Moodle-based learning management system customized for your institution.' },
-  { icon: Film, title: 'Animation Studio', desc: 'Professional 2D/3D animated educational content in English, Arabic & Urdu.' },
-  { icon: Monitor, title: 'School ERP System', desc: 'Comprehensive school management with admissions, HR, finance & reporting.' },
-  { icon: Globe, title: 'Web Development', desc: 'Modern, responsive websites and web applications built for education sector.' },
-  { icon: Smartphone, title: 'Mobile Apps', desc: 'Cross-platform mobile applications for students, parents and administrators.' },
-  { icon: Cloud, title: 'Cloud Hosting', desc: 'Reliable cloud infrastructure with 99.9% uptime and global CDN delivery.' },
-  { icon: Mail, title: 'Digital Marketing', desc: 'Strategic digital marketing campaigns to increase enrollment and engagement.' },
-  { icon: Users, title: 'Teacher Training', desc: 'Professional development programs for educators on digital tools and pedagogy.' },
-];
+// services moved inside component for i18n access
 
-const testimonials = [
-  {
-    name: 'Dr. Ahmed Al-Rashid',
-    role: 'Director',
-    company: 'Al-Noor Academy',
-    location: 'Saudi Arabia',
-    text: 'Cubico transformed our entire school system. The LMS and animated content have dramatically improved student engagement. Their team understood our Islamic education requirements perfectly.',
-    rating: 5,
-  },
-  {
-    name: 'Fatima Hassan',
-    role: 'Principal',
-    company: 'Iqra Foundation School',
-    location: 'Pakistan',
-    text: 'From day one, Cubico delivered beyond our expectations. The ERP system streamlined our operations and the animated Urdu lessons are loved by our students. Truly world-class service.',
-    rating: 5,
-  },
-  {
-    name: 'Michael Torres',
-    role: 'Board Chair',
-    company: 'Cornwall Islamic Foundation',
-    location: 'Canada',
-    text: 'Working with Cubico has been exceptional. They deployed our complete digital infrastructure in just 3 weeks. The ongoing support and training have been invaluable for our staff.',
-    rating: 5,
-  },
-];
+// testimonials moved inside component for i18n access
 
-const faqs = [
-  {
-    q: 'How quickly can we launch our digital platform?',
-    a: 'Most institutions go live within 4 weeks. Our streamlined onboarding process includes data migration, staff training, and content setup — all handled by our dedicated team.',
-  },
-  {
-    q: 'Do you support Arabic and Urdu content?',
-    a: 'Yes! We specialize in multilingual education content. Our animation studio produces high-quality lessons in English, Arabic, and Urdu with full RTL support across all platforms.',
-  },
-  {
-    q: 'Can we engage Cubico for just one service?',
-    a: 'Absolutely. While we offer a full-stack approach, each service — LMS, ERP, animations, web development — can be engaged independently based on your needs.',
-  },
-  {
-    q: 'What makes Cubico different from other EdTech providers?',
-    a: 'We combine deep understanding of Islamic and traditional education with cutting-edge technology. Our team includes educators and technologists who bridge the gap between pedagogy and innovation.',
-  },
-  {
-    q: 'Which countries do you operate in?',
-    a: 'We actively serve institutions across Pakistan, Saudi Arabia, and Canada. Our cloud-based solutions can be deployed globally with local support teams in each region.',
-  },
-];
+// faqs moved inside component for i18n access
 
-const stats = [
-  { value: 760, suffix: '+', label: 'Institutions Served' },
-  { value: 3, suffix: '', label: 'Countries Active' },
-  { value: 4, suffix: '', label: 'Weeks Avg Launch' },
-  { value: 100, suffix: '%', label: 'Client Retention' },
-];
+// stats moved inside component for i18n access
 
-const partners = [
-  'Al-Huffaz Academy',
-  'Al-Noor Academy',
-  'CIF Canada',
-  'Iqra Foundation',
-  'Saudi Schools Network',
-  'TechEd Pakistan',
-];
+// partners moved inside component for i18n access
 
-const solutions = [
-  {
-    id: 'manage', name: 'Cubico Manage™',
-    tagline: 'Your entire institution. One intelligent system.',
-    icon: Layout,
-    painPoint: 'Still running your school on Excel sheets and WhatsApp groups?',
-    metric: '47 hrs', metricLabel: 'saved per staff member, per month',
-    accentHex: '#D4711A', accentLight: '#FEF0E6',
-    demoUrl: 'app.cubico.tech/manage',
-    features: [
-      { icon: Users,    title: 'Enrollment & Admissions', desc: 'Full student lifecycle from inquiry to graduation.'   },
-      { icon: BarChart3,title: 'Fee & Finance',           desc: 'Invoices, payments, and overdue alerts — automated.' },
-      { icon: PieChart, title: 'Attendance & Exams',      desc: 'Smart attendance, gradebooks, and exam scheduling.'  },
-      { icon: Settings, title: 'HR & Timetable',          desc: 'Staff records, payroll, and auto-generated schedules.'},
-    ],
-  },
-  {
-    id: 'lms', name: 'Moodle LMS Setup',
-    tagline: 'Your branded Moodle — configured, hosted, supported.',
-    icon: BookOpen,
-    painPoint: 'Moodle is powerful but complex — setting it up right takes months without the right team.',
-    metric: '2 wks', metricLabel: 'from signup to a fully live Moodle platform',
-    accentHex: '#F47B20', accentLight: '#FEF0E6',
-    demoUrl: 'lms.cubico.tech/demo',
-    features: [
-      { icon: Settings,  title: 'Custom Moodle Theme',     desc: 'Your logo, colors, and branding — pixel-perfect.'    },
-      { icon: BookOpen,  title: 'Course Build & Migration', desc: 'We build or migrate your course content for you.'     },
-      { icon: Shield,    title: 'Managed Hosting',          desc: 'Secure cloud hosting with 99.9% uptime guarantee.'    },
-      { icon: Users,     title: 'Training & Onboarding',    desc: 'Live sessions for teachers and admins, included.'     },
-    ],
-  },
-  {
-    id: 'teach', name: 'Cubico Teach™',
-    tagline: "Everything a teacher needs. Nothing they don't.",
-    icon: Lightbulb,
-    painPoint: 'Teachers spending Sunday nights building lesson plans from scratch?',
-    metric: '2×', metricLabel: 'faster lesson planning from day one',
-    accentHex: '#B85E15', accentLight: '#FFF8F0',
-    demoUrl: 'app.cubico.tech/teach',
-    features: [
-      { icon: Lightbulb, title: 'Lesson Plan Builder', desc: 'Drag-and-drop blocks aligned to national curriculum.'  },
-      { icon: Target,    title: 'Curriculum Mapping',  desc: 'Visual scope & sequence across subjects and grades.'   },
-      { icon: BarChart3, title: 'Class Analytics',     desc: 'Per-student progress with automatic at-risk flags.'    },
-      { icon: Cloud,     title: 'Resource Library',    desc: 'Upload, tag, and share materials across departments.'  },
-    ],
-  },
-  {
-    id: 'learn', name: 'Cubico Learn™',
-    tagline: 'Textbooks come alive.',
-    icon: Film,
-    painPoint: 'Students zoning out 8 minutes into a 40-minute lecture?',
-    metric: '4×', metricLabel: 'higher engagement vs. traditional textbooks',
-    accentHex: '#C0651A', accentLight: '#FEF0E6',
-    demoUrl: 'app.cubico.tech/learn',
-    features: [
-      { icon: Film,    title: '2D & 3D Animation',       desc: 'Character-led animated lessons, any subject.'   },
-      { icon: Monitor, title: 'Interactive Simulations', desc: 'STEM labs students can actually manipulate.'     },
-      { icon: Globe,   title: 'English · Arabic · Urdu', desc: 'Full narration and RTL support built in.'        },
-      { icon: Zap,     title: 'Adaptive Quizzes',        desc: 'End-of-lesson assessments that self-adjust.'     },
-    ],
-  },
-  {
-    id: 'marketing', name: 'Cubico Marketing™',
-    tagline: 'Fill every seat. Every semester.',
-    icon: Megaphone,
-    painPoint: 'Your school is incredible. Nobody outside your city knows it exists.',
-    metric: '+34%', metricLabel: 'average increase in admission enquiries',
-    accentHex: '#8B4513', accentLight: '#FDF5ED',
-    demoUrl: 'app.cubico.tech/marketing',
-    features: [
-      { icon: Globe,      title: 'Premium School Websites', desc: 'Conversion-focused, mobile-first, and beautiful.'  },
-      { icon: TrendingUp, title: 'Enrollment Funnels',      desc: 'Google Ads, landing pages, and retargeting.'       },
-      { icon: Megaphone,  title: 'Social Media Management', desc: 'Content, campaigns, and brand voice.'              },
-      { icon: Shield,     title: 'SEO & Monthly Reports',   desc: 'Search visibility that compounds over time.'       },
-    ],
-  },
-];
+// solutions moved inside component for i18n access
 
 /* ═══════════════════════════════════════════
    STAT COUNTER COMPONENT
@@ -336,6 +167,8 @@ export default function HomePage() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterName, setNewsletterName] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
+
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
