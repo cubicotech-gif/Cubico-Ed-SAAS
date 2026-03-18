@@ -306,7 +306,7 @@ export default function SchoolERPPage() {
                       <Star key={s} className="w-3.5 h-3.5 text-[#E88C32] fill-[#E88C32]" />
                     ))}
                   </div>
-                  <p className="text-white/40 text-xs">Trusted by 760+ schools worldwide</p>
+                  <p className="text-white/40 text-xs">{t('Trusted by 760+ schools worldwide', 'موثوق من قبل أكثر من 760 مدرسة حول العالم')}</p>
                 </div>
               </motion.div>
             </div>
@@ -362,10 +362,10 @@ export default function SchoolERPPage() {
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <div className="text-white/90 text-sm font-bold font-heading">
-                            School Dashboard
+                            {t('School Dashboard', 'لوحة المدرسة')}
                           </div>
                           <div className="text-white/30 text-[10px] mt-0.5">
-                            Academic Year 2025-26 &middot; Term 2
+                            {t('Academic Year 2025-26', 'العام الدراسي 2025-26')} &middot; {t('Term 2', 'الفصل 2')}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -382,9 +382,9 @@ export default function SchoolERPPage() {
                       {/* Stats Cards */}
                       <div className="grid grid-cols-3 gap-2 mb-4">
                         {[
-                          { label: 'Total Students', val: '2,847', icon: Users, change: '+124 new', changeColor: 'text-emerald-400' },
-                          { label: 'Monthly Revenue', val: 'AED 1.2M', icon: DollarSign, change: '+8.3%', changeColor: 'text-emerald-400' },
-                          { label: 'Attendance', val: '94.2%', icon: Activity, change: '-0.5%', changeColor: 'text-yellow-400' },
+                          { label: t('Total Students', 'إجمالي الطلاب'), val: '2,847', icon: Users, change: t('+124 new', '+124 جديد'), changeColor: 'text-emerald-400' },
+                          { label: t('Monthly Revenue', 'الإيرادات الشهرية'), val: 'AED 1.2M', icon: DollarSign, change: '+8.3%', changeColor: 'text-emerald-400' },
+                          { label: t('Attendance', 'الحضور'), val: '94.2%', icon: Activity, change: '-0.5%', changeColor: 'text-yellow-400' },
                         ].map((card, i) => (
                           <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5">
                             <div className="flex items-center justify-between mb-2">
@@ -401,7 +401,7 @@ export default function SchoolERPPage() {
                       <div className="grid grid-cols-5 gap-2">
                         {/* Chart */}
                         <div className="col-span-3 bg-white/5 rounded-xl p-3 border border-white/5">
-                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-3">Fee Collection Trend</div>
+                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-3">{t('Fee Collection Trend', 'اتجاه تحصيل الرسوم')}</div>
                           <div className="flex items-end gap-1 h-16">
                             {[45, 62, 58, 75, 82, 70, 88, 92, 85, 78, 95, 90].map((h, i) => (
                               <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
@@ -413,21 +413,21 @@ export default function SchoolERPPage() {
                             ))}
                           </div>
                           <div className="flex justify-between mt-1">
-                            <span className="text-white/20 text-[7px]">Jan</span>
-                            <span className="text-white/20 text-[7px]">Jun</span>
-                            <span className="text-white/20 text-[7px]">Dec</span>
+                            <span className="text-white/20 text-[7px]">{t('Jan', 'يناير')}</span>
+                            <span className="text-white/20 text-[7px]">{t('Jun', 'يونيو')}</span>
+                            <span className="text-white/20 text-[7px]">{t('Dec', 'ديسمبر')}</span>
                           </div>
                         </div>
 
                         {/* Recent Notifications */}
                         <div className="col-span-2 bg-white/5 rounded-xl p-3 border border-white/5">
-                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-2">Notifications</div>
+                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-2">{t('Notifications', 'الإشعارات')}</div>
                           <div className="space-y-2">
                             {[
-                              { text: 'Fee reminder sent', color: 'bg-orange-500' },
-                              { text: '3 leaves approved', color: 'bg-emerald-500' },
-                              { text: 'Exam schedule live', color: 'bg-blue-500' },
-                              { text: 'Bus #7 delayed', color: 'bg-red-500' },
+                              { text: t('Fee reminder sent', 'تم إرسال تذكير الرسوم'), color: 'bg-orange-500' },
+                              { text: t('3 leaves approved', 'تمت الموافقة على 3 إجازات'), color: 'bg-emerald-500' },
+                              { text: t('Exam schedule live', 'جدول الامتحانات مباشر'), color: 'bg-blue-500' },
+                              { text: t('Bus #7 delayed', 'تأخر الحافلة رقم 7'), color: 'bg-red-500' },
                             ].map((n, i) => (
                               <div key={i} className="flex items-center gap-2">
                                 <div className={`w-1.5 h-1.5 rounded-full ${n.color} shrink-0`} />
@@ -459,13 +459,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label">Modules</span>
+            <span className="section-label">{t('Modules', 'الوحدات')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              12 Modules. <span className="gradient-text">One Platform.</span>
+              {t('12 Modules.', '12 وحدة.')} <span className="gradient-text">{t('One Platform.', 'منصة واحدة.')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Every department, every workflow, every stakeholder — connected and synchronized
-              in real time. No more data silos.
+              {t('Every department, every workflow, every stakeholder — connected and synchronized in real time. No more data silos.', 'كل قسم، كل سير عمل، كل أصحاب المصلحة — متصلون ومتزامنون في الوقت الفعلي. لا مزيد من صوامع البيانات.')}
             </p>
           </motion.div>
 
@@ -521,13 +520,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label-light">Deep Dive</span>
+            <span className="section-label-light">{t('Deep Dive', 'نظرة معمّقة')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mt-4 mb-6">
-              See Modules <span className="gradient-text">In Action</span>
+              {t('See Modules', 'شاهد الوحدات')} <span className="gradient-text">{t('In Action', 'أثناء العمل')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto">
-              Explore detailed views of our most-used modules. Every screen is designed
-              for clarity, speed, and zero training time.
+              {t('Explore detailed views of our most-used modules. Every screen is designed for clarity, speed, and zero training time.', 'استكشف عروضًا تفصيلية لأكثر وحداتنا استخدامًا. كل شاشة مصممة للوضوح والسرعة وعدم الحاجة لأي تدريب.')}
             </p>
           </motion.div>
 
@@ -586,15 +584,15 @@ export default function SchoolERPPage() {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-white font-heading font-bold text-lg">Fee Invoices</h3>
-                        <p className="text-white/30 text-xs mt-1">Term 2, 2025-26 &middot; 2,847 students</p>
+                        <h3 className="text-white font-heading font-bold text-lg">{t('Fee Invoices', 'فواتير الرسوم')}</h3>
+                        <p className="text-white/30 text-xs mt-1">{t('Term 2, 2025-26', 'الفصل 2، 2025-26')} &middot; {t('2,847 students', '2,847 طالب')}</p>
                       </div>
                       <div className="flex gap-2">
                         <div className="px-3 py-1.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-lg font-bold">
-                          82% Collected
+                          {t('82% Collected', '82% محصّل')}
                         </div>
                         <div className="px-3 py-1.5 bg-[#D4711A]/20 text-[#E88C32] text-xs rounded-lg font-bold">
-                          + New Invoice
+                          {t('+ New Invoice', '+ فاتورة جديدة')}
                         </div>
                       </div>
                     </div>
@@ -602,10 +600,10 @@ export default function SchoolERPPage() {
                     {/* Summary Cards */}
                     <div className="grid grid-cols-4 gap-3 mb-6">
                       {[
-                        { label: 'Total Billed', value: 'AED 12.8M', color: 'text-white' },
-                        { label: 'Collected', value: 'AED 10.5M', color: 'text-emerald-400' },
-                        { label: 'Pending', value: 'AED 1.8M', color: 'text-yellow-400' },
-                        { label: 'Overdue', value: 'AED 0.5M', color: 'text-red-400' },
+                        { label: t('Total Billed', 'إجمالي الفواتير'), value: 'AED 12.8M', color: 'text-white' },
+                        { label: t('Collected', 'المحصّل'), value: 'AED 10.5M', color: 'text-emerald-400' },
+                        { label: t('Pending', 'معلق'), value: 'AED 1.8M', color: 'text-yellow-400' },
+                        { label: t('Overdue', 'متأخر'), value: 'AED 0.5M', color: 'text-red-400' },
                       ].map((s, i) => (
                         <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5">
                           <div className="text-white/40 text-[10px] uppercase tracking-wider">{s.label}</div>
@@ -617,11 +615,11 @@ export default function SchoolERPPage() {
                     {/* Table */}
                     <div className="bg-white/3 rounded-xl border border-white/5 overflow-hidden">
                       <div className="grid grid-cols-5 gap-4 px-4 py-3 bg-white/5 text-white/40 text-[10px] uppercase tracking-wider font-bold">
-                        <span>Student</span>
-                        <span>Class</span>
-                        <span>Amount</span>
-                        <span>Status</span>
-                        <span>Action</span>
+                        <span>{t('Student', 'الطالب')}</span>
+                        <span>{t('Class', 'الصف')}</span>
+                        <span>{t('Amount', 'المبلغ')}</span>
+                        <span>{t('Status', 'الحالة')}</span>
+                        <span>{t('Action', 'الإجراء')}</span>
                       </div>
                       {feeInvoices.map((inv, i) => (
                         <div key={i} className="grid grid-cols-5 gap-4 px-4 py-3 border-t border-white/5 items-center">
@@ -634,7 +632,7 @@ export default function SchoolERPPage() {
                             </span>
                           </span>
                           <span>
-                            <span className="text-[#E88C32] text-xs cursor-pointer hover:underline">View &rarr;</span>
+                            <span className="text-[#E88C32] text-xs cursor-pointer hover:underline">{t('View', 'عرض')} &rarr;</span>
                           </span>
                         </div>
                       ))}
@@ -648,25 +646,25 @@ export default function SchoolERPPage() {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-white font-heading font-bold text-lg">Attendance Overview</h3>
-                        <p className="text-white/30 text-xs mt-1">March 2026 &middot; Grade 10-A</p>
+                        <h3 className="text-white font-heading font-bold text-lg">{t('Attendance Overview', 'نظرة عامة على الحضور')}</h3>
+                        <p className="text-white/30 text-xs mt-1">{t('March 2026', 'مارس 2026')} &middot; {t('Grade 10-A', 'الصف 10-أ')}</p>
                       </div>
                       <div className="flex gap-3 items-center">
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500" />
-                          <span className="text-white/40 text-[10px]">Present</span>
+                          <span className="text-white/40 text-[10px]">{t('Present', 'حاضر')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-red-500" />
-                          <span className="text-white/40 text-[10px]">Absent</span>
+                          <span className="text-white/40 text-[10px]">{t('Absent', 'غائب')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-yellow-500" />
-                          <span className="text-white/40 text-[10px]">Late</span>
+                          <span className="text-white/40 text-[10px]">{t('Late', 'متأخر')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-white/10" />
-                          <span className="text-white/40 text-[10px]">Holiday</span>
+                          <span className="text-white/40 text-[10px]">{t('Holiday', 'عطلة')}</span>
                         </div>
                       </div>
                     </div>
@@ -674,10 +672,10 @@ export default function SchoolERPPage() {
                     {/* Stats row */}
                     <div className="grid grid-cols-4 gap-3 mb-6">
                       {[
-                        { label: 'Today Present', value: '38/42', pct: '90.5%', color: 'text-emerald-400' },
-                        { label: 'Month Avg', value: '94.2%', pct: '', color: 'text-white' },
-                        { label: 'Chronic Absent', value: '3 students', pct: '', color: 'text-red-400' },
-                        { label: 'On Leave', value: '4', pct: '', color: 'text-yellow-400' },
+                        { label: t('Today Present', 'الحاضرون اليوم'), value: '38/42', pct: '90.5%', color: 'text-emerald-400' },
+                        { label: t('Month Avg', 'متوسط الشهر'), value: '94.2%', pct: '', color: 'text-white' },
+                        { label: t('Chronic Absent', 'غياب مزمن'), value: t('3 students', '3 طلاب'), pct: '', color: 'text-red-400' },
+                        { label: t('On Leave', 'في إجازة'), value: '4', pct: '', color: 'text-yellow-400' },
                       ].map((s, i) => (
                         <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5">
                           <div className="text-white/40 text-[10px] uppercase tracking-wider">{s.label}</div>
@@ -689,10 +687,10 @@ export default function SchoolERPPage() {
 
                     {/* Calendar Heatmap */}
                     <div className="bg-white/3 rounded-xl border border-white/5 p-4">
-                      <div className="text-white/50 text-[10px] uppercase tracking-wider mb-3 font-bold">March 2026 &mdash; Heatmap</div>
+                      <div className="text-white/50 text-[10px] uppercase tracking-wider mb-3 font-bold">{t('March 2026', 'مارس 2026')} &mdash; {t('Heatmap', 'خريطة حرارية')}</div>
                       {/* Day headers */}
                       <div className="grid grid-cols-7 gap-1.5 mb-2">
-                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
+                        {[t('Sun', 'أحد'), t('Mon', 'اثن'), t('Tue', 'ثلا'), t('Wed', 'أرب'), t('Thu', 'خمي'), t('Fri', 'جمع'), t('Sat', 'سبت')].map((d) => (
                           <div key={d} className="text-center text-white/25 text-[9px] font-bold">{d}</div>
                         ))}
                       </div>
@@ -734,15 +732,15 @@ export default function SchoolERPPage() {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-white font-heading font-bold text-lg">Student Report Card</h3>
-                        <p className="text-white/30 text-xs mt-1">Aisha Rahman &middot; Grade 10-A &middot; Term 2</p>
+                        <h3 className="text-white font-heading font-bold text-lg">{t('Student Report Card', 'بطاقة تقرير الطالب')}</h3>
+                        <p className="text-white/30 text-xs mt-1">{t('Aisha Rahman', 'عائشة رحمن')} &middot; {t('Grade 10-A', 'الصف 10-أ')} &middot; {t('Term 2', 'الفصل 2')}</p>
                       </div>
                       <div className="flex gap-2">
                         <div className="px-3 py-1.5 bg-white/5 text-white/50 text-xs rounded-lg border border-white/10">
-                          Download PDF
+                          {t('Download PDF', 'تحميل PDF')}
                         </div>
                         <div className="px-3 py-1.5 bg-[#D4711A]/20 text-[#E88C32] text-xs rounded-lg font-bold">
-                          Print
+                          {t('Print', 'طباعة')}
                         </div>
                       </div>
                     </div>
@@ -755,22 +753,22 @@ export default function SchoolERPPage() {
                             A
                           </div>
                           <div>
-                            <div className="text-white font-heading font-bold">Aisha Rahman</div>
-                            <div className="text-white/30 text-xs">Roll No: 2026-10A-07 &middot; DOB: 14 Mar 2012</div>
+                            <div className="text-white font-heading font-bold">{t('Aisha Rahman', 'عائشة رحمن')}</div>
+                            <div className="text-white/30 text-xs">{t('Roll No: 2026-10A-07', 'رقم القيد: 2026-10A-07')} &middot; {t('DOB: 14 Mar 2012', 'تاريخ الميلاد: 14 مارس 2012')}</div>
                           </div>
                         </div>
                       </div>
                       <div className="bg-white/5 rounded-xl p-4 border border-white/5 flex items-center justify-between">
                         <div>
-                          <div className="text-white/40 text-[10px] uppercase tracking-wider">Overall Grade</div>
+                          <div className="text-white/40 text-[10px] uppercase tracking-wider">{t('Overall Grade', 'التقدير العام')}</div>
                           <div className="text-3xl font-bold font-heading text-emerald-400 mt-1">A</div>
                         </div>
                         <div className="text-right">
-                          <div className="text-white/40 text-[10px] uppercase tracking-wider">Percentage</div>
+                          <div className="text-white/40 text-[10px] uppercase tracking-wider">{t('Percentage', 'النسبة المئوية')}</div>
                           <div className="text-3xl font-bold font-heading text-white mt-1">88%</div>
                         </div>
                         <div className="text-right">
-                          <div className="text-white/40 text-[10px] uppercase tracking-wider">Rank</div>
+                          <div className="text-white/40 text-[10px] uppercase tracking-wider">{t('Rank', 'الترتيب')}</div>
                           <div className="text-3xl font-bold font-heading text-[#E88C32] mt-1">7th</div>
                         </div>
                       </div>
@@ -779,10 +777,10 @@ export default function SchoolERPPage() {
                     {/* Subjects Table */}
                     <div className="bg-white/3 rounded-xl border border-white/5 overflow-hidden">
                       <div className="grid grid-cols-5 gap-4 px-4 py-3 bg-white/5 text-white/40 text-[10px] uppercase tracking-wider font-bold">
-                        <span>Subject</span>
-                        <span className="text-center">Marks (100)</span>
-                        <span className="text-center">Grade</span>
-                        <span className="col-span-2">Teacher&apos;s Comment</span>
+                        <span>{t('Subject', 'المادة')}</span>
+                        <span className="text-center">{t('Marks (100)', 'الدرجات (100)')}</span>
+                        <span className="text-center">{t('Grade', 'التقدير')}</span>
+                        <span className="col-span-2">{t("Teacher's Comment", 'تعليق المعلم')}</span>
                       </div>
                       {reportCardSubjects.map((sub, i) => (
                         <div key={i} className="grid grid-cols-5 gap-4 px-4 py-3 border-t border-white/5 items-center">
@@ -828,13 +826,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-20"
           >
-            <span className="section-label">Architecture</span>
+            <span className="section-label">{t('Architecture', 'البنية')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              Everything Connects to <span className="gradient-text">One Hub</span>
+              {t('Everything Connects to', 'كل شيء يتصل بـ')} <span className="gradient-text">{t('One Hub', 'مركز واحد')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Data flows seamlessly between all 12 modules. When a student is admitted,
-              their records propagate to fees, transport, attendance, and every other module automatically.
+              {t('Data flows seamlessly between all 12 modules. When a student is admitted, their records propagate to fees, transport, attendance, and every other module automatically.', 'تتدفق البيانات بسلاسة بين جميع الوحدات الـ 12. عند قبول طالب، تنتشر سجلاته إلى الرسوم والنقل والحضور وكل وحدة أخرى تلقائيًا.')}
             </p>
           </motion.div>
 
@@ -880,7 +877,7 @@ export default function SchoolERPPage() {
                 <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center shadow-2xl shadow-[#D4711A]/30">
                   <div className="text-center">
                     <Settings className="w-8 h-8 text-white mx-auto mb-1" />
-                    <span className="text-white text-xs font-bold font-heading">Cubico ERP</span>
+                    <span className="text-white text-xs font-bold font-heading">{t('Cubico ERP', 'كيوبيكو ERP')}</span>
                   </div>
                 </div>
               </div>
@@ -933,13 +930,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label-light">Impact</span>
+            <span className="section-label-light">{t('Impact', 'التأثير')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mt-4 mb-6">
-              The ROI Speaks <span className="gradient-text">For Itself</span>
+              {t('The ROI Speaks', 'العائد على الاستثمار يتحدث')} <span className="gradient-text">{t('For Itself', 'عن نفسه')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto">
-              Schools switching from manual processes see transformative improvements
-              within the first semester.
+              {t('Schools switching from manual processes see transformative improvements within the first semester.', 'المدارس التي تنتقل من العمليات اليدوية تشهد تحسينات جذرية خلال الفصل الدراسي الأول.')}
             </p>
           </motion.div>
 
@@ -962,7 +958,7 @@ export default function SchoolERPPage() {
                 {/* Before */}
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">Manual Process</span>
+                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">{t('Manual Process', 'العملية اليدوية')}</span>
                     <span className="text-red-400 font-bold text-sm">{item.before}</span>
                   </div>
                   <div className="h-3 bg-white/5 rounded-full overflow-hidden">
@@ -979,7 +975,7 @@ export default function SchoolERPPage() {
                 {/* After */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">With Cubico ERP</span>
+                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">{t('With Cubico ERP', 'مع نظام كيوبيكو')}</span>
                     <span className="text-emerald-400 font-bold text-sm">{item.after}</span>
                   </div>
                   <div className="h-3 bg-white/5 rounded-full overflow-hidden">
@@ -1042,13 +1038,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label">Security</span>
+            <span className="section-label">{t('Security', 'الأمان')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              Enterprise-Grade <span className="gradient-text">Security</span>
+              {t('Enterprise-Grade', 'أمان على مستوى')} <span className="gradient-text">{t('Security', 'المؤسسات')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Student data is sacred. Our infrastructure is built with bank-level security
-              so you never have to worry about breaches or compliance.
+              {t('Student data is sacred. Our infrastructure is built with bank-level security so you never have to worry about breaches or compliance.', 'بيانات الطلاب مقدسة. بنيتنا التحتية مبنية بأمان على مستوى البنوك لذا لا داعي للقلق بشأن الاختراقات أو الامتثال.')}
             </p>
           </motion.div>
 
@@ -1096,13 +1091,11 @@ export default function SchoolERPPage() {
             <div className="text-[#D4711A]/20 text-8xl font-heading font-bold leading-none mb-6">&ldquo;</div>
 
             <blockquote className="text-xl md:text-2xl lg:text-3xl text-white/80 font-heading leading-relaxed mb-10">
-              Before Cubico ERP, we had 6 different systems that never talked to each other.
-              Fees in one, attendance in another, reports done manually in Excel.{' '}
+              {t('Before Cubico ERP, we had 6 different systems that never talked to each other. Fees in one, attendance in another, reports done manually in Excel.', 'قبل نظام كيوبيكو، كان لدينا 6 أنظمة مختلفة لا تتواصل مع بعضها. الرسوم في نظام، والحضور في آخر، والتقارير تُعد يدويًا في إكسل.')}{' '}
               <span className="text-[#E88C32] font-bold">
-                Within one semester, we cut admin overhead by 60% and our parent satisfaction
-                scores went from 62% to 94%.
+                {t('Within one semester, we cut admin overhead by 60% and our parent satisfaction scores went from 62% to 94%.', 'خلال فصل دراسي واحد، خفضنا أعباء الإدارة بنسبة 60% وارتفعت نتائج رضا أولياء الأمور من 62% إلى 94%.')}
               </span>{' '}
-              This system didn&apos;t just digitize our school — it transformed how we operate.
+              {t("This system didn't just digitize our school — it transformed how we operate.", 'هذا النظام لم يرقمن مدرستنا فحسب — بل غيّر طريقة عملنا.')}
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
@@ -1110,8 +1103,8 @@ export default function SchoolERPPage() {
                 D
               </div>
               <div className="text-left">
-                <div className="text-white font-heading font-bold">Dr. Amina Al-Rashid</div>
-                <div className="text-white/40 text-sm">Principal, Al Noor International School</div>
+                <div className="text-white font-heading font-bold">{t('Dr. Amina Al-Rashid', 'د. أمينة الراشد')}</div>
+                <div className="text-white/40 text-sm">{t('Principal, Al Noor International School', 'مديرة مدرسة النور الدولية')}</div>
               </div>
             </div>
 
@@ -1139,22 +1132,21 @@ export default function SchoolERPPage() {
             viewport={{ once: true, margin: '-80px' }}
             variants={fadeUp}
           >
-            <span className="section-label">Get Started</span>
+            <span className="section-label">{t('Get Started', 'ابدأ الآن')}</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              Streamline Your{' '}
-              <span className="gradient-text">School Operations</span>
+              {t('Streamline Your', 'بسّط')}{' '}
+              <span className="gradient-text">{t('School Operations', 'عمليات مدرستك')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-10">
-              Join 760+ schools already running on Cubico ERP. Schedule a personalized demo
-              and see how every module works with your real data.
+              {t('Join 760+ schools already running on Cubico ERP. Schedule a personalized demo and see how every module works with your real data.', 'انضم إلى أكثر من 760 مدرسة تعمل بالفعل على نظام كيوبيكو. احجز عرضًا تجريبيًا مخصصًا وشاهد كيف تعمل كل وحدة مع بياناتك الحقيقية.')}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary text-lg px-10 py-4">
-                Request a Demo <ArrowRight className="w-5 h-5" />
+                {t('Request a Demo', 'احجز عرضاً تجريبياً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </Link>
               <Link href="/pricing" className="btn-outline text-lg px-10 py-4">
-                See Pricing
+                {t('See Pricing', 'عرض الأسعار')}
               </Link>
             </div>
 
@@ -1162,15 +1154,15 @@ export default function SchoolERPPage() {
             <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>Free 30-day trial</span>
+                <span>{t('Free 30-day trial', 'تجربة مجانية لمدة 30 يومًا')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>No credit card required</span>
+                <span>{t('No credit card required', 'لا حاجة لبطاقة ائتمان')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>Full data migration support</span>
+                <span>{t('Full data migration support', 'دعم كامل لنقل البيانات')}</span>
               </div>
             </div>
           </motion.div>

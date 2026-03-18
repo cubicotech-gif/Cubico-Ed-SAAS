@@ -170,6 +170,171 @@ export default function HomePage() {
 
   const { t } = useLanguage();
 
+  const navLinks = [
+    { name: t('Home', 'الرئيسية'), href: '#home' },
+    { name: t('Solutions', 'الحلول'), href: '#showcase' },
+    { name: t('About', 'من نحن'), href: '#about' },
+    { name: t('Services', 'الخدمات'), href: '#services' },
+    { name: t('Testimonials', 'آراء العملاء'), href: '#testimonials' },
+    { name: t('FAQ', 'الأسئلة الشائعة'), href: '#faq' },
+    { name: t('Contact', 'تواصل معنا'), href: '#contact' },
+  ];
+
+  const services = [
+    { icon: BarChart3, title: t('LMS Implementation', 'تطبيق نظام إدارة التعلم'), desc: t('Complete Moodle-based learning management system customized for your institution.', 'نظام إدارة تعلم متكامل قائم على Moodle مخصص لمؤسستك.') },
+    { icon: Film, title: t('Animation Studio', 'استوديو الرسوم المتحركة'), desc: t('Professional 2D/3D animated educational content in English, Arabic & Urdu.', 'محتوى تعليمي متحرك احترافي ثنائي وثلاثي الأبعاد بالإنجليزية والعربية والأردية.') },
+    { icon: Monitor, title: t('School ERP System', 'نظام تخطيط موارد المدرسة'), desc: t('Comprehensive school management with admissions, HR, finance & reporting.', 'إدارة مدرسية شاملة تتضمن القبول والموارد البشرية والمالية والتقارير.') },
+    { icon: Globe, title: t('Web Development', 'تطوير المواقع الإلكترونية'), desc: t('Modern, responsive websites and web applications built for education sector.', 'مواقع وتطبيقات ويب حديثة ومتجاوبة مصممة لقطاع التعليم.') },
+    { icon: Smartphone, title: t('Mobile Apps', 'تطبيقات الجوال'), desc: t('Cross-platform mobile applications for students, parents and administrators.', 'تطبيقات جوال متعددة المنصات للطلاب وأولياء الأمور والإداريين.') },
+    { icon: Cloud, title: t('Cloud Hosting', 'الاستضافة السحابية'), desc: t('Reliable cloud infrastructure with 99.9% uptime and global CDN delivery.', 'بنية تحتية سحابية موثوقة بوقت تشغيل 99.9% وشبكة توصيل محتوى عالمية.') },
+    { icon: Mail, title: t('Digital Marketing', 'التسويق الرقمي'), desc: t('Strategic digital marketing campaigns to increase enrollment and engagement.', 'حملات تسويق رقمي استراتيجية لزيادة التسجيل والتفاعل.') },
+    { icon: Users, title: t('Teacher Training', 'تدريب المعلمين'), desc: t('Professional development programs for educators on digital tools and pedagogy.', 'برامج تطوير مهني للمعلمين على الأدوات الرقمية وأساليب التدريس.') },
+  ];
+
+  const testimonials = [
+    {
+      name: t('Dr. Ahmed Al-Rashid', 'د. أحمد الراشد'),
+      role: t('Director', 'مدير'),
+      company: t('Al-Noor Academy', 'أكاديمية النور'),
+      location: t('Saudi Arabia', 'المملكة العربية السعودية'),
+      text: t('Cubico transformed our entire school system. The LMS and animated content have dramatically improved student engagement. Their team understood our Islamic education requirements perfectly.', 'حوّلت كيوبيكو نظام مدرستنا بالكامل. أدى نظام إدارة التعلم والمحتوى المتحرك إلى تحسين تفاعل الطلاب بشكل كبير. فهم فريقهم متطلبات التعليم الإسلامي لدينا بشكل مثالي.'),
+      rating: 5,
+    },
+    {
+      name: t('Fatima Hassan', 'فاطمة حسن'),
+      role: t('Principal', 'مديرة المدرسة'),
+      company: t('Iqra Foundation School', 'مدرسة إقرأ التأسيسية'),
+      location: t('Pakistan', 'باكستان'),
+      text: t('From day one, Cubico delivered beyond our expectations. The ERP system streamlined our operations and the animated Urdu lessons are loved by our students. Truly world-class service.', 'منذ اليوم الأول، قدمت كيوبيكو ما فاق توقعاتنا. نظّم نظام تخطيط الموارد عملياتنا والدروس المتحركة بالأردية يحبها طلابنا. خدمة عالمية المستوى حقاً.'),
+      rating: 5,
+    },
+    {
+      name: t('Michael Torres', 'مايكل توريس'),
+      role: t('Board Chair', 'رئيس مجلس الإدارة'),
+      company: t('Cornwall Islamic Foundation', 'مؤسسة كورنوال الإسلامية'),
+      location: t('Canada', 'كندا'),
+      text: t('Working with Cubico has been exceptional. They deployed our complete digital infrastructure in just 3 weeks. The ongoing support and training have been invaluable for our staff.', 'كان العمل مع كيوبيكو استثنائياً. نشروا بنيتنا التحتية الرقمية الكاملة في 3 أسابيع فقط. الدعم والتدريب المستمر كانا لا يقدران بثمن لموظفينا.'),
+      rating: 5,
+    },
+  ];
+
+  const faqs = [
+    {
+      q: t('How quickly can we launch our digital platform?', 'ما مدى سرعة إطلاق منصتنا الرقمية؟'),
+      a: t('Most institutions go live within 4 weeks. Our streamlined onboarding process includes data migration, staff training, and content setup — all handled by our dedicated team.', 'تبدأ معظم المؤسسات العمل خلال 4 أسابيع. تتضمن عملية الإعداد المبسطة لدينا نقل البيانات وتدريب الموظفين وإعداد المحتوى — يتولاها فريقنا المتخصص بالكامل.'),
+    },
+    {
+      q: t('Do you support Arabic and Urdu content?', 'هل تدعمون المحتوى بالعربية والأردية؟'),
+      a: t('Yes! We specialize in multilingual education content. Our animation studio produces high-quality lessons in English, Arabic, and Urdu with full RTL support across all platforms.', 'نعم! نحن متخصصون في المحتوى التعليمي متعدد اللغات. ينتج استوديو الرسوم المتحركة لدينا دروساً عالية الجودة بالإنجليزية والعربية والأردية مع دعم كامل للكتابة من اليمين لليسار.'),
+    },
+    {
+      q: t('Can we engage Cubico for just one service?', 'هل يمكننا التعاقد مع كيوبيكو لخدمة واحدة فقط؟'),
+      a: t('Absolutely. While we offer a full-stack approach, each service — LMS, ERP, animations, web development — can be engaged independently based on your needs.', 'بالتأكيد. بينما نقدم نهجاً شاملاً، يمكن التعاقد على كل خدمة — نظام إدارة التعلم، نظام تخطيط الموارد، الرسوم المتحركة، تطوير الويب — بشكل مستقل حسب احتياجاتك.'),
+    },
+    {
+      q: t('What makes Cubico different from other EdTech providers?', 'ما الذي يميز كيوبيكو عن مزودي تكنولوجيا التعليم الآخرين؟'),
+      a: t('We combine deep understanding of Islamic and traditional education with cutting-edge technology. Our team includes educators and technologists who bridge the gap between pedagogy and innovation.', 'نجمع بين الفهم العميق للتعليم الإسلامي والتقليدي والتكنولوجيا المتطورة. يضم فريقنا معلمين وتقنيين يسدون الفجوة بين أساليب التدريس والابتكار.'),
+    },
+    {
+      q: t('Which countries do you operate in?', 'في أي دول تعملون؟'),
+      a: t('We actively serve institutions across Pakistan, Saudi Arabia, and Canada. Our cloud-based solutions can be deployed globally with local support teams in each region.', 'نخدم المؤسسات بنشاط في باكستان والمملكة العربية السعودية وكندا. يمكن نشر حلولنا السحابية عالمياً مع فرق دعم محلية في كل منطقة.'),
+    },
+  ];
+
+  const stats = [
+    { value: 760, suffix: '+', label: t('Institutions Served', 'مؤسسة تم خدمتها') },
+    { value: 3, suffix: '', label: t('Countries Active', 'دول نشطة') },
+    { value: 4, suffix: '', label: t('Weeks Avg Launch', 'أسابيع متوسط الإطلاق') },
+    { value: 100, suffix: '%', label: t('Client Retention', 'نسبة الاحتفاظ بالعملاء') },
+  ];
+
+  const partners = [
+    t('Al-Huffaz Academy', 'أكاديمية الحفاظ'),
+    t('Al-Noor Academy', 'أكاديمية النور'),
+    t('CIF Canada', 'مؤسسة CIF كندا'),
+    t('Iqra Foundation', 'مؤسسة إقرأ'),
+    t('Saudi Schools Network', 'شبكة المدارس السعودية'),
+    t('TechEd Pakistan', 'تيك إد باكستان'),
+  ];
+
+  const solutions = [
+    {
+      id: 'manage', name: t('Cubico Manage™', 'كيوبيكو إدارة™'),
+      tagline: t('Your entire institution. One intelligent system.', 'مؤسستك بالكامل. نظام ذكي واحد.'),
+      icon: Layout,
+      painPoint: t('Still running your school on Excel sheets and WhatsApp groups?', 'هل لا تزال تدير مدرستك عبر جداول Excel ومجموعات واتساب؟'),
+      metric: t('47 hrs', '47 ساعة'), metricLabel: t('saved per staff member, per month', 'يتم توفيرها لكل موظف شهرياً'),
+      accentHex: '#D4711A', accentLight: '#FEF0E6',
+      demoUrl: 'app.cubico.tech/manage',
+      features: [
+        { icon: Users,    title: t('Enrollment & Admissions', 'التسجيل والقبول'), desc: t('Full student lifecycle from inquiry to graduation.', 'دورة حياة الطالب الكاملة من الاستفسار إلى التخرج.') },
+        { icon: BarChart3,title: t('Fee & Finance', 'الرسوم والمالية'), desc: t('Invoices, payments, and overdue alerts — automated.', 'الفواتير والمدفوعات وتنبيهات التأخر — آلياً.') },
+        { icon: PieChart, title: t('Attendance & Exams', 'الحضور والامتحانات'), desc: t('Smart attendance, gradebooks, and exam scheduling.', 'حضور ذكي وسجلات درجات وجدولة امتحانات.') },
+        { icon: Settings, title: t('HR & Timetable', 'الموارد البشرية والجدول'), desc: t('Staff records, payroll, and auto-generated schedules.', 'سجلات الموظفين والرواتب والجداول التلقائية.') },
+      ],
+    },
+    {
+      id: 'lms', name: t('Moodle LMS Setup', 'إعداد نظام Moodle'),
+      tagline: t('Your branded Moodle — configured, hosted, supported.', 'منصة Moodle بعلامتك التجارية — مُعدّة ومستضافة ومدعومة.'),
+      icon: BookOpen,
+      painPoint: t('Moodle is powerful but complex — setting it up right takes months without the right team.', 'Moodle قوي لكنه معقد — إعداده بشكل صحيح يستغرق أشهراً بدون الفريق المناسب.'),
+      metric: t('2 wks', 'أسبوعان'), metricLabel: t('from signup to a fully live Moodle platform', 'من التسجيل إلى منصة Moodle مباشرة بالكامل'),
+      accentHex: '#F47B20', accentLight: '#FEF0E6',
+      demoUrl: 'lms.cubico.tech/demo',
+      features: [
+        { icon: Settings,  title: t('Custom Moodle Theme', 'قالب Moodle مخصص'), desc: t('Your logo, colors, and branding — pixel-perfect.', 'شعارك وألوانك وعلامتك التجارية — بدقة متناهية.') },
+        { icon: BookOpen,  title: t('Course Build & Migration', 'بناء ونقل المقررات'), desc: t('We build or migrate your course content for you.', 'نبني أو ننقل محتوى مقرراتك نيابة عنك.') },
+        { icon: Shield,    title: t('Managed Hosting', 'استضافة مُدارة'), desc: t('Secure cloud hosting with 99.9% uptime guarantee.', 'استضافة سحابية آمنة بضمان وقت تشغيل 99.9%.') },
+        { icon: Users,     title: t('Training & Onboarding', 'التدريب والإعداد'), desc: t('Live sessions for teachers and admins, included.', 'جلسات مباشرة للمعلمين والإداريين، مشمولة.') },
+      ],
+    },
+    {
+      id: 'teach', name: t('Cubico Teach™', 'كيوبيكو تدريس™'),
+      tagline: t("Everything a teacher needs. Nothing they don't.", 'كل ما يحتاجه المعلم. لا شيء لا يحتاجه.'),
+      icon: Lightbulb,
+      painPoint: t('Teachers spending Sunday nights building lesson plans from scratch?', 'المعلمون يقضون ليالي الأحد في إعداد خطط الدروس من الصفر؟'),
+      metric: t('2×', '2×'), metricLabel: t('faster lesson planning from day one', 'تخطيط دروس أسرع من اليوم الأول'),
+      accentHex: '#B85E15', accentLight: '#FFF8F0',
+      demoUrl: 'app.cubico.tech/teach',
+      features: [
+        { icon: Lightbulb, title: t('Lesson Plan Builder', 'منشئ خطط الدروس'), desc: t('Drag-and-drop blocks aligned to national curriculum.', 'كتل سحب وإفلات متوافقة مع المنهج الوطني.') },
+        { icon: Target,    title: t('Curriculum Mapping', 'خريطة المنهج'), desc: t('Visual scope & sequence across subjects and grades.', 'نطاق وتسلسل مرئي عبر المواد والصفوف.') },
+        { icon: BarChart3, title: t('Class Analytics', 'تحليلات الصف'), desc: t('Per-student progress with automatic at-risk flags.', 'تقدم كل طالب مع تنبيهات تلقائية للطلاب المعرضين للخطر.') },
+        { icon: Cloud,     title: t('Resource Library', 'مكتبة الموارد'), desc: t('Upload, tag, and share materials across departments.', 'رفع ووسم ومشاركة المواد عبر الأقسام.') },
+      ],
+    },
+    {
+      id: 'learn', name: t('Cubico Learn™', 'كيوبيكو تعلّم™'),
+      tagline: t('Textbooks come alive.', 'الكتب المدرسية تنبض بالحياة.'),
+      icon: Film,
+      painPoint: t('Students zoning out 8 minutes into a 40-minute lecture?', 'الطلاب يفقدون التركيز بعد 8 دقائق من محاضرة مدتها 40 دقيقة؟'),
+      metric: t('4×', '4×'), metricLabel: t('higher engagement vs. traditional textbooks', 'تفاعل أعلى مقارنة بالكتب المدرسية التقليدية'),
+      accentHex: '#C0651A', accentLight: '#FEF0E6',
+      demoUrl: 'app.cubico.tech/learn',
+      features: [
+        { icon: Film,    title: t('2D & 3D Animation', 'رسوم متحركة ثنائية وثلاثية الأبعاد'), desc: t('Character-led animated lessons, any subject.', 'دروس متحركة بقيادة شخصيات، لأي مادة.') },
+        { icon: Monitor, title: t('Interactive Simulations', 'محاكاة تفاعلية'), desc: t('STEM labs students can actually manipulate.', 'مختبرات STEM يمكن للطلاب التفاعل معها فعلياً.') },
+        { icon: Globe,   title: t('English · Arabic · Urdu', 'الإنجليزية · العربية · الأردية'), desc: t('Full narration and RTL support built in.', 'سرد كامل ودعم الكتابة من اليمين لليسار مدمج.') },
+        { icon: Zap,     title: t('Adaptive Quizzes', 'اختبارات تكيفية'), desc: t('End-of-lesson assessments that self-adjust.', 'تقييمات نهاية الدرس التي تتكيف تلقائياً.') },
+      ],
+    },
+    {
+      id: 'marketing', name: t('Cubico Marketing™', 'كيوبيكو تسويق™'),
+      tagline: t('Fill every seat. Every semester.', 'املأ كل مقعد. كل فصل دراسي.'),
+      icon: Megaphone,
+      painPoint: t('Your school is incredible. Nobody outside your city knows it exists.', 'مدرستك رائعة. لا أحد خارج مدينتك يعرف بوجودها.'),
+      metric: t('+34%', '+34%'), metricLabel: t('average increase in admission enquiries', 'متوسط الزيادة في استفسارات القبول'),
+      accentHex: '#8B4513', accentLight: '#FDF5ED',
+      demoUrl: 'app.cubico.tech/marketing',
+      features: [
+        { icon: Globe,      title: t('Premium School Websites', 'مواقع مدرسية متميزة'), desc: t('Conversion-focused, mobile-first, and beautiful.', 'مركزة على التحويل، متوافقة مع الجوال أولاً، وجميلة.') },
+        { icon: TrendingUp, title: t('Enrollment Funnels', 'مسارات التسجيل'), desc: t('Google Ads, landing pages, and retargeting.', 'إعلانات جوجل وصفحات الهبوط وإعادة الاستهداف.') },
+        { icon: Megaphone,  title: t('Social Media Management', 'إدارة وسائل التواصل الاجتماعي'), desc: t('Content, campaigns, and brand voice.', 'المحتوى والحملات وصوت العلامة التجارية.') },
+        { icon: Shield,     title: t('SEO & Monthly Reports', 'تحسين محركات البحث والتقارير الشهرية'), desc: t('Search visibility that compounds over time.', 'ظهور في البحث يتراكم مع مرور الوقت.') },
+      ],
+    },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
@@ -297,8 +462,8 @@ export default function HomePage() {
                 href="#contact"
                 className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
               >
-                Get Started
-                <ArrowRight className="w-3.5 h-3.5" />
+                {t('Get Started', 'ابدأ الآن')}
+                <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
               </a>
             </div>
 
