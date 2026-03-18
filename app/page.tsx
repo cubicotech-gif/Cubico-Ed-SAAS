@@ -1080,13 +1080,13 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                Product Suite
+                {t('Product Suite', 'مجموعة المنتجات')}
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1}
               className="text-3xl md:text-4xl lg:text-[2.8rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-4">
-              Five products.{' '}
-              <span className="shimmer-text">One ecosystem.</span>
+              {t('Five products.', 'خمسة منتجات.')}{' '}
+              <span className="shimmer-text">{t('One ecosystem.', 'منظومة واحدة.')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
               Each tool is purpose-built for education. Together, they run your entire institution — from classroom to admin office to marketing.
