@@ -1684,10 +1684,10 @@ export default function HomePage() {
           <div className="mt-16 pt-10 border-t border-gray-100">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: Shield,     stat: '760+', label: 'Schools Served',     sub: 'across PK, SA & CA'    },
-                { icon: TrendingUp, stat: '94%',  label: 'Satisfaction Rate',  sub: 'rated 5/5 by educators'},
-                { icon: Zap,        stat: '4 wk', label: 'Avg. Go-Live',      sub: 'from signed contract'  },
-                { icon: Users,      stat: '24/7', label: 'Dedicated Support',  sub: 'account manager incl.' },
+                { icon: Shield,     stat: '760+', label: t('Schools Served', 'مدرسة تم خدمتها'),     sub: t('across PK, SA & CA', 'في باكستان والسعودية وكندا')    },
+                { icon: TrendingUp, stat: '94%',  label: t('Satisfaction Rate', 'نسبة الرضا'),  sub: t('rated 5/5 by educators', 'تقييم 5/5 من المعلمين')},
+                { icon: Zap,        stat: t('4 wk', '4 أسابيع'), label: t('Avg. Go-Live', 'متوسط الإطلاق'),      sub: t('from signed contract', 'من توقيع العقد')  },
+                { icon: Users,      stat: '24/7', label: t('Dedicated Support', 'دعم مخصص'),  sub: t('account manager incl.', 'مدير حساب مشمول') },
               ].map(item => {
                 const SIcon = item.icon;
                 return (
@@ -1798,7 +1798,7 @@ export default function HomePage() {
               <motion.div variants={fadeUp} custom={0} className="mb-4">
                 <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                  Who We Are
+                  {t('Who We Are', 'من نحن')}
                 </span>
               </motion.div>
               <motion.h2
@@ -1806,8 +1806,8 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6"
               >
-                Educators & engineers<br />
-                building <span className="shimmer-text">what schools actually need</span>
+                {t('Educators & engineers', 'معلمون ومهندسون')}<br />
+                {t('building', 'يبنون')} <span className="shimmer-text">{t('what schools actually need', 'ما تحتاجه المدارس فعلاً')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-gray-500 leading-relaxed mb-8">
                 Cubico Technologies is a full-stack EdTech company serving schools across Pakistan, Saudi Arabia & Canada.
