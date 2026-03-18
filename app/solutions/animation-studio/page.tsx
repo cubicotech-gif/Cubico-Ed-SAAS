@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -110,92 +111,7 @@ function useCounter(target: number, duration = 2000) {
 /* ═══════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════ */
-const contentCategories = [
-  {
-    title: 'Science & Math',
-    desc: 'Complex concepts made visual — from molecular structures to algebraic equations through vivid 3D animations.',
-    color: 'from-blue-500 to-cyan-500',
-    bgColor: 'bg-blue-50',
-    iconType: 'science',
-  },
-  {
-    title: 'Islamic Studies',
-    desc: 'Beautiful geometric patterns and calligraphy brought to life with reverent, culturally authentic animations.',
-    color: 'from-emerald-500 to-teal-500',
-    bgColor: 'bg-emerald-50',
-    iconType: 'islamic',
-  },
-  {
-    title: 'Language Arts',
-    desc: 'Storytelling, grammar, and literature visualized through character animations and narrative-driven content.',
-    color: 'from-purple-500 to-violet-500',
-    bgColor: 'bg-purple-50',
-    iconType: 'language',
-  },
-  {
-    title: 'Social Studies',
-    desc: 'History, geography, and civics come alive with animated maps, timelines, and historical recreations.',
-    color: 'from-amber-500 to-orange-500',
-    bgColor: 'bg-amber-50',
-    iconType: 'social',
-  },
-  {
-    title: 'Life Skills',
-    desc: 'Practical life lessons taught through relatable character-driven scenarios and interactive animations.',
-    color: 'from-rose-500 to-pink-500',
-    bgColor: 'bg-rose-50',
-    iconType: 'life',
-  },
-  {
-    title: 'Custom Content',
-    desc: 'Bespoke animations tailored to your institution\'s unique curriculum needs and branding guidelines.',
-    color: 'from-[#D4711A] to-[#8B4513]',
-    bgColor: 'bg-orange-50',
-    iconType: 'custom',
-  },
-];
-
-const productionSteps = [
-  { title: 'Script Writing', desc: 'Curriculum-aligned scripts crafted by subject matter experts and creative writers.', icon: Pen },
-  { title: 'Storyboarding', desc: 'Visual blueprints mapping every scene, transition, and key frame of the animation.', icon: Layers },
-  { title: 'Voice Recording', desc: 'Professional narration in English, Arabic, and Urdu by native-speaking voice artists.', icon: Mic },
-  { title: 'Animation', desc: '2D & 3D animation production using industry-standard tools and techniques.', icon: Clapperboard },
-  { title: 'Post-Production', desc: 'Sound design, color grading, effects, and quality assurance review.', icon: Settings },
-  { title: 'Delivery', desc: 'Multi-format export optimized for LMS, mobile, web, and classroom display.', icon: Package },
-];
-
-const portfolioStats = [
-  { number: 2000, suffix: '+', label: 'Animations Produced' },
-  { number: 8, suffix: '', label: 'Subject Areas' },
-  { number: 3, suffix: '', label: 'Languages Supported' },
-  { number: 150, suffix: '+', label: 'Voice Artists' },
-];
-
-const curriculumData = [
-  { grade: 'KG', subjects: [true, true, false, false, true, false] },
-  { grade: 'Grade 1', subjects: [true, true, true, true, true, false] },
-  { grade: 'Grade 2', subjects: [true, true, true, true, true, false] },
-  { grade: 'Grade 3', subjects: [true, true, true, true, true, true] },
-  { grade: 'Grade 4', subjects: [true, true, true, true, true, true] },
-  { grade: 'Grade 5', subjects: [true, true, true, true, true, true] },
-  { grade: 'Grade 6', subjects: [true, true, true, true, false, true] },
-  { grade: 'Grade 7', subjects: [true, true, true, true, false, true] },
-  { grade: 'Grade 8', subjects: [true, true, true, true, false, true] },
-  { grade: 'Grade 9', subjects: [true, false, true, true, false, true] },
-  { grade: 'Grade 10', subjects: [true, false, true, true, false, true] },
-  { grade: 'Grade 11', subjects: [true, false, false, true, false, true] },
-  { grade: 'Grade 12', subjects: [true, false, false, true, false, true] },
-];
-
-const subjectHeaders = ['Science & Math', 'Islamic Studies', 'Language Arts', 'Social Studies', 'Life Skills', 'Custom'];
-
-const chapterList = [
-  { title: 'Introduction to Photosynthesis', duration: '4:32', active: true },
-  { title: 'Light Reactions Explained', duration: '6:15', active: false },
-  { title: 'Calvin Cycle in Detail', duration: '5:48', active: false },
-  { title: 'Factors Affecting Rate', duration: '3:56', active: false },
-  { title: 'Review & Assessment', duration: '7:20', active: false },
-];
+/* Data arrays moved inside component for i18n support */
 
 /* ═══════════════════════════════════════════
    CSS SHAPE COMPONENTS
@@ -329,8 +245,103 @@ function StatCounter({ number, suffix, label }: { number: number; suffix: string
    PAGE COMPONENT
    ═══════════════════════════════════════════ */
 export default function AnimationStudioPage() {
+  const { t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(35);
+
+  const contentCategories = [
+    {
+      title: t('Science & Math', 'العلوم والرياضيات'),
+      desc: t('Complex concepts made visual — from molecular structures to algebraic equations through vivid 3D animations.', 'مفاهيم معقدة مرئية — من الهياكل الجزيئية إلى المعادلات الجبرية من خلال رسوم متحركة ثلاثية الأبعاد حية.'),
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'bg-blue-50',
+      iconType: 'science',
+    },
+    {
+      title: t('Islamic Studies', 'الدراسات الإسلامية'),
+      desc: t('Beautiful geometric patterns and calligraphy brought to life with reverent, culturally authentic animations.', 'أنماط هندسية جميلة وخط عربي تُحيا برسوم متحركة ثقافية أصيلة ومُوقّرة.'),
+      color: 'from-emerald-500 to-teal-500',
+      bgColor: 'bg-emerald-50',
+      iconType: 'islamic',
+    },
+    {
+      title: t('Language Arts', 'فنون اللغة'),
+      desc: t('Storytelling, grammar, and literature visualized through character animations and narrative-driven content.', 'سرد القصص والقواعد والأدب من خلال رسوم متحركة للشخصيات ومحتوى قائم على السرد.'),
+      color: 'from-purple-500 to-violet-500',
+      bgColor: 'bg-purple-50',
+      iconType: 'language',
+    },
+    {
+      title: t('Social Studies', 'الدراسات الاجتماعية'),
+      desc: t('History, geography, and civics come alive with animated maps, timelines, and historical recreations.', 'التاريخ والجغرافيا والتربية المدنية تنبض بالحياة مع خرائط متحركة وجداول زمنية وإعادة إنشاء تاريخية.'),
+      color: 'from-amber-500 to-orange-500',
+      bgColor: 'bg-amber-50',
+      iconType: 'social',
+    },
+    {
+      title: t('Life Skills', 'المهارات الحياتية'),
+      desc: t('Practical life lessons taught through relatable character-driven scenarios and interactive animations.', 'دروس حياتية عملية من خلال سيناريوهات قائمة على الشخصيات ورسوم متحركة تفاعلية.'),
+      color: 'from-rose-500 to-pink-500',
+      bgColor: 'bg-rose-50',
+      iconType: 'life',
+    },
+    {
+      title: t('Custom Content', 'محتوى مخصص'),
+      desc: t('Bespoke animations tailored to your institution\'s unique curriculum needs and branding guidelines.', 'رسوم متحركة مصممة خصيصًا لاحتياجات المنهج الفريدة لمؤسستك وإرشادات العلامة التجارية.'),
+      color: 'from-[#D4711A] to-[#8B4513]',
+      bgColor: 'bg-orange-50',
+      iconType: 'custom',
+    },
+  ];
+
+  const productionSteps = [
+    { title: t('Script Writing', 'كتابة السيناريو'), desc: t('Curriculum-aligned scripts crafted by subject matter experts and creative writers.', 'نصوص متوافقة مع المنهج من إعداد خبراء المادة والكتّاب المبدعين.'), icon: Pen },
+    { title: t('Storyboarding', 'لوحة القصة'), desc: t('Visual blueprints mapping every scene, transition, and key frame of the animation.', 'مخططات بصرية ترسم كل مشهد وانتقال وإطار رئيسي للرسوم المتحركة.'), icon: Layers },
+    { title: t('Voice Recording', 'تسجيل الصوت'), desc: t('Professional narration in English, Arabic, and Urdu by native-speaking voice artists.', 'سرد احترافي بالإنجليزية والعربية والأردية بواسطة فنانين صوتيين ناطقين أصليين.'), icon: Mic },
+    { title: t('Animation', 'الرسوم المتحركة'), desc: t('2D & 3D animation production using industry-standard tools and techniques.', 'إنتاج رسوم متحركة ثنائية وثلاثية الأبعاد باستخدام أدوات وتقنيات معيارية.'), icon: Clapperboard },
+    { title: t('Post-Production', 'مرحلة ما بعد الإنتاج'), desc: t('Sound design, color grading, effects, and quality assurance review.', 'تصميم الصوت وتدريج الألوان والمؤثرات ومراجعة ضمان الجودة.'), icon: Settings },
+    { title: t('Delivery', 'التسليم'), desc: t('Multi-format export optimized for LMS, mobile, web, and classroom display.', 'تصدير متعدد الصيغ مُحسّن لنظام إدارة التعلم والجوال والويب وعرض الفصول الدراسية.'), icon: Package },
+  ];
+
+  const portfolioStats = [
+    { number: 2000, suffix: '+', label: t('Animations Produced', 'رسوم متحركة مُنتجة') },
+    { number: 8, suffix: '', label: t('Subject Areas', 'مجالات دراسية') },
+    { number: 3, suffix: '', label: t('Languages Supported', 'لغات مدعومة') },
+    { number: 150, suffix: '+', label: t('Voice Artists', 'فنانين صوتيين') },
+  ];
+
+  const curriculumData = [
+    { grade: t('KG', 'رياض الأطفال'), subjects: [true, true, false, false, true, false] },
+    { grade: t('Grade 1', 'الصف ١'), subjects: [true, true, true, true, true, false] },
+    { grade: t('Grade 2', 'الصف ٢'), subjects: [true, true, true, true, true, false] },
+    { grade: t('Grade 3', 'الصف ٣'), subjects: [true, true, true, true, true, true] },
+    { grade: t('Grade 4', 'الصف ٤'), subjects: [true, true, true, true, true, true] },
+    { grade: t('Grade 5', 'الصف ٥'), subjects: [true, true, true, true, true, true] },
+    { grade: t('Grade 6', 'الصف ٦'), subjects: [true, true, true, true, false, true] },
+    { grade: t('Grade 7', 'الصف ٧'), subjects: [true, true, true, true, false, true] },
+    { grade: t('Grade 8', 'الصف ٨'), subjects: [true, true, true, true, false, true] },
+    { grade: t('Grade 9', 'الصف ٩'), subjects: [true, false, true, true, false, true] },
+    { grade: t('Grade 10', 'الصف ١٠'), subjects: [true, false, true, true, false, true] },
+    { grade: t('Grade 11', 'الصف ١١'), subjects: [true, false, false, true, false, true] },
+    { grade: t('Grade 12', 'الصف ١٢'), subjects: [true, false, false, true, false, true] },
+  ];
+
+  const subjectHeaders = [
+    t('Science & Math', 'العلوم والرياضيات'),
+    t('Islamic Studies', 'الدراسات الإسلامية'),
+    t('Language Arts', 'فنون اللغة'),
+    t('Social Studies', 'الدراسات الاجتماعية'),
+    t('Life Skills', 'المهارات الحياتية'),
+    t('Custom', 'مخصص'),
+  ];
+
+  const chapterList = [
+    { title: t('Introduction to Photosynthesis', 'مقدمة في التمثيل الضوئي'), duration: '4:32', active: true },
+    { title: t('Light Reactions Explained', 'شرح التفاعلات الضوئية'), duration: '6:15', active: false },
+    { title: t('Calvin Cycle in Detail', 'دورة كالفين بالتفصيل'), duration: '5:48', active: false },
+    { title: t('Factors Affecting Rate', 'العوامل المؤثرة على المعدل'), duration: '3:56', active: false },
+    { title: t('Review & Assessment', 'المراجعة والتقييم'), duration: '7:20', active: false },
+  ];
 
   return (
     <>
@@ -355,7 +366,7 @@ export default function AnimationStudioPage() {
                 variants={staggerContainer}
               >
                 <motion.div variants={fadeUp} custom={0} className="section-label-light mb-6">
-                  <Film className="w-4 h-4" /> Animation Studio
+                  <Film className="w-4 h-4" /> {t('Animation Studio', 'استوديو الرسوم المتحركة')}
                 </motion.div>
 
                 <motion.h1
@@ -363,10 +374,10 @@ export default function AnimationStudioPage() {
                   custom={1}
                   className="text-5xl md:text-7xl font-bold font-[family-name:var(--font-clash)] leading-[1.1] mb-6"
                 >
-                  Where Education
+                  {t('Where Education', 'حيث يلتقي التعليم')}
                   <br />
-                  Meets{' '}
-                  <span className="gradient-text">Imagination</span>
+                  {t('Meets', 'مع')}{' '}
+                  <span className="gradient-text">{t('Imagination', 'الخيال')}</span>
                 </motion.h1>
 
                 <motion.p
@@ -374,17 +385,15 @@ export default function AnimationStudioPage() {
                   custom={2}
                   className="text-xl text-gray-400 max-w-lg mb-8 leading-relaxed"
                 >
-                  Professional 2D &amp; 3D animated educational content that transforms complex
-                  subjects into unforgettable visual stories for K-12 students across the
-                  Middle East and South Asia.
+                  {t('Professional 2D & 3D animated educational content that transforms complex subjects into unforgettable visual stories for K-12 students across the Middle East and South Asia.', 'محتوى تعليمي متحرك احترافي ثنائي وثلاثي الأبعاد يحوّل المواضيع المعقدة إلى قصص بصرية لا تُنسى لطلاب مراحل التعليم العام في الشرق الأوسط وجنوب آسيا.')}
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-4">
                   <Link href="/contact" className="btn-primary">
-                    Start Your Project <ArrowRight className="w-5 h-5 ml-2" />
+                    {t('Start Your Project', 'ابدأ مشروعك')} <ArrowRight className="w-5 h-5 ml-2 rtl:rotate-180" />
                   </Link>
                   <button className="btn-outline-white">
-                    <Play className="w-5 h-5 mr-2" /> Watch Showreel
+                    <Play className="w-5 h-5 mr-2" /> {t('Watch Showreel', 'شاهد العرض')}
                   </button>
                 </motion.div>
 
@@ -467,8 +476,8 @@ export default function AnimationStudioPage() {
                     </div>
                     {/* Title overlay */}
                     <div className="absolute bottom-4 left-4">
-                      <div className="text-xs text-gray-400 mb-1">Now Playing</div>
-                      <div className="text-white font-medium text-sm">The Water Cycle - Grade 4 Science</div>
+                      <div className="text-xs text-gray-400 mb-1">{t('Now Playing', 'يتم التشغيل الآن')}</div>
+                      <div className="text-white font-medium text-sm">{t('The Water Cycle - Grade 4 Science', 'دورة الماء - علوم الصف الرابع')}</div>
                     </div>
                   </div>
 

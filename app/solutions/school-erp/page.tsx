@@ -39,6 +39,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -67,144 +68,143 @@ const scaleIn = {
 };
 
 /* ═══════════════════════════════════════════
-   DATA
+   DATA (moved inside component for i18n)
    ═══════════════════════════════════════════ */
-const erpModules = [
-  {
-    icon: UserPlus,
-    title: 'Admissions Management',
-    desc: 'Online applications, document verification, merit lists, and enrollment workflows — all paperless.',
-    color: '#D4711A',
-  },
-  {
-    icon: DollarSign,
-    title: 'Fee & Finance',
-    desc: 'Automated invoicing, online payments, fee structures by class, late-fee rules, and financial reports.',
-    color: '#2563EB',
-  },
-  {
-    icon: Briefcase,
-    title: 'HR & Payroll',
-    desc: 'Staff profiles, salary processing, leave management, performance reviews, and compliance tracking.',
-    color: '#7C3AED',
-  },
-  {
-    icon: Calendar,
-    title: 'Timetable & Scheduling',
-    desc: 'Conflict-free timetable generation, substitution management, and room allocation in seconds.',
-    color: '#059669',
-  },
-  {
-    icon: ClipboardList,
-    title: 'Exam Management',
-    desc: 'Exam scheduling, hall tickets, mark entry, grade computation, and report card generation.',
-    color: '#DC2626',
-  },
-  {
-    icon: Clock,
-    title: 'Attendance Tracking',
-    desc: 'Biometric/RFID integration, period-wise tracking, SMS alerts to parents, and trend analytics.',
-    color: '#0891B2',
-  },
-  {
-    icon: Bus,
-    title: 'Transport Management',
-    desc: 'Route planning, GPS tracking, driver assignment, fee linking, and parent notifications.',
-    color: '#CA8A04',
-  },
-  {
-    icon: BookOpen,
-    title: 'Library System',
-    desc: 'Catalogue management, barcode scanning, issue/return tracking, overdue alerts, and e-library.',
-    color: '#BE185D',
-  },
-  {
-    icon: Package,
-    title: 'Inventory & Assets',
-    desc: 'Track lab equipment, furniture, IT assets, consumables, and procurement with depreciation logs.',
-    color: '#6D28D9',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Parent Communication',
-    desc: 'In-app messaging, SMS/email broadcasts, event calendars, and homework notifications.',
-    color: '#0D9488',
-  },
-  {
-    icon: PieChart,
-    title: 'Reports & Analytics',
-    desc: '100+ pre-built reports, custom dashboards, export to Excel/PDF, and board-level analytics.',
-    color: '#EA580C',
-  },
-  {
-    icon: Bell,
-    title: 'Notifications',
-    desc: 'Multi-channel alerts via push, SMS, email, and WhatsApp with smart scheduling and templates.',
-    color: '#4F46E5',
-  },
-];
-
-const stats = [
-  { number: '760+', label: 'Schools Powered' },
-  { number: '12', label: 'Integrated Modules' },
-  { number: '50%', label: 'Time Saved' },
-  { number: '99.9%', label: 'Uptime SLA' },
-];
-
-const securityFeatures = [
-  { icon: Shield, title: 'Role-Based Access', desc: 'Granular permissions for admins, teachers, parents, and staff with custom role creation.' },
-  { icon: Lock, title: 'Data Encryption', desc: 'AES-256 encryption at rest, TLS 1.3 in transit. Your school data is vault-grade secure.' },
-  { icon: Database, title: 'Automated Backups', desc: 'Daily incremental + weekly full backups with point-in-time recovery up to 30 days.' },
-  { icon: Eye, title: 'GDPR Compliant', desc: 'Data processing agreements, consent management, and right-to-erasure workflows built in.' },
-  { icon: FileText, title: 'Audit Logs', desc: 'Every action tracked — who changed what, when, and from which device. Full accountability.' },
-  { icon: Server, title: 'Multi-Tenant Architecture', desc: 'Isolated databases per school. One school\'s data never touches another. Ever.' },
-];
-
-const roiData = [
-  { metric: 'Weekly Admin Hours', before: '40 hrs', after: '8 hrs', beforePct: 100, afterPct: 20 },
-  { metric: 'Fee Default Rate', before: '15%', after: '3%', beforePct: 100, afterPct: 20 },
-  { metric: 'Report Generation', before: '3 days', after: 'Instant', beforePct: 100, afterPct: 5 },
-  { metric: 'Parent Satisfaction', before: '62%', after: '94%', beforePct: 62, afterPct: 94 },
-];
-
-/* Fee table mock data */
-const feeInvoices = [
-  { student: 'Aisha Rahman', class: 'Grade 10-A', amount: 'AED 4,500', status: 'Paid', statusColor: 'bg-emerald-500/20 text-emerald-400' },
-  { student: 'Omar Al-Farsi', class: 'Grade 8-B', amount: 'AED 4,500', status: 'Pending', statusColor: 'bg-yellow-500/20 text-yellow-400' },
-  { student: 'Sara Khalid', class: 'Grade 12-A', amount: 'AED 5,200', status: 'Paid', statusColor: 'bg-emerald-500/20 text-emerald-400' },
-  { student: 'Yusuf Hassan', class: 'Grade 7-C', amount: 'AED 4,500', status: 'Overdue', statusColor: 'bg-red-500/20 text-red-400' },
-  { student: 'Fatima Noor', class: 'Grade 9-A', amount: 'AED 4,800', status: 'Paid', statusColor: 'bg-emerald-500/20 text-emerald-400' },
-];
-
-/* Report card mock data */
-const reportCardSubjects = [
-  { subject: 'Mathematics', marks: 92, grade: 'A+', comment: 'Excellent analytical skills' },
-  { subject: 'Science', marks: 88, grade: 'A', comment: 'Strong lab performance' },
-  { subject: 'English', marks: 85, grade: 'A', comment: 'Impressive writing growth' },
-  { subject: 'Arabic', marks: 78, grade: 'B+', comment: 'Needs vocabulary focus' },
-  { subject: 'Social Studies', marks: 90, grade: 'A+', comment: 'Outstanding projects' },
-  { subject: 'Computer Science', marks: 95, grade: 'A+', comment: 'Exceptional coding ability' },
-];
-
-/* Data flow hub modules */
-const hubModules = [
-  { icon: UserPlus, label: 'Admissions', angle: 0 },
-  { icon: DollarSign, label: 'Finance', angle: 30 },
-  { icon: Briefcase, label: 'HR', angle: 60 },
-  { icon: Calendar, label: 'Timetable', angle: 90 },
-  { icon: ClipboardList, label: 'Exams', angle: 120 },
-  { icon: Clock, label: 'Attendance', angle: 150 },
-  { icon: Bus, label: 'Transport', angle: 180 },
-  { icon: BookOpen, label: 'Library', angle: 210 },
-  { icon: Package, label: 'Inventory', angle: 240 },
-  { icon: MessageSquare, label: 'Comms', angle: 270 },
-  { icon: PieChart, label: 'Reports', angle: 300 },
-  { icon: Bell, label: 'Alerts', angle: 330 },
-];
 
 export default function SchoolERPPage() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState(0);
-  const tabs = ['Fee Management', 'Attendance Dashboard', 'Report Cards'];
+  const tabs = [t('Fee Management', 'إدارة الرسوم'), t('Attendance Dashboard', 'لوحة الحضور'), t('Report Cards', 'بطاقات التقارير')];
+
+  const erpModules = [
+    {
+      icon: UserPlus,
+      title: t('Admissions Management', 'إدارة القبول'),
+      desc: t('Online applications, document verification, merit lists, and enrollment workflows — all paperless.', 'التقديم الإلكتروني، التحقق من المستندات، قوائم الجدارة، وسير عمل التسجيل — بدون أوراق.'),
+      color: '#D4711A',
+    },
+    {
+      icon: DollarSign,
+      title: t('Fee & Finance', 'الرسوم والمالية'),
+      desc: t('Automated invoicing, online payments, fee structures by class, late-fee rules, and financial reports.', 'الفواتير التلقائية، الدفع الإلكتروني، هياكل الرسوم حسب الصف، قواعد الرسوم المتأخرة، والتقارير المالية.'),
+      color: '#2563EB',
+    },
+    {
+      icon: Briefcase,
+      title: t('HR & Payroll', 'الموارد البشرية والرواتب'),
+      desc: t('Staff profiles, salary processing, leave management, performance reviews, and compliance tracking.', 'ملفات الموظفين، معالجة الرواتب، إدارة الإجازات، تقييم الأداء، وتتبع الامتثال.'),
+      color: '#7C3AED',
+    },
+    {
+      icon: Calendar,
+      title: t('Timetable & Scheduling', 'الجدول الزمني والجدولة'),
+      desc: t('Conflict-free timetable generation, substitution management, and room allocation in seconds.', 'إنشاء جداول زمنية بدون تعارض، إدارة الاستبدال، وتخصيص الغرف في ثوانٍ.'),
+      color: '#059669',
+    },
+    {
+      icon: ClipboardList,
+      title: t('Exam Management', 'إدارة الامتحانات'),
+      desc: t('Exam scheduling, hall tickets, mark entry, grade computation, and report card generation.', 'جدولة الامتحانات، بطاقات القاعة، إدخال الدرجات، حساب التقديرات، وإنشاء بطاقات التقارير.'),
+      color: '#DC2626',
+    },
+    {
+      icon: Clock,
+      title: t('Attendance Tracking', 'تتبع الحضور'),
+      desc: t('Biometric/RFID integration, period-wise tracking, SMS alerts to parents, and trend analytics.', 'تكامل البصمة/RFID، التتبع حسب الحصة، تنبيهات SMS لأولياء الأمور، وتحليلات الاتجاهات.'),
+      color: '#0891B2',
+    },
+    {
+      icon: Bus,
+      title: t('Transport Management', 'إدارة النقل'),
+      desc: t('Route planning, GPS tracking, driver assignment, fee linking, and parent notifications.', 'تخطيط المسارات، تتبع GPS، تعيين السائقين، ربط الرسوم، وإشعارات أولياء الأمور.'),
+      color: '#CA8A04',
+    },
+    {
+      icon: BookOpen,
+      title: t('Library System', 'نظام المكتبة'),
+      desc: t('Catalogue management, barcode scanning, issue/return tracking, overdue alerts, and e-library.', 'إدارة الفهرس، مسح الباركود، تتبع الإعارة/الإرجاع، تنبيهات التأخير، والمكتبة الإلكترونية.'),
+      color: '#BE185D',
+    },
+    {
+      icon: Package,
+      title: t('Inventory & Assets', 'المخزون والأصول'),
+      desc: t('Track lab equipment, furniture, IT assets, consumables, and procurement with depreciation logs.', 'تتبع معدات المختبر، الأثاث، أصول تكنولوجيا المعلومات، المواد الاستهلاكية، والمشتريات مع سجلات الإهلاك.'),
+      color: '#6D28D9',
+    },
+    {
+      icon: MessageSquare,
+      title: t('Parent Communication', 'التواصل مع أولياء الأمور'),
+      desc: t('In-app messaging, SMS/email broadcasts, event calendars, and homework notifications.', 'الرسائل داخل التطبيق، بث SMS/البريد الإلكتروني، تقويم الفعاليات، وإشعارات الواجبات.'),
+      color: '#0D9488',
+    },
+    {
+      icon: PieChart,
+      title: t('Reports & Analytics', 'التقارير والتحليلات'),
+      desc: t('100+ pre-built reports, custom dashboards, export to Excel/PDF, and board-level analytics.', 'أكثر من 100 تقرير جاهز، لوحات معلومات مخصصة، تصدير إلى Excel/PDF، وتحليلات على مستوى الإدارة.'),
+      color: '#EA580C',
+    },
+    {
+      icon: Bell,
+      title: t('Notifications', 'الإشعارات'),
+      desc: t('Multi-channel alerts via push, SMS, email, and WhatsApp with smart scheduling and templates.', 'تنبيهات متعددة القنوات عبر الإشعارات الفورية، SMS، البريد الإلكتروني، وواتساب مع جدولة ذكية وقوالب.'),
+      color: '#4F46E5',
+    },
+  ];
+
+  const stats = [
+    { number: '760+', label: t('Schools Powered', 'مدرسة مدعومة') },
+    { number: '12', label: t('Integrated Modules', 'وحدة متكاملة') },
+    { number: '50%', label: t('Time Saved', 'توفير في الوقت') },
+    { number: '99.9%', label: t('Uptime SLA', 'اتفاقية وقت التشغيل') },
+  ];
+
+  const securityFeatures = [
+    { icon: Shield, title: t('Role-Based Access', 'الوصول القائم على الأدوار'), desc: t('Granular permissions for admins, teachers, parents, and staff with custom role creation.', 'صلاحيات دقيقة للمسؤولين والمعلمين وأولياء الأمور والموظفين مع إنشاء أدوار مخصصة.') },
+    { icon: Lock, title: t('Data Encryption', 'تشفير البيانات'), desc: t('AES-256 encryption at rest, TLS 1.3 in transit. Your school data is vault-grade secure.', 'تشفير AES-256 في حالة السكون، TLS 1.3 أثناء النقل. بيانات مدرستك آمنة بدرجة الخزائن.') },
+    { icon: Database, title: t('Automated Backups', 'النسخ الاحتياطي التلقائي'), desc: t('Daily incremental + weekly full backups with point-in-time recovery up to 30 days.', 'نسخ احتياطي تدريجي يومي + نسخ كامل أسبوعي مع استعادة نقطة زمنية حتى 30 يومًا.') },
+    { icon: Eye, title: t('GDPR Compliant', 'متوافق مع GDPR'), desc: t('Data processing agreements, consent management, and right-to-erasure workflows built in.', 'اتفاقيات معالجة البيانات، إدارة الموافقة، وسير عمل حق المحو مدمجة.') },
+    { icon: FileText, title: t('Audit Logs', 'سجلات التدقيق'), desc: t('Every action tracked — who changed what, when, and from which device. Full accountability.', 'كل إجراء مُتتبع — من غيّر ماذا، متى، ومن أي جهاز. مساءلة كاملة.') },
+    { icon: Server, title: t('Multi-Tenant Architecture', 'بنية متعددة المستأجرين'), desc: t('Isolated databases per school. One school\'s data never touches another. Ever.', 'قواعد بيانات معزولة لكل مدرسة. بيانات مدرسة لا تلمس أخرى أبدًا.') },
+  ];
+
+  const roiData = [
+    { metric: t('Weekly Admin Hours', 'ساعات الإدارة الأسبوعية'), before: t('40 hrs', '40 ساعة'), after: t('8 hrs', '8 ساعات'), beforePct: 100, afterPct: 20 },
+    { metric: t('Fee Default Rate', 'معدل التخلف عن الرسوم'), before: '15%', after: '3%', beforePct: 100, afterPct: 20 },
+    { metric: t('Report Generation', 'إنشاء التقارير'), before: t('3 days', '3 أيام'), after: t('Instant', 'فوري'), beforePct: 100, afterPct: 5 },
+    { metric: t('Parent Satisfaction', 'رضا أولياء الأمور'), before: '62%', after: '94%', beforePct: 62, afterPct: 94 },
+  ];
+
+  const feeInvoices = [
+    { student: t('Aisha Rahman', 'عائشة رحمن'), class: t('Grade 10-A', 'الصف 10-أ'), amount: 'AED 4,500', status: t('Paid', 'مدفوع'), statusColor: 'bg-emerald-500/20 text-emerald-400' },
+    { student: t('Omar Al-Farsi', 'عمر الفارسي'), class: t('Grade 8-B', 'الصف 8-ب'), amount: 'AED 4,500', status: t('Pending', 'معلق'), statusColor: 'bg-yellow-500/20 text-yellow-400' },
+    { student: t('Sara Khalid', 'سارة خالد'), class: t('Grade 12-A', 'الصف 12-أ'), amount: 'AED 5,200', status: t('Paid', 'مدفوع'), statusColor: 'bg-emerald-500/20 text-emerald-400' },
+    { student: t('Yusuf Hassan', 'يوسف حسن'), class: t('Grade 7-C', 'الصف 7-ج'), amount: 'AED 4,500', status: t('Overdue', 'متأخر'), statusColor: 'bg-red-500/20 text-red-400' },
+    { student: t('Fatima Noor', 'فاطمة نور'), class: t('Grade 9-A', 'الصف 9-أ'), amount: 'AED 4,800', status: t('Paid', 'مدفوع'), statusColor: 'bg-emerald-500/20 text-emerald-400' },
+  ];
+
+  const reportCardSubjects = [
+    { subject: t('Mathematics', 'الرياضيات'), marks: 92, grade: 'A+', comment: t('Excellent analytical skills', 'مهارات تحليلية ممتازة') },
+    { subject: t('Science', 'العلوم'), marks: 88, grade: 'A', comment: t('Strong lab performance', 'أداء مختبري قوي') },
+    { subject: t('English', 'اللغة الإنجليزية'), marks: 85, grade: 'A', comment: t('Impressive writing growth', 'نمو كتابي مثير للإعجاب') },
+    { subject: t('Arabic', 'اللغة العربية'), marks: 78, grade: 'B+', comment: t('Needs vocabulary focus', 'يحتاج التركيز على المفردات') },
+    { subject: t('Social Studies', 'الدراسات الاجتماعية'), marks: 90, grade: 'A+', comment: t('Outstanding projects', 'مشاريع متميزة') },
+    { subject: t('Computer Science', 'علوم الحاسوب'), marks: 95, grade: 'A+', comment: t('Exceptional coding ability', 'قدرة برمجية استثنائية') },
+  ];
+
+  const hubModules = [
+    { icon: UserPlus, label: t('Admissions', 'القبول'), angle: 0 },
+    { icon: DollarSign, label: t('Finance', 'المالية'), angle: 30 },
+    { icon: Briefcase, label: t('HR', 'الموارد البشرية'), angle: 60 },
+    { icon: Calendar, label: t('Timetable', 'الجدول'), angle: 90 },
+    { icon: ClipboardList, label: t('Exams', 'الامتحانات'), angle: 120 },
+    { icon: Clock, label: t('Attendance', 'الحضور'), angle: 150 },
+    { icon: Bus, label: t('Transport', 'النقل'), angle: 180 },
+    { icon: BookOpen, label: t('Library', 'المكتبة'), angle: 210 },
+    { icon: Package, label: t('Inventory', 'المخزون'), angle: 240 },
+    { icon: MessageSquare, label: t('Comms', 'التواصل'), angle: 270 },
+    { icon: PieChart, label: t('Reports', 'التقارير'), angle: 300 },
+    { icon: Bell, label: t('Alerts', 'التنبيهات'), angle: 330 },
+  ];
 
   return (
     <>
@@ -244,7 +244,7 @@ export default function SchoolERPPage() {
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D4711A]" />
                 </span>
                 <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
-                  Enterprise School Management
+                  {t('Enterprise School Management', 'إدارة المدرسة المؤسسية')}
                 </span>
               </motion.div>
 
@@ -254,8 +254,8 @@ export default function SchoolERPPage() {
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-8 leading-[1.1]"
               >
-                One System.{' '}
-                <span className="gradient-text">Zero Chaos.</span>
+                {t('One System.', 'نظام واحد.')}{' '}
+                <span className="gradient-text">{t('Zero Chaos.', 'فوضى صفر.')}</span>
               </motion.h1>
 
               <motion.p
@@ -264,9 +264,7 @@ export default function SchoolERPPage() {
                 transition={{ delay: 0.2 }}
                 className="text-white/55 text-lg md:text-xl max-w-xl mb-10 leading-relaxed"
               >
-                Manage admissions, fees, HR, exams, attendance, transport, and
-                every aspect of school operations from one unified platform.
-                Built for schools that refuse to settle for spreadsheets.
+                {t('Manage admissions, fees, HR, exams, attendance, transport, and every aspect of school operations from one unified platform. Built for schools that refuse to settle for spreadsheets.', 'إدارة القبول والرسوم والموارد البشرية والامتحانات والحضور والنقل وكل جانب من جوانب عمليات المدرسة من منصة واحدة موحدة. مصممة للمدارس التي ترفض الاكتفاء بجداول البيانات.')}
               </motion.p>
 
               <motion.div
@@ -276,10 +274,10 @@ export default function SchoolERPPage() {
                 className="flex flex-wrap gap-4"
               >
                 <Link href="/contact" className="btn-primary text-lg px-8">
-                  Request a Demo <ArrowRight className="w-5 h-5" />
+                  {t('Request a Demo', 'احجز عرضاً تجريبياً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                 </Link>
                 <Link href="/pricing" className="btn-outline-white text-lg px-8">
-                  View Pricing
+                  {t('View Pricing', 'عرض الأسعار')}
                 </Link>
               </motion.div>
 
