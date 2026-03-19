@@ -38,6 +38,7 @@ import {
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -110,92 +111,7 @@ function useCounter(target: number, duration = 2000) {
 /* ═══════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════ */
-const contentCategories = [
-  {
-    title: 'Science & Math',
-    desc: 'Complex concepts made visual — from molecular structures to algebraic equations through vivid 3D animations.',
-    color: 'from-blue-500 to-cyan-500',
-    bgColor: 'bg-blue-50',
-    iconType: 'science',
-  },
-  {
-    title: 'Islamic Studies',
-    desc: 'Beautiful geometric patterns and calligraphy brought to life with reverent, culturally authentic animations.',
-    color: 'from-emerald-500 to-teal-500',
-    bgColor: 'bg-emerald-50',
-    iconType: 'islamic',
-  },
-  {
-    title: 'Language Arts',
-    desc: 'Storytelling, grammar, and literature visualized through character animations and narrative-driven content.',
-    color: 'from-purple-500 to-violet-500',
-    bgColor: 'bg-purple-50',
-    iconType: 'language',
-  },
-  {
-    title: 'Social Studies',
-    desc: 'History, geography, and civics come alive with animated maps, timelines, and historical recreations.',
-    color: 'from-amber-500 to-orange-500',
-    bgColor: 'bg-amber-50',
-    iconType: 'social',
-  },
-  {
-    title: 'Life Skills',
-    desc: 'Practical life lessons taught through relatable character-driven scenarios and interactive animations.',
-    color: 'from-rose-500 to-pink-500',
-    bgColor: 'bg-rose-50',
-    iconType: 'life',
-  },
-  {
-    title: 'Custom Content',
-    desc: 'Bespoke animations tailored to your institution\'s unique curriculum needs and branding guidelines.',
-    color: 'from-[#D4711A] to-[#8B4513]',
-    bgColor: 'bg-orange-50',
-    iconType: 'custom',
-  },
-];
-
-const productionSteps = [
-  { title: 'Script Writing', desc: 'Curriculum-aligned scripts crafted by subject matter experts and creative writers.', icon: Pen },
-  { title: 'Storyboarding', desc: 'Visual blueprints mapping every scene, transition, and key frame of the animation.', icon: Layers },
-  { title: 'Voice Recording', desc: 'Professional narration in English, Arabic, and Urdu by native-speaking voice artists.', icon: Mic },
-  { title: 'Animation', desc: '2D & 3D animation production using industry-standard tools and techniques.', icon: Clapperboard },
-  { title: 'Post-Production', desc: 'Sound design, color grading, effects, and quality assurance review.', icon: Settings },
-  { title: 'Delivery', desc: 'Multi-format export optimized for LMS, mobile, web, and classroom display.', icon: Package },
-];
-
-const portfolioStats = [
-  { number: 2000, suffix: '+', label: 'Animations Produced' },
-  { number: 8, suffix: '', label: 'Subject Areas' },
-  { number: 3, suffix: '', label: 'Languages Supported' },
-  { number: 150, suffix: '+', label: 'Voice Artists' },
-];
-
-const curriculumData = [
-  { grade: 'KG', subjects: [true, true, false, false, true, false] },
-  { grade: 'Grade 1', subjects: [true, true, true, true, true, false] },
-  { grade: 'Grade 2', subjects: [true, true, true, true, true, false] },
-  { grade: 'Grade 3', subjects: [true, true, true, true, true, true] },
-  { grade: 'Grade 4', subjects: [true, true, true, true, true, true] },
-  { grade: 'Grade 5', subjects: [true, true, true, true, true, true] },
-  { grade: 'Grade 6', subjects: [true, true, true, true, false, true] },
-  { grade: 'Grade 7', subjects: [true, true, true, true, false, true] },
-  { grade: 'Grade 8', subjects: [true, true, true, true, false, true] },
-  { grade: 'Grade 9', subjects: [true, false, true, true, false, true] },
-  { grade: 'Grade 10', subjects: [true, false, true, true, false, true] },
-  { grade: 'Grade 11', subjects: [true, false, false, true, false, true] },
-  { grade: 'Grade 12', subjects: [true, false, false, true, false, true] },
-];
-
-const subjectHeaders = ['Science & Math', 'Islamic Studies', 'Language Arts', 'Social Studies', 'Life Skills', 'Custom'];
-
-const chapterList = [
-  { title: 'Introduction to Photosynthesis', duration: '4:32', active: true },
-  { title: 'Light Reactions Explained', duration: '6:15', active: false },
-  { title: 'Calvin Cycle in Detail', duration: '5:48', active: false },
-  { title: 'Factors Affecting Rate', duration: '3:56', active: false },
-  { title: 'Review & Assessment', duration: '7:20', active: false },
-];
+/* Data arrays moved inside component for i18n support */
 
 /* ═══════════════════════════════════════════
    CSS SHAPE COMPONENTS
@@ -329,8 +245,103 @@ function StatCounter({ number, suffix, label }: { number: number; suffix: string
    PAGE COMPONENT
    ═══════════════════════════════════════════ */
 export default function AnimationStudioPage() {
+  const { t } = useLanguage();
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(35);
+
+  const contentCategories = [
+    {
+      title: t('Science & Math', 'العلوم والرياضيات'),
+      desc: t('Complex concepts made visual — from molecular structures to algebraic equations through vivid 3D animations.', 'مفاهيم معقدة مرئية — من الهياكل الجزيئية إلى المعادلات الجبرية من خلال رسوم متحركة ثلاثية الأبعاد حية.'),
+      color: 'from-blue-500 to-cyan-500',
+      bgColor: 'bg-blue-50',
+      iconType: 'science',
+    },
+    {
+      title: t('Islamic Studies', 'الدراسات الإسلامية'),
+      desc: t('Beautiful geometric patterns and calligraphy brought to life with reverent, culturally authentic animations.', 'أنماط هندسية جميلة وخط عربي تُحيا برسوم متحركة ثقافية أصيلة ومُوقّرة.'),
+      color: 'from-emerald-500 to-teal-500',
+      bgColor: 'bg-emerald-50',
+      iconType: 'islamic',
+    },
+    {
+      title: t('Language Arts', 'فنون اللغة'),
+      desc: t('Storytelling, grammar, and literature visualized through character animations and narrative-driven content.', 'سرد القصص والقواعد والأدب من خلال رسوم متحركة للشخصيات ومحتوى قائم على السرد.'),
+      color: 'from-purple-500 to-violet-500',
+      bgColor: 'bg-purple-50',
+      iconType: 'language',
+    },
+    {
+      title: t('Social Studies', 'الدراسات الاجتماعية'),
+      desc: t('History, geography, and civics come alive with animated maps, timelines, and historical recreations.', 'التاريخ والجغرافيا والتربية المدنية تنبض بالحياة مع خرائط متحركة وجداول زمنية وإعادة إنشاء تاريخية.'),
+      color: 'from-amber-500 to-orange-500',
+      bgColor: 'bg-amber-50',
+      iconType: 'social',
+    },
+    {
+      title: t('Life Skills', 'المهارات الحياتية'),
+      desc: t('Practical life lessons taught through relatable character-driven scenarios and interactive animations.', 'دروس حياتية عملية من خلال سيناريوهات قائمة على الشخصيات ورسوم متحركة تفاعلية.'),
+      color: 'from-rose-500 to-pink-500',
+      bgColor: 'bg-rose-50',
+      iconType: 'life',
+    },
+    {
+      title: t('Custom Content', 'محتوى مخصص'),
+      desc: t('Bespoke animations tailored to your institution\'s unique curriculum needs and branding guidelines.', 'رسوم متحركة مصممة خصيصًا لاحتياجات المنهج الفريدة لمؤسستك وإرشادات العلامة التجارية.'),
+      color: 'from-[#D4711A] to-[#8B4513]',
+      bgColor: 'bg-orange-50',
+      iconType: 'custom',
+    },
+  ];
+
+  const productionSteps = [
+    { title: t('Script Writing', 'كتابة السيناريو'), desc: t('Curriculum-aligned scripts crafted by subject matter experts and creative writers.', 'نصوص متوافقة مع المنهج من إعداد خبراء المادة والكتّاب المبدعين.'), icon: Pen },
+    { title: t('Storyboarding', 'لوحة القصة'), desc: t('Visual blueprints mapping every scene, transition, and key frame of the animation.', 'مخططات بصرية ترسم كل مشهد وانتقال وإطار رئيسي للرسوم المتحركة.'), icon: Layers },
+    { title: t('Voice Recording', 'تسجيل الصوت'), desc: t('Professional narration in English, Arabic, and Urdu by native-speaking voice artists.', 'سرد احترافي بالإنجليزية والعربية والأردية بواسطة فنانين صوتيين ناطقين أصليين.'), icon: Mic },
+    { title: t('Animation', 'الرسوم المتحركة'), desc: t('2D & 3D animation production using industry-standard tools and techniques.', 'إنتاج رسوم متحركة ثنائية وثلاثية الأبعاد باستخدام أدوات وتقنيات معيارية.'), icon: Clapperboard },
+    { title: t('Post-Production', 'مرحلة ما بعد الإنتاج'), desc: t('Sound design, color grading, effects, and quality assurance review.', 'تصميم الصوت وتدريج الألوان والمؤثرات ومراجعة ضمان الجودة.'), icon: Settings },
+    { title: t('Delivery', 'التسليم'), desc: t('Multi-format export optimized for LMS, mobile, web, and classroom display.', 'تصدير متعدد الصيغ مُحسّن لنظام إدارة التعلم والجوال والويب وعرض الفصول الدراسية.'), icon: Package },
+  ];
+
+  const portfolioStats = [
+    { number: 2000, suffix: '+', label: t('Animations Produced', 'رسوم متحركة مُنتجة') },
+    { number: 8, suffix: '', label: t('Subject Areas', 'مجالات دراسية') },
+    { number: 3, suffix: '', label: t('Languages Supported', 'لغات مدعومة') },
+    { number: 150, suffix: '+', label: t('Voice Artists', 'فنانين صوتيين') },
+  ];
+
+  const curriculumData = [
+    { grade: t('KG', 'رياض الأطفال'), subjects: [true, true, false, false, true, false] },
+    { grade: t('Grade 1', 'الصف ١'), subjects: [true, true, true, true, true, false] },
+    { grade: t('Grade 2', 'الصف ٢'), subjects: [true, true, true, true, true, false] },
+    { grade: t('Grade 3', 'الصف ٣'), subjects: [true, true, true, true, true, true] },
+    { grade: t('Grade 4', 'الصف ٤'), subjects: [true, true, true, true, true, true] },
+    { grade: t('Grade 5', 'الصف ٥'), subjects: [true, true, true, true, true, true] },
+    { grade: t('Grade 6', 'الصف ٦'), subjects: [true, true, true, true, false, true] },
+    { grade: t('Grade 7', 'الصف ٧'), subjects: [true, true, true, true, false, true] },
+    { grade: t('Grade 8', 'الصف ٨'), subjects: [true, true, true, true, false, true] },
+    { grade: t('Grade 9', 'الصف ٩'), subjects: [true, false, true, true, false, true] },
+    { grade: t('Grade 10', 'الصف ١٠'), subjects: [true, false, true, true, false, true] },
+    { grade: t('Grade 11', 'الصف ١١'), subjects: [true, false, false, true, false, true] },
+    { grade: t('Grade 12', 'الصف ١٢'), subjects: [true, false, false, true, false, true] },
+  ];
+
+  const subjectHeaders = [
+    t('Science & Math', 'العلوم والرياضيات'),
+    t('Islamic Studies', 'الدراسات الإسلامية'),
+    t('Language Arts', 'فنون اللغة'),
+    t('Social Studies', 'الدراسات الاجتماعية'),
+    t('Life Skills', 'المهارات الحياتية'),
+    t('Custom', 'مخصص'),
+  ];
+
+  const chapterList = [
+    { title: t('Introduction to Photosynthesis', 'مقدمة في التمثيل الضوئي'), duration: '4:32', active: true },
+    { title: t('Light Reactions Explained', 'شرح التفاعلات الضوئية'), duration: '6:15', active: false },
+    { title: t('Calvin Cycle in Detail', 'دورة كالفين بالتفصيل'), duration: '5:48', active: false },
+    { title: t('Factors Affecting Rate', 'العوامل المؤثرة على المعدل'), duration: '3:56', active: false },
+    { title: t('Review & Assessment', 'المراجعة والتقييم'), duration: '7:20', active: false },
+  ];
 
   return (
     <>
@@ -355,7 +366,7 @@ export default function AnimationStudioPage() {
                 variants={staggerContainer}
               >
                 <motion.div variants={fadeUp} custom={0} className="section-label-light mb-6">
-                  <Film className="w-4 h-4" /> Animation Studio
+                  <Film className="w-4 h-4" /> {t('Animation Studio', 'استوديو الرسوم المتحركة')}
                 </motion.div>
 
                 <motion.h1
@@ -363,10 +374,10 @@ export default function AnimationStudioPage() {
                   custom={1}
                   className="text-5xl md:text-7xl font-bold font-[family-name:var(--font-clash)] leading-[1.1] mb-6"
                 >
-                  Where Education
+                  {t('Where Education', 'حيث يلتقي التعليم')}
                   <br />
-                  Meets{' '}
-                  <span className="gradient-text">Imagination</span>
+                  {t('Meets', 'مع')}{' '}
+                  <span className="gradient-text">{t('Imagination', 'الخيال')}</span>
                 </motion.h1>
 
                 <motion.p
@@ -374,17 +385,15 @@ export default function AnimationStudioPage() {
                   custom={2}
                   className="text-xl text-gray-400 max-w-lg mb-8 leading-relaxed"
                 >
-                  Professional 2D &amp; 3D animated educational content that transforms complex
-                  subjects into unforgettable visual stories for K-12 students across the
-                  Middle East and South Asia.
+                  {t('Professional 2D & 3D animated educational content that transforms complex subjects into unforgettable visual stories for K-12 students across the Middle East and South Asia.', 'محتوى تعليمي متحرك احترافي ثنائي وثلاثي الأبعاد يحوّل المواضيع المعقدة إلى قصص بصرية لا تُنسى لطلاب مراحل التعليم العام في الشرق الأوسط وجنوب آسيا.')}
                 </motion.p>
 
                 <motion.div variants={fadeUp} custom={3} className="flex flex-wrap gap-4">
                   <Link href="/contact" className="btn-primary">
-                    Start Your Project <ArrowRight className="w-5 h-5 ml-2" />
+                    {t('Start Your Project', 'ابدأ مشروعك')} <ArrowRight className="w-5 h-5 ml-2 rtl:rotate-180" />
                   </Link>
                   <button className="btn-outline-white">
-                    <Play className="w-5 h-5 mr-2" /> Watch Showreel
+                    <Play className="w-5 h-5 mr-2" /> {t('Watch Showreel', 'شاهد العرض')}
                   </button>
                 </motion.div>
 
@@ -467,8 +476,8 @@ export default function AnimationStudioPage() {
                     </div>
                     {/* Title overlay */}
                     <div className="absolute bottom-4 left-4">
-                      <div className="text-xs text-gray-400 mb-1">Now Playing</div>
-                      <div className="text-white font-medium text-sm">The Water Cycle - Grade 4 Science</div>
+                      <div className="text-xs text-gray-400 mb-1">{t('Now Playing', 'يتم التشغيل الآن')}</div>
+                      <div className="text-white font-medium text-sm">{t('The Water Cycle - Grade 4 Science', 'دورة الماء - علوم الصف الرابع')}</div>
                     </div>
                   </div>
 
@@ -526,17 +535,16 @@ export default function AnimationStudioPage() {
               className="text-center mb-16"
             >
               <motion.div variants={fadeUp} className="section-label mx-auto mb-4">
-                <Sparkles className="w-4 h-4" /> Content We Create
+                <Sparkles className="w-4 h-4" /> {t('Content We Create', 'المحتوى الذي ننشئه')}
               </motion.div>
               <motion.h2
                 variants={fadeUp}
                 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-clash)] text-gray-900 mb-4"
               >
-                Animation for Every <span className="gradient-text">Subject</span>
+                {t('Animation for Every', 'رسوم متحركة لكل')} <span className="gradient-text">{t('Subject', 'مادة')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Our creative studio produces curriculum-aligned animated content across every major
-                subject area, designed for maximum engagement and learning retention.
+                {t('Our creative studio produces curriculum-aligned animated content across every major subject area, designed for maximum engagement and learning retention.', 'ينتج استوديونا الإبداعي محتوى متحركًا متوافقًا مع المنهج عبر كل مجال دراسي رئيسي، مصمم لأقصى تفاعل واحتفاظ بالتعلم.')}
               </motion.p>
             </motion.div>
 
@@ -564,7 +572,7 @@ export default function AnimationStudioPage() {
                   </h3>
                   <p className="text-gray-500 leading-relaxed">{cat.desc}</p>
                   <div className="mt-4 flex items-center text-[#D4711A] font-medium text-sm group-hover:gap-2 transition-all">
-                    Learn more <ChevronRight className="w-4 h-4 ml-1" />
+                    {t('Learn More', 'اعرف المزيد')} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
                   </div>
                 </motion.div>
               ))}
@@ -588,17 +596,16 @@ export default function AnimationStudioPage() {
               className="text-center mb-20"
             >
               <motion.div variants={fadeUp} className="section-label-light mx-auto mb-4">
-                <Clapperboard className="w-4 h-4" /> Our Process
+                <Clapperboard className="w-4 h-4" /> {t('Our Process', 'عمليتنا')}
               </motion.div>
               <motion.h2
                 variants={fadeUp}
                 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-clash)] text-white mb-4"
               >
-                From Script to <span className="gradient-text">Screen</span>
+                {t('From Script to', 'من النص إلى')} <span className="gradient-text">{t('Screen', 'الشاشة')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-gray-400 max-w-2xl mx-auto text-lg">
-                Our end-to-end production pipeline ensures every animation is curriculum-aligned,
-                pedagogically sound, and visually stunning.
+                {t('Our end-to-end production pipeline ensures every animation is curriculum-aligned, pedagogically sound, and visually stunning.', 'يضمن خط إنتاجنا الشامل أن كل رسوم متحركة متوافقة مع المنهج وسليمة تربويًا ومذهلة بصريًا.')}
               </motion.p>
             </motion.div>
 
@@ -662,13 +669,13 @@ export default function AnimationStudioPage() {
               className="text-center mb-16"
             >
               <motion.div variants={fadeUp} className="section-label mx-auto mb-4">
-                <Monitor className="w-4 h-4" /> The Difference
+                <Monitor className="w-4 h-4" /> {t('The Difference', 'الفرق')}
               </motion.div>
               <motion.h2
                 variants={fadeUp}
                 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-clash)] text-gray-900 mb-4"
               >
-                See the <span className="gradient-text">Transformation</span>
+                {t('See the', 'شاهد')} <span className="gradient-text">{t('Transformation', 'التحول')}</span>
               </motion.h2>
             </motion.div>
 
@@ -681,7 +688,7 @@ export default function AnimationStudioPage() {
                 variants={slideLeft}
               >
                 <div className="text-center mb-4">
-                  <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Traditional Teaching</span>
+                  <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">{t('Traditional Teaching', 'التعليم التقليدي')}</span>
                 </div>
                 <div className="bg-gray-200 rounded-2xl p-6 border-2 border-gray-300 relative overflow-hidden">
                   {/* Mockup: boring slide */}
@@ -713,7 +720,7 @@ export default function AnimationStudioPage() {
                   </div>
                   {/* Boredom indicators */}
                   <div className="absolute top-3 right-3 text-gray-400 text-xs bg-gray-300/80 rounded px-2 py-1">
-                    😴 Low Engagement
+                    😴 {t('Low Engagement', 'تفاعل منخفض')}
                   </div>
                 </div>
               </motion.div>
@@ -726,7 +733,7 @@ export default function AnimationStudioPage() {
                 variants={slideRight}
               >
                 <div className="text-center mb-4">
-                  <span className="text-sm font-semibold text-[#D4711A] uppercase tracking-wider">With Cubico Animation</span>
+                  <span className="text-sm font-semibold text-[#D4711A] uppercase tracking-wider">{t('With Cubico Animation', 'مع رسوم كيوبيكو المتحركة')}</span>
                 </div>
                 <div className="bg-gradient-to-br from-[#D4711A]/10 to-purple-500/10 rounded-2xl p-6 border-2 border-[#D4711A]/30 relative overflow-hidden">
                   {/* Mockup: vibrant animated lesson */}
@@ -765,16 +772,16 @@ export default function AnimationStudioPage() {
                     {/* Interactive elements */}
                     <div className="flex gap-2">
                       <div className="flex-1 h-8 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-lg flex items-center justify-center">
-                        <span className="text-white text-[10px] font-bold">INTERACTIVE QUIZ</span>
+                        <span className="text-white text-[10px] font-bold">{t('INTERACTIVE QUIZ', 'اختبار تفاعلي')}</span>
                       </div>
                       <div className="flex-1 h-8 bg-gradient-to-r from-purple-400 to-violet-400 rounded-lg flex items-center justify-center">
-                        <span className="text-white text-[10px] font-bold">3D MODEL</span>
+                        <span className="text-white text-[10px] font-bold">{t('3D MODEL', 'نموذج ثلاثي الأبعاد')}</span>
                       </div>
                     </div>
                   </div>
                   {/* Engagement indicator */}
                   <div className="absolute top-3 right-3 text-[10px] bg-emerald-500/90 text-white rounded px-2 py-1 font-medium">
-                    94% Engagement Rate
+                    {t('94% Engagement Rate', 'معدل تفاعل ٩٤٪')}
                   </div>
                 </div>
               </motion.div>
@@ -795,17 +802,16 @@ export default function AnimationStudioPage() {
               className="text-center mb-16"
             >
               <motion.div variants={fadeUp} className="section-label mx-auto mb-4">
-                <Play className="w-4 h-4" /> Content Player
+                <Play className="w-4 h-4" /> {t('Content Player', 'مشغل المحتوى')}
               </motion.div>
               <motion.h2
                 variants={fadeUp}
                 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-clash)] text-gray-900 mb-4"
               >
-                The Cubico <span className="gradient-text">Player</span>
+                {t('The Cubico', 'مشغل كيوبيكو')} <span className="gradient-text">{t('Player', 'للمحتوى')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Our purpose-built content player delivers animations seamlessly across all devices with
-                chapter navigation, multi-language support, and adaptive quality.
+                {t('Our purpose-built content player delivers animations seamlessly across all devices with chapter navigation, multi-language support, and adaptive quality.', 'يقدم مشغل المحتوى المصمم خصيصًا الرسوم المتحركة بسلاسة عبر جميع الأجهزة مع التنقل بين الفصول ودعم متعدد اللغات وجودة تكيفية.')}
               </motion.p>
             </motion.div>
 
@@ -862,18 +868,18 @@ export default function AnimationStudioPage() {
                       >
                         <div className="flex items-center gap-1">
                           <div className="w-4 h-4 rounded-full bg-yellow-400 shadow-lg shadow-yellow-400/50" />
-                          <div className="text-yellow-300 text-xs font-bold">Sunlight</div>
+                          <div className="text-yellow-300 text-xs font-bold">{t('Sunlight', 'ضوء الشمس')}</div>
                           <div className="w-8 h-0.5 bg-gradient-to-r from-yellow-400 to-transparent" />
                         </div>
                       </motion.div>
                       {/* Title bar */}
                       <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
                         <div>
-                          <div className="text-white font-bold text-sm">Photosynthesis - How Plants Make Food</div>
-                          <div className="text-gray-400 text-xs">Grade 4 - Science - Chapter 3</div>
+                          <div className="text-white font-bold text-sm">{t('Photosynthesis - How Plants Make Food', 'التمثيل الضوئي - كيف تصنع النباتات الغذاء')}</div>
+                          <div className="text-gray-400 text-xs">{t('Grade 4 - Science - Chapter 3', 'الصف الرابع - العلوم - الفصل ٣')}</div>
                         </div>
                         <div className="bg-[#D4711A] text-white text-[10px] font-bold px-2 py-1 rounded">
-                          HD 1080p
+                          {t('HD 1080p', 'عالي الدقة ١٠٨٠بكسل')}
                         </div>
                       </div>
                     </div>
@@ -926,8 +932,8 @@ export default function AnimationStudioPage() {
 
                   {/* Chapter sidebar */}
                   <div className="border-l border-gray-800 bg-gray-900/50 p-4 hidden lg:block">
-                    <h4 className="text-white font-bold text-sm mb-1 font-[family-name:var(--font-clash)]">Chapters</h4>
-                    <p className="text-gray-500 text-xs mb-4">5 lessons &middot; 28 min total</p>
+                    <h4 className="text-white font-bold text-sm mb-1 font-[family-name:var(--font-clash)]">{t('Chapters', 'الفصول')}</h4>
+                    <p className="text-gray-500 text-xs mb-4">{t('5 lessons', '٥ دروس')} &middot; {t('28 min total', '٢٨ دقيقة إجمالاً')}</p>
                     <div className="space-y-2">
                       {chapterList.map((ch, i) => (
                         <div
@@ -987,10 +993,10 @@ export default function AnimationStudioPage() {
                 variants={fadeUp}
                 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-clash)] text-white mb-4"
               >
-                Numbers That <span className="gradient-text">Speak</span>
+                {t('Numbers That', 'أرقام')} <span className="gradient-text">{t('Speak', 'تتحدث')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-gray-400 max-w-xl mx-auto">
-                A decade of animating education across the region.
+                {t('A decade of animating education across the region.', 'عقد من تحريك التعليم عبر المنطقة.')}
               </motion.p>
             </motion.div>
 
@@ -1021,17 +1027,16 @@ export default function AnimationStudioPage() {
               className="text-center mb-16"
             >
               <motion.div variants={fadeUp} className="section-label mx-auto mb-4">
-                <BookOpen className="w-4 h-4" /> Coverage
+                <BookOpen className="w-4 h-4" /> {t('Coverage', 'التغطية')}
               </motion.div>
               <motion.h2
                 variants={fadeUp}
                 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-clash)] text-gray-900 mb-4"
               >
-                Curriculum <span className="gradient-text">Coverage Map</span>
+                {t('Curriculum', 'خريطة تغطية')} <span className="gradient-text">{t('Coverage Map', 'المنهج')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-gray-500 max-w-2xl mx-auto text-lg">
-                See which grades and subjects already have animated content available,
-                ready for immediate deployment.
+                {t('See which grades and subjects already have animated content available, ready for immediate deployment.', 'اطلع على الصفوف والمواد التي تتوفر لها بالفعل محتوى متحرك، جاهز للنشر الفوري.')}
               </motion.p>
             </motion.div>
 
@@ -1045,7 +1050,7 @@ export default function AnimationStudioPage() {
               <div className="min-w-[640px]">
                 {/* Header row */}
                 <div className="grid grid-cols-[100px_repeat(6,1fr)] gap-1 mb-1">
-                  <div className="p-3 text-sm font-bold text-gray-500 font-[family-name:var(--font-clash)]">Grade</div>
+                  <div className="p-3 text-sm font-bold text-gray-500 font-[family-name:var(--font-clash)]">{t('Grade', 'الصف')}</div>
                   {subjectHeaders.map((h) => (
                     <div key={h} className="p-3 text-xs font-bold text-gray-500 text-center font-[family-name:var(--font-clash)]">
                       {h}
@@ -1092,7 +1097,7 @@ export default function AnimationStudioPage() {
               viewport={{ once: true }}
               className="text-center text-gray-400 text-sm mt-6"
             >
-              Coverage varies by curriculum framework. Contact us for your specific requirements.
+              {t('Coverage varies by curriculum framework. Contact us for your specific requirements.', 'تختلف التغطية حسب إطار المنهج. تواصل معنا لمتطلباتك الخاصة.')}
             </motion.p>
           </div>
         </section>
@@ -1110,17 +1115,16 @@ export default function AnimationStudioPage() {
               className="text-center mb-16"
             >
               <motion.div variants={fadeUp} className="section-label mx-auto mb-4">
-                <Globe className="w-4 h-4" /> Multilingual
+                <Globe className="w-4 h-4" /> {t('Multilingual', 'متعدد اللغات')}
               </motion.div>
               <motion.h2
                 variants={fadeUp}
                 className="text-4xl md:text-5xl font-bold font-[family-name:var(--font-clash)] text-gray-900 mb-4"
               >
-                One Lesson, Three <span className="gradient-text">Languages</span>
+                {t('One Lesson, Three', 'درس واحد، ثلاث')} <span className="gradient-text">{t('Languages', 'لغات')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} className="text-gray-500 max-w-2xl mx-auto text-lg">
-                Every animation is produced in English, Arabic, and Urdu with native voice artists,
-                culturally adapted visuals, and proper text direction support.
+                {t('Every animation is produced in English, Arabic, and Urdu with native voice artists, culturally adapted visuals, and proper text direction support.', 'يتم إنتاج كل رسوم متحركة بالإنجليزية والعربية والأردية مع فنانين صوتيين أصليين ومرئيات مكيفة ثقافيًا ودعم اتجاه النص المناسب.')}
               </motion.p>
             </motion.div>
 
@@ -1135,8 +1139,8 @@ export default function AnimationStudioPage() {
               <motion.div variants={fadeUp} custom={0} className="card-white">
                 <div className="bg-blue-50 rounded-xl p-6 mb-5">
                   <div className="text-left">
-                    <div className="text-3xl font-bold text-blue-600 font-[family-name:var(--font-clash)] mb-2">English</div>
-                    <div className="text-sm text-blue-400 mb-4">Left-to-Right</div>
+                    <div className="text-3xl font-bold text-blue-600 font-[family-name:var(--font-clash)] mb-2">{t('English', 'الإنجليزية')}</div>
+                    <div className="text-sm text-blue-400 mb-4">{t('Left-to-Right', 'من اليسار إلى اليمين')}</div>
                     <div className="bg-white rounded-lg p-3 shadow-sm">
                       <div className="h-2 bg-blue-200 rounded w-3/4 mb-2" />
                       <div className="h-1.5 bg-blue-100 rounded w-full mb-1" />
@@ -1145,8 +1149,8 @@ export default function AnimationStudioPage() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 font-[family-name:var(--font-clash)] mb-2">English Content</h3>
-                <p className="text-gray-500 text-sm">Full curriculum coverage with native English narration and on-screen text.</p>
+                <h3 className="text-lg font-bold text-gray-900 font-[family-name:var(--font-clash)] mb-2">{t('English Content', 'المحتوى الإنجليزي')}</h3>
+                <p className="text-gray-500 text-sm">{t('Full curriculum coverage with native English narration and on-screen text.', 'تغطية كاملة للمنهج مع سرد إنجليزي أصلي ونص على الشاشة.')}</p>
               </motion.div>
 
               {/* Arabic */}
@@ -1163,8 +1167,8 @@ export default function AnimationStudioPage() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 font-[family-name:var(--font-clash)] mb-2">Arabic Content</h3>
-                <p className="text-gray-500 text-sm">RTL layout with Arabic narration, culturally adapted examples, and proper typography.</p>
+                <h3 className="text-lg font-bold text-gray-900 font-[family-name:var(--font-clash)] mb-2">{t('Arabic Content', 'المحتوى العربي')}</h3>
+                <p className="text-gray-500 text-sm">{t('RTL layout with Arabic narration, culturally adapted examples, and proper typography.', 'تخطيط من اليمين لليسار مع سرد عربي وأمثلة مكيفة ثقافيًا وطباعة مناسبة.')}</p>
               </motion.div>
 
               {/* Urdu */}
@@ -1181,8 +1185,8 @@ export default function AnimationStudioPage() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 font-[family-name:var(--font-clash)] mb-2">Urdu Content</h3>
-                <p className="text-gray-500 text-sm">RTL layout with Urdu narration, Nastaliq-friendly design, and South Asian cultural context.</p>
+                <h3 className="text-lg font-bold text-gray-900 font-[family-name:var(--font-clash)] mb-2">{t('Urdu Content', 'المحتوى الأردي')}</h3>
+                <p className="text-gray-500 text-sm">{t('RTL layout with Urdu narration, Nastaliq-friendly design, and South Asian cultural context.', 'تخطيط من اليمين لليسار مع سرد أردي وتصميم متوافق مع النستعليق وسياق ثقافي جنوب آسيوي.')}</p>
               </motion.div>
             </motion.div>
           </div>
@@ -1210,10 +1214,7 @@ export default function AnimationStudioPage() {
                 variants={fadeUp}
                 className="text-2xl md:text-3xl text-white font-[family-name:var(--font-clash)] leading-relaxed mb-8"
               >
-                &ldquo;Cubico&rsquo;s animations have completely transformed how our students engage with
-                science and mathematics. What used to take three class periods to explain now clicks
-                in a single animated lesson. The quality rivals anything from international studios,
-                but it&rsquo;s built specifically for our curriculum.&rdquo;
+                {t('\u201cCubico\u2019s animations have completely transformed how our students engage with science and mathematics. What used to take three class periods to explain now clicks in a single animated lesson. The quality rivals anything from international studios, but it\u2019s built specifically for our curriculum.\u201d', '\u201cحوّلت رسوم كيوبيكو المتحركة تمامًا طريقة تفاعل طلابنا مع العلوم والرياضيات. ما كان يستغرق ثلاث حصص لشرحه أصبح واضحًا في درس متحرك واحد. الجودة تنافس أي شيء من الاستوديوهات الدولية، لكنها مصممة خصيصًا لمنهجنا.\u201d')}
               </motion.blockquote>
               <motion.div variants={fadeUp}>
                 <div className="flex items-center justify-center gap-4">
@@ -1221,8 +1222,8 @@ export default function AnimationStudioPage() {
                     <span className="text-white font-bold text-lg">SA</span>
                   </div>
                   <div className="text-left">
-                    <div className="text-white font-bold">Dr. Sarah Al-Rashid</div>
-                    <div className="text-gray-400 text-sm">Curriculum Director, Gulf International Academy</div>
+                    <div className="text-white font-bold">{t('Dr. Sarah Al-Rashid', 'د. سارة الراشد')}</div>
+                    <div className="text-gray-400 text-sm">{t('Curriculum Director, Gulf International Academy', 'مديرة المناهج، أكاديمية الخليج الدولية')}</div>
                   </div>
                 </div>
                 <div className="flex items-center justify-center gap-1 mt-4">
@@ -1263,24 +1264,23 @@ export default function AnimationStudioPage() {
                 variants={fadeUp}
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white text-sm px-4 py-2 rounded-full mb-8 border border-white/20"
               >
-                <Sparkles className="w-4 h-4" /> Ready to transform your curriculum?
+                <Sparkles className="w-4 h-4" /> {t('Ready to transform your curriculum?', 'هل أنت مستعد لتحويل منهجك؟')}
               </motion.div>
 
               <motion.h2
                 variants={fadeUp}
                 className="text-4xl md:text-6xl font-bold text-white font-[family-name:var(--font-clash)] mb-6 leading-tight"
               >
-                Bring Your Curriculum
+                {t('Bring Your Curriculum', 'أحيِ منهجك')}
                 <br />
-                to Life
+                {t('to Life', 'الدراسي')}
               </motion.h2>
 
               <motion.p
                 variants={fadeUp}
                 className="text-xl text-white/80 max-w-2xl mx-auto mb-10"
               >
-                Join hundreds of schools across the region who have elevated their teaching
-                with Cubico&rsquo;s animated educational content.
+                {t('Join hundreds of schools across the region who have elevated their teaching with Cubico\u2019s animated educational content.', 'انضم إلى مئات المدارس عبر المنطقة التي ارتقت بتعليمها مع محتوى كيوبيكو التعليمي المتحرك.')}
               </motion.p>
 
               <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
@@ -1288,13 +1288,13 @@ export default function AnimationStudioPage() {
                   href="/contact"
                   className="inline-flex items-center gap-2 bg-white text-[#D4711A] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
                 >
-                  Start a Project <ArrowRight className="w-5 h-5" />
+                  {t('Start a Project', 'ابدأ مشروعاً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                 </Link>
                 <Link
                   href="/solutions"
                   className="btn-outline-white"
                 >
-                  Explore All Solutions
+                  {t('Explore All Solutions', 'استكشف جميع الحلول')}
                 </Link>
               </motion.div>
 
@@ -1303,13 +1303,13 @@ export default function AnimationStudioPage() {
                 className="mt-12 flex flex-wrap items-center justify-center gap-8 text-white/60 text-sm"
               >
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-white/80" /> Free Consultation
+                  <CheckCircle2 className="w-4 h-4 text-white/80" /> {t('Free Consultation', 'استشارة مجانية')}
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-white/80" /> Custom Quotes
+                  <CheckCircle2 className="w-4 h-4 text-white/80" /> {t('Custom Quotes', 'عروض أسعار مخصصة')}
                 </span>
                 <span className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-white/80" /> 2-Week Pilot Available
+                  <CheckCircle2 className="w-4 h-4 text-white/80" /> {t('2-Week Pilot Available', 'تجربة لمدة أسبوعين متاحة')}
                 </span>
               </motion.div>
             </motion.div>

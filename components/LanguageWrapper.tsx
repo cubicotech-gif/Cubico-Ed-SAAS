@@ -1,15 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useLanguage } from '@/lib/language-context';
+import { LanguageProvider } from '@/lib/i18n/LanguageContext';
+import { ReactNode } from 'react';
 
-export default function LanguageWrapper({ children }: { children: React.ReactNode }) {
-  const { lang, dir } = useLanguage();
-
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = dir;
-  }, [lang, dir]);
-
-  return <>{children}</>;
+export default function LanguageWrapper({ children }: { children: ReactNode }) {
+  return <LanguageProvider>{children}</LanguageProvider>;
 }

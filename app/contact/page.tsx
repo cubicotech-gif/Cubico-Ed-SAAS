@@ -6,8 +6,10 @@ import { MapPin, Phone, Mail, BookOpen, ArrowRight, CheckCircle2, Send } from 'l
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { supabase } from '@/lib/supabase';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -43,7 +45,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-4"
           >
-            Contact Us
+            {t('Contact Us', 'تواصل معنا')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -51,7 +53,7 @@ export default function ContactPage() {
             transition={{ delay: 0.1 }}
             className="text-gray-500 text-lg max-w-xl mx-auto"
           >
-            Get in touch and let us know how we can help transform your institution.
+            {t('Get in touch and let us know how we can help transform your institution.', 'تواصل معنا وأخبرنا كيف يمكننا المساعدة في تحويل مؤسستك.')}
           </motion.p>
         </div>
       </section>
@@ -70,23 +72,23 @@ export default function ContactPage() {
                 {[
                   {
                     icon: MapPin,
-                    title: 'Office Address',
+                    title: t('Office Address', 'عنوان المكتب'),
                     lines: ['Lahore, Pakistan', 'Riyadh, Saudi Arabia', 'Toronto, Canada'],
                   },
                   {
                     icon: Phone,
-                    title: 'Phone',
+                    title: t('Phone', 'الهاتف'),
                     lines: ['+92 300 000 0000', '+966 50 000 0000'],
                   },
                   {
                     icon: Mail,
-                    title: 'Email',
+                    title: t('Email', 'البريد الإلكتروني'),
                     lines: ['hello@cubico.tech', 'support@cubico.tech'],
                   },
                   {
                     icon: BookOpen,
-                    title: 'Resources',
-                    lines: ['Read our latest articles and blog for insights'],
+                    title: t('Resources', 'الموارد'),
+                    lines: [t('Read our latest articles and blog for insights', 'اقرأ أحدث مقالاتنا ومدونتنا للحصول على رؤى')],
                   },
                 ].map((item) => (
                   <div key={item.title} className="flex gap-4">
@@ -111,23 +113,23 @@ export default function ContactPage() {
               viewport={{ once: true }}
             >
               <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                <h3 className="text-xl font-heading font-bold text-gray-900 mb-2">Send us a message</h3>
-                <p className="text-sm text-gray-500 mb-6">Fill out the form below and we&apos;ll get back to you within 24 hours.</p>
+                <h3 className="text-xl font-heading font-bold text-gray-900 mb-2">{t('Send us a message', 'أرسل لنا رسالة')}</h3>
+                <p className="text-sm text-gray-500 mb-6">{t("Fill out the form below and we'll get back to you within 24 hours.", 'املأ النموذج أدناه وسنرد عليك خلال ٢٤ ساعة.')}</p>
 
                 {formStatus === 'success' ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle2 className="w-8 h-8 text-green-600" />
                     </div>
-                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2">Thank You!</h3>
-                    <p className="text-gray-500">We&apos;ll be in touch shortly.</p>
+                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2">{t('Thank You!', 'شكراً لك!')}</h3>
+                    <p className="text-gray-500">{t("We'll be in touch shortly.", 'سنتواصل معك قريباً.')}</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <input
                         type="text"
-                        placeholder="Your Name *"
+                        placeholder={t('Your Name *', '* اسمك')}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="form-input"
@@ -135,7 +137,7 @@ export default function ContactPage() {
                       />
                       <input
                         type="text"
-                        placeholder="Company *"
+                        placeholder={t('Company *', '* الشركة')}
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         className="form-input"
@@ -145,7 +147,7 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <input
                         type="tel"
-                        placeholder="Phone *"
+                        placeholder={t('Phone *', '* الهاتف')}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="form-input"
@@ -153,7 +155,7 @@ export default function ContactPage() {
                       />
                       <input
                         type="email"
-                        placeholder="Email *"
+                        placeholder={t('Email *', '* البريد الإلكتروني')}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="form-input"
@@ -165,19 +167,19 @@ export default function ContactPage() {
                       onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                       className="form-select"
                     >
-                      <option value="">Select Position</option>
-                      <option value="principal">Principal / Head of School</option>
-                      <option value="director">Director / Board Member</option>
-                      <option value="it_head">IT Head / Administrator</option>
-                      <option value="teacher">Teacher / Department Head</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('Select Position', 'اختر المنصب')}</option>
+                      <option value="principal">{t('Principal / Head of School', 'مدير / رئيس المدرسة')}</option>
+                      <option value="director">{t('Director / Board Member', 'مدير / عضو مجلس إدارة')}</option>
+                      <option value="it_head">{t('IT Head / Administrator', 'رئيس تقنية المعلومات / مسؤول')}</option>
+                      <option value="teacher">{t('Teacher / Department Head', 'معلم / رئيس قسم')}</option>
+                      <option value="other">{t('Other', 'أخرى')}</option>
                     </select>
                     <select
                       value={formData.employees}
                       onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
                       className="form-select"
                     >
-                      <option value="">Number of Students / Staff</option>
+                      <option value="">{t('Number of Students / Staff', 'عدد الطلاب / الموظفين')}</option>
                       <option value="1-50">1 – 50</option>
                       <option value="51-100">51 – 100</option>
                       <option value="101-500">101 – 500</option>
@@ -192,16 +194,16 @@ export default function ContactPage() {
                       {formStatus === 'loading' ? (
                         <span className="flex items-center gap-2">
                           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          Sending...
+                          {t('Sending...', 'جارٍ الإرسال...')}
                         </span>
                       ) : (
                         <>
-                          Send Message <Send className="w-4 h-4" />
+                          {t('Send Message', 'إرسال رسالة')} <Send className="w-4 h-4" />
                         </>
                       )}
                     </button>
                     {formStatus === 'error' && (
-                      <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                      <p className="text-red-500 text-sm text-center">{t('Something went wrong. Please try again.', 'حدث خطأ. يرجى المحاولة مرة أخرى.')}</p>
                     )}
                   </form>
                 )}

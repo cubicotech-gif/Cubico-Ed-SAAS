@@ -4,9 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import Header from '@/components/Header';
 import {
-  Menu,
-  X,
   ArrowRight,
   ChevronDown,
   ChevronUp,
@@ -45,6 +44,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -98,191 +98,21 @@ function useCounter(target: number, duration = 2000) {
 /* ═══════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════ */
-const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '/about' },
-  { name: 'Solutions', href: '#solutions' },
-  { name: 'Services', href: '#services' },
-  { name: 'Testimonials', href: '#testimonials' },
-  { name: 'FAQ', href: '#faq' },
-  { name: 'Contact', href: '#contact' },
-];
+// navLinks moved inside component for i18n access
 
-const featureCards = [
-  {
-    icon: BookOpen,
-    title: 'Smart LMS',
-    desc: 'Next-generation learning management with AI-driven insights, progress tracking and interactive courses for modern education.',
-    color: 'bg-purple-50 text-purple-600',
-  },
-  {
-    icon: Film,
-    title: 'Animated Lessons',
-    desc: 'Engaging 2D & 3D animated content that brings lessons to life, supporting multilingual education across all curricula.',
-    color: 'bg-emerald-50 text-emerald-600',
-  },
-  {
-    icon: Monitor,
-    title: 'School ERP',
-    desc: 'All-in-one school management — from admissions and attendance to finance and reporting in a single platform.',
-    color: 'bg-blue-50 text-blue-600',
-  },
-];
+// featureCards moved inside component for i18n access
 
-const services = [
-  { icon: BarChart3, title: 'LMS Implementation', desc: 'Complete Moodle-based learning management system customized for your institution.' },
-  { icon: Film, title: 'Animation Studio', desc: 'Professional 2D/3D animated educational content in English, Arabic & Urdu.' },
-  { icon: Monitor, title: 'School ERP System', desc: 'Comprehensive school management with admissions, HR, finance & reporting.' },
-  { icon: Globe, title: 'Web Development', desc: 'Modern, responsive websites and web applications built for education sector.' },
-  { icon: Smartphone, title: 'Mobile Apps', desc: 'Cross-platform mobile applications for students, parents and administrators.' },
-  { icon: Cloud, title: 'Cloud Hosting', desc: 'Reliable cloud infrastructure with 99.9% uptime and global CDN delivery.' },
-  { icon: Mail, title: 'Digital Marketing', desc: 'Strategic digital marketing campaigns to increase enrollment and engagement.' },
-  { icon: Users, title: 'Teacher Training', desc: 'Professional development programs for educators on digital tools and pedagogy.' },
-];
+// services moved inside component for i18n access
 
-const testimonials = [
-  {
-    name: 'Dr. Ahmed Al-Rashid',
-    role: 'Director',
-    company: 'Al-Noor Academy',
-    location: 'Saudi Arabia',
-    text: 'Cubico transformed our entire school system. The LMS and animated content have dramatically improved student engagement. Their team understood our Islamic education requirements perfectly.',
-    rating: 5,
-  },
-  {
-    name: 'Fatima Hassan',
-    role: 'Principal',
-    company: 'Iqra Foundation School',
-    location: 'Pakistan',
-    text: 'From day one, Cubico delivered beyond our expectations. The ERP system streamlined our operations and the animated Urdu lessons are loved by our students. Truly world-class service.',
-    rating: 5,
-  },
-  {
-    name: 'Michael Torres',
-    role: 'Board Chair',
-    company: 'Cornwall Islamic Foundation',
-    location: 'Canada',
-    text: 'Working with Cubico has been exceptional. They deployed our complete digital infrastructure in just 3 weeks. The ongoing support and training have been invaluable for our staff.',
-    rating: 5,
-  },
-];
+// testimonials moved inside component for i18n access
 
-const faqs = [
-  {
-    q: 'How quickly can we launch our digital platform?',
-    a: 'Most institutions go live within 4 weeks. Our streamlined onboarding process includes data migration, staff training, and content setup — all handled by our dedicated team.',
-  },
-  {
-    q: 'Do you support Arabic and Urdu content?',
-    a: 'Yes! We specialize in multilingual education content. Our animation studio produces high-quality lessons in English, Arabic, and Urdu with full RTL support across all platforms.',
-  },
-  {
-    q: 'Can we engage Cubico for just one service?',
-    a: 'Absolutely. While we offer a full-stack approach, each service — LMS, ERP, animations, web development — can be engaged independently based on your needs.',
-  },
-  {
-    q: 'What makes Cubico different from other EdTech providers?',
-    a: 'We combine deep understanding of Islamic and traditional education with cutting-edge technology. Our team includes educators and technologists who bridge the gap between pedagogy and innovation.',
-  },
-  {
-    q: 'Which countries do you operate in?',
-    a: 'We actively serve institutions across Pakistan, Saudi Arabia, and Canada. Our cloud-based solutions can be deployed globally with local support teams in each region.',
-  },
-];
+// faqs moved inside component for i18n access
 
-const stats = [
-  { value: 760, suffix: '+', label: 'Institutions Served' },
-  { value: 3, suffix: '', label: 'Countries Active' },
-  { value: 4, suffix: '', label: 'Weeks Avg Launch' },
-  { value: 100, suffix: '%', label: 'Client Retention' },
-];
+// stats moved inside component for i18n access
 
-const partners = [
-  'Al-Huffaz Academy',
-  'Al-Noor Academy',
-  'CIF Canada',
-  'Iqra Foundation',
-  'Saudi Schools Network',
-  'TechEd Pakistan',
-];
+// partners moved inside component for i18n access
 
-const solutions = [
-  {
-    id: 'manage', name: 'Cubico Manage™',
-    tagline: 'Your entire institution. One intelligent system.',
-    icon: Layout,
-    painPoint: 'Still running your school on Excel sheets and WhatsApp groups?',
-    metric: '47 hrs', metricLabel: 'saved per staff member, per month',
-    accentHex: '#D4711A', accentLight: '#FEF0E6',
-    demoUrl: 'app.cubico.tech/manage',
-    features: [
-      { icon: Users,    title: 'Enrollment & Admissions', desc: 'Full student lifecycle from inquiry to graduation.'   },
-      { icon: BarChart3,title: 'Fee & Finance',           desc: 'Invoices, payments, and overdue alerts — automated.' },
-      { icon: PieChart, title: 'Attendance & Exams',      desc: 'Smart attendance, gradebooks, and exam scheduling.'  },
-      { icon: Settings, title: 'HR & Timetable',          desc: 'Staff records, payroll, and auto-generated schedules.'},
-    ],
-  },
-  {
-    id: 'lms', name: 'Moodle LMS Setup',
-    tagline: 'Your branded Moodle — configured, hosted, supported.',
-    icon: BookOpen,
-    painPoint: 'Moodle is powerful but complex — setting it up right takes months without the right team.',
-    metric: '2 wks', metricLabel: 'from signup to a fully live Moodle platform',
-    accentHex: '#F47B20', accentLight: '#FEF0E6',
-    demoUrl: 'lms.cubico.tech/demo',
-    features: [
-      { icon: Settings,  title: 'Custom Moodle Theme',     desc: 'Your logo, colors, and branding — pixel-perfect.'    },
-      { icon: BookOpen,  title: 'Course Build & Migration', desc: 'We build or migrate your course content for you.'     },
-      { icon: Shield,    title: 'Managed Hosting',          desc: 'Secure cloud hosting with 99.9% uptime guarantee.'    },
-      { icon: Users,     title: 'Training & Onboarding',    desc: 'Live sessions for teachers and admins, included.'     },
-    ],
-  },
-  {
-    id: 'teach', name: 'Cubico Teach™',
-    tagline: "Everything a teacher needs. Nothing they don't.",
-    icon: Lightbulb,
-    painPoint: 'Teachers spending Sunday nights building lesson plans from scratch?',
-    metric: '2×', metricLabel: 'faster lesson planning from day one',
-    accentHex: '#B85E15', accentLight: '#FFF8F0',
-    demoUrl: 'app.cubico.tech/teach',
-    features: [
-      { icon: Lightbulb, title: 'Lesson Plan Builder', desc: 'Drag-and-drop blocks aligned to national curriculum.'  },
-      { icon: Target,    title: 'Curriculum Mapping',  desc: 'Visual scope & sequence across subjects and grades.'   },
-      { icon: BarChart3, title: 'Class Analytics',     desc: 'Per-student progress with automatic at-risk flags.'    },
-      { icon: Cloud,     title: 'Resource Library',    desc: 'Upload, tag, and share materials across departments.'  },
-    ],
-  },
-  {
-    id: 'learn', name: 'Cubico Learn™',
-    tagline: 'Textbooks come alive.',
-    icon: Film,
-    painPoint: 'Students zoning out 8 minutes into a 40-minute lecture?',
-    metric: '4×', metricLabel: 'higher engagement vs. traditional textbooks',
-    accentHex: '#C0651A', accentLight: '#FEF0E6',
-    demoUrl: 'app.cubico.tech/learn',
-    features: [
-      { icon: Film,    title: '2D & 3D Animation',       desc: 'Character-led animated lessons, any subject.'   },
-      { icon: Monitor, title: 'Interactive Simulations', desc: 'STEM labs students can actually manipulate.'     },
-      { icon: Globe,   title: 'English · Arabic · Urdu', desc: 'Full narration and RTL support built in.'        },
-      { icon: Zap,     title: 'Adaptive Quizzes',        desc: 'End-of-lesson assessments that self-adjust.'     },
-    ],
-  },
-  {
-    id: 'marketing', name: 'Cubico Marketing™',
-    tagline: 'Fill every seat. Every semester.',
-    icon: Megaphone,
-    painPoint: 'Your school is incredible. Nobody outside your city knows it exists.',
-    metric: '+34%', metricLabel: 'average increase in admission enquiries',
-    accentHex: '#8B4513', accentLight: '#FDF5ED',
-    demoUrl: 'app.cubico.tech/marketing',
-    features: [
-      { icon: Globe,      title: 'Premium School Websites', desc: 'Conversion-focused, mobile-first, and beautiful.'  },
-      { icon: TrendingUp, title: 'Enrollment Funnels',      desc: 'Google Ads, landing pages, and retargeting.'       },
-      { icon: Megaphone,  title: 'Social Media Management', desc: 'Content, campaigns, and brand voice.'              },
-      { icon: Shield,     title: 'SEO & Monthly Reports',   desc: 'Search visibility that compounds over time.'       },
-    ],
-  },
-];
+// solutions moved inside component for i18n access
 
 /* ═══════════════════════════════════════════
    STAT COUNTER COMPONENT
@@ -318,9 +148,6 @@ function StatCounter({ value, suffix, label, color = '#818CF8' }: { value: numbe
    MAIN PAGE COMPONENT
    ═══════════════════════════════════════════ */
 export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [navHidden, setNavHidden] = useState(false);
-  const lastScrollY = useRef(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -337,20 +164,162 @@ export default function HomePage() {
   const [newsletterName, setNewsletterName] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const y = window.scrollY;
-      // Hide when scrolling down past 80px, show when scrolling up
-      if (y > lastScrollY.current && y > 80) {
-        setNavHidden(true);
-      } else {
-        setNavHidden(false);
-      }
-      lastScrollY.current = y;
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { t } = useLanguage();
+
+  const services = [
+    { icon: BarChart3, title: t('LMS Implementation', 'تطبيق نظام إدارة التعلم'), desc: t('Complete Moodle-based learning management system customized for your institution.', 'نظام إدارة تعلم متكامل قائم على Moodle مخصص لمؤسستك.') },
+    { icon: Film, title: t('Animation Studio', 'استوديو الرسوم المتحركة'), desc: t('Professional 2D/3D animated educational content in English, Arabic & Urdu.', 'محتوى تعليمي متحرك احترافي ثنائي وثلاثي الأبعاد بالإنجليزية والعربية والأردية.') },
+    { icon: Monitor, title: t('School ERP System', 'نظام تخطيط موارد المدرسة'), desc: t('Comprehensive school management with admissions, HR, finance & reporting.', 'إدارة مدرسية شاملة تتضمن القبول والموارد البشرية والمالية والتقارير.') },
+    { icon: Globe, title: t('Web Development', 'تطوير المواقع الإلكترونية'), desc: t('Modern, responsive websites and web applications built for education sector.', 'مواقع وتطبيقات ويب حديثة ومتجاوبة مصممة لقطاع التعليم.') },
+    { icon: Smartphone, title: t('Mobile Apps', 'تطبيقات الجوال'), desc: t('Cross-platform mobile applications for students, parents and administrators.', 'تطبيقات جوال متعددة المنصات للطلاب وأولياء الأمور والإداريين.') },
+    { icon: Cloud, title: t('Cloud Hosting', 'الاستضافة السحابية'), desc: t('Reliable cloud infrastructure with 99.9% uptime and global CDN delivery.', 'بنية تحتية سحابية موثوقة بوقت تشغيل 99.9% وشبكة توصيل محتوى عالمية.') },
+    { icon: Mail, title: t('Digital Marketing', 'التسويق الرقمي'), desc: t('Strategic digital marketing campaigns to increase enrollment and engagement.', 'حملات تسويق رقمي استراتيجية لزيادة التسجيل والتفاعل.') },
+    { icon: Users, title: t('Teacher Training', 'تدريب المعلمين'), desc: t('Professional development programs for educators on digital tools and pedagogy.', 'برامج تطوير مهني للمعلمين على الأدوات الرقمية وأساليب التدريس.') },
+  ];
+
+  const testimonials = [
+    {
+      name: t('Dr. Ahmed Al-Rashid', 'د. أحمد الراشد'),
+      role: t('Director', 'مدير'),
+      company: t('Al-Noor Academy', 'أكاديمية النور'),
+      location: t('Saudi Arabia', 'المملكة العربية السعودية'),
+      text: t('Cubico transformed our entire school system. The LMS and animated content have dramatically improved student engagement. Their team understood our Islamic education requirements perfectly.', 'حوّلت كيوبيكو نظام مدرستنا بالكامل. أدى نظام إدارة التعلم والمحتوى المتحرك إلى تحسين تفاعل الطلاب بشكل كبير. فهم فريقهم متطلبات التعليم الإسلامي لدينا بشكل مثالي.'),
+      rating: 5,
+    },
+    {
+      name: t('Fatima Hassan', 'فاطمة حسن'),
+      role: t('Principal', 'مديرة المدرسة'),
+      company: t('Iqra Foundation School', 'مدرسة إقرأ التأسيسية'),
+      location: t('Pakistan', 'باكستان'),
+      text: t('From day one, Cubico delivered beyond our expectations. The ERP system streamlined our operations and the animated Urdu lessons are loved by our students. Truly world-class service.', 'منذ اليوم الأول، قدمت كيوبيكو ما فاق توقعاتنا. نظّم نظام تخطيط الموارد عملياتنا والدروس المتحركة بالأردية يحبها طلابنا. خدمة عالمية المستوى حقاً.'),
+      rating: 5,
+    },
+    {
+      name: t('Michael Torres', 'مايكل توريس'),
+      role: t('Board Chair', 'رئيس مجلس الإدارة'),
+      company: t('Cornwall Islamic Foundation', 'مؤسسة كورنوال الإسلامية'),
+      location: t('Canada', 'كندا'),
+      text: t('Working with Cubico has been exceptional. They deployed our complete digital infrastructure in just 3 weeks. The ongoing support and training have been invaluable for our staff.', 'كان العمل مع كيوبيكو استثنائياً. نشروا بنيتنا التحتية الرقمية الكاملة في 3 أسابيع فقط. الدعم والتدريب المستمر كانا لا يقدران بثمن لموظفينا.'),
+      rating: 5,
+    },
+  ];
+
+  const faqs = [
+    {
+      q: t('How quickly can we launch our digital platform?', 'ما مدى سرعة إطلاق منصتنا الرقمية؟'),
+      a: t('Most institutions go live within 4 weeks. Our streamlined onboarding process includes data migration, staff training, and content setup — all handled by our dedicated team.', 'تبدأ معظم المؤسسات العمل خلال 4 أسابيع. تتضمن عملية الإعداد المبسطة لدينا نقل البيانات وتدريب الموظفين وإعداد المحتوى — يتولاها فريقنا المتخصص بالكامل.'),
+    },
+    {
+      q: t('Do you support Arabic and Urdu content?', 'هل تدعمون المحتوى بالعربية والأردية؟'),
+      a: t('Yes! We specialize in multilingual education content. Our animation studio produces high-quality lessons in English, Arabic, and Urdu with full RTL support across all platforms.', 'نعم! نحن متخصصون في المحتوى التعليمي متعدد اللغات. ينتج استوديو الرسوم المتحركة لدينا دروساً عالية الجودة بالإنجليزية والعربية والأردية مع دعم كامل للكتابة من اليمين لليسار.'),
+    },
+    {
+      q: t('Can we engage Cubico for just one service?', 'هل يمكننا التعاقد مع كيوبيكو لخدمة واحدة فقط؟'),
+      a: t('Absolutely. While we offer a full-stack approach, each service — LMS, ERP, animations, web development — can be engaged independently based on your needs.', 'بالتأكيد. بينما نقدم نهجاً شاملاً، يمكن التعاقد على كل خدمة — نظام إدارة التعلم، نظام تخطيط الموارد، الرسوم المتحركة، تطوير الويب — بشكل مستقل حسب احتياجاتك.'),
+    },
+    {
+      q: t('What makes Cubico different from other EdTech providers?', 'ما الذي يميز كيوبيكو عن مزودي تكنولوجيا التعليم الآخرين؟'),
+      a: t('We combine deep understanding of Islamic and traditional education with cutting-edge technology. Our team includes educators and technologists who bridge the gap between pedagogy and innovation.', 'نجمع بين الفهم العميق للتعليم الإسلامي والتقليدي والتكنولوجيا المتطورة. يضم فريقنا معلمين وتقنيين يسدون الفجوة بين أساليب التدريس والابتكار.'),
+    },
+    {
+      q: t('Which countries do you operate in?', 'في أي دول تعملون؟'),
+      a: t('We actively serve institutions across Pakistan, Saudi Arabia, and Canada. Our cloud-based solutions can be deployed globally with local support teams in each region.', 'نخدم المؤسسات بنشاط في باكستان والمملكة العربية السعودية وكندا. يمكن نشر حلولنا السحابية عالمياً مع فرق دعم محلية في كل منطقة.'),
+    },
+  ];
+
+  const stats = [
+    { value: 760, suffix: '+', label: t('Institutions Served', 'مؤسسة تم خدمتها') },
+    { value: 3, suffix: '', label: t('Countries Active', 'دول نشطة') },
+    { value: 4, suffix: '', label: t('Weeks Avg Launch', 'أسابيع متوسط الإطلاق') },
+    { value: 100, suffix: '%', label: t('Client Retention', 'نسبة الاحتفاظ بالعملاء') },
+  ];
+
+  const partners = [
+    t('Al-Huffaz Academy', 'أكاديمية الحفاظ'),
+    t('Al-Noor Academy', 'أكاديمية النور'),
+    t('CIF Canada', 'مؤسسة CIF كندا'),
+    t('Iqra Foundation', 'مؤسسة إقرأ'),
+    t('Saudi Schools Network', 'شبكة المدارس السعودية'),
+    t('TechEd Pakistan', 'تيك إد باكستان'),
+  ];
+
+  const solutions = [
+    {
+      id: 'manage', name: t('Cubico Manage™', 'كيوبيكو إدارة™'),
+      tagline: t('Your entire institution. One intelligent system.', 'مؤسستك بالكامل. نظام ذكي واحد.'),
+      icon: Layout,
+      painPoint: t('Still running your school on Excel sheets and WhatsApp groups?', 'هل لا تزال تدير مدرستك عبر جداول Excel ومجموعات واتساب؟'),
+      metric: t('47 hrs', '47 ساعة'), metricLabel: t('saved per staff member, per month', 'يتم توفيرها لكل موظف شهرياً'),
+      accentHex: '#D4711A', accentLight: '#FEF0E6',
+      demoUrl: 'app.cubico.tech/manage',
+      features: [
+        { icon: Users,    title: t('Enrollment & Admissions', 'التسجيل والقبول'), desc: t('Full student lifecycle from inquiry to graduation.', 'دورة حياة الطالب الكاملة من الاستفسار إلى التخرج.') },
+        { icon: BarChart3,title: t('Fee & Finance', 'الرسوم والمالية'), desc: t('Invoices, payments, and overdue alerts — automated.', 'الفواتير والمدفوعات وتنبيهات التأخر — آلياً.') },
+        { icon: PieChart, title: t('Attendance & Exams', 'الحضور والامتحانات'), desc: t('Smart attendance, gradebooks, and exam scheduling.', 'حضور ذكي وسجلات درجات وجدولة امتحانات.') },
+        { icon: Settings, title: t('HR & Timetable', 'الموارد البشرية والجدول'), desc: t('Staff records, payroll, and auto-generated schedules.', 'سجلات الموظفين والرواتب والجداول التلقائية.') },
+      ],
+    },
+    {
+      id: 'lms', name: t('Moodle LMS Setup', 'إعداد نظام Moodle'),
+      tagline: t('Your branded Moodle — configured, hosted, supported.', 'منصة Moodle بعلامتك التجارية — مُعدّة ومستضافة ومدعومة.'),
+      icon: BookOpen,
+      painPoint: t('Moodle is powerful but complex — setting it up right takes months without the right team.', 'Moodle قوي لكنه معقد — إعداده بشكل صحيح يستغرق أشهراً بدون الفريق المناسب.'),
+      metric: t('2 wks', 'أسبوعان'), metricLabel: t('from signup to a fully live Moodle platform', 'من التسجيل إلى منصة Moodle مباشرة بالكامل'),
+      accentHex: '#F47B20', accentLight: '#FEF0E6',
+      demoUrl: 'lms.cubico.tech/demo',
+      features: [
+        { icon: Settings,  title: t('Custom Moodle Theme', 'قالب Moodle مخصص'), desc: t('Your logo, colors, and branding — pixel-perfect.', 'شعارك وألوانك وعلامتك التجارية — بدقة متناهية.') },
+        { icon: BookOpen,  title: t('Course Build & Migration', 'بناء ونقل المقررات'), desc: t('We build or migrate your course content for you.', 'نبني أو ننقل محتوى مقرراتك نيابة عنك.') },
+        { icon: Shield,    title: t('Managed Hosting', 'استضافة مُدارة'), desc: t('Secure cloud hosting with 99.9% uptime guarantee.', 'استضافة سحابية آمنة بضمان وقت تشغيل 99.9%.') },
+        { icon: Users,     title: t('Training & Onboarding', 'التدريب والإعداد'), desc: t('Live sessions for teachers and admins, included.', 'جلسات مباشرة للمعلمين والإداريين، مشمولة.') },
+      ],
+    },
+    {
+      id: 'teach', name: t('Cubico Teach™', 'كيوبيكو تدريس™'),
+      tagline: t("Everything a teacher needs. Nothing they don't.", 'كل ما يحتاجه المعلم. لا شيء لا يحتاجه.'),
+      icon: Lightbulb,
+      painPoint: t('Teachers spending Sunday nights building lesson plans from scratch?', 'المعلمون يقضون ليالي الأحد في إعداد خطط الدروس من الصفر؟'),
+      metric: t('2×', '2×'), metricLabel: t('faster lesson planning from day one', 'تخطيط دروس أسرع من اليوم الأول'),
+      accentHex: '#B85E15', accentLight: '#FFF8F0',
+      demoUrl: 'app.cubico.tech/teach',
+      features: [
+        { icon: Lightbulb, title: t('Lesson Plan Builder', 'منشئ خطط الدروس'), desc: t('Drag-and-drop blocks aligned to national curriculum.', 'كتل سحب وإفلات متوافقة مع المنهج الوطني.') },
+        { icon: Target,    title: t('Curriculum Mapping', 'خريطة المنهج'), desc: t('Visual scope & sequence across subjects and grades.', 'نطاق وتسلسل مرئي عبر المواد والصفوف.') },
+        { icon: BarChart3, title: t('Class Analytics', 'تحليلات الصف'), desc: t('Per-student progress with automatic at-risk flags.', 'تقدم كل طالب مع تنبيهات تلقائية للطلاب المعرضين للخطر.') },
+        { icon: Cloud,     title: t('Resource Library', 'مكتبة الموارد'), desc: t('Upload, tag, and share materials across departments.', 'رفع ووسم ومشاركة المواد عبر الأقسام.') },
+      ],
+    },
+    {
+      id: 'learn', name: t('Cubico Learn™', 'كيوبيكو تعلّم™'),
+      tagline: t('Textbooks come alive.', 'الكتب المدرسية تنبض بالحياة.'),
+      icon: Film,
+      painPoint: t('Students zoning out 8 minutes into a 40-minute lecture?', 'الطلاب يفقدون التركيز بعد 8 دقائق من محاضرة مدتها 40 دقيقة؟'),
+      metric: t('4×', '4×'), metricLabel: t('higher engagement vs. traditional textbooks', 'تفاعل أعلى مقارنة بالكتب المدرسية التقليدية'),
+      accentHex: '#C0651A', accentLight: '#FEF0E6',
+      demoUrl: 'app.cubico.tech/learn',
+      features: [
+        { icon: Film,    title: t('2D & 3D Animation', 'رسوم متحركة ثنائية وثلاثية الأبعاد'), desc: t('Character-led animated lessons, any subject.', 'دروس متحركة بقيادة شخصيات، لأي مادة.') },
+        { icon: Monitor, title: t('Interactive Simulations', 'محاكاة تفاعلية'), desc: t('STEM labs students can actually manipulate.', 'مختبرات STEM يمكن للطلاب التفاعل معها فعلياً.') },
+        { icon: Globe,   title: t('English · Arabic · Urdu', 'الإنجليزية · العربية · الأردية'), desc: t('Full narration and RTL support built in.', 'سرد كامل ودعم الكتابة من اليمين لليسار مدمج.') },
+        { icon: Zap,     title: t('Adaptive Quizzes', 'اختبارات تكيفية'), desc: t('End-of-lesson assessments that self-adjust.', 'تقييمات نهاية الدرس التي تتكيف تلقائياً.') },
+      ],
+    },
+    {
+      id: 'marketing', name: t('Cubico Marketing™', 'كيوبيكو تسويق™'),
+      tagline: t('Fill every seat. Every semester.', 'املأ كل مقعد. كل فصل دراسي.'),
+      icon: Megaphone,
+      painPoint: t('Your school is incredible. Nobody outside your city knows it exists.', 'مدرستك رائعة. لا أحد خارج مدينتك يعرف بوجودها.'),
+      metric: t('+34%', '+34%'), metricLabel: t('average increase in admission enquiries', 'متوسط الزيادة في استفسارات القبول'),
+      accentHex: '#8B4513', accentLight: '#FDF5ED',
+      demoUrl: 'app.cubico.tech/marketing',
+      features: [
+        { icon: Globe,      title: t('Premium School Websites', 'مواقع مدرسية متميزة'), desc: t('Conversion-focused, mobile-first, and beautiful.', 'مركزة على التحويل، متوافقة مع الجوال أولاً، وجميلة.') },
+        { icon: TrendingUp, title: t('Enrollment Funnels', 'مسارات التسجيل'), desc: t('Google Ads, landing pages, and retargeting.', 'إعلانات جوجل وصفحات الهبوط وإعادة الاستهداف.') },
+        { icon: Megaphone,  title: t('Social Media Management', 'إدارة وسائل التواصل الاجتماعي'), desc: t('Content, campaigns, and brand voice.', 'المحتوى والحملات وصوت العلامة التجارية.') },
+        { icon: Shield,     title: t('SEO & Monthly Reports', 'تحسين محركات البحث والتقارير الشهرية'), desc: t('Search visibility that compounds over time.', 'ظهور في البحث يتراكم مع مرور الوقت.') },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -408,109 +377,8 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* ═══════════ NAVIGATION — Always pill, hides on scroll down ═══════════ */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center px-4"
-        style={{
-          transform: navHidden ? 'translateY(-120%)' : 'translateY(0)',
-          transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
-        }}
-      >
-        <motion.nav
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="pointer-events-auto mt-3 px-3 sm:px-5 py-2 rounded-full"
-          style={{
-            background: 'rgba(18,18,20,0.88)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(232,140,50,0.1)',
-          }}
-        >
-          <div className="flex items-center gap-1">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-orange-600/25 flex-shrink-0">
-                C
-              </div>
-              <span className="font-heading font-bold text-sm text-white hidden sm:inline whitespace-nowrap">
-                Cubico<span className="text-orange-300">.tech</span>
-              </span>
-            </Link>
-
-            {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
-
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-0.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
-
-            {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
-
-            {/* CTA */}
-            <div className="hidden lg:flex items-center flex-shrink-0">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
-              >
-                Get Started
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </motion.nav>
-      </header>
-
-      {/* Mobile Menu — separate from header so it stays visible */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[72px] left-4 right-4 z-50 bg-[#1a1a1e]/95 backdrop-blur-xl rounded-2xl border border-orange-500/[0.12] shadow-2xl overflow-hidden"
-          >
-            <div className="px-5 py-5 space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className="pt-3 border-t border-white/[0.08]">
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* ═══════════ NAVIGATION ═══════════ */}
+      <Header />
 
       {/* ═══════════ HERO SECTION ═══════════ */}
       <section
@@ -571,7 +439,7 @@ export default function HomePage() {
           <motion.div variants={fadeUp} custom={0} className="mb-5">
             <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[13px] font-medium text-white/75 border border-orange-400/20 bg-orange-900/25 backdrop-blur-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse flex-shrink-0" />
-              Trusted by 760+ Institutions · Pakistan · Saudi Arabia · Canada
+              {t('Trusted by 760+ Institutions · Pakistan · Saudi Arabia · Canada', 'موثوق من قبل 760+ مؤسسة · باكستان · المملكة العربية السعودية · كندا')}
             </span>
           </motion.div>
 
@@ -581,11 +449,11 @@ export default function HomePage() {
             custom={1}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.8rem] font-heading font-bold text-white leading-[1.08] tracking-[-0.02em] mb-5 max-w-3xl"
           >
-            Give your school the platform
+            {t('Give your school the platform', 'امنح مدرستك المنصة')}
             <br className="hidden sm:block" />
-            {' '}it deserves — and your students
+            {' '}{t('it deserves — and your students', 'التي تستحقها — وطلابك')}
             <br className="hidden sm:block" />
-            {' '}the education they expect.
+            {' '}{t('the education they expect.', 'التعليم الذي يتوقعونه.')}
           </motion.h1>
 
           {/* Subtitle */}
@@ -594,25 +462,24 @@ export default function HomePage() {
             custom={2}
             className="text-sm md:text-base text-white/55 max-w-lg leading-relaxed mb-8"
           >
-            Cubico brings LMS, animated lessons, digital marketing, and complete
-            institution management under one intelligent platform.
+            {t('Cubico brings LMS, animated lessons, digital marketing, and complete institution management under one intelligent platform.', 'تجمع كيوبيكو نظام إدارة التعلم والدروس المتحركة والتسويق الرقمي وإدارة المؤسسات الكاملة تحت منصة ذكية واحدة.')}
           </motion.p>
 
           {/* CTA buttons */}
           <motion.div variants={fadeUp} custom={3} className="flex items-center gap-4">
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-200"
             >
-              Book Free Demo
-              <ArrowRight size={16} />
-            </a>
-            <a
-              href="#showcase"
+              {t('Book Free Demo', 'احجز عرضاً مجانياً')}
+              <ArrowRight size={16} className="rtl:rotate-180" />
+            </Link>
+            <Link
+              href="/solutions"
               className="inline-flex items-center gap-2 text-white/60 hover:text-white font-medium text-sm px-6 py-3.5 rounded-full border border-white/[0.12] hover:border-white/[0.25] hover:bg-white/[0.05] transition-all duration-200"
             >
-              See Products
-            </a>
+              {t('See Products', 'تصفح المنتجات')}
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -926,7 +793,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                Why Cubico
+                {t('Why Cubico', 'لماذا كيوبيكو')}
               </span>
             </motion.div>
             <motion.h2
@@ -934,13 +801,11 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-5"
             >
-              Schools don&apos;t need more tools.<br className="hidden sm:block" />
-              They need <span className="shimmer-text">one platform that works.</span>
+              {t("Schools don't need more tools.", 'المدارس لا تحتاج المزيد من الأدوات.')}<br className="hidden sm:block" />
+              {t('They need', 'إنها تحتاج')} <span className="shimmer-text">{t('one platform that works.', 'منصة واحدة تعمل.')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              Most institutions juggle disconnected systems — one for learning, another for admin,
-              another for content. Cubico replaces all of them with a single intelligent platform
-              built specifically for education.
+              {t('Most institutions juggle disconnected systems — one for learning, another for admin, another for content. Cubico replaces all of them with a single intelligent platform built specifically for education.', 'تتعامل معظم المؤسسات مع أنظمة منفصلة — واحد للتعلم وآخر للإدارة وآخر للمحتوى. كيوبيكو تستبدلها جميعاً بمنصة ذكية واحدة مصممة خصيصاً للتعليم.')}
             </motion.p>
           </motion.div>
 
@@ -953,10 +818,10 @@ export default function HomePage() {
             className="flex flex-wrap items-center justify-center gap-6 mb-14"
           >
             {[
-              { value: '760+', label: 'Institutions' },
-              { value: '85K+', label: 'Active Students' },
-              { value: '99.9%', label: 'Uptime' },
-              { value: '3', label: 'Countries' },
+              { value: '760+', label: t('Institutions', 'مؤسسة') },
+              { value: '85K+', label: t('Active Students', 'طالب نشط') },
+              { value: '99.9%', label: t('Uptime', 'وقت التشغيل') },
+              { value: '3', label: t('Countries', 'دول') },
             ].map(stat => (
               <div key={stat.label} className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-gray-50 border border-gray-100">
                 <span className="text-sm font-bold text-gray-900">{stat.value}</span>
@@ -976,30 +841,30 @@ export default function HomePage() {
             {[
               {
                 icon: BookOpen,
-                label: 'LEARN',
-                title: 'Smart LMS',
-                problem: 'Students lose interest in outdated, static course materials.',
-                solution: 'AI-powered learning paths with progress tracking, interactive courses, and real-time analytics that keep students engaged.',
+                label: t('LEARN', 'تعلّم'),
+                title: t('Smart LMS', 'نظام إدارة تعلم ذكي'),
+                problem: t('Students lose interest in outdated, static course materials.', 'يفقد الطلاب الاهتمام بالمواد الدراسية القديمة والثابتة.'),
+                solution: t('AI-powered learning paths with progress tracking, interactive courses, and real-time analytics that keep students engaged.', 'مسارات تعلم مدعومة بالذكاء الاصطناعي مع تتبع التقدم ودورات تفاعلية وتحليلات فورية تحافظ على تفاعل الطلاب.'),
                 accent: '#D4711A',
                 gradient: 'linear-gradient(135deg, #D4711A, #E88C32)',
                 iconBg: 'bg-orange-50',
               },
               {
                 icon: Film,
-                label: 'CREATE',
-                title: 'Animated Lessons',
-                problem: 'Teachers spend hours creating content that still doesn\'t land.',
-                solution: 'Professional 2D & 3D animated lessons in English, Arabic & Urdu — ready to deploy across any curriculum.',
+                label: t('CREATE', 'إنشاء'),
+                title: t('Animated Lessons', 'دروس متحركة'),
+                problem: t("Teachers spend hours creating content that still doesn't land.", 'يقضي المعلمون ساعات في إنشاء محتوى لا يحقق الهدف المطلوب.'),
+                solution: t('Professional 2D & 3D animated lessons in English, Arabic & Urdu — ready to deploy across any curriculum.', 'دروس متحركة احترافية ثنائية وثلاثية الأبعاد بالإنجليزية والعربية والأردية — جاهزة للنشر في أي منهج.'),
                 accent: '#C0651A',
                 gradient: 'linear-gradient(135deg, #C0651A, #D4711A)',
                 iconBg: 'bg-amber-50',
               },
               {
                 icon: Monitor,
-                label: 'MANAGE',
-                title: 'School ERP',
-                problem: 'Admin staff drowns in spreadsheets and disconnected systems.',
-                solution: 'All-in-one operations — admissions, attendance, HR, finance, and reporting in a single dashboard.',
+                label: t('MANAGE', 'إدارة'),
+                title: t('School ERP', 'نظام تخطيط موارد المدرسة'),
+                problem: t('Admin staff drowns in spreadsheets and disconnected systems.', 'يغرق الموظفون الإداريون في جداول البيانات والأنظمة المنفصلة.'),
+                solution: t('All-in-one operations — admissions, attendance, HR, finance, and reporting in a single dashboard.', 'عمليات شاملة — القبول والحضور والموارد البشرية والمالية والتقارير في لوحة تحكم واحدة.'),
                 accent: '#8B4513',
                 gradient: 'linear-gradient(135deg, #8B4513, #B8651A)',
                 iconBg: 'bg-orange-50/70',
@@ -1044,7 +909,7 @@ export default function HomePage() {
 
                   {/* CTA */}
                   <span className="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-200" style={{ color: card.accent }}>
-                    Explore {card.title} <ArrowRight className="w-4 h-4" />
+                    {t('Explore', 'استكشف')} {card.title} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                   </span>
                 </div>
 
@@ -1064,7 +929,7 @@ export default function HomePage() {
             className="mt-14 text-center"
           >
             <p className="text-sm text-gray-400 max-w-lg mx-auto leading-relaxed">
-              Built for Pakistan, Saudi Arabia & Canada — supporting English, Arabic & Urdu curricula out of the box.
+              {t('Built for Pakistan, Saudi Arabia & Canada — supporting English, Arabic & Urdu curricula out of the box.', 'مصمم لباكستان والمملكة العربية السعودية وكندا — يدعم المناهج بالإنجليزية والعربية والأردية جاهزاً للاستخدام.')}
             </p>
           </motion.div>
         </div>
@@ -1085,16 +950,16 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                Product Suite
+                {t('Product Suite', 'مجموعة المنتجات')}
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1}
               className="text-3xl md:text-4xl lg:text-[2.8rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-4">
-              Five products.{' '}
-              <span className="shimmer-text">One ecosystem.</span>
+              {t('Five products.', 'خمسة منتجات.')}{' '}
+              <span className="shimmer-text">{t('One ecosystem.', 'منظومة واحدة.')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
-              Each tool is purpose-built for education. Together, they run your entire institution — from classroom to admin office to marketing.
+              {t('Each tool is purpose-built for education. Together, they run your entire institution — from classroom to admin office to marketing.', 'كل أداة مصممة خصيصاً للتعليم. معاً، تدير مؤسستك بالكامل — من الفصل الدراسي إلى المكتب الإداري إلى التسويق.')}
             </motion.p>
           </motion.div>
 
@@ -1171,12 +1036,12 @@ export default function HomePage() {
                       })}
                     </ul>
 
-                    <a href="#contact"
+                    <Link href="/contact"
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
                       style={{ backgroundColor: sol.accentHex }}>
-                      Book a Live Demo
-                      <ArrowRight size={15} />
-                    </a>
+                      {t('Book a Live Demo', 'احجز عرضاً مباشراً')}
+                      <ArrowRight size={15} className="rtl:rotate-180" />
+                    </Link>
                   </div>
 
                   {/* RIGHT — Illustrated Mockup */}
@@ -1537,10 +1402,10 @@ export default function HomePage() {
                               <span className="text-[9px] text-white/40 font-mono">04:33 / 12:00</span>
                               <div className="flex-1"/>
                               <div className="flex gap-1">
-                                {['2D Char','3D Model','Whiteboard','Motion GFX'].map((t, ti) => (
-                                  <div key={t} className="text-[7px] px-1.5 py-0.5 rounded font-medium"
+                                {['2D Char','3D Model','Whiteboard','Motion GFX'].map((tab, ti) => (
+                                  <div key={tab} className="text-[7px] px-1.5 py-0.5 rounded font-medium"
                                     style={ti === 0 ? { backgroundColor: '#C0651A', color: '#fff' } : { backgroundColor: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.28)' }}>
-                                    {t}
+                                    {tab}
                                   </div>
                                 ))}
                               </div>
@@ -1689,10 +1554,10 @@ export default function HomePage() {
           <div className="mt-16 pt-10 border-t border-gray-100">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: Shield,     stat: '760+', label: 'Schools Served',     sub: 'across PK, SA & CA'    },
-                { icon: TrendingUp, stat: '94%',  label: 'Satisfaction Rate',  sub: 'rated 5/5 by educators'},
-                { icon: Zap,        stat: '4 wk', label: 'Avg. Go-Live',      sub: 'from signed contract'  },
-                { icon: Users,      stat: '24/7', label: 'Dedicated Support',  sub: 'account manager incl.' },
+                { icon: Shield,     stat: '760+', label: t('Schools Served', 'مدرسة تم خدمتها'),     sub: t('across PK, SA & CA', 'في باكستان والسعودية وكندا')    },
+                { icon: TrendingUp, stat: '94%',  label: t('Satisfaction Rate', 'نسبة الرضا'),  sub: t('rated 5/5 by educators', 'تقييم 5/5 من المعلمين')},
+                { icon: Zap,        stat: t('4 wk', '4 أسابيع'), label: t('Avg. Go-Live', 'متوسط الإطلاق'),      sub: t('from signed contract', 'من توقيع العقد')  },
+                { icon: Users,      stat: '24/7', label: t('Dedicated Support', 'دعم مخصص'),  sub: t('account manager incl.', 'مدير حساب مشمول') },
               ].map(item => {
                 const SIcon = item.icon;
                 return (
@@ -1754,7 +1619,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-xs font-black text-gray-900 leading-none">760+</div>
-                    <div className="text-[9px] text-gray-400 leading-tight">Schools</div>
+                    <div className="text-[9px] text-gray-400 leading-tight">{t('Schools', 'مدرسة')}</div>
                   </div>
                 </motion.div>
                 {/* Floating 3 Countries badge */}
@@ -1769,7 +1634,7 @@ export default function HomePage() {
                     <Globe className="w-3.5 h-3.5 text-white" />
                   </div>
                   <div>
-                    <div className="text-xs font-black text-gray-900 leading-none">3 Countries</div>
+                    <div className="text-xs font-black text-gray-900 leading-none">{t('3 Countries', '3 دول')}</div>
                     <div className="text-[9px] text-gray-400 leading-tight">PK · SA · CA</div>
                   </div>
                 </motion.div>
@@ -1803,7 +1668,7 @@ export default function HomePage() {
               <motion.div variants={fadeUp} custom={0} className="mb-4">
                 <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                  Who We Are
+                  {t('Who We Are', 'من نحن')}
                 </span>
               </motion.div>
               <motion.h2
@@ -1811,8 +1676,8 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6"
               >
-                Educators & engineers<br />
-                building <span className="shimmer-text">what schools actually need</span>
+                {t('Educators & engineers', 'معلمون ومهندسون')}<br />
+                {t('building', 'يبنون')} <span className="shimmer-text">{t('what schools actually need', 'ما تحتاجه المدارس فعلاً')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-gray-500 leading-relaxed mb-8">
                 Cubico Technologies is a full-stack EdTech company serving schools across Pakistan, Saudi Arabia & Canada.
@@ -1827,8 +1692,8 @@ export default function HomePage() {
                     <Lightbulb className="w-5 h-5 text-[#D4711A]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 mb-1">Education-First DNA</h4>
-                    <p className="text-sm text-gray-500">Built by people who&apos;ve run classrooms, not just code editors.</p>
+                    <h4 className="font-bold text-gray-900 mb-1">{t('Education-First DNA', 'التعليم أولاً في حمضنا النووي')}</h4>
+                    <p className="text-sm text-gray-500">{t("Built by people who've run classrooms, not just code editors.", 'بُني بواسطة أشخاص أداروا الفصول الدراسية، وليس فقط محررات الأكواد.')}</p>
                   </div>
                 </div>
                 <div className="flex gap-4 items-start p-4 rounded-xl bg-white border border-gray-100 shadow-sm">
@@ -1836,8 +1701,8 @@ export default function HomePage() {
                     <Target className="w-5 h-5 text-[#8B4513]" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 mb-1">Co-Created With Schools</h4>
-                    <p className="text-sm text-gray-500">Every feature ships after real-world testing with principals and teachers.</p>
+                    <h4 className="font-bold text-gray-900 mb-1">{t('Co-Created With Schools', 'تم إنشاؤه بالتعاون مع المدارس')}</h4>
+                    <p className="text-sm text-gray-500">{t('Every feature ships after real-world testing with principals and teachers.', 'كل ميزة تُطلق بعد اختبار فعلي مع مديري المدارس والمعلمين.')}</p>
                   </div>
                 </div>
               </motion.div>
@@ -2016,7 +1881,7 @@ export default function HomePage() {
                 className="flex items-center gap-3 p-4 rounded-2xl border"
                 style={{ backgroundColor:'rgba(212,113,26,0.05)', borderColor:'rgba(212,113,26,0.18)' }}>
                 <div className="w-2.5 h-2.5 rounded-full bg-[#D4711A] animate-pulse flex-shrink-0"/>
-                <span className="text-sm font-semibold text-gray-700">We respond within <span className="text-[#D4711A] font-bold">24 hours</span>, guaranteed.</span>
+                <span className="text-sm font-semibold text-gray-700">{t('We respond within', 'نرد خلال')} <span className="text-[#D4711A] font-bold">{t('24 hours', '24 ساعة')}</span>{t(', guaranteed.', '، مضمون.')}</span>
               </motion.div>
             </motion.div>
 
@@ -2033,15 +1898,15 @@ export default function HomePage() {
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle2 className="w-8 h-8 text-green-600" />
                     </div>
-                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2">Thank You!</h3>
-                    <p className="text-gray-500">We&apos;ll be in touch within 24 hours.</p>
+                    <h3 className="text-2xl font-heading font-bold text-gray-900 mb-2">{t('Thank You!', 'شكراً لك!')}</h3>
+                    <p className="text-gray-500">{t("We'll be in touch within 24 hours.", 'سنتواصل معك خلال 24 ساعة.')}</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <input
                         type="text"
-                        placeholder="Your Name *"
+                        placeholder={t('Your Name *', 'اسمك *')}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="form-input"
@@ -2049,7 +1914,7 @@ export default function HomePage() {
                       />
                       <input
                         type="text"
-                        placeholder="Company *"
+                        placeholder={t('Company *', 'الشركة *')}
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         className="form-input"
@@ -2059,7 +1924,7 @@ export default function HomePage() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <input
                         type="tel"
-                        placeholder="Phone *"
+                        placeholder={t('Phone *', 'الهاتف *')}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="form-input"
@@ -2067,7 +1932,7 @@ export default function HomePage() {
                       />
                       <input
                         type="email"
-                        placeholder="Email *"
+                        placeholder={t('Email *', 'البريد الإلكتروني *')}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="form-input"
@@ -2079,19 +1944,19 @@ export default function HomePage() {
                       onChange={(e) => setFormData({ ...formData, position: e.target.value })}
                       className="form-select"
                     >
-                      <option value="">Select Position</option>
-                      <option value="principal">Principal / Head of School</option>
-                      <option value="director">Director / Board Member</option>
-                      <option value="it_head">IT Head / Administrator</option>
-                      <option value="teacher">Teacher / Department Head</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('Select Position', 'اختر المنصب')}</option>
+                      <option value="principal">{t('Principal / Head of School', 'مدير / رئيس المدرسة')}</option>
+                      <option value="director">{t('Director / Board Member', 'مدير / عضو مجلس إدارة')}</option>
+                      <option value="it_head">{t('IT Head / Administrator', 'رئيس تقنية المعلومات / مسؤول')}</option>
+                      <option value="teacher">{t('Teacher / Department Head', 'معلم / رئيس قسم')}</option>
+                      <option value="other">{t('Other', 'أخرى')}</option>
                     </select>
                     <select
                       value={formData.employees}
                       onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
                       className="form-select"
                     >
-                      <option value="">Number of Students / Staff</option>
+                      <option value="">{t('Number of Students / Staff', 'عدد الطلاب / الموظفين')}</option>
                       <option value="1-50">1 – 50</option>
                       <option value="51-100">51 – 100</option>
                       <option value="101-500">101 – 500</option>
@@ -2106,17 +1971,17 @@ export default function HomePage() {
                       {formStatus === 'loading' ? (
                         <span className="flex items-center gap-2">
                           <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          Sending...
+                          {t('Sending...', 'جارِ الإرسال...')}
                         </span>
                       ) : (
                         <>
-                          Get Free Demo
-                          <ArrowRight className="w-4 h-4" />
+                          {t('Get Free Demo', 'احصل على عرض مجاني')}
+                          <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                         </>
                       )}
                     </button>
                     {formStatus === 'error' && (
-                      <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                      <p className="text-red-500 text-sm text-center">{t('Something went wrong. Please try again.', 'حدث خطأ ما. يرجى المحاولة مرة أخرى.')}</p>
                     )}
                   </form>
                 )}
@@ -2139,7 +2004,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                Testimonials
+                {t('Testimonials', 'الشهادات')}
               </span>
             </motion.div>
             <motion.h2
@@ -2147,7 +2012,7 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4"
             >
-              Trusted by <span className="shimmer-text">educators worldwide</span>
+              {t('Trusted by', 'موثوق من قبل')} <span className="shimmer-text">{t('educators worldwide', 'معلمين حول العالم')}</span>
             </motion.h2>
             <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
               <div className="flex gap-1">
@@ -2155,7 +2020,7 @@ export default function HomePage() {
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-gray-500 text-sm font-medium">Rated 5 out of 5 (760+ reviews)</span>
+              <span className="text-gray-500 text-sm font-medium">{t('Rated 5 out of 5 (760+ reviews)', 'تقييم 5 من 5 (أكثر من 760 مراجعة)')}</span>
             </motion.div>
           </motion.div>
 
@@ -2166,7 +2031,7 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid md:grid-cols-3 gap-8"
           >
-            {testimonials.map((t, i) => {
+            {testimonials.map((testimonial, i) => {
               const tGrads = [
                 'linear-gradient(135deg,#D4711A,#E88C32)',
                 'linear-gradient(135deg,#B85E15,#D4711A)',
@@ -2178,7 +2043,7 @@ export default function HomePage() {
                 { bg:'rgba(139,69,19,0.08)',  fg:'#8B4513' },
               ];
               return (
-                <motion.div key={t.name} variants={fadeUp} custom={i}
+                <motion.div key={testimonial.name} variants={fadeUp} custom={i}
                   whileHover={{ y:-6, rotateY:3, rotateX:-2, scale:1.01 }}
                   transition={{ type:'spring', stiffness:250, damping:25 }}
                   style={{ transformStyle:'preserve-3d', transformOrigin:'center center' }}
@@ -2189,24 +2054,24 @@ export default function HomePage() {
                     style={{ fontSize:'6.5rem', fontFamily:'Georgia,serif', lineHeight:1 }}>“</div>
                   {/* Stars + verified */}
                   <div className="flex items-center gap-1 mb-4 relative">
-                    {[...Array(t.rating)].map((_, j) => (
+                    {[...Array(testimonial.rating)].map((_, j) => (
                       <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
-                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">VERIFIED</span>
+                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">{t('VERIFIED', 'موثّق')}</span>
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">“{t.text}”</p>
+                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">“{testimonial.text}”</p>
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
                     <div className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
                       style={{ background:tGrads[i] }}>
-                      {t.name.split(' ').map(n => n[0]).join('')}
+                      {testimonial.name.split(' ').map(n => n[0]).join('')}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-gray-900 text-sm truncate">{t.name}</h4>
-                      <p className="text-xs text-gray-500">{t.role}, {t.company}</p>
+                      <h4 className="font-bold text-gray-900 text-sm truncate">{testimonial.name}</h4>
+                      <p className="text-xs text-gray-500">{testimonial.role}, {testimonial.company}</p>
                     </div>
                     <div className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
                       style={{ backgroundColor:tChip[i].bg, color:tChip[i].fg }}>
-                      {t.location}
+                      {testimonial.location}
                     </div>
                   </div>
                 </motion.div>
@@ -2230,7 +2095,7 @@ export default function HomePage() {
               <motion.div variants={fadeUp} custom={0} className="mb-4">
                 <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                  FAQ
+                  {t('FAQ', 'الأسئلة الشائعة')}
                 </span>
               </motion.div>
               <motion.h2
@@ -2238,11 +2103,11 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6"
               >
-                Questions schools<br />
-                <span className="shimmer-text">ask us most</span>
+                {t('Questions schools', 'أسئلة المدارس')}<br />
+                <span className="shimmer-text">{t('ask us most', 'الأكثر شيوعاً')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-gray-500 leading-relaxed mb-8">
-                From onboarding timelines to multilingual support — here&apos;s what principals and IT heads want to know before signing up.
+                {t("From onboarding timelines to multilingual support — here's what principals and IT heads want to know before signing up.", 'من الجداول الزمنية للإعداد إلى الدعم متعدد اللغات — إليك ما يريد المديرون ورؤساء تقنية المعلومات معرفته قبل التسجيل.')}
               </motion.p>
 
               {/* FAQ Visual — image + CTA */}
@@ -2265,13 +2130,13 @@ export default function HomePage() {
                         <MessageSquare className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white">Still have questions?</h4>
-                        <p className="text-sm text-white/60">Our team is ready to help</p>
+                        <h4 className="font-bold text-white">{t('Still have questions?', 'لا تزال لديك أسئلة؟')}</h4>
+                        <p className="text-sm text-white/60">{t('Our team is ready to help', 'فريقنا مستعد للمساعدة')}</p>
                       </div>
                     </div>
-                    <a href="#contact" className="btn-primary text-sm">
-                      Contact Us <ArrowRight className="w-4 h-4" />
-                    </a>
+                    <Link href="/contact" className="btn-primary text-sm">
+                      {t('Contact Us', 'تواصل معنا')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -2398,27 +2263,26 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0}
               className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6">
               <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
-              <span className="text-white/70 text-xs font-bold tracking-wider uppercase">Now Enrolling Institutions</span>
+              <span className="text-white/70 text-xs font-bold tracking-wider uppercase">{t('Now Enrolling Institutions', 'نسجل المؤسسات الآن')}</span>
             </motion.div>
             <motion.h2
               variants={fadeUp}
               custom={1}
               className="text-3xl md:text-5xl font-heading font-bold text-white mb-6"
             >
-              Join <span className="shimmer-text">760+ schools</span> already transforming education
+              {t('Join', 'انضم إلى')} <span className="shimmer-text">{t('760+ schools', '760+ مدرسة')}</span> {t('already transforming education', 'تحوّل التعليم بالفعل')}
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
-              From a 50-student school in Lahore to a 2,000-student campus in Riyadh —
-              Cubico scales to your institution. Launch in 4 weeks.
+              {t('From a 50-student school in Lahore to a 2,000-student campus in Riyadh — Cubico scales to your institution. Launch in 4 weeks.', 'من مدرسة تضم 50 طالباً في لاهور إلى حرم جامعي يضم 2,000 طالب في الرياض — كيوبيكو تتكيف مع مؤسستك. ابدأ خلال 4 أسابيع.')}
             </motion.p>
             <motion.div variants={fadeUp} custom={3} className="flex flex-wrap justify-center gap-4">
-              <a href="#contact" className="btn-primary text-lg px-10">
-                Get Started Today
-                <ArrowRight className="w-5 h-5" />
-              </a>
-              <a href="#solutions" className="btn-outline-white text-lg px-10">
-                Explore Solutions
-              </a>
+              <Link href="/contact" className="btn-primary text-lg px-10">
+                {t('Get Started Today', 'ابدأ اليوم')}
+                <ArrowRight className="w-5 h-5 rtl:rotate-180" />
+              </Link>
+              <Link href="/solutions" className="btn-outline-white text-lg px-10">
+                {t('Explore Solutions', 'استكشف الحلول')}
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -2439,7 +2303,7 @@ export default function HomePage() {
                 </span>
               </div>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
-                Full-stack EdTech company powering 760+ schools across Pakistan, Saudi Arabia & Canada with LMS, ERP, animated content, and marketing solutions.
+                {t('Full-stack EdTech company powering 760+ schools across Pakistan, Saudi Arabia & Canada with LMS, ERP, animated content, and marketing solutions.', 'شركة تكنولوجيا تعليم متكاملة تدعم 760+ مدرسة في باكستان والسعودية وكندا بنظام إدارة التعلم ونظام تخطيط الموارد والمحتوى المتحرك وحلول التسويق.')}
               </p>
               <div className="flex gap-3">
                 {[
@@ -2462,13 +2326,19 @@ export default function HomePage() {
 
             {/* Column 2 - Solutions */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Solutions</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Solutions', 'الحلول')}</h4>
               <ul className="space-y-3">
-                {['Smart LMS', 'Animation Studio', 'School ERP', 'Web Development', 'Mobile Apps'].map((link) => (
-                  <li key={link}>
-                    <a href="#solutions" className="text-white/50 hover:text-white text-sm transition-colors">
-                      {link}
-                    </a>
+                {[
+                  { name: t('Smart LMS', 'نظام إدارة التعلم'), href: '/solutions/smart-lms' },
+                  { name: t('Animation Studio', 'استوديو الرسوم المتحركة'), href: '/solutions/animation-studio' },
+                  { name: t('School ERP', 'نظام إدارة المدرسة'), href: '/solutions/school-erp' },
+                  { name: t('Web Development', 'تطوير المواقع'), href: '/solutions/web-development' },
+                  { name: t('Mobile Apps', 'تطبيقات الجوال'), href: '/solutions/mobile-apps' },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -2476,13 +2346,19 @@ export default function HomePage() {
 
             {/* Column 3 - Company */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Company</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Company', 'الشركة')}</h4>
               <ul className="space-y-3">
-                {['About Us', 'Our Team', 'Careers', 'News & Blog', 'Contact Us'].map((link) => (
-                  <li key={link}>
-                    <a href="#about" className="text-white/50 hover:text-white text-sm transition-colors">
-                      {link}
-                    </a>
+                {[
+                  { name: t('About Us', 'من نحن'), href: '/about' },
+                  { name: t('Our Team', 'فريقنا'), href: '/team' },
+                  { name: t('Careers', 'الوظائف'), href: '/about' },
+                  { name: t('News & Blog', 'الأخبار والمدونة'), href: '/blog' },
+                  { name: t('Contact Us', 'تواصل معنا'), href: '/contact' },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -2490,20 +2366,20 @@ export default function HomePage() {
 
             {/* Column 4 - Newsletter */}
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Newsletter</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Newsletter', 'النشرة الإخبارية')}</h4>
               <p className="text-white/50 text-sm mb-6">
-                Sign up for updates, insights, and news about EdTech innovation.
+                {t('Sign up for updates, insights, and news about EdTech innovation.', 'اشترك للحصول على التحديثات والرؤى والأخبار حول ابتكارات تكنولوجيا التعليم.')}
               </p>
               {newsletterStatus === 'success' ? (
                 <div className="flex items-center gap-2 text-accent-light text-sm">
                   <CheckCircle2 className="w-4 h-4" />
-                  Successfully subscribed!
+                  {t('Successfully subscribed!', 'تم الاشتراك بنجاح!')}
                 </div>
               ) : (
                 <form onSubmit={handleNewsletter} className="space-y-3">
                   <input
                     type="text"
-                    placeholder="Your name"
+                    placeholder={t('Your name', 'اسمك')}
                     value={newsletterName}
                     onChange={(e) => setNewsletterName(e.target.value)}
                     className="form-input-dark text-sm"
@@ -2511,14 +2387,14 @@ export default function HomePage() {
                   />
                   <input
                     type="email"
-                    placeholder="Your email"
+                    placeholder={t('Your email', 'بريدك الإلكتروني')}
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     className="form-input-dark text-sm"
                     required
                   />
                   <button type="submit" className="btn-primary w-full justify-center text-sm">
-                    Sign Up <Send className="w-3 h-3" />
+                    {t('Sign Up', 'اشترك')} <Send className="w-3 h-3" />
                   </button>
                 </form>
               )}
@@ -2528,10 +2404,10 @@ export default function HomePage() {
           {/* Bottom */}
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/40 text-sm">
-              Copyright © {new Date().getFullYear()} Cubico Technologies. All rights reserved.
+              {t('Copyright', 'حقوق النشر')} © {new Date().getFullYear()} {t('Cubico Technologies. All rights reserved.', 'كيوبيكو تكنولوجيز. جميع الحقوق محفوظة.')}
             </p>
             <div className="flex gap-6">
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((link) => (
+              {[t('Privacy Policy', 'سياسة الخصوصية'), t('Terms of Service', 'شروط الخدمة'), t('Cookie Policy', 'سياسة ملفات تعريف الارتباط')].map((link) => (
                 <a key={link} href="#" className="text-white/40 hover:text-white text-sm transition-colors">
                   {link}
                 </a>

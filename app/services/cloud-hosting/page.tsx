@@ -28,6 +28,7 @@ import {
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -43,161 +44,220 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-const infrastructureFeatures = [
-  {
-    icon: ShieldCheck,
-    title: '99.9% Uptime SLA',
-    desc: 'Guaranteed availability backed by our Service Level Agreement. Your platforms stay online when students and staff need them most.',
-  },
-  {
-    icon: HardDrive,
-    title: 'Automatic Backups',
-    desc: 'Daily, weekly, and monthly automated backups with point-in-time recovery. Never lose a single record or assignment submission.',
-  },
-  {
-    icon: Globe,
-    title: 'Global CDN',
-    desc: 'Fast content delivery worldwide through our distributed network. Students access materials instantly from any location.',
-  },
-  {
-    icon: Zap,
-    title: 'Auto-Scaling',
-    desc: 'Infrastructure that scales automatically during traffic spikes — exam season, enrollment periods, or live events.',
-  },
-  {
-    icon: Shield,
-    title: 'DDoS Protection',
-    desc: 'Enterprise-grade protection against distributed denial-of-service attacks, keeping your services accessible at all times.',
-  },
-  {
-    icon: Eye,
-    title: '24/7 Monitoring',
-    desc: 'Proactive issue detection with round-the-clock monitoring. We identify and resolve problems before they affect your users.',
-  },
-];
-
-const hostingPlans = [
-  {
-    name: 'Starter',
-    price: '$99',
-    period: '/month',
-    desc: 'Ideal for small schools and single-campus institutions getting started with cloud hosting.',
-    features: [
-      '2 vCPU, 4GB RAM',
-      '100 GB SSD Storage',
-      '1 TB Bandwidth',
-      'Daily Backups',
-      'SSL Certificate',
-      'Email Support',
-      '99.5% Uptime SLA',
-    ],
-    highlight: false,
-  },
-  {
-    name: 'Professional',
-    price: '$299',
-    period: '/month',
-    desc: 'For growing institutions running LMS, ERP, and multiple web applications simultaneously.',
-    features: [
-      '8 vCPU, 16GB RAM',
-      '500 GB SSD Storage',
-      '5 TB Bandwidth',
-      'Daily + Weekly Backups',
-      'Global CDN Included',
-      'Priority Support',
-      '99.9% Uptime SLA',
-      'Auto-Scaling',
-      'DDoS Protection',
-    ],
-    highlight: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '',
-    desc: 'For large institutions and multi-campus networks requiring dedicated infrastructure and compliance.',
-    features: [
-      'Dedicated Servers',
-      'Unlimited Storage',
-      'Unlimited Bandwidth',
-      'Continuous Backups',
-      'Global CDN + WAF',
-      '24/7 Phone Support',
-      '99.99% Uptime SLA',
-      'Auto-Scaling',
-      'Advanced DDoS Protection',
-      'Custom Compliance (PDPA, GDPR)',
-      'Dedicated Account Manager',
-    ],
-    highlight: false,
-  },
-];
-
-const dataCenters = [
-  {
-    country: 'Pakistan',
-    city: 'Islamabad',
-    flag: '🇵🇰',
-    latency: '5ms',
-    features: ['Tier III Data Center', 'PDPA Compliant', 'Local Support Team'],
-  },
-  {
-    country: 'Saudi Arabia',
-    city: 'Riyadh',
-    flag: '🇸🇦',
-    latency: '8ms',
-    features: ['Tier IV Data Center', 'NCA Compliant', 'Arabic Support'],
-  },
-  {
-    country: 'Canada',
-    city: 'Toronto',
-    flag: '🇨🇦',
-    latency: '12ms',
-    features: ['Tier III Data Center', 'PIPEDA Compliant', 'North America Coverage'],
-  },
-];
-
-const securityFeatures = [
-  {
-    icon: Lock,
-    title: 'SSL/TLS Encryption',
-    desc: 'All data transmitted between your users and servers is encrypted with industry-standard TLS 1.3 protocols.',
-  },
-  {
-    icon: Database,
-    title: 'Data Encryption at Rest',
-    desc: 'AES-256 encryption for all stored data including databases, files, and backup archives.',
-  },
-  {
-    icon: Shield,
-    title: 'Web Application Firewall',
-    desc: 'Intelligent firewall that blocks SQL injection, XSS, and other OWASP Top 10 vulnerabilities.',
-  },
-  {
-    icon: KeyRound,
-    title: 'Access Controls',
-    desc: 'Role-based access with multi-factor authentication, IP whitelisting, and audit logging.',
-  },
-  {
-    icon: Fingerprint,
-    title: 'Identity Management',
-    desc: 'SSO integration with SAML/OAuth, LDAP directory services, and centralized user management.',
-  },
-  {
-    icon: FileKey,
-    title: 'Compliance & Auditing',
-    desc: 'Full audit trails, compliance reporting, and regular third-party security assessments.',
-  },
-];
-
-const stats = [
-  { value: '99.9%', label: 'Uptime Guarantee' },
-  { value: '15ms', label: 'Avg Response Time' },
-  { value: '3', label: 'Data Centers' },
-  { value: '0', label: 'Data Breaches' },
-];
-
 export default function CloudHostingPage() {
+  const { t } = useLanguage();
+
+  const infrastructureFeatures = [
+    {
+      icon: ShieldCheck,
+      title: t('99.9% Uptime SLA', 'اتفاقية مستوى خدمة بوقت تشغيل 99.9%'),
+      desc: t(
+        'Guaranteed availability backed by our Service Level Agreement. Your platforms stay online when students and staff need them most.',
+        'توافر مضمون مدعوم باتفاقية مستوى الخدمة الخاصة بنا. تبقى منصاتك متاحة عندما يحتاجها الطلاب والموظفون.'
+      ),
+    },
+    {
+      icon: HardDrive,
+      title: t('Automatic Backups', 'نسخ احتياطي تلقائي'),
+      desc: t(
+        'Daily, weekly, and monthly automated backups with point-in-time recovery. Never lose a single record or assignment submission.',
+        'نسخ احتياطي تلقائي يومي وأسبوعي وشهري مع استعادة لنقطة زمنية محددة. لن تفقد أي سجل أو واجب مقدم.'
+      ),
+    },
+    {
+      icon: Globe,
+      title: t('Global CDN', 'شبكة توصيل محتوى عالمية'),
+      desc: t(
+        'Fast content delivery worldwide through our distributed network. Students access materials instantly from any location.',
+        'توصيل سريع للمحتوى حول العالم عبر شبكتنا الموزعة. يصل الطلاب إلى المواد فوراً من أي موقع.'
+      ),
+    },
+    {
+      icon: Zap,
+      title: t('Auto-Scaling', 'التوسع التلقائي'),
+      desc: t(
+        'Infrastructure that scales automatically during traffic spikes — exam season, enrollment periods, or live events.',
+        'بنية تحتية تتوسع تلقائياً أثناء ذروة الاستخدام — موسم الامتحانات أو فترات التسجيل أو الفعاليات المباشرة.'
+      ),
+    },
+    {
+      icon: Shield,
+      title: t('DDoS Protection', 'حماية من هجمات DDoS'),
+      desc: t(
+        'Enterprise-grade protection against distributed denial-of-service attacks, keeping your services accessible at all times.',
+        'حماية بمستوى المؤسسات ضد هجمات حجب الخدمة الموزعة، مما يحافظ على إمكانية الوصول إلى خدماتك في جميع الأوقات.'
+      ),
+    },
+    {
+      icon: Eye,
+      title: t('24/7 Monitoring', 'مراقبة على مدار الساعة'),
+      desc: t(
+        'Proactive issue detection with round-the-clock monitoring. We identify and resolve problems before they affect your users.',
+        'اكتشاف استباقي للمشكلات مع مراقبة على مدار الساعة. نحدد المشكلات ونحلها قبل أن تؤثر على مستخدميك.'
+      ),
+    },
+  ];
+
+  const hostingPlans = [
+    {
+      name: t('Starter', 'المبتدئ'),
+      price: '$99',
+      period: t('/month', '/شهرياً'),
+      desc: t(
+        'Ideal for small schools and single-campus institutions getting started with cloud hosting.',
+        'مثالي للمدارس الصغيرة والمؤسسات ذات الحرم الواحد التي تبدأ بالاستضافة السحابية.'
+      ),
+      features: [
+        t('2 vCPU, 4GB RAM', '2 vCPU، 4 جيجابايت رام'),
+        t('100 GB SSD Storage', '100 جيجابايت تخزين SSD'),
+        t('1 TB Bandwidth', '1 تيرابايت عرض النطاق'),
+        t('Daily Backups', 'نسخ احتياطي يومي'),
+        t('SSL Certificate', 'شهادة SSL'),
+        t('Email Support', 'دعم عبر البريد الإلكتروني'),
+        t('99.5% Uptime SLA', 'اتفاقية وقت تشغيل 99.5%'),
+      ],
+      highlight: false,
+    },
+    {
+      name: t('Professional', 'الاحترافي'),
+      price: '$299',
+      period: t('/month', '/شهرياً'),
+      desc: t(
+        'For growing institutions running LMS, ERP, and multiple web applications simultaneously.',
+        'للمؤسسات المتنامية التي تشغل نظام إدارة التعلم وتخطيط الموارد وتطبيقات ويب متعددة في آن واحد.'
+      ),
+      features: [
+        t('8 vCPU, 16GB RAM', '8 vCPU، 16 جيجابايت رام'),
+        t('500 GB SSD Storage', '500 جيجابايت تخزين SSD'),
+        t('5 TB Bandwidth', '5 تيرابايت عرض النطاق'),
+        t('Daily + Weekly Backups', 'نسخ احتياطي يومي + أسبوعي'),
+        t('Global CDN Included', 'شبكة CDN عالمية مضمنة'),
+        t('Priority Support', 'دعم ذو أولوية'),
+        t('99.9% Uptime SLA', 'اتفاقية وقت تشغيل 99.9%'),
+        t('Auto-Scaling', 'التوسع التلقائي'),
+        t('DDoS Protection', 'حماية من هجمات DDoS'),
+      ],
+      highlight: true,
+    },
+    {
+      name: t('Enterprise', 'المؤسسات'),
+      price: t('Custom', 'مخصص'),
+      period: '',
+      desc: t(
+        'For large institutions and multi-campus networks requiring dedicated infrastructure and compliance.',
+        'للمؤسسات الكبيرة وشبكات الحرم الجامعي المتعددة التي تتطلب بنية تحتية مخصصة وامتثالاً تنظيمياً.'
+      ),
+      features: [
+        t('Dedicated Servers', 'خوادم مخصصة'),
+        t('Unlimited Storage', 'تخزين غير محدود'),
+        t('Unlimited Bandwidth', 'عرض نطاق غير محدود'),
+        t('Continuous Backups', 'نسخ احتياطي مستمر'),
+        t('Global CDN + WAF', 'شبكة CDN عالمية + جدار حماية'),
+        t('24/7 Phone Support', 'دعم هاتفي على مدار الساعة'),
+        t('99.99% Uptime SLA', 'اتفاقية وقت تشغيل 99.99%'),
+        t('Auto-Scaling', 'التوسع التلقائي'),
+        t('Advanced DDoS Protection', 'حماية متقدمة من هجمات DDoS'),
+        t('Custom Compliance (PDPA, GDPR)', 'امتثال مخصص (PDPA، GDPR)'),
+        t('Dedicated Account Manager', 'مدير حساب مخصص'),
+      ],
+      highlight: false,
+    },
+  ];
+
+  const dataCenters = [
+    {
+      country: t('Pakistan', 'باكستان'),
+      city: t('Islamabad', 'إسلام آباد'),
+      flag: '\u{1F1F5}\u{1F1F0}',
+      latency: '5ms',
+      features: [
+        t('Tier III Data Center', 'مركز بيانات من المستوى الثالث'),
+        t('PDPA Compliant', 'متوافق مع PDPA'),
+        t('Local Support Team', 'فريق دعم محلي'),
+      ],
+    },
+    {
+      country: t('Saudi Arabia', 'المملكة العربية السعودية'),
+      city: t('Riyadh', 'الرياض'),
+      flag: '\u{1F1F8}\u{1F1E6}',
+      latency: '8ms',
+      features: [
+        t('Tier IV Data Center', 'مركز بيانات من المستوى الرابع'),
+        t('NCA Compliant', 'متوافق مع NCA'),
+        t('Arabic Support', 'دعم باللغة العربية'),
+      ],
+    },
+    {
+      country: t('Canada', 'كندا'),
+      city: t('Toronto', 'تورنتو'),
+      flag: '\u{1F1E8}\u{1F1E6}',
+      latency: '12ms',
+      features: [
+        t('Tier III Data Center', 'مركز بيانات من المستوى الثالث'),
+        t('PIPEDA Compliant', 'متوافق مع PIPEDA'),
+        t('North America Coverage', 'تغطية أمريكا الشمالية'),
+      ],
+    },
+  ];
+
+  const securityFeatures = [
+    {
+      icon: Lock,
+      title: t('SSL/TLS Encryption', 'تشفير SSL/TLS'),
+      desc: t(
+        'All data transmitted between your users and servers is encrypted with industry-standard TLS 1.3 protocols.',
+        'جميع البيانات المنقولة بين المستخدمين والخوادم مشفرة ببروتوكولات TLS 1.3 القياسية.'
+      ),
+    },
+    {
+      icon: Database,
+      title: t('Data Encryption at Rest', 'تشفير البيانات المخزنة'),
+      desc: t(
+        'AES-256 encryption for all stored data including databases, files, and backup archives.',
+        'تشفير AES-256 لجميع البيانات المخزنة بما في ذلك قواعد البيانات والملفات وأرشيفات النسخ الاحتياطي.'
+      ),
+    },
+    {
+      icon: Shield,
+      title: t('Web Application Firewall', 'جدار حماية تطبيقات الويب'),
+      desc: t(
+        'Intelligent firewall that blocks SQL injection, XSS, and other OWASP Top 10 vulnerabilities.',
+        'جدار حماية ذكي يحظر حقن SQL وXSS وثغرات OWASP العشر الأكثر شيوعاً.'
+      ),
+    },
+    {
+      icon: KeyRound,
+      title: t('Access Controls', 'التحكم في الوصول'),
+      desc: t(
+        'Role-based access with multi-factor authentication, IP whitelisting, and audit logging.',
+        'وصول قائم على الأدوار مع مصادقة متعددة العوامل وقائمة IP المسموح بها وسجلات التدقيق.'
+      ),
+    },
+    {
+      icon: Fingerprint,
+      title: t('Identity Management', 'إدارة الهوية'),
+      desc: t(
+        'SSO integration with SAML/OAuth, LDAP directory services, and centralized user management.',
+        'تكامل تسجيل الدخول الموحد مع SAML/OAuth وخدمات دليل LDAP وإدارة مركزية للمستخدمين.'
+      ),
+    },
+    {
+      icon: FileKey,
+      title: t('Compliance & Auditing', 'الامتثال والتدقيق'),
+      desc: t(
+        'Full audit trails, compliance reporting, and regular third-party security assessments.',
+        'مسارات تدقيق كاملة وتقارير امتثال وتقييمات أمنية دورية من جهات خارجية.'
+      ),
+    },
+  ];
+
+  const stats = [
+    { value: '99.9%', label: t('Uptime Guarantee', 'ضمان وقت التشغيل') },
+    { value: '15ms', label: t('Avg Response Time', 'متوسط وقت الاستجابة') },
+    { value: '3', label: t('Data Centers', 'مراكز البيانات') },
+    { value: '0', label: t('Data Breaches', 'خروقات البيانات') },
+  ];
+
   return (
     <>
       <Header />
@@ -218,7 +278,7 @@ export default function CloudHostingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="section-label-light mb-4"
               >
-                Cloud Hosting
+                {t('Cloud Hosting', 'الاستضافة السحابية')}
               </motion.p>
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
@@ -226,8 +286,8 @@ export default function CloudHostingPage() {
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight"
               >
-                Reliable Infrastructure for{' '}
-                <span className="gradient-text">Education</span>
+                {t('Reliable Infrastructure for', 'بنية تحتية موثوقة من أجل')}{' '}
+                <span className="gradient-text">{t('Education', 'التعليم')}</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
@@ -235,9 +295,10 @@ export default function CloudHostingPage() {
                 transition={{ delay: 0.2 }}
                 className="text-white/60 text-lg leading-relaxed mb-10 max-w-lg"
               >
-                Managed cloud infrastructure designed for educational institutions.
-                From LMS to ERP, we keep your digital ecosystem fast, secure, and
-                always available.
+                {t(
+                  'Managed cloud infrastructure designed for educational institutions. From LMS to ERP, we keep your digital ecosystem fast, secure, and always available.',
+                  'بنية تحتية سحابية مُدارة مصممة للمؤسسات التعليمية. من نظام إدارة التعلم إلى تخطيط الموارد، نحافظ على منظومتك الرقمية سريعة وآمنة ومتاحة دائماً.'
+                )}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -246,10 +307,10 @@ export default function CloudHostingPage() {
                 className="flex flex-wrap gap-4"
               >
                 <Link href="/contact" className="btn-primary text-lg">
-                  Get Started <ArrowRight className="w-5 h-5" />
+                  {t('Get Started', 'ابدأ الآن')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                 </Link>
                 <Link href="#plans" className="btn-outline-white text-lg">
-                  View Plans
+                  {t('View Plans', 'عرض الخطط')}
                 </Link>
               </motion.div>
             </div>
@@ -269,10 +330,10 @@ export default function CloudHostingPage() {
 
                 {/* Connecting lines + service nodes */}
                 {[
-                  { label: 'LMS', angle: 0, icon: MonitorCheck },
-                  { label: 'ERP', angle: 90, icon: Layers },
-                  { label: 'Apps', angle: 180, icon: Wifi },
-                  { label: 'Website', angle: 270, icon: Globe },
+                  { label: t('LMS', 'LMS'), angle: 0, icon: MonitorCheck },
+                  { label: t('ERP', 'ERP'), angle: 90, icon: Layers },
+                  { label: t('Apps', 'التطبيقات'), angle: 180, icon: Wifi },
+                  { label: t('Website', 'الموقع'), angle: 270, icon: Globe },
                 ].map((node, i) => {
                   const rad = (node.angle * Math.PI) / 180;
                   const radius = 140;
@@ -325,12 +386,15 @@ export default function CloudHostingPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Infrastructure</span>
+            <span className="section-label mb-4 block">{t('Infrastructure', 'البنية التحتية')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Built for <span className="gradient-text">Education at Scale</span>
+              {t('Built for', 'مصممة لـ')} <span className="gradient-text">{t('Education at Scale', 'التعليم على نطاق واسع')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Enterprise-grade cloud infrastructure tailored for the unique demands of educational institutions.
+              {t(
+                'Enterprise-grade cloud infrastructure tailored for the unique demands of educational institutions.',
+                'بنية تحتية سحابية بمستوى المؤسسات مصممة خصيصاً لتلبية الاحتياجات الفريدة للمؤسسات التعليمية.'
+              )}
             </p>
           </div>
 
@@ -365,12 +429,15 @@ export default function CloudHostingPage() {
       <section className="py-24 bg-surface-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Architecture</span>
+            <span className="section-label mb-4 block">{t('Architecture', 'الهندسة المعمارية')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Our Cloud <span className="gradient-text">Stack</span>
+              {t('Our Cloud', 'حزمتنا')} <span className="gradient-text">{t('Stack', 'السحابية')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              A multi-layered architecture designed for performance, redundancy, and security.
+              {t(
+                'A multi-layered architecture designed for performance, redundancy, and security.',
+                'بنية متعددة الطبقات مصممة للأداء والتكرار والأمان.'
+              )}
             </p>
           </div>
 
@@ -382,11 +449,11 @@ export default function CloudHostingPage() {
             className="max-w-4xl mx-auto"
           >
             {[
-              { label: 'CDN Layer', sub: 'Global edge caching & static assets', icon: Globe, color: 'from-blue-500 to-blue-600' },
-              { label: 'Load Balancer', sub: 'Traffic distribution & SSL termination', icon: RefreshCw, color: 'from-primary to-primary' },
-              { label: 'Application Servers', sub: 'Auto-scaled compute instances', icon: Server, color: 'from-orange-500 to-orange-600' },
-              { label: 'Database Cluster', sub: 'Primary + read replicas with failover', icon: Database, color: 'from-accent to-amber-800' },
-              { label: 'Backup Storage', sub: 'Encrypted off-site backup retention', icon: HardDrive, color: 'from-gray-600 to-gray-700' },
+              { label: t('CDN Layer', 'طبقة CDN'), sub: t('Global edge caching & static assets', 'تخزين مؤقت عالمي وأصول ثابتة'), icon: Globe, color: 'from-blue-500 to-blue-600' },
+              { label: t('Load Balancer', 'موزع الأحمال'), sub: t('Traffic distribution & SSL termination', 'توزيع حركة المرور وإنهاء SSL'), icon: RefreshCw, color: 'from-primary to-primary' },
+              { label: t('Application Servers', 'خوادم التطبيقات'), sub: t('Auto-scaled compute instances', 'مثيلات حوسبة ذاتية التوسع'), icon: Server, color: 'from-orange-500 to-orange-600' },
+              { label: t('Database Cluster', 'مجموعة قواعد البيانات'), sub: t('Primary + read replicas with failover', 'أساسي + نسخ قراءة مع تجاوز الفشل'), icon: Database, color: 'from-accent to-amber-800' },
+              { label: t('Backup Storage', 'تخزين النسخ الاحتياطي'), sub: t('Encrypted off-site backup retention', 'احتفاظ بنسخ احتياطية مشفرة خارج الموقع'), icon: HardDrive, color: 'from-gray-600 to-gray-700' },
             ].map((layer, i) => (
               <motion.div
                 key={layer.label}
@@ -415,7 +482,7 @@ export default function CloudHostingPage() {
                     <p className="text-sm text-gray-500">{layer.sub}</p>
                   </div>
                   <span className="hidden sm:block text-xs font-mono text-gray-400 bg-gray-50 px-3 py-1 rounded-full">
-                    Layer {i + 1}
+                    {t('Layer', 'الطبقة')} {i + 1}
                   </span>
                 </div>
               </motion.div>
@@ -429,12 +496,15 @@ export default function CloudHostingPage() {
         <div className="absolute inset-0 bg-dots opacity-5" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label-light mb-4 block">Live Monitoring</span>
+            <span className="section-label-light mb-4 block">{t('Live Monitoring', 'المراقبة المباشرة')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
-              Server <span className="gradient-text">Status Dashboard</span>
+              {t('Server', 'لوحة تحكم')} <span className="gradient-text">{t('Status Dashboard', 'حالة الخادم')}</span>
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto">
-              Real-time visibility into your infrastructure performance and health.
+              {t(
+                'Real-time visibility into your infrastructure performance and health.',
+                'رؤية فورية لأداء وصحة البنية التحتية الخاصة بك.'
+              )}
             </p>
           </div>
 
@@ -449,23 +519,23 @@ export default function CloudHostingPage() {
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-white font-semibold text-sm">All Systems Operational</span>
+                <span className="text-white font-semibold text-sm">{t('All Systems Operational', 'جميع الأنظمة تعمل بشكل طبيعي')}</span>
               </div>
-              <span className="text-white/40 text-xs font-mono">Last updated: 2 min ago</span>
+              <span className="text-white/40 text-xs font-mono">{t('Last updated: 2 min ago', 'آخر تحديث: منذ دقيقتين')}</span>
             </div>
 
             {/* Metrics row */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {/* Uptime */}
               <div className="bg-white/5 rounded-xl p-5 border border-white/10">
-                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Uptime</p>
+                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">{t('Uptime', 'وقت التشغيل')}</p>
                 <p className="text-3xl font-heading font-bold text-green-400">99.97%</p>
-                <p className="text-white/30 text-xs mt-1">Last 90 days</p>
+                <p className="text-white/30 text-xs mt-1">{t('Last 90 days', 'آخر 90 يوماً')}</p>
               </div>
 
               {/* CPU Usage */}
               <div className="bg-white/5 rounded-xl p-5 border border-white/10">
-                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">CPU Usage</p>
+                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">{t('CPU Usage', 'استخدام المعالج')}</p>
                 <p className="text-3xl font-heading font-bold text-white">23%</p>
                 <div className="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
                   <motion.div
@@ -480,7 +550,7 @@ export default function CloudHostingPage() {
 
               {/* Memory */}
               <div className="bg-white/5 rounded-xl p-5 border border-white/10">
-                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Memory</p>
+                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">{t('Memory', 'الذاكرة')}</p>
                 <p className="text-3xl font-heading font-bold text-white">41%</p>
                 <div className="mt-3 h-2 bg-white/10 rounded-full overflow-hidden">
                   <motion.div
@@ -495,7 +565,7 @@ export default function CloudHostingPage() {
 
               {/* Response Time */}
               <div className="bg-white/5 rounded-xl p-5 border border-white/10">
-                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">Response Time</p>
+                <p className="text-white/40 text-xs uppercase tracking-wider mb-2">{t('Response Time', 'وقت الاستجابة')}</p>
                 <p className="text-3xl font-heading font-bold text-white">14ms</p>
                 {/* Mini bar chart mockup */}
                 <div className="flex items-end gap-1 mt-3 h-6">
@@ -516,12 +586,12 @@ export default function CloudHostingPage() {
             {/* Service status list */}
             <div className="space-y-3">
               {[
-                { name: 'LMS Platform (Moodle)', status: 'Operational', uptime: '99.99%' },
-                { name: 'School ERP System', status: 'Operational', uptime: '99.98%' },
-                { name: 'CDN & Static Assets', status: 'Operational', uptime: '100%' },
-                { name: 'Database Cluster', status: 'Operational', uptime: '99.97%' },
-                { name: 'Backup Service', status: 'Operational', uptime: '100%' },
-                { name: 'API Gateway', status: 'Operational', uptime: '99.99%' },
+                { name: t('LMS Platform (Moodle)', 'منصة إدارة التعلم (Moodle)'), status: t('Operational', 'يعمل'), uptime: '99.99%' },
+                { name: t('School ERP System', 'نظام تخطيط موارد المدرسة'), status: t('Operational', 'يعمل'), uptime: '99.98%' },
+                { name: t('CDN & Static Assets', 'CDN والأصول الثابتة'), status: t('Operational', 'يعمل'), uptime: '100%' },
+                { name: t('Database Cluster', 'مجموعة قواعد البيانات'), status: t('Operational', 'يعمل'), uptime: '99.97%' },
+                { name: t('Backup Service', 'خدمة النسخ الاحتياطي'), status: t('Operational', 'يعمل'), uptime: '100%' },
+                { name: t('API Gateway', 'بوابة API'), status: t('Operational', 'يعمل'), uptime: '99.99%' },
               ].map((svc, i) => (
                 <motion.div
                   key={svc.name}
@@ -550,12 +620,15 @@ export default function CloudHostingPage() {
       <section id="plans" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Pricing</span>
+            <span className="section-label mb-4 block">{t('Pricing', 'الأسعار')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Hosting <span className="gradient-text">Plans</span>
+              {t('Hosting', 'خطط')} <span className="gradient-text">{t('Plans', 'الاستضافة')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Flexible plans designed for institutions of all sizes. All plans include managed support and migration assistance.
+              {t(
+                'Flexible plans designed for institutions of all sizes. All plans include managed support and migration assistance.',
+                'خطط مرنة مصممة لمؤسسات من جميع الأحجام. تشمل جميع الخطط الدعم المُدار والمساعدة في الترحيل.'
+              )}
             </p>
           </div>
 
@@ -579,7 +652,7 @@ export default function CloudHostingPage() {
               >
                 {plan.highlight && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1.5 rounded-full">
-                    Most Popular
+                    {t('Most Popular', 'الأكثر شيوعاً')}
                   </div>
                 )}
                 <h3 className={`text-xl font-heading font-bold mb-2 ${plan.highlight ? 'text-white' : 'text-gray-900'}`}>
@@ -612,7 +685,9 @@ export default function CloudHostingPage() {
                   href="/contact"
                   className={`w-full text-center ${plan.highlight ? 'btn-primary' : 'btn-outline'}`}
                 >
-                  {plan.price === 'Custom' ? 'Contact Sales' : 'Get Started'}
+                  {plan.price === '$99' || plan.price === '$299'
+                    ? t('Get Started', 'ابدأ الآن')
+                    : t('Contact Sales', 'تواصل مع المبيعات')}
                 </Link>
               </motion.div>
             ))}
@@ -624,12 +699,15 @@ export default function CloudHostingPage() {
       <section className="py-24 bg-surface-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Global Presence</span>
+            <span className="section-label mb-4 block">{t('Global Presence', 'التواجد العالمي')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Data Center <span className="gradient-text">Locations</span>
+              {t('Data Center', 'مواقع مراكز')} <span className="gradient-text">{t('Locations', 'البيانات')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Strategically placed data centers to serve educational institutions across key regions.
+              {t(
+                'Strategically placed data centers to serve educational institutions across key regions.',
+                'مراكز بيانات موضوعة بشكل استراتيجي لخدمة المؤسسات التعليمية في المناطق الرئيسية.'
+              )}
             </p>
           </div>
 
@@ -664,7 +742,7 @@ export default function CloudHostingPage() {
                 {/* Latency badge */}
                 <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
                   <Activity className="w-4 h-4" />
-                  {dc.latency} latency
+                  {dc.latency} {t('latency', 'زمن الاستجابة')}
                 </div>
 
                 {/* Features */}
@@ -714,12 +792,15 @@ export default function CloudHostingPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="section-label mb-4 block">Security</span>
+            <span className="section-label mb-4 block">{t('Security', 'الأمان')}</span>
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Enterprise-Grade <span className="gradient-text">Security</span>
+              {t('Enterprise-Grade', 'بمستوى المؤسسات')} <span className="gradient-text">{t('Security', 'الأمان')}</span>
             </h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Multiple layers of security to protect your institution&apos;s data, applications, and users.
+              {t(
+                'Multiple layers of security to protect your institution\u0027s data, applications, and users.',
+                'طبقات متعددة من الأمان لحماية بيانات وتطبيقات ومستخدمي مؤسستك.'
+              )}
             </p>
           </div>
 
@@ -766,18 +847,20 @@ export default function CloudHostingPage() {
               <Cloud className="w-8 h-8 text-primary" />
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
-              Migrate to <span className="gradient-text">Cubico Cloud</span>
+              {t('Migrate to', 'انتقل إلى')} <span className="gradient-text">{t('Cubico Cloud', 'سحابة كيوبيكو')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-              Our team handles the complete migration — from assessment to deployment.
-              Zero downtime, full data integrity, and ongoing managed support.
+              {t(
+                'Our team handles the complete migration — from assessment to deployment. Zero downtime, full data integrity, and ongoing managed support.',
+                'يتولى فريقنا عملية الترحيل الكاملة — من التقييم إلى النشر. بدون توقف، مع سلامة كاملة للبيانات ودعم مُدار مستمر.'
+              )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary text-lg">
-                Start Migration <ArrowRight className="w-5 h-5" />
+                {t('Start Migration', 'ابدأ الترحيل')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </Link>
               <Link href="/services" className="btn-outline-white text-lg">
-                Explore All Services
+                {t('Explore All Services', 'استكشف جميع الخدمات')}
               </Link>
             </div>
           </motion.div>

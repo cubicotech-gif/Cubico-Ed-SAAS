@@ -13,11 +13,13 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterName, setNewsletterName] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
+  const { t } = useLanguage();
 
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,21 +51,23 @@ export default function Footer() {
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6">
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
-            <span className="text-white/70 text-xs font-bold tracking-wider uppercase">Now Enrolling Institutions</span>
+            <span className="text-white/70 text-xs font-bold tracking-wider uppercase">{t('Now Enrolling Institutions', 'التسجيل مفتوح للمؤسسات')}</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
-            Join <span className="shimmer-text-footer">760+ schools</span> already transforming education
+            {t('Join', 'انضم إلى')} <span className="shimmer-text-footer">{t('760+ schools', '٧٦٠+ مدرسة')}</span> {t('already transforming education', 'تُحوّل التعليم بالفعل')}
           </h2>
           <p className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
-            From a 50-student school in Lahore to a 2,000-student campus in Riyadh —
-            Cubico scales to your institution. Launch in 4 weeks.
+            {t(
+              'From a 50-student school in Lahore to a 2,000-student campus in Riyadh — Cubico scales to your institution. Launch in 4 weeks.',
+              'من مدرسة تضم ٥٠ طالباً في لاهور إلى حرم جامعي يضم ٢٠٠٠ طالب في الرياض — كيوبيكو يتوسع مع مؤسستك. انطلق خلال ٤ أسابيع.'
+            )}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="btn-primary text-lg px-10">
-              Get Started Today <ArrowRight className="w-5 h-5" />
+              {t('Get Started Today', 'ابدأ اليوم')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
             </Link>
             <Link href="/services" className="btn-outline-white text-lg px-10">
-              Explore Solutions
+              {t('Explore Solutions', 'استكشف الحلول')}
             </Link>
           </div>
         </div>
@@ -83,7 +87,10 @@ export default function Footer() {
                 </span>
               </div>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
-                Full-stack EdTech company powering 760+ schools across Pakistan, Saudi Arabia & Canada with LMS, ERP, animated content, and marketing solutions.
+                {t(
+                  'Full-stack EdTech company powering 760+ schools across Pakistan, Saudi Arabia & Canada with LMS, ERP, animated content, and marketing solutions.',
+                  'شركة تكنولوجيا تعليمية متكاملة تخدم أكثر من ٧٦٠ مدرسة في باكستان والمملكة العربية السعودية وكندا بحلول نظام إدارة التعلم والتخطيط والمحتوى المتحرك والتسويق.'
+                )}
               </p>
               <div className="flex gap-3">
                 {[Facebook, Instagram, Twitter, Linkedin, Youtube].map((Icon, i) => (
@@ -99,14 +106,14 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Solutions</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Solutions', 'الحلول')}</h4>
               <ul className="space-y-3">
                 {[
-                  { name: 'Smart LMS', href: '/solutions/smart-lms' },
-                  { name: 'Animation Studio', href: '/solutions/animation-studio' },
-                  { name: 'School ERP', href: '/solutions/school-erp' },
-                  { name: 'Web Development', href: '/solutions/web-development' },
-                  { name: 'Mobile Apps', href: '/solutions/mobile-apps' },
+                  { name: t('Smart LMS', 'نظام إدارة التعلم'), href: '/solutions/smart-lms' },
+                  { name: t('Animation Studio', 'استوديو الرسوم المتحركة'), href: '/solutions/animation-studio' },
+                  { name: t('School ERP', 'نظام إدارة المدرسة'), href: '/solutions/school-erp' },
+                  { name: t('Web Development', 'تطوير المواقع'), href: '/solutions/web-development' },
+                  { name: t('Mobile Apps', 'تطبيقات الجوال'), href: '/solutions/mobile-apps' },
                 ].map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
@@ -118,14 +125,14 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Services</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Services', 'الخدمات')}</h4>
               <ul className="space-y-3">
                 {[
-                  { name: 'Cloud Hosting', href: '/services/cloud-hosting' },
-                  { name: 'Digital Marketing', href: '/services/digital-marketing' },
-                  { name: 'Teacher Training', href: '/services/teacher-training' },
-                  { name: 'About Us', href: '/about' },
-                  { name: 'Contact Us', href: '/contact' },
+                  { name: t('Cloud Hosting', 'الاستضافة السحابية'), href: '/services/cloud-hosting' },
+                  { name: t('Digital Marketing', 'التسويق الرقمي'), href: '/services/digital-marketing' },
+                  { name: t('Teacher Training', 'تدريب المعلمين'), href: '/services/teacher-training' },
+                  { name: t('About Us', 'من نحن'), href: '/about' },
+                  { name: t('Contact Us', 'تواصل معنا'), href: '/contact' },
                 ].map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
@@ -137,19 +144,19 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="font-heading font-bold text-lg mb-6">Newsletter</h4>
+              <h4 className="font-heading font-bold text-lg mb-6">{t('Newsletter', 'النشرة الإخبارية')}</h4>
               <p className="text-white/50 text-sm mb-6">
-                Sign up for updates, insights, and EdTech news.
+                {t('Sign up for updates, insights, and EdTech news.', 'اشترك للحصول على التحديثات والرؤى وأخبار تكنولوجيا التعليم.')}
               </p>
               {newsletterStatus === 'success' ? (
                 <div className="flex items-center gap-2 text-[#E88C32] text-sm">
-                  <CheckCircle2 className="w-4 h-4" /> Subscribed!
+                  <CheckCircle2 className="w-4 h-4" /> {t('Subscribed!', 'تم الاشتراك!')}
                 </div>
               ) : (
                 <form onSubmit={handleNewsletter} className="space-y-3">
                   <input
                     type="text"
-                    placeholder="Your name"
+                    placeholder={t('Your name', 'اسمك')}
                     value={newsletterName}
                     onChange={(e) => setNewsletterName(e.target.value)}
                     className="form-input-dark text-sm"
@@ -157,14 +164,14 @@ export default function Footer() {
                   />
                   <input
                     type="email"
-                    placeholder="Your email"
+                    placeholder={t('Your email', 'بريدك الإلكتروني')}
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     className="form-input-dark text-sm"
                     required
                   />
                   <button type="submit" className="btn-primary w-full justify-center text-sm">
-                    Sign Up <Send className="w-3 h-3" />
+                    {t('Sign Up', 'اشترك')} <Send className="w-3 h-3" />
                   </button>
                 </form>
               )}
@@ -173,12 +180,19 @@ export default function Footer() {
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/40 text-sm">
-              Copyright © {new Date().getFullYear()} Cubico Technologies. All rights reserved.
+              {t(
+                `Copyright © ${new Date().getFullYear()} Cubico Technologies. All rights reserved.`,
+                `حقوق النشر © ${new Date().getFullYear()} كيوبيكو تكنولوجيز. جميع الحقوق محفوظة.`
+              )}
             </p>
             <div className="flex gap-6">
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((link) => (
-                <a key={link} href="#" className="text-white/40 hover:text-white text-sm transition-colors">
-                  {link}
+              {[
+                { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
+                { en: 'Terms of Service', ar: 'شروط الخدمة' },
+                { en: 'Cookie Policy', ar: 'سياسة ملفات تعريف الارتباط' },
+              ].map((link) => (
+                <a key={link.en} href="#" className="text-white/40 hover:text-white text-sm transition-colors">
+                  {t(link.en, link.ar)}
                 </a>
               ))}
             </div>

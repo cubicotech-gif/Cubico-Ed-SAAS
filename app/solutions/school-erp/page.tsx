@@ -39,6 +39,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -67,144 +68,143 @@ const scaleIn = {
 };
 
 /* ═══════════════════════════════════════════
-   DATA
+   DATA (moved inside component for i18n)
    ═══════════════════════════════════════════ */
-const erpModules = [
-  {
-    icon: UserPlus,
-    title: 'Admissions Management',
-    desc: 'Online applications, document verification, merit lists, and enrollment workflows — all paperless.',
-    color: '#D4711A',
-  },
-  {
-    icon: DollarSign,
-    title: 'Fee & Finance',
-    desc: 'Automated invoicing, online payments, fee structures by class, late-fee rules, and financial reports.',
-    color: '#2563EB',
-  },
-  {
-    icon: Briefcase,
-    title: 'HR & Payroll',
-    desc: 'Staff profiles, salary processing, leave management, performance reviews, and compliance tracking.',
-    color: '#7C3AED',
-  },
-  {
-    icon: Calendar,
-    title: 'Timetable & Scheduling',
-    desc: 'Conflict-free timetable generation, substitution management, and room allocation in seconds.',
-    color: '#059669',
-  },
-  {
-    icon: ClipboardList,
-    title: 'Exam Management',
-    desc: 'Exam scheduling, hall tickets, mark entry, grade computation, and report card generation.',
-    color: '#DC2626',
-  },
-  {
-    icon: Clock,
-    title: 'Attendance Tracking',
-    desc: 'Biometric/RFID integration, period-wise tracking, SMS alerts to parents, and trend analytics.',
-    color: '#0891B2',
-  },
-  {
-    icon: Bus,
-    title: 'Transport Management',
-    desc: 'Route planning, GPS tracking, driver assignment, fee linking, and parent notifications.',
-    color: '#CA8A04',
-  },
-  {
-    icon: BookOpen,
-    title: 'Library System',
-    desc: 'Catalogue management, barcode scanning, issue/return tracking, overdue alerts, and e-library.',
-    color: '#BE185D',
-  },
-  {
-    icon: Package,
-    title: 'Inventory & Assets',
-    desc: 'Track lab equipment, furniture, IT assets, consumables, and procurement with depreciation logs.',
-    color: '#6D28D9',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Parent Communication',
-    desc: 'In-app messaging, SMS/email broadcasts, event calendars, and homework notifications.',
-    color: '#0D9488',
-  },
-  {
-    icon: PieChart,
-    title: 'Reports & Analytics',
-    desc: '100+ pre-built reports, custom dashboards, export to Excel/PDF, and board-level analytics.',
-    color: '#EA580C',
-  },
-  {
-    icon: Bell,
-    title: 'Notifications',
-    desc: 'Multi-channel alerts via push, SMS, email, and WhatsApp with smart scheduling and templates.',
-    color: '#4F46E5',
-  },
-];
-
-const stats = [
-  { number: '760+', label: 'Schools Powered' },
-  { number: '12', label: 'Integrated Modules' },
-  { number: '50%', label: 'Time Saved' },
-  { number: '99.9%', label: 'Uptime SLA' },
-];
-
-const securityFeatures = [
-  { icon: Shield, title: 'Role-Based Access', desc: 'Granular permissions for admins, teachers, parents, and staff with custom role creation.' },
-  { icon: Lock, title: 'Data Encryption', desc: 'AES-256 encryption at rest, TLS 1.3 in transit. Your school data is vault-grade secure.' },
-  { icon: Database, title: 'Automated Backups', desc: 'Daily incremental + weekly full backups with point-in-time recovery up to 30 days.' },
-  { icon: Eye, title: 'GDPR Compliant', desc: 'Data processing agreements, consent management, and right-to-erasure workflows built in.' },
-  { icon: FileText, title: 'Audit Logs', desc: 'Every action tracked — who changed what, when, and from which device. Full accountability.' },
-  { icon: Server, title: 'Multi-Tenant Architecture', desc: 'Isolated databases per school. One school\'s data never touches another. Ever.' },
-];
-
-const roiData = [
-  { metric: 'Weekly Admin Hours', before: '40 hrs', after: '8 hrs', beforePct: 100, afterPct: 20 },
-  { metric: 'Fee Default Rate', before: '15%', after: '3%', beforePct: 100, afterPct: 20 },
-  { metric: 'Report Generation', before: '3 days', after: 'Instant', beforePct: 100, afterPct: 5 },
-  { metric: 'Parent Satisfaction', before: '62%', after: '94%', beforePct: 62, afterPct: 94 },
-];
-
-/* Fee table mock data */
-const feeInvoices = [
-  { student: 'Aisha Rahman', class: 'Grade 10-A', amount: 'AED 4,500', status: 'Paid', statusColor: 'bg-emerald-500/20 text-emerald-400' },
-  { student: 'Omar Al-Farsi', class: 'Grade 8-B', amount: 'AED 4,500', status: 'Pending', statusColor: 'bg-yellow-500/20 text-yellow-400' },
-  { student: 'Sara Khalid', class: 'Grade 12-A', amount: 'AED 5,200', status: 'Paid', statusColor: 'bg-emerald-500/20 text-emerald-400' },
-  { student: 'Yusuf Hassan', class: 'Grade 7-C', amount: 'AED 4,500', status: 'Overdue', statusColor: 'bg-red-500/20 text-red-400' },
-  { student: 'Fatima Noor', class: 'Grade 9-A', amount: 'AED 4,800', status: 'Paid', statusColor: 'bg-emerald-500/20 text-emerald-400' },
-];
-
-/* Report card mock data */
-const reportCardSubjects = [
-  { subject: 'Mathematics', marks: 92, grade: 'A+', comment: 'Excellent analytical skills' },
-  { subject: 'Science', marks: 88, grade: 'A', comment: 'Strong lab performance' },
-  { subject: 'English', marks: 85, grade: 'A', comment: 'Impressive writing growth' },
-  { subject: 'Arabic', marks: 78, grade: 'B+', comment: 'Needs vocabulary focus' },
-  { subject: 'Social Studies', marks: 90, grade: 'A+', comment: 'Outstanding projects' },
-  { subject: 'Computer Science', marks: 95, grade: 'A+', comment: 'Exceptional coding ability' },
-];
-
-/* Data flow hub modules */
-const hubModules = [
-  { icon: UserPlus, label: 'Admissions', angle: 0 },
-  { icon: DollarSign, label: 'Finance', angle: 30 },
-  { icon: Briefcase, label: 'HR', angle: 60 },
-  { icon: Calendar, label: 'Timetable', angle: 90 },
-  { icon: ClipboardList, label: 'Exams', angle: 120 },
-  { icon: Clock, label: 'Attendance', angle: 150 },
-  { icon: Bus, label: 'Transport', angle: 180 },
-  { icon: BookOpen, label: 'Library', angle: 210 },
-  { icon: Package, label: 'Inventory', angle: 240 },
-  { icon: MessageSquare, label: 'Comms', angle: 270 },
-  { icon: PieChart, label: 'Reports', angle: 300 },
-  { icon: Bell, label: 'Alerts', angle: 330 },
-];
 
 export default function SchoolERPPage() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState(0);
-  const tabs = ['Fee Management', 'Attendance Dashboard', 'Report Cards'];
+  const tabs = [t('Fee Management', 'إدارة الرسوم'), t('Attendance Dashboard', 'لوحة الحضور'), t('Report Cards', 'بطاقات التقارير')];
+
+  const erpModules = [
+    {
+      icon: UserPlus,
+      title: t('Admissions Management', 'إدارة القبول'),
+      desc: t('Online applications, document verification, merit lists, and enrollment workflows — all paperless.', 'التقديم الإلكتروني، التحقق من المستندات، قوائم الجدارة، وسير عمل التسجيل — بدون أوراق.'),
+      color: '#D4711A',
+    },
+    {
+      icon: DollarSign,
+      title: t('Fee & Finance', 'الرسوم والمالية'),
+      desc: t('Automated invoicing, online payments, fee structures by class, late-fee rules, and financial reports.', 'الفواتير التلقائية، الدفع الإلكتروني، هياكل الرسوم حسب الصف، قواعد الرسوم المتأخرة، والتقارير المالية.'),
+      color: '#2563EB',
+    },
+    {
+      icon: Briefcase,
+      title: t('HR & Payroll', 'الموارد البشرية والرواتب'),
+      desc: t('Staff profiles, salary processing, leave management, performance reviews, and compliance tracking.', 'ملفات الموظفين، معالجة الرواتب، إدارة الإجازات، تقييم الأداء، وتتبع الامتثال.'),
+      color: '#7C3AED',
+    },
+    {
+      icon: Calendar,
+      title: t('Timetable & Scheduling', 'الجدول الزمني والجدولة'),
+      desc: t('Conflict-free timetable generation, substitution management, and room allocation in seconds.', 'إنشاء جداول زمنية بدون تعارض، إدارة الاستبدال، وتخصيص الغرف في ثوانٍ.'),
+      color: '#059669',
+    },
+    {
+      icon: ClipboardList,
+      title: t('Exam Management', 'إدارة الامتحانات'),
+      desc: t('Exam scheduling, hall tickets, mark entry, grade computation, and report card generation.', 'جدولة الامتحانات، بطاقات القاعة، إدخال الدرجات، حساب التقديرات، وإنشاء بطاقات التقارير.'),
+      color: '#DC2626',
+    },
+    {
+      icon: Clock,
+      title: t('Attendance Tracking', 'تتبع الحضور'),
+      desc: t('Biometric/RFID integration, period-wise tracking, SMS alerts to parents, and trend analytics.', 'تكامل البصمة/RFID، التتبع حسب الحصة، تنبيهات SMS لأولياء الأمور، وتحليلات الاتجاهات.'),
+      color: '#0891B2',
+    },
+    {
+      icon: Bus,
+      title: t('Transport Management', 'إدارة النقل'),
+      desc: t('Route planning, GPS tracking, driver assignment, fee linking, and parent notifications.', 'تخطيط المسارات، تتبع GPS، تعيين السائقين، ربط الرسوم، وإشعارات أولياء الأمور.'),
+      color: '#CA8A04',
+    },
+    {
+      icon: BookOpen,
+      title: t('Library System', 'نظام المكتبة'),
+      desc: t('Catalogue management, barcode scanning, issue/return tracking, overdue alerts, and e-library.', 'إدارة الفهرس، مسح الباركود، تتبع الإعارة/الإرجاع، تنبيهات التأخير، والمكتبة الإلكترونية.'),
+      color: '#BE185D',
+    },
+    {
+      icon: Package,
+      title: t('Inventory & Assets', 'المخزون والأصول'),
+      desc: t('Track lab equipment, furniture, IT assets, consumables, and procurement with depreciation logs.', 'تتبع معدات المختبر، الأثاث، أصول تكنولوجيا المعلومات، المواد الاستهلاكية، والمشتريات مع سجلات الإهلاك.'),
+      color: '#6D28D9',
+    },
+    {
+      icon: MessageSquare,
+      title: t('Parent Communication', 'التواصل مع أولياء الأمور'),
+      desc: t('In-app messaging, SMS/email broadcasts, event calendars, and homework notifications.', 'الرسائل داخل التطبيق، بث SMS/البريد الإلكتروني، تقويم الفعاليات، وإشعارات الواجبات.'),
+      color: '#0D9488',
+    },
+    {
+      icon: PieChart,
+      title: t('Reports & Analytics', 'التقارير والتحليلات'),
+      desc: t('100+ pre-built reports, custom dashboards, export to Excel/PDF, and board-level analytics.', 'أكثر من 100 تقرير جاهز، لوحات معلومات مخصصة، تصدير إلى Excel/PDF، وتحليلات على مستوى الإدارة.'),
+      color: '#EA580C',
+    },
+    {
+      icon: Bell,
+      title: t('Notifications', 'الإشعارات'),
+      desc: t('Multi-channel alerts via push, SMS, email, and WhatsApp with smart scheduling and templates.', 'تنبيهات متعددة القنوات عبر الإشعارات الفورية، SMS، البريد الإلكتروني، وواتساب مع جدولة ذكية وقوالب.'),
+      color: '#4F46E5',
+    },
+  ];
+
+  const stats = [
+    { number: '760+', label: t('Schools Powered', 'مدرسة مدعومة') },
+    { number: '12', label: t('Integrated Modules', 'وحدة متكاملة') },
+    { number: '50%', label: t('Time Saved', 'توفير في الوقت') },
+    { number: '99.9%', label: t('Uptime SLA', 'اتفاقية وقت التشغيل') },
+  ];
+
+  const securityFeatures = [
+    { icon: Shield, title: t('Role-Based Access', 'الوصول القائم على الأدوار'), desc: t('Granular permissions for admins, teachers, parents, and staff with custom role creation.', 'صلاحيات دقيقة للمسؤولين والمعلمين وأولياء الأمور والموظفين مع إنشاء أدوار مخصصة.') },
+    { icon: Lock, title: t('Data Encryption', 'تشفير البيانات'), desc: t('AES-256 encryption at rest, TLS 1.3 in transit. Your school data is vault-grade secure.', 'تشفير AES-256 في حالة السكون، TLS 1.3 أثناء النقل. بيانات مدرستك آمنة بدرجة الخزائن.') },
+    { icon: Database, title: t('Automated Backups', 'النسخ الاحتياطي التلقائي'), desc: t('Daily incremental + weekly full backups with point-in-time recovery up to 30 days.', 'نسخ احتياطي تدريجي يومي + نسخ كامل أسبوعي مع استعادة نقطة زمنية حتى 30 يومًا.') },
+    { icon: Eye, title: t('GDPR Compliant', 'متوافق مع GDPR'), desc: t('Data processing agreements, consent management, and right-to-erasure workflows built in.', 'اتفاقيات معالجة البيانات، إدارة الموافقة، وسير عمل حق المحو مدمجة.') },
+    { icon: FileText, title: t('Audit Logs', 'سجلات التدقيق'), desc: t('Every action tracked — who changed what, when, and from which device. Full accountability.', 'كل إجراء مُتتبع — من غيّر ماذا، متى، ومن أي جهاز. مساءلة كاملة.') },
+    { icon: Server, title: t('Multi-Tenant Architecture', 'بنية متعددة المستأجرين'), desc: t('Isolated databases per school. One school\'s data never touches another. Ever.', 'قواعد بيانات معزولة لكل مدرسة. بيانات مدرسة لا تلمس أخرى أبدًا.') },
+  ];
+
+  const roiData = [
+    { metric: t('Weekly Admin Hours', 'ساعات الإدارة الأسبوعية'), before: t('40 hrs', '40 ساعة'), after: t('8 hrs', '8 ساعات'), beforePct: 100, afterPct: 20 },
+    { metric: t('Fee Default Rate', 'معدل التخلف عن الرسوم'), before: '15%', after: '3%', beforePct: 100, afterPct: 20 },
+    { metric: t('Report Generation', 'إنشاء التقارير'), before: t('3 days', '3 أيام'), after: t('Instant', 'فوري'), beforePct: 100, afterPct: 5 },
+    { metric: t('Parent Satisfaction', 'رضا أولياء الأمور'), before: '62%', after: '94%', beforePct: 62, afterPct: 94 },
+  ];
+
+  const feeInvoices = [
+    { student: t('Aisha Rahman', 'عائشة رحمن'), class: t('Grade 10-A', 'الصف 10-أ'), amount: 'AED 4,500', status: t('Paid', 'مدفوع'), statusColor: 'bg-emerald-500/20 text-emerald-400' },
+    { student: t('Omar Al-Farsi', 'عمر الفارسي'), class: t('Grade 8-B', 'الصف 8-ب'), amount: 'AED 4,500', status: t('Pending', 'معلق'), statusColor: 'bg-yellow-500/20 text-yellow-400' },
+    { student: t('Sara Khalid', 'سارة خالد'), class: t('Grade 12-A', 'الصف 12-أ'), amount: 'AED 5,200', status: t('Paid', 'مدفوع'), statusColor: 'bg-emerald-500/20 text-emerald-400' },
+    { student: t('Yusuf Hassan', 'يوسف حسن'), class: t('Grade 7-C', 'الصف 7-ج'), amount: 'AED 4,500', status: t('Overdue', 'متأخر'), statusColor: 'bg-red-500/20 text-red-400' },
+    { student: t('Fatima Noor', 'فاطمة نور'), class: t('Grade 9-A', 'الصف 9-أ'), amount: 'AED 4,800', status: t('Paid', 'مدفوع'), statusColor: 'bg-emerald-500/20 text-emerald-400' },
+  ];
+
+  const reportCardSubjects = [
+    { subject: t('Mathematics', 'الرياضيات'), marks: 92, grade: 'A+', comment: t('Excellent analytical skills', 'مهارات تحليلية ممتازة') },
+    { subject: t('Science', 'العلوم'), marks: 88, grade: 'A', comment: t('Strong lab performance', 'أداء مختبري قوي') },
+    { subject: t('English', 'اللغة الإنجليزية'), marks: 85, grade: 'A', comment: t('Impressive writing growth', 'نمو كتابي مثير للإعجاب') },
+    { subject: t('Arabic', 'اللغة العربية'), marks: 78, grade: 'B+', comment: t('Needs vocabulary focus', 'يحتاج التركيز على المفردات') },
+    { subject: t('Social Studies', 'الدراسات الاجتماعية'), marks: 90, grade: 'A+', comment: t('Outstanding projects', 'مشاريع متميزة') },
+    { subject: t('Computer Science', 'علوم الحاسوب'), marks: 95, grade: 'A+', comment: t('Exceptional coding ability', 'قدرة برمجية استثنائية') },
+  ];
+
+  const hubModules = [
+    { icon: UserPlus, label: t('Admissions', 'القبول'), angle: 0 },
+    { icon: DollarSign, label: t('Finance', 'المالية'), angle: 30 },
+    { icon: Briefcase, label: t('HR', 'الموارد البشرية'), angle: 60 },
+    { icon: Calendar, label: t('Timetable', 'الجدول'), angle: 90 },
+    { icon: ClipboardList, label: t('Exams', 'الامتحانات'), angle: 120 },
+    { icon: Clock, label: t('Attendance', 'الحضور'), angle: 150 },
+    { icon: Bus, label: t('Transport', 'النقل'), angle: 180 },
+    { icon: BookOpen, label: t('Library', 'المكتبة'), angle: 210 },
+    { icon: Package, label: t('Inventory', 'المخزون'), angle: 240 },
+    { icon: MessageSquare, label: t('Comms', 'التواصل'), angle: 270 },
+    { icon: PieChart, label: t('Reports', 'التقارير'), angle: 300 },
+    { icon: Bell, label: t('Alerts', 'التنبيهات'), angle: 330 },
+  ];
 
   return (
     <>
@@ -244,7 +244,7 @@ export default function SchoolERPPage() {
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D4711A]" />
                 </span>
                 <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
-                  Enterprise School Management
+                  {t('Enterprise School Management', 'إدارة المدرسة المؤسسية')}
                 </span>
               </motion.div>
 
@@ -254,8 +254,8 @@ export default function SchoolERPPage() {
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-8 leading-[1.1]"
               >
-                One System.{' '}
-                <span className="gradient-text">Zero Chaos.</span>
+                {t('One System.', 'نظام واحد.')}{' '}
+                <span className="gradient-text">{t('Zero Chaos.', 'فوضى صفر.')}</span>
               </motion.h1>
 
               <motion.p
@@ -264,9 +264,7 @@ export default function SchoolERPPage() {
                 transition={{ delay: 0.2 }}
                 className="text-white/55 text-lg md:text-xl max-w-xl mb-10 leading-relaxed"
               >
-                Manage admissions, fees, HR, exams, attendance, transport, and
-                every aspect of school operations from one unified platform.
-                Built for schools that refuse to settle for spreadsheets.
+                {t('Manage admissions, fees, HR, exams, attendance, transport, and every aspect of school operations from one unified platform. Built for schools that refuse to settle for spreadsheets.', 'إدارة القبول والرسوم والموارد البشرية والامتحانات والحضور والنقل وكل جانب من جوانب عمليات المدرسة من منصة واحدة موحدة. مصممة للمدارس التي ترفض الاكتفاء بجداول البيانات.')}
               </motion.p>
 
               <motion.div
@@ -276,10 +274,10 @@ export default function SchoolERPPage() {
                 className="flex flex-wrap gap-4"
               >
                 <Link href="/contact" className="btn-primary text-lg px-8">
-                  Request a Demo <ArrowRight className="w-5 h-5" />
+                  {t('Request a Demo', 'احجز عرضاً تجريبياً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                 </Link>
                 <Link href="/pricing" className="btn-outline-white text-lg px-8">
-                  View Pricing
+                  {t('View Pricing', 'عرض الأسعار')}
                 </Link>
               </motion.div>
 
@@ -308,7 +306,7 @@ export default function SchoolERPPage() {
                       <Star key={s} className="w-3.5 h-3.5 text-[#E88C32] fill-[#E88C32]" />
                     ))}
                   </div>
-                  <p className="text-white/40 text-xs">Trusted by 760+ schools worldwide</p>
+                  <p className="text-white/40 text-xs">{t('Trusted by 760+ schools worldwide', 'موثوق من قبل أكثر من 760 مدرسة حول العالم')}</p>
                 </div>
               </motion.div>
             </div>
@@ -364,10 +362,10 @@ export default function SchoolERPPage() {
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <div className="text-white/90 text-sm font-bold font-heading">
-                            School Dashboard
+                            {t('School Dashboard', 'لوحة المدرسة')}
                           </div>
                           <div className="text-white/30 text-[10px] mt-0.5">
-                            Academic Year 2025-26 &middot; Term 2
+                            {t('Academic Year 2025-26', 'العام الدراسي 2025-26')} &middot; {t('Term 2', 'الفصل 2')}
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -384,9 +382,9 @@ export default function SchoolERPPage() {
                       {/* Stats Cards */}
                       <div className="grid grid-cols-3 gap-2 mb-4">
                         {[
-                          { label: 'Total Students', val: '2,847', icon: Users, change: '+124 new', changeColor: 'text-emerald-400' },
-                          { label: 'Monthly Revenue', val: 'AED 1.2M', icon: DollarSign, change: '+8.3%', changeColor: 'text-emerald-400' },
-                          { label: 'Attendance', val: '94.2%', icon: Activity, change: '-0.5%', changeColor: 'text-yellow-400' },
+                          { label: t('Total Students', 'إجمالي الطلاب'), val: '2,847', icon: Users, change: t('+124 new', '+124 جديد'), changeColor: 'text-emerald-400' },
+                          { label: t('Monthly Revenue', 'الإيرادات الشهرية'), val: 'AED 1.2M', icon: DollarSign, change: '+8.3%', changeColor: 'text-emerald-400' },
+                          { label: t('Attendance', 'الحضور'), val: '94.2%', icon: Activity, change: '-0.5%', changeColor: 'text-yellow-400' },
                         ].map((card, i) => (
                           <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5">
                             <div className="flex items-center justify-between mb-2">
@@ -403,7 +401,7 @@ export default function SchoolERPPage() {
                       <div className="grid grid-cols-5 gap-2">
                         {/* Chart */}
                         <div className="col-span-3 bg-white/5 rounded-xl p-3 border border-white/5">
-                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-3">Fee Collection Trend</div>
+                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-3">{t('Fee Collection Trend', 'اتجاه تحصيل الرسوم')}</div>
                           <div className="flex items-end gap-1 h-16">
                             {[45, 62, 58, 75, 82, 70, 88, 92, 85, 78, 95, 90].map((h, i) => (
                               <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
@@ -415,21 +413,21 @@ export default function SchoolERPPage() {
                             ))}
                           </div>
                           <div className="flex justify-between mt-1">
-                            <span className="text-white/20 text-[7px]">Jan</span>
-                            <span className="text-white/20 text-[7px]">Jun</span>
-                            <span className="text-white/20 text-[7px]">Dec</span>
+                            <span className="text-white/20 text-[7px]">{t('Jan', 'يناير')}</span>
+                            <span className="text-white/20 text-[7px]">{t('Jun', 'يونيو')}</span>
+                            <span className="text-white/20 text-[7px]">{t('Dec', 'ديسمبر')}</span>
                           </div>
                         </div>
 
                         {/* Recent Notifications */}
                         <div className="col-span-2 bg-white/5 rounded-xl p-3 border border-white/5">
-                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-2">Notifications</div>
+                          <div className="text-white/50 text-[9px] uppercase tracking-wider mb-2">{t('Notifications', 'الإشعارات')}</div>
                           <div className="space-y-2">
                             {[
-                              { text: 'Fee reminder sent', color: 'bg-orange-500' },
-                              { text: '3 leaves approved', color: 'bg-emerald-500' },
-                              { text: 'Exam schedule live', color: 'bg-blue-500' },
-                              { text: 'Bus #7 delayed', color: 'bg-red-500' },
+                              { text: t('Fee reminder sent', 'تم إرسال تذكير الرسوم'), color: 'bg-orange-500' },
+                              { text: t('3 leaves approved', 'تمت الموافقة على 3 إجازات'), color: 'bg-emerald-500' },
+                              { text: t('Exam schedule live', 'جدول الامتحانات مباشر'), color: 'bg-blue-500' },
+                              { text: t('Bus #7 delayed', 'تأخر الحافلة رقم 7'), color: 'bg-red-500' },
                             ].map((n, i) => (
                               <div key={i} className="flex items-center gap-2">
                                 <div className={`w-1.5 h-1.5 rounded-full ${n.color} shrink-0`} />
@@ -461,13 +459,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label">Modules</span>
+            <span className="section-label">{t('Modules', 'الوحدات')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              12 Modules. <span className="gradient-text">One Platform.</span>
+              {t('12 Modules.', '12 وحدة.')} <span className="gradient-text">{t('One Platform.', 'منصة واحدة.')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Every department, every workflow, every stakeholder — connected and synchronized
-              in real time. No more data silos.
+              {t('Every department, every workflow, every stakeholder — connected and synchronized in real time. No more data silos.', 'كل قسم، كل سير عمل، كل أصحاب المصلحة — متصلون ومتزامنون في الوقت الفعلي. لا مزيد من صوامع البيانات.')}
             </p>
           </motion.div>
 
@@ -523,13 +520,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label-light">Deep Dive</span>
+            <span className="section-label-light">{t('Deep Dive', 'نظرة معمّقة')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mt-4 mb-6">
-              See Modules <span className="gradient-text">In Action</span>
+              {t('See Modules', 'شاهد الوحدات')} <span className="gradient-text">{t('In Action', 'أثناء العمل')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto">
-              Explore detailed views of our most-used modules. Every screen is designed
-              for clarity, speed, and zero training time.
+              {t('Explore detailed views of our most-used modules. Every screen is designed for clarity, speed, and zero training time.', 'استكشف عروضًا تفصيلية لأكثر وحداتنا استخدامًا. كل شاشة مصممة للوضوح والسرعة وعدم الحاجة لأي تدريب.')}
             </p>
           </motion.div>
 
@@ -588,15 +584,15 @@ export default function SchoolERPPage() {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-white font-heading font-bold text-lg">Fee Invoices</h3>
-                        <p className="text-white/30 text-xs mt-1">Term 2, 2025-26 &middot; 2,847 students</p>
+                        <h3 className="text-white font-heading font-bold text-lg">{t('Fee Invoices', 'فواتير الرسوم')}</h3>
+                        <p className="text-white/30 text-xs mt-1">{t('Term 2, 2025-26', 'الفصل 2، 2025-26')} &middot; {t('2,847 students', '2,847 طالب')}</p>
                       </div>
                       <div className="flex gap-2">
                         <div className="px-3 py-1.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-lg font-bold">
-                          82% Collected
+                          {t('82% Collected', '82% محصّل')}
                         </div>
                         <div className="px-3 py-1.5 bg-[#D4711A]/20 text-[#E88C32] text-xs rounded-lg font-bold">
-                          + New Invoice
+                          {t('+ New Invoice', '+ فاتورة جديدة')}
                         </div>
                       </div>
                     </div>
@@ -604,10 +600,10 @@ export default function SchoolERPPage() {
                     {/* Summary Cards */}
                     <div className="grid grid-cols-4 gap-3 mb-6">
                       {[
-                        { label: 'Total Billed', value: 'AED 12.8M', color: 'text-white' },
-                        { label: 'Collected', value: 'AED 10.5M', color: 'text-emerald-400' },
-                        { label: 'Pending', value: 'AED 1.8M', color: 'text-yellow-400' },
-                        { label: 'Overdue', value: 'AED 0.5M', color: 'text-red-400' },
+                        { label: t('Total Billed', 'إجمالي الفواتير'), value: 'AED 12.8M', color: 'text-white' },
+                        { label: t('Collected', 'المحصّل'), value: 'AED 10.5M', color: 'text-emerald-400' },
+                        { label: t('Pending', 'معلق'), value: 'AED 1.8M', color: 'text-yellow-400' },
+                        { label: t('Overdue', 'متأخر'), value: 'AED 0.5M', color: 'text-red-400' },
                       ].map((s, i) => (
                         <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5">
                           <div className="text-white/40 text-[10px] uppercase tracking-wider">{s.label}</div>
@@ -619,11 +615,11 @@ export default function SchoolERPPage() {
                     {/* Table */}
                     <div className="bg-white/3 rounded-xl border border-white/5 overflow-hidden">
                       <div className="grid grid-cols-5 gap-4 px-4 py-3 bg-white/5 text-white/40 text-[10px] uppercase tracking-wider font-bold">
-                        <span>Student</span>
-                        <span>Class</span>
-                        <span>Amount</span>
-                        <span>Status</span>
-                        <span>Action</span>
+                        <span>{t('Student', 'الطالب')}</span>
+                        <span>{t('Class', 'الصف')}</span>
+                        <span>{t('Amount', 'المبلغ')}</span>
+                        <span>{t('Status', 'الحالة')}</span>
+                        <span>{t('Action', 'الإجراء')}</span>
                       </div>
                       {feeInvoices.map((inv, i) => (
                         <div key={i} className="grid grid-cols-5 gap-4 px-4 py-3 border-t border-white/5 items-center">
@@ -636,7 +632,7 @@ export default function SchoolERPPage() {
                             </span>
                           </span>
                           <span>
-                            <span className="text-[#E88C32] text-xs cursor-pointer hover:underline">View &rarr;</span>
+                            <span className="text-[#E88C32] text-xs cursor-pointer hover:underline">{t('View', 'عرض')} &rarr;</span>
                           </span>
                         </div>
                       ))}
@@ -650,25 +646,25 @@ export default function SchoolERPPage() {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-white font-heading font-bold text-lg">Attendance Overview</h3>
-                        <p className="text-white/30 text-xs mt-1">March 2026 &middot; Grade 10-A</p>
+                        <h3 className="text-white font-heading font-bold text-lg">{t('Attendance Overview', 'نظرة عامة على الحضور')}</h3>
+                        <p className="text-white/30 text-xs mt-1">{t('March 2026', 'مارس 2026')} &middot; {t('Grade 10-A', 'الصف 10-أ')}</p>
                       </div>
                       <div className="flex gap-3 items-center">
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-emerald-500" />
-                          <span className="text-white/40 text-[10px]">Present</span>
+                          <span className="text-white/40 text-[10px]">{t('Present', 'حاضر')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-red-500" />
-                          <span className="text-white/40 text-[10px]">Absent</span>
+                          <span className="text-white/40 text-[10px]">{t('Absent', 'غائب')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-yellow-500" />
-                          <span className="text-white/40 text-[10px]">Late</span>
+                          <span className="text-white/40 text-[10px]">{t('Late', 'متأخر')}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-sm bg-white/10" />
-                          <span className="text-white/40 text-[10px]">Holiday</span>
+                          <span className="text-white/40 text-[10px]">{t('Holiday', 'عطلة')}</span>
                         </div>
                       </div>
                     </div>
@@ -676,10 +672,10 @@ export default function SchoolERPPage() {
                     {/* Stats row */}
                     <div className="grid grid-cols-4 gap-3 mb-6">
                       {[
-                        { label: 'Today Present', value: '38/42', pct: '90.5%', color: 'text-emerald-400' },
-                        { label: 'Month Avg', value: '94.2%', pct: '', color: 'text-white' },
-                        { label: 'Chronic Absent', value: '3 students', pct: '', color: 'text-red-400' },
-                        { label: 'On Leave', value: '4', pct: '', color: 'text-yellow-400' },
+                        { label: t('Today Present', 'الحاضرون اليوم'), value: '38/42', pct: '90.5%', color: 'text-emerald-400' },
+                        { label: t('Month Avg', 'متوسط الشهر'), value: '94.2%', pct: '', color: 'text-white' },
+                        { label: t('Chronic Absent', 'غياب مزمن'), value: t('3 students', '3 طلاب'), pct: '', color: 'text-red-400' },
+                        { label: t('On Leave', 'في إجازة'), value: '4', pct: '', color: 'text-yellow-400' },
                       ].map((s, i) => (
                         <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5">
                           <div className="text-white/40 text-[10px] uppercase tracking-wider">{s.label}</div>
@@ -691,10 +687,10 @@ export default function SchoolERPPage() {
 
                     {/* Calendar Heatmap */}
                     <div className="bg-white/3 rounded-xl border border-white/5 p-4">
-                      <div className="text-white/50 text-[10px] uppercase tracking-wider mb-3 font-bold">March 2026 &mdash; Heatmap</div>
+                      <div className="text-white/50 text-[10px] uppercase tracking-wider mb-3 font-bold">{t('March 2026', 'مارس 2026')} &mdash; {t('Heatmap', 'خريطة حرارية')}</div>
                       {/* Day headers */}
                       <div className="grid grid-cols-7 gap-1.5 mb-2">
-                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
+                        {[t('Sun', 'أحد'), t('Mon', 'اثن'), t('Tue', 'ثلا'), t('Wed', 'أرب'), t('Thu', 'خمي'), t('Fri', 'جمع'), t('Sat', 'سبت')].map((d) => (
                           <div key={d} className="text-center text-white/25 text-[9px] font-bold">{d}</div>
                         ))}
                       </div>
@@ -736,15 +732,15 @@ export default function SchoolERPPage() {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                       <div>
-                        <h3 className="text-white font-heading font-bold text-lg">Student Report Card</h3>
-                        <p className="text-white/30 text-xs mt-1">Aisha Rahman &middot; Grade 10-A &middot; Term 2</p>
+                        <h3 className="text-white font-heading font-bold text-lg">{t('Student Report Card', 'بطاقة تقرير الطالب')}</h3>
+                        <p className="text-white/30 text-xs mt-1">{t('Aisha Rahman', 'عائشة رحمن')} &middot; {t('Grade 10-A', 'الصف 10-أ')} &middot; {t('Term 2', 'الفصل 2')}</p>
                       </div>
                       <div className="flex gap-2">
                         <div className="px-3 py-1.5 bg-white/5 text-white/50 text-xs rounded-lg border border-white/10">
-                          Download PDF
+                          {t('Download PDF', 'تحميل PDF')}
                         </div>
                         <div className="px-3 py-1.5 bg-[#D4711A]/20 text-[#E88C32] text-xs rounded-lg font-bold">
-                          Print
+                          {t('Print', 'طباعة')}
                         </div>
                       </div>
                     </div>
@@ -757,22 +753,22 @@ export default function SchoolERPPage() {
                             A
                           </div>
                           <div>
-                            <div className="text-white font-heading font-bold">Aisha Rahman</div>
-                            <div className="text-white/30 text-xs">Roll No: 2026-10A-07 &middot; DOB: 14 Mar 2012</div>
+                            <div className="text-white font-heading font-bold">{t('Aisha Rahman', 'عائشة رحمن')}</div>
+                            <div className="text-white/30 text-xs">{t('Roll No: 2026-10A-07', 'رقم القيد: 2026-10A-07')} &middot; {t('DOB: 14 Mar 2012', 'تاريخ الميلاد: 14 مارس 2012')}</div>
                           </div>
                         </div>
                       </div>
                       <div className="bg-white/5 rounded-xl p-4 border border-white/5 flex items-center justify-between">
                         <div>
-                          <div className="text-white/40 text-[10px] uppercase tracking-wider">Overall Grade</div>
+                          <div className="text-white/40 text-[10px] uppercase tracking-wider">{t('Overall Grade', 'التقدير العام')}</div>
                           <div className="text-3xl font-bold font-heading text-emerald-400 mt-1">A</div>
                         </div>
                         <div className="text-right">
-                          <div className="text-white/40 text-[10px] uppercase tracking-wider">Percentage</div>
+                          <div className="text-white/40 text-[10px] uppercase tracking-wider">{t('Percentage', 'النسبة المئوية')}</div>
                           <div className="text-3xl font-bold font-heading text-white mt-1">88%</div>
                         </div>
                         <div className="text-right">
-                          <div className="text-white/40 text-[10px] uppercase tracking-wider">Rank</div>
+                          <div className="text-white/40 text-[10px] uppercase tracking-wider">{t('Rank', 'الترتيب')}</div>
                           <div className="text-3xl font-bold font-heading text-[#E88C32] mt-1">7th</div>
                         </div>
                       </div>
@@ -781,10 +777,10 @@ export default function SchoolERPPage() {
                     {/* Subjects Table */}
                     <div className="bg-white/3 rounded-xl border border-white/5 overflow-hidden">
                       <div className="grid grid-cols-5 gap-4 px-4 py-3 bg-white/5 text-white/40 text-[10px] uppercase tracking-wider font-bold">
-                        <span>Subject</span>
-                        <span className="text-center">Marks (100)</span>
-                        <span className="text-center">Grade</span>
-                        <span className="col-span-2">Teacher&apos;s Comment</span>
+                        <span>{t('Subject', 'المادة')}</span>
+                        <span className="text-center">{t('Marks (100)', 'الدرجات (100)')}</span>
+                        <span className="text-center">{t('Grade', 'التقدير')}</span>
+                        <span className="col-span-2">{t("Teacher's Comment", 'تعليق المعلم')}</span>
                       </div>
                       {reportCardSubjects.map((sub, i) => (
                         <div key={i} className="grid grid-cols-5 gap-4 px-4 py-3 border-t border-white/5 items-center">
@@ -830,13 +826,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-20"
           >
-            <span className="section-label">Architecture</span>
+            <span className="section-label">{t('Architecture', 'البنية')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              Everything Connects to <span className="gradient-text">One Hub</span>
+              {t('Everything Connects to', 'كل شيء يتصل بـ')} <span className="gradient-text">{t('One Hub', 'مركز واحد')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Data flows seamlessly between all 12 modules. When a student is admitted,
-              their records propagate to fees, transport, attendance, and every other module automatically.
+              {t('Data flows seamlessly between all 12 modules. When a student is admitted, their records propagate to fees, transport, attendance, and every other module automatically.', 'تتدفق البيانات بسلاسة بين جميع الوحدات الـ 12. عند قبول طالب، تنتشر سجلاته إلى الرسوم والنقل والحضور وكل وحدة أخرى تلقائيًا.')}
             </p>
           </motion.div>
 
@@ -882,7 +877,7 @@ export default function SchoolERPPage() {
                 <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center shadow-2xl shadow-[#D4711A]/30">
                   <div className="text-center">
                     <Settings className="w-8 h-8 text-white mx-auto mb-1" />
-                    <span className="text-white text-xs font-bold font-heading">Cubico ERP</span>
+                    <span className="text-white text-xs font-bold font-heading">{t('Cubico ERP', 'كيوبيكو ERP')}</span>
                   </div>
                 </div>
               </div>
@@ -935,13 +930,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label-light">Impact</span>
+            <span className="section-label-light">{t('Impact', 'التأثير')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mt-4 mb-6">
-              The ROI Speaks <span className="gradient-text">For Itself</span>
+              {t('The ROI Speaks', 'العائد على الاستثمار يتحدث')} <span className="gradient-text">{t('For Itself', 'عن نفسه')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto">
-              Schools switching from manual processes see transformative improvements
-              within the first semester.
+              {t('Schools switching from manual processes see transformative improvements within the first semester.', 'المدارس التي تنتقل من العمليات اليدوية تشهد تحسينات جذرية خلال الفصل الدراسي الأول.')}
             </p>
           </motion.div>
 
@@ -964,7 +958,7 @@ export default function SchoolERPPage() {
                 {/* Before */}
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">Manual Process</span>
+                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">{t('Manual Process', 'العملية اليدوية')}</span>
                     <span className="text-red-400 font-bold text-sm">{item.before}</span>
                   </div>
                   <div className="h-3 bg-white/5 rounded-full overflow-hidden">
@@ -981,7 +975,7 @@ export default function SchoolERPPage() {
                 {/* After */}
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">With Cubico ERP</span>
+                    <span className="text-white/40 text-xs uppercase tracking-wider font-bold">{t('With Cubico ERP', 'مع نظام كيوبيكو')}</span>
                     <span className="text-emerald-400 font-bold text-sm">{item.after}</span>
                   </div>
                   <div className="h-3 bg-white/5 rounded-full overflow-hidden">
@@ -1044,13 +1038,12 @@ export default function SchoolERPPage() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <span className="section-label">Security</span>
+            <span className="section-label">{t('Security', 'الأمان')}</span>
             <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              Enterprise-Grade <span className="gradient-text">Security</span>
+              {t('Enterprise-Grade', 'أمان على مستوى')} <span className="gradient-text">{t('Security', 'المؤسسات')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Student data is sacred. Our infrastructure is built with bank-level security
-              so you never have to worry about breaches or compliance.
+              {t('Student data is sacred. Our infrastructure is built with bank-level security so you never have to worry about breaches or compliance.', 'بيانات الطلاب مقدسة. بنيتنا التحتية مبنية بأمان على مستوى البنوك لذا لا داعي للقلق بشأن الاختراقات أو الامتثال.')}
             </p>
           </motion.div>
 
@@ -1098,13 +1091,11 @@ export default function SchoolERPPage() {
             <div className="text-[#D4711A]/20 text-8xl font-heading font-bold leading-none mb-6">&ldquo;</div>
 
             <blockquote className="text-xl md:text-2xl lg:text-3xl text-white/80 font-heading leading-relaxed mb-10">
-              Before Cubico ERP, we had 6 different systems that never talked to each other.
-              Fees in one, attendance in another, reports done manually in Excel.{' '}
+              {t('Before Cubico ERP, we had 6 different systems that never talked to each other. Fees in one, attendance in another, reports done manually in Excel.', 'قبل نظام كيوبيكو، كان لدينا 6 أنظمة مختلفة لا تتواصل مع بعضها. الرسوم في نظام، والحضور في آخر، والتقارير تُعد يدويًا في إكسل.')}{' '}
               <span className="text-[#E88C32] font-bold">
-                Within one semester, we cut admin overhead by 60% and our parent satisfaction
-                scores went from 62% to 94%.
+                {t('Within one semester, we cut admin overhead by 60% and our parent satisfaction scores went from 62% to 94%.', 'خلال فصل دراسي واحد، خفضنا أعباء الإدارة بنسبة 60% وارتفعت نتائج رضا أولياء الأمور من 62% إلى 94%.')}
               </span>{' '}
-              This system didn&apos;t just digitize our school — it transformed how we operate.
+              {t("This system didn't just digitize our school — it transformed how we operate.", 'هذا النظام لم يرقمن مدرستنا فحسب — بل غيّر طريقة عملنا.')}
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
@@ -1112,8 +1103,8 @@ export default function SchoolERPPage() {
                 D
               </div>
               <div className="text-left">
-                <div className="text-white font-heading font-bold">Dr. Amina Al-Rashid</div>
-                <div className="text-white/40 text-sm">Principal, Al Noor International School</div>
+                <div className="text-white font-heading font-bold">{t('Dr. Amina Al-Rashid', 'د. أمينة الراشد')}</div>
+                <div className="text-white/40 text-sm">{t('Principal, Al Noor International School', 'مديرة مدرسة النور الدولية')}</div>
               </div>
             </div>
 
@@ -1141,22 +1132,21 @@ export default function SchoolERPPage() {
             viewport={{ once: true, margin: '-80px' }}
             variants={fadeUp}
           >
-            <span className="section-label">Get Started</span>
+            <span className="section-label">{t('Get Started', 'ابدأ الآن')}</span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900 mt-4 mb-6">
-              Streamline Your{' '}
-              <span className="gradient-text">School Operations</span>
+              {t('Streamline Your', 'بسّط')}{' '}
+              <span className="gradient-text">{t('School Operations', 'عمليات مدرستك')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-10">
-              Join 760+ schools already running on Cubico ERP. Schedule a personalized demo
-              and see how every module works with your real data.
+              {t('Join 760+ schools already running on Cubico ERP. Schedule a personalized demo and see how every module works with your real data.', 'انضم إلى أكثر من 760 مدرسة تعمل بالفعل على نظام كيوبيكو. احجز عرضًا تجريبيًا مخصصًا وشاهد كيف تعمل كل وحدة مع بياناتك الحقيقية.')}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary text-lg px-10 py-4">
-                Request a Demo <ArrowRight className="w-5 h-5" />
+                {t('Request a Demo', 'احجز عرضاً تجريبياً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </Link>
               <Link href="/pricing" className="btn-outline text-lg px-10 py-4">
-                See Pricing
+                {t('See Pricing', 'عرض الأسعار')}
               </Link>
             </div>
 
@@ -1164,15 +1154,15 @@ export default function SchoolERPPage() {
             <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>Free 30-day trial</span>
+                <span>{t('Free 30-day trial', 'تجربة مجانية لمدة 30 يومًا')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>No credit card required</span>
+                <span>{t('No credit card required', 'لا حاجة لبطاقة ائتمان')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                <span>Full data migration support</span>
+                <span>{t('Full data migration support', 'دعم كامل لنقل البيانات')}</span>
               </div>
             </div>
           </motion.div>

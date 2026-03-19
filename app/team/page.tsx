@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -19,18 +20,20 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-const team = [
-  { name: 'Rooh Ul Hasnain', role: 'Founder & CEO', initials: 'RH', color: 'from-[#D4711A] to-[#E88C32]' },
-  { name: 'Abdul Raffay Vohra', role: 'Co-Founder & CSO', initials: 'AV', color: 'from-[#B85E15] to-[#D4711A]' },
-  { name: 'Hassan Khan', role: 'Lead Developer', initials: 'HK', color: 'from-orange-500 to-red-500' },
-  { name: 'Ayesha Malik', role: 'Creative Director', initials: 'AM', color: 'from-pink-500 to-purple-500' },
-  { name: 'Omar Farooq', role: 'Head of Animation', initials: 'OF', color: 'from-blue-500 to-indigo-500' },
-  { name: 'Zainab Ali', role: 'UX Designer', initials: 'ZA', color: 'from-yellow-500 to-orange-500' },
-  { name: 'Bilal Ahmad', role: 'DevOps Engineer', initials: 'BA', color: 'from-teal-500 to-cyan-500' },
-  { name: 'Mariam Shah', role: 'Education Specialist', initials: 'MS', color: 'from-red-500 to-pink-500' },
-];
-
 export default function TeamPage() {
+  const { t } = useLanguage();
+
+  const team = [
+    { name: 'Rooh Ul Hasnain', role: t('Founder & CEO', 'المؤسس والرئيس التنفيذي'), initials: 'RH', color: 'from-[#D4711A] to-[#E88C32]' },
+    { name: 'Abdul Raffay Vohra', role: t('Co-Founder & CSO', 'المؤسس المشارك ورئيس الاستراتيجية'), initials: 'AV', color: 'from-[#B85E15] to-[#D4711A]' },
+    { name: 'Hassan Khan', role: t('Lead Developer', 'المطور الرئيسي'), initials: 'HK', color: 'from-orange-500 to-red-500' },
+    { name: 'Ayesha Malik', role: t('Creative Director', 'المدير الإبداعي'), initials: 'AM', color: 'from-pink-500 to-purple-500' },
+    { name: 'Omar Farooq', role: t('Head of Animation', 'رئيس قسم الرسوم المتحركة'), initials: 'OF', color: 'from-blue-500 to-indigo-500' },
+    { name: 'Zainab Ali', role: t('UX Designer', 'مصمم تجربة المستخدم'), initials: 'ZA', color: 'from-yellow-500 to-orange-500' },
+    { name: 'Bilal Ahmad', role: t('DevOps Engineer', 'مهندس DevOps'), initials: 'BA', color: 'from-teal-500 to-cyan-500' },
+    { name: 'Mariam Shah', role: t('Education Specialist', 'أخصائي تعليم'), initials: 'MS', color: 'from-red-500 to-pink-500' },
+  ];
+
   return (
     <>
       <Header />
@@ -43,7 +46,7 @@ export default function TeamPage() {
             animate={{ opacity: 1, y: 0 }}
             className="section-label mb-4 block"
           >
-            Our Team
+            {t('Our Team', 'فريقنا')}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -51,7 +54,7 @@ export default function TeamPage() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6"
           >
-            Meet the <span className="gradient-text">People</span> Behind Cubico
+            {t('Meet the ', 'تعرّف على ')}<span className="gradient-text">{t('People', 'الأشخاص')}</span>{t(' Behind Cubico', ' وراء كيوبيكو')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -59,7 +62,10 @@ export default function TeamPage() {
             transition={{ delay: 0.2 }}
             className="text-gray-500 text-lg max-w-2xl mx-auto"
           >
-            A passionate team of educators and technologists dedicated to transforming education through innovation.
+            {t(
+              'A passionate team of educators and technologists dedicated to transforming education through innovation.',
+              'فريق شغوف من المربين والتقنيين مكرّس لتحويل التعليم من خلال الابتكار.'
+            )}
           </motion.p>
         </div>
       </section>

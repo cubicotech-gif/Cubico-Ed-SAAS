@@ -31,6 +31,7 @@ import {
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -75,82 +76,6 @@ const slideInRight = {
     transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
-
-/* ═══════════════════════════════════════════
-   DATA
-   ═══════════════════════════════════════════ */
-const services = [
-  {
-    icon: Globe,
-    title: 'School Websites',
-    desc: 'Stunning, brand-aligned landing pages that capture your institution\'s identity. SEO-optimized, blazing fast, and designed to convert visitors into enrolled students.',
-  },
-  {
-    icon: FileText,
-    title: 'Admission Portals',
-    desc: 'End-to-end online applications with document upload, status tracking, payment processing, and automated notifications. Reduce paperwork by 90%.',
-  },
-  {
-    icon: Users,
-    title: 'Parent Portals',
-    desc: 'Real-time access to grades, attendance, fee statements, and teacher communication. Keep parents engaged with beautiful, intuitive dashboards.',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'E-Commerce Stores',
-    desc: 'Online uniform shops, bookstores, and merchandise stores with inventory management, secure checkout, and delivery tracking built in.',
-  },
-  {
-    icon: Network,
-    title: 'Alumni Networks',
-    desc: 'Searchable directories, event management, donation portals, and mentorship matching. Keep your alumni community active and connected for life.',
-  },
-  {
-    icon: Building2,
-    title: 'Staff Intranets',
-    desc: 'Internal communication hubs with policy libraries, leave management, shared calendars, and announcement boards. Streamline staff operations.',
-  },
-];
-
-const techStack = [
-  { name: 'Next.js', color: '#000000', bg: '#f0f0f0', desc: 'React framework for production' },
-  { name: 'React', color: '#61DAFB', bg: '#0a1929', desc: 'Component-based UI library' },
-  { name: 'Node.js', color: '#339933', bg: '#f0faf0', desc: 'Server-side JavaScript runtime' },
-  { name: 'PostgreSQL', color: '#4169E1', bg: '#f0f0fa', desc: 'Reliable relational database' },
-  { name: 'Tailwind CSS', color: '#06B6D4', bg: '#f0fafa', desc: 'Utility-first CSS framework' },
-  { name: 'Vercel', color: '#000000', bg: '#f5f5f5', desc: 'Edge deployment platform' },
-  { name: 'AWS', color: '#FF9900', bg: '#fff8f0', desc: 'Cloud infrastructure at scale' },
-  { name: 'Stripe', color: '#635BFF', bg: '#f5f0ff', desc: 'Payment processing APIs' },
-];
-
-const processSteps = [
-  { icon: Search, title: 'Discovery', desc: 'We deep-dive into your institution\'s goals, audience, branding guidelines, and technical requirements.' },
-  { icon: Palette, title: 'Design', desc: 'Interactive prototypes and polished UI designs reviewed with your team until every pixel is perfect.' },
-  { icon: Code2, title: 'Development', desc: 'Agile sprints with weekly demos. Clean, tested code deployed to staging for your review.' },
-  { icon: TestTube2, title: 'Testing', desc: 'Cross-browser QA, accessibility audits, performance optimization, and security penetration testing.' },
-  { icon: Rocket, title: 'Launch & Support', desc: 'Zero-downtime deployment, staff training, documentation, and 24/7 ongoing maintenance.' },
-];
-
-const portfolioProjects = [
-  { name: 'Greenfield Academy', type: 'K-12 School Website', color: '#10B981' },
-  { name: 'Oxford Prep Institute', type: 'Admission Portal', color: '#6366F1' },
-  { name: 'Sunrise International', type: 'Parent Portal', color: '#F59E0B' },
-  { name: 'Cambridge Heights', type: 'Complete Digital Suite', color: '#EF4444' },
-];
-
-const stats = [
-  { number: '100+', label: 'Websites Delivered' },
-  { number: '< 2s', label: 'Average Load Time' },
-  { number: '95+', label: 'SEO Score' },
-  { number: '24/7', label: 'Support & Monitoring' },
-];
-
-const performanceMetrics = [
-  { label: 'Page Speed', score: 98, color: '#10B981' },
-  { label: 'SEO Score', score: 95, color: '#D4711A' },
-  { label: 'Accessibility', score: 100, color: '#6366F1' },
-  { label: 'Best Practices', score: 98, color: '#06B6D4' },
-];
 
 /* ═══════════════════════════════════════════
    CSS-ONLY MOCKUP COMPONENTS
@@ -391,6 +316,99 @@ function PortfolioThumb({ color, name }: { color: string; name: string }) {
    MAIN PAGE COMPONENT
    ═══════════════════════════════════════════ */
 export default function WebDevelopmentPage() {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Globe,
+      title: t('School Websites', 'مواقع المدارس'),
+      desc: t(
+        'Stunning, brand-aligned landing pages that capture your institution\'s identity. SEO-optimized, blazing fast, and designed to convert visitors into enrolled students.',
+        'صفحات هبوط مذهلة ومتوافقة مع هوية مؤسستكم. محسّنة لمحركات البحث، فائقة السرعة، ومصممة لتحويل الزوار إلى طلاب مسجلين.'
+      ),
+    },
+    {
+      icon: FileText,
+      title: t('Admission Portals', 'بوابات القبول'),
+      desc: t(
+        'End-to-end online applications with document upload, status tracking, payment processing, and automated notifications. Reduce paperwork by 90%.',
+        'طلبات إلكترونية شاملة مع رفع المستندات، تتبع الحالة، معالجة الدفع، والإشعارات التلقائية. قلّل الأعمال الورقية بنسبة 90%.'
+      ),
+    },
+    {
+      icon: Users,
+      title: t('Parent Portals', 'بوابات أولياء الأمور'),
+      desc: t(
+        'Real-time access to grades, attendance, fee statements, and teacher communication. Keep parents engaged with beautiful, intuitive dashboards.',
+        'وصول فوري للدرجات، الحضور، كشوف الرسوم، والتواصل مع المعلمين. أبقِ أولياء الأمور على تواصل من خلال لوحات تحكم جميلة وسهلة الاستخدام.'
+      ),
+    },
+    {
+      icon: ShoppingCart,
+      title: t('E-Commerce Stores', 'متاجر إلكترونية'),
+      desc: t(
+        'Online uniform shops, bookstores, and merchandise stores with inventory management, secure checkout, and delivery tracking built in.',
+        'متاجر الزي المدرسي والكتب والبضائع عبر الإنترنت مع إدارة المخزون، الدفع الآمن، وتتبع التوصيل مدمج.'
+      ),
+    },
+    {
+      icon: Network,
+      title: t('Alumni Networks', 'شبكات الخريجين'),
+      desc: t(
+        'Searchable directories, event management, donation portals, and mentorship matching. Keep your alumni community active and connected for life.',
+        'أدلة قابلة للبحث، إدارة الفعاليات، بوابات التبرع، ومطابقة الإرشاد. حافظ على مجتمع خريجيك نشطاً ومتواصلاً مدى الحياة.'
+      ),
+    },
+    {
+      icon: Building2,
+      title: t('Staff Intranets', 'الشبكات الداخلية للموظفين'),
+      desc: t(
+        'Internal communication hubs with policy libraries, leave management, shared calendars, and announcement boards. Streamline staff operations.',
+        'مراكز اتصال داخلية مع مكتبات السياسات، إدارة الإجازات، التقويمات المشتركة، ولوحات الإعلانات. بسّط عمليات الموظفين.'
+      ),
+    },
+  ];
+
+  const techStack = [
+    { name: 'Next.js', color: '#000000', bg: '#f0f0f0', desc: t('React framework for production', 'إطار عمل React للإنتاج') },
+    { name: 'React', color: '#61DAFB', bg: '#0a1929', desc: t('Component-based UI library', 'مكتبة واجهات قائمة على المكونات') },
+    { name: 'Node.js', color: '#339933', bg: '#f0faf0', desc: t('Server-side JavaScript runtime', 'بيئة تشغيل JavaScript من جانب الخادم') },
+    { name: 'PostgreSQL', color: '#4169E1', bg: '#f0f0fa', desc: t('Reliable relational database', 'قاعدة بيانات علائقية موثوقة') },
+    { name: 'Tailwind CSS', color: '#06B6D4', bg: '#f0fafa', desc: t('Utility-first CSS framework', 'إطار عمل CSS قائم على الأدوات') },
+    { name: 'Vercel', color: '#000000', bg: '#f5f5f5', desc: t('Edge deployment platform', 'منصة نشر على الحافة') },
+    { name: 'AWS', color: '#FF9900', bg: '#fff8f0', desc: t('Cloud infrastructure at scale', 'بنية تحتية سحابية واسعة النطاق') },
+    { name: 'Stripe', color: '#635BFF', bg: '#f5f0ff', desc: t('Payment processing APIs', 'واجهات برمجة معالجة الدفع') },
+  ];
+
+  const processSteps = [
+    { icon: Search, title: t('Discovery', 'الاكتشاف'), desc: t('We deep-dive into your institution\'s goals, audience, branding guidelines, and technical requirements.', 'نتعمق في أهداف مؤسستكم، جمهوركم، إرشادات العلامة التجارية، والمتطلبات التقنية.') },
+    { icon: Palette, title: t('Design', 'التصميم'), desc: t('Interactive prototypes and polished UI designs reviewed with your team until every pixel is perfect.', 'نماذج أولية تفاعلية وتصاميم واجهة مستخدم متقنة يتم مراجعتها مع فريقكم حتى يكون كل بكسل مثالياً.') },
+    { icon: Code2, title: t('Development', 'التطوير'), desc: t('Agile sprints with weekly demos. Clean, tested code deployed to staging for your review.', 'سباقات رشيقة مع عروض أسبوعية. كود نظيف ومختبر يُنشر على بيئة الاختبار لمراجعتكم.') },
+    { icon: TestTube2, title: t('Testing', 'الاختبار'), desc: t('Cross-browser QA, accessibility audits, performance optimization, and security penetration testing.', 'ضمان الجودة عبر المتصفحات، تدقيق إمكانية الوصول، تحسين الأداء، واختبار الاختراق الأمني.') },
+    { icon: Rocket, title: t('Launch & Support', 'الإطلاق والدعم'), desc: t('Zero-downtime deployment, staff training, documentation, and 24/7 ongoing maintenance.', 'نشر بدون توقف، تدريب الموظفين، التوثيق، وصيانة مستمرة على مدار الساعة.') },
+  ];
+
+  const portfolioProjects = [
+    { name: t('Greenfield Academy', 'أكاديمية غرينفيلد'), type: t('K-12 School Website', 'موقع مدرسة K-12'), color: '#10B981' },
+    { name: t('Oxford Prep Institute', 'معهد أكسفورد التحضيري'), type: t('Admission Portal', 'بوابة القبول'), color: '#6366F1' },
+    { name: t('Sunrise International', 'صن رايز الدولية'), type: t('Parent Portal', 'بوابة أولياء الأمور'), color: '#F59E0B' },
+    { name: t('Cambridge Heights', 'كامبريدج هايتس'), type: t('Complete Digital Suite', 'حزمة رقمية متكاملة'), color: '#EF4444' },
+  ];
+
+  const stats = [
+    { number: t('100+', '+100'), label: t('Websites Delivered', 'موقع تم تسليمه') },
+    { number: t('< 2s', '< 2 ث'), label: t('Average Load Time', 'متوسط وقت التحميل') },
+    { number: t('95+', '+95'), label: t('SEO Score', 'نتيجة تحسين محركات البحث') },
+    { number: t('24/7', '24/7'), label: t('Support & Monitoring', 'الدعم والمراقبة') },
+  ];
+
+  const performanceMetrics = [
+    { label: t('Page Speed', 'سرعة الصفحة'), score: 98, color: '#10B981' },
+    { label: t('SEO Score', 'نتيجة SEO'), score: 95, color: '#D4711A' },
+    { label: t('Accessibility', 'إمكانية الوصول'), score: 100, color: '#6366F1' },
+    { label: t('Best Practices', 'أفضل الممارسات'), score: 98, color: '#06B6D4' },
+  ];
+
   return (
     <>
       <Header />
@@ -415,37 +433,36 @@ export default function WebDevelopmentPage() {
               animate="visible"
             >
               <span className="section-label-light inline-block mb-6">
-                Web Development for Education
+                {t('Web Development for Education', 'تطوير المواقع للتعليم')}
               </span>
 
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] mb-6">
-                Your Digital{' '}
-                <span className="gradient-text">Front Door</span>
+                {t('Your Digital', 'واجهتك')}{' '}
+                <span className="gradient-text">{t('Front Door', 'الرقمية')}</span>
               </h1>
 
               <p className="text-lg text-[#C8A888] max-w-lg mb-8 leading-relaxed">
-                We build modern, responsive websites and web applications
-                specifically for educational institutions. From school landing
-                pages to complex admission portals, payment gateways, and
-                parent dashboards &mdash; we craft digital experiences that
-                impress and convert.
+                {t(
+                  'We build modern, responsive websites and web applications specifically for educational institutions. From school landing pages to complex admission portals, payment gateways, and parent dashboards \u2014 we craft digital experiences that impress and convert.',
+                  'نبني مواقع ويب حديثة ومتجاوبة وتطبيقات ويب مخصصة للمؤسسات التعليمية. من صفحات المدارس إلى بوابات القبول المعقدة، بوابات الدفع، ولوحات تحكم أولياء الأمور \u2014 نصنع تجارب رقمية تبهر وتحوّل.'
+                )}
               </p>
 
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary">
-                  Start Your Project <ArrowRight className="w-4 h-4" />
+                  {t('Start Your Project', 'ابدأ مشروعك')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
                 <Link href="#portfolio" className="btn-outline-white">
-                  View Our Work <ExternalLink className="w-4 h-4" />
+                  {t('View Our Work', 'شاهد أعمالنا')} <ExternalLink className="w-4 h-4" />
                 </Link>
               </div>
 
               {/* Quick Stats Inline */}
               <div className="flex gap-8 mt-10">
                 {[
-                  { val: '100+', lbl: 'Websites' },
-                  { val: '< 2s', lbl: 'Load Time' },
-                  { val: '99.9%', lbl: 'Uptime' },
+                  { val: t('100+', '+100'), lbl: t('Websites', 'موقع') },
+                  { val: t('< 2s', '< 2 ث'), lbl: t('Load Time', 'وقت التحميل') },
+                  { val: t('99.9%', '99.9%'), lbl: t('Uptime', 'وقت التشغيل') },
                 ].map((s) => (
                   <div key={s.lbl}>
                     <div className="text-2xl font-bold gradient-text" style={{ fontFamily: 'Clash Display, sans-serif' }}>
@@ -475,7 +492,7 @@ export default function WebDevelopmentPage() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-white">98/100</div>
-                  <div className="text-[10px] text-[#8E7A65]">Page Speed</div>
+                  <div className="text-[10px] text-[#8E7A65]">{t('Page Speed', 'سرعة الصفحة')}</div>
                 </div>
               </motion.div>
             </motion.div>
@@ -495,13 +512,15 @@ export default function WebDevelopmentPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-4">Our Services</span>
+            <span className="section-label inline-block mb-4">{t('Our Services', 'خدماتنا')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-[#2A1E14] mb-4">
-              What We <span className="gradient-text">Build</span>
+              {t('What We', 'ماذا')}{' '}<span className="gradient-text">{t('Build', 'نبني')}</span>
             </h2>
             <p className="text-[#6A5A48] text-lg">
-              End-to-end web solutions crafted for the unique needs of schools,
-              universities, and educational organizations.
+              {t(
+                'End-to-end web solutions crafted for the unique needs of schools, universities, and educational organizations.',
+                'حلول ويب شاملة مصممة خصيصاً لاحتياجات المدارس والجامعات والمنظمات التعليمية.'
+              )}
             </p>
           </motion.div>
 
@@ -551,13 +570,15 @@ export default function WebDevelopmentPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label-light inline-block mb-4">Technology</span>
+            <span className="section-label-light inline-block mb-4">{t('Technology', 'التقنية')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Built With the <span className="gradient-text">Best Stack</span>
+              {t('Built With the', 'مبني بأفضل')}{' '}<span className="gradient-text">{t('Best Stack', 'التقنيات')}</span>
             </h2>
             <p className="text-[#C8A888] text-lg">
-              We use battle-tested, modern technologies that ensure speed,
-              security, scalability, and long-term maintainability.
+              {t(
+                'We use battle-tested, modern technologies that ensure speed, security, scalability, and long-term maintainability.',
+                'نستخدم تقنيات حديثة ومجرّبة تضمن السرعة، الأمان، قابلية التوسع، والصيانة طويلة الأمد.'
+              )}
             </p>
           </motion.div>
 
@@ -608,14 +629,15 @@ export default function WebDevelopmentPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-4">Responsive by Default</span>
+            <span className="section-label inline-block mb-4">{t('Responsive by Default', 'متجاوب افتراضياً')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-[#2A1E14] mb-4">
-              Pixel-Perfect on <span className="gradient-text">Every Screen</span>
+              {t('Pixel-Perfect on', 'مثالي على')}{' '}<span className="gradient-text">{t('Every Screen', 'كل شاشة')}</span>
             </h2>
             <p className="text-[#6A5A48] text-lg">
-              Every website we build adapts flawlessly to desktops, tablets, and
-              phones. Parents, students, and staff get a beautiful experience
-              no matter how they browse.
+              {t(
+                'Every website we build adapts flawlessly to desktops, tablets, and phones. Parents, students, and staff get a beautiful experience no matter how they browse.',
+                'كل موقع نبنيه يتكيف بسلاسة مع أجهزة الكمبيوتر والأجهزة اللوحية والهواتف. يحصل أولياء الأمور والطلاب والموظفون على تجربة جميلة بغض النظر عن طريقة التصفح.'
+              )}
             </p>
           </motion.div>
 
@@ -636,7 +658,7 @@ export default function WebDevelopmentPage() {
             >
               <div className="flex items-center gap-2 mb-3 justify-center">
                 <Monitor className="w-4 h-4 text-[#D4711A]" />
-                <span className="text-sm font-semibold text-[#2A1E14]">Desktop</span>
+                <span className="text-sm font-semibold text-[#2A1E14]">{t('Desktop', 'سطح المكتب')}</span>
               </div>
               <DesktopFrame />
             </motion.div>
@@ -649,7 +671,7 @@ export default function WebDevelopmentPage() {
             >
               <div className="flex items-center gap-2 mb-3 justify-center">
                 <Tablet className="w-4 h-4 text-[#D4711A]" />
-                <span className="text-sm font-semibold text-[#2A1E14]">Tablet</span>
+                <span className="text-sm font-semibold text-[#2A1E14]">{t('Tablet', 'جهاز لوحي')}</span>
               </div>
               <TabletFrame />
             </motion.div>
@@ -662,7 +684,7 @@ export default function WebDevelopmentPage() {
             >
               <div className="flex items-center gap-2 mb-3 justify-center">
                 <Smartphone className="w-4 h-4 text-[#D4711A]" />
-                <span className="text-sm font-semibold text-[#2A1E14]">Mobile</span>
+                <span className="text-sm font-semibold text-[#2A1E14]">{t('Mobile', 'الهاتف')}</span>
               </div>
               <PhoneFrame />
             </motion.div>
@@ -687,13 +709,15 @@ export default function WebDevelopmentPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label-light inline-block mb-4">Performance</span>
+            <span className="section-label-light inline-block mb-4">{t('Performance', 'الأداء')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Lighthouse <span className="gradient-text">Scores</span>
+              {t('Lighthouse', 'نتائج')}{' '}<span className="gradient-text">{t('Scores', 'Lighthouse')}</span>
             </h2>
             <p className="text-[#C8A888] text-lg">
-              Every site we ship meets the highest standards. These are real
-              scores from Google Lighthouse audits on our production sites.
+              {t(
+                'Every site we ship meets the highest standards. These are real scores from Google Lighthouse audits on our production sites.',
+                'كل موقع نطلقه يلبي أعلى المعايير. هذه نتائج حقيقية من تدقيقات Google Lighthouse على مواقعنا الإنتاجية.'
+              )}
             </p>
           </motion.div>
 
@@ -723,12 +747,15 @@ export default function WebDevelopmentPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-4">Our Process</span>
+            <span className="section-label inline-block mb-4">{t('Our Process', 'منهجيتنا')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-[#2A1E14] mb-4">
-              From Idea to <span className="gradient-text">Launch</span>
+              {t('From Idea to', 'من الفكرة إلى')}{' '}<span className="gradient-text">{t('Launch', 'الإطلاق')}</span>
             </h2>
             <p className="text-[#6A5A48] text-lg">
-              A proven five-phase process that delivers on time, every time.
+              {t(
+                'A proven five-phase process that delivers on time, every time.',
+                'عملية من خمس مراحل مثبتة تسلّم في الوقت المحدد، في كل مرة.'
+              )}
             </p>
           </motion.div>
 
@@ -758,7 +785,7 @@ export default function WebDevelopmentPage() {
 
                   {/* Phase number */}
                   <div className="text-xs font-bold text-[#D4711A] mb-1 tracking-wider uppercase">
-                    Phase {i + 1}
+                    {t(`Phase ${i + 1}`, `المرحلة ${i + 1}`)}
                   </div>
 
                   <h3 className="text-lg font-bold text-[#2A1E14] mb-2">
@@ -771,7 +798,7 @@ export default function WebDevelopmentPage() {
                   {/* Arrow between steps (visible on lg) */}
                   {i < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-[3.4rem] -right-4 z-20">
-                      <ChevronRight className="w-5 h-5 text-[#D4711A]" />
+                      <ChevronRight className="w-5 h-5 text-[#D4711A] rtl:rotate-180" />
                     </div>
                   )}
                 </motion.div>
@@ -798,13 +825,15 @@ export default function WebDevelopmentPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label-light inline-block mb-4">Portfolio</span>
+            <span className="section-label-light inline-block mb-4">{t('Portfolio', 'أعمالنا')}</span>
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-              Featured <span className="gradient-text">Projects</span>
+              {t('Featured', 'مشاريع')}{' '}<span className="gradient-text">{t('Projects', 'مميزة')}</span>
             </h2>
             <p className="text-[#C8A888] text-lg">
-              A glimpse into the educational websites and portals we have
-              delivered for institutions around the world.
+              {t(
+                'A glimpse into the educational websites and portals we have delivered for institutions around the world.',
+                'لمحة عن المواقع التعليمية والبوابات التي سلّمناها لمؤسسات حول العالم.'
+              )}
             </p>
           </motion.div>
 
@@ -893,26 +922,26 @@ export default function WebDevelopmentPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <span className="section-label inline-block mb-6">Testimonial</span>
+            <span className="section-label inline-block mb-6">{t('Testimonial', 'شهادة عميل')}</span>
 
             <div className="relative">
               <Quote className="w-12 h-12 text-[#D4711A]/20 mx-auto mb-6" />
 
               <blockquote className="text-2xl sm:text-3xl font-medium text-[#2A1E14] leading-relaxed mb-8" style={{ fontFamily: 'Clash Display, sans-serif' }}>
-                &ldquo;Cubico completely transformed our online presence. Our new
-                website increased admission inquiries by 340% in the first
-                semester. The parent portal alone saved our admin team 20 hours
-                a week.&rdquo;
+                {t(
+                  '\u201CCubico completely transformed our online presence. Our new website increased admission inquiries by 340% in the first semester. The parent portal alone saved our admin team 20 hours a week.\u201D',
+                  '\u201Cكيوبيكو حوّلت تواجدنا الرقمي بالكامل. موقعنا الجديد زاد استفسارات القبول بنسبة 340% في الفصل الأول. بوابة أولياء الأمور وحدها وفّرت لفريق الإدارة 20 ساعة أسبوعياً.\u201D'
+                )}
               </blockquote>
 
               <div className="flex items-center justify-center gap-4">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center text-white font-bold text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                   SA
                 </div>
-                <div className="text-left">
-                  <div className="font-bold text-[#2A1E14]">Dr. Sarah Al-Rashid</div>
+                <div className="text-left rtl:text-right">
+                  <div className="font-bold text-[#2A1E14]">{t('Dr. Sarah Al-Rashid', 'د. سارة الراشد')}</div>
                   <div className="text-sm text-[#6A5A48]">
-                    Director, Greenfield International Academy
+                    {t('Director, Greenfield International Academy', 'المديرة، أكاديمية غرينفيلد الدولية')}
                   </div>
                 </div>
               </div>
@@ -945,36 +974,37 @@ export default function WebDevelopmentPage() {
             viewport={{ once: true }}
           >
             <span className="section-label-light inline-block mb-6">
-              Ready to Get Started?
+              {t('Ready to Get Started?', 'مستعد للبدء؟')}
             </span>
 
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Let&apos;s Build Your School&apos;s{' '}
-              <span className="gradient-text">Digital Home</span>
+              {t("Let's Build Your School's", 'لنبنِ لمدرستك')}{' '}
+              <span className="gradient-text">{t('Digital Home', 'بيتها الرقمي')}</span>
             </h2>
 
             <p className="text-lg text-[#C8A888] max-w-2xl mx-auto mb-10 leading-relaxed">
-              Whether you need a simple landing page or a full-featured
-              admission portal, our team is ready to bring your vision to
-              life. Get a free consultation and project estimate today.
+              {t(
+                'Whether you need a simple landing page or a full-featured admission portal, our team is ready to bring your vision to life. Get a free consultation and project estimate today.',
+                'سواء كنت بحاجة إلى صفحة هبوط بسيطة أو بوابة قبول متكاملة الميزات، فريقنا جاهز لتحويل رؤيتك إلى واقع. احصل على استشارة مجانية وتقدير للمشروع اليوم.'
+              )}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary">
-                Get Free Consultation <ArrowRight className="w-4 h-4" />
+                {t('Get Free Consultation', 'احصل على استشارة مجانية')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
               </Link>
               <Link href="/solutions" className="btn-outline-white">
-                Explore All Solutions
+                {t('Explore All Solutions', 'استكشف جميع الحلول')}
               </Link>
             </div>
 
             {/* Trust badges */}
             <div className="flex flex-wrap items-center justify-center gap-6 mt-12">
               {[
-                { icon: Shield, text: 'SSL Secured' },
-                { icon: Zap, text: 'Lightning Fast' },
-                { icon: Award, text: 'WCAG 2.1 AA' },
-                { icon: Clock, text: '24/7 Support' },
+                { icon: Shield, text: t('SSL Secured', 'مؤمّن بـ SSL') },
+                { icon: Zap, text: t('Lightning Fast', 'سريع كالبرق') },
+                { icon: Award, text: t('WCAG 2.1 AA', 'WCAG 2.1 AA') },
+                { icon: Clock, text: t('24/7 Support', 'دعم على مدار الساعة') },
               ].map((badge) => (
                 <div key={badge.text} className="flex items-center gap-2 text-[#8E7A65]">
                   <badge.icon className="w-4 h-4 text-[#D4711A]" />

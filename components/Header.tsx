@@ -3,51 +3,52 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, ChevronDown, Globe } from 'lucide-react';
-import { useLanguage } from '@/lib/language-context';
-
-const navLinks = [
-  { key: 'nav.home', href: '/' },
-  { key: 'nav.about', href: '/about' },
-  {
-    key: 'nav.solutions',
-    href: '/solutions',
-    children: [
-      { key: 'nav.smartLms', href: '/solutions/smart-lms' },
-      { key: 'nav.animationStudio', href: '/solutions/animation-studio' },
-      { key: 'nav.schoolErp', href: '/solutions/school-erp' },
-      { key: 'nav.webDevelopment', href: '/solutions/web-development' },
-      { key: 'nav.mobileApps', href: '/solutions/mobile-apps' },
-    ],
-  },
-  {
-    key: 'nav.services',
-    href: '/services',
-    children: [
-      { key: 'nav.cloudHosting', href: '/services/cloud-hosting' },
-      { key: 'nav.digitalMarketing', href: '/services/digital-marketing' },
-      { key: 'nav.teacherTraining', href: '/services/teacher-training' },
-      { key: 'nav.pricingPlan', href: '/pricing' },
-    ],
-  },
-  { key: 'nav.contact', href: '/contact' },
-  {
-    key: 'nav.pages',
-    href: '#',
-    children: [
-      { key: 'nav.team', href: '/team' },
-      { key: 'nav.faq', href: '/faq' },
-      { key: 'nav.blog', href: '/blog' },
-    ],
-  },
-];
+import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import LanguageToggle from '@/components/LanguageToggle';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const lastScrollY = useRef(0);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const { lang, dir, toggleLanguage, t } = useLanguage();
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { name: t('Home', 'الرئيسية'), href: '/' },
+    { name: t('About', 'من نحن'), href: '/about' },
+    {
+      name: t('Solutions', 'الحلول'),
+      href: '/solutions',
+      children: [
+        { name: t('Smart LMS', 'نظام إدارة التعلم'), href: '/solutions/smart-lms' },
+        { name: t('Animation Studio', 'استوديو الرسوم المتحركة'), href: '/solutions/animation-studio' },
+        { name: t('School ERP', 'نظام إدارة المدرسة'), href: '/solutions/school-erp' },
+        { name: t('Web Development', 'تطوير المواقع'), href: '/solutions/web-development' },
+        { name: t('Mobile Apps', 'تطبيقات الجوال'), href: '/solutions/mobile-apps' },
+      ],
+    },
+    {
+      name: t('Services', 'الخدمات'),
+      href: '/services',
+      children: [
+        { name: t('Cloud Hosting', 'الاستضافة السحابية'), href: '/services/cloud-hosting' },
+        { name: t('Digital Marketing', 'التسويق الرقمي'), href: '/services/digital-marketing' },
+        { name: t('Teacher Training', 'تدريب المعلمين'), href: '/services/teacher-training' },
+        { name: t('Pricing Plan', 'خطة الأسعار'), href: '/pricing' },
+      ],
+    },
+    { name: t('Contact', 'تواصل معنا'), href: '/contact' },
+    {
+      name: t('Pages', 'الصفحات'),
+      href: '#',
+      children: [
+        { name: t('Team', 'الفريق'), href: '/team' },
+        { name: t('FAQ', 'الأسئلة الشائعة'), href: '/faq' },
+        { name: t('Blog', 'المدونة'), href: '/blog' },
+      ],
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,7 +85,7 @@ export default function Header() {
             boxShadow: '0 8px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(232,140,50,0.1)',
           }}
         >
-          <div className="flex items-center gap-1" dir={dir}>
+          <div className="flex items-center gap-1">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-orange-600/25 flex-shrink-0">
@@ -102,28 +103,28 @@ export default function Header() {
             <nav className="hidden lg:flex items-center gap-0.5">
               {navLinks.map((link) => (
                 <div
-                  key={link.key}
+                  key={link.name}
                   className="relative"
-                  onMouseEnter={() => link.children && setOpenDropdown(link.key)}
+                  onMouseEnter={() => link.children && setOpenDropdown(link.name)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
                   <Link
                     href={link.href}
                     className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap flex items-center gap-1"
                   >
-                    {t(link.key)}
+                    {link.name}
                     {link.children && <ChevronDown className="w-3 h-3" />}
                   </Link>
-                  {link.children && openDropdown === link.key && (
-                    <div className={`absolute top-full ${dir === 'rtl' ? 'right-0' : 'left-0'} pt-2`}>
+                  {link.children && openDropdown === link.name && (
+                    <div className="absolute top-full left-0 pt-2 rtl:left-auto rtl:right-0">
                       <div className="bg-[#1a1a1e]/95 backdrop-blur-xl rounded-xl border border-orange-500/[0.12] shadow-2xl py-2 min-w-[180px]">
                         {link.children.map((child) => (
                           <Link
-                            key={child.key}
+                            key={child.name}
                             href={child.href}
                             className="block px-4 py-2 text-[13px] text-white/55 hover:text-white hover:bg-white/[0.06] transition-colors"
                           >
-                            {t(child.key)}
+                            {child.name}
                           </Link>
                         ))}
                       </div>
@@ -136,31 +137,22 @@ export default function Header() {
             {/* Divider */}
             <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
 
-            {/* Language Toggle */}
-            <button
-              onClick={toggleLanguage}
-              className="hidden lg:flex items-center gap-1.5 text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors flex-shrink-0"
-              title={lang === 'en' ? 'Switch to Arabic' : 'Switch to English'}
-            >
-              <Globe className="w-3.5 h-3.5" />
-              <span>{lang === 'en' ? 'عربي' : 'EN'}</span>
-            </button>
-
-            {/* CTA */}
-            <div className="hidden lg:flex items-center flex-shrink-0">
+            {/* Language Toggle + CTA */}
+            <div className="hidden lg:flex items-center gap-1 flex-shrink-0">
+              <LanguageToggle className="text-white/55 hover:text-white" />
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
               >
-                {t('nav.getStarted')}
-                <ArrowRight className={`w-3.5 h-3.5 ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+                {t('Get Started', 'ابدأ الآن')}
+                <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
               </Link>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
+              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto rtl:ml-0 rtl:mr-auto"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -177,50 +169,41 @@ export default function Header() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
             className="fixed top-[72px] left-4 right-4 z-50 bg-[#1a1a1e]/95 backdrop-blur-xl rounded-2xl border border-orange-500/[0.12] shadow-2xl overflow-hidden"
-            dir={dir}
           >
             <div className="px-5 py-5 space-y-1">
+              {/* Mobile Language Toggle */}
+              <div className="flex justify-center pb-3 border-b border-white/[0.08] mb-2">
+                <LanguageToggle className="text-white/70 hover:text-white text-sm" />
+              </div>
               {navLinks.map((link) => (
-                <div key={link.key}>
+                <div key={link.name}>
                   <Link
                     href={link.href}
                     onClick={() => !link.children && setMobileMenuOpen(false)}
                     className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
                   >
-                    {t(link.key)}
+                    {link.name}
                   </Link>
                   {link.children && (
-                    <div className={`${dir === 'rtl' ? 'pr-4' : 'pl-4'} space-y-1`}>
+                    <div className="ps-4 space-y-1">
                       {link.children.map((child) => (
                         <Link
-                          key={child.key}
+                          key={child.name}
                           href={child.href}
                           onClick={() => setMobileMenuOpen(false)}
                           className="block text-white/45 hover:text-white text-sm px-4 py-2 rounded-lg hover:bg-white/[0.04] transition-colors"
                         >
-                          {t(child.key)}
+                          {child.name}
                         </Link>
                       ))}
                     </div>
                   )}
                 </div>
               ))}
-
-              {/* Mobile Language Toggle */}
-              <div className="pt-3 border-t border-white/[0.08]">
-                <button
-                  onClick={toggleLanguage}
-                  className="flex items-center gap-2 text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl w-full"
-                >
-                  <Globe className="w-4 h-4" />
-                  {lang === 'en' ? 'العربية — Arabic' : 'English — الإنجليزية'}
-                </button>
-              </div>
-
               <div className="pt-3 border-t border-white/[0.08]">
                 <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
-                  {t('nav.getStarted')}
-                  <ArrowRight className={`w-4 h-4 ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+                  {t('Get Started', 'ابدأ الآن')}
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
               </div>
             </div>

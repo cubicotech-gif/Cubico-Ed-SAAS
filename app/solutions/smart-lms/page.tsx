@@ -35,6 +35,7 @@ import {
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 /* ═══════════════════════════════════════════
    ANIMATION VARIANTS
@@ -62,82 +63,114 @@ const scaleIn = {
   },
 };
 
-/* ═══════════════════════════════════════════
-   DATA
-   ═══════════════════════════════════════════ */
-const features = [
-  {
-    icon: Trophy,
-    title: 'Gamified Learning',
-    desc: 'Motivate students with badges, leaderboards, XP points, and achievement unlocks. Turn every lesson into an engaging quest that drives participation and completion rates.',
-  },
-  {
-    icon: BrainCircuit,
-    title: 'AI-Powered Analytics',
-    desc: 'Predictive insights identify at-risk students before they fall behind. Get actionable dashboards that show learning patterns, engagement gaps, and grade forecasts.',
-  },
-  {
-    icon: Languages,
-    title: 'Multilingual Content',
-    desc: 'Full support for English, Arabic, and Urdu with proper RTL layout handling. Switch languages seamlessly — content, interface, and assessments all adapt instantly.',
-  },
-  {
-    icon: Video,
-    title: 'Video Conferencing',
-    desc: 'Built-in live classes with screen sharing, breakout rooms, and recording. No need for third-party tools — everything runs inside your LMS with one click.',
-  },
-  {
-    icon: ClipboardCheck,
-    title: 'Assessment Engine',
-    desc: 'Auto-grading with 15+ question types, randomized question banks, plagiarism detection, and rubric-based evaluation. Save teachers hours every week.',
-  },
-  {
-    icon: Users,
-    title: 'Parent Portal',
-    desc: 'Parents track progress, view grades, communicate with teachers, and receive automated reports. Full visibility keeps families engaged in the learning journey.',
-  },
-];
-
-const steps = [
-  {
-    num: '01',
-    title: 'We Audit Your Curriculum',
-    desc: 'Our education specialists review your existing curriculum, content formats, and teaching workflows to create a migration blueprint.',
-  },
-  {
-    num: '02',
-    title: 'Customize & Configure',
-    desc: 'We tailor the LMS to your branding, grading policies, academic calendar, and role-based permissions for every user type.',
-  },
-  {
-    num: '03',
-    title: 'Content Migration & Training',
-    desc: 'Existing courses, question banks, and resources are migrated seamlessly. Your staff receives hands-on training with ongoing support.',
-  },
-  {
-    num: '04',
-    title: 'Launch & Ongoing Support',
-    desc: 'Go live with confidence. Our team provides 24/7 support, quarterly feature updates, and performance monitoring from day one.',
-  },
-];
-
-const integrations = [
-  { name: 'Google Classroom', color: 'bg-blue-500', letter: 'G' },
-  { name: 'Microsoft Teams', color: 'bg-indigo-600', letter: 'T' },
-  { name: 'Zoom', color: 'bg-blue-600', letter: 'Z' },
-  { name: 'PayPal', color: 'bg-sky-600', letter: 'P' },
-  { name: 'WhatsApp', color: 'bg-emerald-500', letter: 'W' },
-  { name: 'SIS Systems', color: 'bg-gray-700', letter: 'S' },
-];
-
-const stats = [
-  { number: '500+', label: 'Courses Deployed' },
-  { number: '50K+', label: 'Active Students' },
-  { number: '98%', label: 'Uptime Guaranteed' },
-  { number: '3', label: 'Languages Supported' },
-];
-
 export default function SmartLMSPage() {
+  const { t } = useLanguage();
+
+  /* ═══════════════════════════════════════════
+     DATA
+     ═══════════════════════════════════════════ */
+  const features = [
+    {
+      icon: Trophy,
+      title: t('Gamified Learning', 'التعلم بالألعاب'),
+      desc: t(
+        'Motivate students with badges, leaderboards, XP points, and achievement unlocks. Turn every lesson into an engaging quest that drives participation and completion rates.',
+        'حفّز الطلاب بالشارات ولوحات المتصدرين ونقاط الخبرة وفتح الإنجازات. حوّل كل درس إلى مهمة ممتعة تعزز المشاركة ومعدلات الإنجاز.'
+      ),
+    },
+    {
+      icon: BrainCircuit,
+      title: t('AI-Powered Analytics', 'تحليلات مدعومة بالذكاء الاصطناعي'),
+      desc: t(
+        'Predictive insights identify at-risk students before they fall behind. Get actionable dashboards that show learning patterns, engagement gaps, and grade forecasts.',
+        'رؤى تنبؤية تحدد الطلاب المعرضين للخطر قبل تراجعهم. احصل على لوحات معلومات عملية تعرض أنماط التعلم وفجوات المشاركة وتوقعات الدرجات.'
+      ),
+    },
+    {
+      icon: Languages,
+      title: t('Multilingual Content', 'محتوى متعدد اللغات'),
+      desc: t(
+        'Full support for English, Arabic, and Urdu with proper RTL layout handling. Switch languages seamlessly — content, interface, and assessments all adapt instantly.',
+        'دعم كامل للإنجليزية والعربية والأردية مع التعامل السليم مع تخطيط RTL. بدّل اللغات بسلاسة — المحتوى والواجهة والتقييمات تتكيف فوراً.'
+      ),
+    },
+    {
+      icon: Video,
+      title: t('Video Conferencing', 'مؤتمرات الفيديو'),
+      desc: t(
+        'Built-in live classes with screen sharing, breakout rooms, and recording. No need for third-party tools — everything runs inside your LMS with one click.',
+        'فصول مباشرة مدمجة مع مشاركة الشاشة وغرف فرعية وتسجيل. لا حاجة لأدوات خارجية — كل شيء يعمل داخل نظام إدارة التعلم بنقرة واحدة.'
+      ),
+    },
+    {
+      icon: ClipboardCheck,
+      title: t('Assessment Engine', 'محرك التقييم'),
+      desc: t(
+        'Auto-grading with 15+ question types, randomized question banks, plagiarism detection, and rubric-based evaluation. Save teachers hours every week.',
+        'تصحيح تلقائي مع أكثر من 15 نوع سؤال، وبنوك أسئلة عشوائية، وكشف الانتحال، وتقييم قائم على معايير التقييم. وفّر ساعات للمعلمين كل أسبوع.'
+      ),
+    },
+    {
+      icon: Users,
+      title: t('Parent Portal', 'بوابة أولياء الأمور'),
+      desc: t(
+        'Parents track progress, view grades, communicate with teachers, and receive automated reports. Full visibility keeps families engaged in the learning journey.',
+        'يتابع أولياء الأمور التقدم ويعرضون الدرجات ويتواصلون مع المعلمين ويتلقون تقارير آلية. الرؤية الكاملة تبقي العائلات منخرطة في رحلة التعلم.'
+      ),
+    },
+  ];
+
+  const steps = [
+    {
+      num: '01',
+      title: t('We Audit Your Curriculum', 'نراجع مناهجكم الدراسية'),
+      desc: t(
+        'Our education specialists review your existing curriculum, content formats, and teaching workflows to create a migration blueprint.',
+        'يقوم متخصصو التعليم لدينا بمراجعة مناهجكم الحالية وصيغ المحتوى وسير عمل التدريس لإنشاء خطة ترحيل شاملة.'
+      ),
+    },
+    {
+      num: '02',
+      title: t('Customize & Configure', 'التخصيص والإعداد'),
+      desc: t(
+        'We tailor the LMS to your branding, grading policies, academic calendar, and role-based permissions for every user type.',
+        'نخصص نظام إدارة التعلم ليتناسب مع هويتكم وسياسات التقييم والتقويم الأكاديمي وصلاحيات كل نوع مستخدم.'
+      ),
+    },
+    {
+      num: '03',
+      title: t('Content Migration & Training', 'ترحيل المحتوى والتدريب'),
+      desc: t(
+        'Existing courses, question banks, and resources are migrated seamlessly. Your staff receives hands-on training with ongoing support.',
+        'يتم ترحيل الدورات وبنوك الأسئلة والموارد الحالية بسلاسة. يتلقى موظفوكم تدريباً عملياً مع دعم مستمر.'
+      ),
+    },
+    {
+      num: '04',
+      title: t('Launch & Ongoing Support', 'الإطلاق والدعم المستمر'),
+      desc: t(
+        'Go live with confidence. Our team provides 24/7 support, quarterly feature updates, and performance monitoring from day one.',
+        'انطلقوا بثقة. يوفر فريقنا دعماً على مدار الساعة وتحديثات ربع سنوية ومراقبة الأداء من اليوم الأول.'
+      ),
+    },
+  ];
+
+  const integrations = [
+    { name: t('Google Classroom', 'Google Classroom'), color: 'bg-blue-500', letter: 'G' },
+    { name: t('Microsoft Teams', 'Microsoft Teams'), color: 'bg-indigo-600', letter: 'T' },
+    { name: t('Zoom', 'Zoom'), color: 'bg-blue-600', letter: 'Z' },
+    { name: t('PayPal', 'PayPal'), color: 'bg-sky-600', letter: 'P' },
+    { name: t('WhatsApp', 'WhatsApp'), color: 'bg-emerald-500', letter: 'W' },
+    { name: t('SIS Systems', 'أنظمة SIS'), color: 'bg-gray-700', letter: 'S' },
+  ];
+
+  const stats = [
+    { number: t('500+', '+500'), label: t('Courses Deployed', 'دورة تم نشرها') },
+    { number: t('50K+', '+50 ألف'), label: t('Active Students', 'طالب نشط') },
+    { number: t('98%', '٪98'), label: t('Uptime Guaranteed', 'ضمان وقت التشغيل') },
+    { number: t('3', '3'), label: t('Languages Supported', 'لغات مدعومة') },
+  ];
+
   return (
     <>
       <Header />
@@ -176,7 +209,7 @@ export default function SmartLMSPage() {
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D4711A]" />
                 </span>
                 <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
-                  Moodle-Powered LMS Platform
+                  {t('Moodle-Powered LMS Platform', 'منصة إدارة التعلم المبنية على Moodle')}
                 </span>
               </motion.div>
 
@@ -186,8 +219,8 @@ export default function SmartLMSPage() {
                 transition={{ delay: 0.1 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-8 leading-[1.1]"
               >
-                The Smartest Way to{' '}
-                <span className="gradient-text">Teach, Learn &amp; Grow</span>
+                {t('The Smartest Way to', 'الطريقة الأذكى لـ')}{' '}
+                <span className="gradient-text">{t('Teach, Learn & Grow', 'التعليم والتعلم والنمو')}</span>
               </motion.h1>
 
               <motion.p
@@ -196,9 +229,10 @@ export default function SmartLMSPage() {
                 transition={{ delay: 0.2 }}
                 className="text-white/55 text-lg md:text-xl max-w-xl mb-10 leading-relaxed"
               >
-                A next-generation learning management system built on Moodle for K-12
-                and higher education. Gamified learning, AI analytics, multilingual
-                support, and a parent portal — all in one platform.
+                {t(
+                  'A next-generation learning management system built on Moodle for K-12 and higher education. Gamified learning, AI analytics, multilingual support, and a parent portal — all in one platform.',
+                  'نظام إدارة تعلم من الجيل التالي مبني على Moodle للتعليم الأساسي والعالي. تعلم بالألعاب وتحليلات الذكاء الاصطناعي ودعم متعدد اللغات وبوابة أولياء الأمور — كل ذلك في منصة واحدة.'
+                )}
               </motion.p>
 
               <motion.div
@@ -208,10 +242,10 @@ export default function SmartLMSPage() {
                 className="flex flex-wrap gap-4"
               >
                 <Link href="/contact" className="btn-primary text-lg px-8">
-                  Request a Demo <ArrowRight className="w-5 h-5" />
+                  {t('Request a Demo', 'احجز عرضاً تجريبياً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                 </Link>
                 <Link href="/pricing" className="btn-outline-white text-lg px-8">
-                  View Pricing
+                  {t('View Pricing', 'عرض الأسعار')}
                 </Link>
               </motion.div>
 
@@ -240,7 +274,7 @@ export default function SmartLMSPage() {
                       <Star key={s} className="w-3.5 h-3.5 text-[#E88C32] fill-[#E88C32]" />
                     ))}
                   </div>
-                  <p className="text-white/40 text-xs">Trusted by 760+ schools worldwide</p>
+                  <p className="text-white/40 text-xs">{t('Trusted by 760+ schools worldwide', 'موثوق به من قبل أكثر من 760 مدرسة حول العالم')}</p>
                 </div>
               </motion.div>
             </div>
@@ -277,10 +311,10 @@ export default function SmartLMSPage() {
                     <div className="flex items-center justify-between mb-5">
                       <div>
                         <div className="text-white/90 text-sm font-bold font-heading">
-                          Welcome back, Sarah!
+                          {t('Welcome back, Sarah!', 'مرحباً بعودتك، سارة!')}
                         </div>
                         <div className="text-white/30 text-xs mt-0.5">
-                          You have 3 courses in progress
+                          {t('You have 3 courses in progress', 'لديك 3 دورات قيد التقدم')}
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -296,9 +330,9 @@ export default function SmartLMSPage() {
                     {/* Stats Row */}
                     <div className="grid grid-cols-3 gap-3 mb-5">
                       {[
-                        { label: 'Courses', val: '12', icon: BookOpen, change: '+2 this month' },
-                        { label: 'Avg Grade', val: 'A-', icon: Award, change: '89.5%' },
-                        { label: 'XP Points', val: '2,450', icon: Zap, change: 'Level 8' },
+                        { label: t('Courses', 'الدورات'), val: '12', icon: BookOpen, change: t('+2 this month', '+2 هذا الشهر') },
+                        { label: t('Avg Grade', 'متوسط الدرجة'), val: 'A-', icon: Award, change: '89.5%' },
+                        { label: t('XP Points', 'نقاط الخبرة'), val: '2,450', icon: Zap, change: t('Level 8', 'المستوى 8') },
                       ].map((s) => (
                         <div
                           key={s.label}
@@ -316,13 +350,13 @@ export default function SmartLMSPage() {
 
                     {/* Course Cards */}
                     <div className="text-white/50 text-xs font-bold uppercase tracking-wider mb-3">
-                      My Courses
+                      {t('My Courses', 'دوراتي')}
                     </div>
                     <div className="space-y-2.5">
                       {[
-                        { name: 'Mathematics — Algebra II', progress: 78, color: 'from-violet-500 to-purple-600', grade: 'A' },
-                        { name: 'Physics — Mechanics', progress: 52, color: 'from-[#D4711A] to-[#8B4513]', grade: 'B+' },
-                        { name: 'English Literature — Poetry', progress: 91, color: 'from-emerald-500 to-teal-600', grade: 'A+' },
+                        { name: t('Mathematics — Algebra II', 'الرياضيات — الجبر II'), progress: 78, color: 'from-violet-500 to-purple-600', grade: 'A' },
+                        { name: t('Physics — Mechanics', 'الفيزياء — الميكانيكا'), progress: 52, color: 'from-[#D4711A] to-[#8B4513]', grade: 'B+' },
+                        { name: t('English Literature — Poetry', 'الأدب الإنجليزي — الشعر'), progress: 91, color: 'from-emerald-500 to-teal-600', grade: 'A+' },
                       ].map((course) => (
                         <div
                           key={course.name}
@@ -352,7 +386,7 @@ export default function SmartLMSPage() {
                     {/* Grade Widget */}
                     <div className="mt-4 bg-white/[0.03] rounded-xl p-3 border border-white/5">
                       <div className="text-white/50 text-[10px] font-bold uppercase tracking-wider mb-2">
-                        Weekly Activity
+                        {t('Weekly Activity', 'النشاط الأسبوعي')}
                       </div>
                       <div className="flex items-end gap-1.5 h-16">
                         {[35, 60, 45, 80, 65, 90, 50].map((h, i) => (
@@ -362,7 +396,10 @@ export default function SmartLMSPage() {
                               style={{ height: `${h}%` }}
                             />
                             <span className="text-[8px] text-white/20">
-                              {['M', 'T', 'W', 'T', 'F', 'S', 'S'][i]}
+                              {t(
+                                ['M', 'T', 'W', 'T', 'F', 'S', 'S'][i],
+                                ['ن', 'ث', 'ر', 'خ', 'ج', 'س', 'ح'][i]
+                              )}
                             </span>
                           </div>
                         ))}
@@ -383,9 +420,9 @@ export default function SmartLMSPage() {
                       <Trophy className="w-4 h-4 text-emerald-400" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-white/40">Achievement!</div>
+                      <div className="text-[10px] text-white/40">{t('Achievement!', 'إنجاز!')}</div>
                       <div className="text-xs font-heading font-bold text-white">
-                        Quiz Master
+                        {t('Quiz Master', 'سيد الاختبارات')}
                       </div>
                     </div>
                   </div>
@@ -402,9 +439,9 @@ export default function SmartLMSPage() {
                       <BrainCircuit className="w-4 h-4 text-[#E88C32]" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-white/40">AI Insight</div>
+                      <div className="text-[10px] text-white/40">{t('AI Insight', 'رؤية الذكاء الاصطناعي')}</div>
                       <div className="text-xs font-heading font-bold text-emerald-400">
-                        +12% this week
+                        {t('+12% this week', '+12% هذا الأسبوع')}
                       </div>
                     </div>
                   </div>
@@ -429,15 +466,17 @@ export default function SmartLMSPage() {
             className="text-center mb-20"
           >
             <span className="section-label mb-4 block text-center justify-center">
-              Platform Features
+              {t('Platform Features', 'ميزات المنصة')}
             </span>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
-              Everything You Need to{' '}
-              <span className="gradient-text">Power Learning</span>
+              {t('Everything You Need to', 'كل ما تحتاجه لـ')}{' '}
+              <span className="gradient-text">{t('Power Learning', 'تعزيز التعلم')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Built on Moodle with powerful extensions, our LMS goes far beyond basic course
-              delivery. Every feature is designed with educators and students in mind.
+              {t(
+                'Built on Moodle with powerful extensions, our LMS goes far beyond basic course delivery. Every feature is designed with educators and students in mind.',
+                'مبني على Moodle مع إضافات قوية، نظام إدارة التعلم لدينا يتجاوز بكثير تقديم الدورات الأساسية. كل ميزة مصممة مع وضع المعلمين والطلاب في الاعتبار.'
+              )}
             </p>
           </motion.div>
 
@@ -487,15 +526,17 @@ export default function SmartLMSPage() {
             className="text-center mb-16"
           >
             <span className="section-label mb-4 block text-center justify-center">
-              Dashboard Preview
+              {t('Dashboard Preview', 'معاينة لوحة التحكم')}
             </span>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
-              A Dashboard That{' '}
-              <span className="gradient-text">Teachers Love</span>
+              {t('A Dashboard That', 'لوحة تحكم')}{' '}
+              <span className="gradient-text">{t('Teachers Love', 'يحبها المعلمون')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Clean, intuitive, and packed with insights. Every role sees exactly what they
-              need — nothing more, nothing less.
+              {t(
+                'Clean, intuitive, and packed with insights. Every role sees exactly what they need — nothing more, nothing less.',
+                'نظيفة وبديهية ومليئة بالرؤى. كل دور يرى بالضبط ما يحتاجه — لا أكثر ولا أقل.'
+              )}
             </p>
           </motion.div>
 
@@ -534,20 +575,20 @@ export default function SmartLMSPage() {
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center">
                       <GraduationCap className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-white font-heading font-bold text-sm">Smart LMS</span>
+                    <span className="text-white font-heading font-bold text-sm">{t('Smart LMS', 'نظام إدارة التعلم الذكي')}</span>
                   </div>
 
                   {/* Nav Items */}
                   <div className="space-y-1">
                     {[
-                      { icon: Home, label: 'Dashboard', active: true },
-                      { icon: BookOpen, label: 'My Courses', active: false },
-                      { icon: Users, label: 'Students', active: false },
-                      { icon: ClipboardCheck, label: 'Assessments', active: false },
-                      { icon: BarChart3, label: 'Analytics', active: false },
-                      { icon: MessageSquare, label: 'Messages', active: false },
-                      { icon: Calendar, label: 'Schedule', active: false },
-                      { icon: Settings, label: 'Settings', active: false },
+                      { icon: Home, label: t('Dashboard', 'لوحة التحكم'), active: true },
+                      { icon: BookOpen, label: t('My Courses', 'دوراتي'), active: false },
+                      { icon: Users, label: t('Students', 'الطلاب'), active: false },
+                      { icon: ClipboardCheck, label: t('Assessments', 'التقييمات'), active: false },
+                      { icon: BarChart3, label: t('Analytics', 'التحليلات'), active: false },
+                      { icon: MessageSquare, label: t('Messages', 'الرسائل'), active: false },
+                      { icon: Calendar, label: t('Schedule', 'الجدول'), active: false },
+                      { icon: Settings, label: t('Settings', 'الإعدادات'), active: false },
                     ].map((nav) => (
                       <div
                         key={nav.label}
@@ -559,7 +600,7 @@ export default function SmartLMSPage() {
                       >
                         <nav.icon className="w-4 h-4" />
                         {nav.label}
-                        {nav.label === 'Messages' && (
+                        {nav.label === t('Messages', 'الرسائل') && (
                           <span className="ml-auto w-5 h-5 rounded-full bg-red-500 text-white text-[9px] flex items-center justify-center font-bold">
                             3
                           </span>
@@ -575,8 +616,8 @@ export default function SmartLMSPage() {
                         MR
                       </div>
                       <div>
-                        <div className="text-white text-xs font-medium">Ms. Rashida</div>
-                        <div className="text-white/30 text-[10px]">Math Teacher</div>
+                        <div className="text-white text-xs font-medium">{t('Ms. Rashida', 'الأستاذة رشيدة')}</div>
+                        <div className="text-white/30 text-[10px]">{t('Math Teacher', 'معلمة رياضيات')}</div>
                       </div>
                     </div>
                   </div>
@@ -588,10 +629,10 @@ export default function SmartLMSPage() {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h3 className="font-heading font-bold text-gray-900 text-base">
-                        Good morning, Ms. Rashida!
+                        {t('Good morning, Ms. Rashida!', 'صباح الخير، الأستاذة رشيدة!')}
                       </h3>
                       <p className="text-gray-400 text-xs mt-0.5">
-                        You have 4 classes today and 12 assignments to review
+                        {t('You have 4 classes today and 12 assignments to review', 'لديك 4 حصص اليوم و12 واجباً للمراجعة')}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -607,10 +648,10 @@ export default function SmartLMSPage() {
                   {/* Quick Stats */}
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
                     {[
-                      { label: 'Total Students', val: '284', change: '+12', color: 'text-emerald-500', bg: 'bg-emerald-50' },
-                      { label: 'Active Courses', val: '8', change: '+1', color: 'text-blue-500', bg: 'bg-blue-50' },
-                      { label: 'Avg. Score', val: '87%', change: '+3%', color: 'text-violet-500', bg: 'bg-violet-50' },
-                      { label: 'Completion Rate', val: '92%', change: '+5%', color: 'text-[#D4711A]', bg: 'bg-orange-50' },
+                      { label: t('Total Students', 'إجمالي الطلاب'), val: '284', change: '+12', color: 'text-emerald-500', bg: 'bg-emerald-50' },
+                      { label: t('Active Courses', 'الدورات النشطة'), val: '8', change: '+1', color: 'text-blue-500', bg: 'bg-blue-50' },
+                      { label: t('Avg. Score', 'متوسط الدرجة'), val: '87%', change: '+3%', color: 'text-violet-500', bg: 'bg-violet-50' },
+                      { label: t('Completion Rate', 'معدل الإنجاز'), val: '92%', change: '+5%', color: 'text-[#D4711A]', bg: 'bg-orange-50' },
                     ].map((stat) => (
                       <div
                         key={stat.label}
@@ -637,32 +678,32 @@ export default function SmartLMSPage() {
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <div className="font-heading font-bold text-gray-900 text-sm">
-                            Student Performance
+                            {t('Student Performance', 'أداء الطلاب')}
                           </div>
                           <div className="text-gray-400 text-[10px] mt-0.5">
-                            Average scores per class this semester
+                            {t('Average scores per class this semester', 'متوسط الدرجات لكل فصل هذا الفصل الدراسي')}
                           </div>
                         </div>
                         <div className="flex gap-3">
                           <div className="flex items-center gap-1">
                             <div className="w-2 h-2 rounded-full bg-[#D4711A]" />
-                            <span className="text-[10px] text-gray-400">This Term</span>
+                            <span className="text-[10px] text-gray-400">{t('This Term', 'هذا الفصل')}</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <div className="w-2 h-2 rounded-full bg-gray-200" />
-                            <span className="text-[10px] text-gray-400">Last Term</span>
+                            <span className="text-[10px] text-gray-400">{t('Last Term', 'الفصل السابق')}</span>
                           </div>
                         </div>
                       </div>
                       {/* Bar Chart */}
                       <div className="flex items-end gap-3 h-36">
                         {[
-                          { label: 'Grade 7', cur: 72, prev: 65 },
-                          { label: 'Grade 8', cur: 85, prev: 78 },
-                          { label: 'Grade 9', cur: 68, prev: 71 },
-                          { label: 'Grade 10', cur: 91, prev: 82 },
-                          { label: 'Grade 11', cur: 76, prev: 74 },
-                          { label: 'Grade 12', cur: 88, prev: 80 },
+                          { label: t('Grade 7', 'الصف 7'), cur: 72, prev: 65 },
+                          { label: t('Grade 8', 'الصف 8'), cur: 85, prev: 78 },
+                          { label: t('Grade 9', 'الصف 9'), cur: 68, prev: 71 },
+                          { label: t('Grade 10', 'الصف 10'), cur: 91, prev: 82 },
+                          { label: t('Grade 11', 'الصف 11'), cur: 76, prev: 74 },
+                          { label: t('Grade 12', 'الصف 12'), cur: 88, prev: 80 },
                         ].map((bar) => (
                           <div key={bar.label} className="flex-1 flex flex-col items-center gap-1">
                             <div className="w-full flex gap-0.5 items-end h-28">
@@ -688,14 +729,14 @@ export default function SmartLMSPage() {
                       {/* Recent Activity */}
                       <div className="bg-white rounded-xl p-4 border border-gray-100">
                         <div className="font-heading font-bold text-gray-900 text-sm mb-3">
-                          Recent Activity
+                          {t('Recent Activity', 'النشاط الأخير')}
                         </div>
                         <div className="space-y-3">
                           {[
-                            { text: 'Ahmed submitted Algebra Quiz', time: '2m ago', icon: FileText, color: 'bg-violet-100 text-violet-600' },
-                            { text: 'New student enrolled in Physics', time: '15m ago', icon: Users, color: 'bg-emerald-100 text-emerald-600' },
-                            { text: 'Grade 10 assignment due reminder', time: '1h ago', icon: Clock, color: 'bg-orange-100 text-[#D4711A]' },
-                            { text: 'Parent meeting scheduled', time: '3h ago', icon: Calendar, color: 'bg-blue-100 text-blue-600' },
+                            { text: t('Ahmed submitted Algebra Quiz', 'أحمد قدّم اختبار الجبر'), time: t('2m ago', 'منذ دقيقتين'), icon: FileText, color: 'bg-violet-100 text-violet-600' },
+                            { text: t('New student enrolled in Physics', 'طالب جديد سجّل في الفيزياء'), time: t('15m ago', 'منذ 15 دقيقة'), icon: Users, color: 'bg-emerald-100 text-emerald-600' },
+                            { text: t('Grade 10 assignment due reminder', 'تذكير بموعد واجب الصف 10'), time: t('1h ago', 'منذ ساعة'), icon: Clock, color: 'bg-orange-100 text-[#D4711A]' },
+                            { text: t('Parent meeting scheduled', 'تم جدولة اجتماع أولياء الأمور'), time: t('3h ago', 'منذ 3 ساعات'), icon: Calendar, color: 'bg-blue-100 text-blue-600' },
                           ].map((act, i) => (
                             <div key={i} className="flex items-start gap-2.5">
                               <div className={`w-7 h-7 rounded-lg ${act.color} flex items-center justify-center flex-shrink-0`}>
@@ -715,13 +756,13 @@ export default function SmartLMSPage() {
                       {/* Upcoming */}
                       <div className="bg-white rounded-xl p-4 border border-gray-100">
                         <div className="font-heading font-bold text-gray-900 text-sm mb-3">
-                          Upcoming Assignments
+                          {t('Upcoming Assignments', 'الواجبات القادمة')}
                         </div>
                         <div className="space-y-2">
                           {[
-                            { name: 'Algebra II — Chapter Test', due: 'Tomorrow', status: 'bg-red-100 text-red-600' },
-                            { name: 'Physics Lab Report', due: 'In 3 days', status: 'bg-yellow-100 text-yellow-700' },
-                            { name: 'Poetry Analysis Essay', due: 'In 1 week', status: 'bg-emerald-100 text-emerald-600' },
+                            { name: t('Algebra II — Chapter Test', 'الجبر II — اختبار الفصل'), due: t('Tomorrow', 'غداً'), status: 'bg-red-100 text-red-600' },
+                            { name: t('Physics Lab Report', 'تقرير مختبر الفيزياء'), due: t('In 3 days', 'بعد 3 أيام'), status: 'bg-yellow-100 text-yellow-700' },
+                            { name: t('Poetry Analysis Essay', 'مقال تحليل الشعر'), due: t('In 1 week', 'بعد أسبوع'), status: 'bg-emerald-100 text-emerald-600' },
                           ].map((a, i) => (
                             <div key={i} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
                               <div>
@@ -757,14 +798,17 @@ export default function SmartLMSPage() {
             className="text-center mb-20"
           >
             <span className="section-label mb-4 block text-center justify-center">
-              Implementation Process
+              {t('Implementation Process', 'عملية التنفيذ')}
             </span>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
-              From Zero to <span className="gradient-text">Launch in 4 Weeks</span>
+              {t('From Zero to', 'من الصفر إلى')}{' '}
+              <span className="gradient-text">{t('Launch in 4 Weeks', 'الإطلاق في 4 أسابيع')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Our proven deployment process gets your LMS up and running fast — without
-              disrupting your existing academic calendar.
+              {t(
+                'Our proven deployment process gets your LMS up and running fast — without disrupting your existing academic calendar.',
+                'عملية النشر المثبتة لدينا تجعل نظام إدارة التعلم جاهزاً للعمل بسرعة — دون الإخلال بتقويمكم الأكاديمي الحالي.'
+              )}
             </p>
           </motion.div>
 
@@ -819,24 +863,25 @@ export default function SmartLMSPage() {
               transition={{ duration: 0.7 }}
             >
               <span className="section-label section-label-light mb-4 block">
-                Student Experience
+                {t('Student Experience', 'تجربة الطالب')}
               </span>
               <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
-                Learning That Fits in{' '}
-                <span className="gradient-text">Every Pocket</span>
+                {t('Learning That Fits in', 'تعلّم يناسب')}{' '}
+                <span className="gradient-text">{t('Every Pocket', 'كل جيب')}</span>
               </h2>
               <p className="text-white/50 text-lg mb-8 leading-relaxed">
-                Students access courses, watch video lessons, take quizzes, and track their
-                progress — all from a beautiful mobile interface that feels like the apps they
-                already love.
+                {t(
+                  'Students access courses, watch video lessons, take quizzes, and track their progress — all from a beautiful mobile interface that feels like the apps they already love.',
+                  'يصل الطلاب إلى الدورات ويشاهدون دروس الفيديو ويخوضون الاختبارات ويتابعون تقدمهم — كل ذلك من واجهة جوال جميلة تشبه التطبيقات التي يحبونها بالفعل.'
+                )}
               </p>
 
               <div className="space-y-4">
                 {[
-                  'Offline mode for areas with limited connectivity',
-                  'Push notifications for deadlines and grades',
-                  'Dark mode for late-night study sessions',
-                  'One-tap access to live classes and recordings',
+                  t('Offline mode for areas with limited connectivity', 'وضع عدم الاتصال للمناطق ذات الاتصال المحدود'),
+                  t('Push notifications for deadlines and grades', 'إشعارات فورية للمواعيد النهائية والدرجات'),
+                  t('Dark mode for late-night study sessions', 'الوضع الداكن لجلسات الدراسة المتأخرة'),
+                  t('One-tap access to live classes and recordings', 'وصول بنقرة واحدة للفصول المباشرة والتسجيلات'),
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
@@ -878,9 +923,9 @@ export default function SmartLMSPage() {
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="text-white font-heading font-bold text-base">
-                            My Courses
+                            {t('My Courses', 'دوراتي')}
                           </div>
-                          <div className="text-white/30 text-[10px]">3 in progress</div>
+                          <div className="text-white/30 text-[10px]">{t('3 in progress', '3 قيد التقدم')}</div>
                         </div>
                         <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center text-white text-xs font-bold">
                           A
@@ -898,13 +943,13 @@ export default function SmartLMSPage() {
                             24:30
                           </div>
                           <div className="absolute top-2 left-2 bg-[#D4711A] rounded px-1.5 py-0.5 text-[8px] text-white font-bold uppercase">
-                            Live
+                            {t('Live', 'مباشر')}
                           </div>
                         </div>
                         <div className="text-white text-xs font-bold mb-1">
-                          Algebra II — Quadratic Equations
+                          {t('Algebra II — Quadratic Equations', 'الجبر II — المعادلات التربيعية')}
                         </div>
-                        <div className="text-white/40 text-[10px] mb-2">Ms. Rashida &middot; Chapter 4</div>
+                        <div className="text-white/40 text-[10px] mb-2">{t('Ms. Rashida', 'الأستاذة رشيدة')} &middot; {t('Chapter 4', 'الفصل 4')}</div>
                         <div className="flex items-center gap-2">
                           <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
                             <div className="h-full w-[65%] bg-gradient-to-r from-[#D4711A] to-[#E88C32] rounded-full" />
@@ -915,8 +960,8 @@ export default function SmartLMSPage() {
 
                       {/* Course List */}
                       {[
-                        { name: 'Physics — Mechanics', teacher: 'Mr. Hassan', prog: 42, color: 'from-violet-500 to-purple-600' },
-                        { name: 'English Literature', teacher: 'Ms. Fatima', prog: 88, color: 'from-emerald-500 to-teal-600' },
+                        { name: t('Physics — Mechanics', 'الفيزياء — الميكانيكا'), teacher: t('Mr. Hassan', 'الأستاذ حسن'), prog: 42, color: 'from-violet-500 to-purple-600' },
+                        { name: t('English Literature', 'الأدب الإنجليزي'), teacher: t('Ms. Fatima', 'الأستاذة فاطمة'), prog: 88, color: 'from-emerald-500 to-teal-600' },
                       ].map((c) => (
                         <div key={c.name} className="bg-white/[0.04] rounded-xl p-3 border border-white/5">
                           <div className="flex items-center gap-3">
@@ -947,14 +992,14 @@ export default function SmartLMSPage() {
                           <ClipboardCheck className="w-5 h-5 text-violet-400" />
                           <div className="flex-1">
                             <div className="text-white text-[11px] font-bold">
-                              Quiz Available
+                              {t('Quiz Available', 'اختبار متاح')}
                             </div>
                             <div className="text-white/40 text-[9px]">
-                              Algebra — 10 questions &middot; 15 min
+                              {t('Algebra — 10 questions', 'الجبر — 10 أسئلة')} &middot; {t('15 min', '15 دقيقة')}
                             </div>
                           </div>
                           <div className="bg-violet-500 rounded-lg px-2.5 py-1 text-[9px] text-white font-bold">
-                            Start
+                            {t('Start', 'ابدأ')}
                           </div>
                         </div>
                       </div>
@@ -962,11 +1007,11 @@ export default function SmartLMSPage() {
                       {/* Bottom Nav */}
                       <div className="flex items-center justify-around pt-3 border-t border-white/5">
                         {[
-                          { icon: Home, label: 'Home', active: true },
-                          { icon: BookOpen, label: 'Courses', active: false },
-                          { icon: Video, label: 'Live', active: false },
-                          { icon: Award, label: 'Badges', active: false },
-                          { icon: Users, label: 'Profile', active: false },
+                          { icon: Home, label: t('Home', 'الرئيسية'), active: true },
+                          { icon: BookOpen, label: t('Courses', 'الدورات'), active: false },
+                          { icon: Video, label: t('Live', 'مباشر'), active: false },
+                          { icon: Award, label: t('Badges', 'الشارات'), active: false },
+                          { icon: Users, label: t('Profile', 'الملف'), active: false },
                         ].map((nav) => (
                           <div key={nav.label} className="flex flex-col items-center gap-0.5">
                             <nav.icon className={`w-4 h-4 ${nav.active ? 'text-[#E88C32]' : 'text-white/20'}`} />
@@ -993,8 +1038,8 @@ export default function SmartLMSPage() {
                       <Trophy className="w-4 h-4 text-yellow-400" />
                     </div>
                     <div>
-                      <div className="text-[9px] text-white/30">New Badge!</div>
-                      <div className="text-xs font-bold text-white">Fast Learner</div>
+                      <div className="text-[9px] text-white/30">{t('New Badge!', 'شارة جديدة!')}</div>
+                      <div className="text-xs font-bold text-white">{t('Fast Learner', 'متعلم سريع')}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -1011,8 +1056,8 @@ export default function SmartLMSPage() {
                       <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                     </div>
                     <div>
-                      <div className="text-[9px] text-white/30">Quiz Result</div>
-                      <div className="text-xs font-bold text-emerald-400">94% Score</div>
+                      <div className="text-[9px] text-white/30">{t('Quiz Result', 'نتيجة الاختبار')}</div>
+                      <div className="text-xs font-bold text-emerald-400">{t('94% Score', 'النتيجة 94%')}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -1076,15 +1121,17 @@ export default function SmartLMSPage() {
             className="text-center mb-16"
           >
             <span className="section-label mb-4 block text-center justify-center">
-              Integrations
+              {t('Integrations', 'التكاملات')}
             </span>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
-              Connects With Your{' '}
-              <span className="gradient-text">Existing Tools</span>
+              {t('Connects With Your', 'يتصل بـ')}{' '}
+              <span className="gradient-text">{t('Existing Tools', 'أدواتك الحالية')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Our Smart LMS integrates seamlessly with the platforms your school already uses.
-              No data silos, no manual workarounds.
+              {t(
+                'Our Smart LMS integrates seamlessly with the platforms your school already uses. No data silos, no manual workarounds.',
+                'نظام إدارة التعلم الذكي يتكامل بسلاسة مع المنصات التي تستخدمها مدرستك بالفعل. لا صوامع بيانات ولا حلول يدوية بديلة.'
+              )}
             </p>
           </motion.div>
 
@@ -1120,7 +1167,10 @@ export default function SmartLMSPage() {
             className="mt-12 text-center"
           >
             <p className="text-gray-400 text-sm">
-              Plus custom API integrations with any SIS, ERP, or payment gateway your institution requires.
+              {t(
+                'Plus custom API integrations with any SIS, ERP, or payment gateway your institution requires.',
+                'بالإضافة إلى تكاملات API مخصصة مع أي نظام معلومات طلابية أو ERP أو بوابة دفع تحتاجها مؤسستك.'
+              )}
             </p>
           </motion.div>
         </div>
@@ -1148,10 +1198,15 @@ export default function SmartLMSPage() {
             </div>
 
             <blockquote className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-10 leading-snug">
-              &ldquo;Cubico&apos;s Smart LMS transformed how we deliver education. Our teachers
-              went from overwhelmed to empowered, and student engagement increased by{' '}
-              <span className="gradient-text">40% in the first semester</span>. The
-              multilingual support was a game-changer for our diverse community.&rdquo;
+              {t(
+                '\u201cCubico\u2019s Smart LMS transformed how we deliver education. Our teachers went from overwhelmed to empowered, and student engagement increased by ',
+                '\u201cنظام إدارة التعلم الذكي من Cubico غيّر طريقة تقديمنا للتعليم. انتقل معلمونا من الإرهاق إلى التمكين، وزاد تفاعل الطلاب بنسبة '
+              )}
+              <span className="gradient-text">{t('40% in the first semester', '40% في الفصل الدراسي الأول')}</span>
+              {t(
+                '. The multilingual support was a game-changer for our diverse community.\u201d',
+                '. كان الدعم متعدد اللغات نقطة تحول لمجتمعنا المتنوع.\u201d'
+              )}
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
@@ -1159,9 +1214,9 @@ export default function SmartLMSPage() {
                 NK
               </div>
               <div className="text-left">
-                <div className="font-heading font-bold text-gray-900">Dr. Nadia Khalil</div>
+                <div className="font-heading font-bold text-gray-900">{t('Dr. Nadia Khalil', 'د. نادية خليل')}</div>
                 <div className="text-gray-500 text-sm">
-                  Director, Al-Noor International School
+                  {t('Director, Al-Noor International School', 'مديرة مدرسة النور الدولية')}
                 </div>
               </div>
             </div>
@@ -1194,26 +1249,27 @@ export default function SmartLMSPage() {
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 mb-8">
               <Sparkles className="w-4 h-4 text-[#E88C32]" />
               <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
-                Get Started Today
+                {t('Get Started Today', 'ابدأ اليوم')}
               </span>
             </div>
 
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 leading-tight">
-              Ready to Launch Your{' '}
-              <span className="gradient-text">Smart LMS?</span>
+              {t('Ready to Launch Your', 'مستعد لإطلاق')}{' '}
+              <span className="gradient-text">{t('Smart LMS?', 'نظام إدارة التعلم الذكي؟')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-              Book a free 30-minute consultation. We&apos;ll walk you through a live demo,
-              understand your curriculum needs, and show you exactly how our LMS can
-              transform learning at your institution.
+              {t(
+                'Book a free 30-minute consultation. We\u2019ll walk you through a live demo, understand your curriculum needs, and show you exactly how our LMS can transform learning at your institution.',
+                'احجز استشارة مجانية لمدة 30 دقيقة. سنرشدك خلال عرض توضيحي مباشر ونفهم احتياجات مناهجك ونوضح لك بالضبط كيف يمكن لنظام إدارة التعلم أن يحوّل التعلم في مؤسستك.'
+              )}
             </p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary text-lg px-10">
-                Request Free Demo <ArrowRight className="w-5 h-5" />
+                {t('Request Free Demo', 'احجز عرضاً تجريبياً مجانياً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </Link>
               <Link href="/solutions" className="btn-outline-white text-lg px-10">
-                Explore All Solutions
+                {t('Explore All Solutions', 'استكشف جميع الحلول')}
               </Link>
             </div>
 
@@ -1221,15 +1277,15 @@ export default function SmartLMSPage() {
             <div className="mt-12 flex items-center justify-center gap-6 text-white/30 text-sm">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>No setup fees</span>
+                <span>{t('No setup fees', 'بدون رسوم إعداد')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>14-day free trial</span>
+                <span>{t('14-day free trial', 'تجربة مجانية لمدة 14 يوماً')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                <span>Cancel anytime</span>
+                <span>{t('Cancel anytime', 'إلغاء في أي وقت')}</span>
               </div>
             </div>
           </motion.div>

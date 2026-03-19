@@ -18,6 +18,7 @@ import {
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -33,77 +34,114 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.12 } },
 };
 
-const solutions = [
-  {
-    icon: BookOpen,
-    title: 'Smart LMS',
-    slug: 'smart-lms',
-    tagline: 'Next-Gen Learning Management',
-    desc: 'A Moodle-powered learning management system built for K-12 and higher education. Gamified courses, AI analytics, multilingual content in English, Arabic & Urdu — all from one dashboard.',
-    stats: ['500+ courses deployed', '98% uptime SLA', '3 languages supported'],
-    color: 'from-violet-500 to-purple-600',
-    bgLight: 'bg-violet-50',
-    textColor: 'text-violet-600',
-    mockupBg: 'from-violet-500/10 via-purple-500/5 to-transparent',
-  },
-  {
-    icon: Film,
-    title: 'Animation Studio',
-    slug: 'animation-studio',
-    tagline: 'Bring Lessons to Life',
-    desc: 'Professional 2D & 3D animated educational content that transforms complex subjects into visual stories. From science experiments to Islamic studies — created in-house by our creative team.',
-    stats: ['2,000+ animations', '3 languages', 'K-12 curriculum aligned'],
-    color: 'from-rose-500 to-pink-600',
-    bgLight: 'bg-rose-50',
-    textColor: 'text-rose-600',
-    mockupBg: 'from-rose-500/10 via-pink-500/5 to-transparent',
-  },
-  {
-    icon: Monitor,
-    title: 'School ERP',
-    slug: 'school-erp',
-    tagline: 'One System, Zero Chaos',
-    desc: 'End-to-end school management covering admissions, fee collection, HR & payroll, timetabling, exam management, and parent communication — all connected in real-time.',
-    stats: ['12 integrated modules', '50% time saved', '760+ schools'],
-    color: 'from-emerald-500 to-teal-600',
-    bgLight: 'bg-emerald-50',
-    textColor: 'text-emerald-600',
-    mockupBg: 'from-emerald-500/10 via-teal-500/5 to-transparent',
-  },
-  {
-    icon: Globe,
-    title: 'Web Development',
-    slug: 'web-development',
-    tagline: 'Your Digital Front Door',
-    desc: 'Stunning, fast, SEO-optimized websites and portals purpose-built for educational institutions. From landing pages to full-featured admission portals with integrated payment gateways.',
-    stats: ['< 2s load time', 'SEO optimized', 'Mobile-first'],
-    color: 'from-blue-500 to-cyan-600',
-    bgLight: 'bg-blue-50',
-    textColor: 'text-blue-600',
-    mockupBg: 'from-blue-500/10 via-cyan-500/5 to-transparent',
-  },
-  {
-    icon: Smartphone,
-    title: 'Mobile Apps',
-    slug: 'mobile-apps',
-    tagline: 'School in Every Pocket',
-    desc: 'Cross-platform mobile applications for students, parents, and administrators. Real-time attendance, push notifications, grade tracking, and fee payments — all at your fingertips.',
-    stats: ['iOS & Android', '50k+ downloads', '4.8★ rating'],
-    color: 'from-amber-500 to-orange-600',
-    bgLight: 'bg-amber-50',
-    textColor: 'text-amber-600',
-    mockupBg: 'from-amber-500/10 via-orange-500/5 to-transparent',
-  },
-];
-
-const impactStats = [
-  { number: '760+', label: 'Schools Powered', icon: Shield },
-  { number: '250K+', label: 'Students Learning', icon: Users },
-  { number: '3', label: 'Countries', icon: Globe },
-  { number: '99.9%', label: 'Uptime Guarantee', icon: Zap },
-];
-
 export default function SolutionsPage() {
+  const { t } = useLanguage();
+
+  const solutions = [
+    {
+      icon: BookOpen,
+      title: t('Smart LMS', 'نظام إدارة التعلم'),
+      slug: 'smart-lms',
+      tagline: t('Next-Gen Learning Management', 'إدارة التعلم من الجيل التالي'),
+      desc: t(
+        'A Moodle-powered learning management system built for K-12 and higher education. Gamified courses, AI analytics, multilingual content in English, Arabic & Urdu — all from one dashboard.',
+        'نظام إدارة تعلم مبني على Moodle مصمم للتعليم الأساسي والعالي. دورات تفاعلية، تحليلات ذكية، محتوى متعدد اللغات بالإنجليزية والعربية والأردية — كل ذلك من لوحة تحكم واحدة.'
+      ),
+      stats: [
+        t('500+ courses deployed', 'أكثر من ٥٠٠ دورة منشورة'),
+        t('98% uptime SLA', '٩٨٪ اتفاقية وقت التشغيل'),
+        t('3 languages supported', '٣ لغات مدعومة'),
+      ],
+      color: 'from-violet-500 to-purple-600',
+      bgLight: 'bg-violet-50',
+      textColor: 'text-violet-600',
+      mockupBg: 'from-violet-500/10 via-purple-500/5 to-transparent',
+    },
+    {
+      icon: Film,
+      title: t('Animation Studio', 'استوديو الرسوم المتحركة'),
+      slug: 'animation-studio',
+      tagline: t('Bring Lessons to Life', 'أحيِ الدروس'),
+      desc: t(
+        'Professional 2D & 3D animated educational content that transforms complex subjects into visual stories. From science experiments to Islamic studies — created in-house by our creative team.',
+        'محتوى تعليمي متحرك ثنائي وثلاثي الأبعاد يحوّل المواضيع المعقدة إلى قصص بصرية. من التجارب العلمية إلى الدراسات الإسلامية — يُنتج داخلياً بواسطة فريقنا الإبداعي.'
+      ),
+      stats: [
+        t('2,000+ animations', 'أكثر من ٢٠٠٠ رسوم متحركة'),
+        t('3 languages', '٣ لغات'),
+        t('K-12 curriculum aligned', 'متوافق مع مناهج K-12'),
+      ],
+      color: 'from-rose-500 to-pink-600',
+      bgLight: 'bg-rose-50',
+      textColor: 'text-rose-600',
+      mockupBg: 'from-rose-500/10 via-pink-500/5 to-transparent',
+    },
+    {
+      icon: Monitor,
+      title: t('School ERP', 'نظام إدارة المدرسة'),
+      slug: 'school-erp',
+      tagline: t('One System, Zero Chaos', 'نظام واحد، فوضى صفر'),
+      desc: t(
+        'End-to-end school management covering admissions, fee collection, HR & payroll, timetabling, exam management, and parent communication — all connected in real-time.',
+        'إدارة مدرسية شاملة تغطي القبول، تحصيل الرسوم، الموارد البشرية والرواتب، جدولة الحصص، إدارة الامتحانات، والتواصل مع أولياء الأمور — كل ذلك متصل في الوقت الفعلي.'
+      ),
+      stats: [
+        t('12 integrated modules', '١٢ وحدة متكاملة'),
+        t('50% time saved', '٥٠٪ توفير في الوقت'),
+        t('760+ schools', 'أكثر من ٧٦٠ مدرسة'),
+      ],
+      color: 'from-emerald-500 to-teal-600',
+      bgLight: 'bg-emerald-50',
+      textColor: 'text-emerald-600',
+      mockupBg: 'from-emerald-500/10 via-teal-500/5 to-transparent',
+    },
+    {
+      icon: Globe,
+      title: t('Web Development', 'تطوير المواقع'),
+      slug: 'web-development',
+      tagline: t('Your Digital Front Door', 'واجهتك الرقمية'),
+      desc: t(
+        'Stunning, fast, SEO-optimized websites and portals purpose-built for educational institutions. From landing pages to full-featured admission portals with integrated payment gateways.',
+        'مواقع وبوابات مذهلة وسريعة ومحسّنة لمحركات البحث مصممة خصيصاً للمؤسسات التعليمية. من صفحات الهبوط إلى بوابات القبول المتكاملة مع بوابات الدفع.'
+      ),
+      stats: [
+        t('< 2s load time', 'أقل من ٢ ثانية تحميل'),
+        t('SEO optimized', 'محسّن لمحركات البحث'),
+        t('Mobile-first', 'الجوال أولاً'),
+      ],
+      color: 'from-blue-500 to-cyan-600',
+      bgLight: 'bg-blue-50',
+      textColor: 'text-blue-600',
+      mockupBg: 'from-blue-500/10 via-cyan-500/5 to-transparent',
+    },
+    {
+      icon: Smartphone,
+      title: t('Mobile Apps', 'تطبيقات الجوال'),
+      slug: 'mobile-apps',
+      tagline: t('School in Every Pocket', 'المدرسة في كل جيب'),
+      desc: t(
+        'Cross-platform mobile applications for students, parents, and administrators. Real-time attendance, push notifications, grade tracking, and fee payments — all at your fingertips.',
+        'تطبيقات جوال متعددة المنصات للطلاب وأولياء الأمور والإداريين. حضور فوري، إشعارات فورية، متابعة الدرجات، ودفع الرسوم — كل ذلك بين يديك.'
+      ),
+      stats: [
+        t('iOS & Android', 'iOS و Android'),
+        t('50k+ downloads', 'أكثر من ٥٠ ألف تحميل'),
+        t('4.8★ rating', 'تقييم ٤.٨★'),
+      ],
+      color: 'from-amber-500 to-orange-600',
+      bgLight: 'bg-amber-50',
+      textColor: 'text-amber-600',
+      mockupBg: 'from-amber-500/10 via-orange-500/5 to-transparent',
+    },
+  ];
+
+  const impactStats = [
+    { number: '760+', label: t('Schools Powered', 'مدارس مخدومة'), icon: Shield },
+    { number: '250K+', label: t('Students Learning', 'طلاب يتعلمون'), icon: Users },
+    { number: '3', label: t('Countries', 'دول'), icon: Globe },
+    { number: '99.9%', label: t('Uptime Guarantee', 'ضمان وقت التشغيل'), icon: Zap },
+  ];
+
   return (
     <>
       <Header />
@@ -132,7 +170,7 @@ export default function SolutionsPage() {
             >
               <Sparkles className="w-4 h-4 text-[#E88C32]" />
               <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
-                Complete EdTech Ecosystem
+                {t('Complete EdTech Ecosystem', 'نظام تكنولوجيا التعليم المتكامل')}
               </span>
             </motion.div>
 
@@ -142,10 +180,10 @@ export default function SolutionsPage() {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-8 leading-tight"
             >
-              Solutions That{' '}
-              <span className="gradient-text">Transform</span>
+              {t('Solutions That ', 'حلول ')}
+              <span className="gradient-text">{t('Transform', 'تُحوّل')}</span>
               <br />
-              How Schools Operate
+              {t('How Schools Operate', 'طريقة عمل المدارس')}
             </motion.h1>
 
             <motion.p
@@ -154,8 +192,10 @@ export default function SolutionsPage() {
               transition={{ delay: 0.2 }}
               className="text-white/55 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed"
             >
-              From learning management to animated content, from school ERP to mobile apps —
-              we build the entire digital backbone your institution needs to thrive in the modern age.
+              {t(
+                'From learning management to animated content, from school ERP to mobile apps — we build the entire digital backbone your institution needs to thrive in the modern age.',
+                'من إدارة التعلم إلى المحتوى المتحرك، ومن نظام إدارة المدرسة إلى تطبيقات الجوال — نبني البنية الرقمية الكاملة التي تحتاجها مؤسستك للازدهار في العصر الحديث.'
+              )}
             </motion.p>
 
             <motion.div
@@ -165,10 +205,10 @@ export default function SolutionsPage() {
               className="flex flex-wrap justify-center gap-4"
             >
               <Link href="/contact" className="btn-primary text-lg px-10">
-                Schedule a Demo <ArrowRight className="w-5 h-5" />
+                {t('Schedule a Demo', 'احجز عرضاً تجريبياً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </Link>
               <Link href="/pricing" className="btn-outline-white text-lg px-10">
-                View Pricing
+                {t('View Pricing', 'عرض الأسعار')}
               </Link>
             </motion.div>
           </div>
@@ -248,7 +288,7 @@ export default function SolutionsPage() {
                       href={`/solutions/${sol.slug}`}
                       className="btn-primary inline-flex"
                     >
-                      Explore {sol.title} <ArrowRight className="w-5 h-5" />
+                      {t('Explore', 'استكشف')} {sol.title} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                     </Link>
                   </motion.div>
 
@@ -333,7 +373,7 @@ export default function SolutionsPage() {
                             <TrendingUp className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <div className="text-xs text-gray-400">Performance</div>
+                            <div className="text-xs text-gray-400">{t('Performance', 'الأداء')}</div>
                             <div className="text-lg font-heading font-bold text-gray-900">+47%</div>
                           </div>
                         </div>
@@ -359,14 +399,16 @@ export default function SolutionsPage() {
             viewport={{ once: true }}
           >
             <span className="section-label section-label-light mb-4 block text-center justify-center">
-              Why Choose Cubico
+              {t('Why Choose Cubico', 'لماذا تختار كيوبيكو')}
             </span>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
-              One Partner. <span className="gradient-text">Every Solution.</span>
+              {t('One Partner.', 'شريك واحد.')} <span className="gradient-text">{t('Every Solution.', 'كل الحلول.')}</span>
             </h2>
             <p className="text-white/50 text-lg max-w-2xl mx-auto mb-16">
-              Instead of juggling 5 vendors, you get a single team that understands education
-              and delivers everything — from code to content to cloud.
+              {t(
+                'Instead of juggling 5 vendors, you get a single team that understands education and delivers everything — from code to content to cloud.',
+                'بدلاً من التعامل مع ٥ موردين، تحصل على فريق واحد يفهم التعليم ويقدم كل شيء — من البرمجة إلى المحتوى إلى السحابة.'
+              )}
             </p>
           </motion.div>
 
@@ -378,12 +420,54 @@ export default function SolutionsPage() {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {[
-              { icon: Shield, title: 'End-to-End Ownership', desc: 'We design, build, deploy, host, and support. No finger-pointing between vendors.' },
-              { icon: Globe, title: 'Multilingual by Default', desc: 'Every product supports English, Arabic, and Urdu — with RTL layouts baked in.' },
-              { icon: Zap, title: '4-Week Deployment', desc: 'Our modular approach means you go live in weeks, not months. We move fast.' },
-              { icon: Users, title: 'Education-First Thinking', desc: "We don't repurpose corporate software. Every pixel is designed for schools." },
-              { icon: TrendingUp, title: 'Data-Driven Insights', desc: 'Built-in analytics across every product give you the visibility you need.' },
-              { icon: Sparkles, title: 'Always Evolving', desc: 'Quarterly feature releases mean your platform keeps getting better — included in your plan.' },
+              {
+                icon: Shield,
+                title: t('End-to-End Ownership', 'ملكية شاملة'),
+                desc: t(
+                  'We design, build, deploy, host, and support. No finger-pointing between vendors.',
+                  'نصمم، نبني، ننشر، نستضيف، وندعم. لا إلقاء لوم بين الموردين.'
+                ),
+              },
+              {
+                icon: Globe,
+                title: t('Multilingual by Default', 'متعدد اللغات بطبيعته'),
+                desc: t(
+                  'Every product supports English, Arabic, and Urdu — with RTL layouts baked in.',
+                  'كل منتج يدعم الإنجليزية والعربية والأردية — مع تخطيطات RTL مدمجة.'
+                ),
+              },
+              {
+                icon: Zap,
+                title: t('4-Week Deployment', 'نشر في ٤ أسابيع'),
+                desc: t(
+                  'Our modular approach means you go live in weeks, not months. We move fast.',
+                  'نهجنا المعياري يعني أنك تنطلق في أسابيع، وليس أشهر. نتحرك بسرعة.'
+                ),
+              },
+              {
+                icon: Users,
+                title: t('Education-First Thinking', 'التعليم أولاً'),
+                desc: t(
+                  "We don't repurpose corporate software. Every pixel is designed for schools.",
+                  'لا نعيد تدوير برامج الشركات. كل بكسل مصمم للمدارس.'
+                ),
+              },
+              {
+                icon: TrendingUp,
+                title: t('Data-Driven Insights', 'رؤى مبنية على البيانات'),
+                desc: t(
+                  'Built-in analytics across every product give you the visibility you need.',
+                  'تحليلات مدمجة في كل منتج تمنحك الرؤية التي تحتاجها.'
+                ),
+              },
+              {
+                icon: Sparkles,
+                title: t('Always Evolving', 'تطور مستمر'),
+                desc: t(
+                  'Quarterly feature releases mean your platform keeps getting better — included in your plan.',
+                  'إصدارات ميزات فصلية تعني أن منصتك تتحسن باستمرار — مضمّنة في خطتك.'
+                ),
+              },
             ].map((item, i) => (
               <motion.div
                 key={item.title}
@@ -411,18 +495,20 @@ export default function SolutionsPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
-              Ready to Modernize Your <span className="gradient-text">School?</span>
+              {t('Ready to Modernize Your ', 'مستعد لتحديث ')}<span className="gradient-text">{t('School?', 'مدرستك؟')}</span>
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-10">
-              Book a free 30-minute consultation. We&apos;ll map your needs and show you exactly
-              how Cubico can transform your institution.
+              {t(
+                "Book a free 30-minute consultation. We'll map your needs and show you exactly how Cubico can transform your institution.",
+                'احجز استشارة مجانية لمدة ٣٠ دقيقة. سنحدد احتياجاتك ونوضح لك بالضبط كيف يمكن لكيوبيكو تحويل مؤسستك.'
+              )}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="btn-primary text-lg px-10">
-                Book Free Consultation <ArrowRight className="w-5 h-5" />
+                {t('Book Free Consultation', 'احجز استشارة مجانية')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
               </Link>
               <Link href="/services" className="btn-outline text-lg px-10">
-                Explore Services
+                {t('Explore Services', 'استكشف الخدمات')}
               </Link>
             </div>
           </motion.div>
