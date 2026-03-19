@@ -171,13 +171,13 @@ export default function HomePage() {
   const { t } = useLanguage();
 
   const navLinks = [
-    { name: t('Home', 'الرئيسية'), href: '#home' },
-    { name: t('Solutions', 'الحلول'), href: '#showcase' },
-    { name: t('About', 'من نحن'), href: '#about' },
-    { name: t('Services', 'الخدمات'), href: '#services' },
-    { name: t('Testimonials', 'آراء العملاء'), href: '#testimonials' },
-    { name: t('FAQ', 'الأسئلة الشائعة'), href: '#faq' },
-    { name: t('Contact', 'تواصل معنا'), href: '#contact' },
+    { name: t('Home', 'الرئيسية'), href: '/' },
+    { name: t('About', 'من نحن'), href: '/about' },
+    { name: t('Solutions', 'الحلول'), href: '/solutions' },
+    { name: t('Services', 'الخدمات'), href: '/services' },
+    { name: t('Contact', 'تواصل معنا'), href: '/contact' },
+    { name: t('FAQ', 'الأسئلة الشائعة'), href: '/faq' },
+    { name: t('Team', 'الفريق'), href: '/team' },
   ];
 
   const services = [
@@ -443,13 +443,13 @@ export default function HomePage() {
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-0.5">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </nav>
 
@@ -458,13 +458,13 @@ export default function HomePage() {
 
             {/* CTA */}
             <div className="hidden lg:flex items-center flex-shrink-0">
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
               >
                 {t('Get Started', 'ابدأ الآن')}
                 <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -490,20 +490,20 @@ export default function HomePage() {
           >
             <div className="px-5 py-5 space-y-1">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
               <div className="pt-3 border-t border-white/[0.08]">
-                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
                   {t('Get Started', 'ابدأ الآن')}
                   <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -597,19 +597,19 @@ export default function HomePage() {
 
           {/* CTA buttons */}
           <motion.div variants={fadeUp} custom={3} className="flex items-center gap-4">
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white font-bold text-sm px-8 py-3.5 rounded-full shadow-lg shadow-orange-600/25 hover:shadow-xl hover:shadow-orange-500/30 hover:scale-[1.02] transition-all duration-200"
             >
               {t('Book Free Demo', 'احجز عرضاً مجانياً')}
               <ArrowRight size={16} className="rtl:rotate-180" />
-            </a>
-            <a
-              href="#showcase"
+            </Link>
+            <Link
+              href="/solutions"
               className="inline-flex items-center gap-2 text-white/60 hover:text-white font-medium text-sm px-6 py-3.5 rounded-full border border-white/[0.12] hover:border-white/[0.25] hover:bg-white/[0.05] transition-all duration-200"
             >
               {t('See Products', 'تصفح المنتجات')}
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -1166,12 +1166,12 @@ export default function HomePage() {
                       })}
                     </ul>
 
-                    <a href="#contact"
+                    <Link href="/contact"
                       className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
                       style={{ backgroundColor: sol.accentHex }}>
                       {t('Book a Live Demo', 'احجز عرضاً مباشراً')}
                       <ArrowRight size={15} className="rtl:rotate-180" />
-                    </a>
+                    </Link>
                   </div>
 
                   {/* RIGHT — Illustrated Mockup */}
@@ -2264,9 +2264,9 @@ export default function HomePage() {
                         <p className="text-sm text-white/60">{t('Our team is ready to help', 'فريقنا مستعد للمساعدة')}</p>
                       </div>
                     </div>
-                    <a href="#contact" className="btn-primary text-sm">
+                    <Link href="/contact" className="btn-primary text-sm">
                       {t('Contact Us', 'تواصل معنا')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -2406,13 +2406,13 @@ export default function HomePage() {
               {t('From a 50-student school in Lahore to a 2,000-student campus in Riyadh — Cubico scales to your institution. Launch in 4 weeks.', 'من مدرسة تضم 50 طالباً في لاهور إلى حرم جامعي يضم 2,000 طالب في الرياض — كيوبيكو تتكيف مع مؤسستك. ابدأ خلال 4 أسابيع.')}
             </motion.p>
             <motion.div variants={fadeUp} custom={3} className="flex flex-wrap justify-center gap-4">
-              <a href="#contact" className="btn-primary text-lg px-10">
+              <Link href="/contact" className="btn-primary text-lg px-10">
                 {t('Get Started Today', 'ابدأ اليوم')}
                 <ArrowRight className="w-5 h-5 rtl:rotate-180" />
-              </a>
-              <a href="#solutions" className="btn-outline-white text-lg px-10">
+              </Link>
+              <Link href="/solutions" className="btn-outline-white text-lg px-10">
                 {t('Explore Solutions', 'استكشف الحلول')}
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -2458,11 +2458,17 @@ export default function HomePage() {
             <div>
               <h4 className="font-heading font-bold text-lg mb-6">{t('Solutions', 'الحلول')}</h4>
               <ul className="space-y-3">
-                {[t('Smart LMS', 'نظام إدارة التعلم'), t('Animation Studio', 'استوديو الرسوم المتحركة'), t('School ERP', 'نظام إدارة المدرسة'), t('Web Development', 'تطوير المواقع'), t('Mobile Apps', 'تطبيقات الجوال')].map((link) => (
-                  <li key={link}>
-                    <a href="#solutions" className="text-white/50 hover:text-white text-sm transition-colors">
-                      {link}
-                    </a>
+                {[
+                  { name: t('Smart LMS', 'نظام إدارة التعلم'), href: '/solutions/smart-lms' },
+                  { name: t('Animation Studio', 'استوديو الرسوم المتحركة'), href: '/solutions/animation-studio' },
+                  { name: t('School ERP', 'نظام إدارة المدرسة'), href: '/solutions/school-erp' },
+                  { name: t('Web Development', 'تطوير المواقع'), href: '/solutions/web-development' },
+                  { name: t('Mobile Apps', 'تطبيقات الجوال'), href: '/solutions/mobile-apps' },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -2472,11 +2478,17 @@ export default function HomePage() {
             <div>
               <h4 className="font-heading font-bold text-lg mb-6">{t('Company', 'الشركة')}</h4>
               <ul className="space-y-3">
-                {[t('About Us', 'من نحن'), t('Our Team', 'فريقنا'), t('Careers', 'الوظائف'), t('News & Blog', 'الأخبار والمدونة'), t('Contact Us', 'تواصل معنا')].map((link) => (
-                  <li key={link}>
-                    <a href="#about" className="text-white/50 hover:text-white text-sm transition-colors">
-                      {link}
-                    </a>
+                {[
+                  { name: t('About Us', 'من نحن'), href: '/about' },
+                  { name: t('Our Team', 'فريقنا'), href: '/team' },
+                  { name: t('Careers', 'الوظائف'), href: '/about' },
+                  { name: t('News & Blog', 'الأخبار والمدونة'), href: '/blog' },
+                  { name: t('Contact Us', 'تواصل معنا'), href: '/contact' },
+                ].map((link) => (
+                  <li key={link.name}>
+                    <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
