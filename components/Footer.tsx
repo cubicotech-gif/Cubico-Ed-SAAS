@@ -93,13 +93,22 @@ export default function Footer() {
                 )}
               </p>
               <div className="flex gap-3">
-                {[Facebook, Instagram, Twitter, Linkedin, Youtube].map((Icon, i) => (
+                {[
+                  { icon: Facebook, href: 'https://facebook.com/cubicotech', label: 'Facebook' },
+                  { icon: Instagram, href: 'https://instagram.com/cubicotech', label: 'Instagram' },
+                  { icon: Twitter, href: 'https://twitter.com/cubicotech', label: 'Twitter' },
+                  { icon: Linkedin, href: 'https://linkedin.com/company/cubicotech', label: 'LinkedIn' },
+                  { icon: Youtube, href: 'https://youtube.com/@cubicotech', label: 'YouTube' },
+                ].map((social) => (
                   <a
-                    key={i}
-                    href="#"
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
                     className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#D4711A] hover:border-[#D4711A] transition-all"
                   >
-                    <Icon className="w-4 h-4" />
+                    <social.icon className="w-4 h-4" />
                   </a>
                 ))}
               </div>
@@ -191,9 +200,9 @@ export default function Footer() {
                 { en: 'Terms of Service', ar: 'شروط الخدمة' },
                 { en: 'Cookie Policy', ar: 'سياسة ملفات تعريف الارتباط' },
               ].map((link) => (
-                <a key={link.en} href="#" className="text-white/40 hover:text-white text-sm transition-colors">
+                <span key={link.en} className="text-white/40 text-sm cursor-default">
                   {t(link.en, link.ar)}
-                </a>
+                </span>
               ))}
             </div>
           </div>

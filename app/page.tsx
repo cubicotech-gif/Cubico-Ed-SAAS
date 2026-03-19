@@ -5,6 +5,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import {
   ArrowRight,
   ChevronDown,
@@ -23,12 +24,6 @@ import {
   Users,
   Award,
   Phone,
-  Send,
-  Facebook,
-  Instagram,
-  Twitter,
-  Youtube,
-  Linkedin,
   CheckCircle2,
   Layers,
   PieChart,
@@ -160,9 +155,6 @@ export default function HomePage() {
   const [activeSolution, setActiveSolution] = useState(0);
   const hasInteracted = useRef(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterName, setNewsletterName] = useState('');
-  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
 
   const { t } = useLanguage();
 
@@ -343,13 +335,6 @@ export default function HomePage() {
     }
   };
 
-  const handleNewsletter = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await supabase.from('newsletter_signups').insert([{ name: newsletterName, email: newsletterEmail }]);
-    setNewsletterStatus('success');
-    setNewsletterEmail('');
-    setNewsletterName('');
-  };
 
   return (
     <>
@@ -2205,7 +2190,7 @@ export default function HomePage() {
         <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
           style={{ background:'linear-gradient(270deg,white 0%,transparent 100%)' }}/>
         <p className="text-center text-[10px] font-bold text-gray-300 tracking-[0.22em] uppercase mb-6">
-          Trusted by institutions across 3 countries
+          {t('Trusted by institutions across 3 countries', 'موثوق من قبل مؤسسات في 3 دول')}
         </p>
         <div className="flex animate-marquee-slow" style={{ width:'max-content' }}>
           {[...partners, ...partners, ...partners, ...partners].map((name, i) => (
@@ -2224,7 +2209,7 @@ export default function HomePage() {
         {/* Background image */}
         <Image
           src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2560&q=80"
-          alt="Students in classroom celebrating education"
+          alt={t('Students in classroom celebrating education', 'طلاب في الفصل يحتفلون بالتعليم')}
           fill
           className="object-cover"
         />
@@ -2289,133 +2274,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ FOOTER ═══════════ */}
-      <footer className="bg-dark-950 text-white pt-20 pb-8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-            {/* Column 1 - Brand */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center font-heading font-bold text-lg text-white shadow-lg shadow-orange-600/25">
-                  C
-                </div>
-                <span className="font-heading font-bold text-xl">
-                  Cubico<span className="text-orange-300">.tech</span>
-                </span>
-              </div>
-              <p className="text-white/50 text-sm leading-relaxed mb-6">
-                {t('Full-stack EdTech company powering 760+ schools across Pakistan, Saudi Arabia & Canada with LMS, ERP, animated content, and marketing solutions.', 'شركة تكنولوجيا تعليم متكاملة تدعم 760+ مدرسة في باكستان والسعودية وكندا بنظام إدارة التعلم ونظام تخطيط الموارد والمحتوى المتحرك وحلول التسويق.')}
-              </p>
-              <div className="flex gap-3">
-                {[
-                  { icon: Facebook, label: 'Facebook' },
-                  { icon: Instagram, label: 'Instagram' },
-                  { icon: Twitter, label: 'Twitter' },
-                  { icon: Linkedin, label: 'LinkedIn' },
-                  { icon: Youtube, label: 'YouTube' },
-                ].map((social) => (
-                  <a
-                    key={social.label}
-                    href="#"
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all"
-                  >
-                    <social.icon className="w-4 h-4" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Column 2 - Solutions */}
-            <div>
-              <h4 className="font-heading font-bold text-lg mb-6">{t('Solutions', 'الحلول')}</h4>
-              <ul className="space-y-3">
-                {[
-                  { name: t('Smart LMS', 'نظام إدارة التعلم'), href: '/solutions/smart-lms' },
-                  { name: t('Animation Studio', 'استوديو الرسوم المتحركة'), href: '/solutions/animation-studio' },
-                  { name: t('School ERP', 'نظام إدارة المدرسة'), href: '/solutions/school-erp' },
-                  { name: t('Web Development', 'تطوير المواقع'), href: '/solutions/web-development' },
-                  { name: t('Mobile Apps', 'تطبيقات الجوال'), href: '/solutions/mobile-apps' },
-                ].map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 3 - Company */}
-            <div>
-              <h4 className="font-heading font-bold text-lg mb-6">{t('Company', 'الشركة')}</h4>
-              <ul className="space-y-3">
-                {[
-                  { name: t('About Us', 'من نحن'), href: '/about' },
-                  { name: t('Our Team', 'فريقنا'), href: '/team' },
-                  { name: t('Careers', 'الوظائف'), href: '/about' },
-                  { name: t('News & Blog', 'الأخبار والمدونة'), href: '/blog' },
-                  { name: t('Contact Us', 'تواصل معنا'), href: '/contact' },
-                ].map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href} className="text-white/50 hover:text-white text-sm transition-colors">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Column 4 - Newsletter */}
-            <div>
-              <h4 className="font-heading font-bold text-lg mb-6">{t('Newsletter', 'النشرة الإخبارية')}</h4>
-              <p className="text-white/50 text-sm mb-6">
-                {t('Sign up for updates, insights, and news about EdTech innovation.', 'اشترك للحصول على التحديثات والرؤى والأخبار حول ابتكارات تكنولوجيا التعليم.')}
-              </p>
-              {newsletterStatus === 'success' ? (
-                <div className="flex items-center gap-2 text-accent-light text-sm">
-                  <CheckCircle2 className="w-4 h-4" />
-                  {t('Successfully subscribed!', 'تم الاشتراك بنجاح!')}
-                </div>
-              ) : (
-                <form onSubmit={handleNewsletter} className="space-y-3">
-                  <input
-                    type="text"
-                    placeholder={t('Your name', 'اسمك')}
-                    value={newsletterName}
-                    onChange={(e) => setNewsletterName(e.target.value)}
-                    className="form-input-dark text-sm"
-                    required
-                  />
-                  <input
-                    type="email"
-                    placeholder={t('Your email', 'بريدك الإلكتروني')}
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    className="form-input-dark text-sm"
-                    required
-                  />
-                  <button type="submit" className="btn-primary w-full justify-center text-sm">
-                    {t('Sign Up', 'اشترك')} <Send className="w-3 h-3" />
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-
-          {/* Bottom */}
-          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/40 text-sm">
-              {t('Copyright', 'حقوق النشر')} © {new Date().getFullYear()} {t('Cubico Technologies. All rights reserved.', 'كيوبيكو تكنولوجيز. جميع الحقوق محفوظة.')}
-            </p>
-            <div className="flex gap-6">
-              {[t('Privacy Policy', 'سياسة الخصوصية'), t('Terms of Service', 'شروط الخدمة'), t('Cookie Policy', 'سياسة ملفات تعريف الارتباط')].map((link) => (
-                <a key={link} href="#" className="text-white/40 hover:text-white text-sm transition-colors">
-                  {link}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
