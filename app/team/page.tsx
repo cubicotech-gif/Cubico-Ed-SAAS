@@ -94,9 +94,9 @@ export default function TeamPage() {
                 <p className="text-sm text-gray-500 mb-4">{member.role}</p>
                 <div className="flex justify-center gap-2">
                   {[Facebook, Instagram, Twitter, Linkedin].map((Icon, j) => (
-                    <a key={j} href="#" className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all">
+                    <span key={j} className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white transition-all cursor-pointer">
                       <Icon className="w-3.5 h-3.5" />
-                    </a>
+                    </span>
                   ))}
                 </div>
               </motion.div>
