@@ -4,9 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import Header from '@/components/Header';
 import {
-  Menu,
-  X,
   ArrowRight,
   ChevronDown,
   ChevronUp,
@@ -149,9 +148,6 @@ function StatCounter({ value, suffix, label, color = '#818CF8' }: { value: numbe
    MAIN PAGE COMPONENT
    ═══════════════════════════════════════════ */
 export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [navHidden, setNavHidden] = useState(false);
-  const lastScrollY = useRef(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -169,16 +165,6 @@ export default function HomePage() {
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success'>('idle');
 
   const { t } = useLanguage();
-
-  const navLinks = [
-    { name: t('Home', 'الرئيسية'), href: '/' },
-    { name: t('About', 'من نحن'), href: '/about' },
-    { name: t('Solutions', 'الحلول'), href: '/solutions' },
-    { name: t('Services', 'الخدمات'), href: '/services' },
-    { name: t('Contact', 'تواصل معنا'), href: '/contact' },
-    { name: t('FAQ', 'الأسئلة الشائعة'), href: '/faq' },
-    { name: t('Team', 'الفريق'), href: '/team' },
-  ];
 
   const services = [
     { icon: BarChart3, title: t('LMS Implementation', 'تطبيق نظام إدارة التعلم'), desc: t('Complete Moodle-based learning management system customized for your institution.', 'نظام إدارة تعلم متكامل قائم على Moodle مخصص لمؤسستك.') },
@@ -336,21 +322,6 @@ export default function HomePage() {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      const y = window.scrollY;
-      // Hide when scrolling down past 80px, show when scrolling up
-      if (y > lastScrollY.current && y > 80) {
-        setNavHidden(true);
-      } else {
-        setNavHidden(false);
-      }
-      lastScrollY.current = y;
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
     const timer = setInterval(() => {
       if (!hasInteracted.current) {
         setActiveSolution((prev) => (prev + 1) % solutions.length);
@@ -406,109 +377,8 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* ═══════════ NAVIGATION — Always pill, hides on scroll down ═══════════ */}
-      <header
-        className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center px-4"
-        style={{
-          transform: navHidden ? 'translateY(-120%)' : 'translateY(0)',
-          transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
-        }}
-      >
-        <motion.nav
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="pointer-events-auto mt-3 px-3 sm:px-5 py-2 rounded-full"
-          style={{
-            background: 'rgba(18,18,20,0.88)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(232,140,50,0.1)',
-          }}
-        >
-          <div className="flex items-center gap-1">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-orange-600/25 flex-shrink-0">
-                C
-              </div>
-              <span className="font-heading font-bold text-sm text-white hidden sm:inline whitespace-nowrap">
-                Cubico<span className="text-orange-300">.tech</span>
-              </span>
-            </Link>
-
-            {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
-
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-0.5">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
-
-            {/* CTA */}
-            <div className="hidden lg:flex items-center flex-shrink-0">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
-              >
-                {t('Get Started', 'ابدأ الآن')}
-                <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </motion.nav>
-      </header>
-
-      {/* Mobile Menu — separate from header so it stays visible */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[72px] left-4 right-4 z-50 bg-[#1a1a1e]/95 backdrop-blur-xl rounded-2xl border border-orange-500/[0.12] shadow-2xl overflow-hidden"
-          >
-            <div className="px-5 py-5 space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <div className="pt-3 border-t border-white/[0.08]">
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
-                  {t('Get Started', 'ابدأ الآن')}
-                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* ═══════════ NAVIGATION ═══════════ */}
+      <Header />
 
       {/* ═══════════ HERO SECTION ═══════════ */}
       <section
