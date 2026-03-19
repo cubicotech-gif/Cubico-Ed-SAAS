@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { LanguageProvider } from '@/lib/language-context';
+import LanguageWrapper from '@/components/LanguageWrapper';
 
 export const metadata: Metadata = {
   title: 'Cubico Technologies — From Chalk-and-Board to World-Class',
@@ -30,7 +32,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="noise-overlay">{children}</body>
+      <body className="noise-overlay">
+        <LanguageProvider>
+          <LanguageWrapper>
+            {children}
+          </LanguageWrapper>
+        </LanguageProvider>
+      </body>
     </html>
   );
 }
