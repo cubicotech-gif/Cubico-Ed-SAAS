@@ -319,7 +319,7 @@ export default function ServicesPage() {
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className={!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}
                   >
-                    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 lg:p-10">
+                    <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-4 sm:p-8 lg:p-10">
                       {/* Service-specific mockup */}
                       <div className="bg-white rounded-2xl shadow-2xl shadow-black/10 overflow-hidden border border-gray-100">
                         <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 border-b border-gray-100">
