@@ -173,7 +173,7 @@ export default function PricingPage() {
                 custom={i}
                 className={`rounded-3xl p-8 relative ${
                   plan.popular
-                    ? 'bg-gradient-to-b from-primary to-primary-dark text-white shadow-2xl shadow-primary/20 scale-105'
+                    ? 'bg-gradient-to-b from-primary to-primary-dark text-white shadow-2xl shadow-primary/20 md:scale-105'
                     : 'card-white'
                 }`}
               >

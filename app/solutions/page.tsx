@@ -300,7 +300,7 @@ export default function SolutionsPage() {
                     transition={{ duration: 0.7, delay: 0.2 }}
                     className={!isEven ? 'lg:col-start-1 lg:row-start-1' : ''}
                   >
-                    <div className={`relative bg-gradient-to-br ${sol.mockupBg} rounded-3xl p-8 lg:p-10`}>
+                    <div className={`relative bg-gradient-to-br ${sol.mockupBg} rounded-3xl p-4 sm:p-8 lg:p-10`}>
                       {/* Browser Mockup */}
                       <div className="bg-white rounded-2xl shadow-2xl shadow-black/10 overflow-hidden border border-gray-100">
                         {/* Browser Bar */}

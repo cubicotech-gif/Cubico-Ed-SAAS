@@ -87,7 +87,7 @@ export default function TeamPage() {
                 custom={i}
                 className="card-white text-center group"
               >
-                <div className={`w-28 h-28 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center text-white text-3xl font-bold mx-auto mb-5 group-hover:scale-110 transition-transform`}>
+                <div className={`w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center text-white text-2xl sm:text-3xl font-bold mx-auto mb-5 group-hover:scale-110 transition-transform`}>
                   {member.initials}
                 </div>
                 <h3 className="font-heading font-bold text-gray-900 text-lg mb-1">{member.name}</h3>

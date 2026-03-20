@@ -482,7 +482,7 @@ export default function HomePage() {
           }} />
 
           {/* ── Horizontal card strip — uses CSS transform for layout, NO scroll ── */}
-          <div className="relative flex items-center justify-center py-6 mx-auto" style={{ maxWidth: '100vw' }}>
+          <div className="relative flex items-center justify-center py-6 mx-auto overflow-hidden" style={{ maxWidth: '100vw' }}>
             {/* Perspective wrapper — all 4 cards in a flex row, sized to fit */}
             <div className="flex items-center gap-4 lg:gap-6" style={{ transform: 'perspective(1200px)' }}>
 
@@ -530,7 +530,7 @@ export default function HomePage() {
               </div>
 
               {/* ────── SCREEN 2: Dashboard (ACTIVE / CENTER) ────── */}
-              <div className="flex-shrink-0 w-[360px] sm:w-[420px] lg:w-[520px] rounded-2xl overflow-hidden relative z-10"
+              <div className="flex-shrink-0 w-[calc(100vw-3rem)] sm:w-[420px] lg:w-[520px] rounded-2xl overflow-hidden relative z-10"
                 style={{
                   transform: 'scale(1.06)',
                   boxShadow: '0 30px 100px rgba(0,0,0,0.4), 0 0 0 1.5px rgba(232,140,50,0.3), 0 0 60px rgba(232,140,50,0.06)',
