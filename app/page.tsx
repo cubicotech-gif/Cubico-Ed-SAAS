@@ -152,22 +152,9 @@ export default function HomePage() {
     position: '',
     employees: '',
   });
-  const [activeSolution, setActiveSolution] = useState(0);
-  const hasInteracted = useRef(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const { t } = useLanguage();
-
-  const services = [
-    { icon: BarChart3, title: t('LMS Implementation', 'تطبيق نظام إدارة التعلم'), desc: t('Complete Moodle-based learning management system customized for your institution.', 'نظام إدارة تعلم متكامل قائم على Moodle مخصص لمؤسستك.') },
-    { icon: Film, title: t('Animation Studio', 'استوديو الرسوم المتحركة'), desc: t('Professional 2D/3D animated educational content in English, Arabic & Urdu.', 'محتوى تعليمي متحرك احترافي ثنائي وثلاثي الأبعاد بالإنجليزية والعربية والأردية.') },
-    { icon: Monitor, title: t('School ERP System', 'نظام تخطيط موارد المدرسة'), desc: t('Comprehensive school management with admissions, HR, finance & reporting.', 'إدارة مدرسية شاملة تتضمن القبول والموارد البشرية والمالية والتقارير.') },
-    { icon: Globe, title: t('Web Development', 'تطوير المواقع الإلكترونية'), desc: t('Modern, responsive websites and web applications built for education sector.', 'مواقع وتطبيقات ويب حديثة ومتجاوبة مصممة لقطاع التعليم.') },
-    { icon: Smartphone, title: t('Mobile Apps', 'تطبيقات الجوال'), desc: t('Cross-platform mobile applications for students, parents and administrators.', 'تطبيقات جوال متعددة المنصات للطلاب وأولياء الأمور والإداريين.') },
-    { icon: Cloud, title: t('Cloud Hosting', 'الاستضافة السحابية'), desc: t('Reliable cloud infrastructure with 99.9% uptime and global CDN delivery.', 'بنية تحتية سحابية موثوقة بوقت تشغيل 99.9% وشبكة توصيل محتوى عالمية.') },
-    { icon: Mail, title: t('Digital Marketing', 'التسويق الرقمي'), desc: t('Strategic digital marketing campaigns to increase enrollment and engagement.', 'حملات تسويق رقمي استراتيجية لزيادة التسجيل والتفاعل.') },
-    { icon: Users, title: t('Teacher Training', 'تدريب المعلمين'), desc: t('Professional development programs for educators on digital tools and pedagogy.', 'برامج تطوير مهني للمعلمين على الأدوات الرقمية وأساليب التدريس.') },
-  ];
 
   const testimonials = [
     {
@@ -235,92 +222,64 @@ export default function HomePage() {
     t('TechEd Pakistan', 'تيك إد باكستان'),
   ];
 
-  const solutions = [
+  const products = [
     {
-      id: 'manage', name: t('Cubico Manage™', 'كيوبيكو إدارة™'),
-      tagline: t('Your entire institution. One intelligent system.', 'مؤسستك بالكامل. نظام ذكي واحد.'),
-      icon: Layout,
-      painPoint: t('Still running your school on Excel sheets and WhatsApp groups?', 'هل لا تزال تدير مدرستك عبر جداول Excel ومجموعات واتساب؟'),
-      metric: t('47 hrs', '47 ساعة'), metricLabel: t('saved per staff member, per month', 'يتم توفيرها لكل موظف شهرياً'),
-      accentHex: '#D4711A', accentLight: '#FEF0E6',
-      demoUrl: 'app.cubico.tech/manage',
-      features: [
-        { icon: Users,    title: t('Enrollment & Admissions', 'التسجيل والقبول'), desc: t('Full student lifecycle from inquiry to graduation.', 'دورة حياة الطالب الكاملة من الاستفسار إلى التخرج.') },
-        { icon: BarChart3,title: t('Fee & Finance', 'الرسوم والمالية'), desc: t('Invoices, payments, and overdue alerts — automated.', 'الفواتير والمدفوعات وتنبيهات التأخر — آلياً.') },
-        { icon: PieChart, title: t('Attendance & Exams', 'الحضور والامتحانات'), desc: t('Smart attendance, gradebooks, and exam scheduling.', 'حضور ذكي وسجلات درجات وجدولة امتحانات.') },
-        { icon: Settings, title: t('HR & Timetable', 'الموارد البشرية والجدول'), desc: t('Staff records, payroll, and auto-generated schedules.', 'سجلات الموظفين والرواتب والجداول التلقائية.') },
-      ],
+      id: 'manage',
+      accent: '#2563EB',
+      accentLight: '#EFF6FF',
+      label: t('MANAGE', 'إدارة'),
+      name: t('Cubico Manage™', 'كيوبيكو إدارة™'),
+      pain: t('Still running your school on Excel sheets and WhatsApp groups?', 'هل لا تزال تدير مدرستك عبر جداول Excel ومجموعات واتساب؟'),
+      desc: t('Your entire institution — admissions, fee collection, attendance, HR, exams, timetables — managed from one intelligent dashboard.', 'مؤسستك بالكامل — القبول وتحصيل الرسوم والحضور والموارد البشرية والامتحانات والجداول — تُدار من لوحة تحكم ذكية واحدة.'),
+      stat: t('47 hrs', '47 ساعة'),
+      statContext: t('saved per staff member, per month', 'يتم توفيرها لكل موظف شهرياً'),
+      cta: t('Explore Cubico Manage', 'استكشف كيوبيكو إدارة'),
+      ctaHref: '/solutions/school-erp',
+      mockupUrl: 'app.cubico.tech/manage',
     },
     {
-      id: 'lms', name: t('Moodle LMS Setup', 'إعداد نظام Moodle'),
-      tagline: t('Your branded Moodle — configured, hosted, supported.', 'منصة Moodle بعلامتك التجارية — مُعدّة ومستضافة ومدعومة.'),
-      icon: BookOpen,
-      painPoint: t('Moodle is powerful but complex — setting it up right takes months without the right team.', 'Moodle قوي لكنه معقد — إعداده بشكل صحيح يستغرق أشهراً بدون الفريق المناسب.'),
-      metric: t('2 wks', 'أسبوعان'), metricLabel: t('from signup to a fully live Moodle platform', 'من التسجيل إلى منصة Moodle مباشرة بالكامل'),
-      accentHex: '#F47B20', accentLight: '#FEF0E6',
-      demoUrl: 'lms.cubico.tech/demo',
-      features: [
-        { icon: Settings,  title: t('Custom Moodle Theme', 'قالب Moodle مخصص'), desc: t('Your logo, colors, and branding — pixel-perfect.', 'شعارك وألوانك وعلامتك التجارية — بدقة متناهية.') },
-        { icon: BookOpen,  title: t('Course Build & Migration', 'بناء ونقل المقررات'), desc: t('We build or migrate your course content for you.', 'نبني أو ننقل محتوى مقرراتك نيابة عنك.') },
-        { icon: Shield,    title: t('Managed Hosting', 'استضافة مُدارة'), desc: t('Secure cloud hosting with 99.9% uptime guarantee.', 'استضافة سحابية آمنة بضمان وقت تشغيل 99.9%.') },
-        { icon: Users,     title: t('Training & Onboarding', 'التدريب والإعداد'), desc: t('Live sessions for teachers and admins, included.', 'جلسات مباشرة للمعلمين والإداريين، مشمولة.') },
-      ],
+      id: 'learn',
+      accent: '#D97706',
+      accentLight: '#FFFBEB',
+      label: t('LEARN', 'تعلّم'),
+      name: t('Cubico Learn™', 'كيوبيكو تعلّم™'),
+      pain: t('Students lose interest in static PDFs and outdated textbooks.', 'يفقد الطلاب الاهتمام بملفات PDF الثابتة والكتب المدرسية القديمة.'),
+      desc: t('Professional 2D & 3D animated lessons in English, Arabic & Urdu — designed for K-12 curricula and ready to deploy across your classrooms.', 'دروس متحركة احترافية ثنائية وثلاثية الأبعاد بالإنجليزية والعربية والأردية — مصممة لمناهج K-12 وجاهزة للنشر في فصولك الدراسية.'),
+      stat: '200+',
+      statContext: t('animated lessons in 3 languages', 'درس متحرك بـ 3 لغات'),
+      cta: t('Explore Cubico Learn', 'استكشف كيوبيكو تعلّم'),
+      ctaHref: '/solutions/animation-studio',
+      mockupUrl: 'learn.cubico.tech/lesson/water-cycle',
     },
     {
-      id: 'teach', name: t('Cubico Teach™', 'كيوبيكو تدريس™'),
-      tagline: t("Everything a teacher needs. Nothing they don't.", 'كل ما يحتاجه المعلم. لا شيء لا يحتاجه.'),
-      icon: Lightbulb,
-      painPoint: t('Teachers spending Sunday nights building lesson plans from scratch?', 'المعلمون يقضون ليالي الأحد في إعداد خطط الدروس من الصفر؟'),
-      metric: t('2×', '2×'), metricLabel: t('faster lesson planning from day one', 'تخطيط دروس أسرع من اليوم الأول'),
-      accentHex: '#B85E15', accentLight: '#FFF8F0',
-      demoUrl: 'app.cubico.tech/teach',
-      features: [
-        { icon: Lightbulb, title: t('Lesson Plan Builder', 'منشئ خطط الدروس'), desc: t('Drag-and-drop blocks aligned to national curriculum.', 'كتل سحب وإفلات متوافقة مع المنهج الوطني.') },
-        { icon: Target,    title: t('Curriculum Mapping', 'خريطة المنهج'), desc: t('Visual scope & sequence across subjects and grades.', 'نطاق وتسلسل مرئي عبر المواد والصفوف.') },
-        { icon: BarChart3, title: t('Class Analytics', 'تحليلات الصف'), desc: t('Per-student progress with automatic at-risk flags.', 'تقدم كل طالب مع تنبيهات تلقائية للطلاب المعرضين للخطر.') },
-        { icon: Cloud,     title: t('Resource Library', 'مكتبة الموارد'), desc: t('Upload, tag, and share materials across departments.', 'رفع ووسم ومشاركة المواد عبر الأقسام.') },
-      ],
+      id: 'lms',
+      accent: '#0D9488',
+      accentLight: '#F0FDFA',
+      label: t('TEACH', 'تدريس'),
+      name: t('Smart LMS', 'نظام إدارة التعلم الذكي'),
+      pain: t("Teachers spend hours creating content that still doesn't engage.", 'يقضي المعلمون ساعات في إنشاء محتوى لا يزال غير تفاعلي.'),
+      desc: t('AI-powered learning management with adaptive course paths, progress tracking, interactive assessments, and analytics that show exactly where each student stands.', 'إدارة تعلم مدعومة بالذكاء الاصطناعي مع مسارات دورات تكيفية وتتبع التقدم وتقييمات تفاعلية وتحليلات تُظهر بدقة مستوى كل طالب.'),
+      stat: '85K+',
+      statContext: t('active learners across 3 countries', 'متعلم نشط في 3 دول'),
+      cta: t('Explore Smart LMS', 'استكشف نظام التعلم الذكي'),
+      ctaHref: '/solutions/smart-lms',
+      mockupUrl: 'lms.cubico.tech/dashboard',
     },
     {
-      id: 'learn', name: t('Cubico Learn™', 'كيوبيكو تعلّم™'),
-      tagline: t('Textbooks come alive.', 'الكتب المدرسية تنبض بالحياة.'),
-      icon: Film,
-      painPoint: t('Students zoning out 8 minutes into a 40-minute lecture?', 'الطلاب يفقدون التركيز بعد 8 دقائق من محاضرة مدتها 40 دقيقة؟'),
-      metric: t('4×', '4×'), metricLabel: t('higher engagement vs. traditional textbooks', 'تفاعل أعلى مقارنة بالكتب المدرسية التقليدية'),
-      accentHex: '#C0651A', accentLight: '#FEF0E6',
-      demoUrl: 'app.cubico.tech/learn',
-      features: [
-        { icon: Film,    title: t('2D & 3D Animation', 'رسوم متحركة ثنائية وثلاثية الأبعاد'), desc: t('Character-led animated lessons, any subject.', 'دروس متحركة بقيادة شخصيات، لأي مادة.') },
-        { icon: Monitor, title: t('Interactive Simulations', 'محاكاة تفاعلية'), desc: t('STEM labs students can actually manipulate.', 'مختبرات STEM يمكن للطلاب التفاعل معها فعلياً.') },
-        { icon: Globe,   title: t('English · Arabic · Urdu', 'الإنجليزية · العربية · الأردية'), desc: t('Full narration and RTL support built in.', 'سرد كامل ودعم الكتابة من اليمين لليسار مدمج.') },
-        { icon: Zap,     title: t('Adaptive Quizzes', 'اختبارات تكيفية'), desc: t('End-of-lesson assessments that self-adjust.', 'تقييمات نهاية الدرس التي تتكيف تلقائياً.') },
-      ],
-    },
-    {
-      id: 'marketing', name: t('Cubico Marketing™', 'كيوبيكو تسويق™'),
-      tagline: t('Fill every seat. Every semester.', 'املأ كل مقعد. كل فصل دراسي.'),
-      icon: Megaphone,
-      painPoint: t('Your school is incredible. Nobody outside your city knows it exists.', 'مدرستك رائعة. لا أحد خارج مدينتك يعرف بوجودها.'),
-      metric: t('+34%', '+34%'), metricLabel: t('average increase in admission enquiries', 'متوسط الزيادة في استفسارات القبول'),
-      accentHex: '#8B4513', accentLight: '#FDF5ED',
-      demoUrl: 'app.cubico.tech/marketing',
-      features: [
-        { icon: Globe,      title: t('Premium School Websites', 'مواقع مدرسية متميزة'), desc: t('Conversion-focused, mobile-first, and beautiful.', 'مركزة على التحويل، متوافقة مع الجوال أولاً، وجميلة.') },
-        { icon: TrendingUp, title: t('Enrollment Funnels', 'مسارات التسجيل'), desc: t('Google Ads, landing pages, and retargeting.', 'إعلانات جوجل وصفحات الهبوط وإعادة الاستهداف.') },
-        { icon: Megaphone,  title: t('Social Media Management', 'إدارة وسائل التواصل الاجتماعي'), desc: t('Content, campaigns, and brand voice.', 'المحتوى والحملات وصوت العلامة التجارية.') },
-        { icon: Shield,     title: t('SEO & Monthly Reports', 'تحسين محركات البحث والتقارير الشهرية'), desc: t('Search visibility that compounds over time.', 'ظهور في البحث يتراكم مع مرور الوقت.') },
-      ],
+      id: 'marketing',
+      accent: '#7C3AED',
+      accentLight: '#F5F3FF',
+      label: t('GROW', 'نمو'),
+      name: t('Cubico Marketing™', 'كيوبيكو تسويق™'),
+      pain: t("Great school, empty seats. Your admissions pipeline shouldn't be a WhatsApp number.", 'مدرسة رائعة، مقاعد فارغة. لا ينبغي أن يكون خط القبول لديك مجرد رقم واتساب.'),
+      desc: t('Professional school websites, SEO, Google Ads management, and enrollment funnels that turn website visitors into enrolled students.', 'مواقع مدرسية احترافية، تحسين محركات البحث، إدارة إعلانات جوجل، ومسارات تسجيل تحوّل زوار الموقع إلى طلاب مسجلين.'),
+      stat: '3x',
+      statContext: t('average enrollment increase in first semester', 'متوسط زيادة التسجيل في الفصل الأول'),
+      cta: t('Explore Cubico Marketing', 'استكشف كيوبيكو تسويق'),
+      ctaHref: '/solutions/web-development',
+      mockupUrl: 'marketing.cubico.tech/analytics',
     },
   ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (!hasInteracted.current) {
-        setActiveSolution((prev) => (prev + 1) % solutions.length);
-      }
-    }, 8000);
-    return () => clearInterval(timer);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -870,8 +829,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════ SOLUTIONS SHOWCASE ═══════════ */}
-      <section id="showcase" className="py-20 bg-white relative overflow-hidden">
+      {/* ═══════════ PRODUCT CARDS — SCROLL STACKING ═══════════ */}
+      <section id="showcase" className="pt-20 pb-8 bg-white relative overflow-hidden">
 
         {/* Subtle grid background */}
         <div className="absolute inset-0 pointer-events-none"
@@ -881,638 +840,329 @@ export default function HomePage() {
 
           {/* ── SECTION HEADER ── */}
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }}
-            variants={staggerContainer} className="text-center mb-12">
+            variants={staggerContainer} className="text-center mb-16">
             <motion.div variants={fadeUp} custom={0} className="mb-4">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                {t('Product Suite', 'مجموعة المنتجات')}
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-gray-200/60 bg-gray-50/60 text-gray-500">
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-400" />
+                {t('Our Solutions', 'حلولنا')}
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1}
               className="text-3xl md:text-4xl lg:text-[2.8rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-4">
-              {t('Five products.', 'خمسة منتجات.')}{' '}
-              <span className="shimmer-text">{t('One ecosystem.', 'منظومة واحدة.')}</span>
+              {t('Everything your school needs.', 'كل ما تحتاجه مدرستك.')}{' '}
+              <span className="shimmer-text">{t("Nothing it doesn't.", 'لا شيء لا تحتاجه.')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base max-w-lg mx-auto leading-relaxed">
-              {t('Each tool is purpose-built for education. Together, they run your entire institution — from classroom to admin office to marketing.', 'كل أداة مصممة خصيصاً للتعليم. معاً، تدير مؤسستك بالكامل — من الفصل الدراسي إلى المكتب الإداري إلى التسويق.')}
+              {t('Four products. One ecosystem. Each built specifically for education.', 'أربعة منتجات. منظومة واحدة. كل منها مصمم خصيصاً للتعليم.')}
             </motion.p>
           </motion.div>
 
-          {/* ── TAB RAIL ── */}
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.2 }}
-            className="flex gap-2 overflow-x-auto pb-1 mb-10 justify-start lg:justify-center">
-            {solutions.map((sol, i) => {
-              const Icon = sol.icon;
-              const active = activeSolution === i;
-              return (
-                <button key={sol.id}
-                  onClick={() => { hasInteracted.current = true; setActiveSolution(i); }}
-                  className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold border-2 transition-all duration-200 whitespace-nowrap"
-                  style={active
-                    ? { backgroundColor: sol.accentHex, borderColor: sol.accentHex, color: '#fff', boxShadow: '0 4px 16px ' + sol.accentHex + '50' }
-                    : { backgroundColor: '#fff', borderColor: '#E5E7EB', color: '#6B7280' }}>
-                  <Icon size={15} />
-                  {sol.name}
-                </button>
-              );
-            })}
-          </motion.div>
+          {/* ── STACKING CARDS ── */}
+          <div className="relative">
 
-          {/* ── SHOWCASE STAGE ── */}
-          <AnimatePresence mode="wait">
-            {solutions.map((sol, i) => activeSolution !== i ? null : (
-              <motion.div key={sol.id}
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}>
 
-                <div className="grid lg:grid-cols-[42%_58%] gap-10 lg:gap-16 items-start">
-
-                  {/* LEFT — narrative column */}
-                  <div className="pt-2">
-                    {/* Product icon badge */}
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-5"
-                      style={{ backgroundColor: sol.accentLight }}>
-                      {(() => { const SolIcon = sol.icon; return <SolIcon size={26} style={{ color: sol.accentHex }} />; })()}
-                    </div>
-
-                    <h3 className="text-2xl lg:text-3xl font-heading font-bold text-gray-900 mb-2">{sol.name}</h3>
-                    <p className="text-base font-medium mb-5" style={{ color: sol.accentHex }}>{sol.tagline}</p>
-
-                    {/* Pain point callout */}
-                    <div className="rounded-2xl p-4 mb-6 bg-gray-50 border-l-4 border-gray-300">
-                      <p className="text-sm text-gray-500 italic leading-relaxed">&ldquo;{sol.painPoint}&rdquo;</p>
-                    </div>
-
-                    {/* Headline outcome metric */}
-                    <div className="inline-flex items-end gap-3 mb-6 p-4 rounded-2xl border"
-                      style={{ backgroundColor: sol.accentLight + 'BB', borderColor: sol.accentHex + '25' }}>
-                      <span className="font-heading font-bold leading-none"
-                        style={{ fontSize: '2.5rem', color: sol.accentHex }}>{sol.metric}</span>
-                      <span className="text-xs text-gray-500 leading-snug pb-1 max-w-[140px]">{sol.metricLabel}</span>
-                    </div>
-
-                    {/* Feature bullets */}
-                    <ul className="space-y-3 mb-8">
-                      {sol.features.map(feat => {
-                        const FIcon = feat.icon;
-                        return (
-                          <li key={feat.title} className="flex items-start gap-3">
-                            <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                              style={{ backgroundColor: sol.accentLight }}>
-                              <FIcon size={13} style={{ color: sol.accentHex }} />
-                            </div>
-                            <div>
-                              <span className="text-sm font-semibold text-gray-800">{feat.title}</span>
-                              <span className="text-sm text-gray-400"> — {feat.desc}</span>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-
-                    <Link href="/contact"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white transition-all hover:opacity-90"
-                      style={{ backgroundColor: sol.accentHex }}>
-                      {t('Book a Live Demo', 'احجز عرضاً مباشراً')}
-                      <ArrowRight size={15} className="rtl:rotate-180" />
-                    </Link>
-                  </div>
-
-                  {/* RIGHT — Illustrated Mockup */}
-                  <div className="relative">
-
-                    {/* Browser chrome wrapper */}
-                    <div className="rounded-2xl overflow-hidden border border-gray-200/80"
-                      style={{ boxShadow: '0 24px 64px rgba(0,0,0,0.11), 0 4px 16px rgba(0,0,0,0.06)' }}>
-
-                      {/* Chrome bar */}
-                      <div className="bg-[#1C1C2E] px-3 py-2.5 flex items-center gap-2.5">
-                        <div className="flex gap-1.5 flex-shrink-0">
-                          <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]"/>
-                          <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]"/>
-                          <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]"/>
+            {products.map((sol, i) => (
+                <motion.div
+                  key={sol.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-10%" }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="sticky top-24 mb-8 last:mb-0"
+                  style={{ zIndex: i + 1 }}
+                >
+                  <div
+                    className="rounded-3xl border shadow-xl overflow-hidden"
+                    style={{
+                      background: `linear-gradient(135deg, ${sol.accent}08 0%, #ffffff 40%, ${sol.accent}05 100%)`,
+                      borderColor: `${sol.accent}20`,
+                    }}
+                  >
+                    <div className="grid lg:grid-cols-2 gap-0">
+                      {/* ── Copy side ── */}
+                      <div className="p-8 lg:p-12 flex flex-col justify-center">
+                        <div
+                          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 w-fit"
+                          style={{
+                            backgroundColor: sol.accent + "14",
+                            color: sol.accent,
+                          }}
+                        >
+                          {sol.label}
                         </div>
-                        <div className="flex-1 bg-white/[0.06] rounded px-2.5 py-1 flex items-center gap-1.5 min-w-0">
-                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400/60 flex-shrink-0"/>
-                          <span className="text-[10px] font-mono text-white/30 truncate">{sol.demoUrl}</span>
+
+                        <h3 className="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-4 leading-tight">
+                          {sol.name}
+                        </h3>
+
+                        <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-4 italic">
+                          {sol.pain}
+                        </p>
+
+                        <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">
+                          {sol.desc}
+                        </p>
+
+                        <div className="flex items-baseline gap-2 mb-8">
+                          <span className="text-3xl font-black" style={{ color: sol.accent }}>{sol.stat}</span>
+                          <span className="text-sm text-gray-500">{sol.statContext}</span>
                         </div>
+
+                        <a
+                          href={sol.ctaHref}
+                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-all duration-200 hover:shadow-lg w-fit"
+                          style={{ backgroundColor: sol.accent }}
+                        >
+                          {sol.cta}
+                          <ArrowRight size={15} />
+                        </a>
                       </div>
 
-                      {/* ══ MANAGE MOCKUP ══ */}
-                      {sol.id === 'manage' && (
-                        <div className="flex bg-[#F4F5F7]" style={{ minHeight: '360px' }}>
-                          {/* Sidebar */}
-                          <div className="w-[152px] flex-shrink-0 bg-[#1A0E04] flex flex-col py-3 hidden sm:flex">
-                            <div className="flex items-center gap-1.5 px-3 mb-4">
-                              <div className="w-5 h-5 rounded-md bg-[#D4711A] flex items-center justify-center text-white text-[8px] font-bold">C</div>
-                              <span className="text-white text-xs font-bold">Cubico</span>
+                      {/* ── Mockup side ── */}
+                      <div className="relative p-6 lg:p-10 flex items-center justify-center min-h-[340px] lg:min-h-[460px]">
+                        {/* Browser chrome frame */}
+                        <div className="w-full rounded-xl overflow-hidden shadow-2xl border border-gray-200/60">
+                          <div className="bg-gray-100 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200/80">
+                            <div className="flex gap-1.5">
+                              <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                              <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
                             </div>
-                            {[['Dashboard',true],['Students',false],['Fee & Finance',false],['Attendance',false],['HR & Staff',false],['Reports',false]].map(([label, active]) => (
-                              <div key={String(label)} className="flex items-center gap-2 px-3 py-1.5 mx-1.5 rounded-lg text-[10px] mb-0.5"
-                                style={active ? { backgroundColor: 'rgba(212,113,26,0.18)', color: '#E88C32' } : { color: 'rgba(255,255,255,0.30)' }}>
-                                <span className="w-1 h-1 rounded-full flex-shrink-0"
-                                  style={{ backgroundColor: active ? '#D4711A' : 'rgba(255,255,255,0.15)' }}/>
-                                {String(label)}
+                            <div className="flex-1 ml-3">
+                              <div className="bg-white rounded-md px-3 py-1 text-xs text-gray-400 max-w-[200px]">
+                                cubico.app/{sol.id}
                               </div>
-                            ))}
+                            </div>
                           </div>
-                          {/* Main */}
-                          <div className="flex-1 flex flex-col min-w-0 p-3 gap-2.5">
-                            {/* KPI row */}
-                            <div className="grid grid-cols-3 gap-2">
-                              {[
-                                { label: 'Students',      value: '2,847', color: '#D4711A', bg: '#FEF0E6' },
-                                { label: 'Fee Collected', value: '₨4.2M', color: '#059669', bg: '#ECFDF5' },
-                                { label: 'Attendance',    value: '94.3%', color: '#B85E15', bg: '#FFF8F0' },
-                              ].map(k => (
-                                <div key={k.label} className="rounded-xl p-2.5 border border-white shadow-sm" style={{ backgroundColor: k.bg }}>
-                                  <div className="text-[8px] text-gray-400 mb-0.5">{k.label}</div>
-                                  <div className="font-bold text-sm leading-none" style={{ color: k.color }}>{k.value}</div>
+                          <div
+                            className="p-6 lg:p-8 min-h-[260px] lg:min-h-[360px]"
+                            style={{
+                              background: `linear-gradient(180deg, ${sol.accent}06 0%, ${sol.accent}12 100%)`,
+                            }}
+                          >
+                            {/* Mockup content per solution */}
+                            {sol.id === "manage" && (
+                              <div className="space-y-4">
+                                <div className="flex items-center justify-between mb-6">
+                                  <div>
+                                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Dashboard</div>
+                                    <div className="text-lg font-bold text-gray-900">School Overview</div>
+                                  </div>
+                                  <div className="flex gap-2">
+                                    <div className="px-3 py-1.5 rounded-lg bg-white shadow-sm text-xs font-medium text-gray-600">This Week</div>
+                                    <div className="px-3 py-1.5 rounded-lg text-xs font-medium text-white" style={{ backgroundColor: sol.accent }}>This Month</div>
+                                  </div>
                                 </div>
-                              ))}
-                            </div>
-                            {/* Student table */}
-                            <div className="flex-1 bg-white rounded-xl border border-gray-100 overflow-hidden">
-                              <div className="px-3 py-2 border-b border-gray-50 flex items-center justify-between">
-                                <span className="text-[10px] font-bold text-gray-600">Recent Enrollments</span>
-                                <span className="text-[8px] text-[#D4711A] bg-orange-50 px-2 py-0.5 rounded-full cursor-default">View All</span>
-                              </div>
-                              <div className="divide-y divide-gray-50">
-                                {[
-                                  { name: 'Ahmed Raza',  grade: 'Grade 8A', fee: 'Paid',    fc: '#059669' },
-                                  { name: 'Sara Khan',   grade: 'Grade 7B', fee: 'Pending', fc: '#D97706' },
-                                  { name: 'Ali Hassan',  grade: 'Grade 9C', fee: 'Paid',    fc: '#059669' },
-                                  { name: 'Fatima Noor', grade: 'Grade 6A', fee: 'Overdue', fc: '#E11D48' },
-                                ].map((s, si) => (
-                                  <div key={s.name} className="flex items-center gap-2 px-3 py-1.5">
-                                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold text-white flex-shrink-0"
-                                      style={{ backgroundColor: ['#D4711A','#B85E15','#059669','#E11D48'][si] }}>
-                                      {s.name[0]}
+                                <div className="grid grid-cols-3 gap-3">
+                                  {[
+                                    { label: "Students", value: "2,847", change: "+12%" },
+                                    { label: "Attendance", value: "94.2%", change: "+2.1%" },
+                                    { label: "Revenue", value: "₹18.4L", change: "+8%" },
+                                  ].map((stat, si) => (
+                                    <div key={si} className="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
+                                      <div className="text-xs text-gray-500 mb-1">{stat.label}</div>
+                                      <div className="text-lg font-bold text-gray-900">{stat.value}</div>
+                                      <div className="text-xs font-medium" style={{ color: sol.accent }}>{stat.change}</div>
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                      <div className="text-[10px] font-semibold text-gray-700 truncate">{s.name}</div>
-                                      <div className="text-[8px] text-gray-400">{s.grade}</div>
-                                    </div>
-                                    <div className="text-[8px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0"
-                                      style={{ color: s.fc, backgroundColor: s.fc + '18' }}>{s.fee}</div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                            {/* Attendance mini-chart */}
-                            <div className="bg-white rounded-xl border border-gray-100 p-2.5">
-                              <div className="text-[9px] font-semibold text-gray-500 mb-2">Weekly Attendance</div>
-                              <div className="flex items-end gap-1 h-9">
-                                {[88,92,87,95,94,91,96].map((v, i) => (
-                                  <div key={i} className="flex-1 rounded-t-sm" style={{ height: v + '%', backgroundColor: i === 6 ? '#D4711A' : '#FEF0E6' }}/>
-                                ))}
-                              </div>
-                              <div className="flex mt-1">
-                                {['M','T','W','T','F','S','S'].map((d, i) => (
-                                  <div key={i} className="flex-1 text-center text-[7px] text-gray-300">{d}</div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* ══ MOODLE LMS MOCKUP ══ */}
-                      {sol.id === 'lms' && (
-                        <div className="bg-white" style={{ minHeight: '360px' }}>
-                          {/* Moodle top nav */}
-                          <div className="px-4 py-2.5 flex items-center justify-between" style={{ background: 'linear-gradient(135deg, #F47B20 0%, #E05E00 100%)' }}>
-                            <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-white/20 flex items-center justify-center">
-                                <span className="text-white text-[9px] font-black">M</span>
-                              </div>
-                              <div>
-                                <div className="text-white text-[10px] font-bold leading-none">Al-Noor Academy</div>
-                                <div className="text-white/60 text-[8px]">Moodle LMS · Powered by Cubico</div>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center text-white text-[9px]">A</div>
-                              <span className="text-white/70 text-[9px]">Admin</span>
-                            </div>
-                          </div>
-                          {/* Content */}
-                          <div className="p-3">
-                            <div className="flex items-center justify-between mb-2.5">
-                              <span className="text-[10px] font-bold text-gray-700">My Courses</span>
-                              <span className="text-[9px] font-semibold cursor-default" style={{ color: '#F47B20' }}>+ Add Course</span>
-                            </div>
-                            {/* Course grid 3x2 */}
-                            <div className="grid grid-cols-3 gap-2 mb-3">
-                              {[
-                                { name: 'Mathematics', grade: 'Grade 8', color: '#D4711A', bg: '#FEF0E6', pct: 78, students: 34 },
-                                { name: 'Physics',     grade: 'Grade 9', color: '#0891B2', bg: '#ECFEFF', pct: 92, students: 28 },
-                                { name: 'English',     grade: 'Grade 7', color: '#059669', bg: '#ECFDF5', pct: 65, students: 41 },
-                                { name: 'Chemistry',   grade: 'Grade 10',color: '#E11D48', bg: '#FFF1F2', pct: 45, students: 22 },
-                                { name: 'Urdu',        grade: 'Grade 8', color: '#D97706', bg: '#FFFBEB', pct: 88, students: 38 },
-                                { name: 'Biology',     grade: 'Grade 9', color: '#B85E15', bg: '#FFF8F0', pct: 55, students: 30 },
-                              ].map(c => (
-                                <div key={c.name} className="rounded-xl overflow-hidden border border-gray-100 cursor-default hover:shadow-sm transition-shadow">
-                                  <div className="h-9 flex items-center justify-center relative overflow-hidden" style={{ backgroundColor: c.bg }}>
-                                    <span className="text-lg font-black leading-none" style={{ color: c.color + '40' }}>{c.name.slice(0,2).toUpperCase()}</span>
-                                    <div className="absolute bottom-1 right-1.5 text-[7px] font-bold px-1 py-0.5 rounded-full text-white" style={{ backgroundColor: c.color }}>{c.pct}%</div>
-                                  </div>
-                                  <div className="p-1.5 bg-white">
-                                    <div className="text-[8px] font-bold text-gray-700 truncate">{c.name}</div>
-                                    <div className="text-[7px] text-gray-400">{c.grade} · {c.students} students</div>
-                                    <div className="mt-1 h-1 bg-gray-100 rounded-full overflow-hidden">
-                                      <div className="h-full rounded-full" style={{ width: c.pct + '%', backgroundColor: c.color }}/>
-                                    </div>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                            {/* Activity feed */}
-                            <div className="bg-gray-50 rounded-xl p-2.5 mb-3">
-                              <div className="text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-2">Recent Activity</div>
-                              {[
-                                { text: 'Ahmed submitted “Week 3 Quiz”',   time: '5m ago',  color: '#D4711A' },
-                                { text: 'New assignment: Chapter 4 Review', time: '1h ago',  color: '#F47B20' },
-                                { text: 'Sara viewed Lesson 7 Video',       time: '2h ago',  color: '#0891B2' },
-                                { text: '6 students completed Module 2',    time: '3h ago',  color: '#059669' },
-                              ].map((a, ai) => (
-                                <div key={ai} className="flex items-start gap-1.5 mb-1.5 last:mb-0">
-                                  <div className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ backgroundColor: a.color }}/>
-                                  <div className="flex-1 flex items-center justify-between gap-2">
-                                    <span className="text-[8px] text-gray-600 leading-snug">{a.text}</span>
-                                    <span className="text-[7px] text-gray-400 flex-shrink-0">{a.time}</span>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                            {/* Powered by badges */}
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <div className="flex items-center gap-1.5 rounded-full px-3 py-1.5 border" style={{ backgroundColor: '#FEF0E6', borderColor: '#F47B20' + '40' }}>
-                                <div className="w-3.5 h-3.5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#F47B20' }}>
-                                  <span className="text-white text-[7px] font-black">M</span>
-                                </div>
-                                <span className="text-[9px] font-bold" style={{ color: '#F47B20' }}>Powered by Moodle™</span>
-                              </div>
-                              <div className="flex items-center gap-1.5 rounded-full px-3 py-1.5 border" style={{ backgroundColor: '#FEF0E6', borderColor: '#D4711A' + '40' }}>
-                                <div className="w-3.5 h-3.5 rounded-md bg-[#D4711A] flex items-center justify-center text-white text-[7px] font-bold">C</div>
-                                <span className="text-[9px] font-bold text-[#D4711A]">Setup by Cubico</span>
-                              </div>
-                              <div className="flex items-center gap-1 rounded-full px-2 py-1 bg-emerald-50 border border-emerald-100">
-                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"/>
-                                <span className="text-[8px] font-semibold text-emerald-600">Live in 2 weeks</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* ══ TEACH MOCKUP ══ */}
-                      {sol.id === 'teach' && (
-                        <div className="bg-[#F8FBFC]" style={{ minHeight: '360px' }}>
-                          {/* Toolbar */}
-                          <div className="bg-white border-b border-gray-100 px-3 py-2 flex items-center gap-2">
-                            <span className="text-[10px] font-bold text-gray-700">Lesson Plan Builder</span>
-                            <div className="flex-1"/>
-                            <span className="text-[8px] text-white rounded-full px-2.5 py-1 cursor-default" style={{ backgroundColor: '#B85E15' }}>Save Draft</span>
-                          </div>
-                          <div className="flex gap-3 p-3">
-                            {/* Lesson blocks */}
-                            <div className="flex-1">
-                              <div className="text-[9px] font-bold text-gray-400 uppercase tracking-wider mb-2">Week 3 · Grade 6 Mathematics</div>
-                              {[
-                                { label: 'Learning Objective',   emoji: '🎯', color: '#B85E15', desc: 'Students will understand fractions and mixed numbers' },
-                                { label: 'Introduction (10 min)',emoji: '📖', color: '#B85E15', desc: 'Warm-up: review whole numbers with visual aids' },
-                                { label: 'Main Activity (20 min)',emoji: '⚡',      color: '#D97706', desc: 'Group work: pizza fraction exercise with worksheets' },
-                                { label: 'Assessment',           emoji: '✅',      color: '#059669', desc: 'Exit ticket: 5 fraction problems — auto-graded' },
-                              ].map((block, bi) => (
-                                <div key={bi} className="flex items-start gap-2 mb-2 bg-white rounded-xl p-2.5 border border-gray-100 shadow-sm">
-                                  <div className="w-7 h-7 rounded-lg flex items-center justify-center text-sm flex-shrink-0"
-                                    style={{ backgroundColor: block.color + '15' }}>
-                                    {block.emoji}
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="text-[9px] font-bold text-gray-700">{block.label}</div>
-                                    <div className="text-[8px] text-gray-400 mt-0.5 leading-snug">{block.desc}</div>
-                                  </div>
-                                  <div className="text-gray-200 text-xs flex-shrink-0 cursor-grab">⋮⋮</div>
-                                </div>
-                              ))}
-                              <div className="border-2 border-dashed border-gray-200 rounded-xl p-2 flex items-center justify-center gap-1.5 cursor-default">
-                                <span className="text-gray-300 text-sm">+</span>
-                                <span className="text-[9px] text-gray-300">Add Block</span>
-                              </div>
-                            </div>
-                            {/* At-risk + chart panel */}
-                            <div className="w-[118px] flex-shrink-0 flex flex-col gap-2">
-                              <div className="bg-white rounded-xl border border-gray-100 p-2.5">
-                                <div className="text-[9px] font-bold text-gray-500 mb-2">At-Risk Alerts</div>
-                                {[
-                                  { name: 'Ali M.',   issue: 'Missed 3 lessons', color: '#E11D48' },
-                                  { name: 'Sara K.',  issue: '< 60% quiz avg',   color: '#D97706' },
-                                  { name: 'Umar B.',  issue: 'Low attendance',   color: '#D97706' },
-                                ].map(s => (
-                                  <div key={s.name} className="flex items-start gap-1.5 mb-2 last:mb-0">
-                                    <div className="w-1.5 h-1.5 rounded-full mt-0.5 flex-shrink-0" style={{ backgroundColor: s.color }}/>
-                                    <div>
-                                      <div className="text-[8px] font-semibold text-gray-700">{s.name}</div>
-                                      <div className="text-[7px] text-gray-400 leading-tight">{s.issue}</div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="bg-white rounded-xl border border-gray-100 p-2.5">
-                                <div className="text-[9px] font-bold text-gray-500 mb-2">Class Avg</div>
-                                <div className="flex items-end gap-1 h-12">
-                                  {[72,85,68,92,78,88].map((v, i) => (
-                                    <div key={i} className="flex-1 rounded-t-sm" style={{ height: v + '%', backgroundColor: i === 3 ? '#B85E15' : '#FEF0E6' }}/>
                                   ))}
                                 </div>
-                                <div className="text-[8px] font-bold text-center mt-1" style={{ color: '#B85E15' }}>76.4% avg</div>
-                              </div>
-                              <div className="bg-white rounded-xl border border-gray-100 p-2">
-                                <div className="text-[8px] font-bold text-gray-400 mb-1.5">Curriculum</div>
-                                {[
-                                  { sub: 'Mathematics', pct: 68, color: '#0891B2' },
-                                  { sub: 'Science',     pct: 82, color: '#059669' },
-                                  { sub: 'English',     pct: 55, color: '#D4711A' },
-                                ].map(c => (
-                                  <div key={c.sub} className="mb-1.5 last:mb-0">
-                                    <div className="flex justify-between mb-0.5">
-                                      <span className="text-[7px] text-gray-400">{c.sub}</span>
-                                      <span className="text-[7px] font-bold" style={{ color: c.color }}>{c.pct}%</span>
-                                    </div>
-                                    <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
-                                      <div className="h-full rounded-full" style={{ width: c.pct + '%', backgroundColor: c.color }}/>
-                                    </div>
+                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                                  <div className="flex items-center justify-between mb-3">
+                                    <span className="text-sm font-semibold text-gray-700">Fee Collection</span>
+                                    <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: sol.accent + "14", color: sol.accent }}>On Track</span>
                                   </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* ══ LEARN MOCKUP ══ */}
-                      {sol.id === 'learn' && (
-                        <div style={{ minHeight: '360px', backgroundColor: '#0D0D1F' }}>
-                          {/* Language + title bar */}
-                          <div className="bg-[#1A1A2E] px-3 py-2 flex items-center gap-2 border-b border-white/[0.06]">
-                            <div className="flex gap-1">
-                              {['EN','AR','UR'].map(lang => (
-                                <div key={lang} className="text-[8px] px-1.5 py-0.5 rounded font-bold"
-                                  style={lang === 'EN' ? { backgroundColor: '#C0651A', color: '#fff' } : { backgroundColor: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.35)' }}>
-                                  {lang}
+                                  <div className="w-full bg-gray-100 rounded-full h-2.5">
+                                    <div className="h-2.5 rounded-full" style={{ width: "78%", backgroundColor: sol.accent }} />
+                                  </div>
+                                  <div className="flex justify-between mt-1.5 text-xs text-gray-400">
+                                    <span>₹14.3L collected</span>
+                                    <span>₹18.4L target</span>
+                                  </div>
                                 </div>
-                              ))}
-                            </div>
-                            <div className="flex-1 text-[8px] text-white/35 text-center">Chapter 3: Fractions · Grade 6 Math</div>
-                            <div className="text-[8px] text-white/25 border border-white/10 rounded px-1.5 py-0.5">HD</div>
-                          </div>
-                          {/* Animation stage */}
-                          <div className="relative p-3" style={{ minHeight: '200px' }}>
-                            {/* Scene bg */}
-                            <div className="rounded-xl overflow-hidden" style={{ background: 'linear-gradient(180deg, #1a1a4e 0%, #2d1b69 50%, #4a1e8a 100%)', minHeight: '180px', position: 'relative' }}>
-                              {/* Stars */}
-                              {[[10,8],[35,14],[65,7],[85,18],[25,22],[55,11],[78,5],[48,26]].map(([x,y], i) => (
-                                <div key={i} className="absolute rounded-full bg-white"
-                                  style={{ width: i % 3 === 0 ? '2px' : '1.5px', height: i % 3 === 0 ? '2px' : '1.5px', left: x+'%', top: y+'%', opacity: 0.5 + (i * 0.06) }}/>
-                              ))}
-                              {/* Chalkboard */}
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="rounded-xl border-4 p-4 w-48 shadow-2xl"
-                                  style={{ backgroundColor: '#1E3A2E', borderColor: '#2D5040' }}>
-                                  <div className="text-center">
-                                    <div className="text-white/80 font-mono font-bold mb-3" style={{ fontSize: '1.1rem' }}>&frac12; + &frac14; = ?</div>
-                                    <div className="flex items-center justify-center gap-2">
-                                      {['½', '+', '¼', '=', '¾'].map((sym, si) => (
-                                        <div key={si} className={si === 2 || si === 0 ? 'w-7 h-7 rounded-lg flex items-center justify-center text-xs' : si === 4 ? 'w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold' : 'text-white/40 text-sm'}
-                                          style={si === 0 || si === 2 ? { backgroundColor: 'rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.7)' } : si === 4 ? { backgroundColor: 'rgba(192,101,26,0.3)', border: '1px solid rgba(192,101,26,0.5)', color: '#C0651A' } : {}}>
-                                          {sym}
+                              </div>
+                            )}
+
+                            {sol.id === "learn" && (
+                              <div className="space-y-4">
+                                <div className="flex items-center gap-3 mb-6">
+                                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-sm font-bold">A</div>
+                                  <div>
+                                    <div className="text-sm font-bold text-gray-900">Welcome back, Ananya!</div>
+                                    <div className="text-xs text-gray-500">3 lessons to complete today</div>
+                                  </div>
+                                </div>
+                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                                  <div className="flex items-center gap-3 mb-3">
+                                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accent }}>
+                                      <BookOpen size={14} />
+                                    </div>
+                                    <div className="flex-1">
+                                      <div className="text-sm font-semibold text-gray-800">Quadratic Equations</div>
+                                      <div className="text-xs text-gray-500">Mathematics · Chapter 4</div>
+                                    </div>
+                                    <div className="text-xs font-bold" style={{ color: sol.accent }}>75%</div>
+                                  </div>
+                                  <div className="w-full bg-gray-100 rounded-full h-1.5">
+                                    <div className="h-1.5 rounded-full" style={{ width: "75%", backgroundColor: sol.accent }} />
+                                  </div>
+                                </div>
+                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">AI Practice Quiz</div>
+                                  <div className="space-y-2">
+                                    {["Solve: x² + 5x + 6 = 0", "Find roots of 2x² - 8 = 0"].map((q, qi) => (
+                                      <div key={qi} className="flex items-center gap-2 p-2.5 rounded-lg bg-gray-50 border border-gray-100">
+                                        <div className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ borderColor: sol.accent }} />
+                                        <span className="text-xs text-gray-700">{q}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                                <div className="flex gap-2">
+                                  <div className="flex-1 py-2.5 rounded-xl text-center text-xs font-bold text-white" style={{ backgroundColor: sol.accent }}>Continue Lesson</div>
+                                  <div className="px-4 py-2.5 rounded-xl text-center text-xs font-medium text-gray-600 bg-white border border-gray-200">Ask AI Tutor</div>
+                                </div>
+                              </div>
+                            )}
+
+                            {sol.id === "lms" && (
+                              <div className="space-y-4">
+                                <div className="flex items-center justify-between mb-4">
+                                  <div className="text-sm font-bold text-gray-900">Course Builder</div>
+                                  <div className="px-3 py-1.5 rounded-lg text-xs font-bold text-white" style={{ backgroundColor: sol.accent }}>+ New Module</div>
+                                </div>
+                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                                  <div className="flex items-center gap-3 mb-3">
+                                    <div className="w-2 h-10 rounded-full" style={{ backgroundColor: sol.accent }} />
+                                    <div className="flex-1">
+                                      <div className="text-sm font-semibold text-gray-800">Introduction to Physics</div>
+                                      <div className="text-xs text-gray-500">12 lessons · 6 assignments · 3 quizzes</div>
+                                    </div>
+                                    <div className="text-xs px-2 py-1 rounded-full bg-green-50 text-green-600 font-medium">Published</div>
+                                  </div>
+                                  <div className="flex gap-2 ml-5">
+                                    <div className="text-xs px-2 py-1 rounded bg-gray-50 text-gray-600">📹 Video</div>
+                                    <div className="text-xs px-2 py-1 rounded bg-gray-50 text-gray-600">📄 PDF</div>
+                                    <div className="text-xs px-2 py-1 rounded bg-gray-50 text-gray-600">🧪 Lab</div>
+                                  </div>
+                                </div>
+                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 opacity-80">
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-2 h-10 rounded-full bg-gray-300" />
+                                    <div className="flex-1">
+                                      <div className="text-sm font-semibold text-gray-800">Advanced Chemistry</div>
+                                      <div className="text-xs text-gray-500">8 lessons · 4 assignments</div>
+                                    </div>
+                                    <div className="text-xs px-2 py-1 rounded-full bg-amber-50 text-amber-600 font-medium">Draft</div>
+                                  </div>
+                                </div>
+                                <div className="grid grid-cols-3 gap-2">
+                                  {[
+                                    { label: "Courses", value: "24" },
+                                    { label: "Enrolled", value: "1.2K" },
+                                    { label: "Completion", value: "89%" },
+                                  ].map((s, si) => (
+                                    <div key={si} className="bg-white rounded-lg p-2.5 text-center shadow-sm border border-gray-100">
+                                      <div className="text-base font-bold text-gray-900">{s.value}</div>
+                                      <div className="text-xs text-gray-500">{s.label}</div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {sol.id === "marketing" && (
+                              <div className="space-y-4">
+                                <div className="flex items-center justify-between mb-4">
+                                  <div className="text-sm font-bold text-gray-900">Enrollment Pipeline</div>
+                                  <div className="text-xs px-2 py-1 rounded-full font-medium" style={{ backgroundColor: sol.accent + "14", color: sol.accent }}>Live</div>
+                                </div>
+                                <div className="grid grid-cols-4 gap-2">
+                                  {[
+                                    { stage: "Leads", count: 847, color: "#94A3B8" },
+                                    { stage: "Applied", count: 423, color: "#FBBF24" },
+                                    { stage: "Reviewed", count: 312, color: sol.accent },
+                                    { stage: "Enrolled", count: 198, color: "#10B981" },
+                                  ].map((s, si) => (
+                                    <div key={si} className="text-center">
+                                      <div className="text-base font-bold text-gray-900">{s.count}</div>
+                                      <div className="text-xs text-gray-500 mb-1.5">{s.stage}</div>
+                                      <div className="w-full h-1.5 rounded-full" style={{ backgroundColor: s.color + "30" }}>
+                                        <div className="h-1.5 rounded-full" style={{ width: `${(s.count / 847) * 100}%`, backgroundColor: s.color }} />
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Recent Activity</div>
+                                  <div className="space-y-2.5">
+                                    {[
+                                      { name: "Priya S.", action: "Submitted application", time: "2m ago" },
+                                      { name: "Rahul M.", action: "Completed form", time: "15m ago" },
+                                      { name: "Sneha K.", action: "Opened email", time: "1h ago" },
+                                    ].map((a, ai) => (
+                                      <div key={ai} className="flex items-center gap-2.5">
+                                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accent }}>
+                                          {a.name[0]}
                                         </div>
-                                      ))}
-                                    </div>
+                                        <div className="flex-1">
+                                          <span className="text-xs font-semibold text-gray-800">{a.name}</span>
+                                          <span className="text-xs text-gray-500"> {a.action}</span>
+                                        </div>
+                                        <span className="text-xs text-gray-400">{a.time}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                                <div className="flex gap-2">
+                                  <div className="flex-1 bg-white rounded-lg p-3 shadow-sm border border-gray-100 text-center">
+                                    <div className="text-lg font-bold" style={{ color: sol.accent }}>32%</div>
+                                    <div className="text-xs text-gray-500">Conversion Rate</div>
+                                  </div>
+                                  <div className="flex-1 bg-white rounded-lg p-3 shadow-sm border border-gray-100 text-center">
+                                    <div className="text-lg font-bold text-gray-900">₹2.4K</div>
+                                    <div className="text-xs text-gray-500">Cost per Lead</div>
                                   </div>
                                 </div>
                               </div>
-                              {/* Animated character SVG */}
-                              <div className="absolute bottom-2 left-4">
-                                <svg width="44" height="66" viewBox="0 0 44 66" fill="none">
-                                  <ellipse cx="22" cy="42" rx="11" ry="15" fill="#F97316"/>
-                                  <circle cx="22" cy="20" r="11" fill="#FBBF24"/>
-                                  <circle cx="18.5" cy="18" r="2" fill="#1F2937"/>
-                                  <circle cx="25.5" cy="18" r="2" fill="#1F2937"/>
-                                  <path d="M17.5 23 Q22 27.5 26.5 23" stroke="#1F2937" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                                  <path d="M11 39 L4 31" stroke="#F97316" strokeWidth="3.5" strokeLinecap="round"/>
-                                  <path d="M33 37 L41 27" stroke="#F97316" strokeWidth="3.5" strokeLinecap="round"/>
-                                  <line x1="41" y1="27" x2="47" y2="20" stroke="#FCD34D" strokeWidth="2" strokeLinecap="round"/>
-                                  <path d="M17 56 L14 66" stroke="#F97316" strokeWidth="3.5" strokeLinecap="round"/>
-                                  <path d="M27 56 L30 66" stroke="#F97316" strokeWidth="3.5" strokeLinecap="round"/>
-                                </svg>
-                              </div>
-                              {/* Quiz popup */}
-                              <div className="absolute top-3 right-3 bg-white rounded-xl shadow-lg p-2.5 w-28">
-                                <div className="text-[8px] font-bold text-gray-700 mb-1.5">Quick Check ✓</div>
-                                {['¾','½','1¼'].map((opt, oi) => (
-                                  <div key={opt} className="flex items-center gap-1.5 mb-1 last:mb-0 rounded-lg px-1.5 py-1"
-                                    style={oi === 0 ? { backgroundColor: '#DCFCE7', border: '1px solid #86EFAC' } : {}}>
-                                    <div className="w-3 h-3 rounded-full border flex items-center justify-center flex-shrink-0"
-                                      style={oi === 0 ? { backgroundColor: '#22C55E', borderColor: '#22C55E' } : { borderColor: '#D1D5DB' }}>
-                                      {oi === 0 && <span className="text-white text-[6px]">✓</span>}
-                                    </div>
-                                    <span className="text-[8px]"
-                                      style={oi === 0 ? { color: '#15803D', fontWeight: 700 } : { color: '#9CA3AF' }}>{opt}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          {/* Player controls */}
-                          <div className="px-3 py-2 bg-[#1A1A2E]">
-                            <div className="h-1 bg-white/10 rounded-full overflow-hidden mb-2">
-                              <div className="h-full rounded-full" style={{ width: '38%', backgroundColor: '#C0651A' }}/>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              <span className="text-[9px] text-white/50">▶</span>
-                              <span className="text-[9px] text-white/40 font-mono">04:33 / 12:00</span>
-                              <div className="flex-1"/>
-                              <div className="flex gap-1">
-                                {['2D Char','3D Model','Whiteboard','Motion GFX'].map((tab, ti) => (
-                                  <div key={tab} className="text-[7px] px-1.5 py-0.5 rounded font-medium"
-                                    style={ti === 0 ? { backgroundColor: '#C0651A', color: '#fff' } : { backgroundColor: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.28)' }}>
-                                    {tab}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                          {/* Chapter list */}
-                          <div className="px-3 py-2 border-t border-white/[0.05] bg-[#0F0F1E]">
-                            <div className="flex gap-2 overflow-x-auto pb-1">
-                              {[
-                                { num: '01', title: 'Intro to Fractions',     done: true  },
-                                { num: '02', title: 'Adding Fractions',        done: true  },
-                                { num: '03', title: 'Mixed Numbers',           active: true },
-                                { num: '04', title: 'Fraction Word Problems',  done: false },
-                              ].map(ch => (
-                                <div key={ch.num} className="flex-shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg cursor-default"
-                                  style={'active' in ch && ch.active
-                                    ? { backgroundColor: 'rgba(192,101,26,0.15)', border: '1px solid rgba(192,101,26,0.3)' }
-                                    : { backgroundColor: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.04)' }}>
-                                  <span className="text-[8px] font-mono font-bold"
-                                    style={{ color: 'active' in ch && ch.active ? '#C0651A' : ch.done ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.12)' }}>
-                                    {ch.done ? '✓' : ch.num}
-                                  </span>
-                                  <span className="text-[8px] whitespace-nowrap"
-                                    style={{ color: 'active' in ch && ch.active ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.22)' }}>
-                                    {ch.title}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
+                            )}
                           </div>
                         </div>
-                      )}
 
-                      {/* ══ MARKETING MOCKUP ══ */}
-                      {sol.id === 'marketing' && (
-                        <div className="bg-white" style={{ minHeight: '360px' }}>
-                          {/* Dashboard header */}
-                          <div className="px-4 py-3 flex items-center justify-between" style={{ background: 'linear-gradient(135deg, #8B4513 0%, #B85E15 100%)' }}>
-                            <div>
-                              <div className="text-white text-[10px] font-bold">Admissions Dashboard</div>
-                              <div className="text-white/60 text-[8px]">March 2025 · Al-Noor Academy</div>
-                            </div>
-                            <div className="flex items-center gap-1.5 bg-white/20 rounded-full px-2.5 py-1">
-                              <div className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"/>
-                              <span className="text-white text-[8px] font-semibold">Live</span>
-                            </div>
-                          </div>
-                          <div className="p-3 flex gap-3">
-                            {/* Funnel chart */}
-                            <div className="flex-1">
-                              <div className="text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-2.5">Enrollment Funnel · This Month</div>
-                              {[
-                                { label: 'Website Visitors', value: '4,280', pct: 100, color: '#D4711A' },
-                                { label: 'Ad Clicks',        value: '1,940', pct: 71,  color: '#B85E15' },
-                                { label: 'Inquiries',        value: '342',   pct: 45,  color: '#C0651A' },
-                                { label: 'Enrolled',         value: '164',   pct: 22,  color: '#8B4513' },
-                              ].map((step, si) => (
-                                <div key={step.label} className="mb-2.5">
-                                  <div className="flex justify-between items-center mb-1">
-                                    <span className="text-[8px] text-gray-500 font-medium">{step.label}</span>
-                                    <span className="text-[9px] font-bold text-gray-700">{step.value}</span>
-                                  </div>
-                                  <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                                    <div className="h-full rounded-full" style={{ width: step.pct + '%', backgroundColor: step.color }}/>
-                                  </div>
-                                </div>
-                              ))}
-                              {/* ROI cards */}
-                              <div className="grid grid-cols-3 gap-1.5 mt-3">
-                                {[
-                                  { label: 'Ad ROI',           value: '5×',     color: '#8B4513', bg: '#FDF5ED' },
-                                  { label: 'Cost/Enrollment',  value: '₨2,100', color: '#B85E15', bg: '#FFF8F0' },
-                                  { label: 'Enquiries ↑', value: '+34%',        color: '#D4711A', bg: '#FEF0E6' },
-                                ].map(r => (
-                                  <div key={r.label} className="rounded-xl p-2 border"
-                                    style={{ backgroundColor: r.bg, borderColor: r.color + '30' }}>
-                                    <div className="text-[7px] text-gray-400">{r.label}</div>
-                                    <div className="text-sm font-bold leading-none mt-0.5" style={{ color: r.color }}>{r.value}</div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                            {/* Social & SEO panel */}
-                            <div className="w-[115px] flex-shrink-0 flex flex-col gap-2">
-                              <div className="bg-gray-50 rounded-xl p-2.5 border border-gray-100">
-                                <div className="text-[8px] font-bold text-gray-500 mb-2">Social Reach</div>
-                                {[
-                                  { platform: 'Facebook',  val: '12.4K', color: '#1877F2' },
-                                  { platform: 'Instagram', val: '8.2K',  color: '#E11D48' },
-                                  { platform: 'YouTube',   val: '3.8K',  color: '#FF0000' },
-                                ].map(s => (
-                                  <div key={s.platform} className="flex items-center justify-between mb-1.5 last:mb-0">
-                                    <span className="text-[7px] text-gray-400">{s.platform}</span>
-                                    <span className="text-[8px] font-bold" style={{ color: s.color }}>{s.val}</span>
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="bg-gray-50 rounded-xl p-2.5 border border-gray-100">
-                                <div className="text-[8px] font-bold text-gray-500 mb-2">SEO Rankings</div>
-                                {[
-                                  { kw: '"Best school Lahore"', pos: '#2' },
-                                  { kw: '"O-levels academy"',   pos: '#4' },
-                                  { kw: '"Cambridge school"',   pos: '#3' },
-                                ].map(k => (
-                                  <div key={k.kw} className="flex items-center justify-between mb-1.5 last:mb-0">
-                                    <span className="text-[7px] text-gray-400 truncate flex-1 mr-1">{k.kw}</span>
-                                    <span className="text-[8px] font-bold flex-shrink-0" style={{ color: '#8B4513' }}>{k.pos}</span>
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="bg-[#FEF0E6] rounded-xl p-2 border border-orange-200/60">
-                                <div className="text-[8px] font-bold text-[#8B4513] mb-0.5">Website Live ✓</div>
-                                <div className="text-[7px] text-gray-500">alnooracademy.edu.pk</div>
-                                <div className="text-[7px] text-[#D4711A] font-medium mt-1">Live in 3 weeks</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
+                        {/* Floating accent elements */}
+                        <div
+                          className="absolute -top-3 -right-3 w-20 h-20 rounded-full blur-2xl opacity-20 pointer-events-none"
+                          style={{ backgroundColor: sol.accent }}
+                        />
+                        <div
+                          className="absolute -bottom-3 -left-3 w-16 h-16 rounded-full blur-2xl opacity-15 pointer-events-none"
+                          style={{ backgroundColor: sol.accent }}
+                        />
+                      </div>
                     </div>
-
-                    {/* Floating metric badge */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.85, x: 20 }}
-                      animate={{ opacity: 1, scale: 1, x: 0 }}
-                      transition={{ delay: 0.3, duration: 0.4 }}
-                      className="absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-2.5 shadow-xl border border-gray-100 hidden lg:flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: sol.accentLight }}>
-                        {(() => { const SolIcon = sol.icon; return <SolIcon size={16} style={{ color: sol.accentHex }} />; })()}
-                      </div>
-                      <div>
-                        <div className="text-sm font-heading font-bold leading-none" style={{ color: sol.accentHex }}>{sol.metric}</div>
-                        <div className="text-[9px] text-gray-400 leading-snug max-w-[100px]">{sol.metricLabel}</div>
-                      </div>
-                    </motion.div>
-
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
             ))}
-          </AnimatePresence>
-
-          {/* ── BOTTOM TRUST STRIP ── */}
-          <div className="mt-16 pt-10 border-t border-gray-100">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { icon: Shield,     stat: '760+', label: t('Schools Served', 'مدرسة تم خدمتها'),     sub: t('across PK, SA & CA', 'في باكستان والسعودية وكندا')    },
-                { icon: TrendingUp, stat: '94%',  label: t('Satisfaction Rate', 'نسبة الرضا'),  sub: t('rated 5/5 by educators', 'تقييم 5/5 من المعلمين')},
-                { icon: Zap,        stat: t('4 wk', '4 أسابيع'), label: t('Avg. Go-Live', 'متوسط الإطلاق'),      sub: t('from signed contract', 'من توقيع العقد')  },
-                { icon: Users,      stat: '24/7', label: t('Dedicated Support', 'دعم مخصص'),  sub: t('account manager incl.', 'مدير حساب مشمول') },
-              ].map(item => {
-                const SIcon = item.icon;
-                return (
-                  <motion.div key={item.label}
-                    initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }} transition={{ duration: 0.3 }}
-                    className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <SIcon size={15} className="text-gray-400" />
-                    </div>
-                    <div>
-                      <div className="font-heading font-bold text-gray-900 text-xl leading-none">{item.stat}</div>
-                      <div className="text-xs font-semibold text-gray-600 mt-0.5">{item.label}</div>
-                      <div className="text-[10px] text-gray-400">{item.sub}</div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
           </div>
+
+          {/* ── Trust strip ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-16 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500"
+          >
+            {[
+              { icon: Shield, text: "ISO 27001 Certified" },
+              { icon: Globe, text: "Used across 12+ countries" },
+              { icon: Award, text: "Top EdTech 2025" },
+            ].map((badge, bi) => (
+              <div key={bi} className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full">
+                <badge.icon size={14} className="text-gray-400" />
+                <span>{badge.text}</span>
+              </div>
+            ))}
+          </motion.div>
 
         </div>
       </section>
