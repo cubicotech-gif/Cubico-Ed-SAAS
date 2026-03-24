@@ -861,9 +861,7 @@ export default function HomePage() {
           <div className="relative">
 
 
-            {solutions.map((sol, i) => {
-              const Icon = sol.icon;
-              return (
+            {products.map((sol, i) => (
                 <motion.div
                   key={sol.id}
                   initial={{ opacity: 0, y: 40 }}
@@ -876,8 +874,8 @@ export default function HomePage() {
                   <div
                     className="rounded-3xl border shadow-xl overflow-hidden"
                     style={{
-                      background: `linear-gradient(135deg, ${sol.accentHex}08 0%, #ffffff 40%, ${sol.accentHex}05 100%)`,
-                      borderColor: `${sol.accentHex}20`,
+                      background: `linear-gradient(135deg, ${sol.accent}08 0%, #ffffff 40%, ${sol.accent}05 100%)`,
+                      borderColor: `${sol.accent}20`,
                     }}
                   >
                     <div className="grid lg:grid-cols-2 gap-0">
@@ -886,44 +884,36 @@ export default function HomePage() {
                         <div
                           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 w-fit"
                           style={{
-                            backgroundColor: sol.accentHex + "14",
-                            color: sol.accentHex,
+                            backgroundColor: sol.accent + "14",
+                            color: sol.accent,
                           }}
                         >
-                          <Icon size={15} />
-                          {sol.name}
+                          {sol.label}
                         </div>
 
                         <h3 className="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-4 leading-tight">
-                          {sol.headline}
+                          {sol.name}
                         </h3>
 
-                        <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-8">
-                          {sol.description}
+                        <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-4 italic">
+                          {sol.pain}
                         </p>
 
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                          {sol.features.map((feat: string, fi: number) => (
-                            <div key={fi} className="flex items-start gap-2">
-                              <div
-                                className="mt-1 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                                style={{ backgroundColor: sol.accentHex + "18" }}
-                              >
-                                <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
-                                  <path d="M2 6l3 3 5-5" stroke={sol.accentHex} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                              </div>
-                              <span className="text-sm text-gray-700 font-medium">{feat}</span>
-                            </div>
-                          ))}
+                        <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">
+                          {sol.desc}
+                        </p>
+
+                        <div className="flex items-baseline gap-2 mb-8">
+                          <span className="text-3xl font-black" style={{ color: sol.accent }}>{sol.stat}</span>
+                          <span className="text-sm text-gray-500">{sol.statContext}</span>
                         </div>
 
                         <a
-                          href={sol.ctaLink}
+                          href={sol.ctaHref}
                           className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-all duration-200 hover:shadow-lg w-fit"
-                          style={{ backgroundColor: sol.accentHex }}
+                          style={{ backgroundColor: sol.accent }}
                         >
-                          {sol.ctaLabel}
+                          {sol.cta}
                           <ArrowRight size={15} />
                         </a>
                       </div>
@@ -947,7 +937,7 @@ export default function HomePage() {
                           <div
                             className="p-6 lg:p-8 min-h-[260px] lg:min-h-[360px]"
                             style={{
-                              background: `linear-gradient(180deg, ${sol.accentHex}06 0%, ${sol.accentHex}12 100%)`,
+                              background: `linear-gradient(180deg, ${sol.accent}06 0%, ${sol.accent}12 100%)`,
                             }}
                           >
                             {/* Mockup content per solution */}
@@ -960,7 +950,7 @@ export default function HomePage() {
                                   </div>
                                   <div className="flex gap-2">
                                     <div className="px-3 py-1.5 rounded-lg bg-white shadow-sm text-xs font-medium text-gray-600">This Week</div>
-                                    <div className="px-3 py-1.5 rounded-lg text-xs font-medium text-white" style={{ backgroundColor: sol.accentHex }}>This Month</div>
+                                    <div className="px-3 py-1.5 rounded-lg text-xs font-medium text-white" style={{ backgroundColor: sol.accent }}>This Month</div>
                                   </div>
                                 </div>
                                 <div className="grid grid-cols-3 gap-3">
@@ -972,17 +962,17 @@ export default function HomePage() {
                                     <div key={si} className="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
                                       <div className="text-xs text-gray-500 mb-1">{stat.label}</div>
                                       <div className="text-lg font-bold text-gray-900">{stat.value}</div>
-                                      <div className="text-xs font-medium" style={{ color: sol.accentHex }}>{stat.change}</div>
+                                      <div className="text-xs font-medium" style={{ color: sol.accent }}>{stat.change}</div>
                                     </div>
                                   ))}
                                 </div>
                                 <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                                   <div className="flex items-center justify-between mb-3">
                                     <span className="text-sm font-semibold text-gray-700">Fee Collection</span>
-                                    <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: sol.accentHex + "14", color: sol.accentHex }}>On Track</span>
+                                    <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: sol.accent + "14", color: sol.accent }}>On Track</span>
                                   </div>
                                   <div className="w-full bg-gray-100 rounded-full h-2.5">
-                                    <div className="h-2.5 rounded-full" style={{ width: "78%", backgroundColor: sol.accentHex }} />
+                                    <div className="h-2.5 rounded-full" style={{ width: "78%", backgroundColor: sol.accent }} />
                                   </div>
                                   <div className="flex justify-between mt-1.5 text-xs text-gray-400">
                                     <span>₹14.3L collected</span>
@@ -1003,17 +993,17 @@ export default function HomePage() {
                                 </div>
                                 <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                                   <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accentHex }}>
+                                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accent }}>
                                       <BookOpen size={14} />
                                     </div>
                                     <div className="flex-1">
                                       <div className="text-sm font-semibold text-gray-800">Quadratic Equations</div>
                                       <div className="text-xs text-gray-500">Mathematics · Chapter 4</div>
                                     </div>
-                                    <div className="text-xs font-bold" style={{ color: sol.accentHex }}>75%</div>
+                                    <div className="text-xs font-bold" style={{ color: sol.accent }}>75%</div>
                                   </div>
                                   <div className="w-full bg-gray-100 rounded-full h-1.5">
-                                    <div className="h-1.5 rounded-full" style={{ width: "75%", backgroundColor: sol.accentHex }} />
+                                    <div className="h-1.5 rounded-full" style={{ width: "75%", backgroundColor: sol.accent }} />
                                   </div>
                                 </div>
                                 <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
@@ -1021,14 +1011,14 @@ export default function HomePage() {
                                   <div className="space-y-2">
                                     {["Solve: x² + 5x + 6 = 0", "Find roots of 2x² - 8 = 0"].map((q, qi) => (
                                       <div key={qi} className="flex items-center gap-2 p-2.5 rounded-lg bg-gray-50 border border-gray-100">
-                                        <div className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ borderColor: sol.accentHex }} />
+                                        <div className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ borderColor: sol.accent }} />
                                         <span className="text-xs text-gray-700">{q}</span>
                                       </div>
                                     ))}
                                   </div>
                                 </div>
                                 <div className="flex gap-2">
-                                  <div className="flex-1 py-2.5 rounded-xl text-center text-xs font-bold text-white" style={{ backgroundColor: sol.accentHex }}>Continue Lesson</div>
+                                  <div className="flex-1 py-2.5 rounded-xl text-center text-xs font-bold text-white" style={{ backgroundColor: sol.accent }}>Continue Lesson</div>
                                   <div className="px-4 py-2.5 rounded-xl text-center text-xs font-medium text-gray-600 bg-white border border-gray-200">Ask AI Tutor</div>
                                 </div>
                               </div>
@@ -1038,11 +1028,11 @@ export default function HomePage() {
                               <div className="space-y-4">
                                 <div className="flex items-center justify-between mb-4">
                                   <div className="text-sm font-bold text-gray-900">Course Builder</div>
-                                  <div className="px-3 py-1.5 rounded-lg text-xs font-bold text-white" style={{ backgroundColor: sol.accentHex }}>+ New Module</div>
+                                  <div className="px-3 py-1.5 rounded-lg text-xs font-bold text-white" style={{ backgroundColor: sol.accent }}>+ New Module</div>
                                 </div>
                                 <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                                   <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-2 h-10 rounded-full" style={{ backgroundColor: sol.accentHex }} />
+                                    <div className="w-2 h-10 rounded-full" style={{ backgroundColor: sol.accent }} />
                                     <div className="flex-1">
                                       <div className="text-sm font-semibold text-gray-800">Introduction to Physics</div>
                                       <div className="text-xs text-gray-500">12 lessons · 6 assignments · 3 quizzes</div>
@@ -1084,13 +1074,13 @@ export default function HomePage() {
                               <div className="space-y-4">
                                 <div className="flex items-center justify-between mb-4">
                                   <div className="text-sm font-bold text-gray-900">Enrollment Pipeline</div>
-                                  <div className="text-xs px-2 py-1 rounded-full font-medium" style={{ backgroundColor: sol.accentHex + "14", color: sol.accentHex }}>Live</div>
+                                  <div className="text-xs px-2 py-1 rounded-full font-medium" style={{ backgroundColor: sol.accent + "14", color: sol.accent }}>Live</div>
                                 </div>
                                 <div className="grid grid-cols-4 gap-2">
                                   {[
                                     { stage: "Leads", count: 847, color: "#94A3B8" },
                                     { stage: "Applied", count: 423, color: "#FBBF24" },
-                                    { stage: "Reviewed", count: 312, color: sol.accentHex },
+                                    { stage: "Reviewed", count: 312, color: sol.accent },
                                     { stage: "Enrolled", count: 198, color: "#10B981" },
                                   ].map((s, si) => (
                                     <div key={si} className="text-center">
@@ -1111,7 +1101,7 @@ export default function HomePage() {
                                       { name: "Sneha K.", action: "Opened email", time: "1h ago" },
                                     ].map((a, ai) => (
                                       <div key={ai} className="flex items-center gap-2.5">
-                                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accentHex }}>
+                                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accent }}>
                                           {a.name[0]}
                                         </div>
                                         <div className="flex-1">
@@ -1125,7 +1115,7 @@ export default function HomePage() {
                                 </div>
                                 <div className="flex gap-2">
                                   <div className="flex-1 bg-white rounded-lg p-3 shadow-sm border border-gray-100 text-center">
-                                    <div className="text-lg font-bold" style={{ color: sol.accentHex }}>32%</div>
+                                    <div className="text-lg font-bold" style={{ color: sol.accent }}>32%</div>
                                     <div className="text-xs text-gray-500">Conversion Rate</div>
                                   </div>
                                   <div className="flex-1 bg-white rounded-lg p-3 shadow-sm border border-gray-100 text-center">
@@ -1141,18 +1131,17 @@ export default function HomePage() {
                         {/* Floating accent elements */}
                         <div
                           className="absolute -top-3 -right-3 w-20 h-20 rounded-full blur-2xl opacity-20 pointer-events-none"
-                          style={{ backgroundColor: sol.accentHex }}
+                          style={{ backgroundColor: sol.accent }}
                         />
                         <div
                           className="absolute -bottom-3 -left-3 w-16 h-16 rounded-full blur-2xl opacity-15 pointer-events-none"
-                          style={{ backgroundColor: sol.accentHex }}
+                          style={{ backgroundColor: sol.accent }}
                         />
                       </div>
                     </div>
                   </div>
                 </motion.div>
-              );
-            })}
+            ))}
           </div>
 
           {/* ── Trust strip ── */}
