@@ -758,165 +758,115 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ═══════════ WHAT IS CUBICO — Psychological Context Section ═══════════ */}
-      <section className="pt-24 pb-24 bg-white relative z-10 overflow-hidden">
-        {/* Subtle warm radial bg accent */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] pointer-events-none" style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(232,140,50,0.04) 0%, transparent 70%)',
-        }} />
-
-        <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-
-          {/* ── Section Header — emotional hook ── */}
+      {/* ═══════════ TESTIMONIALS ═══════════ */}
+      <section id="testimonials" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true }}
             variants={staggerContainer}
-            className="text-center mb-8"
+            className="text-center mb-16"
           >
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                {t('Why Cubico', 'لماذا كيوبيكو')}
+                {t('Testimonials', 'الشهادات')}
               </span>
             </motion.div>
             <motion.h2
               variants={fadeUp}
               custom={1}
-              className="text-3xl md:text-4xl lg:text-[2.75rem] font-heading font-bold text-gray-900 leading-[1.1] tracking-tight mb-5"
+              className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4"
             >
-              {t("Schools don't need more tools.", 'المدارس لا تحتاج المزيد من الأدوات.')}<br className="hidden sm:block" />
-              {t('They need', 'إنها تحتاج')} <span className="shimmer-text">{t('one platform that works.', 'منصة واحدة تعمل.')}</span>
+              {t('Trusted by', 'موثوق من قبل')} <span className="shimmer-text">{t('educators worldwide', 'معلمين حول العالم')}</span>
             </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="text-gray-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-              {t('Most institutions juggle disconnected systems — one for learning, another for admin, another for content. Cubico replaces all of them with a single intelligent platform built specifically for education.', 'تتعامل معظم المؤسسات مع أنظمة منفصلة — واحد للتعلم وآخر للإدارة وآخر للمحتوى. كيوبيكو تستبدلها جميعاً بمنصة ذكية واحدة مصممة خصيصاً للتعليم.')}
-            </motion.p>
-          </motion.div>
-
-          {/* ── Social proof mini-strip ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-6 mb-14"
-          >
-            {[
-              { value: '760+', label: t('Institutions', 'مؤسسة') },
-              { value: '85K+', label: t('Active Students', 'طالب نشط') },
-              { value: '99.9%', label: t('Uptime', 'وقت التشغيل') },
-              { value: '3', label: t('Countries', 'دول') },
-            ].map(stat => (
-              <div key={stat.label} className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-gray-50 border border-gray-100">
-                <span className="text-sm font-bold text-gray-900">{stat.value}</span>
-                <span className="text-xs text-gray-400">{stat.label}</span>
+            <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                ))}
               </div>
-            ))}
+              <span className="text-gray-500 text-sm font-medium">{t('Rated 5 out of 5 (760+ reviews)', 'تقييم 5 من 5 (أكثر من 760 مراجعة)')}</span>
+            </motion.div>
           </motion.div>
 
-          {/* ── Problem → Solution Cards ── */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-6 lg:gap-8"
+            className="grid md:grid-cols-3 gap-8"
           >
-            {[
-              {
-                icon: BookOpen,
-                label: t('LEARN', 'تعلّم'),
-                title: t('Smart LMS', 'نظام إدارة تعلم ذكي'),
-                problem: t('Students lose interest in outdated, static course materials.', 'يفقد الطلاب الاهتمام بالمواد الدراسية القديمة والثابتة.'),
-                solution: t('AI-powered learning paths with progress tracking, interactive courses, and real-time analytics that keep students engaged.', 'مسارات تعلم مدعومة بالذكاء الاصطناعي مع تتبع التقدم ودورات تفاعلية وتحليلات فورية تحافظ على تفاعل الطلاب.'),
-                accent: '#D4711A',
-                gradient: 'linear-gradient(135deg, #D4711A, #E88C32)',
-                iconBg: 'bg-orange-50',
-              },
-              {
-                icon: Film,
-                label: t('CREATE', 'إنشاء'),
-                title: t('Animated Lessons', 'دروس متحركة'),
-                problem: t("Teachers spend hours creating content that still doesn't land.", 'يقضي المعلمون ساعات في إنشاء محتوى لا يحقق الهدف المطلوب.'),
-                solution: t('Professional 2D & 3D animated lessons in English, Arabic & Urdu — ready to deploy across any curriculum.', 'دروس متحركة احترافية ثنائية وثلاثية الأبعاد بالإنجليزية والعربية والأردية — جاهزة للنشر في أي منهج.'),
-                accent: '#C0651A',
-                gradient: 'linear-gradient(135deg, #C0651A, #D4711A)',
-                iconBg: 'bg-amber-50',
-              },
-              {
-                icon: Monitor,
-                label: t('MANAGE', 'إدارة'),
-                title: t('School ERP', 'نظام تخطيط موارد المدرسة'),
-                problem: t('Admin staff drowns in spreadsheets and disconnected systems.', 'يغرق الموظفون الإداريون في جداول البيانات والأنظمة المنفصلة.'),
-                solution: t('All-in-one operations — admissions, attendance, HR, finance, and reporting in a single dashboard.', 'عمليات شاملة — القبول والحضور والموارد البشرية والمالية والتقارير في لوحة تحكم واحدة.'),
-                accent: '#8B4513',
-                gradient: 'linear-gradient(135deg, #8B4513, #B8651A)',
-                iconBg: 'bg-orange-50/70',
-              },
-            ].map((card, i) => (
-              <motion.div
-                key={card.title}
-                variants={fadeUp}
-                custom={i}
-                whileHover={{ y: -6 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-                className="group relative rounded-2xl bg-white border border-gray-100 overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-default"
-              >
-                {/* Top accent bar */}
-                <div className="h-1" style={{ background: card.gradient }} />
-
-                <div className="p-7 lg:p-8">
-                  {/* Label + Icon row */}
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="text-[10px] font-black tracking-[0.2em] uppercase" style={{ color: card.accent }}>
-                      {card.label}
-                    </span>
-                    <div className={`w-11 h-11 rounded-xl ${card.iconBg} flex items-center justify-center`}>
-                      <card.icon className="w-5 h-5" style={{ color: card.accent }} />
+            {testimonials.map((testimonial, i) => {
+              const tGrads = [
+                'linear-gradient(135deg,#D4711A,#E88C32)',
+                'linear-gradient(135deg,#B85E15,#D4711A)',
+                'linear-gradient(135deg,#8B4513,#C0651A)',
+              ];
+              const tChip = [
+                { bg:'rgba(212,113,26,0.08)', fg:'#D4711A' },
+                { bg:'rgba(184,94,21,0.08)',  fg:'#B85E15' },
+                { bg:'rgba(139,69,19,0.08)',  fg:'#8B4513' },
+              ];
+              return (
+                <motion.div key={testimonial.name} variants={fadeUp} custom={i}
+                  whileHover={{ y:-6, rotateY:3, rotateX:-2, scale:1.01 }}
+                  transition={{ type:'spring', stiffness:250, damping:25 }}
+                  style={{ transformStyle:'preserve-3d', transformOrigin:'center center' }}
+                  className="relative rounded-2xl bg-white border border-gray-100 p-8 overflow-hidden shadow-sm hover:shadow-2xl cursor-default"
+                >
+                  {/* Giant decorative quote */}
+                  <div className="absolute -top-3 -left-1 leading-none select-none pointer-events-none text-gray-100"
+                    style={{ fontSize:'6.5rem', fontFamily:'Georgia,serif', lineHeight:1 }}>"</div>
+                  {/* Stars + verified */}
+                  <div className="flex items-center gap-1 mb-4 relative">
+                    {[...Array(testimonial.rating)].map((_, j) => (
+                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">{t('VERIFIED', 'موثّق')}</span>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">"{testimonial.text}"</p>
+                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                    <div className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                      style={{ background:tGrads[i] }}>
+                      {testimonial.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-gray-900 text-sm truncate">{testimonial.name}</h4>
+                      <p className="text-xs text-gray-500">{testimonial.role}, {testimonial.company}</p>
+                    </div>
+                    <div className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
+                      style={{ backgroundColor:tChip[i].bg, color:tChip[i].fg }}>
+                      {testimonial.location}
                     </div>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl font-heading font-bold text-gray-900 mb-4">{card.title}</h3>
-
-                  {/* Problem */}
-                  <div className="mb-4 pl-3 border-l-2 border-red-200/60">
-                    <p className="text-[13px] text-gray-400 leading-relaxed italic">
-                      &ldquo;{card.problem}&rdquo;
-                    </p>
-                  </div>
-
-                  {/* Solution */}
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                    {card.solution}
-                  </p>
-
-                  {/* CTA */}
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold group-hover:gap-3 transition-all duration-200" style={{ color: card.accent }}>
-                    {t('Explore', 'استكشف')} {card.title} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                  </span>
-                </div>
-
-                {/* Hover glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-                  style={{ background: `radial-gradient(ellipse at 30% 0%, ${card.accent}06 0%, transparent 65%)` }} />
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
+        </div>
+      </section>
 
-          {/* ── Bottom reinforcement line ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-14 text-center"
-          >
-            <p className="text-sm text-gray-400 max-w-lg mx-auto leading-relaxed">
-              {t('Built for Pakistan, Saudi Arabia & Canada — supporting English, Arabic & Urdu curricula out of the box.', 'مصمم لباكستان والمملكة العربية السعودية وكندا — يدعم المناهج بالإنجليزية والعربية والأردية جاهزاً للاستخدام.')}
-            </p>
-          </motion.div>
+      {/* ═══════════ PARTNER LOGOS ═══════════ */}
+      <section className="py-14 bg-white border-y border-gray-100 overflow-hidden relative">
+        {/* Gradient masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background:'linear-gradient(90deg,white 0%,transparent 100%)' }}/>
+        <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          style={{ background:'linear-gradient(270deg,white 0%,transparent 100%)' }}/>
+        <p className="text-center text-[10px] font-bold text-gray-300 tracking-[0.22em] uppercase mb-6">
+          {t('Trusted by institutions across 3 countries', 'موثوق من قبل مؤسسات في 3 دول')}
+        </p>
+        <div className="flex animate-marquee-slow" style={{ width:'max-content' }}>
+          {[...partners, ...partners, ...partners, ...partners].map((name, i) => (
+            <div key={i} className="flex-shrink-0 mx-4 flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-100 bg-gray-50 cursor-default hover:border-primary/30 hover:bg-primary/5 transition-all group">
+              <div className="w-2 h-2 rounded-full bg-primary/25 group-hover:bg-primary/60 transition-colors"/>
+              <span className="text-gray-400 font-heading font-bold text-sm whitespace-nowrap group-hover:text-primary transition-colors">
+                {name}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -1728,90 +1678,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════ SOLUTIONS / SERVICES ═══════════ */}
-      <section id="solutions" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.div variants={fadeUp} custom={0} className="mb-4">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                Services
-              </span>
-            </motion.div>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4"
-            >
-              Everything your school needs,<br />
-              <span className="shimmer-text">under one roof</span>
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="text-gray-500 max-w-2xl mx-auto">
-              From learning management to marketing — eight specialized services built specifically for educational institutions.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            id="services"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {services.map((svc, i) => {
-              const SC = [
-                { b:'#D4711A', ib:'#FEF0E6', if_:'#D4711A', lg:'linear-gradient(90deg,#D4711A,#E88C32)' },
-                { b:'#B85E15', ib:'#FFF8F0', if_:'#B85E15', lg:'linear-gradient(90deg,#B85E15,#D4711A)' },
-                { b:'#C0651A', ib:'#FEF0E6', if_:'#C0651A', lg:'linear-gradient(90deg,#C0651A,#E88C32)' },
-                { b:'#8B4513', ib:'#FDF5ED', if_:'#8B4513', lg:'linear-gradient(90deg,#8B4513,#B85E15)' },
-                { b:'#D97706', ib:'#FEF3C7', if_:'#D97706', lg:'linear-gradient(90deg,#D97706,#F4A261)' },
-                { b:'#A0522D', ib:'#FDF5ED', if_:'#A0522D', lg:'linear-gradient(90deg,#A0522D,#C0651A)' },
-                { b:'#E88C32', ib:'#FEF0E6', if_:'#E88C32', lg:'linear-gradient(90deg,#E88C32,#F4A94D)' },
-                { b:'#CD853F', ib:'#FDF8F3', if_:'#CD853F', lg:'linear-gradient(90deg,#CD853F,#DEB887)' },
-              ];
-              const c = SC[i % 8];
-              return (
-                <motion.div
-                  key={svc.title}
-                  variants={fadeUp}
-                  custom={i}
-                  whileHover={{ y:-5, scale:1.02 }}
-                  transition={{ type:'spring', stiffness:300, damping:20 }}
-                  className="group cursor-pointer relative rounded-2xl bg-white border border-gray-100 p-6 text-center overflow-hidden shadow-sm hover:shadow-xl"
-                >
-                  {/* Hover bg gradient */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-                    style={{ background:`radial-gradient(ellipse at 50% 0%,${c.b}14 0%,transparent 70%)` }}/>
-                  {/* Animated bottom accent line */}
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center rounded-b-2xl"
-                    style={{ background:c.lg }}/>
-                  {/* Service number */}
-                  <div className="absolute top-2.5 right-3 text-[10px] font-mono font-bold text-gray-200 group-hover:text-gray-300 transition-colors">
-                    {String(i + 1).padStart(2,'0')}
-                  </div>
-                  <motion.div
-                    whileHover={{ rotate:-6, scale:1.15 }}
-                    transition={{ type:'spring', stiffness:400, damping:15 }}
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
-                    style={{ backgroundColor:c.ib }}>
-                    <svc.icon className="w-6 h-6" style={{ color:c.if_ }} />
-                  </motion.div>
-                  <h3 className="font-heading font-bold text-gray-900 mb-2 text-sm">{svc.title}</h3>
-                  <p className="text-xs text-gray-500 leading-relaxed">{svc.desc}</p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
-
       {/* ═══════════ CTA + FORM SECTION ═══════════ */}
       <section id="contact" className="py-24 bg-surface-light bg-grid-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -1976,96 +1842,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════ TESTIMONIALS ═══════════ */}
-      <section id="testimonials" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.div variants={fadeUp} custom={0} className="mb-4">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-orange-200/60 bg-orange-50/60 text-[#D4711A]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
-                {t('Testimonials', 'الشهادات')}
-              </span>
-            </motion.div>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4"
-            >
-              {t('Trusted by', 'موثوق من قبل')} <span className="shimmer-text">{t('educators worldwide', 'معلمين حول العالم')}</span>
-            </motion.h2>
-            <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <span className="text-gray-500 text-sm font-medium">{t('Rated 5 out of 5 (760+ reviews)', 'تقييم 5 من 5 (أكثر من 760 مراجعة)')}</span>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {testimonials.map((testimonial, i) => {
-              const tGrads = [
-                'linear-gradient(135deg,#D4711A,#E88C32)',
-                'linear-gradient(135deg,#B85E15,#D4711A)',
-                'linear-gradient(135deg,#8B4513,#C0651A)',
-              ];
-              const tChip = [
-                { bg:'rgba(212,113,26,0.08)', fg:'#D4711A' },
-                { bg:'rgba(184,94,21,0.08)',  fg:'#B85E15' },
-                { bg:'rgba(139,69,19,0.08)',  fg:'#8B4513' },
-              ];
-              return (
-                <motion.div key={testimonial.name} variants={fadeUp} custom={i}
-                  whileHover={{ y:-6, rotateY:3, rotateX:-2, scale:1.01 }}
-                  transition={{ type:'spring', stiffness:250, damping:25 }}
-                  style={{ transformStyle:'preserve-3d', transformOrigin:'center center' }}
-                  className="relative rounded-2xl bg-white border border-gray-100 p-8 overflow-hidden shadow-sm hover:shadow-2xl cursor-default"
-                >
-                  {/* Giant decorative quote */}
-                  <div className="absolute -top-3 -left-1 leading-none select-none pointer-events-none text-gray-100"
-                    style={{ fontSize:'6.5rem', fontFamily:'Georgia,serif', lineHeight:1 }}>“</div>
-                  {/* Stars + verified */}
-                  <div className="flex items-center gap-1 mb-4 relative">
-                    {[...Array(testimonial.rating)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">{t('VERIFIED', 'موثّق')}</span>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">“{testimonial.text}”</p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                    <div className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
-                      style={{ background:tGrads[i] }}>
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-gray-900 text-sm truncate">{testimonial.name}</h4>
-                      <p className="text-xs text-gray-500">{testimonial.role}, {testimonial.company}</p>
-                    </div>
-                    <div className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
-                      style={{ backgroundColor:tChip[i].bg, color:tChip[i].fg }}>
-                      {testimonial.location}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
-
       {/* ═══════════ FAQ SECTION ═══════════ */}
       <section id="faq" className="py-24 bg-surface-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -2179,97 +1955,6 @@ export default function HomePage() {
               ))}
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* ═══════════ PARTNER LOGOS ═══════════ */}
-      <section className="py-14 bg-white border-y border-gray-100 overflow-hidden relative">
-        {/* Gradient masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
-          style={{ background:'linear-gradient(90deg,white 0%,transparent 100%)' }}/>
-        <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
-          style={{ background:'linear-gradient(270deg,white 0%,transparent 100%)' }}/>
-        <p className="text-center text-[10px] font-bold text-gray-300 tracking-[0.22em] uppercase mb-6">
-          {t('Trusted by institutions across 3 countries', 'موثوق من قبل مؤسسات في 3 دول')}
-        </p>
-        <div className="flex animate-marquee-slow" style={{ width:'max-content' }}>
-          {[...partners, ...partners, ...partners, ...partners].map((name, i) => (
-            <div key={i} className="flex-shrink-0 mx-4 flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-100 bg-gray-50 cursor-default hover:border-primary/30 hover:bg-primary/5 transition-all group">
-              <div className="w-2 h-2 rounded-full bg-primary/25 group-hover:bg-primary/60 transition-colors"/>
-              <span className="text-gray-400 font-heading font-bold text-sm whitespace-nowrap group-hover:text-primary transition-colors">
-                {name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══════════ JOIN CTA SECTION ═══════════ */}
-      <section className="py-24 relative overflow-hidden">
-        {/* Background image */}
-        <Image
-          src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=2560&q=80"
-          alt={t('Students in classroom celebrating education', 'طلاب في الفصل يحتفلون بالتعليم')}
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-[#0C0A08]/88" />
-        {/* Background effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#D4711A]/15 rounded-full filter blur-[150px] animate-float" />
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-[#8B4513]/10 rounded-full filter blur-[120px] animate-float2" />
-          <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize:'32px 32px' }}/>
-        </div>
-        {/* Floating particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[
-            { l:'8%',  b:'25%', s:4, d:'0s',    a:'pdrift'  },
-            { l:'18%', b:'55%', s:3, d:'1.3s',  a:'pdrift2' },
-            { l:'28%', b:'12%', s:5, d:'2.6s',  a:'pdrift'  },
-            { l:'45%', b:'35%', s:3, d:'0.7s',  a:'pdrift2' },
-            { l:'60%', b:'65%', s:4, d:'1.9s',  a:'pdrift'  },
-            { l:'72%', b:'18%', s:3, d:'3.1s',  a:'pdrift2' },
-            { l:'82%', b:'45%', s:5, d:'0.4s',  a:'pdrift'  },
-            { l:'92%', b:'72%', s:3, d:'2.2s',  a:'pdrift2' },
-          ].map((p, pi) => (
-            <div key={pi} className="absolute rounded-full bg-white/20"
-              style={{ left:p.l, bottom:p.b, width:p.s, height:p.s,
-                animation:`${p.a} ${4.5 + pi * 0.4}s ease-in-out ${p.d} infinite alternate` }}/>
-          ))}
-        </div>
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            {/* Live status badge */}
-            <motion.div variants={fadeUp} custom={0}
-              className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6">
-              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"/>
-              <span className="text-white/70 text-xs font-bold tracking-wider uppercase">{t('Now Enrolling Institutions', 'نسجل المؤسسات الآن')}</span>
-            </motion.div>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="text-3xl md:text-5xl font-heading font-bold text-white mb-6"
-            >
-              {t('Join', 'انضم إلى')} <span className="shimmer-text">{t('760+ schools', '760+ مدرسة')}</span> {t('already transforming education', 'تحوّل التعليم بالفعل')}
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="text-white/60 text-lg max-w-2xl mx-auto mb-10">
-              {t('From a 50-student school in Lahore to a 2,000-student campus in Riyadh — Cubico scales to your institution. Launch in 4 weeks.', 'من مدرسة تضم 50 طالباً في لاهور إلى حرم جامعي يضم 2,000 طالب في الرياض — كيوبيكو تتكيف مع مؤسستك. ابدأ خلال 4 أسابيع.')}
-            </motion.p>
-            <motion.div variants={fadeUp} custom={3} className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="btn-primary text-lg px-10">
-                {t('Get Started Today', 'ابدأ اليوم')}
-                <ArrowRight className="w-5 h-5 rtl:rotate-180" />
-              </Link>
-              <Link href="/solutions" className="btn-outline-white text-lg px-10">
-                {t('Explore Solutions', 'استكشف الحلول')}
-              </Link>
-            </motion.div>
-          </motion.div>
         </div>
       </section>
 
