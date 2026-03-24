@@ -857,291 +857,426 @@ export default function HomePage() {
             </motion.p>
           </motion.div>
 
-          {/* ── STACKING CARDS ── */}
-          <div className="relative">
 
+          {/* ── BENTO GRID ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5">
 
-            {products.map((sol, i) => (
-                <motion.div
-                  key={sol.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-10%" }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="sticky top-24 mb-8 last:mb-0"
-                  style={{ zIndex: i + 1 }}
-                >
-                  <div
-                    className="rounded-3xl border shadow-xl overflow-hidden"
-                    style={{
-                      background: `linear-gradient(135deg, ${sol.accent}08 0%, #ffffff 40%, ${sol.accent}05 100%)`,
-                      borderColor: `${sol.accent}20`,
-                    }}
+            {/* ═══ HERO CARD — Cubico Manage (full width) ═══ */}
+            <motion.a
+              href={products[0].ctaHref}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-2 group relative rounded-[20px] border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              style={{
+                background: `linear-gradient(135deg, ${products[0].accentLight} 0%, #ffffff 50%, ${products[0].accent}08 100%)`,
+                borderColor: `${products[0].accent}25`,
+              }}
+            >
+              <div className="grid lg:grid-cols-[45%_55%] gap-0 min-h-[420px] lg:min-h-[460px]">
+                {/* Copy */}
+                <div className="p-8 lg:p-10 xl:p-12 flex flex-col justify-center relative z-10">
+                  <span
+                    className="inline-flex items-center gap-1.5 text-[11px] font-extrabold tracking-[0.18em] uppercase px-3 py-1 rounded-full w-fit mb-5"
+                    style={{ backgroundColor: products[0].accent + '15', color: products[0].accent }}
                   >
-                    <div className="grid lg:grid-cols-2 gap-0">
-                      {/* ── Copy side ── */}
-                      <div className="p-8 lg:p-12 flex flex-col justify-center">
-                        <div
-                          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-6 w-fit"
-                          style={{
-                            backgroundColor: sol.accent + "14",
-                            color: sol.accent,
-                          }}
-                        >
-                          {sol.label}
+                    <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: products[0].accent }} />
+                    {products[0].label}
+                  </span>
+                  <h3 className="text-2xl lg:text-3xl xl:text-[2.2rem] font-extrabold text-gray-900 mb-3 leading-tight tracking-tight">
+                    {products[0].name}
+                  </h3>
+                  <p className="text-gray-500 text-sm lg:text-base leading-relaxed mb-6 max-w-md">
+                    {products[0].desc}
+                  </p>
+                  <div className="flex items-baseline gap-2 mb-6">
+                    <span className="text-4xl font-black tracking-tight" style={{ color: products[0].accent }}>{products[0].stat}</span>
+                    <span className="text-sm text-gray-400">{products[0].statContext}</span>
+                  </div>
+                  <div
+                    className="inline-flex items-center gap-2 text-sm font-bold transition-all duration-200 group-hover:gap-3"
+                    style={{ color: products[0].accent }}
+                  >
+                    {products[0].cta}
+                    <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </div>
+                </div>
+
+                {/* Hero Mockup — Full ERP Dashboard */}
+                <div className="relative flex items-end lg:items-center justify-center overflow-hidden px-4 pb-4 lg:p-6 xl:p-8">
+                  <div className="w-full max-w-[540px] rounded-xl overflow-hidden shadow-2xl border border-gray-200/50 bg-white">
+                    {/* Browser chrome */}
+                    <div className="bg-[#f8f9fb] px-3.5 py-2 flex items-center gap-2 border-b border-gray-200/60">
+                      <div className="flex gap-1.5"><div className="w-[9px] h-[9px] rounded-full bg-[#FF5F57]" /><div className="w-[9px] h-[9px] rounded-full bg-[#FEBC2E]" /><div className="w-[9px] h-[9px] rounded-full bg-[#28C840]" /></div>
+                      <div className="flex-1 ml-2"><div className="bg-white rounded-md px-3 py-[3px] text-[10px] text-gray-400 border border-gray-100 w-fit">app.cubico.tech/dashboard</div></div>
+                      <div className="flex gap-1"><div className="w-4 h-4 rounded bg-gray-100" /><div className="w-4 h-4 rounded bg-gray-100" /></div>
+                    </div>
+                    {/* Dashboard UI */}
+                    <div className="p-4 lg:p-5 bg-[#f5f7fa]">
+                      {/* Top nav */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2">
+                          <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[10px] font-bold" style={{ backgroundColor: products[0].accent }}>C</div>
+                          <div><div className="text-[11px] font-bold text-gray-900">Springfield Academy</div><div className="text-[9px] text-gray-400">Academic Year 2025-26</div></div>
                         </div>
-
-                        <h3 className="text-2xl lg:text-3xl font-extrabold text-gray-900 mb-4 leading-tight">
-                          {sol.name}
-                        </h3>
-
-                        <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-4 italic">
-                          {sol.pain}
-                        </p>
-
-                        <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">
-                          {sol.desc}
-                        </p>
-
-                        <div className="flex items-baseline gap-2 mb-8">
-                          <span className="text-3xl font-black" style={{ color: sol.accent }}>{sol.stat}</span>
-                          <span className="text-sm text-gray-500">{sol.statContext}</span>
+                        <div className="flex items-center gap-1.5">
+                          <div className="relative">
+                            <div className="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center"><Mail size={10} className="text-gray-400" /></div>
+                            <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-[#f5f7fa]" />
+                          </div>
+                          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-[8px] font-bold">SA</div>
                         </div>
-
-                        <a
-                          href={sol.ctaHref}
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold text-white transition-all duration-200 hover:shadow-lg w-fit"
-                          style={{ backgroundColor: sol.accent }}
-                        >
-                          {sol.cta}
-                          <ArrowRight size={15} />
-                        </a>
                       </div>
-
-                      {/* ── Mockup side ── */}
-                      <div className="relative p-6 lg:p-10 flex items-center justify-center min-h-[340px] lg:min-h-[460px]">
-                        {/* Browser chrome frame */}
-                        <div className="w-full rounded-xl overflow-hidden shadow-2xl border border-gray-200/60">
-                          <div className="bg-gray-100 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200/80">
-                            <div className="flex gap-1.5">
-                              <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                              <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                              <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                      {/* Stat cards */}
+                      <div className="grid grid-cols-4 gap-2 mb-3">
+                        {[
+                          { label: "Total Students", val: "2,847", delta: "+12%", icon: Users, up: true },
+                          { label: "Attendance", val: "94.2%", delta: "+2.1%", icon: CheckCircle2, up: true },
+                          { label: "Fee Collected", val: "₹18.4L", delta: "78%", icon: TrendingUp, up: true },
+                          { label: "Staff", val: "186", delta: "+4", icon: Users, up: true },
+                        ].map((c, ci) => (
+                          <div key={ci} className="bg-white rounded-lg p-2.5 border border-gray-100/80 shadow-sm">
+                            <div className="flex items-center justify-between mb-1.5">
+                              <c.icon size={10} className="text-gray-300" />
+                              <span className="text-[9px] font-bold text-emerald-500">{c.delta}</span>
                             </div>
-                            <div className="flex-1 ml-3">
-                              <div className="bg-white rounded-md px-3 py-1 text-xs text-gray-400 max-w-[200px]">
-                                cubico.app/{sol.id}
-                              </div>
+                            <div className="text-sm font-extrabold text-gray-900 leading-none">{c.val}</div>
+                            <div className="text-[9px] text-gray-400 mt-0.5">{c.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Charts row */}
+                      <div className="grid grid-cols-5 gap-2">
+                        {/* Revenue chart */}
+                        <div className="col-span-3 bg-white rounded-lg p-3 border border-gray-100/80 shadow-sm">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-bold text-gray-700">Revenue Overview</span>
+                            <div className="flex gap-1">
+                              <div className="px-1.5 py-0.5 rounded text-[8px] font-medium bg-gray-50 text-gray-400">Week</div>
+                              <div className="px-1.5 py-0.5 rounded text-[8px] font-bold text-white" style={{ backgroundColor: products[0].accent }}>Month</div>
                             </div>
                           </div>
-                          <div
-                            className="p-6 lg:p-8 min-h-[260px] lg:min-h-[360px]"
-                            style={{
-                              background: `linear-gradient(180deg, ${sol.accent}06 0%, ${sol.accent}12 100%)`,
-                            }}
-                          >
-                            {/* Mockup content per solution */}
-                            {sol.id === "manage" && (
-                              <div className="space-y-4">
-                                <div className="flex items-center justify-between mb-6">
-                                  <div>
-                                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Dashboard</div>
-                                    <div className="text-lg font-bold text-gray-900">School Overview</div>
-                                  </div>
-                                  <div className="flex gap-2">
-                                    <div className="px-3 py-1.5 rounded-lg bg-white shadow-sm text-xs font-medium text-gray-600">This Week</div>
-                                    <div className="px-3 py-1.5 rounded-lg text-xs font-medium text-white" style={{ backgroundColor: sol.accent }}>This Month</div>
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-3 gap-3">
-                                  {[
-                                    { label: "Students", value: "2,847", change: "+12%" },
-                                    { label: "Attendance", value: "94.2%", change: "+2.1%" },
-                                    { label: "Revenue", value: "₹18.4L", change: "+8%" },
-                                  ].map((stat, si) => (
-                                    <div key={si} className="bg-white rounded-xl p-3 shadow-sm border border-gray-100">
-                                      <div className="text-xs text-gray-500 mb-1">{stat.label}</div>
-                                      <div className="text-lg font-bold text-gray-900">{stat.value}</div>
-                                      <div className="text-xs font-medium" style={{ color: sol.accent }}>{stat.change}</div>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                                  <div className="flex items-center justify-between mb-3">
-                                    <span className="text-sm font-semibold text-gray-700">Fee Collection</span>
-                                    <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ backgroundColor: sol.accent + "14", color: sol.accent }}>On Track</span>
-                                  </div>
-                                  <div className="w-full bg-gray-100 rounded-full h-2.5">
-                                    <div className="h-2.5 rounded-full" style={{ width: "78%", backgroundColor: sol.accent }} />
-                                  </div>
-                                  <div className="flex justify-between mt-1.5 text-xs text-gray-400">
-                                    <span>₹14.3L collected</span>
-                                    <span>₹18.4L target</span>
-                                  </div>
-                                </div>
+                          {/* Mini bar chart */}
+                          <div className="flex items-end gap-[3px] h-16">
+                            {[40,65,45,80,60,90,75,95,70,85,92,78].map((h, hi) => (
+                              <div key={hi} className="flex-1 rounded-sm transition-all" style={{ height: `${h}%`, backgroundColor: hi === 11 ? products[0].accent : products[0].accent + '25' }} />
+                            ))}
+                          </div>
+                          <div className="flex justify-between mt-1.5"><span className="text-[8px] text-gray-300">Jan</span><span className="text-[8px] text-gray-300">Jun</span><span className="text-[8px] text-gray-300">Dec</span></div>
+                        </div>
+                        {/* Attendance donut + recent */}
+                        <div className="col-span-2 space-y-2">
+                          <div className="bg-white rounded-lg p-2.5 border border-gray-100/80 shadow-sm">
+                            <div className="text-[10px] font-bold text-gray-700 mb-1.5">Today&apos;s Attendance</div>
+                            <div className="flex items-center gap-2">
+                              <div className="relative w-10 h-10">
+                                <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90">
+                                  <circle cx="18" cy="18" r="14" fill="none" stroke="#f0f0f0" strokeWidth="3" />
+                                  <circle cx="18" cy="18" r="14" fill="none" stroke={products[0].accent} strokeWidth="3" strokeDasharray="83 100" strokeLinecap="round" />
+                                </svg>
+                                <div className="absolute inset-0 flex items-center justify-center text-[8px] font-extrabold text-gray-900">94%</div>
                               </div>
-                            )}
-
-                            {sol.id === "learn" && (
-                              <div className="space-y-4">
-                                <div className="flex items-center gap-3 mb-6">
-                                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-sm font-bold">A</div>
-                                  <div>
-                                    <div className="text-sm font-bold text-gray-900">Welcome back, Ananya!</div>
-                                    <div className="text-xs text-gray-500">3 lessons to complete today</div>
-                                  </div>
-                                </div>
-                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                                  <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accent }}>
-                                      <BookOpen size={14} />
-                                    </div>
-                                    <div className="flex-1">
-                                      <div className="text-sm font-semibold text-gray-800">Quadratic Equations</div>
-                                      <div className="text-xs text-gray-500">Mathematics · Chapter 4</div>
-                                    </div>
-                                    <div className="text-xs font-bold" style={{ color: sol.accent }}>75%</div>
-                                  </div>
-                                  <div className="w-full bg-gray-100 rounded-full h-1.5">
-                                    <div className="h-1.5 rounded-full" style={{ width: "75%", backgroundColor: sol.accent }} />
-                                  </div>
-                                </div>
-                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">AI Practice Quiz</div>
-                                  <div className="space-y-2">
-                                    {["Solve: x² + 5x + 6 = 0", "Find roots of 2x² - 8 = 0"].map((q, qi) => (
-                                      <div key={qi} className="flex items-center gap-2 p-2.5 rounded-lg bg-gray-50 border border-gray-100">
-                                        <div className="w-5 h-5 rounded-full border-2 flex-shrink-0" style={{ borderColor: sol.accent }} />
-                                        <span className="text-xs text-gray-700">{q}</span>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                                <div className="flex gap-2">
-                                  <div className="flex-1 py-2.5 rounded-xl text-center text-xs font-bold text-white" style={{ backgroundColor: sol.accent }}>Continue Lesson</div>
-                                  <div className="px-4 py-2.5 rounded-xl text-center text-xs font-medium text-gray-600 bg-white border border-gray-200">Ask AI Tutor</div>
-                                </div>
+                              <div className="text-[9px] text-gray-400 leading-tight"><div>Present: <span className="text-gray-700 font-semibold">2,676</span></div><div>Absent: <span className="text-red-500 font-semibold">171</span></div></div>
+                            </div>
+                          </div>
+                          <div className="bg-white rounded-lg p-2.5 border border-gray-100/80 shadow-sm">
+                            <div className="text-[10px] font-bold text-gray-700 mb-1.5">Pending Tasks</div>
+                            {[{ t: "Fee reminders", c: "12" }, { t: "Leave requests", c: "5" }].map((tk, ti) => (
+                              <div key={ti} className="flex items-center justify-between py-1 border-b border-gray-50 last:border-0">
+                                <span className="text-[9px] text-gray-500">{tk.t}</span>
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full" style={{ backgroundColor: products[0].accent + '12', color: products[0].accent }}>{tk.c}</span>
                               </div>
-                            )}
-
-                            {sol.id === "lms" && (
-                              <div className="space-y-4">
-                                <div className="flex items-center justify-between mb-4">
-                                  <div className="text-sm font-bold text-gray-900">Course Builder</div>
-                                  <div className="px-3 py-1.5 rounded-lg text-xs font-bold text-white" style={{ backgroundColor: sol.accent }}>+ New Module</div>
-                                </div>
-                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                                  <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-2 h-10 rounded-full" style={{ backgroundColor: sol.accent }} />
-                                    <div className="flex-1">
-                                      <div className="text-sm font-semibold text-gray-800">Introduction to Physics</div>
-                                      <div className="text-xs text-gray-500">12 lessons · 6 assignments · 3 quizzes</div>
-                                    </div>
-                                    <div className="text-xs px-2 py-1 rounded-full bg-green-50 text-green-600 font-medium">Published</div>
-                                  </div>
-                                  <div className="flex gap-2 ml-5">
-                                    <div className="text-xs px-2 py-1 rounded bg-gray-50 text-gray-600">📹 Video</div>
-                                    <div className="text-xs px-2 py-1 rounded bg-gray-50 text-gray-600">📄 PDF</div>
-                                    <div className="text-xs px-2 py-1 rounded bg-gray-50 text-gray-600">🧪 Lab</div>
-                                  </div>
-                                </div>
-                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 opacity-80">
-                                  <div className="flex items-center gap-3">
-                                    <div className="w-2 h-10 rounded-full bg-gray-300" />
-                                    <div className="flex-1">
-                                      <div className="text-sm font-semibold text-gray-800">Advanced Chemistry</div>
-                                      <div className="text-xs text-gray-500">8 lessons · 4 assignments</div>
-                                    </div>
-                                    <div className="text-xs px-2 py-1 rounded-full bg-amber-50 text-amber-600 font-medium">Draft</div>
-                                  </div>
-                                </div>
-                                <div className="grid grid-cols-3 gap-2">
-                                  {[
-                                    { label: "Courses", value: "24" },
-                                    { label: "Enrolled", value: "1.2K" },
-                                    { label: "Completion", value: "89%" },
-                                  ].map((s, si) => (
-                                    <div key={si} className="bg-white rounded-lg p-2.5 text-center shadow-sm border border-gray-100">
-                                      <div className="text-base font-bold text-gray-900">{s.value}</div>
-                                      <div className="text-xs text-gray-500">{s.label}</div>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {sol.id === "marketing" && (
-                              <div className="space-y-4">
-                                <div className="flex items-center justify-between mb-4">
-                                  <div className="text-sm font-bold text-gray-900">Enrollment Pipeline</div>
-                                  <div className="text-xs px-2 py-1 rounded-full font-medium" style={{ backgroundColor: sol.accent + "14", color: sol.accent }}>Live</div>
-                                </div>
-                                <div className="grid grid-cols-4 gap-2">
-                                  {[
-                                    { stage: "Leads", count: 847, color: "#94A3B8" },
-                                    { stage: "Applied", count: 423, color: "#FBBF24" },
-                                    { stage: "Reviewed", count: 312, color: sol.accent },
-                                    { stage: "Enrolled", count: 198, color: "#10B981" },
-                                  ].map((s, si) => (
-                                    <div key={si} className="text-center">
-                                      <div className="text-base font-bold text-gray-900">{s.count}</div>
-                                      <div className="text-xs text-gray-500 mb-1.5">{s.stage}</div>
-                                      <div className="w-full h-1.5 rounded-full" style={{ backgroundColor: s.color + "30" }}>
-                                        <div className="h-1.5 rounded-full" style={{ width: `${(s.count / 847) * 100}%`, backgroundColor: s.color }} />
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Recent Activity</div>
-                                  <div className="space-y-2.5">
-                                    {[
-                                      { name: "Priya S.", action: "Submitted application", time: "2m ago" },
-                                      { name: "Rahul M.", action: "Completed form", time: "15m ago" },
-                                      { name: "Sneha K.", action: "Opened email", time: "1h ago" },
-                                    ].map((a, ai) => (
-                                      <div key={ai} className="flex items-center gap-2.5">
-                                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: sol.accent }}>
-                                          {a.name[0]}
-                                        </div>
-                                        <div className="flex-1">
-                                          <span className="text-xs font-semibold text-gray-800">{a.name}</span>
-                                          <span className="text-xs text-gray-500"> {a.action}</span>
-                                        </div>
-                                        <span className="text-xs text-gray-400">{a.time}</span>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                                <div className="flex gap-2">
-                                  <div className="flex-1 bg-white rounded-lg p-3 shadow-sm border border-gray-100 text-center">
-                                    <div className="text-lg font-bold" style={{ color: sol.accent }}>32%</div>
-                                    <div className="text-xs text-gray-500">Conversion Rate</div>
-                                  </div>
-                                  <div className="flex-1 bg-white rounded-lg p-3 shadow-sm border border-gray-100 text-center">
-                                    <div className="text-lg font-bold text-gray-900">₹2.4K</div>
-                                    <div className="text-xs text-gray-500">Cost per Lead</div>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
+                            ))}
                           </div>
                         </div>
-
-                        {/* Floating accent elements */}
-                        <div
-                          className="absolute -top-3 -right-3 w-20 h-20 rounded-full blur-2xl opacity-20 pointer-events-none"
-                          style={{ backgroundColor: sol.accent }}
-                        />
-                        <div
-                          className="absolute -bottom-3 -left-3 w-16 h-16 rounded-full blur-2xl opacity-15 pointer-events-none"
-                          style={{ backgroundColor: sol.accent }}
-                        />
                       </div>
                     </div>
                   </div>
-                </motion.div>
-            ))}
+                  {/* Floating glow */}
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full blur-3xl opacity-15 pointer-events-none" style={{ backgroundColor: products[0].accent }} />
+                </div>
+              </div>
+            </motion.a>
+
+            {/* ═══ CARD 2 — Cubico Learn (half width) ═══ */}
+            <motion.a
+              href={products[1].ctaHref}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="group relative rounded-[20px] border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              style={{
+                background: `linear-gradient(160deg, ${products[1].accentLight} 0%, #ffffff 60%)`,
+                borderColor: `${products[1].accent}20`,
+              }}
+            >
+              <div className="p-6 lg:p-7 flex flex-col h-full">
+                <span
+                  className="inline-flex items-center gap-1.5 text-[11px] font-extrabold tracking-[0.18em] uppercase px-3 py-1 rounded-full w-fit mb-4"
+                  style={{ backgroundColor: products[1].accent + '15', color: products[1].accent }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: products[1].accent }} />
+                  {products[1].label}
+                </span>
+                <h3 className="text-xl lg:text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">{products[1].name}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{products[1].desc}</p>
+                <div className="flex items-baseline gap-1.5 mb-5">
+                  <span className="text-2xl font-black" style={{ color: products[1].accent }}>{products[1].stat}</span>
+                  <span className="text-xs text-gray-400">{products[1].statContext}</span>
+                </div>
+
+                {/* Learn Mockup — Animation Player */}
+                <div className="flex-1 mt-auto">
+                  <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200/40 bg-white">
+                    <div className="bg-[#f8f9fb] px-3 py-1.5 flex items-center gap-1.5 border-b border-gray-100">
+                      <div className="flex gap-1"><div className="w-2 h-2 rounded-full bg-[#FF5F57]" /><div className="w-2 h-2 rounded-full bg-[#FEBC2E]" /><div className="w-2 h-2 rounded-full bg-[#28C840]" /></div>
+                      <div className="flex-1 ml-1.5"><div className="bg-white rounded px-2 py-[2px] text-[9px] text-gray-400 border border-gray-100 w-fit">learn.cubico.tech</div></div>
+                    </div>
+                    <div className="p-3 bg-gradient-to-b from-amber-50/40 to-white">
+                      {/* Video player area */}
+                      <div className="relative rounded-lg overflow-hidden mb-3" style={{ background: `linear-gradient(135deg, ${products[1].accent}15, ${products[1].accent}08)` }}>
+                        <div className="aspect-video flex items-center justify-center relative">
+                          {/* Animated scene preview */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-16 h-16 rounded-full bg-white/90 shadow-lg flex items-center justify-center backdrop-blur-sm">
+                              <Play size={20} className="ml-1" style={{ color: products[1].accent }} />
+                            </div>
+                          </div>
+                          {/* Fake lesson content */}
+                          <div className="absolute top-2.5 left-3">
+                            <div className="px-2 py-0.5 rounded-full text-[8px] font-bold text-white" style={{ backgroundColor: products[1].accent }}>BIOLOGY</div>
+                          </div>
+                          <div className="absolute bottom-2.5 left-3 right-3">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[9px] font-semibold text-gray-600">The Water Cycle</span>
+                              <span className="text-[9px] text-gray-400">3:24 / 8:10</span>
+                            </div>
+                            <div className="w-full bg-white/50 rounded-full h-1 mt-1"><div className="h-1 rounded-full" style={{ width: '42%', backgroundColor: products[1].accent }} /></div>
+                          </div>
+                          {/* Floating molecule illustrations */}
+                          <div className="absolute top-4 right-4 w-8 h-8 rounded-full border-2 border-dashed opacity-30" style={{ borderColor: products[1].accent }} />
+                          <div className="absolute bottom-10 right-8 w-5 h-5 rounded-full opacity-20" style={{ backgroundColor: products[1].accent }} />
+                        </div>
+                      </div>
+                      {/* Lesson list */}
+                      <div className="space-y-1.5">
+                        {[
+                          { ch: "Ch 1", title: "Evaporation", dur: "8:10", done: true },
+                          { ch: "Ch 2", title: "Condensation", dur: "6:45", done: true },
+                          { ch: "Ch 3", title: "Precipitation", dur: "7:20", done: false },
+                        ].map((l, li) => (
+                          <div key={li} className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg hover:bg-gray-50 transition-colors">
+                            <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 ${l.done ? '' : 'border-2'}`} style={l.done ? { backgroundColor: products[1].accent } : { borderColor: '#D1D5DB' }}>
+                              {l.done && <svg width="8" height="8" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" strokeWidth="2" strokeLinecap="round" /></svg>}
+                            </div>
+                            <div className="flex-1">
+                              <span className="text-[9px] text-gray-400 mr-1">{l.ch}</span>
+                              <span className={`text-[10px] font-medium ${l.done ? 'text-gray-400 line-through' : 'text-gray-700'}`}>{l.title}</span>
+                            </div>
+                            <span className="text-[9px] text-gray-300">{l.dur}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 mt-5 text-sm font-bold transition-all duration-200 group-hover:gap-2.5" style={{ color: products[1].accent }}>
+                  {products[1].cta} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-28 h-28 rounded-full blur-2xl opacity-10 pointer-events-none" style={{ backgroundColor: products[1].accent }} />
+            </motion.a>
+
+            {/* ═══ CARD 3 — Smart LMS (half width) ═══ */}
+            <motion.a
+              href={products[2].ctaHref}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="group relative rounded-[20px] border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              style={{
+                background: `linear-gradient(160deg, ${products[2].accentLight} 0%, #ffffff 60%)`,
+                borderColor: `${products[2].accent}20`,
+              }}
+            >
+              <div className="p-6 lg:p-7 flex flex-col h-full">
+                <span
+                  className="inline-flex items-center gap-1.5 text-[11px] font-extrabold tracking-[0.18em] uppercase px-3 py-1 rounded-full w-fit mb-4"
+                  style={{ backgroundColor: products[2].accent + '15', color: products[2].accent }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: products[2].accent }} />
+                  {products[2].label}
+                </span>
+                <h3 className="text-xl lg:text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">{products[2].name}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{products[2].desc}</p>
+                <div className="flex items-baseline gap-1.5 mb-5">
+                  <span className="text-2xl font-black" style={{ color: products[2].accent }}>{products[2].stat}</span>
+                  <span className="text-xs text-gray-400">{products[2].statContext}</span>
+                </div>
+
+                {/* LMS Mockup — Course Dashboard */}
+                <div className="flex-1 mt-auto">
+                  <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200/40 bg-white">
+                    <div className="bg-[#f8f9fb] px-3 py-1.5 flex items-center gap-1.5 border-b border-gray-100">
+                      <div className="flex gap-1"><div className="w-2 h-2 rounded-full bg-[#FF5F57]" /><div className="w-2 h-2 rounded-full bg-[#FEBC2E]" /><div className="w-2 h-2 rounded-full bg-[#28C840]" /></div>
+                      <div className="flex-1 ml-1.5"><div className="bg-white rounded px-2 py-[2px] text-[9px] text-gray-400 border border-gray-100 w-fit">lms.cubico.tech</div></div>
+                    </div>
+                    <div className="p-3 bg-gradient-to-b from-teal-50/30 to-white">
+                      {/* Course grid */}
+                      <div className="flex items-center justify-between mb-2.5">
+                        <div className="text-[10px] font-bold text-gray-700">My Courses</div>
+                        <div className="px-2 py-0.5 rounded text-[8px] font-bold text-white" style={{ backgroundColor: products[2].accent }}>+ Create</div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 mb-2.5">
+                        {[
+                          { title: "Physics 101", students: 48, progress: 72, color: products[2].accent, status: "Active" },
+                          { title: "Chemistry", students: 36, progress: 45, color: "#6366F1", status: "Active" },
+                          { title: "Biology", students: 52, progress: 89, color: "#F59E0B", status: "Active" },
+                          { title: "Math", students: 41, progress: 33, color: "#EF4444", status: "Draft" },
+                        ].map((course, ci) => (
+                          <div key={ci} className="bg-white rounded-lg p-2 border border-gray-100 shadow-sm">
+                            <div className="flex items-start justify-between mb-1.5">
+                              <div className="w-5 h-5 rounded flex items-center justify-center" style={{ backgroundColor: course.color + '15' }}>
+                                <BookOpen size={9} style={{ color: course.color }} />
+                              </div>
+                              <span className={`text-[7px] font-bold px-1 py-0.5 rounded ${course.status === 'Active' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>{course.status}</span>
+                            </div>
+                            <div className="text-[10px] font-bold text-gray-800 mb-0.5">{course.title}</div>
+                            <div className="text-[8px] text-gray-400 mb-1.5">{course.students} students</div>
+                            <div className="w-full bg-gray-100 rounded-full h-1">
+                              <div className="h-1 rounded-full transition-all" style={{ width: `${course.progress}%`, backgroundColor: course.color }} />
+                            </div>
+                            <div className="text-[8px] font-semibold mt-0.5" style={{ color: course.color }}>{course.progress}%</div>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Activity feed */}
+                      <div className="bg-gray-50/80 rounded-lg p-2 border border-gray-100/60">
+                        <div className="text-[9px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Recent Activity</div>
+                        {[
+                          { user: "A", name: "Aisha", action: "submitted Physics Quiz 3", time: "2m" },
+                          { user: "R", name: "Rayan", action: "completed Ch. 5 video", time: "8m" },
+                        ].map((a, ai) => (
+                          <div key={ai} className="flex items-center gap-1.5 py-1 border-b border-gray-100/60 last:border-0">
+                            <div className="w-4 h-4 rounded-full flex items-center justify-center text-white text-[7px] font-bold" style={{ backgroundColor: products[2].accent }}>{a.user}</div>
+                            <div className="flex-1 text-[9px]"><span className="font-semibold text-gray-700">{a.name}</span> <span className="text-gray-400">{a.action}</span></div>
+                            <span className="text-[8px] text-gray-300">{a.time}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 mt-5 text-sm font-bold transition-all duration-200 group-hover:gap-2.5" style={{ color: products[2].accent }}>
+                  {products[2].cta} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -left-6 w-28 h-28 rounded-full blur-2xl opacity-10 pointer-events-none" style={{ backgroundColor: products[2].accent }} />
+            </motion.a>
+
+            {/* ═══ CARD 4 — Cubico Marketing (half width) ═══ */}
+            <motion.a
+              href={products[3].ctaHref}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="group relative rounded-[20px] border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              style={{
+                background: `linear-gradient(160deg, ${products[3].accentLight} 0%, #ffffff 60%)`,
+                borderColor: `${products[3].accent}20`,
+              }}
+            >
+              <div className="p-6 lg:p-7 flex flex-col h-full">
+                <span
+                  className="inline-flex items-center gap-1.5 text-[11px] font-extrabold tracking-[0.18em] uppercase px-3 py-1 rounded-full w-fit mb-4"
+                  style={{ backgroundColor: products[3].accent + '15', color: products[3].accent }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: products[3].accent }} />
+                  {products[3].label}
+                </span>
+                <h3 className="text-xl lg:text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">{products[3].name}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{products[3].desc}</p>
+                <div className="flex items-baseline gap-1.5 mb-5">
+                  <span className="text-2xl font-black" style={{ color: products[3].accent }}>{products[3].stat}</span>
+                  <span className="text-xs text-gray-400">{products[3].statContext}</span>
+                </div>
+
+                {/* Marketing Mockup — Analytics Dashboard */}
+                <div className="flex-1 mt-auto">
+                  <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200/40 bg-white">
+                    <div className="bg-[#f8f9fb] px-3 py-1.5 flex items-center gap-1.5 border-b border-gray-100">
+                      <div className="flex gap-1"><div className="w-2 h-2 rounded-full bg-[#FF5F57]" /><div className="w-2 h-2 rounded-full bg-[#FEBC2E]" /><div className="w-2 h-2 rounded-full bg-[#28C840]" /></div>
+                      <div className="flex-1 ml-1.5"><div className="bg-white rounded px-2 py-[2px] text-[9px] text-gray-400 border border-gray-100 w-fit">marketing.cubico.tech</div></div>
+                    </div>
+                    <div className="p-3 bg-gradient-to-b from-violet-50/30 to-white">
+                      {/* Funnel visualization */}
+                      <div className="text-[10px] font-bold text-gray-700 mb-2.5">Enrollment Funnel</div>
+                      <div className="space-y-1 mb-3">
+                        {[
+                          { stage: "Website Visitors", count: "12,847", w: "100%", color: "#94A3B8" },
+                          { stage: "Leads Captured", count: "847", w: "65%", color: products[3].accent + "90" },
+                          { stage: "Applications", count: "423", w: "45%", color: products[3].accent + "B0" },
+                          { stage: "Enrolled", count: "198", w: "28%", color: products[3].accent },
+                        ].map((s, si) => (
+                          <div key={si}>
+                            <div className="flex items-center justify-between mb-0.5">
+                              <span className="text-[9px] text-gray-500">{s.stage}</span>
+                              <span className="text-[9px] font-bold text-gray-700">{s.count}</span>
+                            </div>
+                            <div className="w-full bg-gray-50 rounded-full h-2">
+                              <div className="h-2 rounded-full transition-all" style={{ width: s.w, backgroundColor: s.color }} />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      {/* KPI row */}
+                      <div className="grid grid-cols-3 gap-1.5 mb-2.5">
+                        {[
+                          { label: "Conversion", val: "32%", trend: "+5.2%" },
+                          { label: "Cost/Lead", val: "₹2.4K", trend: "-12%" },
+                          { label: "ROI", val: "4.8x", trend: "+18%" },
+                        ].map((k, ki) => (
+                          <div key={ki} className="bg-white rounded-lg p-2 border border-gray-100 text-center shadow-sm">
+                            <div className="text-[12px] font-extrabold text-gray-900">{k.val}</div>
+                            <div className="text-[8px] text-gray-400">{k.label}</div>
+                            <div className="text-[8px] font-bold text-emerald-500">{k.trend}</div>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Live feed */}
+                      <div className="bg-gray-50/80 rounded-lg p-2 border border-gray-100/60">
+                        <div className="flex items-center gap-1 mb-1.5">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                          <span className="text-[9px] font-bold text-gray-500">LIVE ACTIVITY</span>
+                        </div>
+                        {[
+                          { name: "Fatima A.", action: "submitted application", time: "now" },
+                          { name: "Omar K.", action: "visited fee page", time: "1m" },
+                        ].map((a, ai) => (
+                          <div key={ai} className="flex items-center gap-1.5 py-1 border-b border-gray-100/40 last:border-0">
+                            <div className="w-4 h-4 rounded-full flex items-center justify-center text-white text-[7px] font-bold" style={{ backgroundColor: products[3].accent }}>{a.name[0]}</div>
+                            <div className="flex-1 text-[9px]"><span className="font-semibold text-gray-700">{a.name}</span> <span className="text-gray-400">{a.action}</span></div>
+                            <span className="text-[8px] text-gray-300">{a.time}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1.5 mt-5 text-sm font-bold transition-all duration-200 group-hover:gap-2.5" style={{ color: products[3].accent }}>
+                  {products[3].cta} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-28 h-28 rounded-full blur-2xl opacity-10 pointer-events-none" style={{ backgroundColor: products[3].accent }} />
+            </motion.a>
+
           </div>
 
           {/* ── Trust strip ── */}
@@ -1149,8 +1284,8 @@ export default function HomePage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-14 flex flex-wrap items-center justify-center gap-5 text-sm text-gray-500"
           >
             {[
               { icon: Shield, text: "ISO 27001 Certified" },
