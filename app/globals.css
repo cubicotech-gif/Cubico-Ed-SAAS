@@ -3,34 +3,38 @@
 @tailwind utilities;
 
 /* ═══════════════════════════════════════════
-   CUBICO TECHNOLOGIES — Xtechious-Style Theme
-   Clean SaaS Design with Dark/Light Sections
+   CUBICO TECHNOLOGIES — 2026 Premium EdTech Theme
+   Warm, Aspirational, Trustworthy
+   Teal + Emerald + Navy palette
    ═══════════════════════════════════════════ */
 
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=general-sans@200,300,400,500,600,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@200;300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #D4711A;
-  --primary-light: #E88C32;
-  --primary-dark: #B85E15;
-  --accent: #8B4513;
-  --accent-light: #F4A261;
-  --dark-950: #0F0A04;
-  --dark-900: #1A1008;
-  --dark-800: #2A1A0C;
-  --dark-700: #3D2810;
-  --surface-card: #1E1408;
-  --surface-hover: #2E2010;
+  --primary: #14B8A6;
+  --primary-light: #2DD4BF;
+  --primary-dark: #0D9488;
+  --accent: #10B981;
+  --accent-light: #34D399;
+  --navy: #0F172A;
+  --navy-light: #1E293B;
+  --slate: #64748B;
+  --dark-950: #020617;
+  --dark-900: #0F172A;
+  --dark-800: #1E293B;
+  --dark-700: #334155;
+  --surface-card: #1E293B;
+  --surface-hover: #334155;
   --text-primary: #FFFFFF;
-  --text-secondary: #C8A888;
-  --text-muted: #8E7A65;
-  --text-dark: #2A1E14;
-  --text-dark-secondary: #6A5A48;
-  --bg-light: #FDF8F3;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-dark: #0F172A;
+  --text-dark-secondary: #475569;
+  --bg-light: #F8FAFC;
   --bg-white: #ffffff;
-  --gradient-primary: linear-gradient(135deg, #D4711A 0%, #E88C32 50%, #F4A261 100%);
-  --gradient-dark: linear-gradient(-135deg, #1E1408 0%, #0F0A04 50%, #1A0E04 100%);
+  --gradient-primary: linear-gradient(135deg, #14B8A6 0%, #10B981 50%, #059669 100%);
+  --gradient-dark: linear-gradient(-135deg, #0F172A 0%, #020617 50%, #0F172A 100%);
 }
 
 * {
@@ -44,7 +48,7 @@ html {
 }
 
 body {
-  font-family: 'General Sans', -apple-system, sans-serif;
+  font-family: 'Inter', 'General Sans', -apple-system, system-ui, sans-serif;
   background-color: var(--bg-white);
   color: var(--text-dark);
   overflow-x: hidden;
@@ -64,20 +68,20 @@ body {
 
 /* ── Selection ── */
 ::selection {
-  background: rgba(212, 113, 26, 0.3);
-  color: white;
+  background: rgba(20, 184, 166, 0.25);
+  color: var(--navy);
 }
 
 /* ── Typography ── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Clash Display', sans-serif;
-  font-weight: 600;
-  line-height: 1.2;
+  font-family: 'Inter', 'Clash Display', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 /* ── Gradient Text ── */
 .gradient-text {
-  background: linear-gradient(135deg, #D4711A 0%, #E88C32 50%, #F4A261 100%);
+  background: linear-gradient(135deg, #14B8A6 0%, #10B981 50%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -104,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover {
   background: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(212, 113, 26, 0.3);
+  box-shadow: 0 10px 40px rgba(20, 184, 166, 0.3);
 }
 
 .btn-outline {
@@ -150,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-dark {
-  background: var(--text-dark);
+  background: var(--navy);
   color: white;
   padding: 14px 32px;
   border-radius: 9999px;
@@ -172,7 +176,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Section Label ── */
 .section-label {
-  font-family: 'General Sans', sans-serif;
+  font-family: 'Inter', 'General Sans', sans-serif;
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 3px;
@@ -211,31 +215,40 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-white:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(212, 113, 26, 0.1);
+  box-shadow: 0 20px 60px rgba(20, 184, 166, 0.1);
 }
 
 .card-dark {
   background: var(--surface-card);
   border-radius: 20px;
   padding: 32px;
-  border: 1px solid rgba(212, 113, 26, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-dark:hover {
-  border-color: rgba(212, 113, 26, 0.3);
+  border-color: rgba(20, 184, 166, 0.3);
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(212, 113, 26, 0.1);
+  box-shadow: 0 20px 60px rgba(20, 184, 166, 0.1);
+}
+
+/* ── Glassmorphism Card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
 }
 
 /* ── Input Styles ── */
 .form-input {
   background: white;
-  border: 2px solid #e5e5e5;
+  border: 2px solid #e2e8f0;
   border-radius: 12px;
   padding: 14px 18px;
   color: var(--text-dark);
-  font-family: 'General Sans', sans-serif;
+  font-family: 'Inter', 'General Sans', sans-serif;
   font-size: 14px;
   width: 100%;
   transition: all 0.3s ease;
@@ -244,20 +257,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(212, 113, 26, 0.1);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
 }
 
 .form-input::placeholder {
-  color: #999;
+  color: #94a3b8;
 }
 
 .form-input-dark {
-  background: rgba(15, 10, 4, 0.8);
-  border: 2px solid rgba(212, 113, 26, 0.15);
+  background: rgba(15, 23, 42, 0.8);
+  border: 2px solid rgba(20, 184, 166, 0.15);
   border-radius: 12px;
   padding: 14px 18px;
   color: white;
-  font-family: 'General Sans', sans-serif;
+  font-family: 'Inter', 'General Sans', sans-serif;
   font-size: 14px;
   width: 100%;
   transition: all 0.3s ease;
@@ -266,7 +279,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-input-dark:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(212, 113, 26, 0.15);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
 }
 
 .form-input-dark::placeholder {
@@ -275,11 +288,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-select {
   background: white;
-  border: 2px solid #e5e5e5;
+  border: 2px solid #e2e8f0;
   border-radius: 12px;
   padding: 14px 18px;
-  color: #999;
-  font-family: 'General Sans', sans-serif;
+  color: #94a3b8;
+  font-family: 'Inter', 'General Sans', sans-serif;
   font-size: 14px;
   width: 100%;
   transition: all 0.3s ease;
@@ -290,18 +303,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-select:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(212, 113, 26, 0.1);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
   color: var(--text-dark);
 }
 
 /* ── FAQ Accordion ── */
 .faq-item {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e2e8f0;
   transition: all 0.3s ease;
 }
 
 .faq-item-dark {
-  border-bottom: 1px solid rgba(212, 113, 26, 0.12);
+  border-bottom: 1px solid rgba(20, 184, 166, 0.12);
 }
 
 /* ── Icon Box ── */
@@ -312,13 +325,13 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(212, 113, 26, 0.08);
+  background: rgba(20, 184, 166, 0.08);
   color: var(--primary);
   transition: all 0.3s ease;
 }
 
 .icon-box-accent {
-  background: rgba(139, 69, 19, 0.08);
+  background: rgba(16, 185, 129, 0.08);
   color: var(--accent);
 }
 
@@ -335,27 +348,27 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Stats ── */
 .stat-number {
-  font-family: 'Clash Display', sans-serif;
-  font-weight: 700;
+  font-family: 'Inter', 'Clash Display', sans-serif;
+  font-weight: 800;
   line-height: 1;
 }
 
 /* ── Decorative ── */
 .bg-dots {
-  background-image: radial-gradient(rgba(212, 113, 26, 0.15) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(20, 184, 166, 0.12) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .bg-grid-light {
   background-image:
-    linear-gradient(rgba(212, 113, 26, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212, 113, 26, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(20, 184, 166, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 184, 166, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 /* ── RTL Support ── */
 [dir="rtl"] body {
-  font-family: 'Noto Sans Arabic', 'General Sans', -apple-system, sans-serif;
+  font-family: 'Noto Sans Arabic', 'Inter', 'General Sans', -apple-system, sans-serif;
 }
 
 [dir="rtl"] h1,
@@ -364,7 +377,7 @@ h1, h2, h3, h4, h5, h6 {
 [dir="rtl"] h4,
 [dir="rtl"] h5,
 [dir="rtl"] h6 {
-  font-family: 'Noto Sans Arabic', 'Clash Display', sans-serif;
+  font-family: 'Noto Sans Arabic', 'Inter', 'Clash Display', sans-serif;
 }
 
 [dir="rtl"] .section-label::before {
