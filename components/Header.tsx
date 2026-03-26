@@ -10,6 +10,7 @@ import LanguageToggle from '@/components/LanguageToggle';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { t } = useLanguage();
@@ -58,6 +59,7 @@ export default function Header() {
       } else {
         setNavHidden(false);
       }
+      setScrolled(y > 20);
       lastScrollY.current = y;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -73,31 +75,43 @@ export default function Header() {
           transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
         }}
       >
+        {/* Glassmorphism navbar — becomes more opaque on scroll for readability */}
         <motion.nav
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="pointer-events-auto mt-3 px-3 sm:px-5 py-2 rounded-full"
           style={{
-            background: 'rgba(18,18,20,0.88)',
+            background: scrolled
+              ? 'rgba(248, 250, 252, 0.85)'
+              : 'rgba(15, 23, 42, 0.88)',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(232,140,50,0.1)',
+            boxShadow: scrolled
+              ? '0 8px 40px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(20,184,166,0.12)'
+              : '0 8px 40px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(20,184,166,0.1)',
+            transition: 'background 0.4s ease, box-shadow 0.4s ease',
           }}
         >
           <div className="flex items-center gap-1">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-white/[0.06] transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-orange-600/25 flex-shrink-0">
+            <Link href="/" className={`flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full transition-colors ${
+              scrolled ? 'hover:bg-navy-900/[0.04]' : 'hover:bg-white/[0.06]'
+            }`}>
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center font-heading font-bold text-sm text-white shadow-lg shadow-teal-600/25 flex-shrink-0">
                 C
               </div>
-              <span className="font-heading font-bold text-sm text-white hidden sm:inline whitespace-nowrap">
-                Cubico<span className="text-orange-300">.tech</span>
+              <span className={`font-heading font-bold text-sm hidden sm:inline whitespace-nowrap ${
+                scrolled ? 'text-navy-900' : 'text-white'
+              }`}>
+                Cubico<span className={scrolled ? 'text-teal-600' : 'text-teal-300'}>.tech</span>
               </span>
             </Link>
 
             {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
+            <div className={`w-px h-5 mx-1.5 hidden lg:block flex-shrink-0 ${
+              scrolled ? 'bg-navy-200' : 'bg-white/[0.1]'
+            }`} />
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center gap-0.5">
@@ -110,19 +124,23 @@ export default function Header() {
                 >
                   <Link
                     href={link.href}
-                    className="text-[13px] font-medium text-white/55 hover:text-white hover:bg-white/[0.08] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap flex items-center gap-1"
+                    className={`text-[13px] font-medium px-3 py-1.5 rounded-full transition-colors whitespace-nowrap flex items-center gap-1 ${
+                      scrolled
+                        ? 'text-navy-500 hover:text-navy-900 hover:bg-navy-100'
+                        : 'text-white/55 hover:text-white hover:bg-white/[0.08]'
+                    }`}
                   >
                     {link.name}
                     {link.children && <ChevronDown className="w-3 h-3" />}
                   </Link>
                   {link.children && openDropdown === link.name && (
                     <div className="absolute top-full left-0 pt-2 rtl:left-auto rtl:right-0">
-                      <div className="bg-[#1a1a1e]/95 backdrop-blur-xl rounded-xl border border-orange-500/[0.12] shadow-2xl py-2 min-w-[180px]">
+                      <div className="bg-white/95 backdrop-blur-xl rounded-xl border border-navy-100 shadow-2xl py-2 min-w-[180px]">
                         {link.children.map((child) => (
                           <Link
                             key={child.name}
                             href={child.href}
-                            className="block px-4 py-2 text-[13px] text-white/55 hover:text-white hover:bg-white/[0.06] transition-colors"
+                            className="block px-4 py-2 text-[13px] text-navy-500 hover:text-navy-900 hover:bg-primary-50 transition-colors"
                           >
                             {child.name}
                           </Link>
@@ -135,16 +153,28 @@ export default function Header() {
             </nav>
 
             {/* Divider */}
-            <div className="w-px h-5 bg-white/[0.1] mx-1.5 hidden lg:block flex-shrink-0" />
+            <div className={`w-px h-5 mx-1.5 hidden lg:block flex-shrink-0 ${
+              scrolled ? 'bg-navy-200' : 'bg-white/[0.1]'
+            }`} />
 
-            {/* Language Toggle + CTA */}
-            <div className="hidden lg:flex items-center gap-1 flex-shrink-0">
-              <LanguageToggle className="text-white/55 hover:text-white" />
+            {/* Language Toggle + CTAs */}
+            <div className="hidden lg:flex items-center gap-1.5 flex-shrink-0">
+              <LanguageToggle className={scrolled ? 'text-navy-500 hover:text-navy-900' : 'text-white/55 hover:text-white'} />
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] hover:from-[#C0630F] hover:to-[#D4711A] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(232,140,50,0.4)]"
+                className={`inline-flex items-center gap-1.5 text-[13px] font-semibold px-4 py-2 rounded-full transition-all duration-200 ${
+                  scrolled
+                    ? 'text-navy-600 hover:text-navy-900 border border-navy-200 hover:border-navy-300 hover:bg-navy-50'
+                    : 'text-white/70 hover:text-white border border-white/15 hover:border-white/30 hover:bg-white/[0.05]'
+                }`}
               >
-                {t('Get Started', 'ابدأ الآن')}
+                {t('Login', 'تسجيل الدخول')}
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] hover:from-[#0D9488] hover:to-[#059669] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 hover:shadow-[0_0_20px_rgba(20,184,166,0.4)]"
+              >
+                {t('Book a Demo', 'احجز عرضاً')}
                 <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
               </Link>
             </div>
@@ -152,7 +182,9 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-white hover:bg-white/[0.08] transition-colors ml-auto rtl:ml-0 rtl:mr-auto"
+              className={`lg:hidden p-2 rounded-full transition-colors ml-auto rtl:ml-0 rtl:mr-auto ${
+                scrolled ? 'text-navy-900 hover:bg-navy-100' : 'text-white hover:bg-white/[0.08]'
+              }`}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -168,19 +200,19 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[72px] left-4 right-4 z-50 bg-[#1a1a1e]/95 backdrop-blur-xl rounded-2xl border border-orange-500/[0.12] shadow-2xl overflow-hidden"
+            className="fixed top-[72px] left-4 right-4 z-50 bg-white/95 backdrop-blur-xl rounded-2xl border border-navy-100 shadow-2xl overflow-hidden"
           >
             <div className="px-5 py-5 space-y-1">
               {/* Mobile Language Toggle */}
-              <div className="flex justify-center pb-3 border-b border-white/[0.08] mb-2">
-                <LanguageToggle className="text-white/70 hover:text-white text-sm" />
+              <div className="flex justify-center pb-3 border-b border-navy-100 mb-2">
+                <LanguageToggle className="text-navy-500 hover:text-navy-900 text-sm" />
               </div>
               {navLinks.map((link) => (
                 <div key={link.name}>
                   <Link
                     href={link.href}
                     onClick={() => !link.children && setMobileMenuOpen(false)}
-                    className="block text-white/70 hover:text-white hover:bg-white/[0.06] font-medium transition-colors px-4 py-3 rounded-xl"
+                    className="block text-navy-600 hover:text-navy-900 hover:bg-primary-50 font-medium transition-colors px-4 py-3 rounded-xl"
                   >
                     {link.name}
                   </Link>
@@ -191,7 +223,7 @@ export default function Header() {
                           key={child.name}
                           href={child.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block text-white/45 hover:text-white text-sm px-4 py-2 rounded-lg hover:bg-white/[0.04] transition-colors"
+                          className="block text-navy-400 hover:text-navy-900 text-sm px-4 py-2 rounded-lg hover:bg-primary-50/50 transition-colors"
                         >
                           {child.name}
                         </Link>
@@ -200,10 +232,13 @@ export default function Header() {
                   )}
                 </div>
               ))}
-              <div className="pt-3 border-t border-white/[0.08]">
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
-                  {t('Get Started', 'ابدأ الآن')}
+              <div className="pt-3 border-t border-navy-100 space-y-2">
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white text-sm font-semibold w-full py-3 rounded-xl transition-colors">
+                  {t('Book a Demo', 'احجز عرضاً')}
                   <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+                </Link>
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 border border-navy-200 text-navy-600 text-sm font-semibold w-full py-3 rounded-xl transition-colors hover:bg-navy-50">
+                  {t('Login', 'تسجيل الدخول')}
                 </Link>
               </div>
             </div>

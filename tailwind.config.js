@@ -7,35 +7,50 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        /* ── 2026 Premium Warm EdTech Palette ── */
         primary: {
-          DEFAULT: '#5a00f0',
-          light: '#7c3aed',
-          dark: '#4400b8',
-          50: '#f3e8ff',
-          100: '#e9d5ff',
-          200: '#d8b4fe',
-          500: '#5a00f0',
-          600: '#4c00d0',
-          700: '#3b0098',
+          DEFAULT: '#14B8A6', // Vibrant teal — Growth/Marketing accent
+          light: '#2DD4BF',
+          dark: '#0D9488',
+          50: '#F0FDFA',
+          100: '#CCFBF1',
+          200: '#99F6E4',
+          500: '#14B8A6',
+          600: '#0D9488',
+          700: '#0F766E',
         },
         accent: {
-          DEFAULT: '#00b783',
-          light: '#03ec8f',
-          dark: '#009e6f',
+          DEFAULT: '#10B981', // Fresh emerald — Teaching/Learn accent (Islamic green nod)
+          light: '#34D399',
+          dark: '#059669',
+        },
+        navy: {
+          DEFAULT: '#0F172A', // Deep navy — primary text
+          light: '#1E293B',
+          50: '#F8FAFC',
+          100: '#F1F5F9',
+          200: '#E2E8F0',
+          300: '#CBD5E1',
+          400: '#94A3B8',
+          500: '#64748B', // Slate neutral
+          600: '#475569',
+          700: '#334155',
+          800: '#1E293B',
+          900: '#0F172A',
         },
         dark: {
-          950: '#030014',
-          900: '#0a0520',
-          800: '#100830',
-          700: '#1a0e45',
-          600: '#241555',
-          500: '#2e1c65',
+          950: '#020617',
+          900: '#0F172A',
+          800: '#1E293B',
+          700: '#334155',
+          600: '#475569',
+          500: '#64748B',
         },
         surface: {
-          dark: '#0d0728',
-          card: '#150d3a',
-          hover: '#1e1450',
-          light: '#f8f9fc',
+          dark: '#0F172A',
+          card: '#1E293B',
+          hover: '#334155',
+          light: '#F8FAFC', // Soft off-white background
         },
         neutral: {
           50: '#fafafa',
@@ -51,15 +66,16 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['Clash Display', 'sans-serif'],
-        body: ['General Sans', 'sans-serif'],
+        heading: ['Inter', 'Clash Display', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'General Sans', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(90, 0, 240, 0.15) 0%, transparent 70%)',
-        'card-shine': 'linear-gradient(135deg, rgba(90, 0, 240, 0.08) 0%, transparent 50%)',
-        'gradient-primary': 'linear-gradient(135deg, #5a00f0 0%, #00b783 100%)',
-        'gradient-dark': 'linear-gradient(-135deg, #1e0046 0%, #030014 50%, #001a12 100%)',
+        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(20, 184, 166, 0.12) 0%, transparent 70%)',
+        'card-shine': 'linear-gradient(135deg, rgba(20, 184, 166, 0.06) 0%, transparent 50%)',
+        'gradient-primary': 'linear-gradient(135deg, #14B8A6 0%, #10B981 100%)',
+        'gradient-dark': 'linear-gradient(-135deg, #0F172A 0%, #020617 50%, #0F172A 100%)',
+        'gradient-teal-emerald': 'linear-gradient(135deg, #14B8A6 0%, #10B981 100%)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
