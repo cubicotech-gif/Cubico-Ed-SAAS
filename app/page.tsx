@@ -264,143 +264,405 @@ export default function HomePage() {
       <Header />
 
       {/* ═══════════════════════════════════════════════════════════
-         HERO SECTION — Full viewport, powerful & visual
-         Psychology: Instant clarity in <3 seconds. Z-pattern layout.
-         Warm background image overlay for emotional connection.
+         HERO SECTION — Light, clean, BetterUp/Notion-inspired 2026
+         Left: Simple everyday language + bold inline keywords
+         Right: Laptop dashboard + iPhone mockup for visual proof
+         Background: Warm classroom photo with very light overlay
          ═══════════════════════════════════════════════════════════ */}
       <section
         id="home"
-        className="relative flex flex-col items-center justify-center overflow-hidden"
-        style={{ minHeight: '100dvh' }}
+        className="relative overflow-hidden"
+        style={{ minHeight: '100dvh', background: '#F8FAFC' }}
       >
-        {/* ── Background image — diverse K-12/Islamic school scene for warmth ── */}
+        {/* ── Background classroom photo — light warm overlay (25-30%) ── */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=2560&q=80"
-            alt="Students engaged in modern digital classroom learning"
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=2560&q=80"
+            alt="Bright welcoming school classroom with engaged students and teacher"
             fill
             className="object-cover"
             priority
           />
         </div>
-        {/* ── Gradient overlay — teal-to-navy for brand cohesion ── */}
+        {/* Light overlay — keeps it warm and readable, NOT dark */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(180deg, rgba(2,6,23,0.92) 0%, rgba(15,23,42,0.82) 35%, rgba(15,23,42,0.78) 60%, rgba(2,6,23,0.96) 100%)',
+            background: 'linear-gradient(135deg, rgba(248,250,252,0.88) 0%, rgba(248,250,252,0.82) 40%, rgba(248,250,252,0.72) 70%, rgba(248,250,252,0.65) 100%)',
           }}
         />
-        {/* ── Subtle teal accent glow ── */}
+        {/* Subtle teal radial glow for brand warmth */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse 70% 45% at 50% 30%, rgba(20,184,166,0.1) 0%, transparent 70%)',
-          }}
-        />
-        {/* ── Floating atmosphere orbs — teal/emerald tones ── */}
-        <div className="absolute top-[12%] left-[6%] w-72 h-72 rounded-full pointer-events-none animate-float"
-          style={{ background: 'radial-gradient(circle,rgba(20,184,166,0.14) 0%,transparent 70%)', filter: 'blur(60px)' }} />
-        <div className="absolute top-[22%] right-[8%] w-80 h-80 rounded-full pointer-events-none animate-float2"
-          style={{ background: 'radial-gradient(circle,rgba(16,185,129,0.1) 0%,transparent 70%)', filter: 'blur(50px)' }} />
-        <div className="absolute top-[50%] left-[30%] w-96 h-96 rounded-full pointer-events-none animate-float3"
-          style={{ background: 'radial-gradient(circle,rgba(20,184,166,0.06) 0%,transparent 70%)', filter: 'blur(70px)' }} />
-        {/* ── Dot grid overlay ── */}
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)',
-            backgroundSize: '32px 32px',
+            background: 'radial-gradient(ellipse 60% 50% at 30% 50%, rgba(20,184,166,0.06) 0%, transparent 70%)',
           }}
         />
 
-        {/* ═══ HERO CONTENT ═══ */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-          className="relative z-10 flex flex-col items-center text-center px-6 py-32 max-w-5xl mx-auto"
-        >
-          {/* Top tagline — region context */}
-          <motion.div variants={fadeUp} custom={0} className="mb-6">
-            <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[13px] font-medium text-white/75 border border-teal-400/20 bg-teal-900/25 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse flex-shrink-0" />
-              {t(
-                'AI-Powered Platform for K-12 & Islamic Schools in Pakistan \u2022 GCC \u2022 Canada',
-                'منصة مدعومة بالذكاء الاصطناعي لمدارس K-12 والمدارس الإسلامية في باكستان \u2022 الخليج \u2022 كندا'
-              )}
-            </span>
-          </motion.div>
+        {/* ═══ HERO CONTENT — 2-column layout ═══ */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-28 md:pt-36 pb-20 md:pb-28">
+          <div className="grid lg:grid-cols-[1fr_0.85fr] gap-12 lg:gap-16 items-center">
 
-          {/* Massive headline — kinetic bold typography */}
-          <motion.h1
-            variants={fadeUp}
-            custom={1}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] font-heading font-extrabold text-white leading-[1.06] tracking-[-0.03em] mb-6 max-w-4xl"
-          >
-            {t(
-              'Give your school the platform it deserves — ',
-              'امنح مدرستك المنصة التي تستحقها — '
-            )}
-            <span className="shimmer-text">
-              {t(
-                'one intelligent system with four powerful modules.',
-                'نظام ذكي واحد بأربعة وحدات قوية.'
-              )}
-            </span>
-          </motion.h1>
-
-          {/* Subheadline — module names for clarity */}
-          <motion.p
-            variants={fadeUp}
-            custom={2}
-            className="text-base md:text-lg text-white/55 max-w-2xl leading-relaxed mb-10"
-          >
-            {t(
-              'Cubico Manage\u2122 \u2022 Cubico Learn\u2122 \u2022 Smart LMS \u2022 Cubico Marketing\u2122 — all working together to transform learning and operations.',
-              'Cubico Manage\u2122 \u2022 Cubico Learn\u2122 \u2022 Smart LMS \u2022 Cubico Marketing\u2122 — تعمل معًا لتحويل التعلم والعمليات.'
-            )}
-          </motion.p>
-
-          {/* CTA buttons — "Book a Demo" prominent teal + secondary "Watch Overview" */}
-          <motion.div variants={fadeUp} custom={3} className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-base px-8 py-4 rounded-full shadow-lg shadow-teal-600/25 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.02] transition-all duration-200 animate-pulse-soft"
+            {/* ── LEFT COLUMN: Text content ── */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+              className="max-w-xl"
             >
-              {t('Book a Demo', 'احجز عرضاً')}
-              <ArrowRight size={18} className="rtl:rotate-180" />
-            </Link>
-            <Link
-              href="/solutions"
-              className="inline-flex items-center gap-2.5 text-white/65 hover:text-white font-semibold text-base px-7 py-4 rounded-full border border-white/[0.15] hover:border-white/[0.3] hover:bg-white/[0.05] transition-all duration-200"
-            >
-              <Play size={16} className="text-teal-400" />
-              {t('Watch 90-Second Overview', 'شاهد نظرة عامة في 90 ثانية')}
-            </Link>
-          </motion.div>
+              {/* Tagline pill */}
+              <motion.div variants={fadeUp} custom={0} className="mb-7">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#0D9488] border border-[#14B8A6]/20 bg-white/70 backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
+                  {t(
+                    'AI-Powered Platform for K-12 & Islamic Schools — Pakistan \u2022 GCC \u2022 Canada',
+                    'منصة ذكية لمدارس K-12 والمدارس الإسلامية — باكستان \u2022 الخليج \u2022 كندا'
+                  )}
+                </span>
+              </motion.div>
 
-          {/* Trust bar — social proof numbers for instant credibility */}
-          <motion.div
-            variants={fadeUp}
-            custom={4}
-            className="mt-14 flex flex-wrap items-center justify-center gap-6 md:gap-10"
-          >
-            {[
-              { val: '760+', label: t('Schools', 'مدرسة') },
-              { val: '3', label: t('Countries', 'دول') },
-              { val: 'ISO 27001', label: t('Certified', 'معتمد') },
-              { val: '4.9/5', label: t('from Principals', 'من المديرين') },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-2.5">
-                <span className="text-white font-extrabold text-lg md:text-xl">{item.val}</span>
-                <span className="text-white/40 text-sm">{item.label}</span>
+              {/* ── Massive headline — BetterUp-style simple bold inline words ── */}
+              <motion.h1
+                variants={fadeUp}
+                custom={1}
+                className="text-[2rem] sm:text-[2.5rem] md:text-[2.8rem] lg:text-[3.2rem] xl:text-[3.5rem] font-heading font-extrabold text-[#0F172A] leading-[1.1] tracking-[-0.025em] mb-6"
+              >
+                <span className="text-[#14B8A6]">{t('Grow your enrollment', 'زِد تسجيل الطلاب')}</span>
+                {t(', ', '، ')}
+                <span className="text-[#10B981]">{t('help teachers teach better', 'ساعد المعلمين على التدريس أفضل')}</span>
+                {t(', and ', '، و')}
+                <span className="text-[#0D9488]">{t('run your school smoothly', 'أدِر مدرستك بسلاسة')}</span>
+                {t(' — all in one easy platform.', ' — كل ذلك في منصة واحدة سهلة.')}
+              </motion.h1>
+
+              {/* ── Short subheadline — 2 lines max, scannable ── */}
+              <motion.p
+                variants={fadeUp}
+                custom={2}
+                className="text-[#475569] text-lg md:text-xl leading-relaxed mb-9 max-w-lg"
+              >
+                {t(
+                  'Get professional marketing tools, 200+ animated lessons in English, Arabic & Urdu, Smart LMS, and full school management that actually saves time.',
+                  'احصل على أدوات تسويق احترافية، وأكثر من 200 درس متحرك بالإنجليزية والعربية والأردية، ونظام تعلم ذكي، وإدارة مدرسية كاملة توفر الوقت فعلاً.'
+                )}
+              </motion.p>
+
+              {/* ── CTAs — large, clear ── */}
+              <motion.div variants={fadeUp} custom={3} className="flex flex-wrap items-center gap-4 mb-10">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-base px-8 py-4 rounded-full shadow-lg shadow-teal-600/20 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.03] transition-all duration-200"
+                >
+                  {t('Book a Demo', 'احجز عرضاً')}
+                  <ArrowRight size={18} className="rtl:rotate-180" />
+                </Link>
+                <Link
+                  href="/solutions"
+                  className="inline-flex items-center gap-2.5 text-[#0F172A] hover:text-[#14B8A6] font-semibold text-base px-7 py-4 rounded-full border border-[#CBD5E1] hover:border-[#14B8A6]/40 bg-white/60 backdrop-blur-sm hover:bg-white transition-all duration-200"
+                >
+                  <Play size={16} className="text-[#14B8A6]" />
+                  {t('Watch 90-Second Overview', 'شاهد نظرة عامة في 90 ثانية')}
+                </Link>
+              </motion.div>
+
+              {/* ── Trust bar — small, understated ── */}
+              <motion.div
+                variants={fadeUp}
+                custom={4}
+                className="flex flex-wrap items-center gap-5 text-sm text-[#64748B]"
+              >
+                <span className="font-semibold">{t('Trusted by', 'موثوق من')} <span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
+                <span className="w-1 h-1 rounded-full bg-[#CBD5E1]" />
+                <span>{t('3 countries', '3 دول')}</span>
+                <span className="w-1 h-1 rounded-full bg-[#CBD5E1]" />
+                <span className="text-[#14B8A6] font-semibold">4.9/5 {t('from principals', 'من المديرين')}</span>
+              </motion.div>
+            </motion.div>
+
+            {/* ── RIGHT COLUMN: Product mockups — laptop + iPhone ── */}
+            <motion.div
+              initial={{ opacity: 0, x: 60, scale: 0.95 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative flex justify-center lg:justify-end"
+            >
+              {/* Glow behind mockups */}
+              <div className="absolute inset-0 pointer-events-none"
+                style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(20,184,166,0.08) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+
+              <div className="relative w-full max-w-[580px]">
+
+                {/* ════════ LAPTOP MOCKUP — School Dashboard ════════ */}
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  className="relative z-10 rounded-2xl overflow-hidden"
+                  style={{
+                    boxShadow: '0 25px 80px rgba(15,23,42,0.12), 0 8px 30px rgba(20,184,166,0.08)',
+                    transform: 'perspective(1200px) rotateY(-3deg) rotateX(2deg)',
+                  }}
+                >
+                  {/* Laptop bezel top */}
+                  <div className="bg-[#1E293B] px-4 py-2.5 flex items-center gap-2.5">
+                    <div className="flex gap-1.5">
+                      <div className="w-[10px] h-[10px] rounded-full bg-[#FF5F57]" />
+                      <div className="w-[10px] h-[10px] rounded-full bg-[#FEBC2E]" />
+                      <div className="w-[10px] h-[10px] rounded-full bg-[#28C840]" />
+                    </div>
+                    <div className="flex-1 mx-2">
+                      <div className="bg-[#0F172A] rounded-md px-3 py-[3px] text-[10px] text-white/30 font-mono flex items-center gap-1.5 w-fit">
+                        <svg className="w-2.5 h-2.5 text-[#14B8A6]/60 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
+                        app.cubico.tech/dashboard
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dashboard UI */}
+                  <div className="bg-[#F8FAFC]">
+                    {/* Top nav bar */}
+                    <div className="bg-white border-b border-[#E2E8F0] px-4 py-2.5 flex items-center justify-between">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[10px] font-bold">C</div>
+                        <div>
+                          <div className="text-[11px] font-bold text-[#0F172A]">Al-Noor Academy</div>
+                          <div className="text-[9px] text-[#94A3B8]">Academic Year 2025-26</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="relative">
+                          <div className="w-6 h-6 rounded-full bg-[#F1F5F9] flex items-center justify-center"><Mail size={10} className="text-[#94A3B8]" /></div>
+                          <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white" />
+                        </div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[8px] font-bold">AK</div>
+                      </div>
+                    </div>
+
+                    {/* Dashboard content */}
+                    <div className="p-4">
+                      {/* Greeting */}
+                      <div className="mb-4">
+                        <div className="text-[9px] text-[#94A3B8] font-medium">{t('Good morning', 'صباح الخير')}</div>
+                        <div className="text-[13px] font-bold text-[#0F172A]">Admin Khan</div>
+                      </div>
+
+                      {/* 4 Stat cards row */}
+                      <div className="grid grid-cols-4 gap-2 mb-3">
+                        {[
+                          { label: 'Total Students', val: '2,847', delta: '+12%', color: '#14B8A6', icon: '👨‍🎓' },
+                          { label: 'Attendance', val: '94.2%', delta: '+2.1%', color: '#10B981', icon: '✅' },
+                          { label: 'Fee Collected', val: '₨18.4L', delta: '78%', color: '#0D9488', icon: '💰' },
+                          { label: 'Staff', val: '186', delta: '+4', color: '#14B8A6', icon: '👩‍🏫' },
+                        ].map((c, ci) => (
+                          <div key={ci} className="bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className="text-[10px]">{c.icon}</span>
+                              <span className="text-[8px] font-bold text-emerald-500">{c.delta}</span>
+                            </div>
+                            <div className="text-[13px] font-extrabold text-[#0F172A] leading-none">{c.val}</div>
+                            <div className="text-[8px] text-[#94A3B8] mt-0.5">{c.label}</div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Charts row */}
+                      <div className="grid grid-cols-5 gap-2">
+                        {/* Revenue chart */}
+                        <div className="col-span-3 bg-white rounded-xl p-3 border border-[#E2E8F0] shadow-sm">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-bold text-[#334155]">Fee Collection</span>
+                            <div className="flex gap-1">
+                              <div className="px-1.5 py-0.5 rounded text-[7px] font-medium bg-[#F1F5F9] text-[#94A3B8]">Week</div>
+                              <div className="px-1.5 py-0.5 rounded text-[7px] font-bold text-white bg-[#14B8A6]">Month</div>
+                            </div>
+                          </div>
+                          <div className="flex items-end gap-[3px] h-[52px]">
+                            {[35,55,40,70,50,80,65,88,60,75,85,92].map((h, hi) => (
+                              <div key={hi} className="flex-1 rounded-sm transition-all"
+                                style={{ height: `${h}%`, backgroundColor: hi >= 10 ? '#14B8A6' : '#14B8A620' }} />
+                            ))}
+                          </div>
+                          <div className="flex justify-between mt-1.5">
+                            <span className="text-[7px] text-[#CBD5E1]">Jan</span>
+                            <span className="text-[7px] text-[#CBD5E1]">Jun</span>
+                            <span className="text-[7px] text-[#CBD5E1]">Dec</span>
+                          </div>
+                        </div>
+
+                        {/* Attendance donut + pending */}
+                        <div className="col-span-2 space-y-2">
+                          <div className="bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
+                            <div className="text-[9px] font-bold text-[#334155] mb-1.5">Today&apos;s Attendance</div>
+                            <div className="flex items-center gap-2">
+                              <div className="relative w-10 h-10">
+                                <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90">
+                                  <circle cx="18" cy="18" r="14" fill="none" stroke="#F1F5F9" strokeWidth="3" />
+                                  <circle cx="18" cy="18" r="14" fill="none" stroke="#14B8A6" strokeWidth="3" strokeDasharray="83 100" strokeLinecap="round" />
+                                </svg>
+                                <div className="absolute inset-0 flex items-center justify-center text-[8px] font-extrabold text-[#0F172A]">94%</div>
+                              </div>
+                              <div className="text-[8px] text-[#94A3B8] leading-tight">
+                                <div>Present: <span className="text-[#0F172A] font-semibold">2,676</span></div>
+                                <div>Absent: <span className="text-red-500 font-semibold">171</span></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
+                            <div className="text-[9px] font-bold text-[#334155] mb-1">Pending</div>
+                            {[
+                              { t: 'Fee reminders', c: '12' },
+                              { t: 'Leave requests', c: '5' },
+                            ].map((tk, ti) => (
+                              <div key={ti} className="flex items-center justify-between py-1 border-b border-[#F1F5F9] last:border-0">
+                                <span className="text-[8px] text-[#64748B]">{tk.t}</span>
+                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-[#14B8A6]/10 text-[#14B8A6]">{tk.c}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Recent students strip */}
+                      <div className="mt-2 bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[9px] font-bold text-[#334155]">Recent Students</span>
+                          <span className="text-[8px] text-[#14B8A6] font-semibold">View all →</span>
+                        </div>
+                        <div className="flex gap-2">
+                          {[
+                            { name: 'Sara A.', grade: 'Grade 5', avatar: 'SA', color: '#14B8A6' },
+                            { name: 'Omar K.', grade: 'Grade 7', avatar: 'OK', color: '#10B981' },
+                            { name: 'Fatima Z.', grade: 'Grade 3', avatar: 'FZ', color: '#0D9488' },
+                            { name: 'Hassan M.', grade: 'Grade 9', avatar: 'HM', color: '#14B8A6' },
+                          ].map((s, si) => (
+                            <div key={si} className="flex items-center gap-1.5 bg-[#F8FAFC] rounded-lg px-2 py-1.5 flex-1 min-w-0">
+                              <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[7px] font-bold flex-shrink-0"
+                                style={{ backgroundColor: s.color }}>{s.avatar}</div>
+                              <div className="min-w-0">
+                                <div className="text-[8px] font-semibold text-[#0F172A] truncate">{s.name}</div>
+                                <div className="text-[7px] text-[#94A3B8]">{s.grade}</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Laptop bottom bezel */}
+                  <div className="bg-[#1E293B] h-2 rounded-b-2xl" />
+                </motion.div>
+
+                {/* ════════ iPHONE MOCKUP — LMS / Animated Lesson ════════ */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  whileHover={{ y: -6 }}
+                  className="absolute -bottom-8 -left-6 md:-left-10 z-20 w-[140px] md:w-[160px]"
+                  style={{
+                    transform: 'perspective(800px) rotateY(5deg)',
+                  }}
+                >
+                  <div className="rounded-[22px] overflow-hidden border-[3px] border-[#1E293B] bg-[#1E293B]"
+                    style={{ boxShadow: '0 20px 60px rgba(15,23,42,0.2), 0 4px 20px rgba(20,184,166,0.1)' }}>
+                    {/* Phone notch */}
+                    <div className="bg-[#1E293B] flex justify-center pt-1.5 pb-1">
+                      <div className="w-16 h-[5px] bg-[#0F172A] rounded-full" />
+                    </div>
+
+                    {/* Phone screen — animated lesson viewer */}
+                    <div className="bg-white">
+                      {/* Lesson header */}
+                      <div className="bg-gradient-to-r from-[#14B8A6] to-[#10B981] px-3 py-2.5">
+                        <div className="text-[7px] text-white/60 font-medium">Cubico Learn™</div>
+                        <div className="text-[10px] font-bold text-white">The Water Cycle</div>
+                        <div className="text-[7px] text-white/50">Biology • Grade 5</div>
+                      </div>
+
+                      {/* Video area */}
+                      <div className="relative bg-gradient-to-b from-[#F0FDFA] to-[#ECFDF5] mx-2 mt-2 rounded-lg overflow-hidden" style={{ aspectRatio: '16/10' }}>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center">
+                            <Play size={10} className="text-[#14B8A6] ml-0.5" />
+                          </div>
+                        </div>
+                        {/* Fake clouds/rain illustration */}
+                        <div className="absolute top-2 left-2">
+                          <div className="w-6 h-3 bg-white/80 rounded-full" />
+                          <div className="w-4 h-2 bg-white/60 rounded-full -mt-1 ml-1" />
+                        </div>
+                        <div className="absolute bottom-2 left-3 right-3">
+                          <div className="w-full bg-white/40 rounded-full h-[3px]">
+                            <div className="w-[45%] h-full bg-[#14B8A6] rounded-full" />
+                          </div>
+                          <div className="flex justify-between mt-0.5">
+                            <span className="text-[5px] text-[#64748B]">2:14</span>
+                            <span className="text-[5px] text-[#94A3B8]">5:30</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Chapter list */}
+                      <div className="px-2 py-2 space-y-1">
+                        {[
+                          { ch: '1', title: 'Evaporation', done: true },
+                          { ch: '2', title: 'Condensation', done: true },
+                          { ch: '3', title: 'Precipitation', done: false, current: true },
+                          { ch: '4', title: 'Collection', done: false },
+                        ].map((l, li) => (
+                          <div key={li} className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[8px] ${
+                            l.current ? 'bg-[#F0FDFA] border border-[#14B8A6]/20' : 'bg-[#F8FAFC]'
+                          }`}>
+                            {l.done ? (
+                              <div className="w-3.5 h-3.5 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
+                                <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                              </div>
+                            ) : (
+                              <div className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${l.current ? 'border-[#14B8A6]' : 'border-[#E2E8F0]'}`} />
+                            )}
+                            <span className={`font-medium ${l.done ? 'text-[#94A3B8] line-through' : l.current ? 'text-[#0D9488]' : 'text-[#64748B]'}`}>
+                              Ch {l.ch}: {l.title}
+                            </span>
+                            {l.current && <span className="ml-auto text-[5px] bg-[#14B8A6] text-white px-1 py-0.5 rounded font-bold">NOW</span>}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Bottom nav */}
+                      <div className="border-t border-[#E2E8F0] px-3 py-2 flex justify-around">
+                        {['📚', '🎬', '📊', '👤'].map((icon, ii) => (
+                          <span key={ii} className={`text-[12px] ${ii === 1 ? 'opacity-100' : 'opacity-40'}`}>{icon}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Home indicator */}
+                    <div className="bg-[#1E293B] flex justify-center py-1.5">
+                      <div className="w-10 h-1 bg-white/20 rounded-full" />
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Floating badge — "Live: 85K+ learners" */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.9, type: 'spring', stiffness: 260, damping: 20 }}
+                  className="absolute -top-3 -right-2 md:right-2 z-20 bg-white rounded-2xl px-3.5 py-2 shadow-lg border border-[#E2E8F0] flex items-center gap-2"
+                  style={{ animation: 'float 6s ease-in-out infinite' }}
+                >
+                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-[11px] font-bold text-[#0F172A]">85K+</span>
+                  <span className="text-[10px] text-[#64748B]">{t('active learners', 'متعلم نشط')}</span>
+                </motion.div>
+
               </div>
-            ))}
-          </motion.div>
-        </motion.div>
+            </motion.div>
+          </div>
+        </div>
 
-        {/* ── Bottom fade to white ── */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        {/* ── Bottom fade to next section ── */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
           style={{ background: 'linear-gradient(to bottom, transparent, #F8FAFC)' }} />
       </section>
 
