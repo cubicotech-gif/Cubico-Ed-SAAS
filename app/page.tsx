@@ -264,282 +264,253 @@ export default function HomePage() {
       <Header />
 
       {/* ═══════════════════════════════════════════════════════════
-         HERO SECTION — Light, clean, BetterUp/Notion-inspired 2026
-         Left: Simple everyday language + bold inline keywords
-         Right: Laptop dashboard + iPhone mockup for visual proof
-         Background: Warm classroom photo with very light overlay
+         HERO — 2026 Premium Light (BetterUp × Notion)
+         Psychology: Bold teal keywords = instant scan in <2 seconds.
+         Realistic mockups = "this is a real working product" trust.
+         20% overlay on classroom = warm, human, welcoming.
+         55/45 split: text left, visual proof right.
          ═══════════════════════════════════════════════════════════ */}
       <section
         id="home"
-        className="relative overflow-hidden"
-        style={{ minHeight: '100dvh', background: '#F8FAFC' }}
+        className="relative overflow-hidden bg-[#F8FAFC]"
+        style={{ minHeight: '100dvh' }}
       >
-        {/* ── Background classroom photo — light warm overlay (25-30%) ── */}
+        {/* ── Warm bright classroom background — 20% light overlay ── */}
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=2560&q=80"
-            alt="Bright welcoming school classroom with engaged students and teacher"
+            alt="Bright welcoming Islamic and K-12 school classroom with engaged students"
             fill
             className="object-cover"
             priority
           />
         </div>
-        {/* Light overlay — keeps it warm and readable, NOT dark */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, rgba(248,250,252,0.88) 0%, rgba(248,250,252,0.82) 40%, rgba(248,250,252,0.72) 70%, rgba(248,250,252,0.65) 100%)',
-          }}
-        />
-        {/* Subtle teal radial glow for brand warmth */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 60% 50% at 30% 50%, rgba(20,184,166,0.06) 0%, transparent 70%)',
-          }}
-        />
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(155deg, rgba(248,250,252,0.90) 0%, rgba(248,250,252,0.84) 40%, rgba(248,250,252,0.74) 70%, rgba(248,250,252,0.68) 100%)',
+        }} />
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 55% 55% at 28% 48%, rgba(20,184,166,0.04) 0%, transparent 70%)',
+        }} />
 
-        {/* ═══ HERO CONTENT — 2-column layout ═══ */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-28 md:pt-36 pb-20 md:pb-28">
-          <div className="grid lg:grid-cols-[1fr_0.85fr] gap-12 lg:gap-16 items-center">
+        {/* ═══ 2-COLUMN LAYOUT ═══ */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 md:pt-40 pb-24 md:pb-32">
+          <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-20 items-center">
 
-            {/* ── LEFT COLUMN: Text content ── */}
+            {/* ── LEFT: Text (55%) ── */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="max-w-xl"
+              className="max-w-[540px]"
             >
               {/* Tagline pill */}
-              <motion.div variants={fadeUp} custom={0} className="mb-7">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#0D9488] border border-[#14B8A6]/20 bg-white/70 backdrop-blur-sm">
+              <motion.div variants={fadeUp} custom={0} className="mb-8">
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#0D9488] border border-[#14B8A6]/15 bg-white/80 backdrop-blur-sm shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
                   {t(
-                    'AI-Powered Platform for K-12 & Islamic Schools — Pakistan \u2022 GCC \u2022 Canada',
-                    'منصة ذكية لمدارس K-12 والمدارس الإسلامية — باكستان \u2022 الخليج \u2022 كندا'
+                    'AI-Powered Platform for K-12 & Islamic Schools \u2014 Pakistan \u2022 GCC \u2022 Canada',
+                    'منصة ذكية لمدارس K-12 والمدارس الإسلامية \u2014 باكستان \u2022 الخليج \u2022 كندا'
                   )}
                 </span>
               </motion.div>
 
-              {/* ── Massive headline — BetterUp-style simple bold inline words ── */}
+              {/* Massive headline — bold inline teal keywords for instant scanning */}
               <motion.h1
                 variants={fadeUp}
                 custom={1}
-                className="text-[2rem] sm:text-[2.5rem] md:text-[2.8rem] lg:text-[3.2rem] xl:text-[3.5rem] font-heading font-extrabold text-[#0F172A] leading-[1.1] tracking-[-0.025em] mb-6"
+                className="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.3rem] xl:text-[3.6rem] font-heading font-extrabold text-[#0F172A] leading-[1.08] tracking-[-0.03em] mb-7"
               >
-                <span className="text-[#14B8A6]">{t('Grow your enrollment', 'زِد تسجيل الطلاب')}</span>
+                <span className="text-[#14B8A6]">{t('Grow your enrollment', 'زِد تسجيل طلابك')}</span>
                 {t(', ', '، ')}
-                <span className="text-[#10B981]">{t('help teachers teach better', 'ساعد المعلمين على التدريس أفضل')}</span>
+                <span className="text-[#10B981]">{t('help your teachers teach better', 'ساعد معلميك على التدريس أفضل')}</span>
                 {t(', and ', '، و')}
-                <span className="text-[#0D9488]">{t('run your school smoothly', 'أدِر مدرستك بسلاسة')}</span>
-                {t(' — all in one easy platform.', ' — كل ذلك في منصة واحدة سهلة.')}
+                <span className="text-[#0D9488]">{t('save hours every week', 'وفّر ساعات كل أسبوع')}</span>
+                {t(' \u2014 all in one easy platform.', ' \u2014 كل ذلك في منصة واحدة سهلة.')}
               </motion.h1>
 
-              {/* ── Short subheadline — 2 lines max, scannable ── */}
+              {/* Subheadline — 1 line, plain language */}
               <motion.p
                 variants={fadeUp}
                 custom={2}
-                className="text-[#475569] text-lg md:text-xl leading-relaxed mb-9 max-w-lg"
+                className="text-[#475569] text-lg md:text-[1.2rem] leading-relaxed mb-10 max-w-[480px]"
               >
                 {t(
-                  'Get professional marketing tools, 200+ animated lessons in English, Arabic & Urdu, Smart LMS, and full school management that actually saves time.',
-                  'احصل على أدوات تسويق احترافية، وأكثر من 200 درس متحرك بالإنجليزية والعربية والأردية، ونظام تعلم ذكي، وإدارة مدرسية كاملة توفر الوقت فعلاً.'
+                  'Professional marketing tools, 200+ animated lessons in English, Arabic & Urdu, Smart LMS, and full school management.',
+                  'أدوات تسويق احترافية، وأكثر من 200 درس متحرك بالإنجليزية والعربية والأردية، ونظام تعلم ذكي، وإدارة مدرسية كاملة.'
                 )}
               </motion.p>
 
-              {/* ── CTAs — large, clear ── */}
+              {/* CTAs */}
               <motion.div variants={fadeUp} custom={3} className="flex flex-wrap items-center gap-4 mb-10">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-base px-8 py-4 rounded-full shadow-lg shadow-teal-600/20 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.03] transition-all duration-200"
+                  className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-lg shadow-teal-500/20 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
                 >
                   {t('Book a Demo', 'احجز عرضاً')}
-                  <ArrowRight size={18} className="rtl:rotate-180" />
+                  <ArrowRight size={18} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
                 <Link
                   href="/solutions"
-                  className="inline-flex items-center gap-2.5 text-[#0F172A] hover:text-[#14B8A6] font-semibold text-base px-7 py-4 rounded-full border border-[#CBD5E1] hover:border-[#14B8A6]/40 bg-white/60 backdrop-blur-sm hover:bg-white transition-all duration-200"
+                  className="inline-flex items-center gap-2.5 text-[#334155] hover:text-[#0F172A] font-semibold text-[15px] px-7 py-4 rounded-full border border-[#CBD5E1] hover:border-[#94A3B8] bg-white/70 backdrop-blur-sm hover:bg-white hover:shadow-md transition-all duration-200"
                 >
-                  <Play size={16} className="text-[#14B8A6]" />
+                  <Play size={16} className="text-[#14B8A6] flex-shrink-0" />
                   {t('Watch 90-Second Overview', 'شاهد نظرة عامة في 90 ثانية')}
                 </Link>
               </motion.div>
 
-              {/* ── Trust bar — small, understated ── */}
+              {/* Trust bar */}
               <motion.div
                 variants={fadeUp}
                 custom={4}
-                className="flex flex-wrap items-center gap-5 text-sm text-[#64748B]"
+                className="flex flex-wrap items-center gap-4 text-[13px] text-[#64748B]"
               >
-                <span className="font-semibold">{t('Trusted by', 'موثوق من')} <span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
-                <span className="w-1 h-1 rounded-full bg-[#CBD5E1]" />
+                <span className="font-medium">{t('Trusted by', 'موثوق من')} <span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
+                <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
                 <span>{t('3 countries', '3 دول')}</span>
-                <span className="w-1 h-1 rounded-full bg-[#CBD5E1]" />
+                <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
                 <span className="text-[#14B8A6] font-semibold">4.9/5 {t('from principals', 'من المديرين')}</span>
               </motion.div>
             </motion.div>
 
-            {/* ── RIGHT COLUMN: Product mockups — laptop + iPhone ── */}
+            {/* ── RIGHT: Visual proof mockups (45%) ── */}
             <motion.div
-              initial={{ opacity: 0, x: 60, scale: 0.95 }}
+              initial={{ opacity: 0, x: 50, scale: 0.96 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0.9, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="relative flex justify-center lg:justify-end"
             >
-              {/* Glow behind mockups */}
-              <div className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(ellipse 80% 70% at 50% 50%, rgba(20,184,166,0.08) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+              {/* Soft glow behind mockups — depth cue */}
+              <div className="absolute -inset-8 pointer-events-none" style={{
+                background: 'radial-gradient(ellipse 80% 70% at 55% 50%, rgba(20,184,166,0.07) 0%, transparent 70%)',
+                filter: 'blur(30px)',
+              }} />
 
-              <div className="relative w-full max-w-[580px]">
+              <div className="relative w-full max-w-[560px]">
 
-                {/* ════════ LAPTOP MOCKUP — School Dashboard ════════ */}
+                {/* ════ LAPTOP MOCKUP — Cubico Manage Dashboard ════ */}
                 <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  whileHover={{ y: -5, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 28 }}
                   className="relative z-10 rounded-2xl overflow-hidden"
                   style={{
-                    boxShadow: '0 25px 80px rgba(15,23,42,0.12), 0 8px 30px rgba(20,184,166,0.08)',
-                    transform: 'perspective(1200px) rotateY(-3deg) rotateX(2deg)',
+                    boxShadow: '0 32px 80px rgba(15,23,42,0.10), 0 12px 40px rgba(20,184,166,0.06), 0 0 0 1px rgba(226,232,240,0.5)',
+                    transform: 'perspective(1400px) rotateY(-2deg) rotateX(1.5deg)',
                   }}
                 >
-                  {/* Laptop bezel top */}
-                  <div className="bg-[#1E293B] px-4 py-2.5 flex items-center gap-2.5">
+                  {/* Browser chrome */}
+                  <div className="bg-[#F8FAFC] border-b border-[#E2E8F0] px-4 py-2 flex items-center gap-2.5">
                     <div className="flex gap-1.5">
                       <div className="w-[10px] h-[10px] rounded-full bg-[#FF5F57]" />
                       <div className="w-[10px] h-[10px] rounded-full bg-[#FEBC2E]" />
                       <div className="w-[10px] h-[10px] rounded-full bg-[#28C840]" />
                     </div>
                     <div className="flex-1 mx-2">
-                      <div className="bg-[#0F172A] rounded-md px-3 py-[3px] text-[10px] text-white/30 font-mono flex items-center gap-1.5 w-fit">
-                        <svg className="w-2.5 h-2.5 text-[#14B8A6]/60 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
+                      <div className="bg-white rounded-lg px-3 py-1 text-[10px] text-[#94A3B8] font-mono flex items-center gap-1.5 w-fit border border-[#E2E8F0]">
+                        <svg className="w-2.5 h-2.5 text-[#14B8A6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
                         app.cubico.tech/dashboard
                       </div>
                     </div>
                   </div>
 
-                  {/* Dashboard UI */}
-                  <div className="bg-[#F8FAFC]">
-                    {/* Top nav bar */}
-                    <div className="bg-white border-b border-[#E2E8F0] px-4 py-2.5 flex items-center justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[10px] font-bold">C</div>
+                  {/* Dashboard content — white, clean, teal accents */}
+                  <div className="bg-white">
+                    {/* Top nav */}
+                    <div className="px-4 py-2.5 border-b border-[#F1F5F9] flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[10px] font-bold shadow-sm">C</div>
                         <div>
                           <div className="text-[11px] font-bold text-[#0F172A]">Al-Noor Academy</div>
-                          <div className="text-[9px] text-[#94A3B8]">Academic Year 2025-26</div>
+                          <div className="text-[8px] text-[#94A3B8]">2025-26 Academic Year</div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5">
                         <div className="relative">
                           <div className="w-6 h-6 rounded-full bg-[#F1F5F9] flex items-center justify-center"><Mail size={10} className="text-[#94A3B8]" /></div>
-                          <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white" />
+                          <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-red-500 border border-white" />
                         </div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[8px] font-bold">AK</div>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[7px] font-bold">AK</div>
                       </div>
                     </div>
 
-                    {/* Dashboard content */}
-                    <div className="p-4">
-                      {/* Greeting */}
-                      <div className="mb-4">
-                        <div className="text-[9px] text-[#94A3B8] font-medium">{t('Good morning', 'صباح الخير')}</div>
-                        <div className="text-[13px] font-bold text-[#0F172A]">Admin Khan</div>
-                      </div>
-
-                      {/* 4 Stat cards row */}
-                      <div className="grid grid-cols-4 gap-2 mb-3">
+                    <div className="p-3.5">
+                      {/* 4 KPI cards — the real stats principals care about */}
+                      <div className="grid grid-cols-4 gap-1.5 mb-3">
                         {[
-                          { label: 'Total Students', val: '2,847', delta: '+12%', color: '#14B8A6', icon: '👨‍🎓' },
-                          { label: 'Attendance', val: '94.2%', delta: '+2.1%', color: '#10B981', icon: '✅' },
-                          { label: 'Fee Collected', val: '₨18.4L', delta: '78%', color: '#0D9488', icon: '💰' },
-                          { label: 'Staff', val: '186', delta: '+4', color: '#14B8A6', icon: '👩‍🏫' },
+                          { label: 'Students', val: '2,847', delta: '+12%', ico: Users },
+                          { label: 'Attendance', val: '94.2%', delta: '+2.1%', ico: CheckCircle2 },
+                          { label: 'Fees', val: 'Rs 18.4L', delta: '78%', ico: TrendingUp },
+                          { label: 'Staff', val: '186', delta: '+4', ico: Users },
                         ].map((c, ci) => (
-                          <div key={ci} className="bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
+                          <div key={ci} className="bg-[#F8FAFC] rounded-lg p-2 border border-[#F1F5F9]">
                             <div className="flex items-center justify-between mb-1">
-                              <span className="text-[10px]">{c.icon}</span>
-                              <span className="text-[8px] font-bold text-emerald-500">{c.delta}</span>
+                              <c.ico size={10} className="text-[#94A3B8]" />
+                              <span className="text-[7px] font-bold text-[#10B981]">{c.delta}</span>
                             </div>
-                            <div className="text-[13px] font-extrabold text-[#0F172A] leading-none">{c.val}</div>
-                            <div className="text-[8px] text-[#94A3B8] mt-0.5">{c.label}</div>
+                            <div className="text-[12px] font-extrabold text-[#0F172A] leading-none">{c.val}</div>
+                            <div className="text-[7px] text-[#94A3B8] mt-0.5">{c.label}</div>
                           </div>
                         ))}
                       </div>
 
-                      {/* Charts row */}
-                      <div className="grid grid-cols-5 gap-2">
-                        {/* Revenue chart */}
-                        <div className="col-span-3 bg-white rounded-xl p-3 border border-[#E2E8F0] shadow-sm">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-[10px] font-bold text-[#334155]">Fee Collection</span>
-                            <div className="flex gap-1">
-                              <div className="px-1.5 py-0.5 rounded text-[7px] font-medium bg-[#F1F5F9] text-[#94A3B8]">Week</div>
-                              <div className="px-1.5 py-0.5 rounded text-[7px] font-bold text-white bg-[#14B8A6]">Month</div>
-                            </div>
+                      {/* Charts + attendance donut row */}
+                      <div className="grid grid-cols-5 gap-1.5 mb-2">
+                        {/* Fee collection bar chart */}
+                        <div className="col-span-3 bg-[#F8FAFC] rounded-lg p-2.5 border border-[#F1F5F9]">
+                          <div className="flex items-center justify-between mb-1.5">
+                            <span className="text-[9px] font-bold text-[#334155]">Fee Collection</span>
+                            <span className="text-[7px] font-semibold text-[#14B8A6] bg-[#14B8A6]/10 px-1.5 py-0.5 rounded">Monthly</span>
                           </div>
-                          <div className="flex items-end gap-[3px] h-[52px]">
-                            {[35,55,40,70,50,80,65,88,60,75,85,92].map((h, hi) => (
-                              <div key={hi} className="flex-1 rounded-sm transition-all"
-                                style={{ height: `${h}%`, backgroundColor: hi >= 10 ? '#14B8A6' : '#14B8A620' }} />
+                          <div className="flex items-end gap-[2px] h-[44px]">
+                            {[32,50,38,68,48,78,62,85,58,72,82,90].map((h, hi) => (
+                              <div key={hi} className="flex-1 rounded-sm"
+                                style={{ height: `${h}%`, backgroundColor: hi >= 10 ? '#14B8A6' : 'rgba(20,184,166,0.15)' }} />
                             ))}
                           </div>
-                          <div className="flex justify-between mt-1.5">
-                            <span className="text-[7px] text-[#CBD5E1]">Jan</span>
-                            <span className="text-[7px] text-[#CBD5E1]">Jun</span>
-                            <span className="text-[7px] text-[#CBD5E1]">Dec</span>
+                          <div className="flex justify-between mt-1">
+                            <span className="text-[6px] text-[#CBD5E1]">Jan</span>
+                            <span className="text-[6px] text-[#CBD5E1]">Jun</span>
+                            <span className="text-[6px] text-[#CBD5E1]">Dec</span>
                           </div>
                         </div>
 
-                        {/* Attendance donut + pending */}
-                        <div className="col-span-2 space-y-2">
-                          <div className="bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
-                            <div className="text-[9px] font-bold text-[#334155] mb-1.5">Today&apos;s Attendance</div>
-                            <div className="flex items-center gap-2">
-                              <div className="relative w-10 h-10">
-                                <svg viewBox="0 0 36 36" className="w-10 h-10 -rotate-90">
-                                  <circle cx="18" cy="18" r="14" fill="none" stroke="#F1F5F9" strokeWidth="3" />
-                                  <circle cx="18" cy="18" r="14" fill="none" stroke="#14B8A6" strokeWidth="3" strokeDasharray="83 100" strokeLinecap="round" />
-                                </svg>
-                                <div className="absolute inset-0 flex items-center justify-center text-[8px] font-extrabold text-[#0F172A]">94%</div>
-                              </div>
-                              <div className="text-[8px] text-[#94A3B8] leading-tight">
-                                <div>Present: <span className="text-[#0F172A] font-semibold">2,676</span></div>
-                                <div>Absent: <span className="text-red-500 font-semibold">171</span></div>
-                              </div>
+                        {/* Attendance donut */}
+                        <div className="col-span-2 bg-[#F8FAFC] rounded-lg p-2.5 border border-[#F1F5F9]">
+                          <div className="text-[8px] font-bold text-[#334155] mb-1">Attendance</div>
+                          <div className="flex items-center gap-1.5">
+                            <div className="relative w-11 h-11">
+                              <svg viewBox="0 0 36 36" className="w-11 h-11 -rotate-90">
+                                <circle cx="18" cy="18" r="14" fill="none" stroke="#F1F5F9" strokeWidth="3" />
+                                <circle cx="18" cy="18" r="14" fill="none" stroke="#14B8A6" strokeWidth="3" strokeDasharray="84 100" strokeLinecap="round" />
+                              </svg>
+                              <div className="absolute inset-0 flex items-center justify-center text-[8px] font-extrabold text-[#0F172A]">94%</div>
                             </div>
-                          </div>
-                          <div className="bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
-                            <div className="text-[9px] font-bold text-[#334155] mb-1">Pending</div>
-                            {[
-                              { t: 'Fee reminders', c: '12' },
-                              { t: 'Leave requests', c: '5' },
-                            ].map((tk, ti) => (
-                              <div key={ti} className="flex items-center justify-between py-1 border-b border-[#F1F5F9] last:border-0">
-                                <span className="text-[8px] text-[#64748B]">{tk.t}</span>
-                                <span className="text-[8px] font-bold px-1.5 py-0.5 rounded-full bg-[#14B8A6]/10 text-[#14B8A6]">{tk.c}</span>
-                              </div>
-                            ))}
+                            <div className="text-[7px] text-[#94A3B8] leading-snug">
+                              <div>Present: <span className="text-[#0F172A] font-semibold">2,676</span></div>
+                              <div>Absent: <span className="text-red-500 font-semibold">171</span></div>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Recent students strip */}
-                      <div className="mt-2 bg-white rounded-xl p-2.5 border border-[#E2E8F0] shadow-sm">
+                      {/* Student overview row */}
+                      <div className="bg-[#F8FAFC] rounded-lg p-2 border border-[#F1F5F9]">
                         <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[9px] font-bold text-[#334155]">Recent Students</span>
-                          <span className="text-[8px] text-[#14B8A6] font-semibold">View all →</span>
+                          <span className="text-[8px] font-bold text-[#334155]">Student Overview</span>
+                          <span className="text-[7px] text-[#14B8A6] font-semibold cursor-pointer">View all &rarr;</span>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="grid grid-cols-4 gap-1.5">
                           {[
-                            { name: 'Sara A.', grade: 'Grade 5', avatar: 'SA', color: '#14B8A6' },
-                            { name: 'Omar K.', grade: 'Grade 7', avatar: 'OK', color: '#10B981' },
-                            { name: 'Fatima Z.', grade: 'Grade 3', avatar: 'FZ', color: '#0D9488' },
-                            { name: 'Hassan M.', grade: 'Grade 9', avatar: 'HM', color: '#14B8A6' },
+                            { name: 'Sara Ahmed', grade: 'Gr 5', avg: 'A', color: '#14B8A6' },
+                            { name: 'Omar Khan', grade: 'Gr 7', avg: 'B+', color: '#10B981' },
+                            { name: 'Fatima Z.', grade: 'Gr 3', avg: 'A-', color: '#0D9488' },
+                            { name: 'Hassan M.', grade: 'Gr 9', avg: 'B', color: '#14B8A6' },
                           ].map((s, si) => (
-                            <div key={si} className="flex items-center gap-1.5 bg-[#F8FAFC] rounded-lg px-2 py-1.5 flex-1 min-w-0">
-                              <div className="w-5 h-5 rounded-full flex items-center justify-center text-white text-[7px] font-bold flex-shrink-0"
-                                style={{ backgroundColor: s.color }}>{s.avatar}</div>
+                            <div key={si} className="flex items-center gap-1 bg-white rounded-md px-1.5 py-1 border border-[#F1F5F9]">
+                              <div className="w-4.5 h-4.5 w-[18px] h-[18px] rounded-full flex items-center justify-center text-white text-[6px] font-bold flex-shrink-0"
+                                style={{ backgroundColor: s.color }}>{s.name.split(' ').map(n=>n[0]).join('')}</div>
                               <div className="min-w-0">
-                                <div className="text-[8px] font-semibold text-[#0F172A] truncate">{s.name}</div>
-                                <div className="text-[7px] text-[#94A3B8]">{s.grade}</div>
+                                <div className="text-[7px] font-semibold text-[#0F172A] truncate">{s.name}</div>
+                                <div className="text-[6px] text-[#94A3B8]">{s.grade} &middot; {s.avg}</div>
                               </div>
                             </div>
                           ))}
@@ -547,53 +518,53 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Laptop bottom bezel */}
-                  <div className="bg-[#1E293B] h-2 rounded-b-2xl" />
                 </motion.div>
 
-                {/* ════════ iPHONE MOCKUP — LMS / Animated Lesson ════════ */}
+                {/* ════ iPHONE MOCKUP — Cubico Learn™ Animated Lesson ════ */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  initial={{ opacity: 0, y: 40, scale: 0.88 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.7, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  whileHover={{ y: -6 }}
-                  className="absolute -bottom-8 -left-6 md:-left-10 z-20 w-[140px] md:w-[160px]"
-                  style={{
-                    transform: 'perspective(800px) rotateY(5deg)',
-                  }}
+                  transition={{ duration: 0.8, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  className="absolute -bottom-6 -left-4 md:-left-8 z-20 w-[135px] md:w-[155px]"
                 >
-                  <div className="rounded-[22px] overflow-hidden border-[3px] border-[#1E293B] bg-[#1E293B]"
-                    style={{ boxShadow: '0 20px 60px rgba(15,23,42,0.2), 0 4px 20px rgba(20,184,166,0.1)' }}>
-                    {/* Phone notch */}
-                    <div className="bg-[#1E293B] flex justify-center pt-1.5 pb-1">
-                      <div className="w-16 h-[5px] bg-[#0F172A] rounded-full" />
+                  <div className="rounded-[24px] overflow-hidden bg-white"
+                    style={{
+                      boxShadow: '0 24px 60px rgba(15,23,42,0.15), 0 6px 20px rgba(20,184,166,0.08), 0 0 0 1px rgba(226,232,240,0.6)',
+                      transform: 'perspective(900px) rotateY(4deg)',
+                    }}>
+                    {/* Dynamic Island */}
+                    <div className="bg-white flex justify-center pt-2 pb-1">
+                      <div className="w-14 h-[5px] bg-[#0F172A] rounded-full" />
                     </div>
 
-                    {/* Phone screen — animated lesson viewer */}
+                    {/* Screen content */}
                     <div className="bg-white">
-                      {/* Lesson header */}
-                      <div className="bg-gradient-to-r from-[#14B8A6] to-[#10B981] px-3 py-2.5">
-                        <div className="text-[7px] text-white/60 font-medium">Cubico Learn™</div>
-                        <div className="text-[10px] font-bold text-white">The Water Cycle</div>
-                        <div className="text-[7px] text-white/50">Biology • Grade 5</div>
+                      {/* Lesson header bar */}
+                      <div className="bg-gradient-to-r from-[#14B8A6] to-[#10B981] px-3 py-2">
+                        <div className="text-[6px] text-white/60 font-medium tracking-wide uppercase">Cubico Learn&trade;</div>
+                        <div className="text-[10px] font-bold text-white leading-tight">The Water Cycle</div>
+                        <div className="text-[6px] text-white/50 mt-0.5">Biology &middot; Grade 5 &middot; English</div>
                       </div>
 
-                      {/* Video area */}
-                      <div className="relative bg-gradient-to-b from-[#F0FDFA] to-[#ECFDF5] mx-2 mt-2 rounded-lg overflow-hidden" style={{ aspectRatio: '16/10' }}>
+                      {/* Video player area */}
+                      <div className="relative mx-2 mt-2 rounded-lg overflow-hidden bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5]" style={{ aspectRatio: '16/9' }}>
+                        {/* Decorative clouds/rain for water cycle */}
+                        <div className="absolute top-3 left-3 flex gap-1 opacity-40">
+                          <div className="w-5 h-2.5 bg-[#14B8A6]/30 rounded-full" />
+                          <div className="w-3 h-2 bg-[#10B981]/20 rounded-full mt-0.5" />
+                        </div>
+                        <div className="absolute bottom-6 right-3 w-6 h-3 bg-[#14B8A6]/15 rounded-full" />
+                        {/* Play button */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center">
+                          <div className="w-8 h-8 rounded-full bg-white/90 shadow-md flex items-center justify-center backdrop-blur-sm">
                             <Play size={10} className="text-[#14B8A6] ml-0.5" />
                           </div>
                         </div>
-                        {/* Fake clouds/rain illustration */}
-                        <div className="absolute top-2 left-2">
-                          <div className="w-6 h-3 bg-white/80 rounded-full" />
-                          <div className="w-4 h-2 bg-white/60 rounded-full -mt-1 ml-1" />
-                        </div>
-                        <div className="absolute bottom-2 left-3 right-3">
+                        {/* Progress bar */}
+                        <div className="absolute bottom-1.5 left-2.5 right-2.5">
                           <div className="w-full bg-white/40 rounded-full h-[3px]">
-                            <div className="w-[45%] h-full bg-[#14B8A6] rounded-full" />
+                            <div className="w-[42%] h-full bg-[#14B8A6] rounded-full" />
                           </div>
                           <div className="flex justify-between mt-0.5">
                             <span className="text-[5px] text-[#64748B]">2:14</span>
@@ -603,57 +574,75 @@ export default function HomePage() {
                       </div>
 
                       {/* Chapter list */}
-                      <div className="px-2 py-2 space-y-1">
+                      <div className="px-2 py-1.5 space-y-0.5">
                         {[
                           { ch: '1', title: 'Evaporation', done: true },
                           { ch: '2', title: 'Condensation', done: true },
-                          { ch: '3', title: 'Precipitation', done: false, current: true },
+                          { ch: '3', title: 'Precipitation', done: false, now: true },
                           { ch: '4', title: 'Collection', done: false },
                         ].map((l, li) => (
-                          <div key={li} className={`flex items-center gap-1.5 px-2 py-1.5 rounded-lg text-[8px] ${
-                            l.current ? 'bg-[#F0FDFA] border border-[#14B8A6]/20' : 'bg-[#F8FAFC]'
+                          <div key={li} className={`flex items-center gap-1.5 px-1.5 py-1 rounded-md text-[7px] ${
+                            l.now ? 'bg-[#F0FDFA] border border-[#14B8A6]/15' : ''
                           }`}>
                             {l.done ? (
-                              <div className="w-3.5 h-3.5 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
-                                <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                              <div className="w-3 h-3 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
+                                <svg className="w-1.5 h-1.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                               </div>
                             ) : (
-                              <div className={`w-3.5 h-3.5 rounded-full border-2 flex-shrink-0 ${l.current ? 'border-[#14B8A6]' : 'border-[#E2E8F0]'}`} />
+                              <div className={`w-3 h-3 rounded-full border-[1.5px] flex-shrink-0 ${l.now ? 'border-[#14B8A6]' : 'border-[#E2E8F0]'}`} />
                             )}
-                            <span className={`font-medium ${l.done ? 'text-[#94A3B8] line-through' : l.current ? 'text-[#0D9488]' : 'text-[#64748B]'}`}>
-                              Ch {l.ch}: {l.title}
+                            <span className={`font-medium ${l.done ? 'text-[#CBD5E1] line-through' : l.now ? 'text-[#0D9488]' : 'text-[#94A3B8]'}`}>
+                              {l.ch}. {l.title}
                             </span>
-                            {l.current && <span className="ml-auto text-[5px] bg-[#14B8A6] text-white px-1 py-0.5 rounded font-bold">NOW</span>}
+                            {l.now && <span className="ml-auto text-[5px] bg-[#14B8A6] text-white px-1 py-[1px] rounded font-bold">NOW</span>}
                           </div>
                         ))}
                       </div>
 
-                      {/* Bottom nav */}
-                      <div className="border-t border-[#E2E8F0] px-3 py-2 flex justify-around">
-                        {['📚', '🎬', '📊', '👤'].map((icon, ii) => (
-                          <span key={ii} className={`text-[12px] ${ii === 1 ? 'opacity-100' : 'opacity-40'}`}>{icon}</span>
+                      {/* Bottom tab bar */}
+                      <div className="border-t border-[#F1F5F9] px-2 py-1.5 flex justify-around">
+                        {[
+                          { icon: BookOpen, active: false },
+                          { icon: Film, active: true },
+                          { icon: BarChart3, active: false },
+                          { icon: Users, active: false },
+                        ].map((tab, ti) => (
+                          <tab.icon key={ti} size={11} className={tab.active ? 'text-[#14B8A6]' : 'text-[#CBD5E1]'} />
                         ))}
                       </div>
                     </div>
 
                     {/* Home indicator */}
-                    <div className="bg-[#1E293B] flex justify-center py-1.5">
-                      <div className="w-10 h-1 bg-white/20 rounded-full" />
+                    <div className="bg-white flex justify-center py-1">
+                      <div className="w-9 h-[3px] bg-[#0F172A]/15 rounded-full" />
                     </div>
                   </div>
                 </motion.div>
 
-                {/* Floating badge — "Live: 85K+ learners" */}
+                {/* Floating badge — live learners count */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ delay: 0.9, type: 'spring', stiffness: 260, damping: 20 }}
-                  className="absolute -top-3 -right-2 md:right-2 z-20 bg-white rounded-2xl px-3.5 py-2 shadow-lg border border-[#E2E8F0] flex items-center gap-2"
-                  style={{ animation: 'float 6s ease-in-out infinite' }}
+                  className="absolute -top-2 right-0 md:right-4 z-20 bg-white rounded-2xl px-3.5 py-2 shadow-md border border-[#E2E8F0] flex items-center gap-2"
+                  style={{ animation: 'float 7s ease-in-out infinite' }}
                 >
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[11px] font-bold text-[#0F172A]">85K+</span>
+                  <div className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+                  <span className="text-[11px] font-extrabold text-[#0F172A]">85K+</span>
                   <span className="text-[10px] text-[#64748B]">{t('active learners', 'متعلم نشط')}</span>
+                </motion.div>
+
+                {/* Floating badge — schools count */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: 1.1, type: 'spring', stiffness: 260, damping: 20 }}
+                  className="absolute top-[45%] -right-2 md:right-0 z-20 bg-white rounded-2xl px-3 py-1.5 shadow-md border border-[#E2E8F0] flex items-center gap-1.5"
+                  style={{ animation: 'float 8s ease-in-out 1s infinite' }}
+                >
+                  <Shield size={11} className="text-[#14B8A6]" />
+                  <span className="text-[10px] font-bold text-[#0F172A]">760+</span>
+                  <span className="text-[9px] text-[#64748B]">{t('schools', 'مدرسة')}</span>
                 </motion.div>
 
               </div>
@@ -661,7 +650,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ── Bottom fade to next section ── */}
+        {/* Bottom gradient fade */}
         <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
           style={{ background: 'linear-gradient(to bottom, transparent, #F8FAFC)' }} />
       </section>
