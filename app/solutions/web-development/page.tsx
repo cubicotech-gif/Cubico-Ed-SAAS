@@ -90,7 +90,7 @@ function BrowserMockup({ scale = 'full' }: { scale?: 'full' | 'tablet' | 'mobile
       {/* Nav Bar */}
       <div className={`flex items-center justify-between bg-white border-b border-gray-100 ${isMobile ? 'px-2 py-1.5' : 'px-3 py-2'}`}>
         <div className="flex items-center gap-1.5">
-          <div className={`rounded-full bg-[#D4711A] ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
+          <div className={`rounded-full bg-[#E8634A] ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} />
           <span className={`font-bold text-gray-800 ${isMobile ? 'text-[6px]' : isTablet ? 'text-[7px]' : 'text-[9px]'}`}>
             Greenfield Academy
           </span>
@@ -114,7 +114,7 @@ function BrowserMockup({ scale = 'full' }: { scale?: 'full' | 'tablet' | 'mobile
       {/* Hero Banner */}
       <div
         className={`relative ${isMobile ? 'py-3 px-2' : isTablet ? 'py-4 px-3' : 'py-6 px-4'}`}
-        style={{ background: 'linear-gradient(135deg, #D4711A 0%, #E88C32 50%, #F4A261 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #E8634A 0%, #E8634A 50%, #F4A261 100%)' }}
       >
         <div className={`font-bold text-white leading-tight ${isMobile ? 'text-[7px]' : isTablet ? 'text-[8px]' : 'text-[11px]'}`}>
           Shaping Tomorrow&apos;s Leaders
@@ -123,7 +123,7 @@ function BrowserMockup({ scale = 'full' }: { scale?: 'full' | 'tablet' | 'mobile
           World-class education for every child
         </div>
         <div
-          className={`mt-1.5 inline-block rounded-full text-[#D4711A] font-semibold bg-white ${isMobile ? 'text-[4px] px-1.5 py-0.5' : isTablet ? 'text-[5px] px-2 py-0.5' : 'text-[6px] px-2.5 py-1'}`}
+          className={`mt-1.5 inline-block rounded-full text-[#E8634A] font-semibold bg-white ${isMobile ? 'text-[4px] px-1.5 py-0.5' : isTablet ? 'text-[5px] px-2 py-0.5' : 'text-[6px] px-2.5 py-1'}`}
         >
           Enroll Now
         </div>
@@ -138,7 +138,7 @@ function BrowserMockup({ scale = 'full' }: { scale?: 'full' | 'tablet' | 'mobile
                 <div
                   className="w-3 h-3 rounded-sm mb-1"
                   style={{
-                    backgroundColor: ['#D4711A', '#10B981', '#6366F1', '#F59E0B', '#EF4444', '#06B6D4'][idx % 6] + '20',
+                    backgroundColor: ['#E8634A', '#10B981', '#6366F1', '#F59E0B', '#EF4444', '#06B6D4'][idx % 6] + '20',
                   }}
                 />
                 <div className={`font-semibold text-gray-700 ${isMobile ? 'text-[5px]' : 'text-[6px]'}`}>{card}</div>
@@ -404,7 +404,7 @@ export default function WebDevelopmentPage() {
 
   const performanceMetrics = [
     { label: t('Page Speed', 'سرعة الصفحة'), score: 98, color: '#10B981' },
-    { label: t('SEO Score', 'نتيجة SEO'), score: 95, color: '#D4711A' },
+    { label: t('SEO Score', 'نتيجة SEO'), score: 95, color: '#E8634A' },
     { label: t('Accessibility', 'إمكانية الوصول'), score: 100, color: '#6366F1' },
     { label: t('Best Practices', 'أفضل الممارسات'), score: 98, color: '#06B6D4' },
   ];
@@ -419,8 +419,8 @@ export default function WebDevelopmentPage() {
       <section className="pt-36 pb-28 section-dark relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4711A]/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#8B4513]/5 rounded-full blur-[100px]" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#E8634A]/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#D14F38]/5 rounded-full blur-[100px]" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-30" />
 
@@ -541,7 +541,7 @@ export default function WebDevelopmentPage() {
                 <div className="icon-box mb-5">
                   <service.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-[#2A1E14] mb-3 group-hover:text-[#D4711A] transition-colors">
+                <h3 className="text-xl font-bold text-[#2A1E14] mb-3 group-hover:text-[#E8634A] transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-[#6A5A48] text-sm leading-relaxed">
@@ -558,7 +558,7 @@ export default function WebDevelopmentPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#D4711A]/5 rounded-full blur-[120px] -translate-y-1/2" />
+          <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#E8634A]/5 rounded-full blur-[120px] -translate-y-1/2" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-20" />
 
@@ -592,7 +592,7 @@ export default function WebDevelopmentPage() {
             {techStack.map((tech, i) => (
               <motion.div
                 key={tech.name}
-                className="group relative bg-[#1E1408] border border-[#2A1A0C] rounded-2xl p-5 hover:border-[#D4711A]/30 transition-all duration-300"
+                className="group relative bg-[#1E1408] border border-[#2A1A0C] rounded-2xl p-5 hover:border-[#E8634A]/30 transition-all duration-300"
                 variants={scaleIn}
                 whileHover={{ y: -4, scale: 1.02 }}
               >
@@ -657,7 +657,7 @@ export default function WebDevelopmentPage() {
               custom={0}
             >
               <div className="flex items-center gap-2 mb-3 justify-center">
-                <Monitor className="w-4 h-4 text-[#D4711A]" />
+                <Monitor className="w-4 h-4 text-[#E8634A]" />
                 <span className="text-sm font-semibold text-[#2A1E14]">{t('Desktop', 'سطح المكتب')}</span>
               </div>
               <DesktopFrame />
@@ -670,7 +670,7 @@ export default function WebDevelopmentPage() {
               custom={1}
             >
               <div className="flex items-center gap-2 mb-3 justify-center">
-                <Tablet className="w-4 h-4 text-[#D4711A]" />
+                <Tablet className="w-4 h-4 text-[#E8634A]" />
                 <span className="text-sm font-semibold text-[#2A1E14]">{t('Tablet', 'جهاز لوحي')}</span>
               </div>
               <TabletFrame />
@@ -683,7 +683,7 @@ export default function WebDevelopmentPage() {
               custom={2}
             >
               <div className="flex items-center gap-2 mb-3 justify-center">
-                <Smartphone className="w-4 h-4 text-[#D4711A]" />
+                <Smartphone className="w-4 h-4 text-[#E8634A]" />
                 <span className="text-sm font-semibold text-[#2A1E14]">{t('Mobile', 'الهاتف')}</span>
               </div>
               <PhoneFrame />
@@ -697,7 +697,7 @@ export default function WebDevelopmentPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#D4711A]/5 rounded-full blur-[140px]" />
+          <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#E8634A]/5 rounded-full blur-[140px]" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-20" />
 
@@ -762,7 +762,7 @@ export default function WebDevelopmentPage() {
           {/* Timeline */}
           <div className="relative">
             {/* Connecting line */}
-            <div className="hidden lg:block absolute top-16 left-0 right-0 h-[2px] bg-gradient-to-r from-[#D4711A]/20 via-[#D4711A] to-[#D4711A]/20" />
+            <div className="hidden lg:block absolute top-16 left-0 right-0 h-[2px] bg-gradient-to-r from-[#E8634A]/20 via-[#E8634A] to-[#E8634A]/20" />
 
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-4"
@@ -779,12 +779,12 @@ export default function WebDevelopmentPage() {
                   custom={i}
                 >
                   {/* Circle node */}
-                  <div className="relative z-10 w-14 h-14 mx-auto rounded-full bg-white border-[3px] border-[#D4711A] flex items-center justify-center shadow-lg shadow-[#D4711A]/10 mb-6">
-                    <step.icon className="w-6 h-6 text-[#D4711A]" />
+                  <div className="relative z-10 w-14 h-14 mx-auto rounded-full bg-white border-[3px] border-[#E8634A] flex items-center justify-center shadow-lg shadow-[#E8634A]/10 mb-6">
+                    <step.icon className="w-6 h-6 text-[#E8634A]" />
                   </div>
 
                   {/* Phase number */}
-                  <div className="text-xs font-bold text-[#D4711A] mb-1 tracking-wider uppercase">
+                  <div className="text-xs font-bold text-[#E8634A] mb-1 tracking-wider uppercase">
                     {t(`Phase ${i + 1}`, `المرحلة ${i + 1}`)}
                   </div>
 
@@ -798,7 +798,7 @@ export default function WebDevelopmentPage() {
                   {/* Arrow between steps (visible on lg) */}
                   {i < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-[3.4rem] -right-4 z-20">
-                      <ChevronRight className="w-5 h-5 text-[#D4711A] rtl:rotate-180" />
+                      <ChevronRight className="w-5 h-5 text-[#E8634A] rtl:rotate-180" />
                     </div>
                   )}
                 </motion.div>
@@ -813,7 +813,7 @@ export default function WebDevelopmentPage() {
           ══════════════════════════════════════════════ */}
       <section id="portfolio" className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-[#D4711A]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-[#E8634A]/5 rounded-full blur-[120px]" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-20" />
 
@@ -847,7 +847,7 @@ export default function WebDevelopmentPage() {
             {portfolioProjects.map((project, i) => (
               <motion.div
                 key={project.name}
-                className="group bg-[#1E1408] border border-[#2A1A0C] rounded-2xl overflow-hidden hover:border-[#D4711A]/30 transition-all duration-300"
+                className="group bg-[#1E1408] border border-[#2A1A0C] rounded-2xl overflow-hidden hover:border-[#E8634A]/30 transition-all duration-300"
                 variants={scaleIn}
                 whileHover={{ y: -4 }}
               >
@@ -859,13 +859,13 @@ export default function WebDevelopmentPage() {
                 {/* Info */}
                 <div className="p-5 flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-bold text-white group-hover:text-[#D4711A] transition-colors">
+                    <h3 className="text-lg font-bold text-white group-hover:text-[#E8634A] transition-colors">
                       {project.name}
                     </h3>
                     <p className="text-sm text-[#8E7A65]">{project.type}</p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-[#2A1A0C] flex items-center justify-center group-hover:bg-[#D4711A]/20 transition-colors">
-                    <ExternalLink className="w-4 h-4 text-[#8E7A65] group-hover:text-[#D4711A] transition-colors" />
+                  <div className="w-10 h-10 rounded-full bg-[#2A1A0C] flex items-center justify-center group-hover:bg-[#E8634A]/20 transition-colors">
+                    <ExternalLink className="w-4 h-4 text-[#8E7A65] group-hover:text-[#E8634A] transition-colors" />
                   </div>
                 </div>
               </motion.div>
@@ -877,7 +877,7 @@ export default function WebDevelopmentPage() {
       {/* ══════════════════════════════════════════════
           SECTION 8: STATS BAR
           ══════════════════════════════════════════════ */}
-      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #D4711A 0%, #8B4513 100%)' }}>
+      <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #E8634A 0%, #D14F38 100%)' }}>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz48L3N2Zz4=')] opacity-50" />
 
         <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -925,7 +925,7 @@ export default function WebDevelopmentPage() {
             <span className="section-label inline-block mb-6">{t('Testimonial', 'شهادة عميل')}</span>
 
             <div className="relative">
-              <Quote className="w-12 h-12 text-[#D4711A]/20 mx-auto mb-6" />
+              <Quote className="w-12 h-12 text-[#E8634A]/20 mx-auto mb-6" />
 
               <blockquote className="text-2xl sm:text-3xl font-medium text-[#2A1E14] leading-relaxed mb-8" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                 {t(
@@ -935,7 +935,7 @@ export default function WebDevelopmentPage() {
               </blockquote>
 
               <div className="flex items-center justify-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center text-white font-bold text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center text-white font-bold text-lg" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                   SA
                 </div>
                 <div className="text-left rtl:text-right">
@@ -949,7 +949,7 @@ export default function WebDevelopmentPage() {
               {/* Star rating */}
               <div className="flex items-center justify-center gap-1 mt-6">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-[#D4711A] fill-[#D4711A]" />
+                  <Star key={i} className="w-5 h-5 text-[#E8634A] fill-[#E8634A]" />
                 ))}
               </div>
             </div>
@@ -962,7 +962,7 @@ export default function WebDevelopmentPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4711A]/8 rounded-full blur-[160px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/8 rounded-full blur-[160px]" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-20" />
 
@@ -1007,7 +1007,7 @@ export default function WebDevelopmentPage() {
                 { icon: Clock, text: t('24/7 Support', 'دعم على مدار الساعة') },
               ].map((badge) => (
                 <div key={badge.text} className="flex items-center gap-2 text-[#8E7A65]">
-                  <badge.icon className="w-4 h-4 text-[#D4711A]" />
+                  <badge.icon className="w-4 h-4 text-[#E8634A]" />
                   <span className="text-sm">{badge.text}</span>
                 </div>
               ))}
