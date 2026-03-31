@@ -139,6 +139,7 @@ function StatCounter({ value, suffix, label, color = '#14B8A6' }: { value: numbe
    ═══════════════════════════════════════════ */
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showFloatingCta, setShowFloatingCta] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -150,6 +151,13 @@ export default function HomePage() {
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const { t } = useLanguage();
+
+  /* ── Floating CTA: show after scrolling past hero ── */
+  useEffect(() => {
+    const onScroll = () => setShowFloatingCta(window.scrollY > 600);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   /* ── Testimonials data (region-segmented) ── */
   const testimonials = [
@@ -647,10 +655,38 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Animated scroll cue — pulls the eye down */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        >
+          <span className="text-[11px] font-semibold text-[#64748B] tracking-wider uppercase">{t('Scroll to explore', 'مرر للاستكشاف')}</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <ChevronDown size={20} className="text-[#14B8A6]" />
+          </motion.div>
+        </motion.div>
+
         {/* Bottom gradient fade */}
         <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, #F8FAFC)' }} />
+          style={{ background: 'linear-gradient(to bottom, transparent, white)' }} />
       </section>
+
+      {/* ═══════ BRIDGE LINE: Hero → Cards ═══════ */}
+      <div className="py-10 bg-white text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-[#94A3B8] text-sm font-semibold tracking-wide"
+        >
+          {t('760 schools already made the switch. Here\'s why', '760 مدرسة انتقلت بالفعل. إليك السبب')} <span className="text-[#14B8A6]">&darr;</span>
+        </motion.p>
+      </div>
 
       {/* ═══════════════════════════════════════════════════════════
          ROLE-BASED WAYFINDING — Emotional & Visual Centerpiece
@@ -1033,6 +1069,18 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ═══════ BRIDGE LINE: Cards → How It Works ═══════ */}
+      <div className="py-10 bg-white text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-[#94A3B8] text-sm font-semibold tracking-wide"
+        >
+          {t('Getting started is easier than you think', 'البدء أسهل مما تعتقد')} <span className="text-[#14B8A6]">&darr;</span>
+        </motion.p>
+      </div>
+
       {/* ═══════════════════════════════════════════════════════════
          HOW IT WORKS — 3-step process bridge
          Psychology: Reduces uncertainty. Visitor knows exactly
@@ -1124,157 +1172,172 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-         SOCIAL PROOF — Testimonials (region-segmented) + Partners
-         Psychology: Trust transfer from peer institutions.
-         Photo avatars + location chips for credibility.
-         ═══════════════════════════════════════════════════════════ */}
-      <section id="testimonials" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="text-center mb-16"
-          >
-            <motion.div variants={fadeUp} custom={0} className="mb-4">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
-                {t('Real Stories', 'قصص حقيقية')}
-              </span>
-            </motion.div>
-            <motion.h2
-              variants={fadeUp}
-              custom={1}
-              className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] mb-4"
-            >
-              {t('Don\'t take our word for it. ', 'لا تأخذ كلامنا. ')}<span className="shimmer-text">{t('Ask them.', 'اسألهم.')}</span>
-            </motion.h2>
-            <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <span className="text-[#64748B] text-sm font-medium">{t('4.9/5 from 760+ principals', '4.9/5 من أكثر من 760 مدير')}</span>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {testimonials.map((testimonial, i) => {
-              const gradients = [
-                'linear-gradient(135deg,#14B8A6,#10B981)',
-                'linear-gradient(135deg,#0D9488,#14B8A6)',
-                'linear-gradient(135deg,#0F766E,#0D9488)',
-              ];
-              const chips = [
-                { bg: 'rgba(20,184,166,0.08)', fg: '#14B8A6' },
-                { bg: 'rgba(16,185,129,0.08)', fg: '#10B981' },
-                { bg: 'rgba(13,148,136,0.08)', fg: '#0D9488' },
-              ];
-              return (
-                <motion.div key={testimonial.name} variants={fadeUp} custom={i}
-                  whileHover={{ y: -6, scale: 1.01 }}
-                  transition={{ type: 'spring', stiffness: 250, damping: 25 }}
-                  className="relative rounded-2xl bg-white border border-gray-100 p-8 overflow-hidden shadow-sm hover:shadow-2xl cursor-default"
-                >
-                  {/* Decorative quote */}
-                  <div className="absolute -top-3 -left-1 leading-none select-none pointer-events-none text-gray-100"
-                    style={{ fontSize: '6.5rem', fontFamily: 'Georgia,serif', lineHeight: 1 }}>&ldquo;</div>
-                  {/* Stars */}
-                  <div className="flex items-center gap-1 mb-4 relative">
-                    {[...Array(testimonial.rating)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                    <span className="ml-auto text-[9px] font-bold text-gray-300 tracking-wider">{t('VERIFIED', 'موثّق')}</span>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed mb-6 text-sm relative">&ldquo;{testimonial.text}&rdquo;</p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                    <div className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
-                      style={{ background: gradients[i] }}>
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-[#0F172A] text-sm truncate">{testimonial.name}</h4>
-                      <p className="text-xs text-[#64748B]">{testimonial.role}, {testimonial.company}</p>
-                    </div>
-                    <div className="text-xs font-semibold px-2.5 py-1 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: chips[i].bg, color: chips[i].fg }}>
-                      {testimonial.location}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════ PARTNER LOGOS MARQUEE ═══════════ */}
-      <section className="py-14 bg-white border-y border-gray-100 overflow-hidden relative">
-        <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg,white 0%,transparent 100%)' }} />
-        <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(270deg,white 0%,transparent 100%)' }} />
-        <p className="text-center text-[10px] font-bold text-gray-300 tracking-[0.22em] uppercase mb-6">
-          {t('Trusted by institutions across 3 countries', 'موثوق من قبل مؤسسات في 3 دول')}
-        </p>
-        <div className="flex animate-marquee-slow" style={{ width: 'max-content' }}>
-          {[...partners, ...partners, ...partners, ...partners].map((name, i) => (
-            <div key={i} className="flex-shrink-0 mx-4 flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-100 bg-gray-50 cursor-default hover:border-[#14B8A6]/30 hover:bg-[#14B8A6]/5 transition-all group">
-              <div className="w-2 h-2 rounded-full bg-[#14B8A6]/25 group-hover:bg-[#14B8A6]/60 transition-colors" />
-              <span className="text-gray-400 font-heading font-bold text-sm whitespace-nowrap group-hover:text-[#14B8A6] transition-colors">
-                {name}
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ═══════ BRIDGE LINE: How it works → Social Proof ═══════ */}
+      <div className="py-10 bg-[#F8FAFC] text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-[#94A3B8] text-sm font-semibold tracking-wide"
+        >
+          {t('But don\'t take our word for it', 'لكن لا تأخذ كلامنا فقط')} <span className="text-[#14B8A6]">&darr;</span>
+        </motion.p>
+      </div>
 
       {/* ═══════════════════════════════════════════════════════════
-         STATS SECTION — Dark overlay with animated counters
+         DARK SOCIAL PROOF — Testimonials + Stats + Partners
+         Psychology: Dark = premium. Pattern interrupt re-engages
+         scrollers. All proof concentrated = overwhelming trust.
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-20 relative overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=2560&q=80"
-          alt="Books and education background"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-[#020617]/92" />
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
+      <section id="testimonials" className="relative overflow-hidden">
+        {/* Dark background with subtle texture */}
+        <div className="absolute inset-0 bg-[#0B1120]" />
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-72 h-72 bg-[#14B8A6]/12 rounded-full filter blur-[110px] animate-float" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#10B981]/10 rounded-full filter blur-[110px] animate-float2" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#14B8A6]/8 rounded-full filter blur-[140px] animate-float" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#10B981]/6 rounded-full filter blur-[140px] animate-float2" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
-            {stats.map((stat, i) => (
-              <motion.div key={stat.label} variants={fadeUp} custom={i}>
-                <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label}
-                  color={['#14B8A6', '#10B981', '#2DD4BF', '#34D399'][i]} />
+
+        {/* ── Stats Row ── */}
+        <div className="relative py-16 border-b border-white/5">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            >
+              {stats.map((stat, i) => (
+                <motion.div key={stat.label} variants={fadeUp} custom={i}>
+                  <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label}
+                    color={['#14B8A6', '#10B981', '#2DD4BF', '#34D399'][i]} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ── Testimonials ── */}
+        <div className="relative py-20 lg:py-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="text-center mb-14"
+            >
+              <motion.div variants={fadeUp} custom={0} className="mb-4">
+                <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#14B8A6]/20 bg-[#14B8A6]/10 text-[#2DD4BF]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse" />
+                  {t('Real Stories', 'قصص حقيقية')}
+                </span>
               </motion.div>
+              <motion.h2
+                variants={fadeUp}
+                custom={1}
+                className="text-3xl md:text-4xl font-heading font-extrabold text-white mb-4"
+              >
+                {t('Don\'t take our word for it. ', 'لا تأخذ كلامنا. ')}<span className="shimmer-text">{t('Ask them.', 'اسألهم.')}</span>
+              </motion.h2>
+              <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <span className="text-white/50 text-sm font-medium">{t('4.9/5 from 760+ principals', '4.9/5 من أكثر من 760 مدير')}</span>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="grid md:grid-cols-3 gap-6"
+            >
+              {testimonials.map((testimonial, i) => {
+                const gradients = [
+                  'linear-gradient(135deg,#14B8A6,#10B981)',
+                  'linear-gradient(135deg,#0D9488,#14B8A6)',
+                  'linear-gradient(135deg,#0F766E,#0D9488)',
+                ];
+                return (
+                  <motion.div key={testimonial.name} variants={fadeUp} custom={i}
+                    whileHover={{ y: -6, scale: 1.01 }}
+                    transition={{ type: 'spring', stiffness: 250, damping: 25 }}
+                    className="relative rounded-2xl bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] p-7 overflow-hidden hover:bg-white/[0.07] hover:border-white/[0.12] transition-all cursor-default"
+                  >
+                    {/* Decorative quote */}
+                    <div className="absolute -top-3 -left-1 leading-none select-none pointer-events-none text-white/[0.04]"
+                      style={{ fontSize: '6.5rem', fontFamily: 'Georgia,serif', lineHeight: 1 }}>&ldquo;</div>
+                    {/* Stars */}
+                    <div className="flex items-center gap-1 mb-4 relative">
+                      {[...Array(testimonial.rating)].map((_, j) => (
+                        <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
+                      <span className="ml-auto text-[9px] font-bold text-white/20 tracking-wider">{t('VERIFIED', 'موثّق')}</span>
+                    </div>
+                    <p className="text-white/70 leading-relaxed mb-6 text-sm relative">&ldquo;{testimonial.text}&rdquo;</p>
+                    <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                        style={{ background: gradients[i] }}>
+                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-white text-sm truncate">{testimonial.name}</h4>
+                        <p className="text-xs text-white/40">{testimonial.role}, {testimonial.company}</p>
+                      </div>
+                      <div className="text-[10px] font-semibold px-2.5 py-1 rounded-full flex-shrink-0 bg-[#14B8A6]/10 text-[#2DD4BF]">
+                        {testimonial.location}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* ── Partner Logos Marquee ── */}
+        <div className="relative py-12 border-t border-white/5 overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(90deg, #0B1120 0%, transparent 100%)' }} />
+          <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(270deg, #0B1120 0%, transparent 100%)' }} />
+          <p className="text-center text-[10px] font-bold text-white/15 tracking-[0.22em] uppercase mb-6">
+            {t('Trusted by institutions across 3 countries', 'موثوق من قبل مؤسسات في 3 دول')}
+          </p>
+          <div className="flex animate-marquee-slow" style={{ width: 'max-content' }}>
+            {[...partners, ...partners, ...partners, ...partners].map((name, i) => (
+              <div key={i} className="flex-shrink-0 mx-4 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/[0.06] bg-white/[0.02] cursor-default hover:border-[#14B8A6]/30 hover:bg-[#14B8A6]/5 transition-all group">
+                <div className="w-2 h-2 rounded-full bg-[#14B8A6]/30 group-hover:bg-[#14B8A6]/70 transition-colors" />
+                <span className="text-white/25 font-heading font-bold text-sm whitespace-nowrap group-hover:text-[#14B8A6] transition-colors">
+                  {name}
+                </span>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
+
+      {/* ═══════ BRIDGE LINE: Proof → CTA ═══════ */}
+      <div className="py-10 bg-[#F8FAFC] text-center">
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-[#94A3B8] text-sm font-semibold tracking-wide"
+        >
+          {t('Ready to see it yourself?', 'مستعد لتراه بنفسك؟')} <span className="text-[#14B8A6]">&darr;</span>
+        </motion.p>
+      </div>
 
       {/* ═══════════════════════════════════════════════════════════
          CTA + DEMO FORM SECTION
-         Psychology: Strong demo push with value-stacking checklist.
+         Psychology: Low-pressure + urgency. Scarcity drives action.
          ═══════════════════════════════════════════════════════════ */}
       <section id="contact" className="py-24 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -1326,10 +1389,18 @@ export default function HomePage() {
                   </motion.div>
                 ))}
               </motion.div>
-              <motion.div variants={fadeUp} custom={4}
-                className="flex items-center gap-3 p-4 rounded-2xl border bg-teal-50/50 border-[#14B8A6]/15">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
-                <span className="text-sm font-semibold text-gray-700">{t('We respond within', 'نرد خلال')} <span className="text-[#14B8A6] font-bold">{t('24 hours', '24 ساعة')}</span>{t(', guaranteed.', '، مضمون.')}</span>
+              {/* Urgency + response guarantee */}
+              <motion.div variants={fadeUp} custom={4} className="space-y-3">
+                <div className="flex items-center gap-3 p-4 rounded-2xl border bg-amber-50/60 border-amber-200/40">
+                  <span className="text-lg flex-shrink-0">&#9200;</span>
+                  <span className="text-sm font-semibold text-gray-700">
+                    {t('Only', 'فقط')} <span className="text-amber-600 font-bold">{t('6 onboarding slots', '6 أماكن إعداد')}</span> {t('left for Q2 2026', 'متبقية للربع الثاني 2026')}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3 p-4 rounded-2xl border bg-teal-50/50 border-[#14B8A6]/15">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
+                  <span className="text-sm font-semibold text-gray-700">{t('We respond within', 'نرد خلال')} <span className="text-[#14B8A6] font-bold">{t('24 hours', '24 ساعة')}</span>{t(', guaranteed.', '، مضمون.')}</span>
+                </div>
               </motion.div>
             </motion.div>
 
@@ -1518,6 +1589,35 @@ export default function HomePage() {
 
       {/* ═══════════ FOOTER ═══════════ */}
       <Footer />
+
+      {/* ═══════════ FLOATING CTA BAR ═══════════
+         Appears after scrolling past hero. Always-visible action.
+         Psychology: Removes friction — CTA follows the visitor. */}
+      <AnimatePresence>
+        {showFloatingCta && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="fixed bottom-0 left-0 right-0 z-50 md:bottom-6 md:left-auto md:right-6 md:w-auto"
+          >
+            <div className="bg-[#0B1120]/95 backdrop-blur-xl border-t border-white/10 md:border md:rounded-2xl px-5 py-3.5 flex items-center gap-4 md:shadow-2xl">
+              <div className="hidden sm:block">
+                <p className="text-white text-sm font-bold">{t('Ready to transform your school?', 'مستعد لتحويل مدرستك؟')}</p>
+                <p className="text-white/40 text-xs">{t('Free 30-min call. No commitment.', 'اتصال مجاني 30 دقيقة. بدون التزام.')}</p>
+              </div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-teal-500/25 hover:shadow-xl hover:scale-[1.03] active:scale-[0.98] transition-all whitespace-nowrap"
+              >
+                {t('Book Free Call', 'احجز اتصالاً مجانياً')}
+                <ArrowRight size={15} className="rtl:rotate-180" />
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
