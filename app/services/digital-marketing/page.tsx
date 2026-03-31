@@ -125,7 +125,7 @@ function HeroDashboardMockup() {
       {/* Top bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#D4711A]" />
+          <div className="w-3 h-3 rounded-full bg-[#E8634A]" />
           <span className="text-[10px] font-semibold text-white">{t('Marketing Dashboard', 'لوحة التسويق')}</span>
         </div>
         <div className="flex gap-1.5">
@@ -144,7 +144,7 @@ function HeroDashboardMockup() {
         ].map((m) => (
           <div key={m.label} className="bg-[#140E06] rounded-lg p-2.5">
             <div className="flex items-center justify-between mb-1">
-              <m.icon className="w-3 h-3 text-[#D4711A]" />
+              <m.icon className="w-3 h-3 text-[#E8634A]" />
               <span className="text-[7px] text-green-400 font-medium">{m.change}</span>
             </div>
             <div className="text-sm font-bold text-white" style={{ fontFamily: 'Clash Display, sans-serif' }}>{m.value}</div>
@@ -157,7 +157,7 @@ function HeroDashboardMockup() {
       <div className="bg-[#140E06] rounded-lg p-3 mb-3">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[8px] font-semibold text-white">{t('Enrollment Growth', 'نمو التسجيل')}</span>
-          <span className="text-[7px] text-[#D4711A]">{t('Last 12 months', 'آخر 12 شهراً')}</span>
+          <span className="text-[7px] text-[#E8634A]">{t('Last 12 months', 'آخر 12 شهراً')}</span>
         </div>
         <div className="flex items-end gap-1.5 h-16">
           {[30, 35, 28, 42, 50, 45, 58, 62, 55, 70, 78, 90].map((h, i) => (
@@ -165,7 +165,7 @@ function HeroDashboardMockup() {
               key={i}
               className="flex-1 rounded-t"
               style={{
-                background: i >= 10 ? '#D4711A' : i >= 8 ? '#C46218' : '#8B4513',
+                background: i >= 10 ? '#E8634A' : i >= 8 ? '#C46218' : '#D14F38',
                 height: `${h}%`,
               }}
               initial={{ height: 0 }}
@@ -214,7 +214,7 @@ function CampaignDashboardMockup() {
       {/* Dashboard header */}
       <div className="bg-[#0F0A04] px-5 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#D4711A]" />
+          <div className="w-3 h-3 rounded-full bg-[#E8634A]" />
           <span className="text-xs font-semibold text-white">{t('Cubico Campaign Manager', 'مدير حملات كيوبيكو')}</span>
         </div>
         <div className="flex gap-1.5">
@@ -235,7 +235,7 @@ function CampaignDashboardMockup() {
           ].map((m) => (
             <div key={m.label} className="bg-gray-50 rounded-xl p-3">
               <div className="flex items-center gap-1.5 mb-2">
-                <m.icon className="w-3.5 h-3.5 text-[#D4711A]" />
+                <m.icon className="w-3.5 h-3.5 text-[#E8634A]" />
                 <span className="text-[10px] text-gray-500">{m.label}</span>
               </div>
               <div className="text-lg font-bold text-gray-900" style={{ fontFamily: 'Clash Display, sans-serif' }}>{m.value}</div>
@@ -256,8 +256,8 @@ function CampaignDashboardMockup() {
               <span>{t('CPL', 'تكلفة العميل')}</span>
             </div>
             {[
-              { name: t('Spring Admissions 2025', 'قبول الربيع 2025'), status: t('Active', 'نشطة'), budget: '$4,500', spent: '$3,200', leads: 342, cpl: '$9.36', color: '#10B981' },
-              { name: t('Open Day Promotion', 'ترويج اليوم المفتوح'), status: t('Active', 'نشطة'), budget: '$1,200', spent: '$890', leads: 156, cpl: '$5.71', color: '#10B981' },
+              { name: t('Spring Admissions 2025', 'قبول الربيع 2025'), status: t('Active', 'نشطة'), budget: '$4,500', spent: '$3,200', leads: 342, cpl: '$9.36', color: '#E8634A' },
+              { name: t('Open Day Promotion', 'ترويج اليوم المفتوح'), status: t('Active', 'نشطة'), budget: '$1,200', spent: '$890', leads: 156, cpl: '$5.71', color: '#E8634A' },
               { name: t('Summer Camp Drive', 'حملة المخيم الصيفي'), status: t('Paused', 'متوقفة'), budget: '$2,000', spent: '$1,100', leads: 89, cpl: '$12.36', color: '#F59E0B' },
               { name: t('Fall Semester Launch', 'إطلاق الفصل الخريفي'), status: t('Completed', 'مكتملة'), budget: '$6,000', spent: '$5,980', leads: 520, cpl: '$11.50', color: '#6366F1' },
             ].map((c) => (
@@ -285,9 +285,9 @@ function CampaignDashboardMockup() {
             <div className="text-[10px] font-semibold text-gray-700 mb-2">{t('ROI by Channel', 'العائد على الاستثمار حسب القناة')}</div>
             <div className="space-y-2">
               {[
-                { channel: t('Google Ads', 'إعلانات جوجل'), roi: '4.2x', width: '84%', color: '#D4711A' },
+                { channel: t('Google Ads', 'إعلانات جوجل'), roi: '4.2x', width: '84%', color: '#E8634A' },
                 { channel: t('Meta Ads', 'إعلانات ميتا'), roi: '3.8x', width: '76%', color: '#1877F2' },
-                { channel: t('Email', 'البريد الإلكتروني'), roi: '6.1x', width: '100%', color: '#10B981' },
+                { channel: t('Email', 'البريد الإلكتروني'), roi: '6.1x', width: '100%', color: '#E8634A' },
                 { channel: t('SEO', 'تحسين محركات البحث'), roi: '5.5x', width: '90%', color: '#6366F1' },
               ].map((ch) => (
                 <div key={ch.channel}>
@@ -333,7 +333,7 @@ function CampaignDashboardMockup() {
                       <span className="text-[8px] font-semibold text-gray-800">{r.leads}</span>
                     </div>
                     <div className="h-1 bg-gray-200 rounded-full overflow-hidden mt-0.5">
-                      <div className="h-full rounded-full bg-[#D4711A]" style={{ width: `${r.pct}%`, opacity: 0.4 + (4 - i) * 0.15 }} />
+                      <div className="h-full rounded-full bg-[#E8634A]" style={{ width: `${r.pct}%`, opacity: 0.4 + (4 - i) * 0.15 }} />
                     </div>
                   </div>
                 </div>
@@ -355,7 +355,7 @@ function InstagramPostMockup() {
     <div className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden max-w-xs mx-auto">
       {/* Post header */}
       <div className="flex items-center gap-2 px-3 py-2.5">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center">
+        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center">
           <span className="text-[7px] font-bold text-white">GA</span>
         </div>
         <div>
@@ -365,14 +365,14 @@ function InstagramPostMockup() {
       </div>
 
       {/* Post image area */}
-      <div className="relative aspect-square bg-gradient-to-br from-[#D4711A] via-[#E88C32] to-[#F4A261] flex items-center justify-center">
+      <div className="relative aspect-square bg-gradient-to-br from-[#E8634A] via-[#E8634A] to-[#F4A261] flex items-center justify-center">
         <div className="text-center px-6">
           <div className="text-white/40 text-[10px] uppercase tracking-widest mb-2">{t('Now Enrolling', 'التسجيل مفتوح الآن')}</div>
           <div className="text-white font-bold text-xl leading-tight mb-2" style={{ fontFamily: 'Clash Display, sans-serif' }}>
             {t("Shape Your Child's Future", 'اصنع مستقبل طفلك')}
           </div>
           <div className="text-white/80 text-[10px] mb-3">{t('Classes starting September 2025', 'تبدأ الفصول في سبتمبر 2025')}</div>
-          <div className="inline-block bg-white text-[#D4711A] text-[9px] font-bold px-3 py-1.5 rounded-full">
+          <div className="inline-block bg-white text-[#E8634A] text-[9px] font-bold px-3 py-1.5 rounded-full">
             {t('Apply Now', 'قدّم الآن')}
           </div>
         </div>
@@ -425,7 +425,7 @@ function FacebookAdMockup() {
       {/* Ad image area */}
       <div className="relative aspect-video bg-gradient-to-br from-[#1a0f06] to-[#2A1A0C] flex items-center justify-center">
         <div className="text-center">
-          <GraduationCap className="w-8 h-8 text-[#D4711A] mx-auto mb-2" />
+          <GraduationCap className="w-8 h-8 text-[#E8634A] mx-auto mb-2" />
           <div className="text-white font-bold text-sm" style={{ fontFamily: 'Clash Display, sans-serif' }}>{t('Open Day', 'اليوم المفتوح')}</div>
           <div className="text-[#C8A888] text-[9px] mt-0.5">{t('Saturday, March 22 | 9 AM - 2 PM', 'السبت، 22 مارس | 9 صباحاً - 2 ظهراً')}</div>
         </div>
@@ -494,10 +494,10 @@ export default function DigitalMarketingPage() {
   ];
 
   const funnelStages = [
-    { stage: t('Awareness', 'الوعي'), count: '50,000', desc: t('Impressions & reach', 'مرات الظهور والوصول'), width: '100%', color: '#D4711A' },
+    { stage: t('Awareness', 'الوعي'), count: '50,000', desc: t('Impressions & reach', 'مرات الظهور والوصول'), width: '100%', color: '#E8634A' },
     { stage: t('Interest', 'الاهتمام'), count: '12,000', desc: t('Website visits', 'زيارات الموقع'), width: '80%', color: '#C46218' },
     { stage: t('Consideration', 'التفكير'), count: '3,500', desc: t('Inquiry forms', 'نماذج الاستفسار'), width: '60%', color: '#A85215' },
-    { stage: t('Application', 'التقديم'), count: '800', desc: t('Applications started', 'طلبات بدأت'), width: '40%', color: '#8B4513' },
+    { stage: t('Application', 'التقديم'), count: '800', desc: t('Applications started', 'طلبات بدأت'), width: '40%', color: '#D14F38' },
     { stage: t('Enrollment', 'التسجيل'), count: '450', desc: t('Students enrolled', 'طلاب مسجلون'), width: '25%', color: '#6B3410' },
   ];
 
@@ -525,8 +525,8 @@ export default function DigitalMarketingPage() {
           ============================================== */}
       <section className="pt-36 pb-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4711A]/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#8B4513]/5 rounded-full blur-[100px]" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#E8634A]/5 rounded-full blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#D14F38]/5 rounded-full blur-[100px]" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-30" />
 
@@ -627,9 +627,9 @@ export default function DigitalMarketingPage() {
             {services.map((s, i) => (
               <motion.div key={s.title} variants={fadeUp} custom={i} className="card-white group">
                 <div className="icon-box mb-5">
-                  <s.icon className="w-6 h-6 text-[#D4711A]" />
+                  <s.icon className="w-6 h-6 text-[#E8634A]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#2A1E14] mb-3 group-hover:text-[#D4711A] transition-colors" style={{ fontFamily: 'Clash Display, sans-serif' }}>
+                <h3 className="text-xl font-bold text-[#2A1E14] mb-3 group-hover:text-[#E8634A] transition-colors" style={{ fontFamily: 'Clash Display, sans-serif' }}>
                   {s.title}
                 </h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
@@ -644,7 +644,7 @@ export default function DigitalMarketingPage() {
           ============================================== */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4711A]/3 rounded-full blur-[200px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/3 rounded-full blur-[200px]" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-20" />
 
@@ -709,7 +709,7 @@ export default function DigitalMarketingPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
               >
-                <div className="text-[#D4711A] text-xs font-bold">{rate}</div>
+                <div className="text-[#E8634A] text-xs font-bold">{rate}</div>
                 <div className="text-[8px] text-[#8E7A65]">{t('conversion', 'تحويل')}</div>
               </motion.div>
             ))}
@@ -745,7 +745,7 @@ export default function DigitalMarketingPage() {
                   t('Automated budget optimization and bid management', 'تحسين تلقائي للميزانية وإدارة العروض'),
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#D4711A] mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-[#E8634A] mt-0.5 flex-shrink-0" />
                     <span className="text-gray-700 text-sm">{item}</span>
                   </div>
                 ))}
@@ -876,8 +876,8 @@ export default function DigitalMarketingPage() {
             viewport={{ once: true }}
           >
             {[
-              { label: t('Enrollment Increase', 'زيادة التسجيل'), value: 45, suffix: '%', prefix: '+', color: '#10B981', desc: t('Average across all clients', 'المتوسط عبر جميع العملاء') },
-              { label: t('Social Following', 'المتابعون الاجتماعيون'), value: 10, suffix: 'x', prefix: '', color: '#D4711A', desc: t('Growth in followers', 'نمو في المتابعين') },
+              { label: t('Enrollment Increase', 'زيادة التسجيل'), value: 45, suffix: '%', prefix: '+', color: '#E8634A', desc: t('Average across all clients', 'المتوسط عبر جميع العملاء') },
+              { label: t('Social Following', 'المتابعون الاجتماعيون'), value: 10, suffix: 'x', prefix: '', color: '#E8634A', desc: t('Growth in followers', 'نمو في المتابعين') },
               { label: t('Website Traffic', 'زيارات الموقع'), value: 200, suffix: '%', prefix: '+', color: '#6366F1', desc: t('Increase in organic visits', 'زيادة في الزيارات العضوية') },
               { label: t('Cost per Enrollment', 'تكلفة التسجيل'), value: 60, suffix: '%', prefix: '-', color: '#EF4444', desc: t('Reduction in acquisition cost', 'تخفيض في تكلفة الاستقطاب') },
             ].map((m, i) => (
@@ -908,7 +908,7 @@ export default function DigitalMarketingPage() {
           SECTION 7: STATS - Dark Section
           ============================================== */}
       <section className="py-20 section-dark relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#D4711A]/10 via-transparent to-[#8B4513]/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#E8634A]/10 via-transparent to-[#D14F38]/10" />
         <div className="bg-dots absolute inset-0 opacity-20" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -955,7 +955,7 @@ export default function DigitalMarketingPage() {
 
           <div className="relative">
             {/* Connecting line */}
-            <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-[#D4711A]/20 via-[#D4711A] to-[#D4711A]/20" />
+            <div className="hidden lg:block absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-[#E8634A]/20 via-[#E8634A] to-[#E8634A]/20" />
 
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8"
@@ -968,10 +968,10 @@ export default function DigitalMarketingPage() {
                 <motion.div key={step.title} variants={fadeUp} custom={i} className="text-center relative">
                   {/* Step number circle */}
                   <div className="relative mx-auto mb-5">
-                    <div className="w-16 h-16 rounded-2xl bg-white border-2 border-[#D4711A]/20 flex items-center justify-center mx-auto shadow-lg relative z-10 group-hover:border-[#D4711A] transition-colors">
-                      <step.icon className="w-7 h-7 text-[#D4711A]" />
+                    <div className="w-16 h-16 rounded-2xl bg-white border-2 border-[#E8634A]/20 flex items-center justify-center mx-auto shadow-lg relative z-10 group-hover:border-[#E8634A] transition-colors">
+                      <step.icon className="w-7 h-7 text-[#E8634A]" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#D4711A] text-white text-[10px] font-bold flex items-center justify-center z-20">
+                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#E8634A] text-white text-[10px] font-bold flex items-center justify-center z-20">
                       {i + 1}
                     </div>
                   </div>
@@ -979,7 +979,7 @@ export default function DigitalMarketingPage() {
                   {/* Arrow between steps */}
                   {i < processSteps.length - 1 && (
                     <div className="hidden lg:block absolute top-7 -right-4 z-20">
-                      <ChevronRight className="w-5 h-5 text-[#D4711A] rtl:rotate-180" />
+                      <ChevronRight className="w-5 h-5 text-[#E8634A] rtl:rotate-180" />
                     </div>
                   )}
 
@@ -999,7 +999,7 @@ export default function DigitalMarketingPage() {
           ============================================== */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-[#D4711A]/3 rounded-full blur-[200px]" />
+          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-[#E8634A]/3 rounded-full blur-[200px]" />
         </div>
         <div className="bg-dots absolute inset-0 opacity-20" />
 
@@ -1011,7 +1011,7 @@ export default function DigitalMarketingPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <Quote className="w-12 h-12 text-[#D4711A] mx-auto mb-8 opacity-60" />
+            <Quote className="w-12 h-12 text-[#E8634A] mx-auto mb-8 opacity-60" />
             <blockquote className="text-2xl sm:text-3xl text-white font-medium leading-relaxed mb-8" style={{ fontFamily: 'Clash Display, sans-serif' }}>
               {t(
                 '\u201CBefore Cubico, we were spending heavily on print ads with no way to track results. In our first year with their digital marketing team, enrollment jumped 52% and our cost per acquisition dropped by half. They truly understand the education space.\u201D',
@@ -1020,7 +1020,7 @@ export default function DigitalMarketingPage() {
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center">
                 <span className="text-white font-bold text-lg">{t('SA', 'سع')}</span>
               </div>
               <div className="text-left">
@@ -1031,7 +1031,7 @@ export default function DigitalMarketingPage() {
 
             <div className="flex items-center justify-center gap-1 mt-4">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 text-[#D4711A] fill-[#D4711A]" />
+                <Star key={i} className="w-5 h-5 text-[#E8634A] fill-[#E8634A]" />
               ))}
             </div>
           </motion.div>
@@ -1075,7 +1075,7 @@ export default function DigitalMarketingPage() {
                 { icon: Clock, text: t('Results in 90 Days', 'نتائج خلال 90 يوماً') },
               ].map((item) => (
                 <div key={item.text} className="flex items-center gap-2 text-gray-500">
-                  <item.icon className="w-4 h-4 text-[#D4711A]" />
+                  <item.icon className="w-4 h-4 text-[#E8634A]" />
                   <span className="text-sm">{item.text}</span>
                 </div>
               ))}
