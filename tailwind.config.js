@@ -9,20 +9,20 @@ module.exports = {
       colors: {
         /* ── 2026 Premium Warm EdTech Palette ── */
         primary: {
-          DEFAULT: '#0D7C6B', // Deep sage — premium, desaturated
-          light: '#3BA697',
-          dark: '#0A6558',
-          50: '#F5F7F5',
-          100: '#E0EFEB',
-          200: '#B8D8CF',
-          500: '#0D7C6B',
-          600: '#0A6558',
-          700: '#085249',
+          DEFAULT: '#0A6B5C', // Deep forest sage — darker premium tone
+          light: '#2E8F7E',
+          dark: '#085248',
+          50: '#F2F5F3',
+          100: '#D6E6E0',
+          200: '#A8CCC0',
+          500: '#0A6B5C',
+          600: '#085248',
+          700: '#06403A',
         },
         accent: {
-          DEFAULT: '#0F8C7F', // Muted teal — Teaching/Learn accent
-          light: '#2EA894',
-          dark: '#0A6E64',
+          DEFAULT: '#0C7A6E', // Deep teal — darker accent
+          light: '#278F80',
+          dark: '#085F56',
         },
         navy: {
           DEFAULT: '#0F172A', // Deep navy — primary text
@@ -47,10 +47,10 @@ module.exports = {
           500: '#64748B',
         },
         surface: {
-          dark: '#0F172A',
-          card: '#1E293B',
-          hover: '#334155',
-          light: '#FAFAF7', // Warm cream background
+          dark: '#0B1220',
+          card: '#1A2536',
+          hover: '#2D3A4D',
+          light: '#F7F7F3', // Warm parchment background
         },
         neutral: {
           50: '#fafafa',
@@ -71,11 +71,11 @@ module.exports = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(13, 124, 107, 0.10) 0%, transparent 70%)',
-        'card-shine': 'linear-gradient(135deg, rgba(13, 124, 107, 0.05) 0%, transparent 50%)',
-        'gradient-primary': 'linear-gradient(135deg, #0D7C6B 0%, #0F8C7F 100%)',
-        'gradient-dark': 'linear-gradient(-135deg, #0F172A 0%, #020617 50%, #0F172A 100%)',
-        'gradient-teal-emerald': 'linear-gradient(135deg, #0D7C6B 0%, #0F8C7F 100%)',
+        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(10, 107, 92, 0.08) 0%, transparent 70%)',
+        'card-shine': 'linear-gradient(135deg, rgba(10, 107, 92, 0.04) 0%, transparent 50%)',
+        'gradient-primary': 'linear-gradient(135deg, #0A6B5C 0%, #0C7A6E 100%)',
+        'gradient-dark': 'linear-gradient(-135deg, #0B1220 0%, #020612 50%, #0B1220 100%)',
+        'gradient-teal-emerald': 'linear-gradient(135deg, #0A6B5C 0%, #0C7A6E 100%)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
