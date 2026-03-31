@@ -308,35 +308,31 @@ export default function HomePage() {
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#0D9488] border border-[#14B8A6]/15 bg-white/80 backdrop-blur-sm shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
                   {t(
-                    'AI-Powered Platform for K-12 & Islamic Schools \u2014 Pakistan \u2022 GCC \u2022 Canada',
-                    'منصة ذكية لمدارس K-12 والمدارس الإسلامية \u2014 باكستان \u2022 الخليج \u2022 كندا'
+                    'Trusted by 760+ schools in Pakistan, GCC & Canada',
+                    'موثوق من أكثر من 760 مدرسة في باكستان والخليج وكندا'
                   )}
                 </span>
               </motion.div>
 
-              {/* Massive headline — bold inline teal keywords for instant scanning */}
+              {/* Single clear promise headline */}
               <motion.h1
                 variants={fadeUp}
                 custom={1}
                 className="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.3rem] xl:text-[3.6rem] font-heading font-extrabold text-[#0F172A] leading-[1.08] tracking-[-0.03em] mb-7"
               >
-                <span className="text-[#14B8A6]">{t('Grow your enrollment', 'زِد تسجيل طلابك')}</span>
-                {t(', ', '، ')}
-                <span className="text-[#10B981]">{t('help your teachers teach better', 'ساعد معلميك على التدريس أفضل')}</span>
-                {t(', and ', '، و')}
-                <span className="text-[#0D9488]">{t('save hours every week', 'وفّر ساعات كل أسبوع')}</span>
-                {t(' \u2014 all in one easy platform.', ' \u2014 كل ذلك في منصة واحدة سهلة.')}
+                {t('Your school deserves ', 'مدرستك تستحق ')}
+                <span className="shimmer-text">{t('tools that actually work.', 'أدوات تعمل فعلاً.')}</span>
               </motion.h1>
 
-              {/* Subheadline — 1 line, plain language */}
+              {/* Empathetic subheadline — speaks to the principal's real day */}
               <motion.p
                 variants={fadeUp}
                 custom={2}
-                className="text-[#475569] text-lg md:text-[1.2rem] leading-relaxed mb-10 max-w-[480px]"
+                className="text-[#475569] text-lg md:text-[1.25rem] leading-relaxed mb-10 max-w-[500px]"
               >
                 {t(
-                  'Professional marketing tools, 200+ animated lessons in English, Arabic & Urdu, Smart LMS, and full school management.',
-                  'أدوات تسويق احترافية، وأكثر من 200 درس متحرك بالإنجليزية والعربية والأردية، ونظام تعلم ذكي، وإدارة مدرسية كاملة.'
+                  'Stop juggling spreadsheets, chasing fees, and worrying about enrollment. One platform handles your LMS, school management, marketing, and animated lessons — so you can focus on what matters: your students.',
+                  'توقف عن التعامل مع جداول البيانات وملاحقة الرسوم والقلق بشأن التسجيل. منصة واحدة تتولى نظام التعلم وإدارة المدرسة والتسويق والدروس المتحركة — لتركز على ما يهم: طلابك.'
                 )}
               </motion.p>
 
@@ -346,29 +342,30 @@ export default function HomePage() {
                   href="/contact"
                   className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-lg shadow-teal-500/20 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
                 >
-                  {t('Book a Demo', 'احجز عرضاً')}
+                  {t('See It in Action', 'شاهدها تعمل')}
                   <ArrowRight size={18} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
                 <Link
                   href="/solutions"
                   className="inline-flex items-center gap-2.5 text-[#334155] hover:text-[#0F172A] font-semibold text-[15px] px-7 py-4 rounded-full border border-[#CBD5E1] hover:border-[#94A3B8] bg-white/70 backdrop-blur-sm hover:bg-white hover:shadow-md transition-all duration-200"
                 >
-                  <Play size={16} className="text-[#14B8A6] flex-shrink-0" />
-                  {t('Watch 90-Second Overview', 'شاهد نظرة عامة في 90 ثانية')}
+                  {t('Explore Solutions', 'استكشف الحلول')}
                 </Link>
               </motion.div>
 
-              {/* Trust bar */}
+              {/* Trust bar — specific, scannable */}
               <motion.div
                 variants={fadeUp}
                 custom={4}
                 className="flex flex-wrap items-center gap-4 text-[13px] text-[#64748B]"
               >
-                <span className="font-medium">{t('Trusted by', 'موثوق من')} <span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
+                <span className="font-medium"><span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
                 <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span>{t('3 countries', '3 دول')}</span>
+                <span><span className="text-[#0F172A] font-extrabold">85K+</span> {t('students', 'طالب')}</span>
                 <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span className="text-[#14B8A6] font-semibold">4.9/5 {t('from principals', 'من المديرين')}</span>
+                <span><span className="text-[#0F172A] font-extrabold">3</span> {t('countries', 'دول')}</span>
+                <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
+                <span className="text-[#14B8A6] font-semibold">{t('Live in 4 weeks', 'جاهز في 4 أسابيع')}</span>
               </motion.div>
             </motion.div>
 
@@ -661,13 +658,13 @@ export default function HomePage() {
          fatigue. Principals self-identify their #1 pain and click.
          Human-centric photography for emotional connection.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="wayfinding" className="py-24 md:py-32 bg-[#F8FAFC] relative overflow-hidden">
+      <section id="wayfinding" className="py-24 md:py-32 bg-white relative overflow-hidden">
         {/* Subtle teal gradient accent in background */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse, rgba(20,184,166,0.06) 0%, transparent 70%)', filter: 'blur(80px)' }} />
+          style={{ background: 'radial-gradient(ellipse, rgba(20,184,166,0.04) 0%, transparent 70%)', filter: 'blur(80px)' }} />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Section title with underline animation */}
+          {/* Section title — empathetic, clear */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -675,17 +672,23 @@ export default function HomePage() {
             variants={staggerContainer}
             className="text-center mb-16 md:mb-20"
           >
+            <motion.div variants={fadeUp} custom={0} className="mb-5">
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+                {t('What We Solve', 'ما نحله')}
+              </span>
+            </motion.div>
             <motion.h2
               variants={fadeUp}
-              custom={0}
+              custom={1}
               className="text-3xl md:text-4xl lg:text-[3rem] font-heading font-extrabold text-[#0F172A] leading-tight tracking-tight mb-4"
             >
-              {t('Where do you want to ', 'أين تريد أن ')}<span className="shimmer-text">{t('win first?', 'تفوز أولاً؟')}</span>
+              {t('What\'s your biggest ', 'ما هو أكبر ')}<span className="shimmer-text">{t('headache right now?', 'تحدٍ لديك الآن؟')}</span>
             </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-[#64748B] text-lg max-w-xl mx-auto">
+            <motion.p variants={fadeUp} custom={1} className="text-[#64748B] text-lg max-w-2xl mx-auto">
               {t(
-                'Choose your biggest challenge. We\'ll show you the solution.',
-                'اختر أكبر تحدٍ لديك. سنعرض لك الحل.'
+                'Every school is different. Pick what matters most to you — we have a solution ready.',
+                'كل مدرسة مختلفة. اختر ما يهمك أكثر — لدينا الحل جاهز.'
               )}
             </motion.p>
           </motion.div>
@@ -725,12 +728,12 @@ export default function HomePage() {
               <div className="p-6 lg:p-7">
                 {/* Bold headline — scannability with inline keywords */}
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('Get ', 'احصل على ')}<span className="text-[#14B8A6]">{t('3x More Students', '3 أضعاف الطلاب')}</span>{t(' in Your First Semester', ' في فصلك الأول')}
+                  {t('"We need ', '"نحتاج ')}<span className="text-[#14B8A6]">{t('more students', 'المزيد من الطلاب')}</span>{t(' this year"', ' هذا العام"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    'Professional websites, SEO, Google Ads, and AI enrollment funnels with Cubico Marketing\u2122.',
-                    'مواقع احترافية، تحسين محركات البحث، إعلانات جوجل، ومسارات تسجيل ذكية مع Cubico Marketing\u2122.'
+                    'We build your school a professional website, run Google Ads, and set up enrollment funnels that actually bring parents to your door.',
+                    'نبني لمدرستك موقعاً احترافياً ونشغل إعلانات جوجل ونعد مسارات تسجيل تجلب الآباء إلى بابك فعلاً.'
                   )}
                 </p>
 
@@ -780,12 +783,12 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('Immersive Lessons & ', 'دروس غامرة و')}<span className="text-[#10B981]">{t('Smart LMS', 'نظام تعلم ذكي')}</span>{t(' Students Actually Love', ' يحبه الطلاب فعلاً')}
+                  {t('"Students are ', '"الطلاب ')}<span className="text-[#10B981]">{t('bored and disengaged', 'يشعرون بالملل')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    '200+ professional 2D & 3D animated lessons in English, Arabic & Urdu (Cubico Learn\u2122) + AI-powered adaptive Smart LMS.',
-                    'أكثر من 200 درس متحرك احترافي ثنائي وثلاثي الأبعاد بالإنجليزية والعربية والأردية (Cubico Learn\u2122) + نظام تعلم ذكي تكيفي.'
+                    '200+ animated video lessons in English, Arabic & Urdu, plus a smart LMS that adapts to each student. Learning they actually want to do.',
+                    'أكثر من 200 درس فيديو متحرك بالإنجليزية والعربية والأردية، بالإضافة إلى نظام تعلم ذكي يتكيف مع كل طالب. تعلّم يرغبون فيه فعلاً.'
                   )}
                 </p>
 
@@ -833,12 +836,12 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  <span className="text-[#0D9488]">{t('Zero-Stress', 'بدون توتر')}</span>{t(' Operations with Full ERP', ' عمليات مع نظام تخطيط متكامل')}
+                  {t('"I\'m drowning in ', '"أغرق في ')}<span className="text-[#0D9488]">{t('admin work', 'العمل الإداري')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    'Admissions, fees, attendance, HR, exams, timetables — all automated in Cubico Manage\u2122.',
-                    'القبول والرسوم والحضور والموارد البشرية والامتحانات والجداول — كلها مؤتمتة في Cubico Manage\u2122.'
+                    'Admissions, fees, attendance, HR, exams, timetables — one dashboard replaces the chaos. Staff save 47 hours a month.',
+                    'القبول والرسوم والحضور والموارد البشرية والامتحانات والجداول — لوحة تحكم واحدة تحل محل الفوضى. يوفر الموظفون 47 ساعة شهرياً.'
                   )}
                 </p>
 
@@ -894,12 +897,12 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  <span className="text-[#8B5CF6]">{t('2D & 3D Animated', 'دروس متحركة')}</span>{t(' Lessons That Captivate', ' ثنائية وثلاثية الأبعاد تأسر الانتباه')}
+                  {t('"We need ', '"نحتاج ')}<span className="text-[#8B5CF6]">{t('better content', 'محتوى أفضل')}</span>{t(' in our language"', ' بلغتنا"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    'Studio-quality educational animations in English, Arabic & Urdu. Cubico Learn\u2122 brings subjects to life with storytelling students love.',
-                    'رسوم متحركة تعليمية بجودة الاستوديو بالإنجليزية والعربية والأردية. Cubico Learn\u2122 يجعل المواد حية بقصص يحبها الطلاب.'
+                    'Studio-quality animated lessons in English, Arabic & Urdu — aligned to your curriculum. Students actually pay attention.',
+                    'دروس متحركة بجودة الاستوديو بالإنجليزية والعربية والأردية — متوافقة مع منهجك. الطلاب ينتبهون فعلاً.'
                   )}
                 </p>
 
@@ -946,12 +949,12 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('Professional ', 'مواقع ')}<span className="text-[#3B82F6]">{t('School Websites', 'مدرسية احترافية')}</span>{t(' That Convert Visitors', ' تحول الزوار إلى طلاب')}
+                  {t('"Our website looks ', '"موقعنا يبدو ')}<span className="text-[#3B82F6]">{t('outdated', 'قديماً')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    'Fast, mobile-first websites with integrated admissions portals, parent dashboards, and SEO built in from day one.',
-                    'مواقع سريعة ومتوافقة مع الجوال مع بوابات قبول متكاملة ولوحات تحكم للآباء وتحسين محركات البحث من اليوم الأول.'
+                    'We build fast, modern school websites with online admissions, parent portals, and SEO — live in 2 weeks.',
+                    'نبني مواقع مدرسية سريعة وعصرية مع قبول إلكتروني وبوابات آباء وتحسين محركات بحث — جاهزة في أسبوعين.'
                   )}
                 </p>
 
@@ -998,12 +1001,12 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('Custom ', 'تطبيقات ')}<span className="text-[#F59E0B]">{t('Mobile Apps', 'جوال مخصصة')}</span>{t(' for Parents & Students', ' للآباء والطلاب')}
+                  {t('"Parents never know ', '"الآباء لا يعرفون ')}<span className="text-[#F59E0B]">{t('what\'s happening', 'ما يحدث')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    'Branded iOS & Android apps with real-time notifications, grade tracking, fee payments, and direct parent-teacher messaging.',
-                    'تطبيقات iOS و Android بعلامتك التجارية مع إشعارات فورية وتتبع الدرجات ودفع الرسوم والتواصل المباشر بين الآباء والمعلمين.'
+                    'Your own branded iOS & Android app — grades, attendance, fee payments, and direct messaging. Parents stay in the loop.',
+                    'تطبيقك الخاص على iOS و Android — الدرجات والحضور ودفع الرسوم والرسائل المباشرة. الآباء يبقون على اطلاع.'
                   )}
                 </p>
 
@@ -1031,11 +1034,102 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
+         HOW IT WORKS — 3-step process bridge
+         Psychology: Reduces uncertainty. Visitor knows exactly
+         what happens next. Numbered steps = sense of control.
+         ═══════════════════════════════════════════════════════════ */}
+      <section className="py-24 md:py-28 bg-[#F8FAFC] relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.div variants={fadeUp} custom={0} className="mb-5">
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+                {t('How It Works', 'كيف يعمل')}
+              </span>
+            </motion.div>
+            <motion.h2 variants={fadeUp} custom={1}
+              className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] leading-tight tracking-tight mb-4">
+              {t('From first call to ', 'من أول اتصال إلى ')}<span className="shimmer-text">{t('fully running — in 4 weeks.', 'تشغيل كامل — في 4 أسابيع.')}</span>
+            </motion.h2>
+            <motion.p variants={fadeUp} custom={2} className="text-[#64748B] text-lg max-w-xl mx-auto">
+              {t('No complicated setup. No months of waiting. Here\'s what happens:', 'بدون إعداد معقد. بدون أشهر من الانتظار. إليك ما يحدث:')}
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-8 lg:gap-12 relative"
+          >
+            {/* Connecting line — desktop only */}
+            <div className="hidden md:block absolute top-14 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-[#14B8A6]/20 via-[#14B8A6]/40 to-[#14B8A6]/20" />
+
+            {[
+              {
+                step: '01',
+                title: t('We Listen', 'نستمع'),
+                desc: t('Book a free 30-minute call. We learn about your school, your pain points, and your goals. No sales pitch — just a real conversation.', 'احجز اتصالاً مجانياً لمدة 30 دقيقة. نتعرف على مدرستك وتحدياتك وأهدافك. بدون عرض مبيعات — مجرد محادثة حقيقية.'),
+                icon: Phone,
+              },
+              {
+                step: '02',
+                title: t('We Build', 'نبني'),
+                desc: t('Our team configures your platform, migrates your data, and creates your custom setup. You review everything before going live.', 'يقوم فريقنا بتهيئة منصتك ونقل بياناتك وإنشاء إعدادك المخصص. تراجع كل شيء قبل الإطلاق.'),
+                icon: Settings,
+              },
+              {
+                step: '03',
+                title: t('You Launch', 'تُطلق'),
+                desc: t('We train your staff, go live together, and stay by your side. Dedicated support from a team that knows your name.', 'ندرب موظفيك ونطلق معاً ونبقى بجانبك. دعم مخصص من فريق يعرف اسمك.'),
+                icon: Zap,
+              },
+            ].map((item, i) => (
+              <motion.div key={item.step} variants={fadeUp} custom={i} className="text-center relative">
+                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center bg-white border-2 border-[#14B8A6]/15 shadow-lg shadow-teal-500/5 relative z-10">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] flex items-center justify-center">
+                    <item.icon size={28} className="text-[#14B8A6]" />
+                  </div>
+                </div>
+                <div className="text-[11px] font-extrabold text-[#14B8A6] tracking-[0.2em] uppercase mb-2">{t('Step', 'الخطوة')} {item.step}</div>
+                <h3 className="text-xl font-extrabold text-[#0F172A] mb-3">{item.title}</h3>
+                <p className="text-[#64748B] text-sm leading-relaxed max-w-xs mx-auto">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-center mt-14"
+          >
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-lg shadow-teal-500/20 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
+            >
+              {t('Start With a Free Call', 'ابدأ باتصال مجاني')}
+              <ArrowRight size={18} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
          SOCIAL PROOF — Testimonials (region-segmented) + Partners
          Psychology: Trust transfer from peer institutions.
          Photo avatars + location chips for credibility.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="testimonials" className="py-24 bg-[#F8FAFC]">
+      <section id="testimonials" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -1047,7 +1141,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
-                {t('Testimonials', 'الشهادات')}
+                {t('Real Stories', 'قصص حقيقية')}
               </span>
             </motion.div>
             <motion.h2
@@ -1055,7 +1149,7 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] mb-4"
             >
-              {t('Trusted by ', 'موثوق من قبل ')}<span className="shimmer-text">{t('educators worldwide', 'معلمين حول العالم')}</span>
+              {t('Don\'t take our word for it. ', 'لا تأخذ كلامنا. ')}<span className="shimmer-text">{t('Ask them.', 'اسألهم.')}</span>
             </motion.h2>
             <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
               <div className="flex gap-1">
@@ -1063,7 +1157,7 @@ export default function HomePage() {
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-[#64748B] text-sm font-medium">{t('4.9/5 from 760+ reviews', '4.9/5 من أكثر من 760 مراجعة')}</span>
+              <span className="text-[#64748B] text-sm font-medium">{t('4.9/5 from 760+ principals', '4.9/5 من أكثر من 760 مدير')}</span>
             </motion.div>
           </motion.div>
 
@@ -1182,7 +1276,7 @@ export default function HomePage() {
          CTA + DEMO FORM SECTION
          Psychology: Strong demo push with value-stacking checklist.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="contact" className="py-24 bg-[#F8FAFC] bg-grid-light">
+      <section id="contact" className="py-24 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left Content */}
@@ -1203,13 +1297,12 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] mb-6"
               >
-                {t('See Cubico in action — ', 'شاهد كيوبيكو في العمل — ')}<br />
-                <span className="shimmer-text">{t('free personalized demo', 'عرض مجاني مخصص')}</span>
+                {t('Curious? ', 'فضولي؟ ')}<span className="shimmer-text">{t('Let\'s talk.', 'لنتحدث.')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-[#64748B] leading-relaxed mb-8">
                 {t(
-                  "Walk through the LMS, ERP, animated content, and marketing tools with our team. We'll customize the demo to your curriculum, student count, and goals.",
-                  'تصفح نظام إدارة التعلم ونظام تخطيط الموارد والمحتوى المتحرك وأدوات التسويق مع فريقنا. سنخصص العرض حسب منهجك وعدد طلابك وأهدافك.'
+                  "30 minutes. No sales pitch. We'll show you the platform using your curriculum, your student count, and your real goals — then you decide.",
+                  '30 دقيقة. بدون عرض مبيعات. سنعرض لك المنصة باستخدام منهجك وعدد طلابك وأهدافك الحقيقية — ثم تقرر أنت.'
                 )}
               </motion.p>
 
@@ -1331,13 +1424,12 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] mb-6"
               >
-                {t('Questions schools ', 'أسئلة المدارس ')}<br />
-                <span className="shimmer-text">{t('ask us most', 'الأكثر شيوعاً')}</span>
+                {t('You\'re probably ', 'ربما ')}<span className="shimmer-text">{t('wondering...', 'تتساءل...')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-[#64748B] leading-relaxed mb-8">
                 {t(
-                  "From onboarding timelines to multilingual support — here's what principals and IT heads want to know before signing up.",
-                  'من الجداول الزمنية للإعداد إلى الدعم متعدد اللغات — إليك ما يريد المديرون ورؤساء تقنية المعلومات معرفته قبل التسجيل.'
+                  "Here are the questions principals and IT heads ask us before signing up.",
+                  'إليك الأسئلة التي يطرحها المديرون ورؤساء تقنية المعلومات قبل التسجيل.'
                 )}
               </motion.p>
 
