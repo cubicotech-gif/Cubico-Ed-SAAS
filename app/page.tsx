@@ -511,18 +511,16 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-         ROLE-BASED WAYFINDING — Emotional & Visual Centerpiece
-         Psychology: Hick's Law — 3 strong choices reduces decision
-         fatigue. Principals self-identify their #1 pain and click.
-         Human-centric photography for emotional connection.
+         OUR SOLUTIONS — Clear product showcase with emotional hooks
+         Psychology: Pain → Named Solution → Proof → CTA.
+         Each card names the product immediately so visitors know
+         exactly what they're clicking into.
          ═══════════════════════════════════════════════════════════ */}
       <section id="wayfinding" className="py-24 md:py-32 bg-white relative overflow-hidden">
-        {/* Subtle teal gradient accent in background */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
           style={{ background: 'radial-gradient(ellipse, rgba(13,124,107,0.03) 0%, transparent 70%)', filter: 'blur(80px)' }} />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Section title — empathetic, clear */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -533,7 +531,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-5">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#0D7C6B]/15 bg-[#F5F7F5]/60 text-[#0D7C6B]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0D7C6B]" />
-                {t('What We Solve', 'ما نحله')}
+                {t('Our Solutions', 'حلولنا')}
               </span>
             </motion.div>
             <motion.h2
@@ -541,17 +539,17 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl lg:text-[3rem] font-heading font-extrabold text-[#0F172A] leading-tight tracking-tight mb-4"
             >
-              {t('What\'s your biggest ', 'ما هو أكبر ')}<span className="shimmer-text">{t('headache right now?', 'تحدٍ لديك الآن؟')}</span>
+              {t('Six solutions. ', 'ستة حلول. ')}<span className="shimmer-text">{t('One partner.', 'شريك واحد.')}</span>
             </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-[#64748B] text-lg max-w-2xl mx-auto">
+            <motion.p variants={fadeUp} custom={2} className="text-[#64748B] text-lg max-w-2xl mx-auto">
               {t(
-                'Every school is different. Pick what matters most to you — we have a solution ready.',
-                'كل مدرسة مختلفة. اختر ما يهمك أكثر — لدينا الحل جاهز.'
+                'Every tool your school needs — from filling classrooms to running operations — under one roof. Pick what you need most.',
+                'كل أداة تحتاجها مدرستك — من ملء الفصول إلى إدارة العمليات — تحت سقف واحد. اختر ما تحتاجه أكثر.'
               )}
             </motion.p>
           </motion.div>
 
-          {/* ── 3 Role Cards — responsive grid, stack on mobile ── */}
+          {/* ── Row 1: Core 3 solutions ── */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -559,172 +557,175 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
           >
-            {/* ────── CARD 1: Grow Admissions (Teal accent) ────── */}
-            <motion.div
-              variants={fadeUp}
-              custom={0}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0D7C6B]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0D7C6B]/8 transition-all duration-300 cursor-pointer"
-            >
-              {/* Top image — warm enrollment/admissions scene */}
-              <div className="relative h-52 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
-                  alt="Happy diverse students arriving at school - enrollment growth"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
-                {/* Accent badge */}
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0D7C6B]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
-                  <Megaphone size={12} /> {t('GROW', 'نمو')}
+            {/* ────── CARD 1: Digital Marketing ────── */}
+            <Link href="/services/digital-marketing">
+              <motion.div
+                variants={fadeUp}
+                custom={0}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0D7C6B]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0D7C6B]/8 transition-all duration-300 cursor-pointer h-full"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
+                    alt="Happy diverse students arriving at school - enrollment growth"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0D7C6B]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                    <Megaphone size={12} /> {t('GROW', 'نمو')}
+                  </div>
                 </div>
-              </div>
 
-              {/* Card content */}
-              <div className="p-6 lg:p-7">
-                {/* Bold headline — scannability with inline keywords */}
-                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"We need ', '"نحتاج ')}<span className="text-[#0D7C6B]">{t('more students', 'المزيد من الطلاب')}</span>{t(' this year"', ' هذا العام"')}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
-                  {t(
-                    'We build your school a professional website, run Google Ads, and set up enrollment funnels that actually bring parents to your door.',
-                    'نبني لمدرستك موقعاً احترافياً ونشغل إعلانات جوجل ونعد مسارات تسجيل تجلب الآباء إلى بابك فعلاً.'
-                  )}
-                </p>
+                <div className="p-6 lg:p-7">
+                  {/* Solution name — clear, bold, instant recognition */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#0D7C6B]/10 flex items-center justify-center flex-shrink-0">
+                      <Megaphone size={16} className="text-[#0D7C6B]" />
+                    </div>
+                    <h3 className="text-[13px] font-extrabold text-[#0D7C6B] tracking-wide uppercase">{t('Digital Marketing', 'التسويق الرقمي')}</h3>
+                  </div>
 
-                {/* Social proof stat */}
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F7F5] border border-[#0D7C6B]/10">
-                  <TrendingUp size={16} className="text-[#0D7C6B] flex-shrink-0" />
-                  <span className="text-sm text-[#0F172A] font-semibold">
+                  {/* Pain-point headline */}
+                  <p className="text-xl lg:text-[1.35rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                    {t('Fill classrooms with students who actually want to be there.', 'املأ الفصول بطلاب يريدون التواجد فيها فعلاً.')}
+                  </p>
+                  <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                     {t(
-                      '3x average enrollment increase — real results from schools like yours',
-                      '3 أضعاف متوسط زيادة التسجيل — نتائج حقيقية من مدارس مثل مدرستك'
+                      'School websites, Google Ads, social media campaigns, and enrollment funnels — all managed by our team so parents find you first.',
+                      'مواقع مدرسية، إعلانات جوجل، حملات تواصل اجتماعي، ومسارات تسجيل — يديرها فريقنا ليجدك الآباء أولاً.'
                     )}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F7F5] border border-[#0D7C6B]/10">
+                    <TrendingUp size={16} className="text-[#0D7C6B] flex-shrink-0" />
+                    <span className="text-sm text-[#0F172A] font-semibold">
+                      {t('3x avg enrollment increase', '3 أضعاف متوسط زيادة التسجيل')}
+                    </span>
+                  </div>
+
+                  <span className="inline-flex items-center gap-2 text-[#0D7C6B] font-bold text-sm group-hover:gap-3 transition-all duration-200">
+                    {t('See how it works', 'شاهد كيف يعمل')}
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
+              </motion.div>
+            </Link>
 
-                {/* CTA */}
-                <Link
-                  href="/solutions/web-development"
-                  className="inline-flex items-center gap-2 text-[#0D7C6B] font-bold text-sm group-hover:gap-3 transition-all duration-200"
-                >
-                  {t('Explore Cubico Marketing\u2122', 'استكشف Cubico Marketing\u2122')}
-                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* ────── CARD 2: Better Teaching (Emerald accent) ────── */}
-            <motion.div
-              variants={fadeUp}
-              custom={1}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0F8C7F]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0F8C7F]/10 transition-all duration-300 cursor-pointer"
-            >
-              {/* Top image — engaging classroom with animated lesson scene */}
-              <div className="relative h-52 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
-                  alt="Students happily engaged in interactive digital learning"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F8C7F]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
-                  <GraduationCap size={12} /> {t('TEACH', 'تعليم')}
+            {/* ────── CARD 2: Smart LMS ────── */}
+            <Link href="/solutions/smart-lms">
+              <motion.div
+                variants={fadeUp}
+                custom={1}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0F8C7F]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0F8C7F]/10 transition-all duration-300 cursor-pointer h-full"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+                    alt="Students happily engaged in interactive digital learning"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F8C7F]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                    <GraduationCap size={12} /> {t('TEACH', 'تعليم')}
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-6 lg:p-7">
-                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"Students are ', '"الطلاب ')}<span className="text-[#0F8C7F]">{t('bored and disengaged', 'يشعرون بالملل')}</span>{t('"', '"')}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
-                  {t(
-                    '200+ animated video lessons in English, Arabic & Urdu, plus a smart LMS that adapts to each student. Learning they actually want to do.',
-                    'أكثر من 200 درس فيديو متحرك بالإنجليزية والعربية والأردية، بالإضافة إلى نظام تعلم ذكي يتكيف مع كل طالب. تعلّم يرغبون فيه فعلاً.'
-                  )}
-                </p>
+                <div className="p-6 lg:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#0F8C7F]/10 flex items-center justify-center flex-shrink-0">
+                      <BookOpen size={16} className="text-[#0F8C7F]" />
+                    </div>
+                    <h3 className="text-[13px] font-extrabold text-[#0F8C7F] tracking-wide uppercase">{t('Smart LMS', 'نظام التعلم الذكي')}</h3>
+                  </div>
 
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F0F5F2] border border-[#0F8C7F]/10">
-                  <Users size={16} className="text-[#0F8C7F] flex-shrink-0" />
-                  <span className="text-sm text-[#0F172A] font-semibold">
+                  <p className="text-xl lg:text-[1.35rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                    {t('Turn bored students into engaged learners — overnight.', 'حوّل الطلاب الملولين إلى متعلمين متفاعلين — بين ليلة وضحاها.')}
+                  </p>
+                  <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                     {t(
-                      '85K+ active learners \u2022 Students stay 4x longer',
-                      'أكثر من 85 ألف متعلم نشط \u2022 الطلاب يبقون 4 أضعاف'
+                      'A learning management system built for schools. Assign lessons, track progress, run quizzes, and give teachers a dashboard they actually enjoy using.',
+                      'نظام إدارة تعلم مبني للمدارس. وزّع الدروس، تتبّع التقدم، أجرِ الاختبارات، وامنح المعلمين لوحة تحكم يستمتعون باستخدامها.'
                     )}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F0F5F2] border border-[#0F8C7F]/10">
+                    <Users size={16} className="text-[#0F8C7F] flex-shrink-0" />
+                    <span className="text-sm text-[#0F172A] font-semibold">
+                      {t('85K+ active learners \u2022 4x engagement', 'أكثر من 85 ألف متعلم \u2022 4 أضعاف التفاعل')}
+                    </span>
+                  </div>
+
+                  <span className="inline-flex items-center gap-2 text-[#0F8C7F] font-bold text-sm group-hover:gap-3 transition-all duration-200">
+                    {t('See how it works', 'شاهد كيف يعمل')}
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
+              </motion.div>
+            </Link>
 
-                <Link
-                  href="/solutions/smart-lms"
-                  className="inline-flex items-center gap-2 text-[#0F8C7F] font-bold text-sm group-hover:gap-3 transition-all duration-200"
-                >
-                  {t('Explore Learn\u2122 & Smart LMS', 'استكشف Learn\u2122 و Smart LMS')}
-                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* ────── CARD 3: Run Smoothly (Navy-teal accent) ────── */}
-            <motion.div
-              variants={fadeUp}
-              custom={2}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0A6558]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0A6558]/8 transition-all duration-300 cursor-pointer"
-            >
-              {/* Top image — calm admin at dashboard scene */}
-              <div className="relative h-52 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
-                  alt="School administrator calmly managing operations on dashboard"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F172A]/85 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
-                  <Settings size={12} /> {t('MANAGE', 'إدارة')}
+            {/* ────── CARD 3: School ERP ────── */}
+            <Link href="/solutions/school-erp">
+              <motion.div
+                variants={fadeUp}
+                custom={2}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0A6558]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0A6558]/8 transition-all duration-300 cursor-pointer h-full"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80"
+                    alt="School administrator calmly managing operations on dashboard"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F172A]/85 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                    <Settings size={12} /> {t('MANAGE', 'إدارة')}
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-6 lg:p-7">
-                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"I\'m drowning in ', '"أغرق في ')}<span className="text-[#0A6558]">{t('admin work', 'العمل الإداري')}</span>{t('"', '"')}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
-                  {t(
-                    'Admissions, fees, attendance, HR, exams, timetables — one dashboard replaces the chaos. Staff save 47 hours a month.',
-                    'القبول والرسوم والحضور والموارد البشرية والامتحانات والجداول — لوحة تحكم واحدة تحل محل الفوضى. يوفر الموظفون 47 ساعة شهرياً.'
-                  )}
-                </p>
+                <div className="p-6 lg:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#0A6558]/10 flex items-center justify-center flex-shrink-0">
+                      <Layers size={16} className="text-[#0A6558]" />
+                    </div>
+                    <h3 className="text-[13px] font-extrabold text-[#0A6558] tracking-wide uppercase">{t('School ERP', 'نظام إدارة المدرسة')}</h3>
+                  </div>
 
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F7F5] border border-[#0A6558]/10">
-                  <Zap size={16} className="text-[#0A6558] flex-shrink-0" />
-                  <span className="text-sm text-[#0F172A] font-semibold">
+                  <p className="text-xl lg:text-[1.35rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                    {t('Replace 5 broken systems with one dashboard that works.', 'استبدل 5 أنظمة معطلة بلوحة تحكم واحدة تعمل.')}
+                  </p>
+                  <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                     {t(
-                      '47 hours saved per staff/month \u2022 94.2% attendance',
-                      '47 ساعة توفير لكل موظف/شهر \u2022 94.2% حضور'
+                      'Admissions, fees, attendance, HR, exams, timetables — everything your office needs in one place. No more spreadsheet chaos.',
+                      'القبول والرسوم والحضور والموارد البشرية والامتحانات والجداول — كل ما يحتاجه مكتبك في مكان واحد. لا مزيد من فوضى الجداول.'
                     )}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F7F5] border border-[#0A6558]/10">
+                    <Zap size={16} className="text-[#0A6558] flex-shrink-0" />
+                    <span className="text-sm text-[#0F172A] font-semibold">
+                      {t('47 hrs saved/staff/month \u2022 94% attendance', '47 ساعة توفير/موظف/شهر \u2022 94% حضور')}
+                    </span>
+                  </div>
+
+                  <span className="inline-flex items-center gap-2 text-[#0A6558] font-bold text-sm group-hover:gap-3 transition-all duration-200">
+                    {t('See how it works', 'شاهد كيف يعمل')}
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
-
-                <Link
-                  href="/solutions/school-erp"
-                  className="inline-flex items-center gap-2 text-[#0A6558] font-bold text-sm group-hover:gap-3 transition-all duration-200"
-                >
-                  {t('Explore Cubico Manage\u2122', 'استكشف Cubico Manage\u2122')}
-                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           </motion.div>
 
-          {/* ── 3 Additional Cards — second row ── */}
+          {/* ── Row 2: Additional 3 solutions ── */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -732,161 +733,170 @@ export default function HomePage() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-6 lg:mt-8"
           >
-            {/* ────── CARD 4: Animation Studio (Violet accent) ────── */}
-            <motion.div
-              variants={fadeUp}
-              custom={0}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#8B5CF6]/30 shadow-sm hover:shadow-2xl hover:shadow-violet-500/10 transition-all duration-300 cursor-pointer"
-            >
-              <div className="relative h-52 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80"
-                  alt="Creative animation and digital content production studio"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B5CF6]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
-                  <Film size={12} /> {t('CREATE', 'إبداع')}
+            {/* ────── CARD 4: Animation Studio ────── */}
+            <Link href="/solutions/animation-studio">
+              <motion.div
+                variants={fadeUp}
+                custom={0}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#8B5CF6]/30 shadow-sm hover:shadow-2xl hover:shadow-violet-500/10 transition-all duration-300 cursor-pointer h-full"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80"
+                    alt="Creative animation and digital content production studio"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B5CF6]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                    <Film size={12} /> {t('CREATE', 'إبداع')}
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-6 lg:p-7">
-                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"We need ', '"نحتاج ')}<span className="text-[#8B5CF6]">{t('better content', 'محتوى أفضل')}</span>{t(' in our language"', ' بلغتنا"')}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
-                  {t(
-                    'Studio-quality animated lessons in English, Arabic & Urdu — aligned to your curriculum. Students actually pay attention.',
-                    'دروس متحركة بجودة الاستوديو بالإنجليزية والعربية والأردية — متوافقة مع منهجك. الطلاب ينتبهون فعلاً.'
-                  )}
-                </p>
+                <div className="p-6 lg:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#8B5CF6]/10 flex items-center justify-center flex-shrink-0">
+                      <Film size={16} className="text-[#8B5CF6]" />
+                    </div>
+                    <h3 className="text-[13px] font-extrabold text-[#8B5CF6] tracking-wide uppercase">{t('Animation Studio', 'استوديو الرسوم المتحركة')}</h3>
+                  </div>
 
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F3FF] border border-[#8B5CF6]/10">
-                  <Sparkles size={16} className="text-[#8B5CF6] flex-shrink-0" />
-                  <span className="text-sm text-[#0F172A] font-semibold">
+                  <p className="text-xl lg:text-[1.35rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                    {t('Animated lessons in your language that students actually watch.', 'دروس متحركة بلغتك يشاهدها الطلاب فعلاً.')}
+                  </p>
+                  <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                     {t(
-                      '200+ animated lessons \u2022 3 languages \u2022 Curriculum-aligned',
-                      'أكثر من 200 درس متحرك \u2022 3 لغات \u2022 متوافق مع المنهج'
+                      'Studio-quality video lessons in English, Arabic & Urdu — aligned to your exact curriculum. We produce them, you just teach.',
+                      'دروس فيديو بجودة الاستوديو بالإنجليزية والعربية والأردية — متوافقة مع منهجك تماماً. ننتجها نحن، وأنت تعلّم فقط.'
                     )}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F3FF] border border-[#8B5CF6]/10">
+                    <Sparkles size={16} className="text-[#8B5CF6] flex-shrink-0" />
+                    <span className="text-sm text-[#0F172A] font-semibold">
+                      {t('200+ lessons \u2022 3 languages \u2022 Your curriculum', 'أكثر من 200 درس \u2022 3 لغات \u2022 منهجك')}
+                    </span>
+                  </div>
+
+                  <span className="inline-flex items-center gap-2 text-[#8B5CF6] font-bold text-sm group-hover:gap-3 transition-all duration-200">
+                    {t('See how it works', 'شاهد كيف يعمل')}
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
+              </motion.div>
+            </Link>
 
-                <Link
-                  href="/solutions/animation-studio"
-                  className="inline-flex items-center gap-2 text-[#8B5CF6] font-bold text-sm group-hover:gap-3 transition-all duration-200"
-                >
-                  {t('Explore Animation Studio', 'استكشف استوديو الرسوم المتحركة')}
-                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* ────── CARD 5: Web Development (Blue accent) ────── */}
-            <motion.div
-              variants={fadeUp}
-              custom={1}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#3B82F6]/30 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 cursor-pointer"
-            >
-              <div className="relative h-52 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-                  alt="Modern website design and development on screen"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3B82F6]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
-                  <Globe size={12} /> {t('BUILD', 'بناء')}
+            {/* ────── CARD 5: Web Development ────── */}
+            <Link href="/solutions/web-development">
+              <motion.div
+                variants={fadeUp}
+                custom={1}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#3B82F6]/30 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 cursor-pointer h-full"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                    alt="Modern website design and development on screen"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3B82F6]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                    <Globe size={12} /> {t('BUILD', 'بناء')}
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-6 lg:p-7">
-                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"Our website looks ', '"موقعنا يبدو ')}<span className="text-[#3B82F6]">{t('outdated', 'قديماً')}</span>{t('"', '"')}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
-                  {t(
-                    'We build fast, modern school websites with online admissions, parent portals, and SEO — live in 2 weeks.',
-                    'نبني مواقع مدرسية سريعة وعصرية مع قبول إلكتروني وبوابات آباء وتحسين محركات بحث — جاهزة في أسبوعين.'
-                  )}
-                </p>
+                <div className="p-6 lg:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#3B82F6]/10 flex items-center justify-center flex-shrink-0">
+                      <Globe size={16} className="text-[#3B82F6]" />
+                    </div>
+                    <h3 className="text-[13px] font-extrabold text-[#3B82F6] tracking-wide uppercase">{t('Web Development', 'تطوير المواقع')}</h3>
+                  </div>
 
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#EFF6FF] border border-[#3B82F6]/10">
-                  <Monitor size={16} className="text-[#3B82F6] flex-shrink-0" />
-                  <span className="text-sm text-[#0F172A] font-semibold">
+                  <p className="text-xl lg:text-[1.35rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                    {t('A school website that looks professional and brings parents in.', 'موقع مدرسي احترافي يجذب الآباء إليك.')}
+                  </p>
+                  <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                     {t(
-                      'Live in 2 weeks \u2022 SEO-optimized \u2022 Mobile-first design',
-                      'جاهز في أسبوعين \u2022 محسن لمحركات البحث \u2022 تصميم متجاوب'
+                      'Fast, modern websites with online admissions, parent portals, and SEO — designed for schools and ready in 2 weeks.',
+                      'مواقع سريعة وعصرية مع قبول إلكتروني وبوابات آباء وتحسين محركات بحث — مصممة للمدارس وجاهزة في أسبوعين.'
                     )}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#EFF6FF] border border-[#3B82F6]/10">
+                    <Monitor size={16} className="text-[#3B82F6] flex-shrink-0" />
+                    <span className="text-sm text-[#0F172A] font-semibold">
+                      {t('Live in 2 weeks \u2022 SEO-ready \u2022 Mobile-first', 'جاهز في أسبوعين \u2022 محسن للبحث \u2022 متجاوب')}
+                    </span>
+                  </div>
+
+                  <span className="inline-flex items-center gap-2 text-[#3B82F6] font-bold text-sm group-hover:gap-3 transition-all duration-200">
+                    {t('See how it works', 'شاهد كيف يعمل')}
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
+              </motion.div>
+            </Link>
 
-                <Link
-                  href="/solutions/web-development"
-                  className="inline-flex items-center gap-2 text-[#3B82F6] font-bold text-sm group-hover:gap-3 transition-all duration-200"
-                >
-                  {t('Explore Web Solutions', 'استكشف حلول الويب')}
-                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* ────── CARD 6: Mobile Apps (Orange accent) ────── */}
-            <motion.div
-              variants={fadeUp}
-              custom={2}
-              whileHover={{ y: -8, scale: 1.02 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#F59E0B]/30 shadow-sm hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 cursor-pointer"
-            >
-              <div className="relative h-52 overflow-hidden">
-                <Image
-                  src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
-                  alt="Mobile app interface on smartphone showing school application"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F59E0B]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
-                  <Smartphone size={12} /> {t('CONNECT', 'تواصل')}
+            {/* ────── CARD 6: Mobile Apps ────── */}
+            <Link href="/solutions/mobile-apps">
+              <motion.div
+                variants={fadeUp}
+                custom={2}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#F59E0B]/30 shadow-sm hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 cursor-pointer h-full"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+                    alt="Mobile app interface on smartphone showing school application"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F59E0B]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                    <Smartphone size={12} /> {t('CONNECT', 'تواصل')}
+                  </div>
                 </div>
-              </div>
 
-              <div className="p-6 lg:p-7">
-                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"Parents never know ', '"الآباء لا يعرفون ')}<span className="text-[#F59E0B]">{t('what\'s happening', 'ما يحدث')}</span>{t('"', '"')}
-                </h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
-                  {t(
-                    'Your own branded iOS & Android app — grades, attendance, fee payments, and direct messaging. Parents stay in the loop.',
-                    'تطبيقك الخاص على iOS و Android — الدرجات والحضور ودفع الرسوم والرسائل المباشرة. الآباء يبقون على اطلاع.'
-                  )}
-                </p>
+                <div className="p-6 lg:p-7">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#F59E0B]/10 flex items-center justify-center flex-shrink-0">
+                      <Smartphone size={16} className="text-[#F59E0B]" />
+                    </div>
+                    <h3 className="text-[13px] font-extrabold text-[#F59E0B] tracking-wide uppercase">{t('Mobile App', 'تطبيق الجوال')}</h3>
+                  </div>
 
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#FFFBEB] border border-[#F59E0B]/10">
-                  <Smartphone size={16} className="text-[#F59E0B] flex-shrink-0" />
-                  <span className="text-sm text-[#0F172A] font-semibold">
+                  <p className="text-xl lg:text-[1.35rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                    {t('Keep parents in the loop with your own branded app.', 'أبقِ الآباء على اطلاع بتطبيقك الخاص.')}
+                  </p>
+                  <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                     {t(
-                      'iOS + Android \u2022 Push notifications \u2022 Branded to your school',
-                      'iOS + Android \u2022 إشعارات فورية \u2022 بعلامة مدرستك'
+                      'iOS & Android app with your school brand — grades, attendance, fee payments, and direct messaging. Parents love it.',
+                      'تطبيق iOS و Android بعلامة مدرستك — الدرجات والحضور ودفع الرسوم والرسائل المباشرة. الآباء يحبونه.'
                     )}
+                  </p>
+
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#FFFBEB] border border-[#F59E0B]/10">
+                    <Smartphone size={16} className="text-[#F59E0B] flex-shrink-0" />
+                    <span className="text-sm text-[#0F172A] font-semibold">
+                      {t('iOS + Android \u2022 Push alerts \u2022 Your brand', 'iOS + Android \u2022 إشعارات فورية \u2022 علامتك')}
+                    </span>
+                  </div>
+
+                  <span className="inline-flex items-center gap-2 text-[#F59E0B] font-bold text-sm group-hover:gap-3 transition-all duration-200">
+                    {t('See how it works', 'شاهد كيف يعمل')}
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
-
-                <Link
-                  href="/solutions/mobile-apps"
-                  className="inline-flex items-center gap-2 text-[#F59E0B] font-bold text-sm group-hover:gap-3 transition-all duration-200"
-                >
-                  {t('Explore Mobile Apps', 'استكشف تطبيقات الجوال')}
-                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
+              </motion.div>
+            </Link>
           </motion.div>
         </div>
       </section>
