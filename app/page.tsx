@@ -308,35 +308,31 @@ export default function HomePage() {
                 <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#0D9488] border border-[#14B8A6]/15 bg-white/80 backdrop-blur-sm shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
                   {t(
-                    'AI-Powered Platform for K-12 & Islamic Schools \u2014 Pakistan \u2022 GCC \u2022 Canada',
-                    'منصة ذكية لمدارس K-12 والمدارس الإسلامية \u2014 باكستان \u2022 الخليج \u2022 كندا'
+                    'Trusted by 760+ schools in Pakistan, GCC & Canada',
+                    'موثوق من أكثر من 760 مدرسة في باكستان والخليج وكندا'
                   )}
                 </span>
               </motion.div>
 
-              {/* Massive headline — bold inline teal keywords for instant scanning */}
+              {/* Single clear promise headline */}
               <motion.h1
                 variants={fadeUp}
                 custom={1}
                 className="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.3rem] xl:text-[3.6rem] font-heading font-extrabold text-[#0F172A] leading-[1.08] tracking-[-0.03em] mb-7"
               >
-                <span className="text-[#14B8A6]">{t('Grow your enrollment', 'زِد تسجيل طلابك')}</span>
-                {t(', ', '، ')}
-                <span className="text-[#10B981]">{t('help your teachers teach better', 'ساعد معلميك على التدريس أفضل')}</span>
-                {t(', and ', '، و')}
-                <span className="text-[#0D9488]">{t('save hours every week', 'وفّر ساعات كل أسبوع')}</span>
-                {t(' \u2014 all in one easy platform.', ' \u2014 كل ذلك في منصة واحدة سهلة.')}
+                {t('Your school deserves ', 'مدرستك تستحق ')}
+                <span className="shimmer-text">{t('tools that actually work.', 'أدوات تعمل فعلاً.')}</span>
               </motion.h1>
 
-              {/* Subheadline — 1 line, plain language */}
+              {/* Empathetic subheadline — speaks to the principal's real day */}
               <motion.p
                 variants={fadeUp}
                 custom={2}
-                className="text-[#475569] text-lg md:text-[1.2rem] leading-relaxed mb-10 max-w-[480px]"
+                className="text-[#475569] text-lg md:text-[1.25rem] leading-relaxed mb-10 max-w-[500px]"
               >
                 {t(
-                  'Professional marketing tools, 200+ animated lessons in English, Arabic & Urdu, Smart LMS, and full school management.',
-                  'أدوات تسويق احترافية، وأكثر من 200 درس متحرك بالإنجليزية والعربية والأردية، ونظام تعلم ذكي، وإدارة مدرسية كاملة.'
+                  'Stop juggling spreadsheets, chasing fees, and worrying about enrollment. One platform handles your LMS, school management, marketing, and animated lessons — so you can focus on what matters: your students.',
+                  'توقف عن التعامل مع جداول البيانات وملاحقة الرسوم والقلق بشأن التسجيل. منصة واحدة تتولى نظام التعلم وإدارة المدرسة والتسويق والدروس المتحركة — لتركز على ما يهم: طلابك.'
                 )}
               </motion.p>
 
@@ -346,29 +342,30 @@ export default function HomePage() {
                   href="/contact"
                   className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-lg shadow-teal-500/20 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
                 >
-                  {t('Book a Demo', 'احجز عرضاً')}
+                  {t('See It in Action', 'شاهدها تعمل')}
                   <ArrowRight size={18} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
                 </Link>
                 <Link
                   href="/solutions"
                   className="inline-flex items-center gap-2.5 text-[#334155] hover:text-[#0F172A] font-semibold text-[15px] px-7 py-4 rounded-full border border-[#CBD5E1] hover:border-[#94A3B8] bg-white/70 backdrop-blur-sm hover:bg-white hover:shadow-md transition-all duration-200"
                 >
-                  <Play size={16} className="text-[#14B8A6] flex-shrink-0" />
-                  {t('Watch 90-Second Overview', 'شاهد نظرة عامة في 90 ثانية')}
+                  {t('Explore Solutions', 'استكشف الحلول')}
                 </Link>
               </motion.div>
 
-              {/* Trust bar */}
+              {/* Trust bar — specific, scannable */}
               <motion.div
                 variants={fadeUp}
                 custom={4}
                 className="flex flex-wrap items-center gap-4 text-[13px] text-[#64748B]"
               >
-                <span className="font-medium">{t('Trusted by', 'موثوق من')} <span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
+                <span className="font-medium"><span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
                 <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span>{t('3 countries', '3 دول')}</span>
+                <span><span className="text-[#0F172A] font-extrabold">85K+</span> {t('students', 'طالب')}</span>
                 <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span className="text-[#14B8A6] font-semibold">4.9/5 {t('from principals', 'من المديرين')}</span>
+                <span><span className="text-[#0F172A] font-extrabold">3</span> {t('countries', 'دول')}</span>
+                <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
+                <span className="text-[#14B8A6] font-semibold">{t('Live in 4 weeks', 'جاهز في 4 أسابيع')}</span>
               </motion.div>
             </motion.div>
 
@@ -661,13 +658,13 @@ export default function HomePage() {
          fatigue. Principals self-identify their #1 pain and click.
          Human-centric photography for emotional connection.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="wayfinding" className="py-24 md:py-32 bg-[#F8FAFC] relative overflow-hidden">
+      <section id="wayfinding" className="py-24 md:py-32 bg-white relative overflow-hidden">
         {/* Subtle teal gradient accent in background */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse, rgba(20,184,166,0.06) 0%, transparent 70%)', filter: 'blur(80px)' }} />
+          style={{ background: 'radial-gradient(ellipse, rgba(20,184,166,0.04) 0%, transparent 70%)', filter: 'blur(80px)' }} />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Section title with underline animation */}
+          {/* Section title — empathetic, clear */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -675,17 +672,23 @@ export default function HomePage() {
             variants={staggerContainer}
             className="text-center mb-16 md:mb-20"
           >
+            <motion.div variants={fadeUp} custom={0} className="mb-5">
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+                {t('What We Solve', 'ما نحله')}
+              </span>
+            </motion.div>
             <motion.h2
               variants={fadeUp}
-              custom={0}
+              custom={1}
               className="text-3xl md:text-4xl lg:text-[3rem] font-heading font-extrabold text-[#0F172A] leading-tight tracking-tight mb-4"
             >
-              {t('Where do you want to ', 'أين تريد أن ')}<span className="shimmer-text">{t('win first?', 'تفوز أولاً؟')}</span>
+              {t('What\'s your biggest ', 'ما هو أكبر ')}<span className="shimmer-text">{t('headache right now?', 'تحدٍ لديك الآن؟')}</span>
             </motion.h2>
-            <motion.p variants={fadeUp} custom={1} className="text-[#64748B] text-lg max-w-xl mx-auto">
+            <motion.p variants={fadeUp} custom={1} className="text-[#64748B] text-lg max-w-2xl mx-auto">
               {t(
-                'Choose your biggest challenge. We\'ll show you the solution.',
-                'اختر أكبر تحدٍ لديك. سنعرض لك الحل.'
+                'Every school is different. Pick what matters most to you — we have a solution ready.',
+                'كل مدرسة مختلفة. اختر ما يهمك أكثر — لدينا الحل جاهز.'
               )}
             </motion.p>
           </motion.div>
@@ -725,12 +728,12 @@ export default function HomePage() {
               <div className="p-6 lg:p-7">
                 {/* Bold headline — scannability with inline keywords */}
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('Get ', 'احصل على ')}<span className="text-[#14B8A6]">{t('3x More Students', '3 أضعاف الطلاب')}</span>{t(' in Your First Semester', ' في فصلك الأول')}
+                  {t('"We need ', '"نحتاج ')}<span className="text-[#14B8A6]">{t('more students', 'المزيد من الطلاب')}</span>{t(' this year"', ' هذا العام"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    'Professional websites, SEO, Google Ads, and AI enrollment funnels with Cubico Marketing\u2122.',
-                    'مواقع احترافية، تحسين محركات البحث، إعلانات جوجل، ومسارات تسجيل ذكية مع Cubico Marketing\u2122.'
+                    'We build your school a professional website, run Google Ads, and set up enrollment funnels that actually bring parents to your door.',
+                    'نبني لمدرستك موقعاً احترافياً ونشغل إعلانات جوجل ونعد مسارات تسجيل تجلب الآباء إلى بابك فعلاً.'
                   )}
                 </p>
 
@@ -780,12 +783,12 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('Immersive Lessons & ', 'دروس غامرة و')}<span className="text-[#10B981]">{t('Smart LMS', 'نظام تعلم ذكي')}</span>{t(' Students Actually Love', ' يحبه الطلاب فعلاً')}
+                  {t('"Students are ', '"الطلاب ')}<span className="text-[#10B981]">{t('bored and disengaged', 'يشعرون بالملل')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    '200+ professional 2D & 3D animated lessons in English, Arabic & Urdu (Cubico Learn\u2122) + AI-powered adaptive Smart LMS.',
-                    'أكثر من 200 درس متحرك احترافي ثنائي وثلاثي الأبعاد بالإنجليزية والعربية والأردية (Cubico Learn\u2122) + نظام تعلم ذكي تكيفي.'
+                    '200+ animated video lessons in English, Arabic & Urdu, plus a smart LMS that adapts to each student. Learning they actually want to do.',
+                    'أكثر من 200 درس فيديو متحرك بالإنجليزية والعربية والأردية، بالإضافة إلى نظام تعلم ذكي يتكيف مع كل طالب. تعلّم يرغبون فيه فعلاً.'
                   )}
                 </p>
 
@@ -833,12 +836,12 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  <span className="text-[#0D9488]">{t('Zero-Stress', 'بدون توتر')}</span>{t(' Operations with Full ERP', ' عمليات مع نظام تخطيط متكامل')}
+                  {t('"I\'m drowning in ', '"أغرق في ')}<span className="text-[#0D9488]">{t('admin work', 'العمل الإداري')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
-                    'Admissions, fees, attendance, HR, exams, timetables — all automated in Cubico Manage\u2122.',
-                    'القبول والرسوم والحضور والموارد البشرية والامتحانات والجداول — كلها مؤتمتة في Cubico Manage\u2122.'
+                    'Admissions, fees, attendance, HR, exams, timetables — one dashboard replaces the chaos. Staff save 47 hours a month.',
+                    'القبول والرسوم والحضور والموارد البشرية والامتحانات والجداول — لوحة تحكم واحدة تحل محل الفوضى. يوفر الموظفون 47 ساعة شهرياً.'
                   )}
                 </p>
 
@@ -862,21 +865,181 @@ export default function HomePage() {
               </div>
             </motion.div>
           </motion.div>
+
+          {/* ── 3 Additional Cards — second row ── */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-6 lg:mt-8"
+          >
+            {/* ────── CARD 4: Animation Studio (Violet accent) ────── */}
+            <motion.div
+              variants={fadeUp}
+              custom={0}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#8B5CF6]/30 shadow-sm hover:shadow-2xl hover:shadow-violet-500/10 transition-all duration-300 cursor-pointer"
+            >
+              <div className="relative h-52 overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80"
+                  alt="Creative animation and digital content production studio"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8B5CF6]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                  <Film size={12} /> {t('CREATE', 'إبداع')}
+                </div>
+              </div>
+
+              <div className="p-6 lg:p-7">
+                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                  {t('"We need ', '"نحتاج ')}<span className="text-[#8B5CF6]">{t('better content', 'محتوى أفضل')}</span>{t(' in our language"', ' بلغتنا"')}
+                </h3>
+                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
+                  {t(
+                    'Studio-quality animated lessons in English, Arabic & Urdu — aligned to your curriculum. Students actually pay attention.',
+                    'دروس متحركة بجودة الاستوديو بالإنجليزية والعربية والأردية — متوافقة مع منهجك. الطلاب ينتبهون فعلاً.'
+                  )}
+                </p>
+
+                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F3FF] border border-[#8B5CF6]/10">
+                  <Sparkles size={16} className="text-[#8B5CF6] flex-shrink-0" />
+                  <span className="text-sm text-[#0F172A] font-semibold">
+                    {t(
+                      '200+ animated lessons \u2022 3 languages \u2022 Curriculum-aligned',
+                      'أكثر من 200 درس متحرك \u2022 3 لغات \u2022 متوافق مع المنهج'
+                    )}
+                  </span>
+                </div>
+
+                <Link
+                  href="/solutions/animation-studio"
+                  className="inline-flex items-center gap-2 text-[#8B5CF6] font-bold text-sm group-hover:gap-3 transition-all duration-200"
+                >
+                  {t('Explore Animation Studio', 'استكشف استوديو الرسوم المتحركة')}
+                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* ────── CARD 5: Web Development (Blue accent) ────── */}
+            <motion.div
+              variants={fadeUp}
+              custom={1}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#3B82F6]/30 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 cursor-pointer"
+            >
+              <div className="relative h-52 overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                  alt="Modern website design and development on screen"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#3B82F6]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                  <Globe size={12} /> {t('BUILD', 'بناء')}
+                </div>
+              </div>
+
+              <div className="p-6 lg:p-7">
+                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                  {t('"Our website looks ', '"موقعنا يبدو ')}<span className="text-[#3B82F6]">{t('outdated', 'قديماً')}</span>{t('"', '"')}
+                </h3>
+                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
+                  {t(
+                    'We build fast, modern school websites with online admissions, parent portals, and SEO — live in 2 weeks.',
+                    'نبني مواقع مدرسية سريعة وعصرية مع قبول إلكتروني وبوابات آباء وتحسين محركات بحث — جاهزة في أسبوعين.'
+                  )}
+                </p>
+
+                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#EFF6FF] border border-[#3B82F6]/10">
+                  <Monitor size={16} className="text-[#3B82F6] flex-shrink-0" />
+                  <span className="text-sm text-[#0F172A] font-semibold">
+                    {t(
+                      'Live in 2 weeks \u2022 SEO-optimized \u2022 Mobile-first design',
+                      'جاهز في أسبوعين \u2022 محسن لمحركات البحث \u2022 تصميم متجاوب'
+                    )}
+                  </span>
+                </div>
+
+                <Link
+                  href="/solutions/web-development"
+                  className="inline-flex items-center gap-2 text-[#3B82F6] font-bold text-sm group-hover:gap-3 transition-all duration-200"
+                >
+                  {t('Explore Web Solutions', 'استكشف حلول الويب')}
+                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* ────── CARD 6: Mobile Apps (Orange accent) ────── */}
+            <motion.div
+              variants={fadeUp}
+              custom={2}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#F59E0B]/30 shadow-sm hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 cursor-pointer"
+            >
+              <div className="relative h-52 overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80"
+                  alt="Mobile app interface on smartphone showing school application"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F59E0B]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                  <Smartphone size={12} /> {t('CONNECT', 'تواصل')}
+                </div>
+              </div>
+
+              <div className="p-6 lg:p-7">
+                <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
+                  {t('"Parents never know ', '"الآباء لا يعرفون ')}<span className="text-[#F59E0B]">{t('what\'s happening', 'ما يحدث')}</span>{t('"', '"')}
+                </h3>
+                <p className="text-[#64748B] text-sm leading-relaxed mb-4">
+                  {t(
+                    'Your own branded iOS & Android app — grades, attendance, fee payments, and direct messaging. Parents stay in the loop.',
+                    'تطبيقك الخاص على iOS و Android — الدرجات والحضور ودفع الرسوم والرسائل المباشرة. الآباء يبقون على اطلاع.'
+                  )}
+                </p>
+
+                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#FFFBEB] border border-[#F59E0B]/10">
+                  <Smartphone size={16} className="text-[#F59E0B] flex-shrink-0" />
+                  <span className="text-sm text-[#0F172A] font-semibold">
+                    {t(
+                      'iOS + Android \u2022 Push notifications \u2022 Branded to your school',
+                      'iOS + Android \u2022 إشعارات فورية \u2022 بعلامة مدرستك'
+                    )}
+                  </span>
+                </div>
+
+                <Link
+                  href="/solutions/mobile-apps"
+                  className="inline-flex items-center gap-2 text-[#F59E0B] font-bold text-sm group-hover:gap-3 transition-all duration-200"
+                >
+                  {t('Explore Mobile Apps', 'استكشف تطبيقات الجوال')}
+                  <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-         UNIFIED PLATFORM PROOF — "Everything works together"
-         Shows 4 modules with integrated dashboard imagery.
-         Psychology: Reduces fear of fragmented tools.
+         HOW IT WORKS — 3-step process bridge
+         Psychology: Reduces uncertainty. Visitor knows exactly
+         what happens next. Numbered steps = sense of control.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="platform" className="py-24 md:py-32 bg-white relative overflow-hidden">
-        {/* Subtle grid background */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(circle, #E2E8F0 1px, transparent 1px)', backgroundSize: '32px 32px', opacity: 0.5 }} />
-
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Section header */}
+      <section className="py-24 md:py-28 bg-[#F8FAFC] relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -884,231 +1047,79 @@ export default function HomePage() {
             variants={staggerContainer}
             className="text-center mb-16"
           >
-            <motion.div variants={fadeUp} custom={0} className="mb-4">
+            <motion.div variants={fadeUp} custom={0} className="mb-5">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
-                {t('One Platform', 'منصة واحدة')}
+                {t('How It Works', 'كيف يعمل')}
               </span>
             </motion.div>
             <motion.h2 variants={fadeUp} custom={1}
-              className="text-3xl md:text-4xl lg:text-[2.8rem] font-heading font-extrabold text-[#0F172A] leading-[1.1] tracking-tight mb-4">
-              {t('Everything works together as ', 'كل شيء يعمل معاً ')}<span className="shimmer-text">{t('one seamless platform.', 'كمنصة واحدة متكاملة.')}</span>
+              className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] leading-tight tracking-tight mb-4">
+              {t('From first call to ', 'من أول اتصال إلى ')}<span className="shimmer-text">{t('fully running — in 4 weeks.', 'تشغيل كامل — في 4 أسابيع.')}</span>
             </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="text-[#64748B] text-lg max-w-lg mx-auto leading-relaxed">
-              {t('Four products. One ecosystem. Each built specifically for education.', 'أربعة منتجات. منظومة واحدة. كل منها مصمم خصيصاً للتعليم.')}
+            <motion.p variants={fadeUp} custom={2} className="text-[#64748B] text-lg max-w-xl mx-auto">
+              {t('No complicated setup. No months of waiting. Here\'s what happens:', 'بدون إعداد معقد. بدون أشهر من الانتظار. إليك ما يحدث:')}
             </motion.p>
           </motion.div>
 
-          {/* ── 4 Module Highlights — Bento Grid ── */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-
-            {/* Module 1: Cubico Manage — Full ERP Dashboard */}
-            <motion.a
-              href="/solutions/school-erp"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="lg:col-span-2 group relative rounded-[20px] border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ background: 'linear-gradient(135deg, #F0FDFA 0%, #ffffff 50%, rgba(13,148,136,0.03) 100%)', borderColor: 'rgba(13,148,136,0.2)' }}
-            >
-              <div className="grid lg:grid-cols-[45%_55%] gap-0 min-h-[420px] lg:min-h-[460px]">
-                <div className="p-8 lg:p-10 xl:p-12 flex flex-col justify-center relative z-10">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold tracking-[0.18em] uppercase px-3 py-1 rounded-full w-fit mb-5 bg-[#0D9488]/10 text-[#0D9488]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#0D9488]" /> {t('MANAGE', 'إدارة')}
-                  </span>
-                  <h3 className="text-2xl lg:text-3xl xl:text-[2.2rem] font-extrabold text-[#0F172A] mb-3 leading-tight tracking-tight">
-                    {t('Cubico Manage\u2122', 'كيوبيكو إدارة\u2122')}
-                  </h3>
-                  <p className="text-[#64748B] text-sm lg:text-base leading-relaxed mb-6 max-w-md">
-                    {t(
-                      'Your entire institution — admissions, fee collection, attendance, HR, exams, timetables — managed from one intelligent dashboard.',
-                      'مؤسستك بالكامل — القبول وتحصيل الرسوم والحضور والموارد البشرية والامتحانات والجداول — تُدار من لوحة تحكم ذكية واحدة.'
-                    )}
-                  </p>
-                  <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-4xl font-black tracking-tight text-[#0D9488]">{t('47 hrs', '47 ساعة')}</span>
-                    <span className="text-sm text-[#64748B]">{t('saved per staff member, per month', 'يتم توفيرها لكل موظف شهرياً')}</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 text-sm font-bold text-[#0D9488] group-hover:gap-3 transition-all">
-                    {t('Explore Cubico Manage', 'استكشف كيوبيكو إدارة')}
-                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-                {/* Dashboard mockup */}
-                <div className="relative flex items-end lg:items-center justify-center overflow-hidden px-4 pb-4 lg:p-6 xl:p-8">
-                  <div className="w-full max-w-[540px] rounded-xl overflow-hidden shadow-2xl border border-gray-200/50 bg-white">
-                    <div className="bg-[#f8f9fb] px-3.5 py-2 flex items-center gap-2 border-b border-gray-200/60">
-                      <div className="flex gap-1.5"><div className="w-[9px] h-[9px] rounded-full bg-[#FF5F57]" /><div className="w-[9px] h-[9px] rounded-full bg-[#FEBC2E]" /><div className="w-[9px] h-[9px] rounded-full bg-[#28C840]" /></div>
-                      <div className="flex-1 ml-2"><div className="bg-white rounded-md px-3 py-[3px] text-[10px] text-gray-400 border border-gray-100 w-fit">app.cubico.tech/dashboard</div></div>
-                    </div>
-                    <div className="p-4 lg:p-5 bg-[#f5f7fa]">
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-[10px] font-bold bg-[#0D9488]">C</div>
-                          <div><div className="text-[11px] font-bold text-gray-900">Springfield Academy</div><div className="text-[9px] text-gray-400">Academic Year 2025-26</div></div>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-4 gap-2 mb-3">
-                        {[
-                          { label: 'Total Students', val: '2,847', delta: '+12%' },
-                          { label: 'Attendance', val: '94.2%', delta: '+2.1%' },
-                          { label: 'Fee Collected', val: '\u20B918.4L', delta: '78%' },
-                          { label: 'Staff', val: '186', delta: '+4' },
-                        ].map((c, ci) => (
-                          <div key={ci} className="bg-white rounded-lg p-2.5 border border-gray-100/80 shadow-sm">
-                            <span className="text-[9px] font-bold text-emerald-500 block mb-1">{c.delta}</span>
-                            <div className="text-sm font-extrabold text-gray-900 leading-none">{c.val}</div>
-                            <div className="text-[9px] text-gray-400 mt-0.5">{c.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="flex items-end gap-[3px] h-16 bg-white rounded-lg p-3 border border-gray-100/80">
-                        {[40,65,45,80,60,90,75,95,70,85,92,78].map((h, hi) => (
-                          <div key={hi} className="flex-1 rounded-sm" style={{ height: `${h}%`, backgroundColor: hi === 11 ? '#0D9488' : 'rgba(13,148,136,0.2)' }} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full blur-3xl opacity-15 pointer-events-none bg-[#0D9488]" />
-                </div>
-              </div>
-            </motion.a>
-
-            {/* Module 2: Cubico Learn — Animation Player */}
-            <motion.a
-              href="/solutions/animation-studio"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="group relative rounded-[20px] border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ background: 'linear-gradient(160deg, #ECFDF5 0%, #ffffff 60%)', borderColor: 'rgba(16,185,129,0.2)' }}
-            >
-              <div className="p-6 lg:p-7 flex flex-col h-full">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold tracking-[0.18em] uppercase px-3 py-1 rounded-full w-fit mb-4 bg-[#10B981]/10 text-[#10B981]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" /> {t('LEARN', 'تعلّم')}
-                </span>
-                <h3 className="text-xl lg:text-2xl font-extrabold text-[#0F172A] mb-2 tracking-tight">{t('Cubico Learn\u2122', 'كيوبيكو تعلّم\u2122')}</h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4 line-clamp-2">
-                  {t(
-                    'Professional 2D & 3D animated lessons in English, Arabic & Urdu — designed for K-12 curricula.',
-                    'دروس متحركة احترافية ثنائية وثلاثية الأبعاد بالإنجليزية والعربية والأردية — مصممة لمناهج K-12.'
-                  )}
-                </p>
-                <div className="flex items-baseline gap-1.5 mb-5">
-                  <span className="text-2xl font-black text-[#10B981]">200+</span>
-                  <span className="text-xs text-[#64748B]">{t('animated lessons in 3 languages', 'درس متحرك بـ 3 لغات')}</span>
-                </div>
-                {/* Mini mockup */}
-                <div className="flex-1 mt-auto">
-                  <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200/40 bg-white">
-                    <div className="bg-[#f8f9fb] px-3 py-1.5 flex items-center gap-1.5 border-b border-gray-100">
-                      <div className="flex gap-1"><div className="w-2 h-2 rounded-full bg-[#FF5F57]" /><div className="w-2 h-2 rounded-full bg-[#FEBC2E]" /><div className="w-2 h-2 rounded-full bg-[#28C840]" /></div>
-                      <div className="flex-1 ml-1.5"><div className="bg-white rounded px-2 py-[2px] text-[9px] text-gray-400 border border-gray-100 w-fit">learn.cubico.tech</div></div>
-                    </div>
-                    <div className="p-3 bg-gradient-to-b from-emerald-50/40 to-white">
-                      <div className="relative rounded-lg overflow-hidden mb-3 bg-emerald-50/50 aspect-video flex items-center justify-center">
-                        <div className="w-14 h-14 rounded-full bg-white/90 shadow-lg flex items-center justify-center backdrop-blur-sm">
-                          <Play size={18} className="ml-0.5 text-[#10B981]" />
-                        </div>
-                        <div className="absolute top-2.5 left-3">
-                          <div className="px-2 py-0.5 rounded-full text-[8px] font-bold text-white bg-[#10B981]">BIOLOGY</div>
-                        </div>
-                        <div className="absolute bottom-2.5 left-3 right-3">
-                          <div className="flex items-center justify-between">
-                            <span className="text-[9px] font-semibold text-gray-600">The Water Cycle</span>
-                            <span className="text-[9px] text-gray-400">3:24 / 8:10</span>
-                          </div>
-                          <div className="w-full bg-white/50 rounded-full h-1 mt-1"><div className="h-1 rounded-full w-[42%] bg-[#10B981]" /></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5 mt-5 text-sm font-bold text-[#10B981] group-hover:gap-2.5 transition-all">
-                  {t('Explore Cubico Learn', 'استكشف كيوبيكو تعلّم')} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                </div>
-              </div>
-            </motion.a>
-
-            {/* Module 3: Smart LMS */}
-            <motion.a
-              href="/solutions/smart-lms"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="group relative rounded-[20px] border overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ background: 'linear-gradient(160deg, #F0FDFA 0%, #ffffff 60%)', borderColor: 'rgba(20,184,166,0.2)' }}
-            >
-              <div className="p-6 lg:p-7 flex flex-col h-full">
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-extrabold tracking-[0.18em] uppercase px-3 py-1 rounded-full w-fit mb-4 bg-[#14B8A6]/10 text-[#14B8A6]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" /> {t('TEACH', 'تدريس')}
-                </span>
-                <h3 className="text-xl lg:text-2xl font-extrabold text-[#0F172A] mb-2 tracking-tight">{t('Smart LMS', 'نظام إدارة التعلم الذكي')}</h3>
-                <p className="text-[#64748B] text-sm leading-relaxed mb-4 line-clamp-2">
-                  {t(
-                    'AI-powered learning management with adaptive course paths, progress tracking, and interactive assessments.',
-                    'إدارة تعلم مدعومة بالذكاء الاصطناعي مع مسارات دورات تكيفية وتتبع التقدم وتقييمات تفاعلية.'
-                  )}
-                </p>
-                <div className="flex items-baseline gap-1.5 mb-5">
-                  <span className="text-2xl font-black text-[#14B8A6]">85K+</span>
-                  <span className="text-xs text-[#64748B]">{t('active learners across 3 countries', 'متعلم نشط في 3 دول')}</span>
-                </div>
-                {/* Mini LMS mockup */}
-                <div className="flex-1 mt-auto">
-                  <div className="rounded-xl overflow-hidden shadow-lg border border-gray-200/40 bg-white">
-                    <div className="bg-[#f8f9fb] px-3 py-1.5 flex items-center gap-1.5 border-b border-gray-100">
-                      <div className="flex gap-1"><div className="w-2 h-2 rounded-full bg-[#FF5F57]" /><div className="w-2 h-2 rounded-full bg-[#FEBC2E]" /><div className="w-2 h-2 rounded-full bg-[#28C840]" /></div>
-                      <div className="flex-1 ml-1.5"><div className="bg-white rounded px-2 py-[2px] text-[9px] text-gray-400 border border-gray-100 w-fit">lms.cubico.tech</div></div>
-                    </div>
-                    <div className="p-3 bg-gradient-to-b from-teal-50/30 to-white">
-                      <div className="grid grid-cols-2 gap-2">
-                        {[
-                          { title: 'Physics 101', students: 48, progress: 72, color: '#14B8A6' },
-                          { title: 'Chemistry', students: 36, progress: 45, color: '#6366F1' },
-                          { title: 'Biology', students: 52, progress: 89, color: '#10B981' },
-                          { title: 'Math', students: 41, progress: 33, color: '#F59E0B' },
-                        ].map((course, ci) => (
-                          <div key={ci} className="bg-white rounded-lg p-2 border border-gray-100 shadow-sm">
-                            <div className="text-[10px] font-bold text-gray-800 mb-0.5">{course.title}</div>
-                            <div className="text-[8px] text-gray-400 mb-1.5">{course.students} students</div>
-                            <div className="w-full bg-gray-100 rounded-full h-1">
-                              <div className="h-1 rounded-full" style={{ width: `${course.progress}%`, backgroundColor: course.color }} />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5 mt-5 text-sm font-bold text-[#14B8A6] group-hover:gap-2.5 transition-all">
-                  {t('Explore Smart LMS', 'استكشف نظام التعلم الذكي')} <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                </div>
-              </div>
-            </motion.a>
-          </div>
-
-          {/* Trust strip */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-14 flex flex-wrap items-center justify-center gap-5 text-sm text-[#64748B]"
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-8 lg:gap-12 relative"
           >
+            {/* Connecting line — desktop only */}
+            <div className="hidden md:block absolute top-14 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-[#14B8A6]/20 via-[#14B8A6]/40 to-[#14B8A6]/20" />
+
             {[
-              { icon: Shield, text: t('ISO 27001 Certified', 'شهادة ISO 27001') },
-              { icon: Globe, text: t('Used across 12+ countries', 'مستخدم في أكثر من 12 دولة') },
-              { icon: Award, text: t('Top EdTech 2025', 'أفضل تقنية تعليمية 2025') },
-            ].map((badge, bi) => (
-              <div key={bi} className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-full border border-gray-100">
-                <badge.icon size={14} className="text-[#14B8A6]" />
-                <span>{badge.text}</span>
-              </div>
+              {
+                step: '01',
+                title: t('We Listen', 'نستمع'),
+                desc: t('Book a free 30-minute call. We learn about your school, your pain points, and your goals. No sales pitch — just a real conversation.', 'احجز اتصالاً مجانياً لمدة 30 دقيقة. نتعرف على مدرستك وتحدياتك وأهدافك. بدون عرض مبيعات — مجرد محادثة حقيقية.'),
+                icon: Phone,
+              },
+              {
+                step: '02',
+                title: t('We Build', 'نبني'),
+                desc: t('Our team configures your platform, migrates your data, and creates your custom setup. You review everything before going live.', 'يقوم فريقنا بتهيئة منصتك ونقل بياناتك وإنشاء إعدادك المخصص. تراجع كل شيء قبل الإطلاق.'),
+                icon: Settings,
+              },
+              {
+                step: '03',
+                title: t('You Launch', 'تُطلق'),
+                desc: t('We train your staff, go live together, and stay by your side. Dedicated support from a team that knows your name.', 'ندرب موظفيك ونطلق معاً ونبقى بجانبك. دعم مخصص من فريق يعرف اسمك.'),
+                icon: Zap,
+              },
+            ].map((item, i) => (
+              <motion.div key={item.step} variants={fadeUp} custom={i} className="text-center relative">
+                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center bg-white border-2 border-[#14B8A6]/15 shadow-lg shadow-teal-500/5 relative z-10">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] flex items-center justify-center">
+                    <item.icon size={28} className="text-[#14B8A6]" />
+                  </div>
+                </div>
+                <div className="text-[11px] font-extrabold text-[#14B8A6] tracking-[0.2em] uppercase mb-2">{t('Step', 'الخطوة')} {item.step}</div>
+                <h3 className="text-xl font-extrabold text-[#0F172A] mb-3">{item.title}</h3>
+                <p className="text-[#64748B] text-sm leading-relaxed max-w-xs mx-auto">{item.desc}</p>
+              </motion.div>
             ))}
+          </motion.div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-center mt-14"
+          >
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-lg shadow-teal-500/20 hover:shadow-xl hover:shadow-teal-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
+            >
+              {t('Start With a Free Call', 'ابدأ باتصال مجاني')}
+              <ArrowRight size={18} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -1118,7 +1129,7 @@ export default function HomePage() {
          Psychology: Trust transfer from peer institutions.
          Photo avatars + location chips for credibility.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="testimonials" className="py-24 bg-[#F8FAFC]">
+      <section id="testimonials" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -1130,7 +1141,7 @@ export default function HomePage() {
             <motion.div variants={fadeUp} custom={0} className="mb-4">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
-                {t('Testimonials', 'الشهادات')}
+                {t('Real Stories', 'قصص حقيقية')}
               </span>
             </motion.div>
             <motion.h2
@@ -1138,7 +1149,7 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] mb-4"
             >
-              {t('Trusted by ', 'موثوق من قبل ')}<span className="shimmer-text">{t('educators worldwide', 'معلمين حول العالم')}</span>
+              {t('Don\'t take our word for it. ', 'لا تأخذ كلامنا. ')}<span className="shimmer-text">{t('Ask them.', 'اسألهم.')}</span>
             </motion.h2>
             <motion.div variants={fadeUp} custom={2} className="flex items-center justify-center gap-4 mt-4">
               <div className="flex gap-1">
@@ -1146,7 +1157,7 @@ export default function HomePage() {
                   <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-[#64748B] text-sm font-medium">{t('4.9/5 from 760+ reviews', '4.9/5 من أكثر من 760 مراجعة')}</span>
+              <span className="text-[#64748B] text-sm font-medium">{t('4.9/5 from 760+ principals', '4.9/5 من أكثر من 760 مدير')}</span>
             </motion.div>
           </motion.div>
 
@@ -1265,7 +1276,7 @@ export default function HomePage() {
          CTA + DEMO FORM SECTION
          Psychology: Strong demo push with value-stacking checklist.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="contact" className="py-24 bg-[#F8FAFC] bg-grid-light">
+      <section id="contact" className="py-24 bg-[#F8FAFC]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left Content */}
@@ -1286,13 +1297,12 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] mb-6"
               >
-                {t('See Cubico in action — ', 'شاهد كيوبيكو في العمل — ')}<br />
-                <span className="shimmer-text">{t('free personalized demo', 'عرض مجاني مخصص')}</span>
+                {t('Curious? ', 'فضولي؟ ')}<span className="shimmer-text">{t('Let\'s talk.', 'لنتحدث.')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-[#64748B] leading-relaxed mb-8">
                 {t(
-                  "Walk through the LMS, ERP, animated content, and marketing tools with our team. We'll customize the demo to your curriculum, student count, and goals.",
-                  'تصفح نظام إدارة التعلم ونظام تخطيط الموارد والمحتوى المتحرك وأدوات التسويق مع فريقنا. سنخصص العرض حسب منهجك وعدد طلابك وأهدافك.'
+                  "30 minutes. No sales pitch. We'll show you the platform using your curriculum, your student count, and your real goals — then you decide.",
+                  '30 دقيقة. بدون عرض مبيعات. سنعرض لك المنصة باستخدام منهجك وعدد طلابك وأهدافك الحقيقية — ثم تقرر أنت.'
                 )}
               </motion.p>
 
@@ -1414,13 +1424,12 @@ export default function HomePage() {
                 custom={1}
                 className="text-3xl md:text-4xl font-heading font-extrabold text-[#0F172A] mb-6"
               >
-                {t('Questions schools ', 'أسئلة المدارس ')}<br />
-                <span className="shimmer-text">{t('ask us most', 'الأكثر شيوعاً')}</span>
+                {t('You\'re probably ', 'ربما ')}<span className="shimmer-text">{t('wondering...', 'تتساءل...')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-[#64748B] leading-relaxed mb-8">
                 {t(
-                  "From onboarding timelines to multilingual support — here's what principals and IT heads want to know before signing up.",
-                  'من الجداول الزمنية للإعداد إلى الدعم متعدد اللغات — إليك ما يريد المديرون ورؤساء تقنية المعلومات معرفته قبل التسجيل.'
+                  "Here are the questions principals and IT heads ask us before signing up.",
+                  'إليك الأسئلة التي يطرحها المديرون ورؤساء تقنية المعلومات قبل التسجيل.'
                 )}
               </motion.p>
 
