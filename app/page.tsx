@@ -332,15 +332,15 @@ export default function HomePage() {
                 <span className="shimmer-text">{t('tools that actually work.', 'أدوات تعمل فعلاً.')}</span>
               </motion.h1>
 
-              {/* Empathetic subheadline — speaks to the principal's real day */}
+              {/* Empathetic subheadline — one sharp sentence */}
               <motion.p
                 variants={fadeUp}
                 custom={2}
                 className="text-[#475569] text-lg md:text-[1.25rem] leading-relaxed mb-10 max-w-[500px]"
               >
                 {t(
-                  'Stop juggling spreadsheets, chasing fees, and worrying about enrollment. One platform handles your LMS, school management, marketing, and animated lessons — so you can focus on what matters: your students.',
-                  'توقف عن التعامل مع جداول البيانات وملاحقة الرسوم والقلق بشأن التسجيل. منصة واحدة تتولى نظام التعلم وإدارة المدرسة والتسويق والدروس المتحركة — لتركز على ما يهم: طلابك.'
+                  'One platform replaces your spreadsheets, fills your classrooms, and gives teachers animated lessons students actually enjoy.',
+                  'منصة واحدة تحل محل جداولك وتملأ فصولك وتمنح المعلمين دروساً متحركة يستمتع بها الطلاب فعلاً.'
                 )}
               </motion.p>
 
@@ -377,280 +377,69 @@ export default function HomePage() {
               </motion.div>
             </motion.div>
 
-            {/* ── RIGHT: Visual proof mockups (45%) ── */}
+            {/* ── RIGHT: Big scannable outcome cards ── */}
             <motion.div
-              initial={{ opacity: 0, x: 50, scale: 0.96 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative flex justify-center lg:justify-end"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative hidden lg:flex flex-col gap-4 max-w-[420px]"
             >
-              {/* Soft glow behind mockups — depth cue */}
-              <div className="absolute -inset-8 pointer-events-none" style={{
-                background: 'radial-gradient(ellipse 80% 70% at 55% 50%, rgba(20,184,166,0.07) 0%, transparent 70%)',
-                filter: 'blur(30px)',
+              {/* Outcome card 1 */}
+              <motion.div
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-500/20">
+                    <TrendingUp size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-black text-[#0F172A] tracking-tight leading-none mb-1">+340%</div>
+                    <div className="text-sm text-[#64748B]">{t('average enrollment increase', 'متوسط زيادة التسجيل')}</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Outcome card 2 */}
+              <motion.div
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg ml-8"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/20">
+                    <GraduationCap size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-black text-[#0F172A] tracking-tight leading-none mb-1">94.2%</div>
+                    <div className="text-sm text-[#64748B]">{t('student attendance rate', 'معدل حضور الطلاب')}</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Outcome card 3 */}
+              <motion.div
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0D9488] to-[#0F766E] flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-600/20">
+                    <Zap size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-black text-[#0F172A] tracking-tight leading-none mb-1">47 {t('hrs', 'ساعة')}</div>
+                    <div className="text-sm text-[#64748B]">{t('saved per staff member/month', 'يوفرها كل موظف شهرياً')}</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Subtle glow behind cards */}
+              <div className="absolute -inset-8 -z-10 pointer-events-none" style={{
+                background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(20,184,166,0.06) 0%, transparent 70%)',
+                filter: 'blur(40px)',
               }} />
-
-              <div className="relative w-full max-w-[560px]">
-
-                {/* ════ LAPTOP MOCKUP — Cubico Manage Dashboard ════ */}
-                <motion.div
-                  whileHover={{ y: -5, scale: 1.01 }}
-                  transition={{ type: 'spring', stiffness: 280, damping: 28 }}
-                  className="relative z-10 rounded-2xl overflow-hidden"
-                  style={{
-                    boxShadow: '0 32px 80px rgba(15,23,42,0.10), 0 12px 40px rgba(20,184,166,0.06), 0 0 0 1px rgba(226,232,240,0.5)',
-                    transform: 'perspective(1400px) rotateY(-2deg) rotateX(1.5deg)',
-                  }}
-                >
-                  {/* Browser chrome */}
-                  <div className="bg-[#F8FAFC] border-b border-[#E2E8F0] px-4 py-2 flex items-center gap-2.5">
-                    <div className="flex gap-1.5">
-                      <div className="w-[10px] h-[10px] rounded-full bg-[#FF5F57]" />
-                      <div className="w-[10px] h-[10px] rounded-full bg-[#FEBC2E]" />
-                      <div className="w-[10px] h-[10px] rounded-full bg-[#28C840]" />
-                    </div>
-                    <div className="flex-1 mx-2">
-                      <div className="bg-white rounded-lg px-3 py-1 text-[10px] text-[#94A3B8] font-mono flex items-center gap-1.5 w-fit border border-[#E2E8F0]">
-                        <svg className="w-2.5 h-2.5 text-[#14B8A6] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" /></svg>
-                        app.cubico.tech/dashboard
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Dashboard content — white, clean, teal accents */}
-                  <div className="bg-white">
-                    {/* Top nav */}
-                    <div className="px-4 py-2.5 border-b border-[#F1F5F9] flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[10px] font-bold shadow-sm">C</div>
-                        <div>
-                          <div className="text-[11px] font-bold text-[#0F172A]">Al-Noor Academy</div>
-                          <div className="text-[8px] text-[#94A3B8]">2025-26 Academic Year</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <div className="relative">
-                          <div className="w-6 h-6 rounded-full bg-[#F1F5F9] flex items-center justify-center"><Mail size={10} className="text-[#94A3B8]" /></div>
-                          <div className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-red-500 border border-white" />
-                        </div>
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center text-white text-[7px] font-bold">AK</div>
-                      </div>
-                    </div>
-
-                    <div className="p-3.5">
-                      {/* 4 KPI cards — the real stats principals care about */}
-                      <div className="grid grid-cols-4 gap-1.5 mb-3">
-                        {[
-                          { label: 'Students', val: '2,847', delta: '+12%', ico: Users },
-                          { label: 'Attendance', val: '94.2%', delta: '+2.1%', ico: CheckCircle2 },
-                          { label: 'Fees', val: 'Rs 18.4L', delta: '78%', ico: TrendingUp },
-                          { label: 'Staff', val: '186', delta: '+4', ico: Users },
-                        ].map((c, ci) => (
-                          <div key={ci} className="bg-[#F8FAFC] rounded-lg p-2 border border-[#F1F5F9]">
-                            <div className="flex items-center justify-between mb-1">
-                              <c.ico size={10} className="text-[#94A3B8]" />
-                              <span className="text-[7px] font-bold text-[#10B981]">{c.delta}</span>
-                            </div>
-                            <div className="text-[12px] font-extrabold text-[#0F172A] leading-none">{c.val}</div>
-                            <div className="text-[7px] text-[#94A3B8] mt-0.5">{c.label}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Charts + attendance donut row */}
-                      <div className="grid grid-cols-5 gap-1.5 mb-2">
-                        {/* Fee collection bar chart */}
-                        <div className="col-span-3 bg-[#F8FAFC] rounded-lg p-2.5 border border-[#F1F5F9]">
-                          <div className="flex items-center justify-between mb-1.5">
-                            <span className="text-[9px] font-bold text-[#334155]">Fee Collection</span>
-                            <span className="text-[7px] font-semibold text-[#14B8A6] bg-[#14B8A6]/10 px-1.5 py-0.5 rounded">Monthly</span>
-                          </div>
-                          <div className="flex items-end gap-[2px] h-[44px]">
-                            {[32,50,38,68,48,78,62,85,58,72,82,90].map((h, hi) => (
-                              <div key={hi} className="flex-1 rounded-sm"
-                                style={{ height: `${h}%`, backgroundColor: hi >= 10 ? '#14B8A6' : 'rgba(20,184,166,0.15)' }} />
-                            ))}
-                          </div>
-                          <div className="flex justify-between mt-1">
-                            <span className="text-[6px] text-[#CBD5E1]">Jan</span>
-                            <span className="text-[6px] text-[#CBD5E1]">Jun</span>
-                            <span className="text-[6px] text-[#CBD5E1]">Dec</span>
-                          </div>
-                        </div>
-
-                        {/* Attendance donut */}
-                        <div className="col-span-2 bg-[#F8FAFC] rounded-lg p-2.5 border border-[#F1F5F9]">
-                          <div className="text-[8px] font-bold text-[#334155] mb-1">Attendance</div>
-                          <div className="flex items-center gap-1.5">
-                            <div className="relative w-11 h-11">
-                              <svg viewBox="0 0 36 36" className="w-11 h-11 -rotate-90">
-                                <circle cx="18" cy="18" r="14" fill="none" stroke="#F1F5F9" strokeWidth="3" />
-                                <circle cx="18" cy="18" r="14" fill="none" stroke="#14B8A6" strokeWidth="3" strokeDasharray="84 100" strokeLinecap="round" />
-                              </svg>
-                              <div className="absolute inset-0 flex items-center justify-center text-[8px] font-extrabold text-[#0F172A]">94%</div>
-                            </div>
-                            <div className="text-[7px] text-[#94A3B8] leading-snug">
-                              <div>Present: <span className="text-[#0F172A] font-semibold">2,676</span></div>
-                              <div>Absent: <span className="text-red-500 font-semibold">171</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Student overview row */}
-                      <div className="bg-[#F8FAFC] rounded-lg p-2 border border-[#F1F5F9]">
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[8px] font-bold text-[#334155]">Student Overview</span>
-                          <span className="text-[7px] text-[#14B8A6] font-semibold cursor-pointer">View all &rarr;</span>
-                        </div>
-                        <div className="grid grid-cols-4 gap-1.5">
-                          {[
-                            { name: 'Sara Ahmed', grade: 'Gr 5', avg: 'A', color: '#14B8A6' },
-                            { name: 'Omar Khan', grade: 'Gr 7', avg: 'B+', color: '#10B981' },
-                            { name: 'Fatima Z.', grade: 'Gr 3', avg: 'A-', color: '#0D9488' },
-                            { name: 'Hassan M.', grade: 'Gr 9', avg: 'B', color: '#14B8A6' },
-                          ].map((s, si) => (
-                            <div key={si} className="flex items-center gap-1 bg-white rounded-md px-1.5 py-1 border border-[#F1F5F9]">
-                              <div className="w-4.5 h-4.5 w-[18px] h-[18px] rounded-full flex items-center justify-center text-white text-[6px] font-bold flex-shrink-0"
-                                style={{ backgroundColor: s.color }}>{s.name.split(' ').map(n=>n[0]).join('')}</div>
-                              <div className="min-w-0">
-                                <div className="text-[7px] font-semibold text-[#0F172A] truncate">{s.name}</div>
-                                <div className="text-[6px] text-[#94A3B8]">{s.grade} &middot; {s.avg}</div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* ════ iPHONE MOCKUP — Cubico Learn™ Animated Lesson ════ */}
-                <motion.div
-                  initial={{ opacity: 0, y: 40, scale: 0.88 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  className="absolute -bottom-6 -left-4 md:-left-8 z-20 w-[135px] md:w-[155px]"
-                >
-                  <div className="rounded-[24px] overflow-hidden bg-white"
-                    style={{
-                      boxShadow: '0 24px 60px rgba(15,23,42,0.15), 0 6px 20px rgba(20,184,166,0.08), 0 0 0 1px rgba(226,232,240,0.6)',
-                      transform: 'perspective(900px) rotateY(4deg)',
-                    }}>
-                    {/* Dynamic Island */}
-                    <div className="bg-white flex justify-center pt-2 pb-1">
-                      <div className="w-14 h-[5px] bg-[#0F172A] rounded-full" />
-                    </div>
-
-                    {/* Screen content */}
-                    <div className="bg-white">
-                      {/* Lesson header bar */}
-                      <div className="bg-gradient-to-r from-[#14B8A6] to-[#10B981] px-3 py-2">
-                        <div className="text-[6px] text-white/60 font-medium tracking-wide uppercase">Cubico Learn&trade;</div>
-                        <div className="text-[10px] font-bold text-white leading-tight">The Water Cycle</div>
-                        <div className="text-[6px] text-white/50 mt-0.5">Biology &middot; Grade 5 &middot; English</div>
-                      </div>
-
-                      {/* Video player area */}
-                      <div className="relative mx-2 mt-2 rounded-lg overflow-hidden bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5]" style={{ aspectRatio: '16/9' }}>
-                        {/* Decorative clouds/rain for water cycle */}
-                        <div className="absolute top-3 left-3 flex gap-1 opacity-40">
-                          <div className="w-5 h-2.5 bg-[#14B8A6]/30 rounded-full" />
-                          <div className="w-3 h-2 bg-[#10B981]/20 rounded-full mt-0.5" />
-                        </div>
-                        <div className="absolute bottom-6 right-3 w-6 h-3 bg-[#14B8A6]/15 rounded-full" />
-                        {/* Play button */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-8 h-8 rounded-full bg-white/90 shadow-md flex items-center justify-center backdrop-blur-sm">
-                            <Play size={10} className="text-[#14B8A6] ml-0.5" />
-                          </div>
-                        </div>
-                        {/* Progress bar */}
-                        <div className="absolute bottom-1.5 left-2.5 right-2.5">
-                          <div className="w-full bg-white/40 rounded-full h-[3px]">
-                            <div className="w-[42%] h-full bg-[#14B8A6] rounded-full" />
-                          </div>
-                          <div className="flex justify-between mt-0.5">
-                            <span className="text-[5px] text-[#64748B]">2:14</span>
-                            <span className="text-[5px] text-[#94A3B8]">5:30</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Chapter list */}
-                      <div className="px-2 py-1.5 space-y-0.5">
-                        {[
-                          { ch: '1', title: 'Evaporation', done: true },
-                          { ch: '2', title: 'Condensation', done: true },
-                          { ch: '3', title: 'Precipitation', done: false, now: true },
-                          { ch: '4', title: 'Collection', done: false },
-                        ].map((l, li) => (
-                          <div key={li} className={`flex items-center gap-1.5 px-1.5 py-1 rounded-md text-[7px] ${
-                            l.now ? 'bg-[#F0FDFA] border border-[#14B8A6]/15' : ''
-                          }`}>
-                            {l.done ? (
-                              <div className="w-3 h-3 rounded-full bg-[#14B8A6] flex items-center justify-center flex-shrink-0">
-                                <svg className="w-1.5 h-1.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                              </div>
-                            ) : (
-                              <div className={`w-3 h-3 rounded-full border-[1.5px] flex-shrink-0 ${l.now ? 'border-[#14B8A6]' : 'border-[#E2E8F0]'}`} />
-                            )}
-                            <span className={`font-medium ${l.done ? 'text-[#CBD5E1] line-through' : l.now ? 'text-[#0D9488]' : 'text-[#94A3B8]'}`}>
-                              {l.ch}. {l.title}
-                            </span>
-                            {l.now && <span className="ml-auto text-[5px] bg-[#14B8A6] text-white px-1 py-[1px] rounded font-bold">NOW</span>}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Bottom tab bar */}
-                      <div className="border-t border-[#F1F5F9] px-2 py-1.5 flex justify-around">
-                        {[
-                          { icon: BookOpen, active: false },
-                          { icon: Film, active: true },
-                          { icon: BarChart3, active: false },
-                          { icon: Users, active: false },
-                        ].map((tab, ti) => (
-                          <tab.icon key={ti} size={11} className={tab.active ? 'text-[#14B8A6]' : 'text-[#CBD5E1]'} />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Home indicator */}
-                    <div className="bg-white flex justify-center py-1">
-                      <div className="w-9 h-[3px] bg-[#0F172A]/15 rounded-full" />
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Floating badge — live learners count */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: 0.9, type: 'spring', stiffness: 260, damping: 20 }}
-                  className="absolute -top-2 right-0 md:right-4 z-20 bg-white rounded-2xl px-3.5 py-2 shadow-md border border-[#E2E8F0] flex items-center gap-2"
-                  style={{ animation: 'float 7s ease-in-out infinite' }}
-                >
-                  <div className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-                  <span className="text-[11px] font-extrabold text-[#0F172A]">85K+</span>
-                  <span className="text-[10px] text-[#64748B]">{t('active learners', 'متعلم نشط')}</span>
-                </motion.div>
-
-                {/* Floating badge — schools count */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: 1.1, type: 'spring', stiffness: 260, damping: 20 }}
-                  className="absolute top-[45%] -right-2 md:right-0 z-20 bg-white rounded-2xl px-3 py-1.5 shadow-md border border-[#E2E8F0] flex items-center gap-1.5"
-                  style={{ animation: 'float 8s ease-in-out 1s infinite' }}
-                >
-                  <Shield size={11} className="text-[#14B8A6]" />
-                  <span className="text-[10px] font-bold text-[#0F172A]">760+</span>
-                  <span className="text-[9px] text-[#64748B]">{t('schools', 'مدرسة')}</span>
-                </motion.div>
-
-              </div>
             </motion.div>
           </div>
         </div>
@@ -676,17 +465,50 @@ export default function HomePage() {
           style={{ background: 'linear-gradient(to bottom, transparent, white)' }} />
       </section>
 
-      {/* ═══════ BRIDGE LINE: Hero → Cards ═══════ */}
-      <div className="py-10 bg-white text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-[#94A3B8] text-sm font-semibold tracking-wide"
-        >
-          {t('760 schools already made the switch. Here\'s why', '760 مدرسة انتقلت بالفعل. إليك السبب')} <span className="text-[#14B8A6]">&darr;</span>
-        </motion.p>
-      </div>
+      {/* ═══════ "IS THIS FOR ME?" — Quick persona ID ═══════
+         Psychology: Self-identification in <3 seconds. Visitor
+         sees themselves and thinks "yes, this is for me."
+         ═══════════════════════════════════════════════════════ */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center"
+          >
+            <motion.p variants={fadeUp} custom={0} className="text-[#94A3B8] text-sm font-semibold tracking-wide mb-8">
+              {t('760 schools already made the switch. Here\'s why', '760 مدرسة انتقلت بالفعل. إليك السبب')} <span className="text-[#14B8A6]">&darr;</span>
+            </motion.p>
+            <motion.h2 variants={fadeUp} custom={1} className="text-2xl md:text-3xl font-heading font-extrabold text-[#0F172A] mb-10">
+              {t('This is for you if you\'re a...', 'هذا لك إذا كنت...')}
+            </motion.h2>
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+          >
+            {[
+              { icon: Users, role: t('Principal or School Owner', 'مدير أو مالك مدرسة'), pain: t('who wants to grow enrollment and run operations smoothly', 'يريد زيادة التسجيل وإدارة العمليات بسلاسة') },
+              { icon: GraduationCap, role: t('Academic Director', 'مدير أكاديمي'), pain: t('who needs engaging content and a modern LMS for teachers', 'يحتاج محتوى جذاب ونظام تعلم حديث للمعلمين') },
+              { icon: Monitor, role: t('IT Head or Admin', 'رئيس تقنية أو مسؤول'), pain: t('who\'s tired of duct-taping 5 different systems together', 'سئم من ربط 5 أنظمة مختلفة ببعضها') },
+            ].map((persona, i) => (
+              <motion.div key={i} variants={fadeUp} custom={i}
+                className="flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 bg-[#F8FAFC] hover:border-[#14B8A6]/20 hover:shadow-lg transition-all">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6]/10 to-[#10B981]/10 flex items-center justify-center mb-4">
+                  <persona.icon size={22} className="text-[#14B8A6]" />
+                </div>
+                <h3 className="font-bold text-[#0F172A] text-sm mb-1">{persona.role}</h3>
+                <p className="text-[#64748B] text-xs leading-relaxed">{persona.pain}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* ═══════════════════════════════════════════════════════════
          ROLE-BASED WAYFINDING — Emotional & Visual Centerpiece
@@ -1369,23 +1191,23 @@ export default function HomePage() {
                 )}
               </motion.p>
 
-              <motion.div variants={fadeUp} custom={3} className="space-y-3 mb-6">
+              <motion.div variants={fadeUp} custom={3} className="space-y-2.5 mb-6">
                 {[
-                  { text: t('Full LMS demo with your curriculum', 'عرض كامل لنظام التعلم مع منهجك'), emoji: '\uD83D\uDCBB' },
-                  { text: t('ERP system walkthrough', 'جولة في نظام تخطيط الموارد'), emoji: '\uD83C\uDFE2' },
-                  { text: t('Animated content preview', 'معاينة المحتوى المتحرك'), emoji: '\uD83C\uDFA5' },
-                  { text: t('Custom pricing for your needs', 'أسعار مخصصة لاحتياجاتك'), emoji: '\uD83D\uDCB0' },
-                  { text: t('Implementation timeline review', 'مراجعة الجدول الزمني للتنفيذ'), emoji: '\uD83D\uDCC5' },
+                  { text: t('See the LMS running your curriculum', 'شاهد نظام التعلم يعمل بمنهجك'), icon: BookOpen },
+                  { text: t('Walk through the school dashboard', 'تجول في لوحة تحكم المدرسة'), icon: Layout },
+                  { text: t('Watch sample animated lessons', 'شاهد نماذج من الدروس المتحركة'), icon: Film },
+                  { text: t('Get a custom quote — no surprises', 'احصل على عرض سعر مخصص — بدون مفاجآت'), icon: Target },
                 ].map((item, idx) => (
-                  <motion.div key={item.text}
+                  <motion.div key={idx}
                     initial={{ opacity: 0, x: -16 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.07 * idx, duration: 0.4 }}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-[#14B8A6]/25 transition-all">
-                    <span className="text-xl flex-shrink-0">{item.emoji}</span>
-                    <span className="text-sm text-gray-600 font-medium flex-1">{item.text}</span>
-                    <CheckCircle2 className="w-4 h-4 text-[#14B8A6] flex-shrink-0" />
+                    transition={{ delay: 0.06 * idx, duration: 0.35 }}
+                    className="flex items-center gap-3">
+                    <div className="w-6 h-6 rounded-lg bg-[#14B8A6]/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon size={13} className="text-[#14B8A6]" />
+                    </div>
+                    <span className="text-sm text-gray-600 font-medium">{item.text}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -1412,6 +1234,14 @@ export default function HomePage() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                {/* Form header — reduces intimidation */}
+                <div className="text-center mb-6">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center mx-auto mb-3 shadow-md shadow-teal-500/20">
+                    <Phone size={20} className="text-white" />
+                  </div>
+                  <h3 className="text-lg font-extrabold text-[#0F172A]">{t('Request Your Free Demo', 'اطلب عرضك المجاني')}</h3>
+                  <p className="text-xs text-[#94A3B8] mt-1">{t('Takes 30 seconds. We\'ll call you within 24hrs.', 'يستغرق 30 ثانية. سنتصل بك خلال 24 ساعة.')}</p>
+                </div>
                 {formStatus === 'success' ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -1504,31 +1334,20 @@ export default function HomePage() {
                 )}
               </motion.p>
 
-              {/* FAQ Visual */}
-              <motion.div variants={fadeUp} custom={3} className="rounded-3xl overflow-hidden hidden lg:block">
-                <div className="relative" style={{ aspectRatio: '16/10' }}>
-                  <Image
-                    src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
-                    alt="Students learning in a modern classroom"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/70 via-[#0F172A]/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                        <MessageSquare className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-white">{t('Still have questions?', 'لا تزال لديك أسئلة؟')}</h4>
-                        <p className="text-sm text-white/60">{t('Our team is ready to help', 'فريقنا مستعد للمساعدة')}</p>
-                      </div>
-                    </div>
-                    <Link href="/contact" className="btn-primary text-sm">
-                      {t('Contact Us', 'تواصل معنا')} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                    </Link>
+              {/* Compact CTA card */}
+              <motion.div variants={fadeUp} custom={3} className="rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E293B] p-6 hidden lg:block">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#14B8A6]/15 flex items-center justify-center">
+                    <MessageSquare size={18} className="text-[#14B8A6]" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white text-sm">{t('Question not listed?', 'سؤالك غير مدرج؟')}</h4>
+                    <p className="text-xs text-white/40">{t('Talk to a real human — no bots', 'تحدث مع إنسان حقيقي — بدون روبوتات')}</p>
                   </div>
                 </div>
+                <Link href="/contact" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white font-bold text-sm px-6 py-3 rounded-full w-full justify-center hover:shadow-lg hover:shadow-teal-500/20 transition-all">
+                  {t('Chat With Us', 'تحدث معنا')} <ArrowRight size={14} className="rtl:rotate-180" />
+                </Link>
               </motion.div>
             </motion.div>
 
