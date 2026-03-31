@@ -643,7 +643,7 @@ export default function HomePage() {
                     {t('A learning platform where teachers assign, track, and quiz — and students actually show up.', 'منصة تعلم يوزّع فيها المعلمون ويتتبعون ويختبرون — والطلاب يحضرون فعلاً.')}
                   </p>
 
-                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#EDF2EF] border border-[#E8634A]/10">
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#E2E8F0] border border-[#E8634A]/10">
                     <Users size={16} className="text-[#E8634A] flex-shrink-0" />
                     <span className="text-sm text-[#0F172A] font-semibold">
                       {t('85K+ active learners \u2022 4x engagement', 'أكثر من 85 ألف متعلم \u2022 4 أضعاف التفاعل')}
@@ -1219,7 +1219,7 @@ export default function HomePage() {
                 </div>
                 {formStatus === 'success' ? (
                   <div className="text-center py-12">
-                    <div className="w-16 h-16 bg-[#D6E6E0] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-[#E2E8F0] rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle2 className="w-8 h-8 text-[#E8634A]" />
                     </div>
                     <h3 className="text-2xl font-heading font-bold text-[#0F172A] mb-2">{t('Thank You!', 'شكراً لك!')}</h3>
