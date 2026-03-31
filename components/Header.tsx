@@ -3,59 +3,54 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ChevronDown,
+  BookOpen,
+  Film,
+  Layers,
+  Globe,
+  Smartphone,
+  Megaphone,
+  Cloud,
+  GraduationCap,
+} from 'lucide-react';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 import LanguageToggle from '@/components/LanguageToggle';
 
 /* ═══════════════════════════════════════════════════════
-   NAVBAR — 2026 Premium EdTech
-   Psychology: Familiar pill-shaped nav reduces cognitive load.
-   Glassmorphism on scroll = modern depth cue.
-   Always starts transparent over hero, becomes frosted white on scroll.
+   NAVBAR — 2026 Premium EdTech (Redesigned)
+   Psychology: 4 items max = zero decision fatigue.
+   Mega-dropdown groups products + services visually.
+   Logo = Home. One bright CTA. Clean, scannable, fast.
    ═══════════════════════════════════════════════════════ */
+
+/* Product/Service items for the mega-dropdown */
+const products = [
+  { icon: BookOpen, name: 'Smart LMS', nameAr: 'نظام التعلم الذكي', desc: 'Manage classes, lessons & progress', descAr: 'إدارة الفصول والدروس والتقدم', href: '/solutions/smart-lms', color: '#0C7A6E' },
+  { icon: Layers, name: 'School ERP', nameAr: 'نظام إدارة المدرسة', desc: 'Fees, attendance, HR & operations', descAr: 'الرسوم والحضور والموارد البشرية', href: '/solutions/school-erp', color: '#085248' },
+  { icon: Film, name: 'Animation Studio', nameAr: 'استوديو الرسوم', desc: 'Animated lessons in 3 languages', descAr: 'دروس متحركة بـ 3 لغات', href: '/solutions/animation-studio', color: '#8B5CF6' },
+  { icon: Globe, name: 'Web Development', nameAr: 'تطوير المواقع', desc: 'School websites & parent portals', descAr: 'مواقع مدرسية وبوابات آباء', href: '/solutions/web-development', color: '#3B82F6' },
+  { icon: Smartphone, name: 'Mobile App', nameAr: 'تطبيق الجوال', desc: 'Branded iOS & Android app', descAr: 'تطبيق iOS و Android بعلامتك', href: '/solutions/mobile-apps', color: '#F59E0B' },
+];
+
+const services = [
+  { icon: Megaphone, name: 'Digital Marketing', nameAr: 'التسويق الرقمي', desc: 'Ads, SEO & enrollment funnels', descAr: 'إعلانات وتحسين بحث ومسارات تسجيل', href: '/services/digital-marketing', color: '#0A6B5C' },
+  { icon: Cloud, name: 'Cloud Hosting', nameAr: 'الاستضافة السحابية', desc: 'Fast, secure school infrastructure', descAr: 'بنية تحتية سريعة وآمنة', href: '/services/cloud-hosting', color: '#6366F1' },
+  { icon: GraduationCap, name: 'Teacher Training', nameAr: 'تدريب المعلمين', desc: 'Hands-on staff onboarding', descAr: 'تدريب عملي للموظفين', href: '/services/teacher-training', color: '#0C7A6E' },
+];
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
   const lastScrollY = useRef(0);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownTimeout = useRef<NodeJS.Timeout | null>(null);
   const { t } = useLanguage();
-
-  const navLinks = [
-    { name: t('Home', 'الرئيسية'), href: '/' },
-    { name: t('About', 'من نحن'), href: '/about' },
-    {
-      name: t('Solutions', 'الحلول'),
-      href: '/solutions',
-      children: [
-        { name: t('Smart LMS', 'نظام إدارة التعلم'), href: '/solutions/smart-lms' },
-        { name: t('Animation Studio', 'استوديو الرسوم المتحركة'), href: '/solutions/animation-studio' },
-        { name: t('School ERP', 'نظام إدارة المدرسة'), href: '/solutions/school-erp' },
-        { name: t('Web Development', 'تطوير المواقع'), href: '/solutions/web-development' },
-        { name: t('Mobile Apps', 'تطبيقات الجوال'), href: '/solutions/mobile-apps' },
-      ],
-    },
-    {
-      name: t('Services', 'الخدمات'),
-      href: '/services',
-      children: [
-        { name: t('Cloud Hosting', 'الاستضافة السحابية'), href: '/services/cloud-hosting' },
-        { name: t('Digital Marketing', 'التسويق الرقمي'), href: '/services/digital-marketing' },
-        { name: t('Teacher Training', 'تدريب المعلمين'), href: '/services/teacher-training' },
-        { name: t('Pricing Plan', 'خطة الأسعار'), href: '/pricing' },
-      ],
-    },
-    { name: t('Contact', 'تواصل معنا'), href: '/contact' },
-    {
-      name: t('Pages', 'الصفحات'),
-      href: '#',
-      children: [
-        { name: t('Team', 'الفريق'), href: '/team' },
-        { name: t('FAQ', 'الأسئلة الشائعة'), href: '/faq' },
-        { name: t('Blog', 'المدونة'), href: '/blog' },
-      ],
-    },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,9 +63,20 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  /* Shared text color class based on scroll state */
-  const txt = scrolled ? 'text-[#0F172A]' : 'text-[#0F172A]';
-  const txtMuted = scrolled ? 'text-[#64748B]' : 'text-[#64748B]';
+  /* Close mobile menu on resize to desktop */
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth >= 1024) setMobileMenuOpen(false); };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const handleDropdownEnter = () => {
+    if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
+    setSolutionsOpen(true);
+  };
+  const handleDropdownLeave = () => {
+    dropdownTimeout.current = setTimeout(() => setSolutionsOpen(false), 150);
+  };
 
   return (
     <>
@@ -85,160 +91,291 @@ export default function Header() {
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="pointer-events-auto mt-3 px-3 sm:px-5 py-2 rounded-full transition-all duration-300"
+          className="pointer-events-auto mt-3 w-full max-w-5xl px-4 sm:px-5 py-2.5 rounded-2xl transition-all duration-300"
           style={{
-            /* Soft off-white glass — always light since hero is light */
             background: scrolled
-              ? 'rgba(255,255,255,0.82)'
-              : 'rgba(255,255,255,0.55)',
-            backdropFilter: 'blur(20px) saturate(1.4)',
-            WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+              ? 'rgba(255,255,255,0.88)'
+              : 'rgba(255,255,255,0.6)',
+            backdropFilter: 'blur(24px) saturate(1.5)',
+            WebkitBackdropFilter: 'blur(24px) saturate(1.5)',
             boxShadow: scrolled
-              ? '0 4px 30px rgba(15,23,42,0.08), 0 0 0 1px rgba(226,232,240,0.6)'
-              : '0 4px 30px rgba(15,23,42,0.04), 0 0 0 1px rgba(226,232,240,0.3)',
+              ? '0 4px 30px rgba(11,18,32,0.10), 0 0 0 1px rgba(226,232,240,0.7)'
+              : '0 4px 30px rgba(11,18,32,0.04), 0 0 0 1px rgba(226,232,240,0.3)',
           }}
         >
-          <div className="flex items-center gap-1">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-[#0F172A]/[0.04] transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#0A6B5C] to-[#0C7A6E] flex items-center justify-center font-heading font-bold text-sm text-white shadow-md shadow-[#0A6B5C]/20 flex-shrink-0">
+          <div className="flex items-center justify-between">
+            {/* ── Left: Logo ── */}
+            <Link href="/" className="flex items-center gap-2.5 py-1 rounded-xl hover:opacity-80 transition-opacity flex-shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0A6B5C] to-[#085248] flex items-center justify-center font-heading font-bold text-sm text-white shadow-md shadow-[#0A6B5C]/15">
                 C
               </div>
-              <span className={`font-heading font-bold text-sm hidden sm:inline whitespace-nowrap ${txt}`}>
-                Cubico<span className="text-[#0A6B5C]">.tech</span>
-              </span>
+              <div className="hidden sm:block">
+                <span className="font-heading font-bold text-[15px] text-[#0B1220]">
+                  Cubico<span className="text-[#0A6B5C]">.tech</span>
+                </span>
+              </div>
             </Link>
 
-            {/* Divider */}
-            <div className="w-px h-5 bg-[#E2E8F0] mx-1.5 hidden lg:block flex-shrink-0" />
-
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-0.5">
-              {navLinks.map((link) => (
-                <div
-                  key={link.name}
-                  className="relative"
-                  onMouseEnter={() => link.children && setOpenDropdown(link.name)}
-                  onMouseLeave={() => setOpenDropdown(null)}
+            {/* ── Center: Nav Links (desktop) ── */}
+            <nav className="hidden lg:flex items-center gap-1">
+              {/* Solutions — mega dropdown trigger */}
+              <div
+                className="relative"
+                onMouseEnter={handleDropdownEnter}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <button
+                  className={`text-[13.5px] font-semibold text-[#3D4A5C] hover:text-[#0B1220] px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 ${solutionsOpen ? 'bg-[#0A6B5C]/[0.06] text-[#0B1220]' : 'hover:bg-[#0B1220]/[0.04]'}`}
                 >
-                  <Link
-                    href={link.href}
-                    className={`text-[13px] font-medium ${txtMuted} hover:text-[#0F172A] hover:bg-[#0F172A]/[0.04] px-3 py-1.5 rounded-full transition-colors whitespace-nowrap flex items-center gap-1`}
-                  >
-                    {link.name}
-                    {link.children && <ChevronDown className="w-3 h-3" />}
-                  </Link>
-                  {link.children && openDropdown === link.name && (
-                    <div className="absolute top-full left-0 pt-2 rtl:left-auto rtl:right-0">
+                  {t('Solutions', 'الحلول')}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${solutionsOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* ── Mega Dropdown ── */}
+                <AnimatePresence>
+                  {solutionsOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                      transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 pt-3 rtl:left-auto rtl:right-1/2 rtl:translate-x-1/2"
+                      onMouseEnter={handleDropdownEnter}
+                      onMouseLeave={handleDropdownLeave}
+                    >
                       <div
-                        className="rounded-2xl py-2 min-w-[200px] border border-[#E2E8F0]"
+                        className="rounded-2xl border border-[#E2E8F0] overflow-hidden w-[580px]"
                         style={{
-                          background: 'rgba(255,255,255,0.92)',
-                          backdropFilter: 'blur(20px)',
-                          WebkitBackdropFilter: 'blur(20px)',
-                          boxShadow: '0 12px 40px rgba(15,23,42,0.1)',
+                          background: 'rgba(255,255,255,0.96)',
+                          backdropFilter: 'blur(24px)',
+                          WebkitBackdropFilter: 'blur(24px)',
+                          boxShadow: '0 20px 60px rgba(11,18,32,0.12), 0 0 0 1px rgba(226,232,240,0.5)',
                         }}
                       >
-                        {link.children.map((child) => (
+                        <div className="grid grid-cols-2">
+                          {/* Left column — Products */}
+                          <div className="p-4 border-r border-[#F1F5F9] rtl:border-r-0 rtl:border-l">
+                            <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#94A3B8] px-3 mb-2">{t('Products', 'المنتجات')}</p>
+                            {products.map((item) => (
+                              <Link
+                                key={item.name}
+                                href={item.href}
+                                onClick={() => setSolutionsOpen(false)}
+                                className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-[#F7F7F3] transition-colors group"
+                              >
+                                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors"
+                                  style={{ backgroundColor: `${item.color}10` }}>
+                                  <item.icon size={16} style={{ color: item.color }} />
+                                </div>
+                                <div className="min-w-0">
+                                  <p className="text-[13px] font-semibold text-[#0B1220] group-hover:text-[#0A6B5C] transition-colors">{t(item.name, item.nameAr)}</p>
+                                  <p className="text-[11.5px] text-[#94A3B8] leading-snug">{t(item.desc, item.descAr)}</p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+
+                          {/* Right column — Services */}
+                          <div className="p-4">
+                            <p className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#94A3B8] px-3 mb-2">{t('Services', 'الخدمات')}</p>
+                            {services.map((item) => (
+                              <Link
+                                key={item.name}
+                                href={item.href}
+                                onClick={() => setSolutionsOpen(false)}
+                                className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-[#F7F7F3] transition-colors group"
+                              >
+                                <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                                  style={{ backgroundColor: `${item.color}10` }}>
+                                  <item.icon size={16} style={{ color: item.color }} />
+                                </div>
+                                <div className="min-w-0">
+                                  <p className="text-[13px] font-semibold text-[#0B1220] group-hover:text-[#0A6B5C] transition-colors">{t(item.name, item.nameAr)}</p>
+                                  <p className="text-[11.5px] text-[#94A3B8] leading-snug">{t(item.desc, item.descAr)}</p>
+                                </div>
+                              </Link>
+                            ))}
+
+                            {/* View all link */}
+                            <Link
+                              href="/solutions"
+                              onClick={() => setSolutionsOpen(false)}
+                              className="flex items-center gap-1.5 px-3 py-2 mt-1 text-[12px] font-semibold text-[#0A6B5C] hover:text-[#085248] transition-colors"
+                            >
+                              {t('View all solutions', 'عرض جميع الحلول')}
+                              <ArrowRight size={12} className="rtl:rotate-180" />
+                            </Link>
+                          </div>
+                        </div>
+
+                        {/* Bottom bar — quick CTA inside dropdown */}
+                        <div className="border-t border-[#F1F5F9] bg-[#FAFAF8] px-5 py-3 flex items-center justify-between">
+                          <p className="text-[12px] text-[#64748B]">{t('Not sure which solution?', 'لست متأكداً أي حل؟')}</p>
                           <Link
-                            key={child.name}
-                            href={child.href}
-                            className="block px-4 py-2.5 text-[13px] text-[#64748B] hover:text-[#0F172A] hover:bg-[#0A6B5C]/[0.05] transition-colors"
+                            href="/contact"
+                            onClick={() => setSolutionsOpen(false)}
+                            className="text-[12px] font-bold text-[#0A6B5C] hover:text-[#085248] transition-colors flex items-center gap-1"
                           >
-                            {child.name}
+                            {t('Talk to us', 'تحدث معنا')} <ArrowRight size={11} className="rtl:rotate-180" />
                           </Link>
-                        ))}
+                        </div>
                       </div>
-                    </div>
+                    </motion.div>
                   )}
-                </div>
-              ))}
+                </AnimatePresence>
+              </div>
+
+              <Link
+                href="/about"
+                className="text-[13.5px] font-semibold text-[#3D4A5C] hover:text-[#0B1220] hover:bg-[#0B1220]/[0.04] px-3.5 py-2 rounded-xl transition-colors"
+              >
+                {t('About', 'من نحن')}
+              </Link>
+
+              <Link
+                href="/pricing"
+                className="text-[13.5px] font-semibold text-[#3D4A5C] hover:text-[#0B1220] hover:bg-[#0B1220]/[0.04] px-3.5 py-2 rounded-xl transition-colors"
+              >
+                {t('Pricing', 'الأسعار')}
+              </Link>
+
+              <Link
+                href="/contact"
+                className="text-[13.5px] font-semibold text-[#3D4A5C] hover:text-[#0B1220] hover:bg-[#0B1220]/[0.04] px-3.5 py-2 rounded-xl transition-colors"
+              >
+                {t('Contact', 'تواصل معنا')}
+              </Link>
             </nav>
 
-            {/* Divider */}
-            <div className="w-px h-5 bg-[#E2E8F0] mx-1.5 hidden lg:block flex-shrink-0" />
+            {/* ── Right: Actions ── */}
+            <div className="flex items-center gap-2">
+              <div className="hidden lg:block">
+                <LanguageToggle className="text-[#64748B] hover:text-[#0B1220]" />
+              </div>
 
-            {/* Language Toggle + CTAs */}
-            <div className="hidden lg:flex items-center gap-1.5 flex-shrink-0">
-              <LanguageToggle className="text-[#64748B] hover:text-[#0F172A]" />
               <Link
                 href="/contact"
-                className="text-[13px] font-medium text-[#64748B] hover:text-[#0F172A] px-3.5 py-1.5 rounded-full border border-[#E2E8F0] hover:border-[#CBD5E1] hover:bg-white/60 transition-all"
-              >
-                {t('Login', 'تسجيل الدخول')}
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] hover:from-[#0D9488] hover:to-[#059669] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 shadow-sm shadow-teal-500/15 hover:shadow-md hover:shadow-teal-500/20"
+                className="hidden lg:inline-flex items-center gap-1.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] hover:from-[#0D9488] hover:to-[#059669] text-white text-[13px] font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-sm shadow-teal-500/15 hover:shadow-md hover:shadow-teal-500/20"
               >
                 {t('Book a Demo', 'احجز عرضاً')}
                 <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
               </Link>
-            </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-full text-[#0F172A] hover:bg-[#0F172A]/[0.04] transition-colors ml-auto rtl:ml-0 rtl:mr-auto"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+              {/* Mobile hamburger */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2 rounded-xl text-[#0B1220] hover:bg-[#0B1220]/[0.05] transition-colors"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
         </motion.nav>
       </header>
 
-      {/* Mobile Menu */}
+      {/* ═══════ MOBILE MENU ═══════ */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[72px] left-4 right-4 z-50 rounded-2xl border border-[#E2E8F0] overflow-hidden"
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed top-[76px] left-3 right-3 z-50 rounded-2xl border border-[#E2E8F0] overflow-hidden max-h-[calc(100vh-96px)] overflow-y-auto"
             style={{
-              background: 'rgba(255,255,255,0.95)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              boxShadow: '0 12px 40px rgba(15,23,42,0.1)',
+              background: 'rgba(255,255,255,0.97)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              boxShadow: '0 20px 60px rgba(11,18,32,0.12)',
             }}
           >
-            <div className="px-5 py-5 space-y-1">
-              <div className="flex justify-center pb-3 border-b border-[#F1F5F9] mb-2">
-                <LanguageToggle className="text-[#64748B] hover:text-[#0F172A] text-sm" />
+            <div className="p-5">
+              {/* Language toggle */}
+              <div className="flex justify-center pb-4 mb-3 border-b border-[#F1F5F9]">
+                <LanguageToggle className="text-[#64748B] hover:text-[#0B1220] text-sm" />
               </div>
-              {navLinks.map((link) => (
-                <div key={link.name}>
-                  <Link
-                    href={link.href}
-                    onClick={() => !link.children && setMobileMenuOpen(false)}
-                    className="block text-[#334155] hover:text-[#0F172A] hover:bg-[#0A6B5C]/[0.05] font-medium transition-colors px-4 py-3 rounded-xl"
-                  >
-                    {link.name}
-                  </Link>
-                  {link.children && (
-                    <div className="ps-4 space-y-1">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.name}
-                          href={child.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className="block text-[#94A3B8] hover:text-[#0F172A] text-sm px-4 py-2 rounded-lg hover:bg-[#0A6B5C]/[0.04] transition-colors"
-                        >
-                          {child.name}
-                        </Link>
-                      ))}
-                    </div>
+
+              {/* Solutions — expandable */}
+              <div className="mb-1">
+                <button
+                  onClick={() => setMobileSection(mobileSection === 'solutions' ? null : 'solutions')}
+                  className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-[#0B1220] font-semibold hover:bg-[#F7F7F3] transition-colors"
+                >
+                  {t('Solutions', 'الحلول')}
+                  <ChevronDown className={`w-4 h-4 text-[#94A3B8] transition-transform duration-200 ${mobileSection === 'solutions' ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {mobileSection === 'solutions' && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-2 pb-2">
+                        <p className="text-[10px] font-bold tracking-[0.16em] uppercase text-[#94A3B8] px-3 pt-2 pb-1">{t('Products', 'المنتجات')}</p>
+                        {products.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#F7F7F3] transition-colors"
+                          >
+                            <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                              style={{ backgroundColor: `${item.color}10` }}>
+                              <item.icon size={16} style={{ color: item.color }} />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-[#0B1220]">{t(item.name, item.nameAr)}</p>
+                              <p className="text-[11px] text-[#94A3B8]">{t(item.desc, item.descAr)}</p>
+                            </div>
+                          </Link>
+                        ))}
+                        <p className="text-[10px] font-bold tracking-[0.16em] uppercase text-[#94A3B8] px-3 pt-3 pb-1">{t('Services', 'الخدمات')}</p>
+                        {services.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#F7F7F3] transition-colors"
+                          >
+                            <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                              style={{ backgroundColor: `${item.color}10` }}>
+                              <item.icon size={16} style={{ color: item.color }} />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-[#0B1220]">{t(item.name, item.nameAr)}</p>
+                              <p className="text-[11px] text-[#94A3B8]">{t(item.desc, item.descAr)}</p>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
                   )}
-                </div>
-              ))}
-              <div className="pt-3 border-t border-[#F1F5F9] space-y-2">
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white text-sm font-semibold w-full py-3 rounded-xl">
+                </AnimatePresence>
+              </div>
+
+              {/* Simple links */}
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 rounded-xl text-[#0B1220] font-semibold hover:bg-[#F7F7F3] transition-colors">
+                {t('About', 'من نحن')}
+              </Link>
+              <Link href="/pricing" onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 rounded-xl text-[#0B1220] font-semibold hover:bg-[#F7F7F3] transition-colors">
+                {t('Pricing', 'الأسعار')}
+              </Link>
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-3 rounded-xl text-[#0B1220] font-semibold hover:bg-[#F7F7F3] transition-colors">
+                {t('Contact', 'تواصل معنا')}
+              </Link>
+
+              {/* CTAs */}
+              <div className="pt-4 mt-3 border-t border-[#F1F5F9] space-y-2">
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#14B8A6] to-[#10B981] text-white text-sm font-semibold w-full py-3.5 rounded-xl shadow-sm">
                   {t('Book a Demo', 'احجز عرضاً')}
                   <ArrowRight className="w-4 h-4 rtl:rotate-180" />
-                </Link>
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 border border-[#E2E8F0] text-[#334155] text-sm font-medium w-full py-3 rounded-xl hover:bg-[#F7F7F3]">
-                  {t('Login', 'تسجيل الدخول')}
                 </Link>
               </div>
             </div>
