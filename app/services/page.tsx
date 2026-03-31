@@ -195,8 +195,8 @@ export default function ServicesPage() {
       {/* ── Hero ── */}
       <section className="pt-36 pb-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4711A]/15 rounded-full filter blur-[180px]" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#8B4513]/10 rounded-full filter blur-[140px]" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#E8634A]/15 rounded-full filter blur-[180px]" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#D14F38]/10 rounded-full filter blur-[140px]" />
           <div
             className="absolute inset-0"
             style={{
@@ -214,7 +214,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 mb-8"
             >
-              <Sparkles className="w-4 h-4 text-[#E88C32]" />
+              <Sparkles className="w-4 h-4 text-[#E8634A]" />
               <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
                 {t('Beyond Products — Full-Service Support', 'أبعد من المنتجات — دعم خدمات كامل')}
               </span>
@@ -433,10 +433,10 @@ export default function ServicesPage() {
                 custom={i}
                 className="card-white group cursor-pointer"
               >
-                <div className="icon-box mb-5 group-hover:bg-[#D4711A] group-hover:text-white transition-all">
+                <div className="icon-box mb-5 group-hover:bg-[#E8634A] group-hover:text-white transition-all">
                   <svc.icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-heading font-bold text-gray-900 text-lg mb-2 group-hover:text-[#D4711A] transition-colors">
+                <h3 className="font-heading font-bold text-gray-900 text-lg mb-2 group-hover:text-[#E8634A] transition-colors">
                   {svc.title}
                 </h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{svc.desc}</p>
@@ -449,7 +449,7 @@ export default function ServicesPage() {
       {/* ── Our Process ── */}
       <section className="py-24 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4711A]/8 rounded-full filter blur-[200px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/8 rounded-full filter blur-[200px]" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -479,11 +479,11 @@ export default function ServicesPage() {
               >
                 {/* Connector line */}
                 {i < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-[#D4711A]/40 to-transparent z-0" />
+                  <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-[#E8634A]/40 to-transparent z-0" />
                 )}
 
                 <div className="relative card-dark text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] mb-6 shadow-lg shadow-orange-600/20">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#E8634A] to-[#E8634A] mb-6 shadow-lg shadow-[#E8634A]/20">
                     <span className="text-white font-heading font-bold text-xl">{step.step}</span>
                   </div>
                   <h3 className="font-heading font-bold text-white text-xl mb-3">{step.title}</h3>
@@ -554,7 +554,7 @@ export default function ServicesPage() {
                 </div>
                 <p className="text-gray-600 text-sm leading-relaxed mb-6">&ldquo;{testimonial.text}&rdquo;</p>
                 <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center text-white font-bold text-xs">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E8634A] to-[#E8634A] flex items-center justify-center text-white font-bold text-xs">
                     {testimonial.name
                       .split(' ')
                       .map((n) => n[0])

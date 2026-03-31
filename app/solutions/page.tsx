@@ -149,8 +149,8 @@ export default function SolutionsPage() {
       {/* ── Hero ── */}
       <section className="pt-36 pb-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#D4711A]/15 rounded-full filter blur-[180px]" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#8B4513]/10 rounded-full filter blur-[140px]" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#E8634A]/15 rounded-full filter blur-[180px]" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#D14F38]/10 rounded-full filter blur-[140px]" />
           <div
             className="absolute inset-0"
             style={{
@@ -168,7 +168,7 @@ export default function SolutionsPage() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 mb-8"
             >
-              <Sparkles className="w-4 h-4 text-[#E88C32]" />
+              <Sparkles className="w-4 h-4 text-[#E8634A]" />
               <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
                 {t('Complete EdTech Ecosystem', 'نظام تكنولوجيا التعليم المتكامل')}
               </span>
@@ -225,7 +225,7 @@ export default function SolutionsPage() {
                 key={stat.label}
                 className="text-center p-6 rounded-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-sm"
               >
-                <stat.icon className="w-6 h-6 text-[#E88C32] mx-auto mb-3" />
+                <stat.icon className="w-6 h-6 text-[#E8634A] mx-auto mb-3" />
                 <div className="text-3xl md:text-4xl font-heading font-bold text-white mb-1">
                   {stat.number}
                 </div>
@@ -390,7 +390,7 @@ export default function SolutionsPage() {
       {/* ── Why Cubico ── */}
       <section className="py-24 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4711A]/8 rounded-full filter blur-[200px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/8 rounded-full filter blur-[200px]" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
@@ -476,7 +476,7 @@ export default function SolutionsPage() {
                 className="card-dark text-left"
               >
                 <div className="icon-box-white mb-5 w-12 h-12 rounded-xl bg-white/[0.06] flex items-center justify-center">
-                  <item.icon className="w-5 h-5 text-[#E88C32]" />
+                  <item.icon className="w-5 h-5 text-[#E8634A]" />
                 </div>
                 <h3 className="font-heading font-bold text-white text-lg mb-2">{item.title}</h3>
                 <p className="text-white/45 text-sm leading-relaxed">{item.desc}</p>

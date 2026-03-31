@@ -24,8 +24,8 @@ export default function TeamPage() {
   const { t } = useLanguage();
 
   const team = [
-    { name: 'Rooh Ul Hasnain', role: t('Founder & CEO', 'المؤسس والرئيس التنفيذي'), initials: 'RH', color: 'from-[#D4711A] to-[#E88C32]' },
-    { name: 'Abdul Raffay Vohra', role: t('Co-Founder & CSO', 'المؤسس المشارك ورئيس الاستراتيجية'), initials: 'AV', color: 'from-[#B85E15] to-[#D4711A]' },
+    { name: 'Rooh Ul Hasnain', role: t('Founder & CEO', 'المؤسس والرئيس التنفيذي'), initials: 'RH', color: 'from-[#E8634A] to-[#E8634A]' },
+    { name: 'Abdul Raffay Vohra', role: t('Co-Founder & CSO', 'المؤسس المشارك ورئيس الاستراتيجية'), initials: 'AV', color: 'from-[#D14F38] to-[#E8634A]' },
     { name: 'Hassan Khan', role: t('Lead Developer', 'المطور الرئيسي'), initials: 'HK', color: 'from-orange-500 to-red-500' },
     { name: 'Ayesha Malik', role: t('Creative Director', 'المدير الإبداعي'), initials: 'AM', color: 'from-pink-500 to-purple-500' },
     { name: 'Omar Farooq', role: t('Head of Animation', 'رئيس قسم الرسوم المتحركة'), initials: 'OF', color: 'from-blue-500 to-indigo-500' },

@@ -34,7 +34,7 @@ export default function Footer() {
       <style>{`
         @keyframes shimmer-slide { 0%{ background-position:-200% center; } 100%{ background-position:200% center; } }
         .shimmer-text-footer {
-          background:linear-gradient(90deg,#0A6B5C 0%,#0C7A6E 30%,#2E8F7E 50%,#0C7A6E 70%,#0A6B5C 100%);
+          background:linear-gradient(90deg,#E8634A 0%,#D14F38 30%,#FFD5CC 50%,#D14F38 70%,#E8634A 100%);
           background-size:200% auto; -webkit-background-clip:text;
           -webkit-text-fill-color:transparent; background-clip:text;
           animation:shimmer-slide 6s ease-in-out infinite;
@@ -44,13 +44,13 @@ export default function Footer() {
       {/* Join CTA */}
       <section className="py-24 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#0A6B5C]/10 rounded-full filter blur-[150px]" />
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-[#0C7A6E]/8 rounded-full filter blur-[120px]" />
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#E8634A]/8 rounded-full filter blur-[150px]" />
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-[#1E3A5F]/15 rounded-full filter blur-[120px]" />
           <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
         </div>
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-1.5 mb-6">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-[#E8634A] animate-pulse" />
             <span className="text-white/70 text-xs font-bold tracking-wider uppercase">{t('Now Enrolling Institutions', 'التسجيل مفتوح للمؤسسات')}</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-6">
@@ -79,11 +79,11 @@ export default function Footer() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0A6B5C] to-[#0C7A6E] flex items-center justify-center font-heading font-bold text-lg text-white shadow-lg shadow-[#0A6B5C]/20">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0F172A] to-[#1E3A5F] flex items-center justify-center font-heading font-bold text-lg text-white shadow-lg shadow-[#0F172A]/20 border border-white/10">
                   C
                 </div>
                 <span className="font-heading font-bold text-xl">
-                  Cubico<span className="text-teal-300">.tech</span>
+                  Cubico<span className="text-[#E8634A]">.tech</span>
                 </span>
               </div>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
@@ -106,7 +106,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0A6B5C] hover:border-[#0A6B5C] transition-all"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#E8634A] hover:border-[#E8634A] transition-all"
                   >
                     <social.icon className="w-4 h-4" />
                   </a>
@@ -158,7 +158,7 @@ export default function Footer() {
                 {t('Sign up for updates, insights, and EdTech news.', 'اشترك للحصول على التحديثات والرؤى وأخبار تكنولوجيا التعليم.')}
               </p>
               {newsletterStatus === 'success' ? (
-                <div className="flex items-center gap-2 text-[#0A6B5C] text-sm">
+                <div className="flex items-center gap-2 text-[#E8634A] text-sm">
                   <CheckCircle2 className="w-4 h-4" /> {t('Subscribed!', 'تم الاشتراك!')}
                 </div>
               ) : (

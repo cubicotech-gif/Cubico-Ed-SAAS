@@ -81,7 +81,7 @@ export default function SchoolERPPage() {
       icon: UserPlus,
       title: t('Admissions Management', 'إدارة القبول'),
       desc: t('Online applications, document verification, merit lists, and enrollment workflows — all paperless.', 'التقديم الإلكتروني، التحقق من المستندات، قوائم الجدارة، وسير عمل التسجيل — بدون أوراق.'),
-      color: '#D4711A',
+      color: '#E8634A',
     },
     {
       icon: DollarSign,
@@ -216,8 +216,8 @@ export default function SchoolERPPage() {
       <section className="pt-36 pb-28 section-dark relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-[#D4711A]/15 rounded-full filter blur-[200px]" />
-          <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-[#8B4513]/10 rounded-full filter blur-[160px]" />
+          <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-[#E8634A]/15 rounded-full filter blur-[200px]" />
+          <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-[#D14F38]/10 rounded-full filter blur-[160px]" />
           <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-violet-500/5 rounded-full filter blur-[120px]" />
           <div
             className="absolute inset-0"
@@ -240,8 +240,8 @@ export default function SchoolERPPage() {
                 className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 mb-8"
               >
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E88C32] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D4711A]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8634A] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8634A]" />
                 </span>
                 <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
                   {t('Enterprise School Management', 'إدارة المدرسة المؤسسية')}
@@ -303,7 +303,7 @@ export default function SchoolERPPage() {
                 <div>
                   <div className="flex items-center gap-1 mb-0.5">
                     {[1, 2, 3, 4, 5].map((s) => (
-                      <Star key={s} className="w-3.5 h-3.5 text-[#E88C32] fill-[#E88C32]" />
+                      <Star key={s} className="w-3.5 h-3.5 text-[#E8634A] fill-[#E8634A]" />
                     ))}
                   </div>
                   <p className="text-white/40 text-xs">{t('Trusted by 760+ schools worldwide', 'موثوق من قبل أكثر من 760 مدرسة حول العالم')}</p>
@@ -319,7 +319,7 @@ export default function SchoolERPPage() {
             >
               <div className="relative">
                 {/* Glow behind */}
-                <div className="absolute -inset-6 bg-gradient-to-br from-[#D4711A]/20 via-violet-500/10 to-transparent rounded-3xl filter blur-2xl" />
+                <div className="absolute -inset-6 bg-gradient-to-br from-[#E8634A]/20 via-violet-500/10 to-transparent rounded-3xl filter blur-2xl" />
 
                 {/* Browser Window */}
                 <div className="relative bg-[#1a1a2e] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-white/10">
@@ -341,14 +341,14 @@ export default function SchoolERPPage() {
                   <div className="flex">
                     {/* Sidebar */}
                     <div className="w-14 bg-[#12121f] border-r border-white/5 py-4 flex flex-col items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center mb-2">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center mb-2">
                         <GraduationCap className="w-4 h-4 text-white" />
                       </div>
                       {[Home, Users, DollarSign, Calendar, ClipboardList, Clock, BarChart3, Settings].map((Icon, i) => (
                         <div
                           key={i}
                           className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                            i === 0 ? 'bg-[#D4711A]/20 text-[#E88C32]' : 'text-white/25 hover:text-white/40'
+                            i === 0 ? 'bg-[#E8634A]/20 text-[#E8634A]' : 'text-white/25 hover:text-white/40'
                           }`}
                         >
                           <Icon className="w-4 h-4" />
@@ -369,11 +369,11 @@ export default function SchoolERPPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded-lg bg-[#D4711A]/20 flex items-center justify-center relative">
-                            <Bell className="w-3.5 h-3.5 text-[#E88C32]" />
+                          <div className="w-7 h-7 rounded-lg bg-[#E8634A]/20 flex items-center justify-center relative">
+                            <Bell className="w-3.5 h-3.5 text-[#E8634A]" />
                             <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full text-[6px] text-white flex items-center justify-center font-bold">5</div>
                           </div>
-                          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center text-white text-[10px] font-bold">
+                          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center text-white text-[10px] font-bold">
                             P
                           </div>
                         </div>
@@ -389,7 +389,7 @@ export default function SchoolERPPage() {
                           <div key={i} className="bg-white/5 rounded-xl p-3 border border-white/5">
                             <div className="flex items-center justify-between mb-2">
                               <span className="text-white/40 text-[9px] uppercase tracking-wider">{card.label}</span>
-                              <card.icon className="w-3.5 h-3.5 text-[#E88C32]/60" />
+                              <card.icon className="w-3.5 h-3.5 text-[#E8634A]/60" />
                             </div>
                             <div className="text-white text-base font-bold font-heading">{card.val}</div>
                             <div className={`text-[9px] mt-1 ${card.changeColor}`}>{card.change}</div>
@@ -406,7 +406,7 @@ export default function SchoolERPPage() {
                             {[45, 62, 58, 75, 82, 70, 88, 92, 85, 78, 95, 90].map((h, i) => (
                               <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
                                 <div
-                                  className="w-full rounded-sm bg-gradient-to-t from-[#D4711A] to-[#E88C32]"
+                                  className="w-full rounded-sm bg-gradient-to-t from-[#E8634A] to-[#E8634A]"
                                   style={{ height: `${h * 0.65}%`, minHeight: '4px', opacity: 0.6 + (i / 20) }}
                                 />
                               </div>
@@ -480,7 +480,7 @@ export default function SchoolERPPage() {
                 key={i}
                 variants={fadeUp}
                 custom={i}
-                className="group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#D4711A]/30 transition-all duration-300 hover:-translate-y-1 cursor-default"
+                className="group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#E8634A]/30 transition-all duration-300 hover:-translate-y-1 cursor-default"
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300"
@@ -491,12 +491,12 @@ export default function SchoolERPPage() {
                     style={{ color: mod.color }}
                   />
                 </div>
-                <h3 className="font-heading font-bold text-gray-900 mb-2 group-hover:text-[#D4711A] transition-colors">
+                <h3 className="font-heading font-bold text-gray-900 mb-2 group-hover:text-[#E8634A] transition-colors">
                   {mod.title}
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{mod.desc}</p>
                 {/* Hover accent bar */}
-                <div className="absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                <div className="absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r from-[#E8634A] to-[#E8634A] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </motion.div>
             ))}
           </motion.div>
@@ -508,7 +508,7 @@ export default function SchoolERPPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-[#D4711A]/8 rounded-full filter blur-[200px]" />
+          <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-[#E8634A]/8 rounded-full filter blur-[200px]" />
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-violet-500/5 rounded-full filter blur-[160px]" />
         </div>
 
@@ -543,7 +543,7 @@ export default function SchoolERPPage() {
                 onClick={() => setActiveTab(i)}
                 className={`px-6 py-3 rounded-xl text-sm font-bold font-heading transition-all duration-300 ${
                   activeTab === i
-                    ? 'bg-gradient-to-r from-[#D4711A] to-[#E88C32] text-white shadow-lg shadow-[#D4711A]/25'
+                    ? 'bg-gradient-to-r from-[#E8634A] to-[#E8634A] text-white shadow-lg shadow-[#E8634A]/25'
                     : 'bg-white/5 text-white/50 border border-white/10 hover:bg-white/10 hover:text-white/70'
                 }`}
               >
@@ -561,7 +561,7 @@ export default function SchoolERPPage() {
           >
             {/* Glow */}
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#D4711A]/10 via-transparent to-violet-500/5 rounded-3xl filter blur-xl" />
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#E8634A]/10 via-transparent to-violet-500/5 rounded-3xl filter blur-xl" />
 
               <div className="relative bg-[#1a1a2e] rounded-2xl border border-white/10 overflow-hidden">
                 {/* Window bar */}
@@ -591,7 +591,7 @@ export default function SchoolERPPage() {
                         <div className="px-3 py-1.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-lg font-bold">
                           {t('82% Collected', '82% محصّل')}
                         </div>
-                        <div className="px-3 py-1.5 bg-[#D4711A]/20 text-[#E88C32] text-xs rounded-lg font-bold">
+                        <div className="px-3 py-1.5 bg-[#E8634A]/20 text-[#E8634A] text-xs rounded-lg font-bold">
                           {t('+ New Invoice', '+ فاتورة جديدة')}
                         </div>
                       </div>
@@ -632,7 +632,7 @@ export default function SchoolERPPage() {
                             </span>
                           </span>
                           <span>
-                            <span className="text-[#E88C32] text-xs cursor-pointer hover:underline">{t('View', 'عرض')} &rarr;</span>
+                            <span className="text-[#E8634A] text-xs cursor-pointer hover:underline">{t('View', 'عرض')} &rarr;</span>
                           </span>
                         </div>
                       ))}
@@ -739,7 +739,7 @@ export default function SchoolERPPage() {
                         <div className="px-3 py-1.5 bg-white/5 text-white/50 text-xs rounded-lg border border-white/10">
                           {t('Download PDF', 'تحميل PDF')}
                         </div>
-                        <div className="px-3 py-1.5 bg-[#D4711A]/20 text-[#E88C32] text-xs rounded-lg font-bold">
+                        <div className="px-3 py-1.5 bg-[#E8634A]/20 text-[#E8634A] text-xs rounded-lg font-bold">
                           {t('Print', 'طباعة')}
                         </div>
                       </div>
@@ -749,7 +749,7 @@ export default function SchoolERPPage() {
                     <div className="grid grid-cols-2 gap-4 mb-6">
                       <div className="bg-white/5 rounded-xl p-4 border border-white/5">
                         <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center text-white font-bold text-lg">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center text-white font-bold text-lg">
                             A
                           </div>
                           <div>
@@ -769,7 +769,7 @@ export default function SchoolERPPage() {
                         </div>
                         <div className="text-right">
                           <div className="text-white/40 text-[10px] uppercase tracking-wider">{t('Rank', 'الترتيب')}</div>
-                          <div className="text-3xl font-bold font-heading text-[#E88C32] mt-1">7th</div>
+                          <div className="text-3xl font-bold font-heading text-[#E8634A] mt-1">7th</div>
                         </div>
                       </div>
                     </div>
@@ -788,7 +788,7 @@ export default function SchoolERPPage() {
                           <div className="flex items-center justify-center gap-2">
                             <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
                               <div
-                                className="h-full rounded-full bg-gradient-to-r from-[#D4711A] to-[#E88C32]"
+                                className="h-full rounded-full bg-gradient-to-r from-[#E8634A] to-[#E8634A]"
                                 style={{ width: `${sub.marks}%` }}
                               />
                             </div>
@@ -863,7 +863,7 @@ export default function SchoolERPPage() {
                       y1="300"
                       x2={x}
                       y2={y}
-                      stroke="#D4711A"
+                      stroke="#E8634A"
                       strokeWidth="1"
                       strokeOpacity="0.15"
                       strokeDasharray="4 4"
@@ -874,7 +874,7 @@ export default function SchoolERPPage() {
 
               {/* Center circle */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center shadow-2xl shadow-[#D4711A]/30">
+                <div className="w-28 h-28 rounded-full bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center shadow-2xl shadow-[#E8634A]/30">
                   <div className="text-center">
                     <Settings className="w-8 h-8 text-white mx-auto mb-1" />
                     <span className="text-white text-xs font-bold font-heading">{t('Cubico ERP', 'كيوبيكو ERP')}</span>
@@ -899,8 +899,8 @@ export default function SchoolERPPage() {
                     style={{ left: `${x}%`, top: `${y}%` }}
                   >
                     <div className="group flex flex-col items-center gap-1.5">
-                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white border border-gray-200 shadow-md flex items-center justify-center group-hover:border-[#D4711A]/40 group-hover:shadow-lg group-hover:shadow-[#D4711A]/10 transition-all duration-300">
-                        <mod.icon className="w-5 h-5 md:w-6 md:h-6 text-gray-600 group-hover:text-[#D4711A] transition-colors" />
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white border border-gray-200 shadow-md flex items-center justify-center group-hover:border-[#E8634A]/40 group-hover:shadow-lg group-hover:shadow-[#E8634A]/10 transition-all duration-300">
+                        <mod.icon className="w-5 h-5 md:w-6 md:h-6 text-gray-600 group-hover:text-[#E8634A] transition-colors" />
                       </div>
                       <span className="text-[10px] md:text-xs text-gray-500 font-bold font-heading whitespace-nowrap">
                         {mod.label}
@@ -919,7 +919,7 @@ export default function SchoolERPPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#D4711A]/8 rounded-full filter blur-[200px]" />
+          <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#E8634A]/8 rounded-full filter blur-[200px]" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
@@ -997,7 +997,7 @@ export default function SchoolERPPage() {
       {/* ══════════════════════════════════════════════
           SECTION 6: STATS BANNER
           ══════════════════════════════════════════════ */}
-      <section className="py-20 bg-gradient-to-r from-[#D4711A] to-[#8B4513] relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-[#E8634A] to-[#D14F38] relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -1059,10 +1059,10 @@ export default function SchoolERPPage() {
                 key={i}
                 variants={fadeUp}
                 custom={i}
-                className="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#D4711A]/20 transition-all duration-300"
+                className="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#E8634A]/20 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center mb-4 group-hover:bg-[#D4711A]/10 transition-colors">
-                  <feat.icon className="w-6 h-6 text-gray-600 group-hover:text-[#D4711A] transition-colors" />
+                <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center mb-4 group-hover:bg-[#E8634A]/10 transition-colors">
+                  <feat.icon className="w-6 h-6 text-gray-600 group-hover:text-[#E8634A] transition-colors" />
                 </div>
                 <h3 className="font-heading font-bold text-gray-900 text-lg mb-2">{feat.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{feat.desc}</p>
@@ -1077,7 +1077,7 @@ export default function SchoolERPPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4711A]/5 rounded-full filter blur-[200px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/5 rounded-full filter blur-[200px]" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
@@ -1088,18 +1088,18 @@ export default function SchoolERPPage() {
             variants={fadeUp}
           >
             {/* Quotation mark */}
-            <div className="text-[#D4711A]/20 text-8xl font-heading font-bold leading-none mb-6">&ldquo;</div>
+            <div className="text-[#E8634A]/20 text-8xl font-heading font-bold leading-none mb-6">&ldquo;</div>
 
             <blockquote className="text-xl md:text-2xl lg:text-3xl text-white/80 font-heading leading-relaxed mb-10">
               {t('Before Cubico ERP, we had 6 different systems that never talked to each other. Fees in one, attendance in another, reports done manually in Excel.', 'قبل نظام كيوبيكو، كان لدينا 6 أنظمة مختلفة لا تتواصل مع بعضها. الرسوم في نظام، والحضور في آخر، والتقارير تُعد يدويًا في إكسل.')}{' '}
-              <span className="text-[#E88C32] font-bold">
+              <span className="text-[#E8634A] font-bold">
                 {t('Within one semester, we cut admin overhead by 60% and our parent satisfaction scores went from 62% to 94%.', 'خلال فصل دراسي واحد، خفضنا أعباء الإدارة بنسبة 60% وارتفعت نتائج رضا أولياء الأمور من 62% إلى 94%.')}
               </span>{' '}
               {t("This system didn't just digitize our school — it transformed how we operate.", 'هذا النظام لم يرقمن مدرستنا فحسب — بل غيّر طريقة عملنا.')}
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4711A] to-[#8B4513] flex items-center justify-center text-white font-bold text-xl">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center text-white font-bold text-xl">
                 D
               </div>
               <div className="text-left">
@@ -1111,7 +1111,7 @@ export default function SchoolERPPage() {
             {/* Stars */}
             <div className="flex items-center justify-center gap-1 mt-6">
               {[1, 2, 3, 4, 5].map((s) => (
-                <Star key={s} className="w-5 h-5 text-[#E88C32] fill-[#E88C32]" />
+                <Star key={s} className="w-5 h-5 text-[#E8634A] fill-[#E8634A]" />
               ))}
             </div>
           </motion.div>
@@ -1123,7 +1123,7 @@ export default function SchoolERPPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-28 bg-white relative overflow-hidden">
         <div className="bg-dots absolute inset-0 opacity-30" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#D4711A]/5 rounded-full filter blur-[120px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E8634A]/5 rounded-full filter blur-[120px]" />
 
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div

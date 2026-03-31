@@ -88,7 +88,7 @@ export default function MobileAppsPage() {
       name: t('Login', 'تسجيل الدخول'),
       content: (
         <div className="p-6 flex flex-col items-center justify-center h-72">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center mb-4 shadow-lg">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#E8634A] to-[#E8634A] flex items-center justify-center mb-4 shadow-lg">
             <span className="text-white font-bold text-xl">C</span>
           </div>
           <div className="text-lg font-bold text-gray-900 mb-1">{t('Welcome Back', 'مرحباً بعودتك')}</div>
@@ -100,7 +100,7 @@ export default function MobileAppsPage() {
             <div className="h-10 bg-gray-100 rounded-xl px-3 flex items-center">
               <span className="text-xs text-gray-400">{t('Password', 'كلمة المرور')}</span>
             </div>
-            <div className="h-10 bg-gradient-to-r from-[#D4711A] to-[#E88C32] rounded-xl flex items-center justify-center">
+            <div className="h-10 bg-gradient-to-r from-[#E8634A] to-[#E8634A] rounded-xl flex items-center justify-center">
               <span className="text-white text-xs font-bold">{t('Sign In', 'تسجيل الدخول')}</span>
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function MobileAppsPage() {
               <div className="text-xs text-gray-400">{t('Good Morning', 'صباح الخير')}</div>
               <div className="text-sm font-bold text-gray-900">{t('Ahmed Khan', 'أحمد خان')}</div>
             </div>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D4711A] to-[#E88C32]" />
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#E8634A] to-[#E8634A]" />
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div className="bg-violet-50 rounded-xl p-3">
@@ -154,7 +154,7 @@ export default function MobileAppsPage() {
               t('English — 11:00 AM', 'اللغة الإنجليزية — 11:00 صباحاً'),
             ].map((cls) => (
               <div key={cls} className="flex items-center gap-2 py-1.5 border-b border-gray-100 last:border-0">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#D4711A]" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#E8634A]" />
                 <span className="text-[10px] text-gray-600">{cls}</span>
               </div>
             ))}
@@ -198,7 +198,7 @@ export default function MobileAppsPage() {
             { name: t('Ms. Sarah', 'أ. سارة'), msg: t('Quiz tomorrow, chapter 5', 'اختبار غداً، الفصل 5'), time: t('Yesterday', 'أمس'), unread: false },
           ].map((chat) => (
             <div key={chat.name} className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center flex-shrink-0">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#E8634A] to-[#E8634A] flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-[10px] font-bold">{chat.name[0]}</span>
               </div>
               <div className="flex-1 min-w-0">
@@ -208,7 +208,7 @@ export default function MobileAppsPage() {
                 </div>
                 <span className="text-[10px] text-gray-500 truncate block">{chat.msg}</span>
               </div>
-              {chat.unread && <div className="w-2 h-2 rounded-full bg-[#D4711A] flex-shrink-0" />}
+              {chat.unread && <div className="w-2 h-2 rounded-full bg-[#E8634A] flex-shrink-0" />}
             </div>
           ))}
         </div>
@@ -219,7 +219,7 @@ export default function MobileAppsPage() {
       content: (
         <div className="p-4 space-y-3 h-72 overflow-hidden">
           <div className="text-sm font-bold text-gray-900 mb-1">{t('Report Card', 'بطاقة التقرير')}</div>
-          <div className="bg-gradient-to-r from-[#D4711A] to-[#E88C32] rounded-xl p-4 text-center">
+          <div className="bg-gradient-to-r from-[#E8634A] to-[#E8634A] rounded-xl p-4 text-center">
             <div className="text-white/70 text-[10px]">{t('Current GPA', 'المعدل الحالي')}</div>
             <div className="text-3xl font-bold text-white">3.92</div>
             <div className="text-white/70 text-[10px]">{t('Rank: 3rd in class', 'الترتيب: الثالث في الصف')}</div>
@@ -257,7 +257,7 @@ export default function MobileAppsPage() {
       {/* ── Hero ── */}
       <section className="pt-36 pb-28 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-[#D4711A]/15 rounded-full filter blur-[180px]" />
+          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-[#E8634A]/15 rounded-full filter blur-[180px]" />
           <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-amber-500/10 rounded-full filter blur-[140px]" />
           <div
             className="absolute inset-0"
@@ -277,7 +277,7 @@ export default function MobileAppsPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 mb-8"
               >
-                <Smartphone className="w-4 h-4 text-[#E88C32]" />
+                <Smartphone className="w-4 h-4 text-[#E8634A]" />
                 <span className="text-white/70 text-xs font-bold tracking-wider uppercase">{t('iOS & Android', 'iOS و Android')}</span>
               </motion.div>
 
@@ -334,7 +334,7 @@ export default function MobileAppsPage() {
                   <div className="bg-white rounded-[2rem] overflow-hidden">
                     <div className="p-4 space-y-2">
                       <div className="flex items-center gap-2 mb-3">
-                        <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#E8634A] to-[#E8634A] flex items-center justify-center">
                           <span className="text-white text-[8px] font-bold">C</span>
                         </div>
                         <span className="text-[10px] font-bold text-gray-900">{t('Student Portal', 'بوابة الطالب')}</span>
@@ -372,12 +372,12 @@ export default function MobileAppsPage() {
                   <div className="bg-white rounded-[2rem] overflow-hidden">
                     <div className="p-4 space-y-2">
                       <div className="flex items-center gap-2 mb-3">
-                        <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#E8634A] to-[#E8634A] flex items-center justify-center">
                           <span className="text-white text-[8px] font-bold">C</span>
                         </div>
                         <span className="text-[10px] font-bold text-gray-900">{t('Parent Portal', 'بوابة ولي الأمر')}</span>
                       </div>
-                      <div className="bg-gradient-to-r from-[#D4711A] to-[#E88C32] rounded-lg p-2 text-center">
+                      <div className="bg-gradient-to-r from-[#E8634A] to-[#E8634A] rounded-lg p-2 text-center">
                         <div className="text-white/70 text-[7px]">{t("Ahmed's GPA", 'معدل أحمد')}</div>
                         <div className="text-white font-bold text-lg">3.92</div>
                       </div>
@@ -392,7 +392,7 @@ export default function MobileAppsPage() {
                       <div className="bg-amber-50 rounded-lg p-2">
                         <div className="text-[8px] font-bold text-amber-700">{t('Fee Due', 'رسوم مستحقة')}</div>
                         <div className="text-[10px] font-bold text-gray-900">{t('PKR 15,000', '15,000 ريال')}</div>
-                        <div className="h-5 bg-gradient-to-r from-[#D4711A] to-[#E88C32] rounded-md mt-1 flex items-center justify-center">
+                        <div className="h-5 bg-gradient-to-r from-[#E8634A] to-[#E8634A] rounded-md mt-1 flex items-center justify-center">
                           <span className="text-white text-[7px] font-bold">{t('Pay Now', 'ادفع الآن')}</span>
                         </div>
                       </div>
@@ -446,7 +446,7 @@ export default function MobileAppsPage() {
               {
                 title: t('Parent App', 'تطبيق ولي الأمر'),
                 icon: Users,
-                color: 'from-[#D4711A] to-[#E88C32]',
+                color: 'from-[#E8634A] to-[#E8634A]',
                 bgLight: 'bg-amber-50',
                 features: [
                   t("Track child's progress", 'تتبع تقدم الطفل'),
@@ -510,10 +510,10 @@ export default function MobileAppsPage() {
           >
             {features.map((f, i) => (
               <motion.div key={f.title} variants={fadeUp} custom={i} className="card-white group text-center">
-                <div className="icon-box mx-auto mb-4 group-hover:bg-[#D4711A] group-hover:text-white transition-all">
+                <div className="icon-box mx-auto mb-4 group-hover:bg-[#E8634A] group-hover:text-white transition-all">
                   <f.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-heading font-bold text-gray-900 text-sm mb-2 group-hover:text-[#D4711A] transition-colors">
+                <h3 className="font-heading font-bold text-gray-900 text-sm mb-2 group-hover:text-[#E8634A] transition-colors">
                   {f.title}
                 </h3>
                 <p className="text-xs text-gray-500 leading-relaxed">{f.desc}</p>
@@ -627,7 +627,7 @@ export default function MobileAppsPage() {
       {/* ── Stats ── */}
       <section className="py-24 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4711A]/8 rounded-full filter blur-[200px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/8 rounded-full filter blur-[200px]" />
         </div>
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -645,7 +645,7 @@ export default function MobileAppsPage() {
             ].map((stat, i) => (
               <motion.div key={stat.label} variants={fadeUp} custom={i} className="text-center">
                 <div className="w-14 h-14 rounded-2xl bg-white/[0.06] flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-6 h-6 text-[#E88C32]" />
+                  <stat.icon className="w-6 h-6 text-[#E8634A]" />
                 </div>
                 <div className="text-4xl md:text-5xl font-heading font-bold text-white mb-2">
                   {stat.number}
@@ -720,7 +720,7 @@ export default function MobileAppsPage() {
               <div className="bg-gray-50 rounded-3xl p-8 max-w-sm w-full">
                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
                   <div className="p-6 text-center">
-                    <div className="w-20 h-20 rounded-[22px] bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <div className="w-20 h-20 rounded-[22px] bg-gradient-to-br from-[#E8634A] to-[#E8634A] flex items-center justify-center mx-auto mb-4 shadow-lg">
                       <span className="text-white font-bold text-3xl">C</span>
                     </div>
                     <h3 className="font-bold text-gray-900 text-lg mb-1">{t('Your School App', 'تطبيق مدرستك')}</h3>
@@ -731,7 +731,7 @@ export default function MobileAppsPage() {
                       ))}
                       <span className="text-xs text-gray-500 ml-1">4.8</span>
                     </div>
-                    <div className="h-10 bg-gradient-to-r from-[#D4711A] to-[#E88C32] rounded-xl flex items-center justify-center">
+                    <div className="h-10 bg-gradient-to-r from-[#E8634A] to-[#E8634A] rounded-xl flex items-center justify-center">
                       <span className="text-white text-sm font-bold">{t('GET', 'تحميل')}</span>
                     </div>
                   </div>
@@ -778,7 +778,7 @@ export default function MobileAppsPage() {
               )}
             </blockquote>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4711A] to-[#E88C32] flex items-center justify-center text-white font-bold text-lg">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E8634A] to-[#E8634A] flex items-center justify-center text-white font-bold text-lg">
                 {t('SK', 'سخ')}
               </div>
               <div className="text-left">
@@ -799,8 +799,8 @@ export default function MobileAppsPage() {
             viewport={{ once: true }}
           >
             <div className="inline-flex items-center gap-2 bg-amber-50 rounded-full px-5 py-2 mb-8">
-              <Sparkles className="w-4 h-4 text-[#D4711A]" />
-              <span className="text-[#D4711A] text-xs font-bold tracking-wider uppercase">{t('6-Week Delivery', 'تسليم خلال 6 أسابيع')}</span>
+              <Sparkles className="w-4 h-4 text-[#E8634A]" />
+              <span className="text-[#E8634A] text-xs font-bold tracking-wider uppercase">{t('6-Week Delivery', 'تسليم خلال 6 أسابيع')}</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
               {t('Get Your School App in', 'احصل على تطبيق مدرستك في')}{' '}

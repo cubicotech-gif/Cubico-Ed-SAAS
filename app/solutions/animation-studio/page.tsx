@@ -212,12 +212,12 @@ function CategoryIcon({ type }: { type: string }) {
         <div className="relative w-20 h-20 flex items-center justify-center">
           {/* Paintbrush */}
           <div className="relative">
-            <div className="w-3 h-10 bg-gradient-to-b from-[#8B4513] to-[#D4711A] rounded-t-full rotate-[-30deg]" />
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-5 h-4 bg-gradient-to-b from-[#D4711A] to-orange-300 rounded-b-full rotate-[-30deg]" />
+            <div className="w-3 h-10 bg-gradient-to-b from-[#D14F38] to-[#E8634A] rounded-t-full rotate-[-30deg]" />
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-5 h-4 bg-gradient-to-b from-[#E8634A] to-orange-300 rounded-b-full rotate-[-30deg]" />
           </div>
           {/* Paint splatters */}
-          <div className="absolute top-1 left-2 w-3 h-3 rounded-full bg-[#D4711A]/60" />
-          <div className="absolute bottom-2 right-1 w-2 h-2 rounded-full bg-[#8B4513]/50" />
+          <div className="absolute top-1 left-2 w-3 h-3 rounded-full bg-[#E8634A]/60" />
+          <div className="absolute bottom-2 right-1 w-2 h-2 rounded-full bg-[#D14F38]/50" />
           <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full bg-orange-400" />
         </div>
       );
@@ -288,7 +288,7 @@ export default function AnimationStudioPage() {
     {
       title: t('Custom Content', 'محتوى مخصص'),
       desc: t('Bespoke animations tailored to your institution\'s unique curriculum needs and branding guidelines.', 'رسوم متحركة مصممة خصيصًا لاحتياجات المنهج الفريدة لمؤسستك وإرشادات العلامة التجارية.'),
-      color: 'from-[#D4711A] to-[#8B4513]',
+      color: 'from-[#E8634A] to-[#D14F38]',
       bgColor: 'bg-orange-50',
       iconType: 'custom',
     },
@@ -354,7 +354,7 @@ export default function AnimationStudioPage() {
         <section className="section-dark relative min-h-screen flex items-center pt-32 pb-20">
           {/* Background effects */}
           <div className="absolute inset-0 bg-dots opacity-30" />
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#D4711A]/10 rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#E8634A]/10 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]" />
 
           <div className="max-w-7xl mx-auto px-6 w-full">
@@ -417,7 +417,7 @@ export default function AnimationStudioPage() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="relative"
               >
-                <div className="bg-gray-900 rounded-2xl border border-gray-700/50 overflow-hidden shadow-2xl shadow-[#D4711A]/10">
+                <div className="bg-gray-900 rounded-2xl border border-gray-700/50 overflow-hidden shadow-2xl shadow-[#E8634A]/10">
                   {/* Player header */}
                   <div className="flex items-center gap-2 px-4 py-3 bg-gray-800/50 border-b border-gray-700/50">
                     <div className="w-3 h-3 rounded-full bg-red-500" />
@@ -432,7 +432,7 @@ export default function AnimationStudioPage() {
                     <motion.div
                       animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
                       transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                      className="absolute top-[15%] left-[10%] w-16 h-16 rounded-full bg-gradient-to-br from-[#D4711A] to-amber-400 opacity-80"
+                      className="absolute top-[15%] left-[10%] w-16 h-16 rounded-full bg-gradient-to-br from-[#E8634A] to-amber-400 opacity-80"
                     />
                     <motion.div
                       animate={{ y: [10, -15, 10], rotate: [0, -10, 0] }}
@@ -469,7 +469,7 @@ export default function AnimationStudioPage() {
                     <div className="absolute inset-0 flex items-center justify-center">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
-                        className="w-20 h-20 rounded-full bg-[#D4711A]/90 backdrop-blur-sm flex items-center justify-center cursor-pointer shadow-lg shadow-[#D4711A]/30"
+                        className="w-20 h-20 rounded-full bg-[#E8634A]/90 backdrop-blur-sm flex items-center justify-center cursor-pointer shadow-lg shadow-[#E8634A]/30"
                       >
                         <Play className="w-8 h-8 text-white ml-1" fill="white" />
                       </motion.div>
@@ -488,7 +488,7 @@ export default function AnimationStudioPage() {
                       <span className="text-[10px] text-gray-400 w-8">1:34</span>
                       <div className="flex-1 h-1 bg-gray-700 rounded-full overflow-hidden">
                         <motion.div
-                          className="h-full bg-gradient-to-r from-[#D4711A] to-amber-400 rounded-full"
+                          className="h-full bg-gradient-to-r from-[#E8634A] to-amber-400 rounded-full"
                           style={{ width: '35%' }}
                           animate={{ width: ['35%', '38%', '35%'] }}
                           transition={{ duration: 3, repeat: Infinity }}
@@ -525,7 +525,7 @@ export default function AnimationStudioPage() {
             SECTION 2: CONTENT CATEGORIES
             ═══════════════════════════════════════════ */}
         <section className="py-24 bg-white relative">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4711A]/5 rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#E8634A]/5 rounded-full blur-[120px]" />
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <motion.div
               initial="hidden"
@@ -571,7 +571,7 @@ export default function AnimationStudioPage() {
                     {cat.title}
                   </h3>
                   <p className="text-gray-500 leading-relaxed">{cat.desc}</p>
-                  <div className="mt-4 flex items-center text-[#D4711A] font-medium text-sm group-hover:gap-2 transition-all">
+                  <div className="mt-4 flex items-center text-[#E8634A] font-medium text-sm group-hover:gap-2 transition-all">
                     {t('Learn More', 'اعرف المزيد')} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
                   </div>
                 </motion.div>
@@ -585,7 +585,7 @@ export default function AnimationStudioPage() {
             ═══════════════════════════════════════════ */}
         <section className="section-dark py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-dots opacity-20" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D4711A]/5 rounded-full blur-[150px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/5 rounded-full blur-[150px]" />
 
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <motion.div
@@ -611,7 +611,7 @@ export default function AnimationStudioPage() {
 
             <div className="relative">
               {/* Connecting line */}
-              <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#D4711A]/30 to-transparent -translate-y-1/2" />
+              <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#E8634A]/30 to-transparent -translate-y-1/2" />
 
               <motion.div
                 initial="hidden"
@@ -629,9 +629,9 @@ export default function AnimationStudioPage() {
                       custom={i}
                       className="relative"
                     >
-                      <div className="card-dark group hover:border-[#D4711A]/30 transition-all duration-300">
+                      <div className="card-dark group hover:border-[#E8634A]/30 transition-all duration-300">
                         {/* Step number */}
-                        <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-[#D4711A] text-white text-sm font-bold flex items-center justify-center shadow-lg shadow-[#D4711A]/30">
+                        <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-[#E8634A] text-white text-sm font-bold flex items-center justify-center shadow-lg shadow-[#E8634A]/30">
                           {i + 1}
                         </div>
                         <div className="icon-box mb-4">
@@ -644,7 +644,7 @@ export default function AnimationStudioPage() {
                       </div>
                       {/* Arrow connector for desktop */}
                       {i < productionSteps.length - 1 && i !== 2 && (
-                        <div className="hidden lg:block absolute top-1/2 -right-4 text-[#D4711A]/40">
+                        <div className="hidden lg:block absolute top-1/2 -right-4 text-[#E8634A]/40">
                           <ChevronRight className="w-6 h-6" />
                         </div>
                       )}
@@ -733,20 +733,20 @@ export default function AnimationStudioPage() {
                 variants={slideRight}
               >
                 <div className="text-center mb-4">
-                  <span className="text-sm font-semibold text-[#D4711A] uppercase tracking-wider">{t('With Cubico Animation', 'مع رسوم كيوبيكو المتحركة')}</span>
+                  <span className="text-sm font-semibold text-[#E8634A] uppercase tracking-wider">{t('With Cubico Animation', 'مع رسوم كيوبيكو المتحركة')}</span>
                 </div>
-                <div className="bg-gradient-to-br from-[#D4711A]/10 to-purple-500/10 rounded-2xl p-6 border-2 border-[#D4711A]/30 relative overflow-hidden">
+                <div className="bg-gradient-to-br from-[#E8634A]/10 to-purple-500/10 rounded-2xl p-6 border-2 border-[#E8634A]/30 relative overflow-hidden">
                   {/* Mockup: vibrant animated lesson */}
                   <div className="bg-white rounded-lg p-4 shadow-lg">
                     {/* Vibrant header */}
-                    <div className="h-5 bg-gradient-to-r from-[#D4711A] to-amber-400 rounded w-3/4 mb-4" />
+                    <div className="h-5 bg-gradient-to-r from-[#E8634A] to-amber-400 rounded w-3/4 mb-4" />
                     {/* Visual content area */}
                     <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-lg p-4 mb-4 relative overflow-hidden">
                       {/* Animated shapes */}
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-                        className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4711A] to-amber-300 absolute top-2 right-4"
+                        className="w-10 h-10 rounded-full bg-gradient-to-br from-[#E8634A] to-amber-300 absolute top-2 right-4"
                       />
                       <motion.div
                         animate={{ y: [-3, 3, -3] }}
@@ -764,7 +764,7 @@ export default function AnimationStudioPage() {
                             whileInView={{ height: `${h}%` }}
                             viewport={{ once: true }}
                             transition={{ delay: j * 0.1, duration: 0.5 }}
-                            className="w-4 rounded-t bg-gradient-to-t from-[#D4711A] to-amber-300"
+                            className="w-4 rounded-t bg-gradient-to-t from-[#E8634A] to-amber-300"
                           />
                         ))}
                       </div>
@@ -831,9 +831,9 @@ export default function AnimationStudioPage() {
                       <motion.div
                         animate={{
                           background: [
-                            'radial-gradient(circle at 30% 40%, #D4711A33 0%, transparent 50%)',
-                            'radial-gradient(circle at 70% 60%, #D4711A33 0%, transparent 50%)',
-                            'radial-gradient(circle at 30% 40%, #D4711A33 0%, transparent 50%)',
+                            'radial-gradient(circle at 30% 40%, #E8634A33 0%, transparent 50%)',
+                            'radial-gradient(circle at 70% 60%, #E8634A33 0%, transparent 50%)',
+                            'radial-gradient(circle at 30% 40%, #E8634A33 0%, transparent 50%)',
                           ],
                         }}
                         transition={{ duration: 5, repeat: Infinity }}
@@ -878,7 +878,7 @@ export default function AnimationStudioPage() {
                           <div className="text-white font-bold text-sm">{t('Photosynthesis - How Plants Make Food', 'التمثيل الضوئي - كيف تصنع النباتات الغذاء')}</div>
                           <div className="text-gray-400 text-xs">{t('Grade 4 - Science - Chapter 3', 'الصف الرابع - العلوم - الفصل ٣')}</div>
                         </div>
-                        <div className="bg-[#D4711A] text-white text-[10px] font-bold px-2 py-1 rounded">
+                        <div className="bg-[#E8634A] text-white text-[10px] font-bold px-2 py-1 rounded">
                           {t('HD 1080p', 'عالي الدقة ١٠٨٠بكسل')}
                         </div>
                       </div>
@@ -890,7 +890,7 @@ export default function AnimationStudioPage() {
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-xs text-gray-400 font-mono w-10">1:34</span>
                         <div className="flex-1 h-1.5 bg-gray-700 rounded-full cursor-pointer group relative">
-                          <div className="h-full bg-gradient-to-r from-[#D4711A] to-amber-400 rounded-full relative" style={{ width: '35%' }}>
+                          <div className="h-full bg-gradient-to-r from-[#E8634A] to-amber-400 rounded-full relative" style={{ width: '35%' }}>
                             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-md opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
                         </div>
@@ -940,7 +940,7 @@ export default function AnimationStudioPage() {
                           key={i}
                           className={`rounded-lg p-2.5 cursor-pointer transition-all ${
                             ch.active
-                              ? 'bg-[#D4711A]/20 border border-[#D4711A]/30'
+                              ? 'bg-[#E8634A]/20 border border-[#E8634A]/30'
                               : 'hover:bg-gray-800/50'
                           }`}
                         >
@@ -948,7 +948,7 @@ export default function AnimationStudioPage() {
                             {/* Thumbnail */}
                             <div className={`w-14 h-9 rounded flex-shrink-0 flex items-center justify-center ${
                               ch.active
-                                ? 'bg-gradient-to-br from-[#D4711A] to-amber-500'
+                                ? 'bg-gradient-to-br from-[#E8634A] to-amber-500'
                                 : 'bg-gray-800'
                             }`}>
                               {ch.active ? (
@@ -958,7 +958,7 @@ export default function AnimationStudioPage() {
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className={`text-[11px] font-medium truncate ${ch.active ? 'text-[#D4711A]' : 'text-gray-300'}`}>
+                              <div className={`text-[11px] font-medium truncate ${ch.active ? 'text-[#E8634A]' : 'text-gray-300'}`}>
                                 {ch.title}
                               </div>
                               <div className="text-[10px] text-gray-500">{ch.duration}</div>
@@ -979,7 +979,7 @@ export default function AnimationStudioPage() {
             ═══════════════════════════════════════════ */}
         <section className="section-dark py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-dots opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#D4711A]/5 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#E8634A]/5 via-transparent to-transparent" />
 
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <motion.div
@@ -1075,12 +1075,12 @@ export default function AnimationStudioPage() {
                         key={si}
                         className={`rounded-lg p-3 flex items-center justify-center transition-all duration-300 ${
                           available
-                            ? 'bg-gradient-to-br from-[#D4711A]/10 to-amber-100 hover:from-[#D4711A]/20 hover:to-amber-200'
+                            ? 'bg-gradient-to-br from-[#E8634A]/10 to-amber-100 hover:from-[#E8634A]/20 hover:to-amber-200'
                             : 'bg-gray-50'
                         }`}
                       >
                         {available ? (
-                          <CheckCircle2 className="w-5 h-5 text-[#D4711A]" />
+                          <CheckCircle2 className="w-5 h-5 text-[#E8634A]" />
                         ) : (
                           <div className="w-5 h-5 rounded-full border-2 border-gray-200" />
                         )}
@@ -1197,7 +1197,7 @@ export default function AnimationStudioPage() {
             ═══════════════════════════════════════════ */}
         <section className="section-dark py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-dots opacity-15" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#D4711A]/8 rounded-full blur-[120px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#E8634A]/8 rounded-full blur-[120px]" />
 
           <div className="max-w-4xl mx-auto px-6 relative z-10">
             <motion.div
@@ -1208,7 +1208,7 @@ export default function AnimationStudioPage() {
               className="text-center"
             >
               <motion.div variants={fadeUp}>
-                <Quote className="w-16 h-16 text-[#D4711A]/30 mx-auto mb-8" />
+                <Quote className="w-16 h-16 text-[#E8634A]/30 mx-auto mb-8" />
               </motion.div>
               <motion.blockquote
                 variants={fadeUp}
@@ -1218,7 +1218,7 @@ export default function AnimationStudioPage() {
               </motion.blockquote>
               <motion.div variants={fadeUp}>
                 <div className="flex items-center justify-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#D4711A] to-amber-500 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E8634A] to-amber-500 flex items-center justify-center">
                     <span className="text-white font-bold text-lg">SA</span>
                   </div>
                   <div className="text-left">
@@ -1228,7 +1228,7 @@ export default function AnimationStudioPage() {
                 </div>
                 <div className="flex items-center justify-center gap-1 mt-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-[#D4711A] fill-[#D4711A]" />
+                    <Star key={i} className="w-5 h-5 text-[#E8634A] fill-[#E8634A]" />
                   ))}
                 </div>
               </motion.div>
@@ -1239,7 +1239,7 @@ export default function AnimationStudioPage() {
         {/* ═══════════════════════════════════════════
             SECTION 10: CTA
             ═══════════════════════════════════════════ */}
-        <section className="py-24 bg-gradient-to-br from-[#D4711A] to-[#8B4513] relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-br from-[#E8634A] to-[#D14F38] relative overflow-hidden">
           {/* Decorative shapes */}
           <motion.div
             animate={{ rotate: 360 }}
@@ -1286,7 +1286,7 @@ export default function AnimationStudioPage() {
               <motion.div variants={fadeUp} className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-white text-[#D4711A] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+                  className="inline-flex items-center gap-2 bg-white text-[#E8634A] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg"
                 >
                   {t('Start a Project', 'ابدأ مشروعاً')} <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                 </Link>

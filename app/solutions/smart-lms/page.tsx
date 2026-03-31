@@ -87,8 +87,8 @@ function PortfolioSection({ t }: { t: (en: string, ar: string) => string }) {
         t('Homework submission & auto-grading', 'تسليم الواجبات والتصحيح التلقائي'),
         t('Report card generation', 'إنشاء بطاقات التقارير'),
       ],
-      color: 'from-[#0A6B5C] to-[#085248]',
-      accent: '#0A6B5C',
+      color: 'from-[#E8634A] to-[#172554]',
+      accent: '#E8634A',
       stats: { students: '1,200', teachers: '85', courses: '340' },
     },
     {
@@ -183,7 +183,7 @@ function PortfolioSection({ t }: { t: (en: string, ar: string) => string }) {
               key={demo.title}
               variants={fadeUp}
               custom={i}
-              className="border border-gray-100 rounded-2xl overflow-hidden hover:border-[#0A6B5C]/20 transition-all duration-300"
+              className="border border-gray-100 rounded-2xl overflow-hidden hover:border-[#E8634A]/20 transition-all duration-300"
             >
               {/* Collapsed Header — always visible */}
               <button
@@ -458,8 +458,8 @@ export default function SmartLMSPage() {
       <section className="pt-36 pb-28 section-dark relative overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-[#0A6B5C]/15 rounded-full filter blur-[200px]" />
-          <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-[#085248]/10 rounded-full filter blur-[160px]" />
+          <div className="absolute top-0 left-1/4 w-[700px] h-[700px] bg-[#E8634A]/15 rounded-full filter blur-[200px]" />
+          <div className="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-[#172554]/10 rounded-full filter blur-[160px]" />
           <div className="absolute top-1/2 right-0 w-[400px] h-[400px] bg-violet-500/5 rounded-full filter blur-[120px]" />
           <div
             className="absolute inset-0"
@@ -482,8 +482,8 @@ export default function SmartLMSPage() {
                 className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 mb-8"
               >
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0C7A6E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#0A6B5C]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8634A] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8634A]" />
                 </span>
                 <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
                   {t('Moodle-Powered LMS Platform', 'منصة إدارة التعلم المبنية على Moodle')}
@@ -535,7 +535,7 @@ export default function SmartLMSPage() {
               >
                 <div className="flex -space-x-3">
                   {[
-                    { bg: 'bg-[#0A6B5C]', icon: '🏫' },
+                    { bg: 'bg-[#E8634A]', icon: '🏫' },
                     { bg: 'bg-violet-500', icon: '🎓' },
                     { bg: 'bg-emerald-400', icon: '📖' },
                     { bg: 'bg-sky-500', icon: '🌍' },
@@ -568,7 +568,7 @@ export default function SmartLMSPage() {
             >
               <div className="relative">
                 {/* Glow behind */}
-                <div className="absolute -inset-6 bg-gradient-to-br from-[#0A6B5C]/20 via-violet-500/10 to-transparent rounded-3xl filter blur-2xl" />
+                <div className="absolute -inset-6 bg-gradient-to-br from-[#E8634A]/20 via-violet-500/10 to-transparent rounded-3xl filter blur-2xl" />
 
                 {/* Browser Window */}
                 <div className="relative bg-[#1a1a2e] rounded-2xl shadow-2xl shadow-black/40 overflow-hidden border border-white/10">
@@ -599,10 +599,10 @@ export default function SmartLMSPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-[#0A6B5C]/20 flex items-center justify-center">
-                          <Bell className="w-4 h-4 text-[#0C7A6E]" />
+                        <div className="w-8 h-8 rounded-lg bg-[#E8634A]/20 flex items-center justify-center">
+                          <Bell className="w-4 h-4 text-[#E8634A]" />
                         </div>
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0A6B5C] to-[#085248] flex items-center justify-center text-sm">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#E8634A] to-[#172554] flex items-center justify-center text-sm">
                           👩‍🎓
                         </div>
                       </div>
@@ -620,7 +620,7 @@ export default function SmartLMSPage() {
                           className="bg-white/[0.04] rounded-xl p-3 border border-white/5"
                         >
                           <div className="flex items-center justify-between mb-2">
-                            <s.icon className="w-4 h-4 text-[#0C7A6E]" />
+                            <s.icon className="w-4 h-4 text-[#E8634A]" />
                             <span className="text-[10px] text-emerald-400">{s.change}</span>
                           </div>
                           <div className="text-white font-heading font-bold text-lg">{s.val}</div>
@@ -636,7 +636,7 @@ export default function SmartLMSPage() {
                     <div className="space-y-2.5">
                       {[
                         { name: t('Mathematics — Algebra II', 'الرياضيات — الجبر II'), progress: 78, color: 'from-violet-500 to-purple-600', grade: 'A' },
-                        { name: t('Physics — Mechanics', 'الفيزياء — الميكانيكا'), progress: 52, color: 'from-[#0A6B5C] to-[#085248]', grade: 'B+' },
+                        { name: t('Physics — Mechanics', 'الفيزياء — الميكانيكا'), progress: 52, color: 'from-[#E8634A] to-[#172554]', grade: 'B+' },
                         { name: t('English Literature — Poetry', 'الأدب الإنجليزي — الشعر'), progress: 91, color: 'from-emerald-500 to-teal-600', grade: 'A+' },
                       ].map((course) => (
                         <div
@@ -673,7 +673,7 @@ export default function SmartLMSPage() {
                         {[35, 60, 45, 80, 65, 90, 50].map((h, i) => (
                           <div key={i} className="flex-1 flex flex-col items-center gap-1">
                             <div
-                              className="w-full bg-gradient-to-t from-[#0A6B5C] to-[#0C7A6E] rounded-sm opacity-70"
+                              className="w-full bg-gradient-to-t from-[#E8634A] to-[#E8634A] rounded-sm opacity-70"
                               style={{ height: `${h}%` }}
                             />
                             <span className="text-[8px] text-white/20">
@@ -716,8 +716,8 @@ export default function SmartLMSPage() {
                   className="absolute -left-4 bottom-1/4 bg-[#1a1a2e] rounded-2xl shadow-xl px-4 py-3 border border-white/10"
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-[#0A6B5C]/20 flex items-center justify-center">
-                      <BrainCircuit className="w-4 h-4 text-[#0C7A6E]" />
+                    <div className="w-8 h-8 rounded-full bg-[#E8634A]/20 flex items-center justify-center">
+                      <BrainCircuit className="w-4 h-4 text-[#E8634A]" />
                     </div>
                     <div>
                       <div className="text-[10px] text-white/40">{t('AI Insight', 'رؤية الذكاء الاصطناعي')}</div>
@@ -776,11 +776,11 @@ export default function SmartLMSPage() {
                 className="card-white group relative overflow-hidden"
               >
                 {/* Hover gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0A6B5C]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#E8634A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
 
                 <div className="relative">
-                  <div className="icon-box mb-6 w-14 h-14 rounded-2xl bg-[#0A6B5C]/10 flex items-center justify-center group-hover:bg-[#0A6B5C]/20 transition-colors">
-                    <feat.icon className="w-6 h-6 text-[#0A6B5C]" />
+                  <div className="icon-box mb-6 w-14 h-14 rounded-2xl bg-[#E8634A]/10 flex items-center justify-center group-hover:bg-[#E8634A]/20 transition-colors">
+                    <feat.icon className="w-6 h-6 text-[#E8634A]" />
                   </div>
                   <h3 className="font-heading font-bold text-gray-900 text-xl mb-3">
                     {feat.title}
@@ -853,7 +853,7 @@ export default function SmartLMSPage() {
                 <div className="w-56 bg-[#0f0f1a] p-4 hidden md:flex flex-col">
                   {/* Logo */}
                   <div className="flex items-center gap-2.5 mb-8 px-2">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0A6B5C] to-[#085248] flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0F172A] to-[#1E3A5F] flex items-center justify-center">
                       <GraduationCap className="w-4 h-4 text-white" />
                     </div>
                     <span className="text-white font-heading font-bold text-sm">{t('Smart LMS', 'نظام إدارة التعلم الذكي')}</span>
@@ -875,7 +875,7 @@ export default function SmartLMSPage() {
                         key={nav.label}
                         className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-xs font-medium cursor-pointer transition-colors ${
                           nav.active
-                            ? 'bg-[#0A6B5C]/20 text-[#0C7A6E]'
+                            ? 'bg-[#E8634A]/20 text-[#E8634A]'
                             : 'text-white/40 hover:text-white/60 hover:bg-white/5'
                         }`}
                       >
@@ -932,7 +932,7 @@ export default function SmartLMSPage() {
                       { label: t('Total Students', 'إجمالي الطلاب'), val: '284', change: '+12', color: 'text-emerald-500', bg: 'bg-emerald-50' },
                       { label: t('Active Courses', 'الدورات النشطة'), val: '8', change: '+1', color: 'text-blue-500', bg: 'bg-blue-50' },
                       { label: t('Avg. Score', 'متوسط الدرجة'), val: '87%', change: '+3%', color: 'text-violet-500', bg: 'bg-violet-50' },
-                      { label: t('Completion Rate', 'معدل الإنجاز'), val: '92%', change: '+5%', color: 'text-[#0A6B5C]', bg: 'bg-orange-50' },
+                      { label: t('Completion Rate', 'معدل الإنجاز'), val: '92%', change: '+5%', color: 'text-[#E8634A]', bg: 'bg-orange-50' },
                     ].map((stat) => (
                       <div
                         key={stat.label}
@@ -967,7 +967,7 @@ export default function SmartLMSPage() {
                         </div>
                         <div className="flex gap-3">
                           <div className="flex items-center gap-1">
-                            <div className="w-2 h-2 rounded-full bg-[#0A6B5C]" />
+                            <div className="w-2 h-2 rounded-full bg-[#E8634A]" />
                             <span className="text-[10px] text-gray-400">{t('This Term', 'هذا الفصل')}</span>
                           </div>
                           <div className="flex items-center gap-1">
@@ -993,7 +993,7 @@ export default function SmartLMSPage() {
                                 style={{ height: `${bar.prev}%` }}
                               />
                               <div
-                                className="flex-1 bg-gradient-to-t from-[#0A6B5C] to-[#0C7A6E] rounded-t-sm"
+                                className="flex-1 bg-gradient-to-t from-[#E8634A] to-[#E8634A] rounded-t-sm"
                                 style={{ height: `${bar.cur}%` }}
                               />
                             </div>
@@ -1016,7 +1016,7 @@ export default function SmartLMSPage() {
                           {[
                             { text: t('Ahmed submitted Algebra Quiz', 'أحمد قدّم اختبار الجبر'), time: t('2m ago', 'منذ دقيقتين'), icon: FileText, color: 'bg-violet-100 text-violet-600' },
                             { text: t('New student enrolled in Physics', 'طالب جديد سجّل في الفيزياء'), time: t('15m ago', 'منذ 15 دقيقة'), icon: Users, color: 'bg-emerald-100 text-emerald-600' },
-                            { text: t('Grade 10 assignment due reminder', 'تذكير بموعد واجب الصف 10'), time: t('1h ago', 'منذ ساعة'), icon: Clock, color: 'bg-orange-100 text-[#0A6B5C]' },
+                            { text: t('Grade 10 assignment due reminder', 'تذكير بموعد واجب الصف 10'), time: t('1h ago', 'منذ ساعة'), icon: Clock, color: 'bg-orange-100 text-[#E8634A]' },
                             { text: t('Parent meeting scheduled', 'تم جدولة اجتماع أولياء الأمور'), time: t('3h ago', 'منذ 3 ساعات'), icon: Calendar, color: 'bg-blue-100 text-blue-600' },
                           ].map((act, i) => (
                             <div key={i} className="flex items-start gap-2.5">
@@ -1095,7 +1095,7 @@ export default function SmartLMSPage() {
 
           <div className="relative">
             {/* Connecting Line */}
-            <div className="hidden lg:block absolute top-16 left-[calc(12.5%+28px)] right-[calc(12.5%+28px)] h-0.5 bg-gradient-to-r from-[#0A6B5C]/30 via-[#0A6B5C] to-[#0A6B5C]/30" />
+            <div className="hidden lg:block absolute top-16 left-[calc(12.5%+28px)] right-[calc(12.5%+28px)] h-0.5 bg-gradient-to-r from-[#E8634A]/30 via-[#E8634A] to-[#E8634A]/30" />
 
             <motion.div
               initial="hidden"
@@ -1108,10 +1108,10 @@ export default function SmartLMSPage() {
                 <motion.div key={step.num} variants={fadeUp} custom={i} className="text-center">
                   {/* Number Circle */}
                   <div className="relative inline-flex mb-8">
-                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#0A6B5C] to-[#085248] flex items-center justify-center shadow-lg shadow-[#0A6B5C]/20 relative z-10">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E8634A] to-[#172554] flex items-center justify-center shadow-lg shadow-[#E8634A]/20 relative z-10">
                       <span className="text-white font-heading font-bold text-lg">{step.num}</span>
                     </div>
-                    <div className="absolute inset-0 w-14 h-14 rounded-full bg-[#0A6B5C]/20 animate-ping" style={{ animationDuration: '3s' }} />
+                    <div className="absolute inset-0 w-14 h-14 rounded-full bg-[#E8634A]/20 animate-ping" style={{ animationDuration: '3s' }} />
                   </div>
 
                   <h3 className="font-heading font-bold text-gray-900 text-lg mb-3">
@@ -1130,7 +1130,7 @@ export default function SmartLMSPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-24 lg:py-32 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[#0A6B5C]/10 rounded-full filter blur-[180px]" />
+          <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[#E8634A]/10 rounded-full filter blur-[180px]" />
           <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-violet-500/5 rounded-full filter blur-[140px]" />
         </div>
 
@@ -1208,22 +1208,22 @@ export default function SmartLMSPage() {
                           </div>
                           <div className="text-white/30 text-[10px]">{t('3 in progress', '3 قيد التقدم')}</div>
                         </div>
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0A6B5C] to-[#085248] flex items-center justify-center text-sm">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#E8634A] to-[#172554] flex items-center justify-center text-sm">
                           👨‍🎓
                         </div>
                       </div>
 
                       {/* Course Card - Featured */}
-                      <div className="bg-gradient-to-br from-[#0A6B5C]/20 to-[#085248]/10 rounded-2xl p-3.5 border border-[#0A6B5C]/20">
+                      <div className="bg-gradient-to-br from-[#E8634A]/20 to-[#172554]/10 rounded-2xl p-3.5 border border-[#E8634A]/20">
                         {/* Video Thumbnail */}
-                        <div className="relative bg-gradient-to-br from-[#0A6B5C]/40 to-[#085248]/30 rounded-xl h-28 flex items-center justify-center mb-3">
+                        <div className="relative bg-gradient-to-br from-[#E8634A]/40 to-[#172554]/30 rounded-xl h-28 flex items-center justify-center mb-3">
                           <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
                             <Play className="w-5 h-5 text-white ml-0.5" />
                           </div>
                           <div className="absolute bottom-2 right-2 bg-black/50 rounded px-1.5 py-0.5 text-[9px] text-white">
                             24:30
                           </div>
-                          <div className="absolute top-2 left-2 bg-[#0A6B5C] rounded px-1.5 py-0.5 text-[8px] text-white font-bold uppercase">
+                          <div className="absolute top-2 left-2 bg-[#E8634A] rounded px-1.5 py-0.5 text-[8px] text-white font-bold uppercase">
                             {t('Live', 'مباشر')}
                           </div>
                         </div>
@@ -1233,7 +1233,7 @@ export default function SmartLMSPage() {
                         <div className="text-white/40 text-[10px] mb-2">{t('Ms. Rashida', 'الأستاذة رشيدة')} &middot; {t('Chapter 4', 'الفصل 4')}</div>
                         <div className="flex items-center gap-2">
                           <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                            <div className="h-full w-[65%] bg-gradient-to-r from-[#0A6B5C] to-[#0C7A6E] rounded-full" />
+                            <div className="h-full w-[65%] bg-gradient-to-r from-[#E8634A] to-[#E8634A] rounded-full" />
                           </div>
                           <span className="text-[10px] text-white/40">65%</span>
                         </div>
@@ -1295,8 +1295,8 @@ export default function SmartLMSPage() {
                           { icon: Users, label: t('Profile', 'الملف'), active: false },
                         ].map((nav) => (
                           <div key={nav.label} className="flex flex-col items-center gap-0.5">
-                            <nav.icon className={`w-4 h-4 ${nav.active ? 'text-[#0C7A6E]' : 'text-white/20'}`} />
-                            <span className={`text-[8px] ${nav.active ? 'text-[#0C7A6E]' : 'text-white/20'}`}>
+                            <nav.icon className={`w-4 h-4 ${nav.active ? 'text-[#E8634A]' : 'text-white/20'}`} />
+                            <span className={`text-[8px] ${nav.active ? 'text-[#E8634A]' : 'text-white/20'}`}>
                               {nav.label}
                             </span>
                           </div>
@@ -1357,7 +1357,7 @@ export default function SmartLMSPage() {
             className="absolute inset-0"
             style={{
               backgroundImage:
-                'radial-gradient(circle, rgba(212,113,26,0.05) 1px, transparent 1px)',
+                'radial-gradient(circle, rgba(232,99,74,0.05) 1px, transparent 1px)',
               backgroundSize: '30px 30px',
             }}
           />
@@ -1433,7 +1433,7 @@ export default function SmartLMSPage() {
                 key={int.name}
                 variants={fadeUp}
                 custom={i}
-                className="group flex items-center gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-[#0A6B5C]/30 hover:shadow-lg hover:shadow-[#0A6B5C]/5 transition-all duration-300"
+                className="group flex items-center gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-[#E8634A]/30 hover:shadow-lg hover:shadow-[#E8634A]/5 transition-all duration-300"
               >
                 <div className={`w-12 h-12 ${int.color} rounded-xl flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform flex-shrink-0`}>
                   {int.icon}
@@ -1497,7 +1497,7 @@ export default function SmartLMSPage() {
             </blockquote>
 
             <div className="flex items-center justify-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#0A6B5C] to-[#085248] flex items-center justify-center text-2xl">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#E8634A] to-[#172554] flex items-center justify-center text-2xl">
                 👩‍🏫
               </div>
               <div className="text-left">
@@ -1516,7 +1516,7 @@ export default function SmartLMSPage() {
           ══════════════════════════════════════════════ */}
       <section className="py-24 lg:py-32 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#0A6B5C]/8 rounded-full filter blur-[200px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#E8634A]/8 rounded-full filter blur-[200px]" />
           <div
             className="absolute inset-0"
             style={{
@@ -1534,7 +1534,7 @@ export default function SmartLMSPage() {
             viewport={{ once: true }}
           >
             <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-5 py-2 mb-8">
-              <Sparkles className="w-4 h-4 text-[#0C7A6E]" />
+              <Sparkles className="w-4 h-4 text-[#E8634A]" />
               <span className="text-white/70 text-xs font-bold tracking-wider uppercase">
                 {t('Get Started Today', 'ابدأ اليوم')}
               </span>
