@@ -72,7 +72,7 @@ const cardHover = {
   hover: {
     y: -8,
     scale: 1.02,
-    boxShadow: '0 20px 60px rgba(20,184,166,0.15)',
+    boxShadow: '0 20px 60px rgba(13,124,107,0.12)',
     transition: { type: 'spring', stiffness: 300, damping: 25 },
   },
 };
@@ -107,7 +107,7 @@ function useCounter(target: number, duration = 2000) {
 /* ═══════════════════════════════════════════
    STAT COUNTER COMPONENT
    ═══════════════════════════════════════════ */
-function StatCounter({ value, suffix, label, color = '#14B8A6' }: { value: number; suffix: string; label: string; color?: string }) {
+function StatCounter({ value, suffix, label, color = '#0D7C6B' }: { value: number; suffix: string; label: string; color?: string }) {
   const { count, ref } = useCounter(value);
   const r = 42;
   const circ = 2 * Math.PI * r;
@@ -253,7 +253,7 @@ export default function HomePage() {
         @keyframes marquee    { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
         @keyframes shimmer-slide { 0%{ background-position:-200% center; } 100%{ background-position:200% center; } }
         @keyframes glow-breath{ 0%,100%{ opacity:0.4; transform:scale(1); } 50%{ opacity:0.75; transform:scale(1.06); } }
-        @keyframes pulse-soft { 0%,100%{ box-shadow:0 0 0 0 rgba(20,184,166,0.4); } 50%{ box-shadow:0 0 0 12px rgba(20,184,166,0); } }
+        @keyframes pulse-soft { 0%,100%{ box-shadow:0 0 0 0 rgba(13,124,107,0.35); } 50%{ box-shadow:0 0 0 12px rgba(13,124,107,0); } }
         .animate-float        { animation:float 7s ease-in-out infinite; }
         .animate-float2       { animation:float2 9s ease-in-out infinite; }
         .animate-float3       { animation:float3 11s ease-in-out infinite; }
@@ -261,10 +261,10 @@ export default function HomePage() {
         .animate-glow-breath  { animation:glow-breath 4.5s ease-in-out infinite; }
         .animate-pulse-soft   { animation:pulse-soft 2.5s ease-in-out infinite; }
         .shimmer-text {
-          background:linear-gradient(90deg,#14B8A6 0%,#10B981 30%,#2DD4BF 50%,#10B981 70%,#14B8A6 100%);
+          background:linear-gradient(90deg,#0D7C6B 0%,#0F8C7F 30%,#3BA697 50%,#0F8C7F 70%,#0D7C6B 100%);
           background-size:200% auto; -webkit-background-clip:text;
           -webkit-text-fill-color:transparent; background-clip:text;
-          animation:shimmer-slide 4s linear infinite;
+          animation:shimmer-slide 6s ease-in-out infinite;
         }
       `}</style>
 
@@ -280,7 +280,7 @@ export default function HomePage() {
          ═══════════════════════════════════════════════════════════ */}
       <section
         id="home"
-        className="relative overflow-hidden bg-[#F8FAFC]"
+        className="relative overflow-hidden bg-[#FAFAF7]"
         style={{ minHeight: '100dvh' }}
       >
         {/* ── Warm bright classroom background — 20% light overlay ── */}
@@ -294,10 +294,10 @@ export default function HomePage() {
           />
         </div>
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(155deg, rgba(248,250,252,0.90) 0%, rgba(248,250,252,0.84) 40%, rgba(248,250,252,0.74) 70%, rgba(248,250,252,0.68) 100%)',
+          background: 'linear-gradient(155deg, rgba(250,250,247,0.92) 0%, rgba(250,250,247,0.86) 40%, rgba(250,250,247,0.76) 70%, rgba(250,250,247,0.70) 100%)',
         }} />
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'radial-gradient(ellipse 55% 55% at 28% 48%, rgba(20,184,166,0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 55% 55% at 28% 48%, rgba(13,124,107,0.03) 0%, transparent 70%)',
         }} />
 
         {/* ═══ 2-COLUMN LAYOUT ═══ */}
@@ -313,8 +313,8 @@ export default function HomePage() {
             >
               {/* Tagline pill */}
               <motion.div variants={fadeUp} custom={0} className="mb-8">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#0D9488] border border-[#14B8A6]/15 bg-white/80 backdrop-blur-sm shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#0A6558] border border-[#0D7C6B]/15 bg-white/80 backdrop-blur-sm shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0D7C6B] animate-pulse flex-shrink-0" />
                   {t(
                     'Trusted by 760+ schools in Pakistan, GCC & Canada',
                     'موثوق من أكثر من 760 مدرسة في باكستان والخليج وكندا'
@@ -373,7 +373,7 @@ export default function HomePage() {
                 <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
                 <span><span className="text-[#0F172A] font-extrabold">3</span> {t('countries', 'دول')}</span>
                 <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span className="text-[#14B8A6] font-semibold">{t('Live in 4 weeks', 'جاهز في 4 أسابيع')}</span>
+                <span className="text-[#0D7C6B] font-semibold">{t('Live in 4 weeks', 'جاهز في 4 أسابيع')}</span>
               </motion.div>
             </motion.div>
 
@@ -391,7 +391,7 @@ export default function HomePage() {
                 className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-500/20">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0D7C6B] to-[#0F8C7F] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#0D7C6B]/20">
                     <TrendingUp size={24} className="text-white" />
                   </div>
                   <div>
@@ -408,7 +408,7 @@ export default function HomePage() {
                 className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg ml-8"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/20">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0F8C7F] to-[#0A6E64] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#0F8C7F]/20">
                     <GraduationCap size={24} className="text-white" />
                   </div>
                   <div>
@@ -425,7 +425,7 @@ export default function HomePage() {
                 className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0D9488] to-[#0F766E] flex items-center justify-center flex-shrink-0 shadow-md shadow-teal-600/20">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#0A6558] to-[#085249] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#0A6558]/20">
                     <Zap size={24} className="text-white" />
                   </div>
                   <div>
@@ -437,7 +437,7 @@ export default function HomePage() {
 
               {/* Subtle glow behind cards */}
               <div className="absolute -inset-8 -z-10 pointer-events-none" style={{
-                background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(20,184,166,0.06) 0%, transparent 70%)',
+                background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(13,124,107,0.05) 0%, transparent 70%)',
                 filter: 'blur(40px)',
               }} />
             </motion.div>
@@ -456,7 +456,7 @@ export default function HomePage() {
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <ChevronDown size={20} className="text-[#14B8A6]" />
+            <ChevronDown size={20} className="text-[#0D7C6B]" />
           </motion.div>
         </motion.div>
 
@@ -479,7 +479,7 @@ export default function HomePage() {
             className="text-center"
           >
             <motion.p variants={fadeUp} custom={0} className="text-[#94A3B8] text-sm font-semibold tracking-wide mb-8">
-              {t('760 schools already made the switch. Here\'s why', '760 مدرسة انتقلت بالفعل. إليك السبب')} <span className="text-[#14B8A6]">&darr;</span>
+              {t('760 schools already made the switch. Here\'s why', '760 مدرسة انتقلت بالفعل. إليك السبب')} <span className="text-[#0D7C6B]">&darr;</span>
             </motion.p>
             <motion.h2 variants={fadeUp} custom={1} className="text-2xl md:text-3xl font-heading font-extrabold text-[#0F172A] mb-10">
               {t('This is for you if you\'re a...', 'هذا لك إذا كنت...')}
@@ -498,9 +498,9 @@ export default function HomePage() {
               { icon: Monitor, role: t('IT Head or Admin', 'رئيس تقنية أو مسؤول'), pain: t('who\'s tired of duct-taping 5 different systems together', 'سئم من ربط 5 أنظمة مختلفة ببعضها') },
             ].map((persona, i) => (
               <motion.div key={i} variants={fadeUp} custom={i}
-                className="flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 bg-[#F8FAFC] hover:border-[#14B8A6]/20 hover:shadow-lg transition-all">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#14B8A6]/10 to-[#10B981]/10 flex items-center justify-center mb-4">
-                  <persona.icon size={22} className="text-[#14B8A6]" />
+                className="flex flex-col items-center text-center p-6 rounded-2xl border border-gray-100 bg-[#FAFAF7] hover:border-[#0D7C6B]/20 hover:shadow-lg transition-all">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#0D7C6B]/10 to-[#0F8C7F]/10 flex items-center justify-center mb-4">
+                  <persona.icon size={22} className="text-[#0D7C6B]" />
                 </div>
                 <h3 className="font-bold text-[#0F172A] text-sm mb-1">{persona.role}</h3>
                 <p className="text-[#64748B] text-xs leading-relaxed">{persona.pain}</p>
@@ -519,7 +519,7 @@ export default function HomePage() {
       <section id="wayfinding" className="py-24 md:py-32 bg-white relative overflow-hidden">
         {/* Subtle teal gradient accent in background */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse, rgba(20,184,166,0.04) 0%, transparent 70%)', filter: 'blur(80px)' }} />
+          style={{ background: 'radial-gradient(ellipse, rgba(13,124,107,0.03) 0%, transparent 70%)', filter: 'blur(80px)' }} />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           {/* Section title — empathetic, clear */}
@@ -531,8 +531,8 @@ export default function HomePage() {
             className="text-center mb-16 md:mb-20"
           >
             <motion.div variants={fadeUp} custom={0} className="mb-5">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#0D7C6B]/15 bg-[#F5F7F5]/60 text-[#0D7C6B]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0D7C6B]" />
                 {t('What We Solve', 'ما نحله')}
               </span>
             </motion.div>
@@ -565,7 +565,7 @@ export default function HomePage() {
               custom={0}
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#14B8A6]/30 shadow-sm hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-300 cursor-pointer"
+              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0D7C6B]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0D7C6B]/8 transition-all duration-300 cursor-pointer"
             >
               {/* Top image — warm enrollment/admissions scene */}
               <div className="relative h-52 overflow-hidden">
@@ -577,7 +577,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
                 {/* Accent badge */}
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#14B8A6]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0D7C6B]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
                   <Megaphone size={12} /> {t('GROW', 'نمو')}
                 </div>
               </div>
@@ -586,7 +586,7 @@ export default function HomePage() {
               <div className="p-6 lg:p-7">
                 {/* Bold headline — scannability with inline keywords */}
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"We need ', '"نحتاج ')}<span className="text-[#14B8A6]">{t('more students', 'المزيد من الطلاب')}</span>{t(' this year"', ' هذا العام"')}
+                  {t('"We need ', '"نحتاج ')}<span className="text-[#0D7C6B]">{t('more students', 'المزيد من الطلاب')}</span>{t(' this year"', ' هذا العام"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
@@ -596,8 +596,8 @@ export default function HomePage() {
                 </p>
 
                 {/* Social proof stat */}
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F0FDFA] border border-[#14B8A6]/10">
-                  <TrendingUp size={16} className="text-[#14B8A6] flex-shrink-0" />
+                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F7F5] border border-[#0D7C6B]/10">
+                  <TrendingUp size={16} className="text-[#0D7C6B] flex-shrink-0" />
                   <span className="text-sm text-[#0F172A] font-semibold">
                     {t(
                       '3x average enrollment increase — real results from schools like yours',
@@ -609,7 +609,7 @@ export default function HomePage() {
                 {/* CTA */}
                 <Link
                   href="/solutions/web-development"
-                  className="inline-flex items-center gap-2 text-[#14B8A6] font-bold text-sm group-hover:gap-3 transition-all duration-200"
+                  className="inline-flex items-center gap-2 text-[#0D7C6B] font-bold text-sm group-hover:gap-3 transition-all duration-200"
                 >
                   {t('Explore Cubico Marketing\u2122', 'استكشف Cubico Marketing\u2122')}
                   <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
@@ -623,7 +623,7 @@ export default function HomePage() {
               custom={1}
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#10B981]/30 shadow-sm hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 cursor-pointer"
+              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0F8C7F]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0F8C7F]/10 transition-all duration-300 cursor-pointer"
             >
               {/* Top image — engaging classroom with animated lesson scene */}
               <div className="relative h-52 overflow-hidden">
@@ -634,14 +634,14 @@ export default function HomePage() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#10B981]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
+                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F8C7F]/90 backdrop-blur-sm text-white text-[11px] font-bold tracking-wide uppercase">
                   <GraduationCap size={12} /> {t('TEACH', 'تعليم')}
                 </div>
               </div>
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"Students are ', '"الطلاب ')}<span className="text-[#10B981]">{t('bored and disengaged', 'يشعرون بالملل')}</span>{t('"', '"')}
+                  {t('"Students are ', '"الطلاب ')}<span className="text-[#0F8C7F]">{t('bored and disengaged', 'يشعرون بالملل')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
@@ -650,8 +650,8 @@ export default function HomePage() {
                   )}
                 </p>
 
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#ECFDF5] border border-[#10B981]/10">
-                  <Users size={16} className="text-[#10B981] flex-shrink-0" />
+                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F0F5F2] border border-[#0F8C7F]/10">
+                  <Users size={16} className="text-[#0F8C7F] flex-shrink-0" />
                   <span className="text-sm text-[#0F172A] font-semibold">
                     {t(
                       '85K+ active learners \u2022 Students stay 4x longer',
@@ -662,7 +662,7 @@ export default function HomePage() {
 
                 <Link
                   href="/solutions/smart-lms"
-                  className="inline-flex items-center gap-2 text-[#10B981] font-bold text-sm group-hover:gap-3 transition-all duration-200"
+                  className="inline-flex items-center gap-2 text-[#0F8C7F] font-bold text-sm group-hover:gap-3 transition-all duration-200"
                 >
                   {t('Explore Learn\u2122 & Smart LMS', 'استكشف Learn\u2122 و Smart LMS')}
                   <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
@@ -676,7 +676,7 @@ export default function HomePage() {
               custom={2}
               whileHover={{ y: -8, scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0D9488]/30 shadow-sm hover:shadow-2xl hover:shadow-teal-600/10 transition-all duration-300 cursor-pointer"
+              className="group relative rounded-3xl overflow-hidden bg-white border border-[#E2E8F0] hover:border-[#0A6558]/30 shadow-sm hover:shadow-2xl hover:shadow-[#0A6558]/8 transition-all duration-300 cursor-pointer"
             >
               {/* Top image — calm admin at dashboard scene */}
               <div className="relative h-52 overflow-hidden">
@@ -694,7 +694,7 @@ export default function HomePage() {
 
               <div className="p-6 lg:p-7">
                 <h3 className="text-xl lg:text-[1.4rem] font-extrabold text-[#0F172A] mb-3 leading-snug tracking-tight">
-                  {t('"I\'m drowning in ', '"أغرق في ')}<span className="text-[#0D9488]">{t('admin work', 'العمل الإداري')}</span>{t('"', '"')}
+                  {t('"I\'m drowning in ', '"أغرق في ')}<span className="text-[#0A6558]">{t('admin work', 'العمل الإداري')}</span>{t('"', '"')}
                 </h3>
                 <p className="text-[#64748B] text-sm leading-relaxed mb-4">
                   {t(
@@ -703,8 +703,8 @@ export default function HomePage() {
                   )}
                 </p>
 
-                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F0FDFA] border border-[#0D9488]/10">
-                  <Zap size={16} className="text-[#0D9488] flex-shrink-0" />
+                <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F7F5] border border-[#0A6558]/10">
+                  <Zap size={16} className="text-[#0A6558] flex-shrink-0" />
                   <span className="text-sm text-[#0F172A] font-semibold">
                     {t(
                       '47 hours saved per staff/month \u2022 94.2% attendance',
@@ -715,7 +715,7 @@ export default function HomePage() {
 
                 <Link
                   href="/solutions/school-erp"
-                  className="inline-flex items-center gap-2 text-[#0D9488] font-bold text-sm group-hover:gap-3 transition-all duration-200"
+                  className="inline-flex items-center gap-2 text-[#0A6558] font-bold text-sm group-hover:gap-3 transition-all duration-200"
                 >
                   {t('Explore Cubico Manage\u2122', 'استكشف Cubico Manage\u2122')}
                   <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
@@ -899,7 +899,7 @@ export default function HomePage() {
           viewport={{ once: true }}
           className="text-[#94A3B8] text-sm font-semibold tracking-wide"
         >
-          {t('Getting started is easier than you think', 'البدء أسهل مما تعتقد')} <span className="text-[#14B8A6]">&darr;</span>
+          {t('Getting started is easier than you think', 'البدء أسهل مما تعتقد')} <span className="text-[#0D7C6B]">&darr;</span>
         </motion.p>
       </div>
 
@@ -908,7 +908,7 @@ export default function HomePage() {
          Psychology: Reduces uncertainty. Visitor knows exactly
          what happens next. Numbered steps = sense of control.
          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-28 bg-[#F8FAFC] relative overflow-hidden">
+      <section className="py-24 md:py-28 bg-[#FAFAF7] relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -918,8 +918,8 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <motion.div variants={fadeUp} custom={0} className="mb-5">
-              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+              <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#0D7C6B]/15 bg-[#F5F7F5]/60 text-[#0D7C6B]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0D7C6B]" />
                 {t('How It Works', 'كيف يعمل')}
               </span>
             </motion.div>
@@ -940,7 +940,7 @@ export default function HomePage() {
             className="grid md:grid-cols-3 gap-8 lg:gap-12 relative"
           >
             {/* Connecting line — desktop only */}
-            <div className="hidden md:block absolute top-14 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-[#14B8A6]/20 via-[#14B8A6]/40 to-[#14B8A6]/20" />
+            <div className="hidden md:block absolute top-14 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-[#0D7C6B]/20 via-[#0D7C6B]/40 to-[#0D7C6B]/20" />
 
             {[
               {
@@ -963,12 +963,12 @@ export default function HomePage() {
               },
             ].map((item, i) => (
               <motion.div key={item.step} variants={fadeUp} custom={i} className="text-center relative">
-                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center bg-white border-2 border-[#14B8A6]/15 shadow-lg shadow-teal-500/5 relative z-10">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#F0FDFA] to-[#ECFDF5] flex items-center justify-center">
-                    <item.icon size={28} className="text-[#14B8A6]" />
+                <div className="w-28 h-28 rounded-full mx-auto mb-6 flex items-center justify-center bg-white border-2 border-[#0D7C6B]/15 shadow-lg shadow-[#0D7C6B]/5 relative z-10">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#F5F7F5] to-[#F0F5F2] flex items-center justify-center">
+                    <item.icon size={28} className="text-[#0D7C6B]" />
                   </div>
                 </div>
-                <div className="text-[11px] font-extrabold text-[#14B8A6] tracking-[0.2em] uppercase mb-2">{t('Step', 'الخطوة')} {item.step}</div>
+                <div className="text-[11px] font-extrabold text-[#0D7C6B] tracking-[0.2em] uppercase mb-2">{t('Step', 'الخطوة')} {item.step}</div>
                 <h3 className="text-xl font-extrabold text-[#0F172A] mb-3">{item.title}</h3>
                 <p className="text-[#64748B] text-sm leading-relaxed max-w-xs mx-auto">{item.desc}</p>
               </motion.div>
@@ -995,14 +995,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ BRIDGE LINE: How it works → Social Proof ═══════ */}
-      <div className="py-10 bg-[#F8FAFC] text-center">
+      <div className="py-10 bg-[#FAFAF7] text-center">
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-[#94A3B8] text-sm font-semibold tracking-wide"
         >
-          {t('But don\'t take our word for it', 'لكن لا تأخذ كلامنا فقط')} <span className="text-[#14B8A6]">&darr;</span>
+          {t('But don\'t take our word for it', 'لكن لا تأخذ كلامنا فقط')} <span className="text-[#0D7C6B]">&darr;</span>
         </motion.p>
       </div>
 
@@ -1016,8 +1016,8 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[#0B1120]" />
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#14B8A6]/8 rounded-full filter blur-[140px] animate-float" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#10B981]/6 rounded-full filter blur-[140px] animate-float2" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#0D7C6B]/6 rounded-full filter blur-[140px] animate-float" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#0F8C7F]/5 rounded-full filter blur-[140px] animate-float2" />
         </div>
 
         {/* ── Stats Row ── */}
@@ -1033,7 +1033,7 @@ export default function HomePage() {
               {stats.map((stat, i) => (
                 <motion.div key={stat.label} variants={fadeUp} custom={i}>
                   <StatCounter value={stat.value} suffix={stat.suffix} label={stat.label}
-                    color={['#14B8A6', '#10B981', '#2DD4BF', '#34D399'][i]} />
+                    color={['#0D7C6B', '#0F8C7F', '#3BA697', '#2EA894'][i]} />
                 </motion.div>
               ))}
             </motion.div>
@@ -1051,8 +1051,8 @@ export default function HomePage() {
               className="text-center mb-14"
             >
               <motion.div variants={fadeUp} custom={0} className="mb-4">
-                <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#14B8A6]/20 bg-[#14B8A6]/10 text-[#2DD4BF]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6] animate-pulse" />
+                <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#0D7C6B]/20 bg-[#0D7C6B]/10 text-[#3BA697]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0D7C6B] animate-pulse" />
                   {t('Real Stories', 'قصص حقيقية')}
                 </span>
               </motion.div>
@@ -1082,9 +1082,9 @@ export default function HomePage() {
             >
               {testimonials.map((testimonial, i) => {
                 const gradients = [
-                  'linear-gradient(135deg,#14B8A6,#10B981)',
-                  'linear-gradient(135deg,#0D9488,#14B8A6)',
-                  'linear-gradient(135deg,#0F766E,#0D9488)',
+                  'linear-gradient(135deg,#0D7C6B,#0F8C7F)',
+                  'linear-gradient(135deg,#0A6558,#0D7C6B)',
+                  'linear-gradient(135deg,#085249,#0A6558)',
                 ];
                 return (
                   <motion.div key={testimonial.name} variants={fadeUp} custom={i}
@@ -1112,7 +1112,7 @@ export default function HomePage() {
                         <h4 className="font-bold text-white text-sm truncate">{testimonial.name}</h4>
                         <p className="text-xs text-white/40">{testimonial.role}, {testimonial.company}</p>
                       </div>
-                      <div className="text-[10px] font-semibold px-2.5 py-1 rounded-full flex-shrink-0 bg-[#14B8A6]/10 text-[#2DD4BF]">
+                      <div className="text-[10px] font-semibold px-2.5 py-1 rounded-full flex-shrink-0 bg-[#0D7C6B]/10 text-[#3BA697]">
                         {testimonial.location}
                       </div>
                     </div>
@@ -1134,9 +1134,9 @@ export default function HomePage() {
           </p>
           <div className="flex animate-marquee-slow" style={{ width: 'max-content' }}>
             {[...partners, ...partners, ...partners, ...partners].map((name, i) => (
-              <div key={i} className="flex-shrink-0 mx-4 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/[0.06] bg-white/[0.02] cursor-default hover:border-[#14B8A6]/30 hover:bg-[#14B8A6]/5 transition-all group">
-                <div className="w-2 h-2 rounded-full bg-[#14B8A6]/30 group-hover:bg-[#14B8A6]/70 transition-colors" />
-                <span className="text-white/25 font-heading font-bold text-sm whitespace-nowrap group-hover:text-[#14B8A6] transition-colors">
+              <div key={i} className="flex-shrink-0 mx-4 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/[0.06] bg-white/[0.02] cursor-default hover:border-[#0D7C6B]/30 hover:bg-[#0D7C6B]/5 transition-all group">
+                <div className="w-2 h-2 rounded-full bg-[#0D7C6B]/30 group-hover:bg-[#0D7C6B]/70 transition-colors" />
+                <span className="text-white/25 font-heading font-bold text-sm whitespace-nowrap group-hover:text-[#0D7C6B] transition-colors">
                   {name}
                 </span>
               </div>
@@ -1146,14 +1146,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══════ BRIDGE LINE: Proof → CTA ═══════ */}
-      <div className="py-10 bg-[#F8FAFC] text-center">
+      <div className="py-10 bg-[#FAFAF7] text-center">
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-[#94A3B8] text-sm font-semibold tracking-wide"
         >
-          {t('Ready to see it yourself?', 'مستعد لتراه بنفسك؟')} <span className="text-[#14B8A6]">&darr;</span>
+          {t('Ready to see it yourself?', 'مستعد لتراه بنفسك؟')} <span className="text-[#0D7C6B]">&darr;</span>
         </motion.p>
       </div>
 
@@ -1161,7 +1161,7 @@ export default function HomePage() {
          CTA + DEMO FORM SECTION
          Psychology: Low-pressure + urgency. Scarcity drives action.
          ═══════════════════════════════════════════════════════════ */}
-      <section id="contact" className="py-24 bg-[#F8FAFC]">
+      <section id="contact" className="py-24 bg-[#FAFAF7]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left Content */}
@@ -1172,8 +1172,8 @@ export default function HomePage() {
               variants={staggerContainer}
             >
               <motion.div variants={fadeUp} custom={0} className="mb-4">
-                <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+                <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#0D7C6B]/15 bg-[#F5F7F5]/60 text-[#0D7C6B]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0D7C6B]" />
                   {t('Book a Demo', 'احجز عرضاً')}
                 </span>
               </motion.div>
@@ -1204,8 +1204,8 @@ export default function HomePage() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.06 * idx, duration: 0.35 }}
                     className="flex items-center gap-3">
-                    <div className="w-6 h-6 rounded-lg bg-[#14B8A6]/10 flex items-center justify-center flex-shrink-0">
-                      <item.icon size={13} className="text-[#14B8A6]" />
+                    <div className="w-6 h-6 rounded-lg bg-[#0D7C6B]/10 flex items-center justify-center flex-shrink-0">
+                      <item.icon size={13} className="text-[#0D7C6B]" />
                     </div>
                     <span className="text-sm text-gray-600 font-medium">{item.text}</span>
                   </motion.div>
@@ -1219,9 +1219,9 @@ export default function HomePage() {
                     {t('Only', 'فقط')} <span className="text-amber-600 font-bold">{t('6 onboarding slots', '6 أماكن إعداد')}</span> {t('left for Q2 2026', 'متبقية للربع الثاني 2026')}
                   </span>
                 </div>
-                <div className="flex items-center gap-3 p-4 rounded-2xl border bg-teal-50/50 border-[#14B8A6]/15">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#14B8A6] animate-pulse flex-shrink-0" />
-                  <span className="text-sm font-semibold text-gray-700">{t('We respond within', 'نرد خلال')} <span className="text-[#14B8A6] font-bold">{t('24 hours', '24 ساعة')}</span>{t(', guaranteed.', '، مضمون.')}</span>
+                <div className="flex items-center gap-3 p-4 rounded-2xl border bg-[#F5F7F5]/50 border-[#0D7C6B]/15">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#0D7C6B] animate-pulse flex-shrink-0" />
+                  <span className="text-sm font-semibold text-gray-700">{t('We respond within', 'نرد خلال')} <span className="text-[#0D7C6B] font-bold">{t('24 hours', '24 ساعة')}</span>{t(', guaranteed.', '، مضمون.')}</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -1236,7 +1236,7 @@ export default function HomePage() {
               <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
                 {/* Form header — reduces intimidation */}
                 <div className="text-center mb-6">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center mx-auto mb-3 shadow-md shadow-teal-500/20">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0D7C6B] to-[#0F8C7F] flex items-center justify-center mx-auto mb-3 shadow-md shadow-[#0D7C6B]/20">
                     <Phone size={20} className="text-white" />
                   </div>
                   <h3 className="text-lg font-extrabold text-[#0F172A]">{t('Request Your Free Demo', 'اطلب عرضك المجاني')}</h3>
@@ -1244,8 +1244,8 @@ export default function HomePage() {
                 </div>
                 {formStatus === 'success' ? (
                   <div className="text-center py-12">
-                    <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle2 className="w-8 h-8 text-[#14B8A6]" />
+                    <div className="w-16 h-16 bg-[#E0EFEB] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <CheckCircle2 className="w-8 h-8 text-[#0D7C6B]" />
                     </div>
                     <h3 className="text-2xl font-heading font-bold text-[#0F172A] mb-2">{t('Thank You!', 'شكراً لك!')}</h3>
                     <p className="text-[#64748B]">{t("We'll be in touch within 24 hours.", 'سنتواصل معك خلال 24 ساعة.')}</p>
@@ -1315,8 +1315,8 @@ export default function HomePage() {
               variants={staggerContainer}
             >
               <motion.div variants={fadeUp} custom={0} className="mb-4">
-                <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-teal-200/60 bg-teal-50/60 text-[#14B8A6]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+                <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full border border-[#0D7C6B]/15 bg-[#F5F7F5]/60 text-[#0D7C6B]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0D7C6B]" />
                   {t('FAQ', 'الأسئلة الشائعة')}
                 </span>
               </motion.div>
@@ -1337,8 +1337,8 @@ export default function HomePage() {
               {/* Compact CTA card */}
               <motion.div variants={fadeUp} custom={3} className="rounded-2xl bg-gradient-to-br from-[#0F172A] to-[#1E293B] p-6 hidden lg:block">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#14B8A6]/15 flex items-center justify-center">
-                    <MessageSquare size={18} className="text-[#14B8A6]" />
+                  <div className="w-10 h-10 rounded-xl bg-[#0D7C6B]/15 flex items-center justify-center">
+                    <MessageSquare size={18} className="text-[#0D7C6B]" />
                   </div>
                   <div>
                     <h4 className="font-bold text-white text-sm">{t('Question not listed?', 'سؤالك غير مدرج؟')}</h4>
@@ -1371,14 +1371,14 @@ export default function HomePage() {
                   >
                     <div className="flex items-start gap-3 flex-1 min-w-0">
                       <div className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-0.5 transition-all duration-200"
-                        style={openFaq === i ? { backgroundColor: '#14B8A6', color: '#fff' } : { backgroundColor: '#F1F5F9', color: '#94A3B8' }}>
+                        style={openFaq === i ? { backgroundColor: '#0D7C6B', color: '#fff' } : { backgroundColor: '#F1F5F9', color: '#94A3B8' }}>
                         {i + 1}
                       </div>
-                      <span className="font-semibold text-sm text-[#0F172A] pr-2 group-hover:text-[#14B8A6] transition-colors">{faq.q}</span>
+                      <span className="font-semibold text-sm text-[#0F172A] pr-2 group-hover:text-[#0D7C6B] transition-colors">{faq.q}</span>
                     </div>
                     <span className="flex-shrink-0 mt-0.5">
                       {openFaq === i ? (
-                        <ChevronUp className="w-4 h-4 text-[#14B8A6]" />
+                        <ChevronUp className="w-4 h-4 text-[#0D7C6B]" />
                       ) : (
                         <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-gray-600 transition-colors" />
                       )}

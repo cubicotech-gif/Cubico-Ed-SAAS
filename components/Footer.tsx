@@ -34,18 +34,18 @@ export default function Footer() {
       <style>{`
         @keyframes shimmer-slide { 0%{ background-position:-200% center; } 100%{ background-position:200% center; } }
         .shimmer-text-footer {
-          background:linear-gradient(90deg,#14B8A6 0%,#10B981 30%,#2DD4BF 50%,#10B981 70%,#14B8A6 100%);
+          background:linear-gradient(90deg,#0D7C6B 0%,#0F8C7F 30%,#3BA697 50%,#0F8C7F 70%,#0D7C6B 100%);
           background-size:200% auto; -webkit-background-clip:text;
           -webkit-text-fill-color:transparent; background-clip:text;
-          animation:shimmer-slide 4s linear infinite;
+          animation:shimmer-slide 6s ease-in-out infinite;
         }
       `}</style>
 
       {/* Join CTA */}
       <section className="py-24 section-dark relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#14B8A6]/15 rounded-full filter blur-[150px]" />
-          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-[#10B981]/10 rounded-full filter blur-[120px]" />
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#0D7C6B]/10 rounded-full filter blur-[150px]" />
+          <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-[#0F8C7F]/8 rounded-full filter blur-[120px]" />
           <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,rgba(255,255,255,0.025) 1px,transparent 1px)', backgroundSize: '32px 32px' }} />
         </div>
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
@@ -79,7 +79,7 @@ export default function Footer() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center font-heading font-bold text-lg text-white shadow-lg shadow-teal-600/25">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0D7C6B] to-[#0F8C7F] flex items-center justify-center font-heading font-bold text-lg text-white shadow-lg shadow-[#0D7C6B]/20">
                   C
                 </div>
                 <span className="font-heading font-bold text-xl">
@@ -106,7 +106,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#14B8A6] hover:border-[#14B8A6] transition-all"
+                    className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0D7C6B] hover:border-[#0D7C6B] transition-all"
                   >
                     <social.icon className="w-4 h-4" />
                   </a>
@@ -158,7 +158,7 @@ export default function Footer() {
                 {t('Sign up for updates, insights, and EdTech news.', 'اشترك للحصول على التحديثات والرؤى وأخبار تكنولوجيا التعليم.')}
               </p>
               {newsletterStatus === 'success' ? (
-                <div className="flex items-center gap-2 text-[#14B8A6] text-sm">
+                <div className="flex items-center gap-2 text-[#0D7C6B] text-sm">
                   <CheckCircle2 className="w-4 h-4" /> {t('Subscribed!', 'تم الاشتراك!')}
                 </div>
               ) : (

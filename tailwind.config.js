@@ -9,20 +9,20 @@ module.exports = {
       colors: {
         /* ── 2026 Premium Warm EdTech Palette ── */
         primary: {
-          DEFAULT: '#14B8A6', // Vibrant teal — Growth/Marketing accent
-          light: '#2DD4BF',
-          dark: '#0D9488',
-          50: '#F0FDFA',
-          100: '#CCFBF1',
-          200: '#99F6E4',
-          500: '#14B8A6',
-          600: '#0D9488',
-          700: '#0F766E',
+          DEFAULT: '#0D7C6B', // Deep sage — premium, desaturated
+          light: '#3BA697',
+          dark: '#0A6558',
+          50: '#F5F7F5',
+          100: '#E0EFEB',
+          200: '#B8D8CF',
+          500: '#0D7C6B',
+          600: '#0A6558',
+          700: '#085249',
         },
         accent: {
-          DEFAULT: '#10B981', // Fresh emerald — Teaching/Learn accent (Islamic green nod)
-          light: '#34D399',
-          dark: '#059669',
+          DEFAULT: '#0F8C7F', // Muted teal — Teaching/Learn accent
+          light: '#2EA894',
+          dark: '#0A6E64',
         },
         navy: {
           DEFAULT: '#0F172A', // Deep navy — primary text
@@ -50,7 +50,7 @@ module.exports = {
           dark: '#0F172A',
           card: '#1E293B',
           hover: '#334155',
-          light: '#F8FAFC', // Soft off-white background
+          light: '#FAFAF7', // Warm cream background
         },
         neutral: {
           50: '#fafafa',
@@ -71,11 +71,11 @@ module.exports = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(20, 184, 166, 0.12) 0%, transparent 70%)',
-        'card-shine': 'linear-gradient(135deg, rgba(20, 184, 166, 0.06) 0%, transparent 50%)',
-        'gradient-primary': 'linear-gradient(135deg, #14B8A6 0%, #10B981 100%)',
+        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(13, 124, 107, 0.10) 0%, transparent 70%)',
+        'card-shine': 'linear-gradient(135deg, rgba(13, 124, 107, 0.05) 0%, transparent 50%)',
+        'gradient-primary': 'linear-gradient(135deg, #0D7C6B 0%, #0F8C7F 100%)',
         'gradient-dark': 'linear-gradient(-135deg, #0F172A 0%, #020617 50%, #0F172A 100%)',
-        'gradient-teal-emerald': 'linear-gradient(135deg, #14B8A6 0%, #10B981 100%)',
+        'gradient-teal-emerald': 'linear-gradient(135deg, #0D7C6B 0%, #0F8C7F 100%)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
