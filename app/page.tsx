@@ -72,7 +72,7 @@ const cardHover = {
   hover: {
     y: -8,
     scale: 1.02,
-    boxShadow: '0 20px 60px rgba(10,107,92,0.12)',
+    boxShadow: '0 20px 60px rgba(232,99,74,0.12)',
     transition: { type: 'spring', stiffness: 300, damping: 25 },
   },
 };
@@ -107,7 +107,7 @@ function useCounter(target: number, duration = 2000) {
 /* ═══════════════════════════════════════════
    STAT COUNTER COMPONENT
    ═══════════════════════════════════════════ */
-function StatCounter({ value, suffix, label, color = '#0A6B5C' }: { value: number; suffix: string; label: string; color?: string }) {
+function StatCounter({ value, suffix, label, color = '#E8634A' }: { value: number; suffix: string; label: string; color?: string }) {
   const { count, ref } = useCounter(value);
   const r = 42;
   const circ = 2 * Math.PI * r;
@@ -253,7 +253,7 @@ export default function HomePage() {
         @keyframes marquee    { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
         @keyframes shimmer-slide { 0%{ background-position:-200% center; } 100%{ background-position:200% center; } }
         @keyframes glow-breath{ 0%,100%{ opacity:0.4; transform:scale(1); } 50%{ opacity:0.75; transform:scale(1.06); } }
-        @keyframes pulse-soft { 0%,100%{ box-shadow:0 0 0 0 rgba(10,107,92,0.35); } 50%{ box-shadow:0 0 0 12px rgba(10,107,92,0); } }
+        @keyframes pulse-soft { 0%,100%{ box-shadow:0 0 0 0 rgba(232,99,74,0.35); } 50%{ box-shadow:0 0 0 12px rgba(232,99,74,0); } }
         .animate-float        { animation:float 7s ease-in-out infinite; }
         .animate-float2       { animation:float2 9s ease-in-out infinite; }
         .animate-float3       { animation:float3 11s ease-in-out infinite; }
@@ -261,7 +261,7 @@ export default function HomePage() {
         .animate-glow-breath  { animation:glow-breath 4.5s ease-in-out infinite; }
         .animate-pulse-soft   { animation:pulse-soft 2.5s ease-in-out infinite; }
         .shimmer-text {
-          background:linear-gradient(90deg,#0A6B5C 0%,#0C7A6E 30%,#2E8F7E 50%,#0C7A6E 70%,#0A6B5C 100%);
+          background:linear-gradient(90deg,#E8634A 0%,#D14F38 30%,#FFD5CC 50%,#D14F38 70%,#E8634A 100%);
           background-size:200% auto; -webkit-background-clip:text;
           -webkit-text-fill-color:transparent; background-clip:text;
           animation:shimmer-slide 6s ease-in-out infinite;

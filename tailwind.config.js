@@ -7,50 +7,58 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        /* ── 2026 Premium Warm EdTech Palette ── */
+        /* ── 2026 Navy + Coral Premium B2B Palette ── */
         primary: {
-          DEFAULT: '#0A6B5C', // Deep forest sage — darker premium tone
-          light: '#2E8F7E',
-          dark: '#085248',
-          50: '#F2F5F3',
-          100: '#D6E6E0',
-          200: '#A8CCC0',
-          500: '#0A6B5C',
-          600: '#085248',
-          700: '#06403A',
+          DEFAULT: '#0F172A', // Navy 950 — brand foundation
+          light: '#1E3A5F',   // Navy 700
+          dark: '#172554',    // Navy 900
+          50: '#EFF6FF',      // Navy 50
+          100: '#DBEAFE',     // Navy 100
+          200: '#93C5FD',     // Navy 300
+          500: '#0F172A',
+          600: '#172554',
+          700: '#0F172A',
         },
         accent: {
-          DEFAULT: '#0C7A6E', // Deep teal — darker accent
-          light: '#278F80',
-          dark: '#085F56',
+          DEFAULT: '#E8634A', // Coral 500 — CTA energy
+          light: '#D14F38',   // Coral 600
+          dark: '#9A3412',    // Coral 800
+        },
+        coral: {
+          50: '#FFF5F3',
+          200: '#FFD5CC',
+          500: '#E8634A',
+          600: '#D14F38',
+          800: '#9A3412',
         },
         navy: {
-          DEFAULT: '#0F172A', // Deep navy — primary text
-          light: '#1E293B',
-          50: '#F8FAFC',
-          100: '#F1F5F9',
+          DEFAULT: '#0F172A',
+          light: '#1E3A5F',
+          50: '#EFF6FF',
+          100: '#DBEAFE',
           200: '#E2E8F0',
-          300: '#CBD5E1',
+          300: '#93C5FD',
           400: '#94A3B8',
-          500: '#64748B', // Slate neutral
+          500: '#64748B',
           600: '#475569',
-          700: '#334155',
-          800: '#1E293B',
+          700: '#1E3A5F',
+          800: '#172554',
           900: '#0F172A',
+          950: '#0F172A',
         },
         dark: {
           950: '#020617',
           900: '#0F172A',
-          800: '#1E293B',
-          700: '#334155',
+          800: '#172554',
+          700: '#1E3A5F',
           600: '#475569',
           500: '#64748B',
         },
         surface: {
-          dark: '#0B1220',
-          card: '#1A2536',
-          hover: '#2D3A4D',
-          light: '#F7F7F3', // Warm parchment background
+          dark: '#0F172A',
+          card: '#172554',
+          hover: '#1E3A5F',
+          light: '#F8FAFC',
         },
         neutral: {
           50: '#fafafa',
@@ -71,11 +79,10 @@ module.exports = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(10, 107, 92, 0.08) 0%, transparent 70%)',
-        'card-shine': 'linear-gradient(135deg, rgba(10, 107, 92, 0.04) 0%, transparent 50%)',
-        'gradient-primary': 'linear-gradient(135deg, #0A6B5C 0%, #0C7A6E 100%)',
-        'gradient-dark': 'linear-gradient(-135deg, #0B1220 0%, #020612 50%, #0B1220 100%)',
-        'gradient-teal-emerald': 'linear-gradient(135deg, #0A6B5C 0%, #0C7A6E 100%)',
+        'hero-glow': 'radial-gradient(ellipse at 50% 30%, rgba(232, 99, 74, 0.06) 0%, transparent 70%)',
+        'card-shine': 'linear-gradient(135deg, rgba(15, 23, 42, 0.04) 0%, transparent 50%)',
+        'gradient-primary': 'linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%)',
+        'gradient-dark': 'linear-gradient(-135deg, #0F172A 0%, #020617 50%, #0F172A 100%)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
