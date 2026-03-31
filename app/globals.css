@@ -12,11 +12,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@200;300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #14B8A6;
-  --primary-light: #2DD4BF;
-  --primary-dark: #0D9488;
-  --accent: #10B981;
-  --accent-light: #34D399;
+  --primary: #0D7C6B;
+  --primary-light: #3BA697;
+  --primary-dark: #0A6558;
+  --accent: #0F8C7F;
+  --accent-light: #2EA894;
   --navy: #0F172A;
   --navy-light: #1E293B;
   --slate: #64748B;
@@ -31,10 +31,12 @@
   --text-muted: #64748B;
   --text-dark: #0F172A;
   --text-dark-secondary: #475569;
-  --bg-light: #F8FAFC;
+  --bg-light: #FAFAF7;
   --bg-white: #ffffff;
-  --gradient-primary: linear-gradient(135deg, #14B8A6 0%, #10B981 50%, #059669 100%);
+  --gradient-primary: linear-gradient(135deg, #0D7C6B 0%, #0F8C7F 50%, #0A6558 100%);
   --gradient-dark: linear-gradient(-135deg, #0F172A 0%, #020617 50%, #0F172A 100%);
+  /* CTA-only bright accent — reserved for action buttons */
+  --cta-bright: #14B8A6;
 }
 
 * {
@@ -68,7 +70,7 @@ body {
 
 /* ── Selection ── */
 ::selection {
-  background: rgba(20, 184, 166, 0.25);
+  background: rgba(13, 124, 107, 0.25);
   color: var(--navy);
 }
 
@@ -81,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Gradient Text ── */
 .gradient-text {
-  background: linear-gradient(135deg, #14B8A6 0%, #10B981 50%, #059669 100%);
+  background: linear-gradient(135deg, #0D7C6B 0%, #0F8C7F 50%, #0A6558 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -108,7 +110,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover {
   background: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 10px 40px rgba(20, 184, 166, 0.3);
+  box-shadow: 0 10px 40px rgba(13, 124, 107, 0.3);
 }
 
 .btn-outline {
@@ -215,21 +217,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .card-white:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(20, 184, 166, 0.1);
+  box-shadow: 0 20px 60px rgba(13, 124, 107, 0.1);
 }
 
 .card-dark {
   background: var(--surface-card);
   border-radius: 20px;
   padding: 32px;
-  border: 1px solid rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(13, 124, 107, 0.1);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-dark:hover {
   border-color: rgba(20, 184, 166, 0.3);
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(20, 184, 166, 0.1);
+  box-shadow: 0 20px 60px rgba(13, 124, 107, 0.1);
 }
 
 /* ── Glassmorphism Card ── */
@@ -257,7 +259,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+  box-shadow: 0 0 0 3px rgba(13, 124, 107, 0.1);
 }
 
 .form-input::placeholder {
@@ -266,7 +268,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-input-dark {
   background: rgba(15, 23, 42, 0.8);
-  border: 2px solid rgba(20, 184, 166, 0.15);
+  border: 2px solid rgba(13, 124, 107, 0.15);
   border-radius: 12px;
   padding: 14px 18px;
   color: white;
@@ -279,7 +281,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-input-dark:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+  box-shadow: 0 0 0 3px rgba(13, 124, 107, 0.15);
 }
 
 .form-input-dark::placeholder {
@@ -303,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-select:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+  box-shadow: 0 0 0 3px rgba(13, 124, 107, 0.1);
   color: var(--text-dark);
 }
 
@@ -314,7 +316,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .faq-item-dark {
-  border-bottom: 1px solid rgba(20, 184, 166, 0.12);
+  border-bottom: 1px solid rgba(13, 124, 107, 0.12);
 }
 
 /* ── Icon Box ── */
@@ -325,13 +327,13 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(20, 184, 166, 0.08);
+  background: rgba(13, 124, 107, 0.08);
   color: var(--primary);
   transition: all 0.3s ease;
 }
 
 .icon-box-accent {
-  background: rgba(16, 185, 129, 0.08);
+  background: rgba(15, 140, 127, 0.08);
   color: var(--accent);
 }
 
@@ -355,14 +357,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Decorative ── */
 .bg-dots {
-  background-image: radial-gradient(rgba(20, 184, 166, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(13, 124, 107, 0.12) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .bg-grid-light {
   background-image:
-    linear-gradient(rgba(20, 184, 166, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 184, 166, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(13, 124, 107, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13, 124, 107, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 

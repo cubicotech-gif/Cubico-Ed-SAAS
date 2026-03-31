@@ -101,11 +101,11 @@ export default function Header() {
           <div className="flex items-center gap-1">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full hover:bg-[#0F172A]/[0.04] transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#14B8A6] to-[#10B981] flex items-center justify-center font-heading font-bold text-sm text-white shadow-md shadow-teal-500/20 flex-shrink-0">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#0D7C6B] to-[#0F8C7F] flex items-center justify-center font-heading font-bold text-sm text-white shadow-md shadow-[#0D7C6B]/20 flex-shrink-0">
                 C
               </div>
               <span className={`font-heading font-bold text-sm hidden sm:inline whitespace-nowrap ${txt}`}>
-                Cubico<span className="text-[#14B8A6]">.tech</span>
+                Cubico<span className="text-[#0D7C6B]">.tech</span>
               </span>
             </Link>
 
@@ -143,7 +143,7 @@ export default function Header() {
                           <Link
                             key={child.name}
                             href={child.href}
-                            className="block px-4 py-2.5 text-[13px] text-[#64748B] hover:text-[#0F172A] hover:bg-[#14B8A6]/[0.05] transition-colors"
+                            className="block px-4 py-2.5 text-[13px] text-[#64748B] hover:text-[#0F172A] hover:bg-[#0D7C6B]/[0.05] transition-colors"
                           >
                             {child.name}
                           </Link>
@@ -169,7 +169,7 @@ export default function Header() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] hover:from-[#0D9488] hover:to-[#059669] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 shadow-sm shadow-teal-500/20 hover:shadow-md hover:shadow-teal-500/25"
+                className="inline-flex items-center gap-1.5 bg-gradient-to-r from-[#14B8A6] to-[#10B981] hover:from-[#0D9488] hover:to-[#059669] text-white text-[13px] font-semibold px-5 py-2 rounded-full transition-all duration-200 shadow-sm shadow-teal-500/15 hover:shadow-md hover:shadow-teal-500/20"
               >
                 {t('Book a Demo', 'احجز عرضاً')}
                 <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
@@ -212,7 +212,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => !link.children && setMobileMenuOpen(false)}
-                    className="block text-[#334155] hover:text-[#0F172A] hover:bg-[#14B8A6]/[0.05] font-medium transition-colors px-4 py-3 rounded-xl"
+                    className="block text-[#334155] hover:text-[#0F172A] hover:bg-[#0D7C6B]/[0.05] font-medium transition-colors px-4 py-3 rounded-xl"
                   >
                     {link.name}
                   </Link>
@@ -223,7 +223,7 @@ export default function Header() {
                           key={child.name}
                           href={child.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block text-[#94A3B8] hover:text-[#0F172A] text-sm px-4 py-2 rounded-lg hover:bg-[#14B8A6]/[0.04] transition-colors"
+                          className="block text-[#94A3B8] hover:text-[#0F172A] text-sm px-4 py-2 rounded-lg hover:bg-[#0D7C6B]/[0.04] transition-colors"
                         >
                           {child.name}
                         </Link>
@@ -237,7 +237,7 @@ export default function Header() {
                   {t('Book a Demo', 'احجز عرضاً')}
                   <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Link>
-                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 border border-[#E2E8F0] text-[#334155] text-sm font-medium w-full py-3 rounded-xl hover:bg-[#F8FAFC]">
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-center gap-2 border border-[#E2E8F0] text-[#334155] text-sm font-medium w-full py-3 rounded-xl hover:bg-[#FAFAF7]">
                   {t('Login', 'تسجيل الدخول')}
                 </Link>
               </div>
