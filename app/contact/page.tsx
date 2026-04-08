@@ -73,17 +73,25 @@ export default function ContactPage() {
                   {
                     icon: MapPin,
                     title: t('Office Address', 'عنوان المكتب'),
-                    lines: ['Lahore, Pakistan', 'Riyadh, Saudi Arabia', 'Toronto, Canada'],
+                    lines: [
+                      '27th Street, Tauheed Commercial, Phase 5, DHA, Karachi, Pakistan',
+                      '1234 King Fahd Road, Al Olaya District, Riyadh, Saudi Arabia',
+                      '100 King Street West, Suite 200, Toronto, ON, Canada',
+                    ],
                   },
                   {
                     icon: Phone,
                     title: t('Phone', 'الهاتف'),
-                    lines: ['+92 300 000 0000', '+966 50 000 0000'],
+                    lines: [
+                      '+92 345 5558901 (WhatsApp)',
+                      '+966 54 718 3198',
+                      '+1 416 555 0123',
+                    ],
                   },
                   {
                     icon: Mail,
                     title: t('Email', 'البريد الإلكتروني'),
-                    lines: ['hello@cubico.tech', 'support@cubico.tech'],
+                    lines: ['cubicotech@gmail.com', 'info@cubicotech.com'],
                   },
                   {
                     icon: BookOpen,
