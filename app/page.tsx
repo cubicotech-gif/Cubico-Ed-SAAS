@@ -149,6 +149,7 @@ export default function HomePage() {
     employees: '',
   });
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [ctaDismissed, setCtaDismissed] = useState(false);
 
   const { t } = useLanguage();
 
@@ -445,20 +446,24 @@ export default function HomePage() {
         </div>
 
         {/* Animated scroll cue — pulls the eye down */}
-        <motion.div
+        <motion.button
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+          aria-label={t('Scroll to explore', 'مرر للاستكشاف')}
+          onClick={() => {
+            document.getElementById('persona-section')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 cursor-pointer group focus:outline-none"
         >
-          <span className="text-[11px] font-semibold text-[#64748B] tracking-wider uppercase">{t('Scroll to explore', 'مرر للاستكشاف')}</span>
+          <span className="text-[11px] font-semibold text-[#64748B] tracking-wider uppercase group-hover:text-[#E8634A] transition-colors">{t('Scroll to explore', 'مرر للاستكشاف')}</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           >
             <ChevronDown size={20} className="text-[#E8634A]" />
           </motion.div>
-        </motion.div>
+        </motion.button>
 
         {/* Bottom gradient fade */}
         <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
@@ -469,7 +474,7 @@ export default function HomePage() {
          Psychology: Self-identification in <3 seconds. Visitor
          sees themselves and thinks "yes, this is for me."
          ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 bg-white">
+      <section id="persona-section" className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -539,7 +544,7 @@ export default function HomePage() {
               custom={1}
               className="text-3xl md:text-4xl lg:text-[3rem] font-heading font-extrabold text-[#0F172A] leading-tight tracking-tight mb-4"
             >
-              {t('Six solutions. ', 'ستة حلول. ')}<span className="shimmer-text">{t('One partner.', 'شريك واحد.')}</span>
+              {t('Six ways we help. ', 'ست طرق نساعدك. ')}<span className="shimmer-text">{t('One partner.', 'شريك واحد.')}</span>
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="text-[#64748B] text-lg max-w-2xl mx-auto">
               {t(
@@ -643,7 +648,7 @@ export default function HomePage() {
                     {t('A learning platform where teachers assign, track, and quiz — and students actually show up.', 'منصة تعلم يوزّع فيها المعلمون ويتتبعون ويختبرون — والطلاب يحضرون فعلاً.')}
                   </p>
 
-                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#E2E8F0] border border-[#E8634A]/10">
+                  <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F1F5F9] border border-[#E8634A]/10">
                     <Users size={16} className="text-[#E8634A] flex-shrink-0" />
                     <span className="text-sm text-[#0F172A] font-semibold">
                       {t('85K+ active learners \u2022 4x engagement', 'أكثر من 85 ألف متعلم \u2022 4 أضعاف التفاعل')}
@@ -753,7 +758,7 @@ export default function HomePage() {
                   <div className="flex items-center gap-2 mb-5 p-3 rounded-xl bg-[#F5F3FF] border border-[#8B5CF6]/10">
                     <Sparkles size={16} className="text-[#8B5CF6] flex-shrink-0" />
                     <span className="text-sm text-[#0F172A] font-semibold">
-                      {t('200+ lessons \u2022 3 languages \u2022 Your curriculum', 'أكثر من 200 درس \u2022 3 لغات \u2022 منهجك')}
+                      {t('2,000+ animations \u2022 3 languages \u2022 Your curriculum', 'أكثر من 2,000 رسوم \u2022 3 لغات \u2022 منهجك')}
                     </span>
                   </div>
 
@@ -1191,7 +1196,7 @@ export default function HomePage() {
                 <div className="flex items-center gap-3 p-4 rounded-2xl border bg-amber-50/60 border-amber-200/40">
                   <span className="text-lg flex-shrink-0">&#9200;</span>
                   <span className="text-sm font-semibold text-gray-700">
-                    {t('Only', 'فقط')} <span className="text-amber-600 font-bold">{t('6 onboarding slots', '6 أماكن إعداد')}</span> {t('left for Q2 2026', 'متبقية للربع الثاني 2026')}
+                    {t('Only', 'فقط')} <span className="text-amber-600 font-bold">{t('6 onboarding slots', '6 أماكن إعداد')}</span> {t('left for Q3 2026', 'متبقية للربع الثالث 2026')}
                   </span>
                 </div>
                 <div className="flex items-center gap-3 p-4 rounded-2xl border bg-[#F1F5F9]/50 border-[#E8634A]/15">
@@ -1239,16 +1244,26 @@ export default function HomePage() {
                       <input type="email" placeholder={t('Email *', 'البريد الإلكتروني *')} value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="form-input" required />
                     </div>
-                    <select value={formData.position} onChange={(e) => setFormData({ ...formData, position: e.target.value })} className="form-select">
-                      <option value="">{t('Select Position', 'اختر المنصب')}</option>
+                    <select
+                      value={formData.position}
+                      onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                      className="form-select"
+                      style={{ color: formData.position ? '#0F172A' : '#94a3b8' }}
+                    >
+                      <option value="" disabled>{t('Select Position', 'اختر المنصب')}</option>
                       <option value="principal">{t('Principal / Head of School', 'مدير / رئيس المدرسة')}</option>
                       <option value="director">{t('Director / Board Member', 'مدير / عضو مجلس إدارة')}</option>
                       <option value="it_head">{t('IT Head / Administrator', 'رئيس تقنية المعلومات / مسؤول')}</option>
                       <option value="teacher">{t('Teacher / Department Head', 'معلم / رئيس قسم')}</option>
                       <option value="other">{t('Other', 'أخرى')}</option>
                     </select>
-                    <select value={formData.employees} onChange={(e) => setFormData({ ...formData, employees: e.target.value })} className="form-select">
-                      <option value="">{t('Number of Students / Staff', 'عدد الطلاب / الموظفين')}</option>
+                    <select
+                      value={formData.employees}
+                      onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
+                      className="form-select"
+                      style={{ color: formData.employees ? '#0F172A' : '#94a3b8' }}
+                    >
+                      <option value="" disabled>{t('Number of Students / Staff', 'عدد الطلاب / الموظفين')}</option>
                       <option value="1-50">1 – 50</option>
                       <option value="51-100">51 – 100</option>
                       <option value="101-500">101 – 500</option>
@@ -1342,6 +1357,7 @@ export default function HomePage() {
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
                     className="flex items-start justify-between w-full text-left gap-3 group"
                   >
                     <div className="flex items-start gap-3 flex-1 min-w-0">
@@ -1388,7 +1404,7 @@ export default function HomePage() {
          Appears after scrolling past hero. Always-visible action.
          Psychology: Removes friction — CTA follows the visitor. */}
       <AnimatePresence>
-        {showFloatingCta && (
+        {showFloatingCta && !ctaDismissed && (
           <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -1408,6 +1424,15 @@ export default function HomePage() {
                 {t('Book Free Call', 'احجز اتصالاً مجانياً')}
                 <ArrowRight size={15} className="rtl:rotate-180" />
               </Link>
+              <button
+                onClick={() => setCtaDismissed(true)}
+                aria-label="Dismiss"
+                className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+                </svg>
+              </button>
             </div>
           </motion.div>
         )}
