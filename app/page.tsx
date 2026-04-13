@@ -4,13 +4,12 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
 import Footer from '@/components/Footer';
 import {
   ArrowRight,
   ChevronDown,
   ChevronUp,
-  BarChart3,
   Megaphone,
   MessageSquare,
   Monitor,
@@ -18,25 +17,16 @@ import {
   Film,
   Globe,
   Smartphone,
-  Cloud,
-  Mail,
   Star,
   Users,
-  Award,
   Phone,
   CheckCircle2,
   Layers,
-  PieChart,
-  ShoppingCart,
-  Lightbulb,
   Target,
   Zap,
-  Shield,
   TrendingUp,
   Layout,
   Settings,
-  Play,
-  MapPin,
   GraduationCap,
   Sparkles,
 } from 'lucide-react';
@@ -269,206 +259,8 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* ═══════════ NAVIGATION ═══════════ */}
-      <Header />
-
-      {/* ═══════════════════════════════════════════════════════════
-         HERO — 2026 Premium Light (BetterUp × Notion)
-         Psychology: Bold teal keywords = instant scan in <2 seconds.
-         Realistic mockups = "this is a real working product" trust.
-         20% overlay on classroom = warm, human, welcoming.
-         55/45 split: text left, visual proof right.
-         ═══════════════════════════════════════════════════════════ */}
-      <section
-        id="home"
-        className="relative overflow-hidden bg-[#F8FAFC]"
-        style={{ minHeight: '100dvh' }}
-      >
-        {/* ── Warm bright classroom background — 20% light overlay ── */}
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=2560&q=80"
-            alt="Bright welcoming Islamic and K-12 school classroom with engaged students"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0" style={{
-          background: 'linear-gradient(155deg, rgba(248,250,252,0.92) 0%, rgba(248,250,252,0.86) 40%, rgba(248,250,252,0.76) 70%, rgba(248,250,252,0.70) 100%)',
-        }} />
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'radial-gradient(ellipse 55% 55% at 28% 48%, rgba(232,99,74,0.03) 0%, transparent 70%)',
-        }} />
-
-        {/* ═══ 2-COLUMN LAYOUT ═══ */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-32 md:pt-40 pb-24 md:pb-32">
-          <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-20 items-center">
-
-            {/* ── LEFT: Text (55%) ── */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-              className="max-w-[540px]"
-            >
-              {/* Tagline pill */}
-              <motion.div variants={fadeUp} custom={0} className="mb-8">
-                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold text-[#172554] border border-[#E8634A]/15 bg-white/80 backdrop-blur-sm shadow-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E8634A] animate-pulse flex-shrink-0" />
-                  {t(
-                    'Trusted by 760+ schools in Pakistan, GCC & Canada',
-                    'موثوق من أكثر من 760 مدرسة في باكستان والخليج وكندا'
-                  )}
-                </span>
-              </motion.div>
-
-              {/* Single clear promise headline */}
-              <motion.h1
-                variants={fadeUp}
-                custom={1}
-                className="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[3.3rem] xl:text-[3.6rem] font-heading font-extrabold text-[#0F172A] leading-[1.08] tracking-[-0.03em] mb-7"
-              >
-                {t('Your school deserves ', 'مدرستك تستحق ')}
-                <span className="shimmer-text">{t('tools that actually work.', 'أدوات تعمل فعلاً.')}</span>
-              </motion.h1>
-
-              {/* Empathetic subheadline — one sharp sentence */}
-              <motion.p
-                variants={fadeUp}
-                custom={2}
-                className="text-[#475569] text-lg md:text-[1.25rem] leading-relaxed mb-10 max-w-[500px]"
-              >
-                {t(
-                  'One platform replaces your spreadsheets, fills your classrooms, and gives teachers animated lessons students actually enjoy.',
-                  'منصة واحدة تحل محل جداولك وتملأ فصولك وتمنح المعلمين دروساً متحركة يستمتع بها الطلاب فعلاً.'
-                )}
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div variants={fadeUp} custom={3} className="flex flex-wrap items-center gap-4 mb-10">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-[#E8634A] to-[#D14F38] text-white font-bold text-[15px] px-8 py-4 rounded-full shadow-lg shadow-[#E8634A]/20 hover:shadow-xl hover:shadow-[#E8634A]/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
-                >
-                  {t('See It in Action', 'شاهدها تعمل')}
-                  <ArrowRight size={18} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
-                </Link>
-                <Link
-                  href="/solutions"
-                  className="inline-flex items-center gap-2.5 text-[#334155] hover:text-[#0F172A] font-semibold text-[15px] px-7 py-4 rounded-full border border-[#CBD5E1] hover:border-[#94A3B8] bg-white/70 backdrop-blur-sm hover:bg-white hover:shadow-md transition-all duration-200"
-                >
-                  {t('Explore Solutions', 'استكشف الحلول')}
-                </Link>
-              </motion.div>
-
-              {/* Trust bar — specific, scannable */}
-              <motion.div
-                variants={fadeUp}
-                custom={4}
-                className="flex flex-wrap items-center gap-4 text-[13px] text-[#64748B]"
-              >
-                <span className="font-medium"><span className="text-[#0F172A] font-extrabold">760+</span> {t('schools', 'مدرسة')}</span>
-                <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span><span className="text-[#0F172A] font-extrabold">85K+</span> {t('students', 'طالب')}</span>
-                <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span><span className="text-[#0F172A] font-extrabold">3</span> {t('countries', 'دول')}</span>
-                <span className="w-[3px] h-[3px] rounded-full bg-[#CBD5E1]" />
-                <span className="text-[#E8634A] font-semibold">{t('Live in 4 weeks', 'جاهز في 4 أسابيع')}</span>
-              </motion.div>
-            </motion.div>
-
-            {/* ── RIGHT: Big scannable outcome cards ── */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative hidden lg:flex flex-col gap-4 max-w-[420px]"
-            >
-              {/* Outcome card 1 */}
-              <motion.div
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#E8634A]/20">
-                    <TrendingUp size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <div className="text-3xl font-black text-[#0F172A] tracking-tight leading-none mb-1">+340%</div>
-                    <div className="text-sm text-[#64748B]">{t('average enrollment increase', 'متوسط زيادة التسجيل')}</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Outcome card 2 */}
-              <motion.div
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg ml-8"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#E8634A] to-[#D14F38] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#E8634A]/20">
-                    <GraduationCap size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <div className="text-3xl font-black text-[#0F172A] tracking-tight leading-none mb-1">94.2%</div>
-                    <div className="text-sm text-[#64748B]">{t('student attendance rate', 'معدل حضور الطلاب')}</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Outcome card 3 */}
-              <motion.div
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-                className="bg-white/90 backdrop-blur-md rounded-2xl p-6 border border-[#E2E8F0] shadow-lg"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#172554] to-[#1E3A5F] flex items-center justify-center flex-shrink-0 shadow-md shadow-[#172554]/20">
-                    <Zap size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <div className="text-3xl font-black text-[#0F172A] tracking-tight leading-none mb-1">47 {t('hrs', 'ساعة')}</div>
-                    <div className="text-sm text-[#64748B]">{t('saved per staff member/month', 'يوفرها كل موظف شهرياً')}</div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Subtle glow behind cards */}
-              <div className="absolute -inset-8 -z-10 pointer-events-none" style={{
-                background: 'radial-gradient(ellipse 70% 70% at 50% 50%, rgba(232,99,74,0.05) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-              }} />
-            </motion.div>
-          </div>
-        </div>
-
-        {/* Animated scroll cue — pulls the eye down */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          aria-label={t('Scroll to explore', 'مرر للاستكشاف')}
-          onClick={() => {
-            document.getElementById('persona-section')?.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 cursor-pointer group focus:outline-none"
-        >
-          <span className="text-[11px] font-semibold text-[#64748B] tracking-wider uppercase group-hover:text-[#E8634A] transition-colors">{t('Scroll to explore', 'مرر للاستكشاف')}</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            <ChevronDown size={20} className="text-[#E8634A]" />
-          </motion.div>
-        </motion.button>
-
-        {/* Bottom gradient fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, transparent, white)' }} />
-      </section>
+      {/* ═══════════ HERO — full-width slot-machine hero ═══════════ */}
+      <HeroSection />
 
       {/* ═══════ "IS THIS FOR ME?" — Quick persona ID ═══════
          Psychology: Self-identification in <3 seconds. Visitor
