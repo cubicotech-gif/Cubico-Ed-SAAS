@@ -5,93 +5,188 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import LanguageToggle from '@/components/LanguageToggle';
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   SLIDE DATA
-   Each slide owns: cycling word · subtext · background image · story card data
+   TYPES
    ───────────────────────────────────────────────────────────────────────────── */
-const slides = [
+interface LS { en: string; ar: string } // bilingual string pair
+
+interface Slide {
+  word:      LS;
+  sub:       LS;
+  bgImage:   string;
+  fallbackBg: string;
+  story: {
+    name:  LS;
+    type:  LS;
+    icon:  string;
+    quote: LS;
+    tag:   LS;
+  };
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SLIDE DATA  (all bilingual)
+   ───────────────────────────────────────────────────────────────────────────── */
+const SLIDES: Slide[] = [
   {
-    word: 'websites',
-    sub: 'A school website that works as hard as your admissions team — fast, professional, and built to convert.',
-    bgImage: '/images/hero/hero-websites.jpg',
+    word: { en: 'websites', ar: 'مواقع الويب' },
+    sub:  {
+      en: 'A school website that works as hard as your admissions team — fast, professional, and built to convert.',
+      ar: 'موقع مدرسي يعمل بجد فريق القبول تماماً — سريع واحترافي ومُصمَّم للتحويل.',
+    },
+    bgImage:    '/images/hero/hero-websites.jpg',
     fallbackBg: '#161e30',
     story: {
-      name: 'MSL School',
-      type: 'Clifton, Karachi',
-      icon: '🏫',
-      quote: "MSL's new website boosted inquiry submissions 3× in the first month.",
-      tag: 'Website',
+      name:  { en: 'MSL School',       ar: 'مدرسة MSL' },
+      type:  { en: 'Clifton, Karachi', ar: 'كليفتون، كراتشي' },
+      icon:  '🏫',
+      quote: {
+        en: "MSL's new website boosted inquiry submissions 3× in the first month.",
+        ar: 'رفع الموقع الجديد لمدرسة MSL نسبة الاستفسارات 3 أضعاف في أول شهر.',
+      },
+      tag: { en: 'Website', ar: 'موقع ويب' },
     },
   },
   {
-    word: 'management',
-    sub: 'End-to-end school management — attendance, fees, timetables, and parent communication in one platform.',
-    bgImage: '/images/hero/hero-management.jpg',
+    word: { en: 'management', ar: 'إدارة المدرسة' },
+    sub:  {
+      en: 'End-to-end school management — attendance, fees, timetables, and parent communication in one platform.',
+      ar: 'إدارة مدرسية شاملة — الحضور والرسوم والجداول وتواصل الأولياء في منصة واحدة.',
+    },
+    bgImage:    '/images/hero/hero-management.jpg',
     fallbackBg: '#0e1626',
     story: {
-      name: 'Al-Huffaz Academy',
-      type: 'Karachi',
-      icon: '📋',
-      quote: 'Moved from WhatsApp groups to a full digital admin system in 4 weeks.',
-      tag: 'Management',
+      name:  { en: 'Al-Huffaz Academy', ar: 'أكاديمية الحفاظ' },
+      type:  { en: 'Karachi',           ar: 'كراتشي' },
+      icon:  '📋',
+      quote: {
+        en: 'Moved from WhatsApp groups to a full digital admin system in 4 weeks.',
+        ar: 'الانتقال من مجموعات واتساب إلى نظام إداري رقمي كامل في 4 أسابيع.',
+      },
+      tag: { en: 'Management', ar: 'الإدارة' },
     },
   },
   {
-    word: 'learning',
-    sub: 'Custom LMS where teachers teach, students learn, and principals track progress — entirely online.',
-    bgImage: '/images/hero/hero-learning.jpg',
+    word: { en: 'learning', ar: 'التعلّم' },
+    sub:  {
+      en: 'Custom LMS where teachers teach, students learn, and principals track progress — entirely online.',
+      ar: 'نظام تعلم مخصص يُدرّس فيه المعلمون ويتعلم الطلاب ويتابع المديرون التقدم — بالكامل عبر الإنترنت.',
+    },
+    bgImage:    '/images/hero/hero-learning.jpg',
     fallbackBg: '#12102e',
     story: {
-      name: 'Cornwall Islamic',
-      type: 'Foundation',
-      icon: '📚',
-      quote: '300+ students now on a live Moodle LMS with built-in class supervision.',
-      tag: 'LMS',
+      name:  { en: 'Cornwall Islamic', ar: 'كورنوول الإسلامية' },
+      type:  { en: 'Foundation',       ar: 'مؤسسة' },
+      icon:  '📚',
+      quote: {
+        en: '300+ students now on a live Moodle LMS with built-in class supervision.',
+        ar: 'أكثر من 300 طالب على نظام Moodle مباشر مع إشراف صفي مدمج.',
+      },
+      tag: { en: 'LMS', ar: 'نظام التعلم' },
     },
   },
   {
-    word: 'animation',
-    sub: 'Animated lesson content that makes complex topics visual, engaging, and memorable for students.',
-    bgImage: '/images/hero/hero-animation.jpg',
+    word: { en: 'animation', ar: 'الرسوم المتحركة' },
+    sub:  {
+      en: 'Animated lesson content that makes complex topics visual, engaging, and memorable for students.',
+      ar: 'محتوى دروس متحرك يجعل الموضوعات المعقدة مرئية وجذابة ولا تُنسى للطلاب.',
+    },
+    bgImage:    '/images/hero/hero-animation.jpg',
     fallbackBg: '#1a0a24',
     story: {
-      name: 'Cubico Studio',
-      type: 'Content & Animation',
-      icon: '🎬',
-      quote: 'Animated modules increased student engagement scores by +40%.',
-      tag: 'Animation',
+      name:  { en: 'Cubico Studio',        ar: 'استوديو كيوبيكو' },
+      type:  { en: 'Content & Animation',  ar: 'المحتوى والرسوم' },
+      icon:  '🎬',
+      quote: {
+        en: 'Animated modules increased student engagement scores by +40%.',
+        ar: 'رفعت الوحدات المتحركة درجات تفاعل الطلاب بنسبة +40%.',
+      },
+      tag: { en: 'Animation', ar: 'الرسوم' },
     },
   },
   {
-    word: 'marketing',
-    sub: 'Digital marketing that fills your classrooms — SEO, social, and ad campaigns built specifically for schools.',
-    bgImage: '/images/hero/hero-marketing.jpg',
+    word: { en: 'marketing', ar: 'التسويق' },
+    sub:  {
+      en: 'Digital marketing that fills your classrooms — SEO, social, and ad campaigns built specifically for schools.',
+      ar: 'تسويق رقمي يملأ فصولك — تحسين محركات البحث والحملات الإعلانية المُصمَّمة خصيصاً للمدارس.',
+    },
+    bgImage:    '/images/hero/hero-marketing.jpg',
     fallbackBg: '#0c1a16',
     story: {
-      name: 'Cubico Creative',
-      type: 'Digital Marketing',
-      icon: '📣',
-      quote: 'School clients saw 2× more admission inquiries within 60 days.',
-      tag: 'Marketing',
+      name:  { en: 'Cubico Creative',  ar: 'كيوبيكو كريتيف' },
+      type:  { en: 'Digital Marketing', ar: 'التسويق الرقمي' },
+      icon:  '📣',
+      quote: {
+        en: 'School clients saw 2× more admission inquiries within 60 days.',
+        ar: 'حقق عملاء المدارس ضعف استفسارات القبول خلال 60 يوماً.',
+      },
+      tag: { en: 'Marketing', ar: 'التسويق' },
     },
   },
-] as const;
+];
 
-const TOTAL = slides.length;
-const NAV_H  = 64;  // px — navbar height
-const LINE_H = 72;  // px — height of each word slot in the drum
+/* ─────────────────────────────────────────────────────────────────────────────
+   NAV LINKS  (mapped to real routes)
+   ───────────────────────────────────────────────────────────────────────────── */
+const NAV_LINKS: Array<{ en: string; ar: string; href: string }> = [
+  { en: 'Services',  ar: 'الخدمات',  href: '/services'  },
+  { en: 'Solutions', ar: 'الحلول',   href: '/solutions' },
+  { en: 'Work',      ar: 'أعمالنا',  href: '/about'     },
+  { en: 'Company',   ar: 'الشركة',   href: '/about'     },
+];
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   CONSTANTS
+   ───────────────────────────────────────────────────────────────────────────── */
+const TOTAL  = SLIDES.length;
+const NAV_H  = 64;   // px — navbar height
+const LINE_H = 72;   // px — one word-slot height in the drum
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   WORD ANIMATION VARIANTS  (direction-aware slot-machine)
+   dir > 0 = forward  →  enter from below, exit to top
+   dir < 0 = backward →  enter from above, exit to bottom
+   ───────────────────────────────────────────────────────────────────────────── */
+const DRUM_EASE: [number, number, number, number] = [0.77, 0, 0.18, 1];
+const EXIT_EASE: [number, number, number, number] = [0.4,  0, 1,    1];
+
+const wordVariants = {
+  enter: (dir: number) => ({
+    y:       dir > 0 ?  LINE_H * 0.8 : -LINE_H * 0.8,
+    opacity: 0,
+  }),
+  center: {
+    y:          0,
+    opacity:    1,
+    transition: { duration: 0.72, ease: DRUM_EASE },
+  },
+  exit: (dir: number) => ({
+    y:          dir > 0 ? -LINE_H * 0.8 : LINE_H * 0.8,
+    opacity:    0,
+    transition: { duration: 0.35, ease: EXIT_EASE },
+  }),
+};
 
 /* ─────────────────────────────────────────────────────────────────────────────
    HERO SECTION
    ───────────────────────────────────────────────────────────────────────────── */
 export default function HeroSection() {
-  const [current, setCurrent]   = useState(0);
-  const [paused,  setPaused]    = useState(false);
+  const { t, direction: langDir } = useLanguage();
+  const isRTL = langDir === 'rtl';
+
+  const [current,  setCurrent]  = useState(0);
+  const [slideDir, setSlideDir] = useState<1 | -1>(1);
+  const [paused,   setPaused]   = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* ── Auto-advance ── */
-  const advance = useCallback(() => setCurrent(p => (p + 1) % TOTAL), []);
+  const advance = useCallback(() => {
+    setSlideDir(1);
+    setCurrent(p => (p + 1) % TOTAL);
+  }, []);
 
   useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -99,44 +194,40 @@ export default function HeroSection() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [current, paused, advance]);
 
-  /* ── Manual navigation ── */
-  const goTo = (idx: number) => {
+  /* ── Manual dot navigation — picks shortest-path direction ── */
+  const goTo = useCallback((idx: number) => {
+    if (idx === current) return;
+    const fwd = (idx - current + TOTAL) % TOTAL;
+    const bwd = (current - idx + TOTAL) % TOTAL;
+    setSlideDir(fwd <= bwd ? 1 : -1);
     if (timerRef.current) clearTimeout(timerRef.current);
     setCurrent(idx);
-  };
+  }, [current]);
 
-  /*
-   * drumY — translates the word column so the active word sits in the
-   * center slot of the 3-slot drum window.
-   *
-   * Container height = 3 × LINE_H (three visible slots).
-   * Word[i] sits at column y = i × LINE_H.
-   * For word[current] to land at container y = LINE_H (centre slot):
-   *   drumY = LINE_H × (1 − current)
-   */
-  const drumY = LINE_H * (1 - current);
+  const slide = SLIDES[current];
+  const prev  = SLIDES[(current - 1 + TOTAL) % TOTAL];
+  const next  = SLIDES[(current + 1)          % TOTAL];
 
-  /* ─── Dot elements (shared between desktop inline & mobile absolute) ─── */
-  const Dots = () => (
-    <div className="flex items-center gap-2">
-      {slides.map((_, i) => (
-        <button
-          key={i}
-          onClick={() => goTo(i)}
-          aria-label={`Go to slide ${i + 1}`}
-          className="focus:outline-none transition-all duration-300 cursor-pointer"
-          style={{
-            width:        i === current ? 18 : 6,
-            height:       6,
-            borderRadius: i === current ? 3 : '50%',
-            background:   i === current ? '#ffffff' : 'rgba(255,255,255,0.25)',
-            border:       'none',
-            padding:      0,
-          }}
-        />
-      ))}
-    </div>
-  );
+  /* ── Dot element — reused for desktop (inline) and mobile (bottom-centre) ── */
+  const renderDots = () =>
+    SLIDES.map((_, i) => (
+      <button
+        key={i}
+        onClick={() => goTo(i)}
+        aria-label={`${t('Go to slide', 'انتقل إلى الشريحة')} ${i + 1}`}
+        aria-current={i === current ? 'true' : undefined}
+        className="focus:outline-none transition-all duration-300 cursor-pointer"
+        style={{
+          width:        i === current ? 18 : 6,
+          height:       6,
+          borderRadius: i === current ? 3 : '50%',
+          background:   i === current ? '#ffffff' : 'rgba(255,255,255,0.25)',
+          border:       'none',
+          padding:      0,
+          flexShrink:   0,
+        }}
+      />
+    ));
 
   return (
     <section
@@ -146,22 +237,22 @@ export default function HeroSection() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* ══════════════════════════════════════
-          BACKGROUND — crossfading images
-          ══════════════════════════════════════ */}
-      {slides.map((slide, i) => (
+      {/* ══════════════════════════════════════════════════════════
+          BACKGROUND — per-slide images, crossfade 1.1 s
+          ══════════════════════════════════════════════════════════ */}
+      {SLIDES.map((s, i) => (
         <div
-          key={slide.word}
+          key={s.bgImage}
           className="absolute inset-0"
           style={{
-            backgroundColor: slide.fallbackBg,
-            opacity:    i === current ? 1 : 0,
-            transition: 'opacity 1.1s ease',
-            zIndex:     0,
+            backgroundColor: s.fallbackBg,
+            opacity:         i === current ? 1 : 0,
+            transition:      'opacity 1.1s ease',
+            zIndex:          0,
           }}
         >
           <Image
-            src={slide.bgImage}
+            src={s.bgImage}
             alt=""
             fill
             className="object-cover"
@@ -171,21 +262,24 @@ export default function HeroSection() {
         </div>
       ))}
 
-      {/* ══════════════════════════════════════
-          DARK GRADIENT OVERLAY
-          left → right: 0.78 → 0.15
-          ══════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════════════════════
+          DARK GRADIENT — flips for RTL
+          LTR: dark on left (text side)
+          RTL: dark on right (text side)
+          ══════════════════════════════════════════════════════════ */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.15) 100%)',
+          background: isRTL
+            ? 'linear-gradient(to left,  rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.15) 100%)'
+            : 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.15) 100%)',
           zIndex: 1,
         }}
       />
 
-      {/* ══════════════════════════════════════
+      {/* ══════════════════════════════════════════════════════════
           NAVBAR
-          ══════════════════════════════════════ */}
+          ══════════════════════════════════════════════════════════ */}
       <nav
         className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between"
         style={{
@@ -202,13 +296,13 @@ export default function HeroSection() {
           Cubico.
         </Link>
 
-        {/* Center links — hidden on mobile */}
-        <div className="hidden md:flex items-center gap-8">
-          {(['Services', 'Solutions', 'Work', 'Company'] as const).map(label => (
-            <a
-              key={label}
-              href="#"
-              className="transition-colors hover:text-white/80"
+        {/* Centre nav links — hidden on mobile */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          {NAV_LINKS.map(link => (
+            <Link
+              key={link.en}
+              href={link.href}
+              className="transition-colors hover:text-white"
               style={{
                 color:          'rgba(255,255,255,0.5)',
                 fontSize:       11,
@@ -218,152 +312,206 @@ export default function HeroSection() {
                 textDecoration: 'none',
               }}
             >
-              {label}
-            </a>
+              {t(link.en, link.ar)}
+            </Link>
           ))}
         </div>
 
         {/* Right actions */}
-        <div className="flex items-center gap-5 flex-shrink-0">
+        <div className="flex items-center gap-3 lg:gap-4 flex-shrink-0">
+          {/* Language toggle — same as the rest of the site */}
+          <div className="hidden sm:block">
+            <LanguageToggle className="text-white/50 hover:text-white" />
+          </div>
+
           <a
-            href="#"
-            className="hidden sm:block transition-colors hover:text-white"
+            href="#login"
+            className="hidden lg:block transition-colors hover:text-white"
             style={{ color: 'rgba(255,255,255,0.5)', fontSize: 13, textDecoration: 'none' }}
           >
-            Login
+            {t('Login', 'تسجيل الدخول')}
           </a>
+
           <Link
             href="/contact"
-            className="text-white transition-colors hover:bg-white/10"
+            className="text-white transition-colors hover:bg-white/10 whitespace-nowrap"
             style={{
-              fontSize:       13,
-              padding:        '8px 20px',
-              borderRadius:   9999,
-              border:         '0.5px solid rgba(255,255,255,0.2)',
-              textDecoration: 'none',
-              whiteSpace:     'nowrap',
+              fontSize:     13,
+              padding:      '8px 18px',
+              borderRadius: 9999,
+              border:       '0.5px solid rgba(255,255,255,0.2)',
             }}
           >
-            Request a demo
+            {t('Request a demo', 'اطلب عرضاً')}
           </Link>
         </div>
       </nav>
 
-      {/* ══════════════════════════════════════
-          MAIN CONTENT
-          ══════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════════════════════
+          MAIN CONTENT ROW
+          ══════════════════════════════════════════════════════════ */}
       <div
         className="absolute inset-0 flex items-center"
         style={{ zIndex: 10, paddingTop: NAV_H }}
       >
         <div
-          className="w-full max-w-7xl mx-auto flex items-center"
+          className={`w-full max-w-7xl mx-auto flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}
           style={{
             padding: '0 clamp(1.5rem, 4vw, 3rem)',
-            gap:     'clamp(2rem, 5vw, 4rem)',
+            gap:     'clamp(2rem, 4vw, 4rem)',
             height:  '100%',
           }}
         >
 
-          {/* ─── LEFT COLUMN ─── */}
+          {/* ── LEFT COLUMN ── */}
           <div
-            className="flex flex-col justify-center"
-            style={{ flex: '1 1 0', minWidth: 0 }}
+            className="flex flex-col justify-center min-w-0"
+            style={{ flex: '1 1 0' }}
           >
+
             {/* Eyebrow */}
-            <div className="mb-5 flex items-center gap-3">
+            <div
+              className={`mb-5 flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}
+            >
               <span
-                className="inline-block"
                 style={{
-                  width:           28,
-                  height:          1,
-                  background:      'rgba(255,255,255,0.3)',
-                  flexShrink:      0,
+                  width:      28,
+                  height:     1,
+                  background: 'rgba(255,255,255,0.3)',
+                  flexShrink: 0,
+                  display:    'inline-block',
                 }}
               />
               <span
                 style={{
-                  color:          'rgba(255,255,255,0.45)',
-                  fontSize:       11,
-                  textTransform:  'uppercase',
-                  letterSpacing:  '0.14em',
-                  fontWeight:     600,
+                  color:         'rgba(255,255,255,0.45)',
+                  fontSize:      11,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.14em',
+                  fontWeight:    600,
                 }}
               >
-                EdTech for Islamic &amp; K-12 Schools
+                {t('EdTech for Islamic & K-12 Schools', 'تقنية التعليم للمدارس الإسلامية وK-12')}
               </span>
             </div>
 
-            {/* ── Headline ── */}
+            {/* ── HEADLINE: static + drum + static ── */}
             <div
-              className="mb-6"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif', userSelect: 'none' }}
+              className="mb-6 select-none"
+              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
               {/* Line 1 — static */}
               <div
                 className="text-white leading-none"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
               >
-                Smarter
+                {t('Smarter', 'أذكى')}
               </div>
 
-              {/* Line 2 — slot-machine drum */}
+              {/* ── SLOT-MACHINE DRUM ──
+                  Three fixed slots; only the centre slot animates.
+                  Fade masks at top + bottom dim the neighbours.      */}
               <div
                 className="relative overflow-hidden"
                 style={{ height: LINE_H * 3 }}
               >
-                {/* Fade mask — top (dims word above active) */}
+                {/* Top fade mask — dims neighbour above */}
                 <div
                   className="absolute inset-x-0 top-0 pointer-events-none"
                   style={{
                     height:     LINE_H,
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.55), transparent)',
-                    zIndex:     2,
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.52), transparent)',
+                    zIndex:     4,
                   }}
                 />
-                {/* Fade mask — bottom (dims word below active) */}
+                {/* Bottom fade mask — dims neighbour below */}
                 <div
                   className="absolute inset-x-0 bottom-0 pointer-events-none"
                   style={{
                     height:     LINE_H,
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.55), transparent)',
-                    zIndex:     2,
+                    background: 'linear-gradient(to top, rgba(0,0,0,0.52), transparent)',
+                    zIndex:     4,
                   }}
                 />
 
-                {/* Drum column — translates to keep active word centred */}
-                <motion.div
-                  animate={{ y: drumY }}
-                  transition={{ duration: 0.72, ease: [0.77, 0, 0.18, 1] }}
-                  style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
+                {/* SLOT 1 — word above active (always shows prev, no animation) */}
+                <div
+                  className="absolute inset-x-0 flex items-center"
+                  style={{ top: 0, height: LINE_H, zIndex: 1 }}
                 >
-                  {slides.map((slide, i) => {
-                    const isActive = i === current;
-                    return (
-                      <div
-                        key={slide.word}
-                        style={{ height: LINE_H, display: 'flex', alignItems: 'center' }}
+                  <span
+                    style={{
+                      fontFamily: 'Georgia, "Times New Roman", serif',
+                      fontStyle:  'italic',
+                      fontSize:   'clamp(2rem, 4vw, 3.5rem)',
+                      color:      'rgba(255,255,255,0.22)',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {t(prev.word.en, prev.word.ar)}
+                  </span>
+                </div>
+
+                {/* SLOT 2 — active word (direction-aware AnimatePresence) */}
+                <div
+                  className="absolute inset-x-0 flex items-center"
+                  style={{ top: LINE_H, height: LINE_H, zIndex: 3 }}
+                >
+                  <AnimatePresence mode="sync" custom={slideDir}>
+                    <motion.div
+                      key={`word-${current}`}
+                      custom={slideDir}
+                      variants={wordVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      style={{
+                        position: 'absolute',
+                        top:      0,
+                        left:     0,
+                        right:    0,
+                        height:   '100%',
+                        display:  'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily:   'Georgia, "Times New Roman", serif',
+                          fontStyle:    'italic',
+                          fontSize:     'clamp(2rem, 4vw, 3.5rem)',
+                          lineHeight:   1,
+                          color:        '#ffffff',
+                          background:   'rgba(255,255,255,0.1)',
+                          borderRadius: 9999,
+                          padding:      '6px 22px',
+                          display:      'inline-block',
+                          whiteSpace:   'nowrap',
+                        }}
                       >
-                        <span
-                          style={{
-                            fontFamily:  'Georgia, "Times New Roman", serif',
-                            fontStyle:   'italic',
-                            fontSize:    'clamp(2rem, 4vw, 3.5rem)',
-                            lineHeight:  1,
-                            color:       isActive ? '#ffffff' : 'rgba(255,255,255,0.22)',
-                            background:  isActive ? 'rgba(255,255,255,0.1)' : 'transparent',
-                            borderRadius: isActive ? 9999 : 0,
-                            padding:     isActive ? '6px 22px' : '6px 0',
-                            display:     'inline-block',
-                            transition:  'color 0.35s ease, background 0.35s ease, padding 0.35s ease',
-                          }}
-                        >
-                          {slide.word}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </motion.div>
+                        {t(slide.word.en, slide.word.ar)}
+                      </span>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* SLOT 3 — word below active (always shows next, no animation) */}
+                <div
+                  className="absolute inset-x-0 flex items-center"
+                  style={{ top: LINE_H * 2, height: LINE_H, zIndex: 1 }}
+                >
+                  <span
+                    style={{
+                      fontFamily: 'Georgia, "Times New Roman", serif',
+                      fontStyle:  'italic',
+                      fontSize:   'clamp(2rem, 4vw, 3.5rem)',
+                      color:      'rgba(255,255,255,0.22)',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {t(next.word.en, next.word.ar)}
+                  </span>
+                </div>
               </div>
 
               {/* Line 3 — static */}
@@ -371,11 +519,11 @@ export default function HeroSection() {
                 className="text-white leading-none"
                 style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
               >
-                for your school.
+                {t('for your school.', 'لمدرستك.')}
               </div>
             </div>
 
-            {/* ── Subtext ── */}
+            {/* Subtext — fades out/in on slide change */}
             <AnimatePresence mode="wait">
               <motion.p
                 key={`sub-${current}`}
@@ -390,112 +538,106 @@ export default function HeroSection() {
                   maxWidth: 'min(440px, 100%)',
                 }}
               >
-                {slides[current].sub}
+                {t(slide.sub.en, slide.sub.ar)}
               </motion.p>
             </AnimatePresence>
 
-            {/* ── CTAs ── */}
+            {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3 mb-8">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-1.5 text-white font-medium transition-opacity hover:opacity-85"
+                className="inline-flex items-center gap-1.5 text-white font-medium transition-opacity hover:opacity-85 whitespace-nowrap"
                 style={{
-                  background:     '#534AB7',
-                  fontSize:       14,
-                  padding:        '11px 24px',
-                  borderRadius:   6,
-                  textDecoration: 'none',
-                  whiteSpace:     'nowrap',
+                  background:   '#534AB7',
+                  fontSize:     14,
+                  padding:      '11px 24px',
+                  borderRadius: 6,
                 }}
               >
-                Book a free demo <span aria-hidden="true">→</span>
+                {t('Book a free demo', 'احجز عرضاً مجانياً')}
+                <span
+                  aria-hidden="true"
+                  className={isRTL ? 'rotate-180 inline-block' : ''}
+                >
+                  →
+                </span>
               </Link>
+
               <Link
                 href="/solutions"
-                className="inline-flex items-center text-white transition-colors hover:bg-white/10"
+                className="inline-flex items-center text-white transition-colors hover:bg-white/10 whitespace-nowrap"
                 style={{
-                  fontSize:       14,
-                  padding:        '11px 24px',
-                  borderRadius:   6,
-                  border:         '0.5px solid rgba(255,255,255,0.2)',
-                  textDecoration: 'none',
-                  whiteSpace:     'nowrap',
+                  fontSize:     14,
+                  padding:      '11px 24px',
+                  borderRadius: 6,
+                  border:       '0.5px solid rgba(255,255,255,0.2)',
                 }}
               >
-                See our solutions
+                {t('See our solutions', 'استكشف حلولنا')}
               </Link>
             </div>
 
-            {/* ── Dots — desktop only (inline) ── */}
-            <div className="hidden md:block">
-              <Dots />
+            {/* Dots — desktop, inline below CTAs */}
+            <div className="hidden md:flex items-center gap-2">
+              {renderDots()}
             </div>
           </div>
 
-          {/* ─── RIGHT — Story card (hidden below md) ─── */}
+          {/* ── RIGHT — Story card (hidden below md) ── */}
           <div
             className="hidden md:block relative flex-shrink-0 overflow-hidden"
             style={{
               width:        260,
               height:       `calc(90vh - ${NAV_H}px - 80px)`,
-              minHeight:    320,
-              maxHeight:    640,
+              minHeight:    300,
+              maxHeight:    620,
               borderRadius: 12,
             }}
           >
-            {/* Card background: mirrors slide background */}
-            {slides.map((slide, i) => (
+            {/* Card BG — mirrors main slide BG */}
+            {SLIDES.map((s, i) => (
               <div
-                key={`card-bg-${slide.word}`}
+                key={`card-${s.bgImage}`}
                 className="absolute inset-0"
                 style={{
-                  backgroundColor: slide.fallbackBg,
-                  opacity:    i === current ? 1 : 0,
-                  transition: 'opacity 1.1s ease',
+                  backgroundColor: s.fallbackBg,
+                  opacity:         i === current ? 1 : 0,
+                  transition:      'opacity 1.1s ease',
                 }}
               >
-                <Image
-                  src={slide.bgImage}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="260px"
-                />
+                <Image src={s.bgImage} alt="" fill className="object-cover" sizes="260px" />
               </div>
             ))}
 
-            {/* Bottom gradient — lifts content off the image */}
+            {/* Bottom gradient */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 55%)' }}
             />
 
-            {/* Story content — staggered fade+slide on slide change */}
+            {/* Story content — staggered fade+slide */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={`story-${current}`}
                 className="absolute bottom-0 left-0 right-0"
                 style={{ padding: '1.2rem' }}
               >
-                {/* Badge: icon + name + type */}
+                {/* School badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
-                  className="flex items-center gap-2.5 mb-3"
+                  className={`flex items-center gap-2.5 mb-3 ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
                   <span className="text-lg leading-none flex-shrink-0" aria-hidden="true">
-                    {slides[current].story.icon}
+                    {slide.story.icon}
                   </span>
-                  <div className="min-w-0">
-                    <p
-                      className="text-white font-semibold truncate"
-                      style={{ fontSize: 13 }}
-                    >
-                      {slides[current].story.name}
+                  <div className={`min-w-0 ${isRTL ? 'text-right' : ''}`}>
+                    <p className="text-white font-semibold truncate" style={{ fontSize: 13 }}>
+                      {t(slide.story.name.en, slide.story.name.ar)}
                     </p>
                     <p className="truncate" style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)' }}>
-                      {slides[current].story.type}
+                      {t(slide.story.type.en, slide.story.type.ar)}
                     </p>
                   </div>
                 </motion.div>
@@ -505,28 +647,31 @@ export default function HeroSection() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35, duration: 0.4, ease: 'easeOut' }}
-                  className="leading-relaxed mb-4"
+                  className={`leading-relaxed mb-4 ${isRTL ? 'text-right' : ''}`}
                   style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}
                 >
-                  &ldquo;{slides[current].story.quote}&rdquo;
+                  &ldquo;{t(slide.story.quote.en, slide.story.quote.ar)}&rdquo;
                 </motion.p>
 
-                {/* Read story — red pill button */}
-                <motion.button
+                {/* Read story pill */}
+                <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.4, ease: 'easeOut' }}
-                  className="text-white font-semibold transition-opacity hover:opacity-80 cursor-pointer"
-                  style={{
-                    fontSize:     11,
-                    padding:      '7px 16px',
-                    borderRadius: 9999,
-                    background:   '#E24B4A',
-                    border:       'none',
-                  }}
                 >
-                  Read story
-                </motion.button>
+                  <Link
+                    href="/about"
+                    className="inline-block text-white font-semibold transition-opacity hover:opacity-80"
+                    style={{
+                      fontSize:     11,
+                      padding:      '7px 16px',
+                      borderRadius: 9999,
+                      background:   '#E24B4A',
+                    }}
+                  >
+                    {t('Read story', 'اقرأ القصة')}
+                  </Link>
+                </motion.div>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -534,38 +679,34 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════
-          DOTS — mobile only, absolute bottom-centre
-          ══════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════════════════════
+          MOBILE DOTS — bottom-centre
+          ══════════════════════════════════════════════════════════ */}
       <div
-        className="md:hidden absolute bottom-10 left-0 right-0 flex justify-center"
+        className="md:hidden absolute bottom-10 left-0 right-0 flex justify-center gap-2"
         style={{ zIndex: 20 }}
       >
-        <Dots />
+        {renderDots()}
       </div>
 
-      {/* ══════════════════════════════════════
-          SCROLL INDICATOR — bottom-left
-          ══════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════════════════════
+          SCROLL INDICATOR — bottom-left (LTR) / bottom-right (RTL)
+          ══════════════════════════════════════════════════════════ */}
       <div
-        className="absolute"
+        className="absolute hidden md:flex items-center justify-center"
         style={{
-          bottom:  32,
-          left:    'clamp(1.5rem, 4vw, 3rem)',
-          zIndex:  20,
+          bottom:   32,
+          ...(isRTL
+            ? { right: 'clamp(1.5rem, 4vw, 3rem)' }
+            : { left:  'clamp(1.5rem, 4vw, 3rem)' }),
+          width:        28,
+          height:       28,
+          borderRadius: '50%',
+          border:       '1px solid rgba(255,255,255,0.2)',
+          zIndex:       20,
         }}
       >
-        <div
-          className="flex items-center justify-center"
-          style={{
-            width:        28,
-            height:       28,
-            borderRadius: '50%',
-            border:       '1px solid rgba(255,255,255,0.2)',
-          }}
-        >
-          <ChevronDown size={13} style={{ color: 'rgba(255,255,255,0.5)' }} />
-        </div>
+        <ChevronDown size={13} style={{ color: 'rgba(255,255,255,0.5)' }} />
       </div>
     </section>
   );
