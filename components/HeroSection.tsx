@@ -348,335 +348,213 @@ export default function HeroSection() {
       </nav>
 
       {/* ══════════════════════════════════════════════════════════
-          MAIN CONTENT ROW
+          LEFT CONTENT — anchored bottom-left (or bottom-right in RTL)
           ══════════════════════════════════════════════════════════ */}
       <div
-        className="absolute inset-0 flex items-center"
-        style={{ zIndex: 10, paddingTop: NAV_H }}
+        className="absolute"
+        style={{
+          bottom:   'clamp(3.5rem, 7vh, 5.5rem)',
+          ...(isRTL
+            ? { right: 'clamp(1.5rem, 4vw, 4rem)' }
+            : { left:  'clamp(1.5rem, 4vw, 4rem)' }),
+          zIndex:   10,
+          maxWidth: 'min(520px, calc(100vw - 2rem))',
+        }}
       >
-        <div
-          className={`w-full max-w-7xl mx-auto flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}
-          style={{
-            padding: '0 clamp(1.5rem, 4vw, 3rem)',
-            gap:     'clamp(2rem, 4vw, 4rem)',
-            height:  '100%',
-          }}
-        >
-
-          {/* ── LEFT COLUMN ── */}
-          <div
-            className="flex flex-col justify-center min-w-0"
-            style={{ flex: '1 1 0' }}
+        {/* Eyebrow */}
+        <div className={`mb-5 flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          <span
+            style={{
+              width:      28,
+              height:     1,
+              background: 'rgba(255,255,255,0.3)',
+              flexShrink: 0,
+              display:    'inline-block',
+            }}
+          />
+          <span
+            style={{
+              color:         'rgba(255,255,255,0.45)',
+              fontSize:      11,
+              textTransform: 'uppercase',
+              letterSpacing: '0.14em',
+              fontWeight:    600,
+            }}
           >
+            {t('EdTech for Islamic & K-12 Schools', 'تقنية التعليم للمدارس الإسلامية وK-12')}
+          </span>
+        </div>
 
-            {/* Eyebrow */}
+        {/* ── HEADLINE: static + drum + static ── */}
+        <div className="mb-8 select-none" style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}>
+          {/* Line 1 — static */}
+          <div className="text-white leading-none" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.2rem)' }}>
+            {t('Smarter', 'أذكى')}
+          </div>
+
+          {/* ── SLOT-MACHINE DRUM ── */}
+          <div className="relative overflow-hidden" style={{ height: LINE_H * 3 }}>
+            {/* Top fade mask */}
             <div
-              className={`mb-5 flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}
-            >
-              <span
-                style={{
-                  width:      28,
-                  height:     1,
-                  background: 'rgba(255,255,255,0.3)',
-                  flexShrink: 0,
-                  display:    'inline-block',
-                }}
-              />
-              <span
-                style={{
-                  color:         'rgba(255,255,255,0.45)',
-                  fontSize:      11,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.14em',
-                  fontWeight:    600,
-                }}
-              >
-                {t('EdTech for Islamic & K-12 Schools', 'تقنية التعليم للمدارس الإسلامية وK-12')}
+              className="absolute inset-x-0 top-0 pointer-events-none"
+              style={{ height: LINE_H, background: 'linear-gradient(to bottom, rgba(0,0,0,0.52), transparent)', zIndex: 4 }}
+            />
+            {/* Bottom fade mask */}
+            <div
+              className="absolute inset-x-0 bottom-0 pointer-events-none"
+              style={{ height: LINE_H, background: 'linear-gradient(to top, rgba(0,0,0,0.52), transparent)', zIndex: 4 }}
+            />
+
+            {/* SLOT 1 — prev */}
+            <div className="absolute inset-x-0 flex items-center" style={{ top: 0, height: LINE_H, zIndex: 1 }}>
+              <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 5vw, 4.2rem)', color: 'rgba(255,255,255,0.22)', lineHeight: 1 }}>
+                {t(prev.word.en, prev.word.ar)}
               </span>
             </div>
 
-            {/* ── HEADLINE: static + drum + static ── */}
-            <div
-              className="mb-6 select-none"
-              style={{ fontFamily: 'Georgia, "Times New Roman", serif' }}
-            >
-              {/* Line 1 — static */}
-              <div
-                className="text-white leading-none"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
-              >
-                {t('Smarter', 'أذكى')}
-              </div>
-
-              {/* ── SLOT-MACHINE DRUM ──
-                  Three fixed slots; only the centre slot animates.
-                  Fade masks at top + bottom dim the neighbours.      */}
-              <div
-                className="relative overflow-hidden"
-                style={{ height: LINE_H * 3 }}
-              >
-                {/* Top fade mask — dims neighbour above */}
-                <div
-                  className="absolute inset-x-0 top-0 pointer-events-none"
-                  style={{
-                    height:     LINE_H,
-                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.52), transparent)',
-                    zIndex:     4,
-                  }}
-                />
-                {/* Bottom fade mask — dims neighbour below */}
-                <div
-                  className="absolute inset-x-0 bottom-0 pointer-events-none"
-                  style={{
-                    height:     LINE_H,
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.52), transparent)',
-                    zIndex:     4,
-                  }}
-                />
-
-                {/* SLOT 1 — word above active (always shows prev, no animation) */}
-                <div
-                  className="absolute inset-x-0 flex items-center"
-                  style={{ top: 0, height: LINE_H, zIndex: 1 }}
+            {/* SLOT 2 — active */}
+            <div className="absolute inset-x-0 flex items-center" style={{ top: LINE_H, height: LINE_H, zIndex: 3 }}>
+              <AnimatePresence mode="sync" custom={slideDir}>
+                <motion.div
+                  key={`word-${current}`}
+                  custom={slideDir}
+                  variants={wordVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '100%', display: 'flex', alignItems: 'center' }}
                 >
                   <span
                     style={{
-                      fontFamily: 'Georgia, "Times New Roman", serif',
-                      fontStyle:  'italic',
-                      fontSize:   'clamp(2rem, 4vw, 3.5rem)',
-                      color:      'rgba(255,255,255,0.22)',
-                      lineHeight: 1,
-                    }}
-                  >
-                    {t(prev.word.en, prev.word.ar)}
-                  </span>
-                </div>
-
-                {/* SLOT 2 — active word (direction-aware AnimatePresence) */}
-                <div
-                  className="absolute inset-x-0 flex items-center"
-                  style={{ top: LINE_H, height: LINE_H, zIndex: 3 }}
-                >
-                  <AnimatePresence mode="sync" custom={slideDir}>
-                    <motion.div
-                      key={`word-${current}`}
-                      custom={slideDir}
-                      variants={wordVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      style={{
-                        position: 'absolute',
-                        top:      0,
-                        left:     0,
-                        right:    0,
-                        height:   '100%',
-                        display:  'flex',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily:   'Georgia, "Times New Roman", serif',
-                          fontStyle:    'italic',
-                          fontSize:     'clamp(2rem, 4vw, 3.5rem)',
-                          lineHeight:   1,
-                          color:        '#ffffff',
-                          background:   'rgba(255,255,255,0.1)',
-                          borderRadius: 9999,
-                          padding:      '6px 22px',
-                          display:      'inline-block',
-                          whiteSpace:   'nowrap',
-                        }}
-                      >
-                        {t(slide.word.en, slide.word.ar)}
-                      </span>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* SLOT 3 — word below active (always shows next, no animation) */}
-                <div
-                  className="absolute inset-x-0 flex items-center"
-                  style={{ top: LINE_H * 2, height: LINE_H, zIndex: 1 }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'Georgia, "Times New Roman", serif',
-                      fontStyle:  'italic',
-                      fontSize:   'clamp(2rem, 4vw, 3.5rem)',
-                      color:      'rgba(255,255,255,0.22)',
-                      lineHeight: 1,
-                    }}
-                  >
-                    {t(next.word.en, next.word.ar)}
-                  </span>
-                </div>
-              </div>
-
-              {/* Line 3 — static */}
-              <div
-                className="text-white leading-none"
-                style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
-              >
-                {t('for your school.', 'لمدرستك.')}
-              </div>
-            </div>
-
-            {/* Subtext — fades out/in on slide change */}
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={`sub-${current}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                className="leading-relaxed mb-8"
-                style={{
-                  color:    'rgba(255,255,255,0.6)',
-                  fontSize: 15,
-                  maxWidth: 'min(440px, 100%)',
-                }}
-              >
-                {t(slide.sub.en, slide.sub.ar)}
-              </motion.p>
-            </AnimatePresence>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 mb-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 text-white font-medium transition-opacity hover:opacity-85 whitespace-nowrap"
-                style={{
-                  background:   '#534AB7',
-                  fontSize:     14,
-                  padding:      '11px 24px',
-                  borderRadius: 6,
-                }}
-              >
-                {t('Book a free demo', 'احجز عرضاً مجانياً')}
-                <span
-                  aria-hidden="true"
-                  className={isRTL ? 'rotate-180 inline-block' : ''}
-                >
-                  →
-                </span>
-              </Link>
-
-              <Link
-                href="/solutions"
-                className="inline-flex items-center text-white transition-colors hover:bg-white/10 whitespace-nowrap"
-                style={{
-                  fontSize:     14,
-                  padding:      '11px 24px',
-                  borderRadius: 6,
-                  border:       '0.5px solid rgba(255,255,255,0.2)',
-                }}
-              >
-                {t('See our solutions', 'استكشف حلولنا')}
-              </Link>
-            </div>
-
-            {/* Dots — desktop, inline below CTAs */}
-            <div className="hidden md:flex items-center gap-2">
-              {renderDots()}
-            </div>
-          </div>
-
-          {/* ── RIGHT — Story card (hidden below md) ── */}
-          <div
-            className="hidden md:block relative flex-shrink-0 overflow-hidden"
-            style={{
-              width:        260,
-              height:       `calc(90vh - ${NAV_H}px - 80px)`,
-              minHeight:    300,
-              maxHeight:    620,
-              borderRadius: 12,
-            }}
-          >
-            {/* Card BG — mirrors main slide BG */}
-            {SLIDES.map((s, i) => (
-              <div
-                key={`card-${s.bgImage}`}
-                className="absolute inset-0"
-                style={{
-                  backgroundColor: s.fallbackBg,
-                  opacity:         i === current ? 1 : 0,
-                  transition:      'opacity 1.1s ease',
-                }}
-              >
-                <Image src={s.bgImage} alt="" fill className="object-cover" sizes="260px" />
-              </div>
-            ))}
-
-            {/* Bottom gradient */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 55%)' }}
-            />
-
-            {/* Story content — staggered fade+slide */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`story-${current}`}
-                className="absolute bottom-0 left-0 right-0"
-                style={{ padding: '1.2rem' }}
-              >
-                {/* School badge */}
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.4, ease: 'easeOut' }}
-                  className={`flex items-center gap-2.5 mb-3 ${isRTL ? 'flex-row-reverse' : ''}`}
-                >
-                  <span className="text-lg leading-none flex-shrink-0" aria-hidden="true">
-                    {slide.story.icon}
-                  </span>
-                  <div className={`min-w-0 ${isRTL ? 'text-right' : ''}`}>
-                    <p className="text-white font-semibold truncate" style={{ fontSize: 13 }}>
-                      {t(slide.story.name.en, slide.story.name.ar)}
-                    </p>
-                    <p className="truncate" style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)' }}>
-                      {t(slide.story.type.en, slide.story.type.ar)}
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Quote */}
-                <motion.p
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.35, duration: 0.4, ease: 'easeOut' }}
-                  className={`leading-relaxed mb-4 ${isRTL ? 'text-right' : ''}`}
-                  style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}
-                >
-                  &ldquo;{t(slide.story.quote.en, slide.story.quote.ar)}&rdquo;
-                </motion.p>
-
-                {/* Read story pill */}
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.4, ease: 'easeOut' }}
-                >
-                  <Link
-                    href="/about"
-                    className="inline-block text-white font-semibold transition-opacity hover:opacity-80"
-                    style={{
-                      fontSize:     11,
-                      padding:      '7px 16px',
+                      fontFamily:   'Georgia, "Times New Roman", serif',
+                      fontStyle:    'italic',
+                      fontSize:     'clamp(2.4rem, 5vw, 4.2rem)',
+                      lineHeight:   1,
+                      color:        '#ffffff',
+                      background:   'rgba(255,255,255,0.1)',
                       borderRadius: 9999,
-                      background:   '#E24B4A',
+                      padding:      '6px 22px',
+                      display:      'inline-block',
+                      whiteSpace:   'nowrap',
                     }}
                   >
-                    {t('Read story', 'اقرأ القصة')}
-                  </Link>
+                    {t(slide.word.en, slide.word.ar)}
+                  </span>
                 </motion.div>
-              </motion.div>
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
+
+            {/* SLOT 3 — next */}
+            <div className="absolute inset-x-0 flex items-center" style={{ top: LINE_H * 2, height: LINE_H, zIndex: 1 }}>
+              <span style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontStyle: 'italic', fontSize: 'clamp(2.4rem, 5vw, 4.2rem)', color: 'rgba(255,255,255,0.22)', lineHeight: 1 }}>
+                {t(next.word.en, next.word.ar)}
+              </span>
+            </div>
           </div>
 
+          {/* Line 3 — static */}
+          <div className="text-white leading-none" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.2rem)' }}>
+            {t('for your school.', 'لمدرستك.')}
+          </div>
         </div>
+
+        {/* CTAs */}
+        <div className="flex flex-wrap items-center gap-3 mb-8">
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-1.5 text-white font-medium transition-opacity hover:opacity-85 whitespace-nowrap"
+            style={{ background: '#534AB7', fontSize: 14, padding: '11px 24px', borderRadius: 6 }}
+          >
+            {t('Book a free demo', 'احجز عرضاً مجانياً')}
+            <span aria-hidden="true" className={isRTL ? 'rotate-180 inline-block' : ''}>→</span>
+          </Link>
+          <Link
+            href="/solutions"
+            className="inline-flex items-center text-white transition-colors hover:bg-white/10 whitespace-nowrap"
+            style={{ fontSize: 14, padding: '11px 24px', borderRadius: 6, border: '0.5px solid rgba(255,255,255,0.2)' }}
+          >
+            {t('See our solutions', 'استكشف حلولنا')}
+          </Link>
+        </div>
+
+        {/* Dots — desktop only */}
+        <div className="hidden md:flex items-center gap-2">
+          {renderDots()}
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════════════════
+          RIGHT PANEL — full-height dark sidebar strip, flush to edge
+          Hidden on mobile. RTL: flips to left edge.
+          ══════════════════════════════════════════════════════════ */}
+      <div
+        className="hidden md:flex flex-col justify-end absolute"
+        style={{
+          top:     NAV_H,
+          bottom:  0,
+          ...(isRTL ? { left: 0 } : { right: 0 }),
+          width:   'clamp(220px, 22vw, 300px)',
+          background: 'rgba(4,6,14,0.88)',
+          ...(isRTL
+            ? { borderRight: '0.5px solid rgba(255,255,255,0.08)' }
+            : { borderLeft:  '0.5px solid rgba(255,255,255,0.08)' }),
+          zIndex: 10,
+        }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`panel-${current}`}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+            style={{ padding: 'clamp(1.5rem, 3vw, 2.5rem)' }}
+          >
+            {/* Slide subtitle */}
+            <p
+              className={`leading-relaxed mb-5 ${isRTL ? 'text-right' : ''}`}
+              style={{ fontSize: 14, color: 'rgba(255,255,255,0.72)', lineHeight: 1.65 }}
+            >
+              {t(slide.sub.en, slide.sub.ar)}
+            </p>
+
+            {/* Divider */}
+            <div style={{ height: '0.5px', background: 'rgba(255,255,255,0.1)', marginBottom: '1.25rem' }} />
+
+            {/* Story badge */}
+            <div className={`flex items-center gap-2.5 mb-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <span className="text-xl leading-none flex-shrink-0" aria-hidden="true">
+                {slide.story.icon}
+              </span>
+              <div className={`min-w-0 ${isRTL ? 'text-right' : ''}`}>
+                <p className="text-white font-semibold truncate" style={{ fontSize: 13 }}>
+                  {t(slide.story.name.en, slide.story.name.ar)}
+                </p>
+                <p className="truncate" style={{ fontSize: 11, color: 'rgba(255,255,255,0.45)' }}>
+                  {t(slide.story.type.en, slide.story.type.ar)}
+                </p>
+              </div>
+            </div>
+
+            {/* Quote */}
+            <p
+              className={`leading-relaxed mb-5 ${isRTL ? 'text-right' : ''}`}
+              style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', fontStyle: 'italic' }}
+            >
+              &ldquo;{t(slide.story.quote.en, slide.story.quote.ar)}&rdquo;
+            </p>
+
+            {/* Read story CTA */}
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-white font-semibold transition-opacity hover:opacity-80"
+              style={{ fontSize: 12, padding: '9px 20px', borderRadius: 9999, background: '#E24B4A' }}
+            >
+              {t('Read story', 'اقرأ القصة')}
+              <span aria-hidden="true" className={isRTL ? 'rotate-180 inline-block' : ''}>→</span>
+            </Link>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* ══════════════════════════════════════════════════════════
@@ -695,7 +573,7 @@ export default function HeroSection() {
       <div
         className="absolute hidden md:flex items-center justify-center"
         style={{
-          bottom:   32,
+          bottom: 32,
           ...(isRTL
             ? { right: 'clamp(1.5rem, 4vw, 3rem)' }
             : { left:  'clamp(1.5rem, 4vw, 3rem)' }),
