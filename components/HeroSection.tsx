@@ -444,7 +444,7 @@ export default function HeroSection() {
           top:            NAV_H,
           bottom:         0,
           ...(isRTL ? { left: 0 } : { right: 0 }),
-          width:          300,
+          width:          360,
           backdropFilter: 'blur(18px)',
           background:     'rgba(255,255,255,0.04)',
           ...(isRTL
