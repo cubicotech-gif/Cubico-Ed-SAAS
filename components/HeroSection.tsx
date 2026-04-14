@@ -268,14 +268,13 @@ export default function HeroSection() {
 
         {/* ── HEADLINE — ONE LINE, slot machine inline ── */}
         <div
-          className="md:whitespace-nowrap"
           style={{
             display:      'flex',
             alignItems:   'center',
             marginBottom: '1.2rem',
             flexDirection: isRTL ? 'row-reverse' : 'row',
-            flexWrap:     'wrap',
-            gap:          '0 0',
+            flexWrap:     'nowrap',
+            whiteSpace:   'nowrap',
           }}
         >
           {/* Static word — "Smarter" */}
