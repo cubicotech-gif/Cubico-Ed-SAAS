@@ -117,6 +117,14 @@ export default function HeroSection() {
 
   const [current, setCurrent] = useState(0);
   const [paused,  setPaused]  = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  /* ── Scroll listener for dynamic navbar ── */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   /* ── Auto-cycle: restarted on every slide change to keep ring in sync ── */
   useEffect(() => {
@@ -138,7 +146,7 @@ export default function HeroSection() {
     <section
       id="hero"
       className="relative w-full overflow-hidden"
-      style={{ height: '90vh', minHeight: 560, background: '#06080f' }}
+      style={{ height: '90vh', minHeight: 560, background: '#06080f', marginTop: NAV_H }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -170,25 +178,53 @@ export default function HeroSection() {
       />
 
       {/* ══════════════════════════════════════════════════════════
-          NAVBAR
+          NAVBAR — fixed, glass-morphic, scroll-dynamic
           ══════════════════════════════════════════════════════════ */}
       <nav
-        className="absolute top-0 left-0 right-0 flex items-center"
+        className="fixed top-0 left-0 right-0 flex items-center transition-all duration-500"
         style={{
-          height:       NAV_H,
-          padding:      '0 clamp(1.25rem, 3vw, 2.5rem)',
-          backdropFilter: 'blur(12px)',
-          background:   'rgba(6,8,15,0.35)',
-          borderBottom: '0.5px solid rgba(255,255,255,0.10)',
-          zIndex:       20,
+          height:         NAV_H,
+          padding:        '0 clamp(1.25rem, 3vw, 2.5rem)',
+          backdropFilter: scrolled ? 'blur(28px) saturate(180%)' : 'blur(14px) saturate(140%)',
+          WebkitBackdropFilter: scrolled ? 'blur(28px) saturate(180%)' : 'blur(14px) saturate(140%)',
+          background:     scrolled
+            ? 'rgba(6,8,15,0.72)'
+            : 'rgba(6,8,15,0.22)',
+          borderBottom:   scrolled
+            ? '0.5px solid rgba(255,255,255,0.12)'
+            : '0.5px solid rgba(255,255,255,0.07)',
+          boxShadow:      scrolled ? '0 4px 32px rgba(0,0,0,0.35)' : 'none',
+          zIndex:         50,
         }}
       >
         {/* Logo */}
         <Link
           href="/"
-          style={{ fontWeight: 700, color: '#fff', fontSize: 17, textDecoration: 'none', letterSpacing: '-0.01em', flexShrink: 0 }}
+          style={{
+            textDecoration: 'none',
+            flexShrink:     0,
+            display:        'inline-flex',
+            alignItems:     'baseline',
+            gap:            1,
+          }}
         >
-          Cubico.
+          <span style={{
+            fontFamily:    '"Playfair Display", Georgia, "Times New Roman", serif',
+            fontWeight:    800,
+            fontSize:      24,
+            color:         '#fff',
+            letterSpacing: '-0.02em',
+            lineHeight:    1,
+          }}>
+            Cubico
+          </span>
+          <span style={{
+            fontFamily: '"Playfair Display", Georgia, "Times New Roman", serif',
+            fontWeight: 800,
+            fontSize:   26,
+            color:      '#4C8EF7',
+            lineHeight: 1,
+          }}>.</span>
         </Link>
 
         {/* Centre nav — absolutely positioned at 50% */}
@@ -441,15 +477,22 @@ export default function HeroSection() {
       <div
         className="hidden md:block absolute"
         style={{
-          top:            NAV_H,
+          top:            0,
           bottom:         0,
           ...(isRTL ? { left: 0 } : { right: 0 }),
-          width:          360,
-          backdropFilter: 'blur(18px)',
-          background:     'rgba(255,255,255,0.04)',
+          width:                360,
+          backdropFilter:       'blur(28px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(160%)',
+          background:           'rgba(255,255,255,0.055)',
           ...(isRTL
-            ? { borderRight: '0.5px solid rgba(255,255,255,0.12)' }
-            : { borderLeft:  '0.5px solid rgba(255,255,255,0.12)' }),
+            ? {
+                borderRight:  '0.5px solid rgba(255,255,255,0.18)',
+                boxShadow:    '-8px 0 40px rgba(0,0,0,0.3), inset -1px 0 0 rgba(255,255,255,0.08)',
+              }
+            : {
+                borderLeft:   '0.5px solid rgba(255,255,255,0.18)',
+                boxShadow:    '8px 0 40px rgba(0,0,0,0.3), inset 1px 0 0 rgba(255,255,255,0.08)',
+              }),
           zIndex: 10,
         }}
       >
