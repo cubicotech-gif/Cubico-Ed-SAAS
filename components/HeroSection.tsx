@@ -481,9 +481,9 @@ export default function HeroSection() {
           bottom:         0,
           ...(isRTL ? { left: 0 } : { right: 0 }),
           width:                360,
-          backdropFilter:       'blur(28px) saturate(160%)',
-          WebkitBackdropFilter: 'blur(28px) saturate(160%)',
-          background:           'rgba(255,255,255,0.055)',
+          backdropFilter:       'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
+          background:           'rgba(6,8,15,0.08)',
           ...(isRTL
             ? {
                 borderRight:  '0.5px solid rgba(255,255,255,0.18)',
