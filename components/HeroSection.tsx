@@ -185,14 +185,14 @@ export default function HeroSection() {
         style={{
           height:         NAV_H,
           padding:        '0 clamp(1.25rem, 3vw, 2.5rem)',
-          backdropFilter: scrolled ? 'blur(28px) saturate(180%)' : 'blur(14px) saturate(140%)',
-          WebkitBackdropFilter: scrolled ? 'blur(28px) saturate(180%)' : 'blur(14px) saturate(140%)',
+          backdropFilter: scrolled ? 'blur(20px)' : 'blur(5px)',
+          WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'blur(5px)',
           background:     scrolled
-            ? 'rgba(6,8,15,0.72)'
-            : 'rgba(6,8,15,0.22)',
+            ? 'rgba(6,8,15,0.65)'
+            : 'rgba(6,8,15,0.08)',
           borderBottom:   scrolled
-            ? '0.5px solid rgba(255,255,255,0.12)'
-            : '0.5px solid rgba(255,255,255,0.07)',
+            ? '0.5px solid rgba(255,255,255,0.10)'
+            : '0.5px solid rgba(255,255,255,0.04)',
           boxShadow:      scrolled ? '0 4px 32px rgba(0,0,0,0.35)' : 'none',
           zIndex:         50,
         }}
