@@ -146,7 +146,7 @@ export default function HeroSection() {
     <section
       id="hero"
       className="relative w-full overflow-hidden"
-      style={{ height: '90vh', minHeight: 560, background: '#06080f', marginTop: NAV_H }}
+      style={{ height: '100vh', minHeight: 600, background: '#06080f' }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -477,7 +477,7 @@ export default function HeroSection() {
       <div
         className="hidden md:block absolute"
         style={{
-          top:            0,
+          top:            NAV_H,
           bottom:         0,
           ...(isRTL ? { left: 0 } : { right: 0 }),
           width:                360,

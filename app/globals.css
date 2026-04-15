@@ -51,7 +51,7 @@ html {
 
 body {
   font-family: 'Inter', 'General Sans', -apple-system, system-ui, sans-serif;
-  background-color: var(--bg-white);
+  background-color: #06080f;
   color: var(--text-dark);
   overflow-x: hidden;
 }
